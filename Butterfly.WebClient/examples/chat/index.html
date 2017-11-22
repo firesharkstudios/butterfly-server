@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Butterfly Chat Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+    <br/>
+
+    <!-- App Template -->
+    <div id="app">
+        <div class="container">
+            <div class="row" style="height: 20em">
+                <div class="col-5 d-flex flex-column">
+                    <div>
+                        <button class="btn btn-primary btn-xs float-right" @click.prevent="showAddChatPrompt"><i class="fa fa-plus"></i> Add</button>
+                        <h3>Chats</h3>
+                    </div>
+                    <chats-component class="flex-grow" :chats="chats" :my-user-id="myUserId" @new-selection="setSelectedChatId"></chats-component>
+                    <div v-show="selectedChatId">
+                        <div>
+                            <button class="btn btn-primary btn-xs float-right" @click.prevent="showAddParticipantDialog"><i class="fa fa-plus"></i> Add</button>
+                            <h3>Participants</h3>
+                        </div>
+                        <chat-participants-component :selected-chat-id="selectedChatId" :chat-participants="chatParticipants" :my-user-id="myUserId"></chat-participants-component>
+                    </div>
+                </div>
+                <div class="col-7 d-flex flex-column">
+                    <h3>Messages</h3>
+                    <chat-messages-component class="flex-grow" :selected-chat-id="selectedChatId" :chat-messages="chatMessages" :my-user-id="myUserId"></chat-messages-component>
+                </div>
+            </div>
+        </div>
+
+        <!-- Not Connected Modal -->
+        <div class="modal fade" id="notConnectedModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="alert alert-primary text-center" style="margin: 0 auto">{{ connectionStatus }}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chats Component Template -->
+    <script type="text/x-template" id="chats-component">
+        <div>
+            <ul class="list-group" v-if="sortedChats.length>0">
+                <li class="list-group-item d-flex justify-content-between align-items-center"  v-for="chat in sortedChats" v-bind:class="{active:chat.id==selectedChatId}">
+                    <i class="fa" v-bind:class="{'fa-star': chat.owner_id==myUserId, 'fa-star-o': chat.owner_id!=myUserId}" v-bind:title="'Owned by ' + chat.owner_name" style="padding-right: 0.5em"></i> 
+                    <a class="chat-name flex-grow" href="#" tabindex="-1" @click.prevent="selectedChatId=chat.id">{{ chat.name }}</a>
+                    <a class="close" href="#" title="Delete Chat" @click.prevent="deleteChat(chat.id)" v-if="chat.owner_id==myUserId">&times;</a>
+                </li>
+            </ul>
+            <div class="text-center" v-else>
+                <br/>
+                <p>There are no chats yet.</p>
+                <p>Click Add to create your first chat.</p>
+            </div>
+        </div>
+    </script>
+
+    <!-- Chat Participants Component Template -->
+    <script type="text/x-template" id="chat-participants-component">
+        <ul class="comma-list">
+            <li v-for="chatParticipant in selectedChatParticipants">
+                <span v-if="chatParticipant.user_id!=myUserId"><i class="fa fa-user-o" title="This is another user"></i> {{ chatParticipant.name }}</span>
+                <a href="#" @click.prevent="showUpdateProfilePrompt(chatParticipant.name)" v-else><i class="fa fa-user" title="This is you"></i> {{ chatParticipant.name }}</a>
+            </li>
+        </ul>
+    </script>
+
+    <!-- Chat Messages Component Template -->
+    <script type="text/x-template" id="chat-messages-component">
+        <div class="d-flex flex-column">
+            <div class="flex-grow chat-message-history">
+                <div v-for="chatMessage in selectedChatMessages">
+                    <p><mark> {{ chatMessage.name }}: </mark> &nbsp; {{ chatMessage.text }}</p>
+                </div>
+            </div>
+            <div>
+                <br/>
+                <div class="d-flex">
+                    <div class="flex-grow">
+                        <input class="form-control" v-model="formMessage" placeholder="Type your message" @keyup.enter="postMessage" />
+                    </div>
+                    <div>&nbsp;</div>
+                    <div>
+                        <button class="btn btn-primary" @click.prevent="postMessage">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/vue"></script>
+    <script src="/js/butterfly.channel.websocket.js"></script>
+    <script src="/js/butterfly.data.vue.js"></script>
+    <script src="/js/butterfly.util.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
