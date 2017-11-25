@@ -21,8 +21,8 @@ using System.Reflection;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using Butterfly.Database.Dynamic;
 using Butterfly.Database.Event;
-using Fireshark.Butterfly.Dynamic;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 

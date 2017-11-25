@@ -1,10 +1,20 @@
-﻿/* Copyright (C) Fireshark Studios, LLC - All Rights Reserved
- * Unauthorized copying of this file, via any medium is strictly prohibited
- * Proprietary and confidential
- * Written by Kent Johnson <kent@fireshark.com>, November 2017
- */
+﻿/*
+ * Copyright 2017 Fireshark Studios, LLC
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+*/
 
- using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.Linq;
@@ -14,13 +24,11 @@ using System.Threading.Tasks;
 using Nito.AsyncEx;
 using NLog;
 
-using Butterfly.Database;
 using Butterfly.Database.Event;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
-using System.Reflection;
 
-namespace Fireshark.Butterfly.Dynamic {
+namespace Butterfly.Database.Dynamic {
     public class DynamicSelectGroup : IDisposable {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -37,7 +45,6 @@ namespace Fireshark.Butterfly.Dynamic {
         protected readonly List<IDisposable> disposables = new List<IDisposable>();
 
         public DynamicSelectGroup(Database database, Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null) {
-            LicenseChecker.Check(Assembly.GetCallingAssembly());
             this.Database = database;
             this.listener = listener;
             this.listenerDataEventFilter = listenerDataEventFilter;

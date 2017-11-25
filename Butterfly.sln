@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.WebServer", "Butt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Channel", "Butterfly.Channel\Butterfly.Channel.csproj", "{EA4F6FE2-51C1-4F2B-B7F4-E21EFBC65D4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Examples.ChatServer", "Butterfly.Examples.ChatServer\Butterfly.Examples.ChatServer.csproj", "{9667F29B-EE21-433B-B439-CCBDCC59B034}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.RedHttpServer", "Butterfly.RedHttpServer\Butterfly.RedHttpServer.csproj", "{81C3A200-2E78-49E5-9D61-1E4DEBC2B87F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Database.Test", "Butterfly.Database.Test\Butterfly.Database.Test.csproj", "{FE19E37E-645F-4843-AA1D-9C116E81615B}"
@@ -45,10 +43,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Database.Memory", "Butterfly.Database.Memory\Butterfly.Database.Memory.csproj", "{2DBFD7B1-18D0-46C8-B185-6A73E5F79BCD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Database.Postgres", "Butterfly.Database.Postgres\Butterfly.Database.Postgres.csproj", "{C6464979-B6FC-4565-963B-C78ACA127ECA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fireshark.Butterfly.Dynamic", "Fireshark.Butterfly.Dynamic\Fireshark.Butterfly.Dynamic.csproj", "{FB832D95-974D-43A6-91BD-CFAE6EFD9243}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fireshark.Butterfly.Dynamic.Test", "Fireshark.Butterfly.Dynamic.Test\Fireshark.Butterfly.Dynamic.Test.csproj", "{702E9B7D-3EBC-49FD-A7E7-E667FBA53777}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Database.SQLite", "Butterfly.Database.SQLite\Butterfly.Database.SQLite.csproj", "{FF3B444F-43F1-4903-B896-755E45EFCF8A}"
 EndProject
@@ -83,10 +77,6 @@ Global
 		{EA4F6FE2-51C1-4F2B-B7F4-E21EFBC65D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA4F6FE2-51C1-4F2B-B7F4-E21EFBC65D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA4F6FE2-51C1-4F2B-B7F4-E21EFBC65D4F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9667F29B-EE21-433B-B439-CCBDCC59B034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9667F29B-EE21-433B-B439-CCBDCC59B034}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9667F29B-EE21-433B-B439-CCBDCC59B034}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9667F29B-EE21-433B-B439-CCBDCC59B034}.Release|Any CPU.Build.0 = Release|Any CPU
 		{81C3A200-2E78-49E5-9D61-1E4DEBC2B87F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{81C3A200-2E78-49E5-9D61-1E4DEBC2B87F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81C3A200-2E78-49E5-9D61-1E4DEBC2B87F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -111,14 +101,6 @@ Global
 		{C6464979-B6FC-4565-963B-C78ACA127ECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6464979-B6FC-4565-963B-C78ACA127ECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6464979-B6FC-4565-963B-C78ACA127ECA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB832D95-974D-43A6-91BD-CFAE6EFD9243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB832D95-974D-43A6-91BD-CFAE6EFD9243}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB832D95-974D-43A6-91BD-CFAE6EFD9243}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB832D95-974D-43A6-91BD-CFAE6EFD9243}.Release|Any CPU.Build.0 = Release|Any CPU
-		{702E9B7D-3EBC-49FD-A7E7-E667FBA53777}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{702E9B7D-3EBC-49FD-A7E7-E667FBA53777}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{702E9B7D-3EBC-49FD-A7E7-E667FBA53777}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{702E9B7D-3EBC-49FD-A7E7-E667FBA53777}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FF3B444F-43F1-4903-B896-755E45EFCF8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FF3B444F-43F1-4903-B896-755E45EFCF8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF3B444F-43F1-4903-B896-755E45EFCF8A}.Release|Any CPU.ActiveCfg = Release|Any CPU

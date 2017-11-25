@@ -1,7 +1,7 @@
 ![Logo of the project](https://raw.githubusercontent.com/jehna/readme-best-practices/master/sample-logo.png)
 
 # Butterfly Framework
-> Declarative framework for building real-time web apps using C#
+> Declarative framework for building real-time apps using C#
 
 Create real-time web apps with minimal coding.  Declare the data that should be synchronized with each client using familiar SELECT syntax. Let the Butterfly Framework send the initial data and any changes to every client.
 
@@ -159,6 +159,5 @@ branch. Pull requests are warmly welcome.
 
 ## Licensing
 
-All the client code and all of the core server framework (Butterfly.* namespace) is licensed under the Apache License 2.0.
+Everything is licensed under the Apache License 2.0.
 
-The Dynamic extension (Fireshark.Butterfly.Dynamic.*) is licensed under the Fireshark Simple Software License.
