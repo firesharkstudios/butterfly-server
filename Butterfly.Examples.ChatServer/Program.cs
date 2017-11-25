@@ -21,9 +21,9 @@ using RedHttpServerNet45;
 
 using Butterfly.Channel;
 using Butterfly.Database;
+using Butterfly.Database.Dynamic;
 using Butterfly.Util;
 using Butterfly.WebServer;
-using Fireshark.Butterfly.Dynamic;
 
 namespace ChatServer {
     class Program {
