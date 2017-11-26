@@ -51,11 +51,10 @@ namespace ChatServer {
                 }, ignoreIfDuplicate: true);
 
                 // Create a dynamic select group that sends changes to the channel
-                var dynamicSelectGroup = new DynamicSelectGroup(
-                    database,
+                var dynamicSelectGroup = database.CreateDynamicSelectGroup(
                     listenerDataEventFilter: dataEvent => dataEvent.name != "chat_ids",
-                    listener:dataChangeTransaction => {
-                        channel.Queue(dataChangeTransaction);
+                    listener: dataEventTransaction => {
+                        channel.Queue(dataEventTransaction);
                     }
                 );
 
@@ -115,8 +114,7 @@ namespace ChatServer {
                 );
 
                 // Start the dynamic select group (executes all the dynamic select queries and sends changes as they occur)
-                await dynamicSelectGroup.StartAsync();
-                return dynamicSelectGroup;
+                return await dynamicSelectGroup.StartAsync();
             });
 
             // Listen for API requests to /api/profile/update

@@ -29,6 +29,7 @@ using Butterfly.Database.Event;
 using Butterfly.Util;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
+using Butterfly.Database.Dynamic;
 
 namespace Butterfly.Database {
 
@@ -329,6 +330,14 @@ namespace Butterfly.Database {
             if (!int.TryParse(maxLengthText, out int maxLength)) maxLength = -1;
 
             return (type, maxLength);
+        }
+
+        public DynamicSelectGroup CreateDynamicSelectGroup(Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null) {
+            return new DynamicSelectGroup(this, listener, listenerDataEventFilter);
+        }
+
+        public DynamicSelectGroup CreateDynamicSelectGroup(Func<DataEventTransaction, Task> asyncListener, Func<DataEvent, bool> listenerDataEventFilter = null) {
+            return new DynamicSelectGroup(this, asyncListener, listenerDataEventFilter);
         }
     }
 
