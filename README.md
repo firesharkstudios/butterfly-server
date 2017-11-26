@@ -107,6 +107,52 @@ The above code...
 - Creates a `DynamicSelectGroup` that sends any data event transactions to the client (via `channel.Queue`)
 - Creates a `DynamicSelect` that defines the data the client should receive initially and when any of this data changes
 
+This javascript runs on a web client...
+
+```js
+let channelClient = new WebSocketChannelClient({
+    channelId: '123',
+    dataEventHandler: new VueDataEventHandler({
+        vueArrayMapping: {
+            chat_message: chatMessages,
+        }
+    }),
+});
+channelClient.start();
+```
+
+The code above uses `WebSocketChannelClient` to create a channel (WebSocket) to the server and registers an instance of `VueDataEventHandler` to handle the data pushed by the server mapping any changes in the `chat_message` table to the local `chatMessages` array.
+
+## Goals
+
+Support the following javascript data binding libraries...
+- Vue.js
+- Angular
+- React 
+
+Support the following databases...
+- MySQL
+- Postgres
+- SQLite
+- MS SQL Server
+- MongoDB
+
+Support the following web servers...
+- Kestral
+- Nancy FX
+- Red HTTP Server
+
+Support the following operating systems...
+- Windows
+- Linux
+- Mac
+- Raspian
+
+Support the following run-times...
+- .NET Framework
+- .NET Core
+- Mono
+
 ## Contributing
 
 If you'd like to contribute, please fork the repository and use a feature
