@@ -75,9 +75,7 @@ namespace Butterfly.Channel {
 
         protected void CreateChannel(string id) {
             Channel channel = new Channel(this, id);
-            foreach (var listener in this.onNewChannelListeners) {
-                channel.Start(listener);
-            }
+            channel.Start(this.onNewChannelListeners, this.onNewChannelAsyncListeners);
             this.channelById[id] = channel;
         }
 

@@ -3,7 +3,7 @@
     let private = this;
 
     let testConnectionEveryMillis = options.testConnectionEveryMillis || 3000;
-    let userId = options.userId;
+    let url = options.url;
     let dataEventHandler = options.dataEventHandler;
     let onUpdated = options.onUpdated;
     let onStatusChange = options.onStatusChange;
@@ -20,7 +20,7 @@
         if (!private.webSocket) {
             try {
                 private.setStatus(firstAttempt ? 'Connecting...' : 'Reconnecting...');
-                private.webSocket = new WebSocket("ws://localhost:8080/channel/" + userId);
+                private.webSocket = new WebSocket(url);
                 private.webSocket.onmessage = function (event) {
                     let channelEvent = JSON.parse(event.data);
                     let dataEventTransaction = channelEvent.value;
@@ -56,7 +56,7 @@
         }
 
         private.timeout = setTimeout(function () {
-            private.testConnection();
+            private.testConnection(false);
         }, testConnectionEveryMillis);
     }
 

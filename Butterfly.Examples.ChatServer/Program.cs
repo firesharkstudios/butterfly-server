@@ -15,13 +15,14 @@
 */
 
 using System;
+using System.IO;
+using System.Reflection;
 
 using NLog;
 using RedHttpServerNet45;
 
 using Butterfly.Channel;
 using Butterfly.Database;
-using Butterfly.Database.Dynamic;
 using Butterfly.Util;
 using Butterfly.WebServer;
 
@@ -30,22 +31,24 @@ namespace ChatServer {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         static void Main(string[] args) {
-            // Setup database
-            Database database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=root;Pwd=test!123;Database=butterfly_chat");
+            // Setup database (may need to execute "GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' IDENTIFIED BY 'test!123'; CREATE DATABASE butterfly_chat;")
+            Database database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_chat");
+            database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Examples.ChatServer.db.sql").Wait();
             database.SetDefaultValue("id", () => Guid.NewGuid().ToString());
-            database.SetDefaultValue("createdAt", () => DateTime.Now);
-            database.SetDefaultValue("updatedAt", () => DateTime.Now);
-            database.Tables["chat"].SetDefaultValue("join_id", () => Guid.NewGuid().ToString().Substring(0, 8));
+            database.SetDefaultValue("created_at", () => DateTime.Now);
+            database.SetDefaultValue("updated_at", () => DateTime.Now);
+            database.SetDefaultValue("join_id", () => Guid.NewGuid().ToString().Substring(0, 8), "chat");
 
             // Setup web server and channel manager
-            RedHttpServer redHttpServer = new RedHttpServer(8080, @"\Users\Kent\Documents\Visual Studio 2017\Projects\Butterfly\Butterfly.Examples.ChatClient");
+            int port = 8080;
+            RedHttpServer redHttpServer = new RedHttpServer(port, Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\..\Butterfly.WebClient")));
             BaseWebServer webServer = new Butterfly.RedHttpServer.RedHttpServerWebServer(redHttpServer);
-            BaseChannelServer channelManager = new Butterfly.RedHttpServer.RedHttpServerChannelServer(redHttpServer);
+            BaseChannelServer channelServer = new Butterfly.RedHttpServer.RedHttpServerChannelServer(redHttpServer);
 
             // Initialize new channels created
-            channelManager.OnNewChannelAsync(async(channel) => {
+            channelServer.OnNewChannelAsync(async(channel) => {
                 // Create a user record if missing
-                await database.InsertAndCommitAsync("INSERT INTO user (@@names) VALUES (@@values)", new {
+                await database.InsertAndCommitAsync("user", new {
                     id = channel.Id,
                     name = CleverNameX.Generate(),
                 }, ignoreIfDuplicate: true);
@@ -195,6 +198,7 @@ namespace ChatServer {
             });
 
             webServer.Start();
+            Console.WriteLine($"Open http://localhost:{port}/examples/chat/index.html in different browsers (or under different personas in Chrome)");
             ConsoleUtil.WaitForCancelKey();
             webServer.Stop();
         }

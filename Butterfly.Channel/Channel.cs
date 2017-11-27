@@ -50,14 +50,9 @@ namespace Butterfly.Channel {
         }
 
         protected bool started = false;
-        public void Start(Func<Channel, IDisposable> initChannel) {
+        public void Start(ICollection<Func<Channel, IDisposable>> initChannelListeners, ICollection<Func<Channel, Task<IDisposable>>> initChannelAsyncListeners) {
             this.started = true;
-            Task.Run(() => this.Run(initChannel));
-        }
-
-        public void Start(Func<Channel, Task<IDisposable>> initChannelAsync) {
-            this.started = true;
-            Task.Run(() => this.Run(initChannelAsync));
+            Task.Run(() => this.Run(initChannelListeners, initChannelAsyncListeners));
         }
 
         public void Stop() {
@@ -65,15 +60,21 @@ namespace Butterfly.Channel {
             this.monitor.PulseAll();
         }
 
-        protected async Task Run(Func<Channel, IDisposable> initChannel) {
-            using (var attachment = initChannel(this)) {
+        protected async Task Run(ICollection<Func<Channel, IDisposable>> initChannelListeners, ICollection<Func<Channel, Task<IDisposable>>> initChannelAsyncListeners) {
+            List<IDisposable> disposables = new List<IDisposable>();
+            try {
+                foreach (var listener in initChannelListeners) {
+                    disposables.Add(listener(this));
+                }
+                foreach (var listener in initChannelAsyncListeners) {
+                    disposables.Add(await listener(this));
+                }
                 await this.DoRun();
             }
-        }
-
-        protected async Task Run(Func<Channel, Task<IDisposable>> initChannelAsync) {
-            using (var attachment = await initChannelAsync(this)) {
-                await this.DoRun();
+            finally {
+                foreach (var disposable in disposables) {
+                    disposable.Dispose();
+                }
             }
         }
 

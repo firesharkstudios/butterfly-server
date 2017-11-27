@@ -33,7 +33,7 @@ namespace Butterfly.Database.Postgres {
         public PostgresDatabase(string connectionString) : base(connectionString) {
         }
 
-        public override async Task LoadSchemaAsync() {
+        protected override async Task LoadSchemaAsync() {
             string commandText = "SELECT table_name FROM information_schema.tables WHERE table_schema='public'";
             using (var connection = new NpgsqlConnection(this.ConnectionString)) {
                 await connection.OpenAsync();

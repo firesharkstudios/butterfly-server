@@ -44,6 +44,7 @@ namespace Butterfly.Database {
 
         public Database(string connectionString) {
             this.ConnectionString = connectionString;
+            this.LoadSchemaAsync().Wait();
         }
 
         public string ConnectionString {
@@ -106,7 +107,7 @@ namespace Butterfly.Database {
         /// Loads the database schema from an existing database.
         /// </summary>
         /// <returns></returns>
-        public abstract Task LoadSchemaAsync();
+        protected abstract Task LoadSchemaAsync();
 
         protected abstract Task<Table> LoadTableSchemaAsync(string tableName);
 
@@ -254,8 +255,7 @@ namespace Butterfly.Database {
                 this.getDefaultValueByFieldName[fieldName] = getDefaultValue;
             }
             else {
-                Table table = this.Tables[tableName];
-                if (table == null) throw new Exception($"Invalid table name '{tableName}'");
+                if (!this.Tables.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
                 table.SetDefaultValue(fieldName, getDefaultValue);
             }
         }

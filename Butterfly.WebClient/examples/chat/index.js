@@ -120,7 +120,7 @@ let app = new Vue({
             let self = this;
             bootbox.prompt({
                 title: 'Add Chat: What is the chat topic?',
-                value: 'My Topic',
+                value: '',
                 callback: function (result) {
                     authorizedAjax('POST', '/api/chat/create', 'User ' + self.myUserId, {
                         name: result,
@@ -151,6 +151,9 @@ let app = new Vue({
         },
     },
     watch: {
+        connectionStatus: function (value) {
+            $('#notConnectedModal').modal(value != 'Connected' ? 'show' : 'hide');
+        },
         me: function (value) {
             this.formProfileName = this.me.name;
         },
@@ -164,9 +167,8 @@ let app = new Vue({
         });
 
         // Create channel to server and handle data events
-        self.showConnectionModal(true);
         let channelClient = new WebSocketChannelClient({
-            userId: self.myUserId,
+            url: 'ws://localhost:8080/channel/' + self.myUserId,
             dataEventHandler: new ArrayDataEventHandler({
                 arrayMapping: {
                     me: self.mes,
@@ -178,7 +180,6 @@ let app = new Vue({
             }),
             onStatusChange: function (value) {
                 self.connectionStatus = value;
-                self.showConnectionModal(value != 'Connected');
             },
         });
         channelClient.start();

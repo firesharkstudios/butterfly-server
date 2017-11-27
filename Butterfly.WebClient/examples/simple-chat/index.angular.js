@@ -12,7 +12,7 @@
         this.$onInit = function () {
             // Create channel to server and handle data events
             let channelClient = new WebSocketChannelClient({
-                userId: self.myUserId,
+                url: 'ws://localhost:8080/channel/' + $scope.myUserId,
                 dataEventHandler: new ArrayDataEventHandler({
                     arrayMapping: {
                         chat_message: $scope.chatMessages,

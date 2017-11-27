@@ -54,7 +54,7 @@ namespace Butterfly.Database {
         }
         
         protected readonly Dictionary<string, Func<object>> getDefaultValueByFieldName = new Dictionary<string, Func<object>>();
-        public void SetDefaultValue(string fieldName, Func<object> getDefaultValue) {
+        internal void SetDefaultValue(string fieldName, Func<object> getDefaultValue) {
             this.getDefaultValueByFieldName[fieldName] = getDefaultValue;
         }
 

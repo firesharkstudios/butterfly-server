@@ -39,7 +39,7 @@ namespace Butterfly.Database.SQLite {
             }
         }
 
-        public override async Task LoadSchemaAsync() {
+        protected override async Task LoadSchemaAsync() {
             string commandText = "SELECT name FROM sqlite_master WHERE type='table';";
             using (var connection = new SQLiteConnection(this.ConnectionString)) {
                 await connection.OpenAsync();

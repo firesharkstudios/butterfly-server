@@ -35,7 +35,7 @@ namespace Butterfly.Database.Memory {
         public MemoryDatabase() : base(null) {
         }
 
-        public override Task LoadSchemaAsync() {
+        protected override Task LoadSchemaAsync() {
             return Task.FromResult(0);
         }
 

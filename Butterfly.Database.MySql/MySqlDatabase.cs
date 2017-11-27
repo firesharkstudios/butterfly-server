@@ -33,7 +33,7 @@ namespace Butterfly.Database.MySql {
         public MySqlDatabase(string connectionString) : base(connectionString) {
         }
 
-        public override async Task LoadSchemaAsync() {
+        protected override async Task LoadSchemaAsync() {
             string commandText = "show tables";
             using (MySqlDataReader reader = await MySqlHelper.ExecuteReaderAsync(this.ConnectionString, commandText)) {
                 while (await reader.ReadAsync()) {

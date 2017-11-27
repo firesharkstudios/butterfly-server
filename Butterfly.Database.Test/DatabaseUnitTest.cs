@@ -34,7 +34,7 @@ namespace Butterfly.Database.Test {
 
         [TestMethod]
         public async Task DataMySqlDatabase() {
-            Database database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=root;Pwd=test!123;Database=butterfly_test");
+            Database database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_test");
             await this.TestDatabase(database);
         }
 
@@ -51,10 +51,8 @@ namespace Butterfly.Database.Test {
         }
 
         public async Task TestDatabase(Database database) {
-            await database.LoadSchemaAsync();
-
             database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Database.Test.db.sql").Wait();
-            database.Tables["employee"].SetDefaultValue("id", () => Guid.NewGuid().ToString());
+            database.SetDefaultValue("id", () => Guid.NewGuid().ToString(), "employee");
             database.SetDefaultValue("created_at", () => DateTime.Now);
             database.SetDefaultValue("updated_at", () => DateTime.Now);
 

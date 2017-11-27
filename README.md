@@ -62,7 +62,7 @@ The above code listens for a new channel to be created by a client and pushes "H
 This javascript code runs on a web client...
 ```js
 let channelClient = new WebSocketChannelClient({
-    channelId: '123',
+    url: 'ws://localhost:8080/channel/123',
     dataEventHandler: new EchoDataEventHandler(),
 });
 channelClient.start();
@@ -124,7 +124,7 @@ This javascript runs on a web client...
 
 ```js
 let channelClient = new WebSocketChannelClient({
-    channelId: '123',
+    url: 'ws://localhost:8080/channel/123',
     dataEventHandler: new ArrayDataEventHandler({
         arrayMapping: {
             chat_message: chatMessages,
@@ -136,6 +136,10 @@ channelClient.start();
 
 The code above uses `WebSocketChannelClient` to create a channel (WebSocket) to the server and registers an instance of `ArrayDataEventHandler` to handle the data pushed by the server mapping any changes in the `chat_message` table to the local `chatMessages` array.
 
+## Status
+
+Still pre-alpha but actively implementing features and test cases.
+
 ## Contributing
 
 If you'd like to contribute, please fork the repository and use a feature
@@ -143,5 +147,7 @@ branch. Pull requests are warmly welcome.
 
 ## Licensing
 
-Everything is licensed under the Apache License 2.0.
+All the server code is licensed under the Apache License 2.0.  
+
+All the client code is licensed under the MIT License.
 
