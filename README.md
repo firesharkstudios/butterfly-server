@@ -12,11 +12,11 @@ Create real-time apps with minimal coding.  Declare the data that should be sync
 
 There are three key packages to the Butterfly Framework...
 
-- `Butterfly.Database` - Server components that allow publishing change events when data changes.  Requires using `Butterfly.Database` to do INSERTs, UPDATEs, and DELETEs on the underlying database.
+- `Butterfly.Database` - Server code that publishes data change events when executing INSERTs, UPDATEs, and DELETEs using the provided API.
  
-- `Butterfly.Channel` - Client and server components that allow pushing data from the server to the client and updating local data structures.  Clients create a single channel to the server on startup.
+- `Butterfly.Channel` - Client and server code that allow pushing data from the server to the client and updating local data structures.  Clients create a single channel to the server on startup.
 
-- `Butterfly.Web` - Server components that allow serving static files and responding to API requests via HTTP requests.
+- `Butterfly.Web` - Server code that allow serving static files and responding to API requests via HTTP requests.
 
 All the packages are independent with no interdependencies. Use all the packages together or use any subset of the packages you wish.
 
@@ -44,7 +44,7 @@ await database.InsertAndCommitAsync("chat_message", values: {
 
 The above code...
 - Creates a `DynamicSelectGroup` that echoes any data event transactions to the Console
-- Creates a `DynamicSelect` to retrieve the initial data _and_ to listen for data changes
+- Creates a child `DynamicSelect` on the `DynamicSelectGroup` that retrieves the initial data _and_ listens for data changes
 - Executes an INSERT to trigger a data change on the `DynamicSelect`
 
 ## Butterfly.Channel Hello World
@@ -53,11 +53,11 @@ This C# code runs on a server...
 ```csharp
 // Initialize new channels created
 channelServer.OnNewChannelAsync(async(channel) => {
-    channel.Queue(new DataEventTransaction("Hello World"));
+    channel.Queue("Hello World");
 });
 ```
 
-The above code listens for a new channel to be created by a client and pushes a "Hello World" data event transaction to the client when a channel is created.
+The above code listens for a new channel to be created by a client and pushes "Hello World" to the client when a channel is created.
 
 This javascript code runs on a web client...
 ```js
@@ -78,7 +78,9 @@ webServer.OnGet("/test", async (req, res) => {
 });
 ```
 
-## Putting It All Together
+## Putting It All Together Hello World
+
+The example below combines all three packages to create a server in C# that synchronizes the `chat_message` table on a server with clients and listens for POST requests to `/api/chat/message` to insert new records in the `chat_message` table.
 
 This C# code runs on a server...
 
@@ -100,12 +102,23 @@ channelServer.OnNewChannelAsync(async(channel) => {
 
     return await dynamicSelectGroup.StartAsync();
 });
+
+// Listen for API requests to /api/chat/message
+webServer.OnPost("/api/chat/message", async(req, res) => {
+    var chatMessage = await req.ParseAsJsonAsync<dynamic>();
+    await database.InsertAndCommitAsync("chat_message", new {
+        user_name = chatMessage.userName,
+        text = chatMessage.text
+    });
+});
 ```
 
-The above code...
+The first chunk of code above...
 - Listens for a channel to be created by a client (via `channelServer.OnNewChannelAsync`)
 - Creates a `DynamicSelectGroup` that sends any data event transactions to the client (via `channel.Queue`)
 - Creates a `DynamicSelect` that defines the data the client should receive initially and when any of this data changes
+
+The second chunk of code above listens for POST requests to `/api/chat/message` and INSERTs a new record in the `chat_message` table.
 
 This javascript runs on a web client...
 
