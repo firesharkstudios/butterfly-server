@@ -28,12 +28,12 @@ namespace Butterfly.Channel {
 
         public readonly string id;
 
-        protected readonly BaseChannelServer channelManager;
+        protected readonly ChannelServer channelManager;
 
         protected readonly ConcurrentQueue<string> buffer = new ConcurrentQueue<string>();
         protected readonly AsyncMonitor monitor = new AsyncMonitor();
 
-        public Channel(BaseChannelServer channelManager, string id) {
+        public Channel(ChannelServer channelManager, string id) {
             this.channelManager = channelManager;
             this.id = id;
         }

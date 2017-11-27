@@ -50,7 +50,7 @@
     <Compile Include="WebHandler.cs" />
     <Compile Include="IWebResponse.cs" />
     <Compile Include="IWebRequest.cs" />
-    <Compile Include="BaseWebServer.cs" />
+    <Compile Include="WebServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Butterfly.Util\Butterfly.Util.csproj">

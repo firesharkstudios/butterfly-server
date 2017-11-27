@@ -12,7 +12,7 @@
         this.$onInit = function () {
             // Create channel to server and handle data events
             let channelClient = new WebSocketChannelClient({
-                url: 'ws://localhost:8080/channel/' + $scope.myUserId,
+                url: 'ws://localhost:8080/simple-chat/' + $scope.myUserId,
                 dataEventHandler: new ArrayDataEventHandler({
                     arrayMapping: {
                         chat_message: $scope.chatMessages,
@@ -41,7 +41,7 @@ angular.module('components', [])
             controller: function ($scope, $element) {
                 let self = this;
                 $scope.postMessage = function () {
-                    $.ajax('/api/chat/message', {
+                    $.ajax('/api/simple-chat/chat/message', {
                         method: 'POST',
                         data: JSON.stringify({
                             userName: $scope.myUserName,

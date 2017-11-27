@@ -1,52 +1,28 @@
-﻿/*
- * Copyright 2017 Fireshark Studios, LLC
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *     http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
-*/
-
-using System;
-using System.IO;
+﻿using System;
 using System.Reflection;
 
 using NLog;
-using RedHttpServerNet45;
 
 using Butterfly.Channel;
-using Butterfly.Database;
 using Butterfly.Util;
-using Butterfly.WebServer;
 
-namespace ChatServer {
-    class Program {
-        protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
+namespace Butterfly.Examples {
+    public static class FullChatExample {
+        static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        static void Main(string[] args) {
+        public static void Setup(WebServer.WebServer webServer, string apiPathPrefix, ChannelServer channelServer, string channelPathPrefix) {
+            logger.Debug($"Setup():apiPathPrefix={apiPathPrefix},channelPathPrefix={channelPathPrefix}");
+
             // Setup database (may need to execute "GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' IDENTIFIED BY 'test!123'; CREATE DATABASE butterfly_chat;")
-            Database database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_chat");
-            database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Examples.ChatServer.db.sql").Wait();
+            Butterfly.Database.Database database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_chat");
+            database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Examples.full-chat-db.sql").Wait();
             database.SetDefaultValue("id", () => Guid.NewGuid().ToString());
             database.SetDefaultValue("created_at", () => DateTime.Now);
             database.SetDefaultValue("updated_at", () => DateTime.Now);
             database.SetDefaultValue("join_id", () => Guid.NewGuid().ToString().Substring(0, 8), "chat");
 
-            // Setup web server and channel manager
-            int port = 8080;
-            RedHttpServer redHttpServer = new RedHttpServer(port, Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\..\Butterfly.WebClient")));
-            BaseWebServer webServer = new Butterfly.RedHttpServer.RedHttpServerWebServer(redHttpServer);
-            BaseChannelServer channelServer = new Butterfly.RedHttpServer.RedHttpServerChannelServer(redHttpServer);
-
             // Initialize new channels created
-            channelServer.OnNewChannelAsync(async(channel) => {
+            channelServer.OnNewChannelAsync(channelPathPrefix, async(channel) => {
                 // Create a user record if missing
                 await database.InsertAndCommitAsync("user", new {
                     id = channel.Id,
@@ -121,7 +97,7 @@ namespace ChatServer {
             });
 
             // Listen for API requests to /api/profile/update
-            webServer.OnPost("/api/profile/update", async (req, res) => {
+            webServer.OnPost($"{apiPathPrefix}/profile/update", async (req, res) => {
                 logger.Debug("Main():/api/profile/update");
                 var auth = req.AuthenticationHeaderValue;
                 var user = await req.ParseAsJsonAsync<dynamic>();
@@ -134,7 +110,7 @@ namespace ChatServer {
             });
 
             // Listen for API requests to /api/chat/create
-            webServer.OnPost("/api/chat/create", async(req, res) => {
+            webServer.OnPost($"{apiPathPrefix}/chat/create", async(req, res) => {
                 logger.Debug("Main():/api/chat/create");
                 var auth = req.AuthenticationHeaderValue;
                 var chat = await req.ParseAsJsonAsync<dynamic>();
@@ -154,7 +130,7 @@ namespace ChatServer {
             });
 
             // Listen for API requests to /api/chat/join
-            webServer.OnPost("/api/chat/join", async (req, res) => {
+            webServer.OnPost($"{apiPathPrefix}/chat/join", async (req, res) => {
                 logger.Debug("Main():/api/chat/join");
                 var auth = req.AuthenticationHeaderValue;
                 var join = await req.ParseAsJsonAsync<dynamic>();
@@ -173,7 +149,7 @@ namespace ChatServer {
             });
 
             // Listen for API requests to /api/chat/delete
-            webServer.OnPost("/api/chat/delete", async (req, res) => {
+            webServer.OnPost($"{apiPathPrefix}/chat/delete", async (req, res) => {
                 logger.Debug("Main():/api/chat/delete");
                 var auth = req.AuthenticationHeaderValue;
                 var chat = await req.ParseAsJsonAsync<dynamic>();
@@ -185,7 +161,7 @@ namespace ChatServer {
             });
 
             // Listen for API requests to /api/chat/message
-            webServer.OnPost("/api/chat/message", async(req, res) => {
+            webServer.OnPost($"{apiPathPrefix}/chat/message", async(req, res) => {
                 var auth = req.AuthenticationHeaderValue;
                 var chatMessage = await req.ParseAsJsonAsync<dynamic>();
 
@@ -196,13 +172,6 @@ namespace ChatServer {
                     text = chatMessage.text
                 });
             });
-
-            webServer.Start();
-            Console.WriteLine($"Open http://localhost:{port}/examples/chat/index.html in different browsers (or under different personas in Chrome)");
-            ConsoleUtil.WaitForCancelKey();
-            webServer.Stop();
         }
-
     }
-
 }

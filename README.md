@@ -67,7 +67,7 @@ let channelClient = new WebSocketChannelClient({
 });
 channelClient.start();
 ```
-The above code creates a new channel to the server using an `EchoDataEventHandler` to print received data event transactions to the javascript console.
+The above code creates a new channel to the server using an `WebSocketChannelClient` sending data pushed to the client to `EchoDataEventHandler` which simply prints any received data event transactions to the javascript console.
 
 ## Butterfly.WebServer Hello World
 

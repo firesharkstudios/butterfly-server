@@ -16,24 +16,26 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using NLog;
-using System.Collections.Generic;
+
 using Butterfly.Util;
 
 namespace Butterfly.Channel {
-    public class BaseChannelServer {
+    public abstract class ChannelServer {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly ConcurrentDictionary<string, IChannelTransport> channelTransportById = new ConcurrentDictionary<string, IChannelTransport>();
         protected readonly ConcurrentDictionary<string, Channel> channelById = new ConcurrentDictionary<string, Channel>();
 
-        protected readonly List<Func<Channel, IDisposable>> onNewChannelListeners = new List<Func<Channel, IDisposable>>();
-        protected readonly List<Func<Channel, Task<IDisposable>>> onNewChannelAsyncListeners = new List<Func<Channel, Task<IDisposable>>>();
+        protected readonly List<ChannelListener> onNewChannelListeners = new List<ChannelListener>();
+        protected readonly List<ChannelListenerAsync> onNewChannelAsyncListeners = new List<ChannelListenerAsync>();
 
-        public IDisposable OnNewChannel(Func<Channel, IDisposable> listener) {
-            return new ListItemDisposable<Func<Channel, IDisposable>>(onNewChannelListeners, listener);
+        public IDisposable OnNewChannel(string path, Func<Channel, IDisposable> listener) {
+            return new ListItemDisposable<ChannelListener>(onNewChannelListeners, new ChannelListener(path, listener));
         }
 
         /// <summary>
@@ -42,8 +44,8 @@ namespace Butterfly.Channel {
         /// <param name="channelId"></param>
         /// <param name="value"></param>
         /// <param name="path"></param>
-        public IDisposable OnNewChannelAsync(Func<Channel, Task<IDisposable>> listener) {
-            return new ListItemDisposable<Func<Channel, Task<IDisposable>>>(onNewChannelAsyncListeners, listener);
+        public IDisposable OnNewChannelAsync(string path, Func<Channel, Task<IDisposable>> listener) {
+            return new ListItemDisposable<ChannelListenerAsync>(onNewChannelAsyncListeners, new ChannelListenerAsync(path, listener));
         }
 
         /// <summary>
@@ -73,11 +75,36 @@ namespace Butterfly.Channel {
             this.channelTransportById[id] = factory();
         }
 
-        protected void CreateChannel(string id) {
+        protected void CreateChannel(string path, string id) {
             Channel channel = new Channel(this, id);
-            channel.Start(this.onNewChannelListeners, this.onNewChannelAsyncListeners);
+            channel.Start(
+                this.onNewChannelListeners.Where(x => x.path==path).Select(x => x.listener).ToArray(), 
+                this.onNewChannelAsyncListeners.Where(x => x.path==path).Select(x => x.listener).ToArray()
+            );
             this.channelById[id] = channel;
         }
 
+        public abstract void Start();
+        public abstract void Stop();
+    }
+
+    public class ChannelListener {
+        public readonly string path;
+        public readonly Func<Channel, IDisposable> listener;
+
+        public ChannelListener(string path, Func<Channel, IDisposable> listener) {
+            this.path = path;
+            this.listener = listener;
+        }
+    }
+
+    public class ChannelListenerAsync {
+        public readonly string path;
+        public readonly Func<Channel, Task<IDisposable>> listener;
+
+        public ChannelListenerAsync(string path, Func<Channel, Task<IDisposable>> listener) {
+            this.path = path;
+            this.listener = listener;
+        }
     }
 }

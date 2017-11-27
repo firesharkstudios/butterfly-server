@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Channel.cs" />
-    <Compile Include="BaseChannelServer.cs" />
+    <Compile Include="ChannelServer.cs" />
     <Compile Include="IChannelSource.cs" />
     <Compile Include="IChannelTransport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -28,7 +28,7 @@ using Butterfly.WebServer;
 using Butterfly.Util;
 
 namespace Butterfly.RedHttpServer {
-    public class RedHttpServerWebServer : BaseWebServer {
+    public class RedHttpServerWebServer : WebServer.WebServer {
 
         protected readonly global::RedHttpServerNet45.RedHttpServer server;
 

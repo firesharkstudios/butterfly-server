@@ -20,7 +20,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Butterfly.WebServer {
-    public abstract class BaseWebServer {
+    public abstract class WebServer {
         protected readonly List<WebHandler> webHandlers = new List<WebHandler>();
 
         public void OnGet(string path, Func<IWebRequest, IWebResponse, Task> run) {

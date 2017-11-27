@@ -25,11 +25,11 @@ using System.Threading.Tasks;
 
 using NLog;
 
+using Butterfly.Database.Dynamic;
 using Butterfly.Database.Event;
 using Butterfly.Util;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
-using Butterfly.Database.Dynamic;
 
 namespace Butterfly.Database {
 
@@ -58,7 +58,7 @@ namespace Butterfly.Database {
         /// <param name="resourceFile"></param>
         /// <returns></returns>
         public async Task CreateFromResourceFileAsync(Assembly assembly, string resourceFile) {
-            logger.Debug($"CreateFromResourceFileAsync():resourceNames={string.Join(",", assembly.GetManifestResourceNames())}");
+            //logger.Debug($"CreateFromResourceFileAsync():resourceNames={string.Join(",", assembly.GetManifestResourceNames())}");
             string sql = await FileX.LoadResourceAsTextAsync(assembly, resourceFile);
             await this.CreateFromTextAsync(sql);
         }
@@ -73,7 +73,7 @@ namespace Butterfly.Database {
         /// <param name="resourceFile"></param>
         /// <returns></returns>
         public async Task CreateFromTextAsync(string sql) {
-            logger.Debug($"CreateFromTextAsync():sql={sql}");
+            //logger.Debug($"CreateFromTextAsync():sql={sql}");
             var noCommentSql = SQL_COMMENT.Replace(sql, "");
             var sqlParts = noCommentSql.Split(';').Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x));
 

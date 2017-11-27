@@ -20,21 +20,37 @@ using Butterfly.Channel;
 
 using RedHttpServerNet45.Response;
 using NLog;
+using System.Collections.Generic;
 
 namespace Butterfly.RedHttpServer {
-    public class RedHttpServerChannelServer : BaseChannelServer {
+    public class RedHttpServerChannelServer : ChannelServer {
 
         protected readonly global::RedHttpServerNet45.RedHttpServer server;
 
         public RedHttpServerChannelServer(global::RedHttpServerNet45.RedHttpServer server) {
             this.server = server;
+        }
 
-            this.server.WebSocket("/channel/:channelId", (req, wsd) => {
-                string channelId = req.Params["channelId"];
-                logger.Debug($"RedHttpServerChannelManager():Websocket created for channelId {channelId}");
-                this.CreateChannelTransport(channelId, () => new WebSocketDialogChannelTransport(channelId, wsd));
-                this.CreateChannel(channelId);
-            });
+        public override void Start() {
+            HashSet<string> uniquePaths = new HashSet<string>();
+            foreach (var listener in this.onNewChannelListeners) {
+                if (!uniquePaths.Contains(listener.path)) uniquePaths.Add(listener.path);
+            }
+            foreach (var listener in this.onNewChannelAsyncListeners) {
+                if (!uniquePaths.Contains(listener.path)) uniquePaths.Add(listener.path);
+            }
+
+            foreach (var path in uniquePaths) {
+                this.server.WebSocket($"{path}/:channelId", (req, wsd) => {
+                    string channelId = req.Params["channelId"];
+                    logger.Debug($"RedHttpServerChannelManager():Websocket created for path {path}, channelId {channelId}");
+                    this.CreateChannelTransport(channelId, () => new WebSocketDialogChannelTransport(channelId, wsd));
+                    this.CreateChannel(path, channelId);
+                });
+            }
+        }
+
+        public override void Stop() {
         }
     }
 
