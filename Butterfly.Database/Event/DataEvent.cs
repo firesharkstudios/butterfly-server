@@ -34,30 +34,30 @@ namespace Butterfly.Database.Event {
         public readonly string name;
 
         public DataEvent(DataEventType dataEventType, string name) {
-            this.Id = Guid.NewGuid().ToString();
+            this.id = Guid.NewGuid().ToString();
             this.dataEventType = dataEventType;
             this.name = name;
         }
 
-        public string Id {
+        public string id {
             get;
             protected set;
         }
 
         public override string ToString() {
-            return $"{{id={Id},dataEventType={dataEventType},name={name}}}";
+            return $"{{id={id},dataEventType={dataEventType},name={name}}}";
         }
     }
 
     public class InitialBeginDataEvent : DataEvent {
-        protected readonly string[] keyFieldNames;
+        public readonly string[] keyFieldNames;
 
         public InitialBeginDataEvent(string name, string[] keyFieldNames) : base(DataEventType.InitialBegin, name) {
             this.keyFieldNames = keyFieldNames;
         }
 
         public override string ToString() {
-            return $"{{id={Id},dataEventType={dataEventType},name={name},keyFieldNames={keyFieldNames}}}";
+            return $"{{id={id},dataEventType={dataEventType},name={name},keyFieldNames={keyFieldNames}}}";
         }
     }
 
@@ -69,7 +69,7 @@ namespace Butterfly.Database.Event {
         }
 
         public override string ToString() {
-            return $"{{id={Id},dataEventType={dataEventType},name={name},record={record}}}";
+            return $"{{id={id},dataEventType={dataEventType},name={name},record={record}}}";
         }
     }
 

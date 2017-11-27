@@ -115,7 +115,7 @@ namespace Butterfly.Database.Dynamic {
         }
 
         protected string GetImpactedRecordsStorageKey(DynamicSelect dynamicSelect, DataEvent dataEvent, TransactionState transactionState) {
-            return $"{dynamicSelect.Id} {dataEvent.Id} {transactionState}";
+            return $"{dynamicSelect.Id} {dataEvent.id} {transactionState}";
         }
 
         protected bool HasImpactedRecords(TransactionState transactionState, DataEvent dataEvent) {

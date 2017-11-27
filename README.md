@@ -31,12 +31,12 @@ var dynamicSelectGroup = database.CreateDynamicSelectGroup(listener: dataEventTr
 });
 
 // Create a child DynamicSelect that sends the initial rows and any changes to the rows to the parent DynamicSelectGroup
-dynamicSelectGroup.CreateDynamicSelect("SELECT * FROM chat_message WHERE user_id=@userId", values: {
+dynamicSelectGroup.CreateDynamicSelect("SELECT * FROM chat_message WHERE user_id=@userId", values: new {
     userId = 123
 });
 
 // Add a record that would change the rows in the SELECT of the DynamicSelect above
-database.InsertAndCommitAsync("chat_message", values: {
+await database.InsertAndCommitAsync("chat_message", values: {
     user_id: 123_
     text: "Hello World"
 })
@@ -103,7 +103,7 @@ channelServer.OnNewChannelAsync(async(channel) => {
 ```
 
 The above code...
-- Listens for a channel to be created by a client (`channelServer.OnNewChannelAsync`)
+- Listens for a channel to be created by a client (via `channelServer.OnNewChannelAsync`)
 - Creates a `DynamicSelectGroup` that sends any data event transactions to the client (via `channel.Queue`)
 - Creates a `DynamicSelect` that defines the data the client should receive initially and when any of this data changes
 
@@ -112,8 +112,8 @@ This javascript runs on a web client...
 ```js
 let channelClient = new WebSocketChannelClient({
     channelId: '123',
-    dataEventHandler: new VueDataEventHandler({
-        vueArrayMapping: {
+    dataEventHandler: new ArrayDataEventHandler({
+        arrayMapping: {
             chat_message: chatMessages,
         }
     }),
@@ -121,37 +121,7 @@ let channelClient = new WebSocketChannelClient({
 channelClient.start();
 ```
 
-The code above uses `WebSocketChannelClient` to create a channel (WebSocket) to the server and registers an instance of `VueDataEventHandler` to handle the data pushed by the server mapping any changes in the `chat_message` table to the local `chatMessages` array.
-
-## Goals
-
-Support the following javascript data binding libraries...
-- Vue.js
-- Angular
-- React 
-
-Support the following databases...
-- MySQL
-- Postgres
-- SQLite
-- MS SQL Server
-- MongoDB
-
-Support the following web servers...
-- Kestral
-- Nancy FX
-- Red HTTP Server
-
-Support the following operating systems...
-- Windows
-- Linux
-- Mac
-- Raspian
-
-Support the following run-times...
-- .NET Framework
-- .NET Core
-- Mono
+The code above uses `WebSocketChannelClient` to create a channel (WebSocket) to the server and registers an instance of `ArrayDataEventHandler` to handle the data pushed by the server mapping any changes in the `chat_message` table to the local `chatMessages` array.
 
 ## Contributing
 

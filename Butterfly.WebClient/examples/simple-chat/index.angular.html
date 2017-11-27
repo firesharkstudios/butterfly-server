@@ -9,13 +9,31 @@
     <link rel="stylesheet" href="./index.css" />
 </head>
 <body>
-    <div class="text-center">
-        <p><a href="index.vue.html">Using Vue.js</a></p>
-        <p><a href="index.angular.html">Using Angular.js</a></p>
+    <br/>
+
+    <!-- App Template -->
+    <div id="app" ng-app="app">
+        <div class="container" ng-controller="SimpleChat">
+            <h3>Messages</h3>
+            <chat-messages-component class="flex-grow" chat-messages="chatMessages" my-user-name="myUserName"></chat-messages-component>
+        </div>
+
+        <!-- Not Connected Modal -->
+        <div class="modal fade" id="notConnectedModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="alert alert-primary text-center" style="margin: 0 auto">{{ connectionStatus }}</div>
+            </div>
+        </div>
     </div>
 
     <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.js"></script>
+    <script src="/js/butterfly.clever.js"></script>
+    <script src="/js/butterfly.channel.websocket.js"></script>
+    <script src="/js/butterfly.data.array.js"></script>
+    <script src="/js/butterfly.util.js"></script>
+    <script src="index.angular.js"></script>
 </body>
 </html>

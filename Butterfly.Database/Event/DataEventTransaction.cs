@@ -29,12 +29,18 @@ namespace Butterfly.Database.Event {
 
         protected readonly Dictionary<string, object> storage = new Dictionary<string, object>();
 
+        public DataEventTransaction(string text) {
+            this.dateTime = DateTime.Now;
+            this.dataEvents = new DataEvent[] { new DataEvent(DataEventType.Insert, text) };
+        }
+
         public DataEventTransaction(DateTime dateTime, DataEvent[] dataEvents) {
             this.dateTime = dateTime;
             this.dataEvents = dataEvents;
         }
 
         public void Store(string key, object obj) => this.storage[key] = obj;
+
         public object Fetch(string key) {
             if (this.storage.TryGetValue(key, out object obj)) return obj;
             else return null;

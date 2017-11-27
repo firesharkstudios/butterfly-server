@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Butterfly Simple Chat Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./index.css" />
+</head>
+<body>
+    <br/>
+
+    <!-- App Template -->
+    <div id="app">
+        <div class="container">
+            <h3>Messages</h3>
+            <chat-messages-component class="flex-grow" :chat-messages="chatMessages" :my-user-name="myUserName"></chat-messages-component>
+        </div>
+
+        <!-- Not Connected Modal -->
+        <div class="modal fade" id="notConnectedModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="alert alert-primary text-center" style="margin: 0 auto">{{ connectionStatus }}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Messages Component Template -->
+    <script type="text/x-template" id="chat-messages-component">
+        <div class="d-flex flex-column">
+            <div class="flex-grow chat-message-history">
+                <div v-for="chatMessage in selectedChatMessages">
+                    <p><mark> {{ chatMessage.user_name }}: </mark> &nbsp; {{ chatMessage.text }}</p>
+                </div>
+            </div>
+            <div>
+                <br/>
+                <div class="d-flex">
+                    <div class="flex-grow">
+                        <input class="form-control" v-model="formMessage" placeholder="Type your message" @keyup.enter="postMessage" />
+                    </div>
+                    <div>&nbsp;</div>
+                    <div>
+                        <button class="btn btn-primary" @click.prevent="postMessage">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/vue"></script>
+    <script src="/js/butterfly.clever.js"></script>
+    <script src="/js/butterfly.channel.websocket.js"></script>
+    <script src="/js/butterfly.data.array.js"></script>
+    <script src="/js/butterfly.util.js"></script>
+    <script src="index.vue.js"></script>
+</body>
+</html>
