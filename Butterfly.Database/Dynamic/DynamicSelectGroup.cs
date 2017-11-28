@@ -103,23 +103,24 @@ namespace Butterfly.Database.Dynamic {
         }
 
         protected async Task ProcessUncommittedDataEventTransactionAsync(DataEventTransaction dataEventTransaction) {
-            await this.LookupImpactedRecords(TransactionState.Uncommitted, dataEventTransaction);
+            await this.StoreImpactedRecordsInDataEventTransaction(TransactionState.Uncommitted, dataEventTransaction);
         }
 
         protected async Task ProcessCommittedDataEventTransactionAsync(DataEventTransaction dataEventTransaction) {
-            await this.LookupImpactedRecords(TransactionState.Committed, dataEventTransaction);
+            await this.StoreImpactedRecordsInDataEventTransaction(TransactionState.Committed, dataEventTransaction);
             this.incomingDataEventTransactions.Enqueue(dataEventTransaction);
             this.monitor.PulseAll();
         }
 
-        protected async Task LookupImpactedRecords(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
-            // Find all impacted records and store them with the data event transaction
+        protected async Task StoreImpactedRecordsInDataEventTransaction(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
             foreach (var dynamicSelect in this.dynamicSelects) {
                 foreach (var dataEvent in dataEventTransaction.dataEvents) {
                     if (dataEvent is ChangeDataEvent dataChange && HasImpactedRecords(transactionState, dataChange)) {
                         Dict[] impactedRecords = await dynamicSelect.GetImpactedRecordsAsync(dataChange);
-                        string storageKey = GetImpactedRecordsStorageKey(dynamicSelect, dataEvent, transactionState);
-                        dataEventTransaction.Store(storageKey, impactedRecords);
+                        if (impactedRecords != null && impactedRecords.Length > 0) {
+                            string storageKey = GetImpactedRecordsStorageKey(dynamicSelect, dataEvent, transactionState);
+                            dataEventTransaction.Store(storageKey, impactedRecords);
+                        }
                     }
                 }
             }
@@ -219,10 +220,11 @@ namespace Butterfly.Database.Dynamic {
         protected async Task<DataEvent[]> RequeryDynamicSelectsIfDirtyAsync(bool force = false) {
             List<DataEvent> dataEvents = new List<DataEvent>();
             foreach (var dynamicSelect in this.dynamicSelects) {
+                logger.Debug($"RequeryDynamicSelectsIfDirtyAsync():dynamicSelect={dynamicSelect.Id}");
                 if (force || dynamicSelect.HasDirtyParams) {
                     DataEvent[] initialDataEvents = await dynamicSelect.GetInitialDataEventsAsync();
                     dataEvents.AddRange(initialDataEvents);
-                    dynamicSelect.ResetDirtyOnDynamicParams();
+                    dynamicSelect.ResetDirtyParams();
                     dynamicSelect.UpdateDynamicParams(initialDataEvents);
                 }
             }

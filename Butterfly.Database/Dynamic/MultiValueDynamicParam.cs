@@ -17,12 +17,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using NLog;
-
 namespace Butterfly.Database.Dynamic {
     public class MultiValueDynamicParam : DynamicParam {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         protected readonly List<object> values = new List<object>();
 
         public MultiValueDynamicParam(string name) : base(name) {
@@ -30,7 +26,7 @@ namespace Butterfly.Database.Dynamic {
 
         public override void Clear() {
             if (this.values.Count > 0) {
-                this.Dirty = true;
+                this.SetDirty();
                 this.values.Clear();
             }
         }
@@ -43,7 +39,7 @@ namespace Butterfly.Database.Dynamic {
             var differences = value.Except(this.values);
             if (differences.Count() > 0) {
                 logger.Debug($"Values.set():{this.name}={string.Join(",", value)}");
-                this.Dirty = true;
+                this.SetDirty();
                 this.values.Clear();
                 this.values.AddRange(value);
             }

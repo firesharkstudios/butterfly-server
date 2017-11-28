@@ -68,9 +68,16 @@ namespace Butterfly.Database.Dynamic {
 
         public bool HasDirtyParams {
             get {
-                foreach (var whereParameter in this.selectParams) {
-                    if (whereParameter.Value is DynamicParam dynamicParam && dynamicParam.Dirty) return true;
+                foreach (var dynamicParamDependency in this.dynamicParamDependencies) {
+                    if (dynamicParamDependency.dynamicParam.Dirty) return true;
                 }
+                /*
+                foreach (var whereParameter in this.selectParams) {
+                    if (whereParameter.Value is DynamicParam dynamicParam) {
+                        if (dynamicParam.Dirty) return true;
+                    }
+                }
+                */
                 return false;
             }
         }
@@ -83,9 +90,10 @@ namespace Butterfly.Database.Dynamic {
             return await this.dynamicQuerySet.Database.GetInitialDataEventsAsync(this.name, this.keyFieldNames, this.selectStatement, this.selectParams);
         }
 
-        public void ResetDirtyOnDynamicParams() {
+        public void ResetDirtyParams() {
+            logger.Debug($"ResetDirtyParams():Id={this.Id}");
             foreach (var dynamicParamDependency in this.dynamicParamDependencies) {
-                dynamicParamDependency.ResetDirty();
+                dynamicParamDependency.dynamicParam.ResetDirty();
             }
         }
 
@@ -186,6 +194,8 @@ namespace Butterfly.Database.Dynamic {
     }
 
     public class DynamicParamDependency {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         public readonly DynamicParam dynamicParam;
         public readonly string fieldName;
 
@@ -194,10 +204,6 @@ namespace Butterfly.Database.Dynamic {
         public DynamicParamDependency(DynamicParam dynamicParam, string fieldName) {
             this.dynamicParam = dynamicParam;
             this.fieldName = fieldName;
-        }
-
-        public void ResetDirty() {
-            this.dynamicParam.ResetDirty();
         }
 
         public void UpdateFrom(string[] keyFieldNames, DataEvent dataEvent) {

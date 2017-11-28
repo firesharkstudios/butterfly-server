@@ -14,12 +14,8 @@
  * limitations under the License.
 */
 
-using NLog;
-
 namespace Butterfly.Database.Dynamic {
     public class SingleValueDynamicParam : DynamicParam {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         protected object value = null;
 
         public SingleValueDynamicParam(string name) : base(name) {
@@ -27,7 +23,7 @@ namespace Butterfly.Database.Dynamic {
 
         public override void Clear() {
             if (this.value!=null) {
-                this.Dirty = true;
+                this.SetDirty();
                 this.value = null;
             }
         }
@@ -39,7 +35,7 @@ namespace Butterfly.Database.Dynamic {
         public void SetValue(object value) {
             if (this.value != value) {
                 logger.Debug($"Values.set():{this.name}={value}");
-                this.Dirty = true;
+                this.SetDirty();
                 this.value = value;
             }
         }

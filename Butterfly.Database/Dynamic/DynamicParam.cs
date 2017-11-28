@@ -14,21 +14,31 @@
  * limitations under the License.
 */
 
+using NLog;
+
 namespace Butterfly.Database.Dynamic {
     public abstract class DynamicParam : IDynamicParam {
+        protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
+        private bool dirty = false;
+
         public readonly string name;
+
 
         public DynamicParam(string name) {
             this.name = name;
         }
 
-        public bool Dirty {
-            get;
-            protected set;
+        public bool Dirty => this.dirty;
+
+        protected void SetDirty() {
+            logger.Debug($"SetDirty():name={name}");
+            this.dirty = true;
         }
 
         public void ResetDirty() {
-            this.Dirty = false;
+            logger.Debug($"ResetDirty():name={name}");
+            this.dirty = false;
         }
 
         public abstract void Clear();

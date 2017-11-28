@@ -16,8 +16,8 @@ namespace Butterfly.Examples {
             Butterfly.WebServer.WebServer webServer = new Butterfly.RedHttpServer.RedHttpServerWebServer(redHttpServer);
             ChannelServer channelServer = new Butterfly.RedHttpServer.RedHttpServerChannelServer(redHttpServer);
 
-            //FullChatExample.Setup(webServer, "/api/full-chat", channelServer, "/full-chat");
-            SimpleChatExample.Setup(webServer, "/api/simple-chat", channelServer, "/simple-chat");
+            FullChatExample.Setup(webServer, "/api/full-chat", channelServer, "/full-chat");
+            //SimpleChatExample.Setup(webServer, "/api/simple-chat", channelServer, "/simple-chat");
 
             webServer.Start();
             channelServer.Start();
