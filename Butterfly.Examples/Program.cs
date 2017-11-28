@@ -1,14 +1,8 @@
 ﻿using System;
 using System.IO;
 
-using NLog;
-
-using Butterfly.Util;
-
 namespace Butterfly.Examples {
     class Program {
-        protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         static void Main(string[] args) {
             int port = 8080;
             var redHttpServer = new RedHttpServerNet45.RedHttpServer(port, Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\..\Butterfly.Client.Web")));
@@ -20,10 +14,8 @@ namespace Butterfly.Examples {
                 webServer.Start();
                 channelServer.Start();
                 Console.WriteLine($"Open http://localhost:{port}/examples/index.html to view");
-                ConsoleUtil.WaitForCancelKey();
             }
         }
-
     }
 
 }

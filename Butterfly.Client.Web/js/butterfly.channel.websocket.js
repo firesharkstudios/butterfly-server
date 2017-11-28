@@ -2,9 +2,9 @@
 
     let private = this;
 
-    let testConnectionEveryMillis = options.testConnectionEveryMillis || 3000;
+    let heartbeatEveryMillis = options.heartbeatEveryMillis || 3000;
     let url = options.url;
-    let dataEventHandler = options.dataEventHandler;
+    let onDataEvent = options.onDataEvent;
     let onUpdated = options.onUpdated;
     let onStatusChange = options.onStatusChange;
 
@@ -24,7 +24,7 @@
                 private.webSocket.onmessage = function (event) {
                     let dataEventTransaction = JSON.parse(event.data);
                     for (let i = 0; i < dataEventTransaction.dataEvents.length; i++) {
-                        dataEventHandler.handle(dataEventTransaction.dataEvents[i]);
+                        onDataEvent.handle(dataEventTransaction.dataEvents[i]);
                     }
                     if (onUpdated) onUpdated();
                 };
@@ -56,7 +56,7 @@
 
         private.timeout = setTimeout(function () {
             private.testConnection(false);
-        }, testConnectionEveryMillis);
+        }, heartbeatEveryMillis);
     }
 
     let public = {

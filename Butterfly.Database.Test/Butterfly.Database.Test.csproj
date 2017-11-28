@@ -69,6 +69,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Butterfly.Database.Event\Butterfly.Database.Event.csproj">
+      <Project>{0B6AE1DF-63BD-4AC0-8F24-68D86342F78E}</Project>
+      <Name>Butterfly.Database.Event</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Butterfly.Database.Memory\Butterfly.Database.Memory.csproj">
       <Project>{2dbfd7b1-18d0-46c8-b185-6a73e5f79bcd}</Project>
       <Name>Butterfly.Database.Memory</Name>

@@ -73,8 +73,6 @@
     <Compile Include="Dynamic\DynamicViewSet.cs" />
     <Compile Include="Dynamic\MultiValueDynamicParam.cs" />
     <Compile Include="Dynamic\SingleValueDynamicParam.cs" />
-    <Compile Include="Event\DataEvent.cs" />
-    <Compile Include="Event\DataEventTransaction.cs" />
     <Compile Include="IDynamicParam.cs" />
     <Compile Include="Statements\CreateStatement.cs" />
     <Compile Include="Transaction.cs" />
@@ -88,9 +86,14 @@
     <Compile Include="Index.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Butterfly.Database.Event\Butterfly.Database.Event.csproj">
+      <Project>{0B6AE1DF-63BD-4AC0-8F24-68D86342F78E}</Project>
+      <Name>Butterfly.Database.Event</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Butterfly.Util\Butterfly.Util.csproj">
       <Project>{687A3FB4-8299-4F15-B74B-825FE7446823}</Project>
       <Name>Butterfly.Util</Name>
