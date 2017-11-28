@@ -51,9 +51,9 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Butterfly.Client.Web", "But
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Web", "Butterfly.Web\Butterfly.Web.csproj", "{AAC77468-2570-4B46-ABAC-E9CF215942F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Client.DotNet", "Butterfly.Client.DotNet\Butterfly.Client.DotNet.csproj", "{3B536695-D90B-40CF-8A81-1056E0A30819}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Database.Event", "Butterfly.Database.Event\Butterfly.Database.Event.csproj", "{3104D2EC-E8FE-47E9-8591-B5B8B9DAC963}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Database.Event", "Butterfly.Database.Event\Butterfly.Database.Event.csproj", "{0B6AE1DF-63BD-4AC0-8F24-68D86342F78E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Client.DotNet", "Butterfly.Client.DotNet\Butterfly.Client.DotNet.csproj", "{1DFF8F85-31E8-4A8B-BA4E-E054FB313E68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -109,14 +109,14 @@ Global
 		{AAC77468-2570-4B46-ABAC-E9CF215942F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAC77468-2570-4B46-ABAC-E9CF215942F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAC77468-2570-4B46-ABAC-E9CF215942F1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B536695-D90B-40CF-8A81-1056E0A30819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B536695-D90B-40CF-8A81-1056E0A30819}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B536695-D90B-40CF-8A81-1056E0A30819}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B536695-D90B-40CF-8A81-1056E0A30819}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0B6AE1DF-63BD-4AC0-8F24-68D86342F78E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B6AE1DF-63BD-4AC0-8F24-68D86342F78E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B6AE1DF-63BD-4AC0-8F24-68D86342F78E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B6AE1DF-63BD-4AC0-8F24-68D86342F78E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3104D2EC-E8FE-47E9-8591-B5B8B9DAC963}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3104D2EC-E8FE-47E9-8591-B5B8B9DAC963}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3104D2EC-E8FE-47E9-8591-B5B8B9DAC963}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3104D2EC-E8FE-47E9-8591-B5B8B9DAC963}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DFF8F85-31E8-4A8B-BA4E-E054FB313E68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DFF8F85-31E8-4A8B-BA4E-E054FB313E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DFF8F85-31E8-4A8B-BA4E-E054FB313E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DFF8F85-31E8-4A8B-BA4E-E054FB313E68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

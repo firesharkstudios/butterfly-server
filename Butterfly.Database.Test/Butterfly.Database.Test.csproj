@@ -70,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Butterfly.Database.Event\Butterfly.Database.Event.csproj">
-      <Project>{0B6AE1DF-63BD-4AC0-8F24-68D86342F78E}</Project>
+      <Project>{3104D2EC-E8FE-47E9-8591-B5B8B9DAC963}</Project>
       <Name>Butterfly.Database.Event</Name>
     </ProjectReference>
     <ProjectReference Include="..\Butterfly.Database.Memory\Butterfly.Database.Memory.csproj">
