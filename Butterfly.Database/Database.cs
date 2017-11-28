@@ -332,12 +332,12 @@ namespace Butterfly.Database {
             return (type, maxLength);
         }
 
-        public DynamicSelectGroup CreateDynamicSelectGroup(Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null) {
-            return new DynamicSelectGroup(this, listener, listenerDataEventFilter);
+        public DynamicViewSet CreateDynamicViewSet(Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null) {
+            return new DynamicViewSet(this, listener, listenerDataEventFilter);
         }
 
-        public DynamicSelectGroup CreateDynamicSelectGroup(Func<DataEventTransaction, Task> asyncListener, Func<DataEvent, bool> listenerDataEventFilter = null) {
-            return new DynamicSelectGroup(this, asyncListener, listenerDataEventFilter);
+        public DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> asyncListener, Func<DataEvent, bool> listenerDataEventFilter = null) {
+            return new DynamicViewSet(this, asyncListener, listenerDataEventFilter);
         }
     }
 

@@ -32,12 +32,12 @@ namespace Butterfly.Database.Dynamic {
         public bool Dirty => this.dirty;
 
         protected void SetDirty() {
-            logger.Debug($"SetDirty():name={name}");
+            //logger.Debug($"SetDirty():name={name}");
             this.dirty = true;
         }
 
         public void ResetDirty() {
-            logger.Debug($"ResetDirty():name={name}");
+            //logger.Debug($"ResetDirty():name={name}");
             this.dirty = false;
         }
 

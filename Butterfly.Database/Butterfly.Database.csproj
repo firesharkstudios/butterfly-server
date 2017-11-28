@@ -69,8 +69,8 @@
   <ItemGroup>
     <Compile Include="Database.cs" />
     <Compile Include="Dynamic\DynamicParam.cs" />
-    <Compile Include="Dynamic\DynamicSelect.cs" />
-    <Compile Include="Dynamic\DynamicSelectGroup.cs" />
+    <Compile Include="Dynamic\DynamicView.cs" />
+    <Compile Include="Dynamic\DynamicViewSet.cs" />
     <Compile Include="Dynamic\MultiValueDynamicParam.cs" />
     <Compile Include="Dynamic\SingleValueDynamicParam.cs" />
     <Compile Include="Event\DataEvent.cs" />

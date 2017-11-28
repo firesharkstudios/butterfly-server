@@ -29,14 +29,14 @@ using Butterfly.Database.Event;
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database.Dynamic {
-    public class DynamicSelectGroup : IDisposable {
+    public class DynamicViewSet : IDisposable {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly Func<DataEvent, bool> listenerDataEventFilter;
         protected readonly Action<DataEventTransaction> listener;
         protected readonly Func<DataEventTransaction, Task> asyncListener;
 
-        protected readonly List<DynamicSelect> dynamicSelects = new List<DynamicSelect>();
+        protected readonly List<DynamicView> dynamicViews = new List<DynamicView>();
         protected readonly ConcurrentQueue<DataEventTransaction> incomingDataEventTransactions = new ConcurrentQueue<DataEventTransaction>();
 
         protected readonly CancellationTokenSource runCancellationTokenSource = new CancellationTokenSource();
@@ -44,14 +44,14 @@ namespace Butterfly.Database.Dynamic {
 
         protected readonly List<IDisposable> disposables = new List<IDisposable>();
 
-        public DynamicSelectGroup(Database database, Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null) {
+        public DynamicViewSet(Database database, Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null) {
             this.Id = Guid.NewGuid().ToString();
             this.Database = database;
             this.listener = listener;
             this.listenerDataEventFilter = listenerDataEventFilter;
         }
 
-        public DynamicSelectGroup(Database database, Func<DataEventTransaction, Task> asyncListener, Func<DataEvent, bool> listenerDataEventFilter = null) {
+        public DynamicViewSet(Database database, Func<DataEventTransaction, Task> asyncListener, Func<DataEvent, bool> listenerDataEventFilter = null) {
             this.Id = Guid.NewGuid().ToString();
             this.Database = database;
             this.asyncListener = asyncListener;
@@ -72,9 +72,9 @@ namespace Butterfly.Database.Dynamic {
         /// Creates an instance of a DynamicQuery.
         /// Must call StartAync() to send initial DataChangeTransaction and listen for new DataChangeTransactions for this DynamicQuery.
         /// </summary>
-        public DynamicSelect CreateDynamicSelect(string sql, dynamic values = null, string name = null, string[] keyFieldNames = null) {
-            DynamicSelect dynamicQuery = new DynamicSelect(this, sql, values, name, keyFieldNames);
-            this.dynamicSelects.Add(dynamicQuery);
+        public DynamicView CreateDynamicView(string sql, dynamic values = null, string name = null, string[] keyFieldNames = null) {
+            DynamicView dynamicQuery = new DynamicView(this, sql, values, name, keyFieldNames);
+            this.dynamicViews.Add(dynamicQuery);
             return dynamicQuery;
         }
 
@@ -85,14 +85,14 @@ namespace Butterfly.Database.Dynamic {
         /// Stops listening when DynamicQuerySet is disposed.
         /// </summary>
         /// <returns></returns>
-        public async Task<DynamicSelectGroup> StartAsync() {
+        public async Task<DynamicViewSet> StartAsync() {
             logger.Debug("StartAsync");
             if (this.isStarted) throw new Exception("Dynamic Select Group is already started");
             if (this.runCancellationTokenSource.IsCancellationRequested) throw new Exception("Cannot restart a stopped DynamicQuerySet");
 
             this.isStarted = true;
 
-            DataEvent[] dataEvents = await this.RequeryDynamicSelectsIfDirtyAsync(force: true);
+            DataEvent[] dataEvents = await this.RequeryDynamicViewsIfDirtyAsync(force: true);
             await this.SendToListenerAsync(new DataEventTransaction(DateTime.Now, dataEvents));
 
             this.disposables.Add(this.Database.AddUncommittedTransactionListener(this.ProcessUncommittedDataEventTransactionAsync));
@@ -113,12 +113,12 @@ namespace Butterfly.Database.Dynamic {
         }
 
         protected async Task StoreImpactedRecordsInDataEventTransaction(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
-            foreach (var dynamicSelect in this.dynamicSelects) {
+            foreach (var dynamicView in this.dynamicViews) {
                 foreach (var dataEvent in dataEventTransaction.dataEvents) {
                     if (dataEvent is ChangeDataEvent dataChange && HasImpactedRecords(transactionState, dataChange)) {
-                        Dict[] impactedRecords = await dynamicSelect.GetImpactedRecordsAsync(dataChange);
+                        Dict[] impactedRecords = await dynamicView.GetImpactedRecordsAsync(dataChange);
                         if (impactedRecords != null && impactedRecords.Length > 0) {
-                            string storageKey = GetImpactedRecordsStorageKey(dynamicSelect, dataEvent, transactionState);
+                            string storageKey = GetImpactedRecordsStorageKey(dynamicView, dataEvent, transactionState);
                             dataEventTransaction.Store(storageKey, impactedRecords);
                         }
                     }
@@ -126,8 +126,8 @@ namespace Butterfly.Database.Dynamic {
             }
         }
 
-        protected string GetImpactedRecordsStorageKey(DynamicSelect dynamicSelect, DataEvent dataEvent, TransactionState transactionState) {
-            return $"{dynamicSelect.Id} {dataEvent.id} {transactionState}";
+        protected string GetImpactedRecordsStorageKey(DynamicView dynamicView, DataEvent dataEvent, TransactionState transactionState) {
+            return $"{dynamicView.Id} {dataEvent.id} {transactionState}";
         }
 
         protected bool HasImpactedRecords(TransactionState transactionState, DataEvent dataEvent) {
@@ -151,27 +151,27 @@ namespace Butterfly.Database.Dynamic {
                     List<DataEvent> newDataEvents = new List<DataEvent>();
                     foreach (var dataEvent in dataEventTransaction.dataEvents) {
                         logger.Debug($"RunAsync():dataEventTransaction.dataEvents.Length={dataEventTransaction.dataEvents.Length}");
-                        foreach (var dynamicSelect in this.dynamicSelects) {
-                            if (!dynamicSelect.HasDirtyParams) {
+                        foreach (var dynamicView in this.dynamicViews) {
+                            if (!dynamicView.HasDirtyParams) {
                                 // Fetch the preCommitImpactedRecords
                                 Dict[] preCommitImpactedRecords = null;
                                 if (HasImpactedRecords(TransactionState.Uncommitted, dataEvent)) {
-                                    string storageKey = GetImpactedRecordsStorageKey(dynamicSelect, dataEvent, TransactionState.Uncommitted);
+                                    string storageKey = GetImpactedRecordsStorageKey(dynamicView, dataEvent, TransactionState.Uncommitted);
                                     preCommitImpactedRecords = (Dict[])dataEventTransaction.Fetch(storageKey);
                                 }
 
                                 // Fetch the postCommitImpactedRecords
                                 Dict[] postCommitImpactedRecords = null;
                                 if (HasImpactedRecords(TransactionState.Committed, dataEvent)) {
-                                    string storageKey = GetImpactedRecordsStorageKey(dynamicSelect, dataEvent, TransactionState.Committed);
+                                    string storageKey = GetImpactedRecordsStorageKey(dynamicView, dataEvent, TransactionState.Committed);
                                     postCommitImpactedRecords = (Dict[])dataEventTransaction.Fetch(storageKey);
                                 }
 
                                 // Determine the changes from each data event on each dynamic select
-                                ICollection<ChangeDataEvent> newChangeDataEvents = dynamicSelect.ProcessDataChange(dataEvent, preCommitImpactedRecords, postCommitImpactedRecords);
+                                ICollection<ChangeDataEvent> newChangeDataEvents = dynamicView.ProcessDataChange(dataEvent, preCommitImpactedRecords, postCommitImpactedRecords);
                                 if (newChangeDataEvents != null) {
                                     foreach (var newChangeDataEvent in newChangeDataEvents) {
-                                        dynamicSelect.UpdateDynamicParams(newChangeDataEvent);
+                                        dynamicView.UpdateDynamicParams(newChangeDataEvent);
                                         newDataEvents.Add(newChangeDataEvent);
                                     }
                                 }
@@ -179,7 +179,7 @@ namespace Butterfly.Database.Dynamic {
                         }
                     }
 
-                    DataEvent[] initialDataEvents = await this.RequeryDynamicSelectsIfDirtyAsync();
+                    DataEvent[] initialDataEvents = await this.RequeryDynamicViewsIfDirtyAsync();
                     newDataEvents.AddRange(initialDataEvents);
 
                     if (newDataEvents.Count > 0) {
@@ -217,15 +217,15 @@ namespace Butterfly.Database.Dynamic {
         /// </summary>
         /// <param name="force"></param>
         /// <returns></returns>
-        protected async Task<DataEvent[]> RequeryDynamicSelectsIfDirtyAsync(bool force = false) {
+        protected async Task<DataEvent[]> RequeryDynamicViewsIfDirtyAsync(bool force = false) {
             List<DataEvent> dataEvents = new List<DataEvent>();
-            foreach (var dynamicSelect in this.dynamicSelects) {
-                logger.Debug($"RequeryDynamicSelectsIfDirtyAsync():dynamicSelect={dynamicSelect.Id}");
-                if (force || dynamicSelect.HasDirtyParams) {
-                    DataEvent[] initialDataEvents = await dynamicSelect.GetInitialDataEventsAsync();
+            foreach (var dynamicView in this.dynamicViews) {
+                logger.Debug($"RequeryDynamicViewsIfDirtyAsync():dynamicView={dynamicView.Id}");
+                if (force || dynamicView.HasDirtyParams) {
+                    DataEvent[] initialDataEvents = await dynamicView.GetInitialDataEventsAsync();
                     dataEvents.AddRange(initialDataEvents);
-                    dynamicSelect.ResetDirtyParams();
-                    dynamicSelect.UpdateDynamicParams(initialDataEvents);
+                    dynamicView.ResetDirtyParams();
+                    dynamicView.UpdateDynamicParams(initialDataEvents);
                 }
             }
             return dataEvents.ToArray();

@@ -28,27 +28,27 @@ using Butterfly.Util;
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database.Dynamic {
-    public class DynamicSelect {
+    public class DynamicView {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected readonly DynamicSelectGroup dynamicQuerySet;
-        protected readonly SelectStatement selectStatement;
-        protected readonly Dict selectParams;
+        protected readonly DynamicViewSet dynamicQuerySet;
+        protected readonly SelectStatement statement;
+        protected readonly Dict statementParams;
         protected readonly string name;
         protected readonly string[] keyFieldNames;
 
         protected readonly List<DynamicParamDependency> dynamicParamDependencies = new List<DynamicParamDependency>();
 
-        public DynamicSelect(DynamicSelectGroup dynamicQuerySet, string sql, dynamic parameters = null, string name = null, string[] keyFieldNames = null) {
+        public DynamicView(DynamicViewSet dynamicQuerySet, string sql, dynamic parameters = null, string name = null, string[] keyFieldNames = null) {
             this.Id = Guid.NewGuid().ToString();
             this.dynamicQuerySet = dynamicQuerySet; 
-            this.selectStatement = new SelectStatement(dynamicQuerySet.Database, sql);
-            this.selectParams = this.selectStatement.ConvertParamsToDict(parameters);
-            this.name = string.IsNullOrEmpty(name) ? string.Join("_", this.selectStatement.TableRefs.Select(x => x.table.Name)) : name;
+            this.statement = new SelectStatement(dynamicQuerySet.Database, sql);
+            this.statementParams = this.statement.ConvertParamsToDict(parameters);
+            this.name = string.IsNullOrEmpty(name) ? string.Join("_", this.statement.TableRefs.Select(x => x.table.Name)) : name;
 
             if (keyFieldNames == null) {
-                if (this.selectStatement.TableRefs.Length != 1) throw new System.Exception("Must specify key field names if the DynamicSelect contains multiple table references");
-                this.keyFieldNames = dynamicQuerySet.Database.Tables[this.selectStatement.TableRefs[0].table.Name].PrimaryIndex.FieldNames;
+                if (this.statement.TableRefs.Length != 1) throw new System.Exception("Must specify key field names if the DynamicView contains multiple table references");
+                this.keyFieldNames = dynamicQuerySet.Database.Tables[this.statement.TableRefs[0].table.Name].PrimaryIndex.FieldNames;
             }
             else {
                 this.keyFieldNames = keyFieldNames;
@@ -71,13 +71,6 @@ namespace Butterfly.Database.Dynamic {
                 foreach (var dynamicParamDependency in this.dynamicParamDependencies) {
                     if (dynamicParamDependency.dynamicParam.Dirty) return true;
                 }
-                /*
-                foreach (var whereParameter in this.selectParams) {
-                    if (whereParameter.Value is DynamicParam dynamicParam) {
-                        if (dynamicParam.Dirty) return true;
-                    }
-                }
-                */
                 return false;
             }
         }
@@ -87,7 +80,7 @@ namespace Butterfly.Database.Dynamic {
         /// </summary>
         /// <returns></returns>
         public async Task<DataEvent[]> GetInitialDataEventsAsync() {
-            return await this.dynamicQuerySet.Database.GetInitialDataEventsAsync(this.name, this.keyFieldNames, this.selectStatement, this.selectParams);
+            return await this.dynamicQuerySet.Database.GetInitialDataEventsAsync(this.name, this.keyFieldNames, this.statement, this.statementParams);
         }
 
         public void ResetDirtyParams() {
@@ -99,7 +92,7 @@ namespace Butterfly.Database.Dynamic {
 
         public ChangeDataEvent[] ProcessDataChange(DataEvent dataEvent, Dict[] preCommitImpactedRecords, Dict[] postCommitImpactedRecords) {
             logger.Debug($"ProcessDataChange():dataEvent={dataEvent},preCommitImpactedRecords.Length={preCommitImpactedRecords?.Length},postCommitImpactedRecords.Length={postCommitImpactedRecords?.Length}");
-            TableRef tableRef = this.selectStatement.FindTableRefByTableName(dataEvent.name);
+            TableRef tableRef = this.statement.FindTableRefByTableName(dataEvent.name);
             if (tableRef == null) return null;
 
             if (!(dataEvent is ChangeDataEvent dataChange)) return null;
@@ -146,14 +139,14 @@ namespace Butterfly.Database.Dynamic {
         }
 
         public async Task<Dict[]> GetImpactedRecordsAsync(ChangeDataEvent dataChange) {
-            TableRef tableRef = this.selectStatement.FindTableRefByTableName(dataChange.name);
+            TableRef tableRef = this.statement.FindTableRefByTableName(dataChange.name);
             if (tableRef == null) return null;
 
             StringBuilder newAndCondition = new StringBuilder();
             Dict newWhereParams = new Dict();
             foreach (var fieldName in this.dynamicQuerySet.Database.Tables[dataChange.name].PrimaryIndex.FieldNames) {
                 string prefix;
-                if (this.selectStatement.TableRefs.Length == 1) {
+                if (this.statement.TableRefs.Length == 1) {
                     prefix = "";
                 }
                 else if (!string.IsNullOrEmpty(tableRef.tableAlias)) {
@@ -169,7 +162,7 @@ namespace Butterfly.Database.Dynamic {
 
                 newWhereParams[paramName] = dataChange.record[fieldName];
             }
-            return await this.dynamicQuerySet.Database.SelectRowsAsync(this.selectStatement, this.selectParams, newAndCondition.ToString(), newWhereParams);
+            return await this.dynamicQuerySet.Database.SelectRowsAsync(this.statement, this.statementParams, newAndCondition.ToString(), newWhereParams);
         }
 
         public void UpdateDynamicParams(DataEvent[] dataEvents) {
@@ -187,10 +180,6 @@ namespace Butterfly.Database.Dynamic {
         protected bool IsMatch(Dict record) {
             return true;
         }
-    }
-
-    public class DynamicKeyEnter {
-        public readonly Dict keyValueByTable = new Dict();
     }
 
     public class DynamicParamDependency {

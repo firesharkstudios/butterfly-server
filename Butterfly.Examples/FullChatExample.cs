@@ -30,7 +30,7 @@ namespace Butterfly.Examples {
                 }, ignoreIfDuplicate: true);
 
                 // Create a dynamic select group that sends changes to the channel
-                var dynamicSelectGroup = database.CreateDynamicSelectGroup(
+                var dynamicViewSet = database.CreateDynamicViewSet(
                     listenerDataEventFilter: dataEvent => dataEvent.name != "chat_ids",
                     listener: dataEventTransaction => {
                         channel.Queue(dataEventTransaction);
@@ -38,7 +38,7 @@ namespace Butterfly.Examples {
                 );
 
                 // Add a "me" dynamic select that includes the user's record
-                dynamicSelectGroup.CreateDynamicSelect(
+                dynamicViewSet.CreateDynamicView(
                     "SELECT id, name FROM user WHERE id=@userId", 
                     values: new {
                         userId = channel.Id
@@ -47,17 +47,17 @@ namespace Butterfly.Examples {
                 );
 
                 // Build a dynamic list of chat ids for the user
-                var chatIdsDynamicSelect = dynamicSelectGroup.CreateDynamicSelect(
+                var chatIdsDynamicView = dynamicViewSet.CreateDynamicView(
                     "SELECT id, chat_id FROM chat_participant WHERE user_id=@userId", 
                     values: new {
                         userId = channel.Id
                     }, 
                     name: "chat_ids"
                 );
-                var chatIds = chatIdsDynamicSelect.CreateMultiValueDynamicParam("chat_id");
+                var chatIds = chatIdsDynamicView.CreateMultiValueDynamicParam("chat_id");
 
                 // Add a "chat" dynamic select that includes all the chats the user can see
-                dynamicSelectGroup.CreateDynamicSelect(
+                dynamicViewSet.CreateDynamicView(
                     @"SELECT c.id, c.name, c.join_id, c.owner_id, u.name owner_name 
                       FROM chat c INNER JOIN user u ON c.owner_id=u.id
                       WHERE c.id=@chatIds",
@@ -69,7 +69,7 @@ namespace Butterfly.Examples {
                 );
 
                 // Add a "chat_participant" dynamic select that includes all the chat participatns the user can see
-                dynamicSelectGroup.CreateDynamicSelect(
+                dynamicViewSet.CreateDynamicView(
                     @"SELECT cp.id, cp.chat_id, u.id user_id, u.name 
                       FROM chat_participant cp INNER JOIN user u ON cp.user_id=u.id
                       WHERE cp.chat_id=@chatIds", 
@@ -81,7 +81,7 @@ namespace Butterfly.Examples {
                 );
 
                 // Add a "chat_message" dynamic select that includes all the chat messages the user can see
-                dynamicSelectGroup.CreateDynamicSelect(
+                dynamicViewSet.CreateDynamicView(
                     @"SELECT cm.id, cm.chat_id, cm.text, cm.created_at, u.id user_id, u.name 
                       FROM chat_message cm INNER JOIN user u ON cm.user_id=u.id
                       WHERE cm.chat_id=@chatIds",
@@ -93,7 +93,7 @@ namespace Butterfly.Examples {
                 );
 
                 // Start the dynamic select group (executes all the dynamic select queries and sends changes as they occur)
-                return await dynamicSelectGroup.StartAsync();
+                return await dynamicViewSet.StartAsync();
             });
 
             // Listen for API requests to /api/profile/update

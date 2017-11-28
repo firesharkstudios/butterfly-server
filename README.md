@@ -25,17 +25,17 @@ All the packages are independent with no interdependencies. Use all the packages
 This C# code runs on a server...
 
 ```csharp
-// Create a DynamicSelectGroup that print any changes in child DynamiSelects to the console
-var dynamicSelectGroup = database.CreateDynamicSelectGroup(listener: dataEventTransaction => {
+// Create a DynamicViewSet that print any changes in child DynamicViews to the console
+var dynamicViewSet = database.CreateDynamicViewSet(listener: dataEventTransaction => {
     Console.WriteLine(dataEventTransaction);
 });
 
-// Create a child DynamicSelect that sends the initial rows and any changes to the rows to the parent DynamicSelectGroup
-dynamicSelectGroup.CreateDynamicSelect("SELECT * FROM chat_message WHERE user_id=@userId", values: new {
+// Create a child DynamicView that sends the initial rows and any changes to the rows to the parent DynamicViewSet
+dynamicViewSet.CreateDynamicView("SELECT * FROM chat_message WHERE user_id=@userId", values: new {
     userId = 123
 });
 
-// Add a record that would change the rows in the SELECT of the DynamicSelect above
+// Add a record that would change the rows in the SELECT of the DynamicView above
 await database.InsertAndCommitAsync("chat_message", values: {
     user_id: 123_
     text: "Hello World"
@@ -43,9 +43,9 @@ await database.InsertAndCommitAsync("chat_message", values: {
 ```
 
 The above code...
-- Creates a `DynamicSelectGroup` that echoes any data event transactions to the Console
-- Creates a child `DynamicSelect` on the `DynamicSelectGroup` that retrieves the initial data _and_ listens for data changes
-- Executes an INSERT to trigger a data change on the `DynamicSelect`
+- Creates a `DynamicViewSet` that echoes any data event transactions to the Console
+- Creates a child `DynamicView` on the `DynamicViewSet` that retrieves the initial data _and_ listens for data changes
+- Executes an INSERT to trigger a data change on the `DynamicView`
 
 ## Butterfly.Channel Hello World
 
@@ -88,19 +88,19 @@ This C# code runs on a server...
 // Initialize new channels created
 channelServer.OnNewChannelAsync(async(channel) => {
     // Create a dynamic select group that sends changes to the channel
-    var dynamicSelectGroup = database.CreateDynamicSelectGroup(listener: dataEventTransaction => {
+    var dynamicViewSet = database.CreateDynamicViewSet(listener: dataEventTransaction => {
         channel.Queue(dataChangeTransaction);
     });
 
     // Create a dynamic select that sends the initial rows and any changes to the row
-    dynamicSelectGroup.CreateDynamicSelect(
+    dynamicViewSet.CreateDynamicView(
         @"SELECT cm.id, cm.chat_id, cm.text, cm.created_at, u.id user_id, u.name 
             FROM chat_message cm INNER JOIN user u ON cm.user_id=u.id",
         name: "chat_message",
         keyFieldNames: new string[] { "id" }
     );
 
-    return await dynamicSelectGroup.StartAsync();
+    return await dynamicViewSet.StartAsync();
 });
 
 // Listen for API requests to /api/chat/message
@@ -115,8 +115,8 @@ webServer.OnPost("/api/chat/message", async(req, res) => {
 
 The first chunk of code above...
 - Listens for a channel to be created by a client (via `channelServer.OnNewChannelAsync`)
-- Creates a `DynamicSelectGroup` that sends any data event transactions to the client (via `channel.Queue`)
-- Creates a `DynamicSelect` that defines the data the client should receive initially and when any of this data changes
+- Creates a `DynamicViewSet` that sends any data event transactions to the client (via `channel.Queue`)
+- Creates a `DynamicView` that defines the data the client should receive initially and when any of this data changes
 
 The second chunk of code above listens for POST requests to `/api/chat/message` and INSERTs a new record in the `chat_message` table.
 

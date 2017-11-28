@@ -146,12 +146,12 @@ namespace Butterfly.Database.Test {
 
         public async Task TestInsertUpdateDeleteEvents(Database database, object salesDepartmentId, string selectSourceSql, string updateField, object updateValue, int updateCount) {
             List<DataEventTransaction> dataEventTransactionCollector = new List<DataEventTransaction>();
-            using (DynamicSelectGroup dynamicSelectGroup = new DynamicSelectGroup(database, listener: dataEventTransaction => {
+            using (DynamicViewSet dynamicViewSet = new DynamicViewSet(database, listener: dataEventTransaction => {
                 dataEventTransactionCollector.Add(dataEventTransaction);
             })) {
                 dataEventTransactionCollector.Clear();
-                DynamicSelect employeeDynamicSelect = dynamicSelectGroup.CreateDynamicSelect(selectSourceSql);
-                await dynamicSelectGroup.StartAsync();
+                DynamicView employeeDynamicView = dynamicViewSet.CreateDynamicView(selectSourceSql);
+                await dynamicViewSet.StartAsync();
                 Assert.AreEqual(1, dataEventTransactionCollector.Count);
                 Assert.AreEqual(5, dataEventTransactionCollector[0].dataEvents.Length);
                 Assert.AreEqual(DataEventType.InitialBegin, dataEventTransactionCollector[0].dataEvents[0].dataEventType);
