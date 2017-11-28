@@ -25,7 +25,7 @@ using NLog;
 using Butterfly.Util;
 
 namespace Butterfly.Channel {
-    public abstract class ChannelServer {
+    public abstract class ChannelServer : IDisposable {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly ConcurrentDictionary<string, IChannel> channelById = new ConcurrentDictionary<string, IChannel>();
@@ -96,7 +96,7 @@ namespace Butterfly.Channel {
             }
         }
 
-        public void Stop() {
+        public void Dispose() {
             this.started = false;
         }
     }

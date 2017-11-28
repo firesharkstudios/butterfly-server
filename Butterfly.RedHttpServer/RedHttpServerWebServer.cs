@@ -24,11 +24,11 @@ using System.Threading.Tasks;
 using RedHttpServerNet45.Request;
 using RedHttpServerNet45.Response;
 
-using Butterfly.WebServer;
 using Butterfly.Util;
+using Butterfly.Web;
 
 namespace Butterfly.RedHttpServer {
-    public class RedHttpServerWebServer : WebServer.WebServer {
+    public class RedHttpServerWebServer : WebServer {
 
         protected readonly global::RedHttpServerNet45.RedHttpServer server;
 
@@ -52,7 +52,7 @@ namespace Butterfly.RedHttpServer {
             this.server.Start();
         }
 
-        public override void Stop() {
+        public override void Dispose() {
             this.server.Stop();
         }
     }

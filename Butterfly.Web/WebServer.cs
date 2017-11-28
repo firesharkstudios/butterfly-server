@@ -19,8 +19,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Butterfly.WebServer {
-    public abstract class WebServer {
+namespace Butterfly.Web {
+    public abstract class WebServer : IDisposable {
         protected readonly List<WebHandler> webHandlers = new List<WebHandler>();
 
         public void OnGet(string path, Func<IWebRequest, IWebResponse, Task> run) {
@@ -46,6 +46,6 @@ namespace Butterfly.WebServer {
         }
 
         public abstract void Start();
-        public abstract void Stop();
+        public abstract void Dispose();
     }
 }

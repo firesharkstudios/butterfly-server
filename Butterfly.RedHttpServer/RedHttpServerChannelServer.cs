@@ -14,6 +14,7 @@
  * limitations under the License.
 */
 
+using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -21,7 +22,6 @@ using RedHttpServerNet45.Response;
 using NLog;
 
 using Butterfly.Channel;
-using System;
 
 namespace Butterfly.RedHttpServer {
     public class RedHttpServerChannelServer : ChannelServer {

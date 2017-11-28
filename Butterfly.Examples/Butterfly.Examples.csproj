@@ -103,9 +103,9 @@
       <Project>{687a3fb4-8299-4f15-b74b-825fe7446823}</Project>
       <Name>Butterfly.Util</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Butterfly.WebServer\Butterfly.WebServer.csproj">
-      <Project>{aac77468-2570-4b46-abac-e9cf215942f1}</Project>
-      <Name>Butterfly.WebServer</Name>
+    <ProjectReference Include="..\Butterfly.Web\Butterfly.Web.csproj">
+      <Project>{AAC77468-2570-4B46-ABAC-E9CF215942F1}</Project>
+      <Name>Butterfly.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

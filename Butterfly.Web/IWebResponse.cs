@@ -14,15 +14,8 @@
  * limitations under the License.
 */
 
-using System.Threading.Tasks;
-
-using System.Collections.Specialized;
-using System.Net.Http.Headers;
-
-namespace Butterfly.WebServer {
-    public interface IWebRequest {
-        Task<T> ParseAsJsonAsync<T>();
-        NameValueCollection Headers { get; }
-        AuthenticationHeaderValue AuthenticationHeaderValue { get; }
+namespace Butterfly.Web {
+    public interface IWebResponse {
+        void WriteAsJson(object value);
     }
 }

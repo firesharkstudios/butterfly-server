@@ -78,7 +78,7 @@ webServer.OnGet("/test", async (req, res) => {
 });
 ```
 
-## Putting It All Together Hello World
+## Putting It Altogether Example
 
 The example below combines all three packages to create a server in C# that synchronizes the `chat_message` table on a server with clients and listens for POST requests to `/api/chat/message` to insert new records in the `chat_message` table.
 
@@ -147,7 +147,9 @@ branch. Pull requests are warmly welcome.
 
 ## Licensing
 
-All the server code is licensed under the Apache License 2.0.  
+The core server code is licensed under the Apache License 2.0.  
+
+The example server code is licensed under the MIT License.
 
 All the client code is licensed under the MIT License.
 

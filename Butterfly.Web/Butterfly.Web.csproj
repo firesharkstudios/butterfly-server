@@ -7,8 +7,8 @@
     <ProjectGuid>{AAC77468-2570-4B46-ABAC-E9CF215942F1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Butterfly.WebServer</RootNamespace>
-    <AssemblyName>Butterfly.WebServer</AssemblyName>
+    <RootNamespace>Butterfly.Web</RootNamespace>
+    <AssemblyName>Butterfly.Web</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

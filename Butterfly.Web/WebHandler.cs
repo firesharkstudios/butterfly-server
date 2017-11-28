@@ -18,7 +18,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Butterfly.WebServer {
+namespace Butterfly.Web {
     public class WebHandler {
         public HttpMethod method;
         public string path;
