@@ -13,6 +13,7 @@ namespace Butterfly.Examples {
 
                 webServer.Start();
                 channelServer.Start();
+                redHttpServer.Start();
                 Console.WriteLine($"Open http://localhost:{port}/examples/index.html to view");
             }
         }

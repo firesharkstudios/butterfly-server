@@ -1,12 +1,10 @@
-﻿using System;
-
+﻿using NLog;
+using System;
+using System.IO;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Butterfly.Database.Event;
-using Butterfly.Util;
 
 namespace Butterfly.Client.DotNet {
 
@@ -17,25 +15,27 @@ namespace Butterfly.Client.DotNet {
     }
 
     public class WebSocketChannelClient : IDisposable {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly Uri url;
-        protected readonly Action<DataEventTransaction> onDataEventTransaction;
+        protected readonly Action<string> onMessage;
 
         protected readonly int heartbeatEveryMillis;
         protected readonly int receiveBufferSize;
 
         protected readonly Action<WebSocketChannelClientStatus> onStatusChange;
 
-        public WebSocketChannelClient(string url, Action<DataEventTransaction> onDataEventTransaction, Action<WebSocketChannelClientStatus> onStatusChange = null, int heartbeatEveryMillis = 3000, int receiveBufferSize = 4096) {
+        public WebSocketChannelClient(string url, Action<string> onMessage, Action<WebSocketChannelClientStatus> onStatusChange = null, int heartbeatEveryMillis = 3000, int receiveBufferSize = 4096) {
             this.url = new Uri(url);
-            this.onDataEventTransaction = onDataEventTransaction;
+            this.onMessage = onMessage;
+            this.onStatusChange = onStatusChange;
 
             this.heartbeatEveryMillis = heartbeatEveryMillis;
-            this.onStatusChange = onStatusChange;
+            this.receiveBufferSize = receiveBufferSize;
         }
 
         public void Start() {
-            Task receiveTask = Task.Run(this.RunAsync);
+            Task runTask = Task.Run(this.RunAsync);
         }
 
         protected readonly CancellationTokenSource connectingCancellationSource = new CancellationTokenSource();
@@ -43,7 +43,6 @@ namespace Butterfly.Client.DotNet {
 
         protected bool isFirst = true;
         protected async Task RunAsync() {
-            byte[] buffer = new byte[this.receiveBufferSize];
             while (!this.connectingCancellationSource.IsCancellationRequested) {
                 if (this.onStatusChange != null) this.onStatusChange(isFirst ? WebSocketChannelClientStatus.Connecting : WebSocketChannelClientStatus.Reconnecting);
                 this.isFirst = false;
@@ -54,6 +53,7 @@ namespace Butterfly.Client.DotNet {
                     if (this.onStatusChange != null) this.onStatusChange(WebSocketChannelClientStatus.Connected);
                 }
                 catch (Exception e) {
+                    logger.Error(e);
                     await Task.Delay(this.heartbeatEveryMillis);
                     continue;
                 }
@@ -62,16 +62,30 @@ namespace Butterfly.Client.DotNet {
                 
                 Task receivingTask = Task.Run(async() => {
                     while (!ioCancellationTokenSource.IsCancellationRequested) {
-                        WebSocketReceiveResult result = null;
+                        string message = null;
                         try {
-                            result = await clientWebSocket.ReceiveAsync(new ArraySegment<byte>(buffer), this.ioCancellationTokenSource.Token);
+                            ArraySegment<Byte> buffer = new ArraySegment<byte>(new Byte[this.receiveBufferSize]);
+                            WebSocketReceiveResult result = null;
+                            using (var memoryStream = new MemoryStream()) {
+                                do {
+                                    result = await clientWebSocket.ReceiveAsync(buffer, CancellationToken.None);
+                                    memoryStream.Write(buffer.Array, buffer.Offset, result.Count);
+                                } while (!result.EndOfMessage);
+
+                                memoryStream.Seek(0, SeekOrigin.Begin);
+
+                                if (result.MessageType == WebSocketMessageType.Text) {
+                                    using (var reader = new StreamReader(memoryStream, Encoding.UTF8)) {
+                                        message = reader.ReadToEnd();
+                                    }
+                                }
+                            }
                         }
                         catch (Exception e) {
+                            logger.Error(e);
                             break;
                         }
-                        var json = (new UTF8Encoding()).GetString(buffer);
-                        var dataEventTransaction = JsonUtil.Deserialize<DataEventTransaction>(json);
-                        if (this.onDataEventTransaction != null) this.onDataEventTransaction(dataEventTransaction);
+                        if (this.onMessage != null) this.onMessage(message);
                     }
                 });
 
@@ -82,6 +96,7 @@ namespace Butterfly.Client.DotNet {
                             await clientWebSocket.SendAsync(outputBuffer, WebSocketMessageType.Text, true, this.ioCancellationTokenSource.Token);
                         }
                         catch (Exception e) {
+                            logger.Error(e);
                             break;
                         }
                         await Task.Delay(this.heartbeatEveryMillis);

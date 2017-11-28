@@ -65,10 +65,12 @@ namespace Butterfly.Channel {
             List<IDisposable> disposables = new List<IDisposable>();
             try {
                 foreach (var listener in initChannelListeners) {
-                    disposables.Add(listener(this));
+                    var disposable = listener(this);
+                    if (disposable != null) disposables.Add(disposable);
                 }
                 foreach (var listener in initChannelAsyncListeners) {
-                    disposables.Add(await listener(this));
+                    var disposable = await listener(this);
+                    if (disposable != null) disposables.Add(disposable);
                 }
                 while (this.started) {
                     if (this.buffer.TryDequeue(out string result)) {

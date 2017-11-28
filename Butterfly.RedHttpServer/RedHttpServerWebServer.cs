@@ -49,11 +49,9 @@ namespace Butterfly.RedHttpServer {
                     });
                 }
             }
-            this.server.Start();
         }
 
         public override void Dispose() {
-            this.server.Stop();
         }
     }
 
