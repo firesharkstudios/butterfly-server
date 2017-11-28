@@ -67,10 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Channel.cs" />
+    <Compile Include="BaseChannel.cs" />
     <Compile Include="ChannelServer.cs" />
-    <Compile Include="IChannelSource.cs" />
-    <Compile Include="IChannelTransport.cs" />
+    <Compile Include="IChannel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

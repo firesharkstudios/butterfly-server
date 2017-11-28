@@ -15,12 +15,13 @@
 */
 
 using System.Threading.Tasks;
-
-using Butterfly.Channel;
+using System.Collections.Generic;
 
 using RedHttpServerNet45.Response;
 using NLog;
-using System.Collections.Generic;
+
+using Butterfly.Channel;
+using System;
 
 namespace Butterfly.RedHttpServer {
     public class RedHttpServerChannelServer : ChannelServer {
@@ -31,7 +32,7 @@ namespace Butterfly.RedHttpServer {
             this.server = server;
         }
 
-        public override void Start() {
+        protected override void DoStart() {
             HashSet<string> uniquePaths = new HashSet<string>();
             foreach (var listener in this.onNewChannelListeners) {
                 if (!uniquePaths.Contains(listener.path)) uniquePaths.Add(listener.path);
@@ -44,35 +45,36 @@ namespace Butterfly.RedHttpServer {
                 this.server.WebSocket($"{path}/:channelId", (req, wsd) => {
                     string channelId = req.Params["channelId"];
                     logger.Debug($"RedHttpServerChannelManager():Websocket created for path {path}, channelId {channelId}");
-                    this.CreateChannelTransport(channelId, () => new WebSocketDialogChannelTransport(channelId, wsd));
-                    this.CreateChannel(path, channelId);
+                    this.CreateChannel(channelId, path, () => new WebSocketDialogChannel(channelId, wsd));
                 });
             }
         }
-
-        public override void Stop() {
-        }
     }
 
-    public class WebSocketDialogChannelTransport : IChannelTransport {
+    public class WebSocketDialogChannel : BaseChannel {
 
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected readonly string channelId;
         protected readonly WebSocketDialog webSocketDialog;
 
-        public WebSocketDialogChannelTransport(string channelId, WebSocketDialog webSocketDialog) {
-            this.channelId = channelId;
+        public WebSocketDialogChannel(string id, WebSocketDialog webSocketDialog) : base(id) {
+            logger.Debug($"WebSocketDialogChannel():id={id}");
             this.webSocketDialog = webSocketDialog;
+
+            this.webSocketDialog.OnTextReceived += (sender, eventArgs) => {
+                this.LastHeartbeatReceived = DateTime.Now;
+            };
         }
 
-        public Task Send(string text) {
+        protected override Task SendAsync(string text) {
             //logger.Debug($"Send():channelId={channelId},text={text}");
             return this.webSocketDialog.SendText(text);
         }
 
-        public void Dispose() {
+        protected override void DoDispose() {
+            logger.Debug($"DoDispose():id={this.id}");
             this.webSocketDialog.Close();
         }
+
     }
 }

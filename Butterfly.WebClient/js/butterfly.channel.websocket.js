@@ -16,14 +16,13 @@
     }
 
     private.testConnection = function (firstAttempt) {
-        console.log('testConnection():firstAttempt=' + firstAttempt);
+        //console.log('testConnection():firstAttempt=' + firstAttempt);
         if (!private.webSocket) {
             try {
                 private.setStatus(firstAttempt ? 'Connecting...' : 'Reconnecting...');
                 private.webSocket = new WebSocket(url);
                 private.webSocket.onmessage = function (event) {
-                    let channelEvent = JSON.parse(event.data);
-                    let dataEventTransaction = channelEvent.value;
+                    let dataEventTransaction = JSON.parse(event.data);
                     for (let i = 0; i < dataEventTransaction.dataEvents.length; i++) {
                         dataEventHandler.handle(dataEventTransaction.dataEvents[i]);
                     }
@@ -41,9 +40,9 @@
             }
         }
         else if (private.webSocket.readyState == 1) { // Open
-            console.log('testConnection():private.webSocket.readyState=' + private.webSocket.readyState);
+            //console.log('testConnection():private.webSocket.readyState=' + private.webSocket.readyState);
             try {
-                private.webSocket.send('__heartbeat__');
+                private.webSocket.send('!');
                 console.log('testConnection():heartbeat success');
                 private.setStatus('Connected');
             }

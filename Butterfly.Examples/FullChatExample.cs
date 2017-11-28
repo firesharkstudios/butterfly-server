@@ -41,7 +41,7 @@ namespace Butterfly.Examples {
                 dynamicSelectGroup.CreateDynamicSelect(
                     "SELECT id, name FROM user WHERE id=@userId", 
                     values: new {
-                        userId = channel.id
+                        userId = channel.Id
                     },
                     name: "me"
                 );
@@ -50,7 +50,7 @@ namespace Butterfly.Examples {
                 var chatIdsDynamicSelect = dynamicSelectGroup.CreateDynamicSelect(
                     "SELECT id, chat_id FROM chat_participant WHERE user_id=@userId", 
                     values: new {
-                        userId = channel.id
+                        userId = channel.Id
                     }, 
                     name: "chat_ids"
                 );

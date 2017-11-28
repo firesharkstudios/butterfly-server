@@ -36,7 +36,7 @@ namespace Butterfly.Database.Dynamic {
         protected readonly Action<DataEventTransaction> listener;
         protected readonly Func<DataEventTransaction, Task> asyncListener;
 
-        protected readonly List<DynamicSelect> dynamicSelect = new List<DynamicSelect>();
+        protected readonly List<DynamicSelect> dynamicSelects = new List<DynamicSelect>();
         protected readonly ConcurrentQueue<DataEventTransaction> incomingDataEventTransactions = new ConcurrentQueue<DataEventTransaction>();
 
         protected readonly CancellationTokenSource runCancellationTokenSource = new CancellationTokenSource();
@@ -45,15 +45,22 @@ namespace Butterfly.Database.Dynamic {
         protected readonly List<IDisposable> disposables = new List<IDisposable>();
 
         public DynamicSelectGroup(Database database, Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null) {
+            this.Id = Guid.NewGuid().ToString();
             this.Database = database;
             this.listener = listener;
             this.listenerDataEventFilter = listenerDataEventFilter;
         }
 
         public DynamicSelectGroup(Database database, Func<DataEventTransaction, Task> asyncListener, Func<DataEvent, bool> listenerDataEventFilter = null) {
+            this.Id = Guid.NewGuid().ToString();
             this.Database = database;
             this.asyncListener = asyncListener;
             this.listenerDataEventFilter = listenerDataEventFilter;
+        }
+
+        public string Id {
+            get;
+            protected set;
         }
 
         public Database Database {
@@ -67,10 +74,11 @@ namespace Butterfly.Database.Dynamic {
         /// </summary>
         public DynamicSelect CreateDynamicSelect(string sql, dynamic values = null, string name = null, string[] keyFieldNames = null) {
             DynamicSelect dynamicQuery = new DynamicSelect(this, sql, values, name, keyFieldNames);
-            this.dynamicSelect.Add(dynamicQuery);
+            this.dynamicSelects.Add(dynamicQuery);
             return dynamicQuery;
         }
 
+        protected bool isStarted = false;
         /// <summary>
         /// Sends the initial DataChangeTransactions to the registered listener.
         /// Listens for DataChangeTransactions and send appropriately filtered DataChangeTransactions to the registered listener.
@@ -79,7 +87,10 @@ namespace Butterfly.Database.Dynamic {
         /// <returns></returns>
         public async Task<DynamicSelectGroup> StartAsync() {
             logger.Debug("StartAsync");
+            if (this.isStarted) throw new Exception("Dynamic Select Group is already started");
             if (this.runCancellationTokenSource.IsCancellationRequested) throw new Exception("Cannot restart a stopped DynamicQuerySet");
+
+            this.isStarted = true;
 
             DataEvent[] dataEvents = await this.RequeryDynamicSelectsIfDirtyAsync(force: true);
             await this.SendToListenerAsync(new DataEventTransaction(DateTime.Now, dataEvents));
@@ -103,7 +114,7 @@ namespace Butterfly.Database.Dynamic {
 
         protected async Task LookupImpactedRecords(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
             // Find all impacted records and store them with the data event transaction
-            foreach (var dynamicSelect in this.dynamicSelect) {
+            foreach (var dynamicSelect in this.dynamicSelects) {
                 foreach (var dataEvent in dataEventTransaction.dataEvents) {
                     if (dataEvent is ChangeDataEvent dataChange && HasImpactedRecords(transactionState, dataChange)) {
                         Dict[] impactedRecords = await dynamicSelect.GetImpactedRecordsAsync(dataChange);
@@ -139,7 +150,7 @@ namespace Butterfly.Database.Dynamic {
                     List<DataEvent> newDataEvents = new List<DataEvent>();
                     foreach (var dataEvent in dataEventTransaction.dataEvents) {
                         logger.Debug($"RunAsync():dataEventTransaction.dataEvents.Length={dataEventTransaction.dataEvents.Length}");
-                        foreach (var dynamicSelect in this.dynamicSelect) {
+                        foreach (var dynamicSelect in this.dynamicSelects) {
                             if (!dynamicSelect.HasDirtyParams) {
                                 // Fetch the preCommitImpactedRecords
                                 Dict[] preCommitImpactedRecords = null;
@@ -207,7 +218,7 @@ namespace Butterfly.Database.Dynamic {
         /// <returns></returns>
         protected async Task<DataEvent[]> RequeryDynamicSelectsIfDirtyAsync(bool force = false) {
             List<DataEvent> dataEvents = new List<DataEvent>();
-            foreach (var dynamicSelect in this.dynamicSelect) {
+            foreach (var dynamicSelect in this.dynamicSelects) {
                 if (force || dynamicSelect.HasDirtyParams) {
                     DataEvent[] initialDataEvents = await dynamicSelect.GetInitialDataEventsAsync();
                     dataEvents.AddRange(initialDataEvents);

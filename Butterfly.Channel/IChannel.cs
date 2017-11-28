@@ -16,11 +16,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Butterfly.Channel {
-    public interface IChannelSource {
+    public interface IChannel : IDisposable {
+        string Id { get; }
+        DateTime LastHeartbeatReceived { get; }
+        void Start(ICollection<Func<IChannel, IDisposable>> initChannelListeners, ICollection<Func<IChannel, Task<IDisposable>>> initChannelAsyncListeners);
+        void Queue(object value);
     }
 }
