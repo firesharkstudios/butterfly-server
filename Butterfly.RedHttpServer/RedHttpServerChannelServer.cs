@@ -42,9 +42,10 @@ namespace Butterfly.RedHttpServer {
             }
 
             foreach (var path in uniquePaths) {
+                logger.Debug($"DoStart():Websocket listening on path {path}");
                 this.server.WebSocket($"{path}/:channelId", (req, wsd) => {
                     string channelId = req.Params["channelId"];
-                    logger.Debug($"RedHttpServerChannelManager():Websocket created for path {path}, channelId {channelId}");
+                    logger.Debug($"DoStart():Websocket created for path {path}, channelId {channelId}");
                     this.CreateChannel(channelId, path, () => new WebSocketDialogChannel(channelId, wsd));
                 });
             }

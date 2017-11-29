@@ -14,11 +14,21 @@
  * limitations under the License.
 */
 
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Butterfly.Util {
     public static class DictionaryX {
+
+        public static V GetAs<T, U, V>(this Dictionary<T, U> me, T key, V defaultValue) {
+            if (me.TryGetValue(key, out U value)) {
+                return (V)Convert.ChangeType(value, typeof(V));
+            }
+            else {
+                return defaultValue;
+            }
+        }
+
         public static void Deconstruct<T1, T2>(this KeyValuePair<T1, T2> tuple, out T1 key, out T2 value) {
             key = tuple.Key;
             value = tuple.Value;

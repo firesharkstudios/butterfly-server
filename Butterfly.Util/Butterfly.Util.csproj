@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CleverNameX.cs" />
+    <Compile Include="CommandLineUtil.cs" />
     <Compile Include="CompilerUtil.cs" />
     <Compile Include="ConsoleUtil.cs" />
     <Compile Include="DictionaryX.cs" />

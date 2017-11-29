@@ -168,7 +168,7 @@ let app = new Vue({
 
         // Create channel to server and handle data events
         let channelClient = new WebSocketChannelClient({
-            url: 'ws://localhost:8080/full-chat/' + self.myUserId,
+            url: '/full-chat/' + + self.myUserId,
             onDataEvent: new ArrayDataEventHandler({
                 arrayMapping: {
                     me: self.mes,

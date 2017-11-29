@@ -1,11 +1,21 @@
 ﻿using System;
 using System.IO;
 
+using Butterfly.Util;
+using NLog;
+
 namespace Butterfly.Examples {
     class Program {
+        static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         static void Main(string[] args) {
-            int port = 8080;
-            var redHttpServer = new RedHttpServerNet45.RedHttpServer(port, Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\..\Butterfly.Client.Web")));
+            var switches = CommandLineUtil.Parse(Environment.CommandLine);
+            int port = switches.GetAs("port", 8080);
+            string staticPath = switches.GetAs("static-path", @"..\..\..\Butterfly.Client.Web");
+            string staticFullPath = staticPath.StartsWith(".") ? Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, staticPath)) : staticPath;
+            logger.Debug($"Main():port={port},staticFullPath={staticFullPath}");
+
+            var redHttpServer = new RedHttpServerNet45.RedHttpServer(port, staticFullPath);
             using (var webServer = new Butterfly.RedHttpServer.RedHttpServerWebServer(redHttpServer))
             using (var channelServer = new Butterfly.RedHttpServer.RedHttpServerChannelServer(redHttpServer)) {
                 FullChatExample.Setup(webServer, "/api/full-chat", channelServer, "/full-chat");
@@ -14,7 +24,7 @@ namespace Butterfly.Examples {
                 webServer.Start();
                 channelServer.Start();
                 redHttpServer.Start();
-                Console.WriteLine($"Open http://localhost:{port}/examples/index.html to view");
+                Console.WriteLine($"Open http://<host>:{port} to view");
             }
         }
     }

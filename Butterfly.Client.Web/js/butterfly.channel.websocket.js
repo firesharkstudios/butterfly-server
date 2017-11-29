@@ -8,6 +8,11 @@
     let onUpdated = options.onUpdated;
     let onStatusChange = options.onStatusChange;
 
+    if (url.indexOf('://') == -1) {
+        url = (window.location.protocol=='https:' ? 'wss:' : 'ws:') + '//' + window.location.host + url;
+    }
+    console.log('WebSocketChannelClient():url=' + url);
+
     private.setStatus = function (value) {
         if (public.status != value) {
             public.status = value;
