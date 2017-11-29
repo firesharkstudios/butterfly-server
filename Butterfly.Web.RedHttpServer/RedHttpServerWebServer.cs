@@ -25,9 +25,8 @@ using RedHttpServerNet45.Request;
 using RedHttpServerNet45.Response;
 
 using Butterfly.Util;
-using Butterfly.Web;
 
-namespace Butterfly.RedHttpServer {
+namespace Butterfly.Web.RedHttpServer {
     public class RedHttpServerWebServer : WebServer {
 
         protected readonly global::RedHttpServerNet45.RedHttpServer server;

@@ -13,7 +13,7 @@ namespace Butterfly.Channel.Test {
         [TestMethod]
         public async Task RedHttpServerChannel() {
             var redHttpServer = new RedHttpServerNet45.RedHttpServer(8080);
-            using (var channelServer = new Butterfly.RedHttpServer.RedHttpServerChannelServer(redHttpServer, 2000)) {
+            using (var channelServer = new Butterfly.Channel.RedHttpServer.RedHttpServerChannelServer(redHttpServer, 2000)) {
                 await this.TestChannel(channelServer, () => {
                     redHttpServer.Start();
                 });

@@ -67,6 +67,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Butterfly.Channel.RedHttpServer\Butterfly.Channel.RedHttpServer.csproj">
+      <Project>{81c3a200-2e78-49e5-9d61-1e4debc2b87f}</Project>
+      <Name>Butterfly.Channel.RedHttpServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Butterfly.Channel\Butterfly.Channel.csproj">
       <Project>{ea4f6fe2-51c1-4f2b-b7f4-e21efbc65d4f}</Project>
       <Name>Butterfly.Channel</Name>
@@ -74,10 +78,6 @@
     <ProjectReference Include="..\Butterfly.Client.DotNet\Butterfly.Client.DotNet.csproj">
       <Project>{1dff8f85-31e8-4a8b-ba4e-e054fb313e68}</Project>
       <Name>Butterfly.Client.DotNet</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Butterfly.RedHttpServer\Butterfly.RedHttpServer.csproj">
-      <Project>{81c3a200-2e78-49e5-9d61-1e4debc2b87f}</Project>
-      <Name>Butterfly.RedHttpServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Butterfly.Util\Butterfly.Util.csproj">
       <Project>{687A3FB4-8299-4F15-B74B-825FE7446823}</Project>

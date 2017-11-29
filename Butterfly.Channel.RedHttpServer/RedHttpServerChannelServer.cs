@@ -23,7 +23,7 @@ using NLog;
 
 using Butterfly.Channel;
 
-namespace Butterfly.RedHttpServer {
+namespace Butterfly.Channel.RedHttpServer {
     public class RedHttpServerChannelServer : ChannelServer {
 
         protected readonly global::RedHttpServerNet45.RedHttpServer server;

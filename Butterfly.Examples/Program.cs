@@ -16,8 +16,8 @@ namespace Butterfly.Examples {
             logger.Debug($"Main():port={port},staticFullPath={staticFullPath}");
 
             var redHttpServer = new RedHttpServerNet45.RedHttpServer(port, staticFullPath);
-            using (var webServer = new Butterfly.RedHttpServer.RedHttpServerWebServer(redHttpServer))
-            using (var channelServer = new Butterfly.RedHttpServer.RedHttpServerChannelServer(redHttpServer)) {
+            using (var webServer = new Butterfly.Web.RedHttpServer.RedHttpServerWebServer(redHttpServer))
+            using (var channelServer = new Butterfly.Channel.RedHttpServer.RedHttpServerChannelServer(redHttpServer)) {
                 FullChatExample.Setup(webServer, "/api/full-chat", channelServer, "/full-chat");
                 SimpleChatExample.Setup(webServer, "/api/simple-chat", channelServer, "/simple-chat");
 

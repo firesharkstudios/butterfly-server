@@ -7,8 +7,8 @@
     <ProjectGuid>{81C3A200-2E78-49E5-9D61-1E4DEBC2B87F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Butterfly.WebServer.RedHttpServer</RootNamespace>
-    <AssemblyName>Butterfly.WebServer.RedHttpServer</AssemblyName>
+    <RootNamespace>Butterfly.Channel.RedHttpServer</RootNamespace>
+    <AssemblyName>Butterfly.Channel.RedHttpServer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -67,7 +67,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RedHttpServerWebServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedHttpServerChannelServer.cs" />
   </ItemGroup>
@@ -79,10 +78,6 @@
     <ProjectReference Include="..\Butterfly.Util\Butterfly.Util.csproj">
       <Project>{687A3FB4-8299-4F15-B74B-825FE7446823}</Project>
       <Name>Butterfly.Util</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Butterfly.Web\Butterfly.Web.csproj">
-      <Project>{AAC77468-2570-4B46-ABAC-E9CF215942F1}</Project>
-      <Name>Butterfly.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
