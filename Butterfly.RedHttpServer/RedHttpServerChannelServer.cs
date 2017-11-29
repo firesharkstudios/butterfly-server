@@ -28,7 +28,7 @@ namespace Butterfly.RedHttpServer {
 
         protected readonly global::RedHttpServerNet45.RedHttpServer server;
 
-        public RedHttpServerChannelServer(global::RedHttpServerNet45.RedHttpServer server) {
+        public RedHttpServerChannelServer(global::RedHttpServerNet45.RedHttpServer server, int mustReceiveHeartbeatMillis = 5000) : base(mustReceiveHeartbeatMillis) {
             this.server = server;
         }
 
@@ -62,6 +62,7 @@ namespace Butterfly.RedHttpServer {
             this.webSocketDialog = webSocketDialog;
 
             this.webSocketDialog.OnTextReceived += (sender, eventArgs) => {
+                logger.Debug($"WebSocketDialogChannel():New heartbeat...");
                 this.LastHeartbeatReceived = DateTime.Now;
             };
         }

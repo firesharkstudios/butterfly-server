@@ -61,53 +61,63 @@ namespace Butterfly.Client.DotNet {
                 this.ioCancellationTokenSource = new CancellationTokenSource();
                 
                 Task receivingTask = Task.Run(async() => {
-                    while (!ioCancellationTokenSource.IsCancellationRequested) {
-                        string message = null;
-                        try {
-                            ArraySegment<Byte> buffer = new ArraySegment<byte>(new Byte[this.receiveBufferSize]);
-                            WebSocketReceiveResult result = null;
-                            using (var memoryStream = new MemoryStream()) {
-                                do {
-                                    result = await clientWebSocket.ReceiveAsync(buffer, CancellationToken.None);
-                                    memoryStream.Write(buffer.Array, buffer.Offset, result.Count);
-                                } while (!result.EndOfMessage);
+                    try {
+                        while (!ioCancellationTokenSource.IsCancellationRequested) {
+                            string message = null;
+                            try {
+                                ArraySegment<Byte> buffer = new ArraySegment<byte>(new Byte[this.receiveBufferSize]);
+                                WebSocketReceiveResult result = null;
+                                using (var memoryStream = new MemoryStream()) {
+                                    do {
+                                        result = await clientWebSocket.ReceiveAsync(buffer, CancellationToken.None);
+                                        memoryStream.Write(buffer.Array, buffer.Offset, result.Count);
+                                    } while (!result.EndOfMessage);
 
-                                memoryStream.Seek(0, SeekOrigin.Begin);
+                                    memoryStream.Seek(0, SeekOrigin.Begin);
 
-                                if (result.MessageType == WebSocketMessageType.Text) {
-                                    using (var reader = new StreamReader(memoryStream, Encoding.UTF8)) {
-                                        message = reader.ReadToEnd();
+                                    if (result.MessageType == WebSocketMessageType.Text) {
+                                        using (var reader = new StreamReader(memoryStream, Encoding.UTF8)) {
+                                            message = reader.ReadToEnd();
+                                        }
                                     }
                                 }
                             }
+                            catch (Exception e) {
+                                logger.Error(e);
+                                break;
+                            }
+                            if (!string.IsNullOrEmpty(message) && this.onMessage != null) this.onMessage(message);
                         }
-                        catch (Exception e) {
-                            logger.Error(e);
-                            break;
-                        }
-                        if (this.onMessage != null) this.onMessage(message);
+                    }
+                    catch (TaskCanceledException) {
                     }
                 });
 
                 Task sendingTask = Task.Run(async () => {
                     ArraySegment<byte> outputBuffer = new ArraySegment<byte>(Encoding.UTF8.GetBytes("!"));
-                    while (!this.ioCancellationTokenSource.IsCancellationRequested) {
-                        try {
-                            await clientWebSocket.SendAsync(outputBuffer, WebSocketMessageType.Text, true, this.ioCancellationTokenSource.Token);
+                    try {
+                        while (!this.ioCancellationTokenSource.IsCancellationRequested) {
+                            logger.Debug($"RunAsync():this.ioCancellationTokenSource.IsCancellationRequested={this.ioCancellationTokenSource.IsCancellationRequested}");
+                            try {
+                                await clientWebSocket.SendAsync(outputBuffer, WebSocketMessageType.Text, true, this.ioCancellationTokenSource.Token);
+                            }
+                            catch (Exception e) {
+                                logger.Error(e);
+                                break;
+                            }
+                            await Task.Delay(this.heartbeatEveryMillis, this.ioCancellationTokenSource.Token);
                         }
-                        catch (Exception e) {
-                            logger.Error(e);
-                            break;
-                        }
-                        await Task.Delay(this.heartbeatEveryMillis);
+                    }
+                    catch (TaskCanceledException) {
                     }
                 });
-                Task.WaitAny(receivingTask, sendingTask);
+                await Task.WhenAny(receivingTask, sendingTask);
                 ioCancellationTokenSource.Cancel();
             }
         }
 
         public void Dispose() {
+            logger.Debug("Dispose()");
             this.connectingCancellationSource.Cancel();
             this.ioCancellationTokenSource.Cancel();
         }
