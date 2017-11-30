@@ -55,10 +55,12 @@
     <Compile Include="ConsoleUtil.cs" />
     <Compile Include="DictionaryX.cs" />
     <Compile Include="DynamicX.cs" />
+    <Compile Include="EnvironmentX.cs" />
     <Compile Include="FileX.cs" />
     <Compile Include="JsonUtil.cs" />
     <Compile Include="ListItemDisposable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UriX.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NLog.config">

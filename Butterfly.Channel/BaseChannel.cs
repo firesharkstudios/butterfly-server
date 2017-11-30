@@ -30,9 +30,10 @@ namespace Butterfly.Channel {
         protected readonly ConcurrentQueue<string> buffer = new ConcurrentQueue<string>();
         protected readonly AsyncMonitor monitor = new AsyncMonitor();
 
+        protected DateTime lastHeartbeatReceived = DateTime.Now;
+
         public BaseChannel(string id) {
             this.id = id;
-            this.LastHeartbeatReceived = DateTime.Now;
         }
 
         public string Id => this.id;
@@ -40,9 +41,10 @@ namespace Butterfly.Channel {
         /// <summary>
         /// Implementing classes must keep this updated to avoid the channel being killed by the <ref>ChannelServer</ref>
         /// </summary>
-        public DateTime LastHeartbeatReceived {
-            get;
-            protected set;
+        public DateTime LastHeartbeatReceived => this.lastHeartbeatReceived;
+
+        public void Heartbeat() {
+            this.lastHeartbeatReceived = DateTime.Now;
         }
 
         /// <summary>
@@ -56,20 +58,16 @@ namespace Butterfly.Channel {
         }
 
         protected bool started = false;
-        public void Start(ICollection<Func<IChannel, IDisposable>> initChannelListeners, ICollection<Func<IChannel, Task<IDisposable>>> initChannelAsyncListeners) {
+        public void Start(ICollection<ChannelListener> initChannelListeners) {
             this.started = true;
-            Task.Run(() => this.RunAsync(initChannelListeners, initChannelAsyncListeners));
+            Task.Run(() => this.RunAsync(initChannelListeners));
         }
 
-        protected async Task RunAsync(ICollection<Func<IChannel, IDisposable>> initChannelListeners, ICollection<Func<IChannel, Task<IDisposable>>> initChannelAsyncListeners) {
+        protected async Task RunAsync(ICollection<ChannelListener> initChannelListeners) {
             List<IDisposable> disposables = new List<IDisposable>();
             try {
                 foreach (var listener in initChannelListeners) {
-                    var disposable = listener(this);
-                    if (disposable != null) disposables.Add(disposable);
-                }
-                foreach (var listener in initChannelAsyncListeners) {
-                    var disposable = await listener(this);
+                    var disposable = listener.listener!=null ? listener.listener(this) : await listener.listenerAsync(this);
                     if (disposable != null) disposables.Add(disposable);
                 }
                 while (this.started) {

@@ -15,14 +15,24 @@
 */
 
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Butterfly.Channel {
-    public interface IChannel : IDisposable {
-        string Id { get; }
-        DateTime LastHeartbeatReceived { get; }
-        void Start(ICollection<ChannelListener> initChannelListeners);
-        void Queue(object value);
+    public class ChannelListener {
+        public readonly string path;
+        public readonly Func<IChannel, IDisposable> listener;
+        public readonly Func<IChannel, Task<IDisposable>> listenerAsync;
+
+        public ChannelListener(string path, Func<IChannel, IDisposable> listener) {
+            this.path = path;
+            this.listener = listener;
+            this.listenerAsync = null;
+        }
+
+        public ChannelListener(string path, Func<IChannel, Task<IDisposable>> listener) {
+            this.path = path;
+            this.listener = null;
+            this.listenerAsync = listener;
+        }
     }
 }

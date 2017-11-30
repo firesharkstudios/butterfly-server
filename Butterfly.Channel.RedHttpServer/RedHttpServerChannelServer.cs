@@ -16,12 +16,11 @@
 
 using System;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 using RedHttpServerNet45.Response;
 using NLog;
 
-using Butterfly.Channel;
+using Butterfly.Util;
 
 namespace Butterfly.Channel.RedHttpServer {
     public class RedHttpServerChannelServer : ChannelServer {
@@ -29,24 +28,17 @@ namespace Butterfly.Channel.RedHttpServer {
         protected readonly global::RedHttpServerNet45.RedHttpServer server;
 
         public RedHttpServerChannelServer(global::RedHttpServerNet45.RedHttpServer server, int mustReceiveHeartbeatMillis = 5000) : base(mustReceiveHeartbeatMillis) {
+            if (EnvironmentX.IsRunningOnMono()) throw new Exception("Unfortunately, RedHttpServer does not support WebSockets on Mono");
             this.server = server;
         }
 
         protected override void DoStart() {
-            HashSet<string> uniquePaths = new HashSet<string>();
             foreach (var listener in this.onNewChannelListeners) {
-                if (!uniquePaths.Contains(listener.path)) uniquePaths.Add(listener.path);
-            }
-            foreach (var listener in this.onNewChannelAsyncListeners) {
-                if (!uniquePaths.Contains(listener.path)) uniquePaths.Add(listener.path);
-            }
-
-            foreach (var path in uniquePaths) {
-                logger.Debug($"DoStart():Websocket listening on path {path}");
-                this.server.WebSocket($"{path}/:channelId", (req, wsd) => {
-                    string channelId = req.Params["channelId"];
-                    logger.Debug($"DoStart():Websocket created for path {path}, channelId {channelId}");
-                    this.CreateChannel(channelId, path, () => new WebSocketDialogChannel(channelId, wsd));
+                logger.Debug($"DoStart():Websocket listening on path {listener.path}");
+                this.server.WebSocket(listener.path, (req, wsd) => {
+                    string channelId = req.Queries["id"];
+                    logger.Debug($"DoStart():Websocket created for path {listener.path}, channelId {channelId}");
+                    this.AddAndStartChannel(channelId, listener.path, new WebSocketDialogChannel(channelId, wsd));
                 });
             }
         }
@@ -64,7 +56,7 @@ namespace Butterfly.Channel.RedHttpServer {
 
             this.webSocketDialog.OnTextReceived += (sender, eventArgs) => {
                 logger.Debug($"WebSocketDialogChannel():New heartbeat...");
-                this.LastHeartbeatReceived = DateTime.Now;
+                this.Heartbeat();
             };
         }
 

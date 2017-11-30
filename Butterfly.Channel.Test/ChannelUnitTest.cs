@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using Butterfly.Channel.EmbedIO;
 using Butterfly.Client.DotNet;
 using Butterfly.Util;
 
@@ -16,6 +17,16 @@ namespace Butterfly.Channel.Test {
             using (var channelServer = new Butterfly.Channel.RedHttpServer.RedHttpServerChannelServer(redHttpServer, 2000)) {
                 await this.TestChannel(channelServer, () => {
                     redHttpServer.Start();
+                });
+            }
+        }
+
+        [TestMethod]
+        public async Task EmbedIOChannel() {
+            using (var webServer = new Unosquare.Labs.EmbedIO.WebServer("http://localhost:8080/", Unosquare.Labs.EmbedIO.Constants.RoutingStrategy.Regex))
+            using (var channelServer = new EmbedIOChannelServer(webServer, 2000)) {
+                await this.TestChannel(channelServer, () => {
+                    webServer.RunAsync();
                 });
             }
         }
@@ -33,7 +44,7 @@ namespace Butterfly.Channel.Test {
 
             // Test creating a channel from the client
             List<string> messageCollector = new List<string>();
-            var channelClient = new WebSocketChannelClient("ws://localhost:8080/test/123", json => {
+            var channelClient = new WebSocketChannelClient("ws://localhost:8080/test?id=123", json => {
                 var message = JsonUtil.Deserialize<string>(json);
                 messageCollector.Add(message);
             }, heartbeatEveryMillis: 1000);
@@ -41,12 +52,17 @@ namespace Butterfly.Channel.Test {
             await Task.Delay(200);
             Assert.IsNotNull(newChannel);
             Assert.AreEqual(1, channelServer.ChannelCount);
+            Assert.IsNotNull(channelServer.GetChannel("123"));
 
             // Test if sending a message on the server is received on the client
             channelServer.Queue("123", "Hello");
             await Task.Delay(200);
             Assert.AreEqual(1, messageCollector.Count);
             Assert.AreEqual("Hello", messageCollector[0]);
+
+            // Test if heartbeats keep the channel alive properly
+            await Task.Delay(3000);
+            Assert.AreEqual(1, channelServer.ChannelCount);
 
             // Test if channel is disposed if it is removed from server
             channelClient.Dispose();

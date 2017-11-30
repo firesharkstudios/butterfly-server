@@ -31,7 +31,6 @@ namespace Butterfly.Channel {
         protected readonly ConcurrentDictionary<string, IChannel> channelById = new ConcurrentDictionary<string, IChannel>();
 
         protected readonly List<ChannelListener> onNewChannelListeners = new List<ChannelListener>();
-        protected readonly List<ChannelListenerAsync> onNewChannelAsyncListeners = new List<ChannelListenerAsync>();
 
         protected readonly int mustReceiveHeartbeatMillis;
 
@@ -44,7 +43,7 @@ namespace Butterfly.Channel {
         }
 
         public IDisposable OnNewChannelAsync(string path, Func<IChannel, Task<IDisposable>> listener) {
-            return new ListItemDisposable<ChannelListenerAsync>(onNewChannelAsyncListeners, new ChannelListenerAsync(path, listener));
+            return new ListItemDisposable<ChannelListener>(onNewChannelListeners, new ChannelListener(path, listener));
         }
 
         public int ChannelCount {
@@ -53,32 +52,37 @@ namespace Butterfly.Channel {
             }
         }
 
+        public IChannel GetChannel(string channelId, bool throwExceptionIfMissing = false) {
+            if (!this.channelById.TryGetValue(channelId, out IChannel channel) && throwExceptionIfMissing) throw new Exception($"Invalid channel id '{channelId}'");
+            return channel;
+        }
+
         /// <summary>
         /// Queues a value to be sent to the specified channel
         /// </summary>
         public void Queue(string channelId, object value) {
-            if (!this.channelById.TryGetValue(channelId, out IChannel channel)) throw new Exception($"Invalid channel id '{channelId}'");
+            var channel = this.GetChannel(channelId);
             channel.Queue(value);
         }
 
         /// <summary>
         /// Implementing classes should call this when the client creates a new channel to the server
         /// </summary>
-        protected void CreateChannel(string id, string path, Func<IChannel> channelFactory) {
-            if (this.channelById.TryGetValue(id, out IChannel existingChannel)) {
+        public void AddAndStartChannel(string channelId, string path, IChannel channel) {
+            var existingChannel = this.GetChannel(channelId);
+            if (existingChannel!=null) {
                 existingChannel.Dispose();
             }
-            IChannel channel = channelFactory();
-            var initChannelListeners = this.onNewChannelListeners.Where(x => x.path == path).Select(x => x.listener).ToArray();
-            var initChannelAsyncListeners = this.onNewChannelAsyncListeners.Where(x => x.path == path).Select(x => x.listener).ToArray();
-            channel.Start(initChannelListeners, initChannelAsyncListeners);
-            this.channelById[id] = channel;
+            var initChannelListeners = this.onNewChannelListeners.Where(x => x.path == path).ToArray();
+            channel.Start(initChannelListeners);
+            this.channelById[channelId] = channel;
         }
 
         protected bool started = false;
         public void Start() {
             this.started = true;
             Task backgroundTask = Task.Run(this.CheckForDeadChannelsAsync);
+
             this.DoStart();
         }
 
@@ -110,23 +114,4 @@ namespace Butterfly.Channel {
         }
     }
 
-    public class ChannelListener {
-        public readonly string path;
-        public readonly Func<IChannel, IDisposable> listener;
-
-        public ChannelListener(string path, Func<IChannel, IDisposable> listener) {
-            this.path = path;
-            this.listener = listener;
-        }
-    }
-
-    public class ChannelListenerAsync {
-        public readonly string path;
-        public readonly Func<IChannel, Task<IDisposable>> listener;
-
-        public ChannelListenerAsync(string path, Func<IChannel, Task<IDisposable>> listener) {
-            this.path = path;
-            this.listener = listener;
-        }
-    }
 }
