@@ -45,7 +45,7 @@ namespace Butterfly.Web {
             }
         }
 
-        public abstract void CompileRoutes();
+        public abstract void Start();
         public abstract void Dispose();
     }
 }

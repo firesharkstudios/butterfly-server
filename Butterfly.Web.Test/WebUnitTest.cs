@@ -42,7 +42,7 @@ namespace Butterfly.Web.Test {
 
                 await res.WriteAsJsonAsync("test-post-response");
             });
-            webServer.CompileRoutes();
+            webServer.Start();
 
             // Start the underlying server
             start();

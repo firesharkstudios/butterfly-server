@@ -3,6 +3,7 @@ using System.IO;
 
 using Butterfly.Util;
 using NLog;
+using Unosquare.Labs.EmbedIO.Modules;
 
 namespace Butterfly.Examples {
     class Program {
@@ -15,15 +16,18 @@ namespace Butterfly.Examples {
             string staticFullPath = staticPath.StartsWith(".") ? Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, staticPath)) : staticPath;
             logger.Debug($"Main():port={port},staticFullPath={staticFullPath}");
 
-            var redHttpServer = new RedHttpServerNet45.RedHttpServer(port, staticFullPath);
-            using (var webServer = new Butterfly.Web.RedHttpServer.RedHttpServerWebServer(redHttpServer))
-            using (var channelServer = new Butterfly.Channel.RedHttpServer.RedHttpServerChannelServer(redHttpServer)) {
+            var embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer(port);
+            embedIOWebServer.RegisterModule(new StaticFilesModule(staticFullPath));
+
+            using (var webServer = new Butterfly.Web.EmbedIO.EmbedIOWebServer(embedIOWebServer))
+            using (var channelServer = new Butterfly.Channel.EmbedIO.EmbedIOChannelServer(embedIOWebServer)) {
                 FullChatExample.Setup(webServer, "/api/full-chat", channelServer, "/full-chat");
                 SimpleChatExample.Setup(webServer, "/api/simple-chat", channelServer, "/simple-chat");
-
-                webServer.CompileRoutes();
+                webServer.Start();
                 channelServer.Start();
-                redHttpServer.Start();
+
+                embedIOWebServer.RunAsync().Wait();
+
                 Console.WriteLine($"Open http://<host>:{port} to view");
             }
         }

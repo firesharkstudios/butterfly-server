@@ -14,6 +14,7 @@
  * limitations under the License.
 */
 
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
@@ -21,12 +22,10 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-using Unosquare.Labs.EmbedIO.Modules;
+using Unosquare.Labs.EmbedIO;
 using Unosquare.Labs.EmbedIO.Constants;
 
 using Butterfly.Util;
-using Unosquare.Labs.EmbedIO;
-using System.Collections.Generic;
 
 namespace Butterfly.Web.EmbedIO {
     public class EmbedIOWebServer : WebServer {
@@ -37,7 +36,7 @@ namespace Butterfly.Web.EmbedIO {
             this.server = server;
         }
 
-        public override void CompileRoutes() {
+        public override void Start() {
             this.server.RegisterModule(new MyWebModule(this.webHandlers));
         }
 

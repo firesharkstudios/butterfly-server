@@ -35,7 +35,7 @@ namespace Butterfly.Web.RedHttpServer {
             this.server = server;
         }
 
-        public override void CompileRoutes() {
+        public override void Start() {
             foreach (var webHandler in this.webHandlers) {
                 if (webHandler.method == HttpMethod.Get) {
                     this.server.Get(webHandler.path, async (req, res) => {
