@@ -21,7 +21,7 @@ namespace Butterfly.Examples {
                 FullChatExample.Setup(webServer, "/api/full-chat", channelServer, "/full-chat");
                 SimpleChatExample.Setup(webServer, "/api/simple-chat", channelServer, "/simple-chat");
 
-                webServer.Start();
+                webServer.CompileRoutes();
                 channelServer.Start();
                 redHttpServer.Start();
                 Console.WriteLine($"Open http://<host>:{port} to view");

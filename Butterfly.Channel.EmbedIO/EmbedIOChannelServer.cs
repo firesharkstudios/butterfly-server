@@ -26,8 +26,7 @@ using Butterfly.Util;
 
 namespace Butterfly.Channel.EmbedIO {
     public class EmbedIOChannelServer : ChannelServer {
-
-        protected readonly WebServer webServer;
+        public readonly WebServer webServer;
 
         public EmbedIOChannelServer(WebServer webServer, int mustReceiveHeartbeatMillis = 5000) : base(mustReceiveHeartbeatMillis) {
             this.webServer = webServer;

@@ -25,19 +25,29 @@ using Unosquare.Labs.EmbedIO.Modules;
 using Unosquare.Labs.EmbedIO.Constants;
 
 using Butterfly.Util;
+using Unosquare.Labs.EmbedIO;
+using System.Collections.Generic;
 
 namespace Butterfly.Web.EmbedIO {
-    public class RedHttpServerWebServer : WebServer {
+    public class EmbedIOWebServer : WebServer {
 
-        protected readonly Unosquare.Labs.EmbedIO.WebServer server;
+        public readonly Unosquare.Labs.EmbedIO.WebServer server;
 
-        public RedHttpServerWebServer(Unosquare.Labs.EmbedIO.WebServer server) {
+        public EmbedIOWebServer(Unosquare.Labs.EmbedIO.WebServer server) {
             this.server = server;
-            this.server.RegisterModule(new WebApiModule());
         }
 
-        public override void Start() {
-            foreach (var webHandler in this.webHandlers) {
+        public override void CompileRoutes() {
+            this.server.RegisterModule(new MyWebModule(this.webHandlers));
+        }
+
+        public override void Dispose() {
+        }
+    }
+
+    public class MyWebModule : WebModuleBase {
+        public MyWebModule(ICollection<WebHandler> webHandlers) {
+            foreach (var webHandler in webHandlers) {
                 HttpVerbs httpVerb;
                 if (webHandler.method == HttpMethod.Get) {
                     httpVerb = HttpVerbs.Get;
@@ -48,21 +58,19 @@ namespace Butterfly.Web.EmbedIO {
                 else {
                     throw new System.Exception($"Unknown method '{webHandler.method}'");
                 }
-
-                this.server.Module<WebApiModule>().AddHandler(webHandler.path, httpVerb, async (context, cancellationToken) => {
+                this.AddHandler(webHandler.path, httpVerb, async (context, cancellationToken) => {
                     await webHandler.run(new EmbedIOWebRequest(context), new EmbedIOWebResponse(context));
                     return true;
                 });
             }
         }
 
-        public override void Dispose() {
-        }
+        public override string Name => "My Web Module";
     }
 
     public class EmbedIOWebRequest : IWebRequest {
 
-        protected readonly Unosquare.Net.HttpListenerContext context;
+        public readonly Unosquare.Net.HttpListenerContext context;
 
         public EmbedIOWebRequest(Unosquare.Net.HttpListenerContext context) {
             this.context = context;
@@ -91,7 +99,7 @@ namespace Butterfly.Web.EmbedIO {
 
     public class EmbedIOWebResponse : IWebResponse {
 
-        protected readonly Unosquare.Net.HttpListenerContext context;
+        public readonly Unosquare.Net.HttpListenerContext context;
 
         public EmbedIOWebResponse(Unosquare.Net.HttpListenerContext context) {
             this.context = context;

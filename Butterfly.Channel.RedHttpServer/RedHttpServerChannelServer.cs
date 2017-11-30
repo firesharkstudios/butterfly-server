@@ -24,8 +24,7 @@ using Butterfly.Util;
 
 namespace Butterfly.Channel.RedHttpServer {
     public class RedHttpServerChannelServer : ChannelServer {
-
-        protected readonly global::RedHttpServerNet45.RedHttpServer server;
+        public readonly global::RedHttpServerNet45.RedHttpServer server;
 
         public RedHttpServerChannelServer(global::RedHttpServerNet45.RedHttpServer server, int mustReceiveHeartbeatMillis = 5000) : base(mustReceiveHeartbeatMillis) {
             if (EnvironmentX.IsRunningOnMono()) throw new Exception("Unfortunately, RedHttpServer does not support WebSockets on Mono");

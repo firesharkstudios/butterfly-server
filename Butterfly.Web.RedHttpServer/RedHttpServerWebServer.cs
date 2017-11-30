@@ -29,13 +29,13 @@ using Butterfly.Util;
 namespace Butterfly.Web.RedHttpServer {
     public class RedHttpServerWebServer : WebServer {
 
-        protected readonly global::RedHttpServerNet45.RedHttpServer server;
+        public readonly global::RedHttpServerNet45.RedHttpServer server;
 
         public RedHttpServerWebServer(global::RedHttpServerNet45.RedHttpServer server) {
             this.server = server;
         }
 
-        public override void Start() {
+        public override void CompileRoutes() {
             foreach (var webHandler in this.webHandlers) {
                 if (webHandler.method == HttpMethod.Get) {
                     this.server.Get(webHandler.path, async (req, res) => {
@@ -56,7 +56,7 @@ namespace Butterfly.Web.RedHttpServer {
 
     public class RedHttpServerWebRequest : IWebRequest {
 
-        protected readonly RRequest request;
+        public readonly RRequest request;
 
         public RedHttpServerWebRequest(RRequest request) {
             this.request = request;
@@ -85,7 +85,7 @@ namespace Butterfly.Web.RedHttpServer {
 
     public class RedHttpServerWebResponse : IWebResponse {
 
-        protected readonly RResponse response;
+        public readonly RResponse response;
 
         public RedHttpServerWebResponse(RResponse response) {
             this.response = response;
