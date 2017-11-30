@@ -14,8 +14,10 @@
  * limitations under the License.
 */
 
+using System.Threading.Tasks;
+
 namespace Butterfly.Web {
     public interface IWebResponse {
-        void WriteAsJson(object value);
+        Task WriteAsJsonAsync(object value);
     }
 }

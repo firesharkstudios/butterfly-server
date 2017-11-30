@@ -21,32 +21,38 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-using RedHttpServerNet45.Request;
-using RedHttpServerNet45.Response;
+using Unosquare.Labs.EmbedIO.Modules;
+using Unosquare.Labs.EmbedIO.Constants;
 
 using Butterfly.Util;
 
-namespace Butterfly.Web.RedHttpServer {
+namespace Butterfly.Web.EmbedIO {
     public class RedHttpServerWebServer : WebServer {
 
-        protected readonly global::RedHttpServerNet45.RedHttpServer server;
+        protected readonly Unosquare.Labs.EmbedIO.WebServer server;
 
-        public RedHttpServerWebServer(global::RedHttpServerNet45.RedHttpServer server) {
+        public RedHttpServerWebServer(Unosquare.Labs.EmbedIO.WebServer server) {
             this.server = server;
+            this.server.RegisterModule(new WebApiModule());
         }
 
         public override void Start() {
             foreach (var webHandler in this.webHandlers) {
+                HttpVerbs httpVerb;
                 if (webHandler.method == HttpMethod.Get) {
-                    this.server.Get(webHandler.path, async (req, res) => {
-                        await webHandler.run(new RedHttpServerWebRequest(req), new RedHttpServerWebResponse(res));
-                    });
+                    httpVerb = HttpVerbs.Get;
                 }
                 else if (webHandler.method == HttpMethod.Post) {
-                    this.server.Post(webHandler.path, async (req, res) => {
-                        await webHandler.run(new RedHttpServerWebRequest(req), new RedHttpServerWebResponse(res));
-                    });
+                    httpVerb = HttpVerbs.Post;
                 }
+                else {
+                    throw new System.Exception($"Unknown method '{webHandler.method}'");
+                }
+
+                this.server.Module<WebApiModule>().AddHandler(webHandler.path, httpVerb, async (context, cancellationToken) => {
+                    await webHandler.run(new EmbedIOWebRequest(context), new EmbedIOWebResponse(context));
+                    return true;
+                });
             }
         }
 
@@ -54,16 +60,16 @@ namespace Butterfly.Web.RedHttpServer {
         }
     }
 
-    public class RedHttpServerWebRequest : IWebRequest {
+    public class EmbedIOWebRequest : IWebRequest {
 
-        protected readonly RRequest request;
+        protected readonly Unosquare.Net.HttpListenerContext context;
 
-        public RedHttpServerWebRequest(RRequest request) {
-            this.request = request;
+        public EmbedIOWebRequest(Unosquare.Net.HttpListenerContext context) {
+            this.context = context;
         }
 
         public async Task<T> ParseAsJsonAsync<T>() {
-            using (StreamReader reader = new StreamReader(this.request.GetBodyStream())) {
+            using (StreamReader reader = new StreamReader(this.context.Request.InputStream)) {
                 string json = await reader.ReadToEndAsync();
                 return JsonUtil.Deserialize<T>(json);
             }
@@ -71,7 +77,7 @@ namespace Butterfly.Web.RedHttpServer {
 
         public NameValueCollection Headers {
             get {
-                return this.request.Headers;
+                return this.context.Request.Headers;
             }
         }
 
@@ -83,17 +89,19 @@ namespace Butterfly.Web.RedHttpServer {
         }
     }
 
-    public class RedHttpServerWebResponse : IWebResponse {
+    public class EmbedIOWebResponse : IWebResponse {
 
-        protected readonly RResponse response;
+        protected readonly Unosquare.Net.HttpListenerContext context;
 
-        public RedHttpServerWebResponse(RResponse response) {
-            this.response = response;
+        public EmbedIOWebResponse(Unosquare.Net.HttpListenerContext context) {
+            this.context = context;
         }
 
-        public Task WriteAsJsonAsync(object value) {
-            this.response.SendJson(value);
-            return Task.FromResult(0);
+        public async Task WriteAsJsonAsync(object value) {
+            using (StreamWriter streamWriter = new StreamWriter(this.context.Response.OutputStream)) {
+                var json = JsonUtil.Serialize(value);
+                await streamWriter.WriteAsync(json);
+            }
         }
 
     }
