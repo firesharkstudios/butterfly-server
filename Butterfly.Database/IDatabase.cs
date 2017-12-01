@@ -123,7 +123,7 @@ namespace Butterfly.Database {
         DynamicViewSet CreateDynamicViewSet(Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null);
         DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> asyncListener, Func<DataEvent, bool> listenerDataEventFilter = null);
 
-        Task<DynamicViewSet> CreateDynamicView(string sql, dynamic values, Action<DataEventTransaction> listener, string name = null, string[] keyFieldNames = null, Func<DataEvent, bool> listenerDataEventFilter = null);
-        Task<DynamicViewSet> CreateDynamicView(string sql, dynamic values, Func<DataEventTransaction, Task> asyncListener, string name = null, string[] keyFieldNames = null, Func<DataEvent, bool> listenerDataEventFilter = null);
+        Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Action<DataEventTransaction> listener, dynamic values = null, string name = null, string[] keyFieldNames = null, Func<DataEvent, bool> listenerDataEventFilter = null);
+        Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Func<DataEventTransaction, Task> asyncListener, dynamic values = null, string name = null, string[] keyFieldNames = null, Func<DataEvent, bool> listenerDataEventFilter = null);
     }
 }

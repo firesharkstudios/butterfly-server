@@ -14,8 +14,8 @@ namespace Butterfly.WebApi.Test {
         [TestMethod]
         public async Task RedHttpServerWeb() {
             var redHttpServer = new RedHttpServerNet45.RedHttpServer(8080);
-            using (var webServer = new Butterfly.WebApi.RedHttpServer.RedHttpServerWebServer(redHttpServer)) {
-                await this.TestWeb(webServer, "http://localhost:8080/", () => {
+            using (var webApiServer = new Butterfly.WebApi.RedHttpServer.RedHttpServerWebApiServer(redHttpServer)) {
+                await this.TestWeb(webApiServer, "http://localhost:8080/", () => {
                     redHttpServer.Start();
                 });
             }
@@ -24,8 +24,8 @@ namespace Butterfly.WebApi.Test {
         [TestMethod]
         public async Task EmbedIOWeb() {
             using (var embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer("http://localhost:8080/"))
-            using (var webServer = new EmbedIOWebServer(embedIOWebServer)) {
-                await this.TestWeb(webServer, "http://localhost:8080/", () => {
+            using (var webApiServer = new EmbedIOWebApiServer(embedIOWebServer)) {
+                await this.TestWeb(webApiServer, "http://localhost:8080/", () => {
                     embedIOWebServer.RunAsync();
                 });
             }

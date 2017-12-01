@@ -28,11 +28,11 @@ using Unosquare.Labs.EmbedIO.Constants;
 using Butterfly.Util;
 
 namespace Butterfly.WebApi.EmbedIO {
-    public class EmbedIOWebServer : BaseWebApiServer {
+    public class EmbedIOWebApiServer : BaseWebApiServer {
 
         public readonly Unosquare.Labs.EmbedIO.WebServer server;
 
-        public EmbedIOWebServer(Unosquare.Labs.EmbedIO.WebServer server) {
+        public EmbedIOWebApiServer(Unosquare.Labs.EmbedIO.WebServer server) {
             this.server = server;
         }
 

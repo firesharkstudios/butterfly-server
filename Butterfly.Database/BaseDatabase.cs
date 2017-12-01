@@ -328,14 +328,14 @@ namespace Butterfly.Database {
             return new DynamicViewSet(this, asyncListener, listenerDataEventFilter);
         }
 
-        public async Task<DynamicViewSet> CreateDynamicView(string sql, dynamic values, Action<DataEventTransaction> listener, string name = null, string[] keyFieldNames = null, Func<DataEvent, bool> listenerDataEventFilter = null) {
+        public async Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Action<DataEventTransaction> listener, dynamic values = null, string name = null, string[] keyFieldNames = null, Func<DataEvent, bool> listenerDataEventFilter = null) {
             var dynamicViewSet = this.CreateDynamicViewSet(listener, listenerDataEventFilter);
             dynamicViewSet.CreateDynamicView(sql, values, name, keyFieldNames);
             await dynamicViewSet.StartAsync();
             return dynamicViewSet;
         }
 
-        public async Task<DynamicViewSet> CreateDynamicView(string sql, dynamic values, Func<DataEventTransaction, Task> asyncListener, string name = null, string[] keyFieldNames = null, Func<DataEvent, bool> listenerDataEventFilter = null) {
+        public async Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Func<DataEventTransaction, Task> asyncListener, dynamic values = null, string name = null, string[] keyFieldNames = null, Func<DataEvent, bool> listenerDataEventFilter = null) {
             var dynamicViewSet = this.CreateDynamicViewSet(asyncListener, listenerDataEventFilter);
             dynamicViewSet.CreateDynamicView(sql, values, name, keyFieldNames);
             await dynamicViewSet.StartAsync();

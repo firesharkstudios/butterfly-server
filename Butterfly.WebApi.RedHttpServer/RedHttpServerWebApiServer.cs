@@ -27,11 +27,11 @@ using RedHttpServerNet45.Response;
 using Butterfly.Util;
 
 namespace Butterfly.WebApi.RedHttpServer {
-    public class RedHttpServerWebServer : BaseWebApiServer {
+    public class RedHttpServerWebApiServer : BaseWebApiServer {
 
         public readonly global::RedHttpServerNet45.RedHttpServer server;
 
-        public RedHttpServerWebServer(global::RedHttpServerNet45.RedHttpServer server) {
+        public RedHttpServerWebApiServer(global::RedHttpServerNet45.RedHttpServer server) {
             this.server = server;
         }
 
