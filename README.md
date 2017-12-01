@@ -68,7 +68,17 @@ let channelClient = new WebSocketChannelClient({
 channelClient.start();
 ```
 
-Running the server and client code above would result in the server adding a "Hello World" record to the database and this record being replicated to the client which echoes the record to the console.
+Running the server above would cause a "Hello World" record to be inserted into the database and replicated to a client that echoes this data event to the console.
+
+In more complex scenarios, you would define all the DynamicViews that a given client should see and let the framework handle synchronizing the data to the client.  Web clients can easily be integrated with Vue.js, Angular, React, etc to automatically update the web UI as the data changes.
+
+## Demos
+
+- [Simple Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/simple-chat/index.vue.html)
+
+- [Simple Chat (Using Angular)](http://examples.butterflyframework.io/examples/simple-chat/index.angular.html)
+
+- [Full Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/full-chat/index.vue.html)
 
 ## Packages
 
