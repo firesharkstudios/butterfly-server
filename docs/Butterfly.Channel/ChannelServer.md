@@ -9,26 +9,13 @@ public abstract class ChannelServer : IDisposable
 | name | description |
 | --- | --- |
 | [ChannelServer](ChannelServer/ChannelServer.md)(…) |  |
-| [ChannelCount](ChannelServer/ChannelCount.md) { get; } |  |
-| [AddAndStartChannel](ChannelServer/AddAndStartChannel.md)(…) | Implementing classes should call this when the client creates a new channel to the server |
+| [ChannelCount](ChannelServer/ChannelCount.md) { get; } | Number of channels |
 | [Dispose](ChannelServer/Dispose.md)() |  |
-| [GetChannel](ChannelServer/GetChannel.md)(…) |  |
-| [OnNewChannel](ChannelServer/OnNewChannel.md)(…) |  |
-| [OnNewChannelAsync](ChannelServer/OnNewChannelAsync.md)(…) |  |
+| [GetChannel](ChannelServer/GetChannel.md)(…) | Retrieve a channel by id |
+| [OnNewChannel](ChannelServer/OnNewChannel.md)(…) | Add a listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed) |
+| [OnNewChannelAsync](ChannelServer/OnNewChannelAsync.md)(…) | Add an async listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed) |
 | [Queue](ChannelServer/Queue.md)(…) | Queues a value to be sent to the specified channel |
-| [Start](ChannelServer/Start.md)() |  |
-
-## Protected Members
-
-| name | description |
-| --- | --- |
-| readonly [channelById](ChannelServer/channelById.md) |  |
-| readonly [mustReceiveHeartbeatMillis](ChannelServer/mustReceiveHeartbeatMillis.md) |  |
-| readonly [onNewChannelListeners](ChannelServer/onNewChannelListeners.md) |  |
-| [started](ChannelServer/started.md) |  |
-| [CheckForDeadChannelsAsync](ChannelServer/CheckForDeadChannelsAsync.md)() |  |
-| abstract [DoStart](ChannelServer/DoStart.md)() |  |
-| static readonly [logger](ChannelServer/logger.md) |  |
+| [Start](ChannelServer/Start.md)() | Starts the channel server |
 
 ## See Also
 

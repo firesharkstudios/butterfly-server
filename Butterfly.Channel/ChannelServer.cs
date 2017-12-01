@@ -45,6 +45,7 @@ namespace Butterfly.Channel {
         /// <param name="listener"></param>
         /// <returns></returns>
         public IDisposable OnNewChannel(string path, Func<IChannel, IDisposable> listener) {
+            if (this.started) throw new Exception("Cannot add OnNewChannel listener after the ChannelServer is started");
             return new ListItemDisposable<ChannelListener>(onNewChannelListeners, new ChannelListener(path, listener));
         }
 
@@ -55,6 +56,7 @@ namespace Butterfly.Channel {
         /// <param name="listener"></param>
         /// <returns></returns>
         public IDisposable OnNewChannelAsync(string path, Func<IChannel, Task<IDisposable>> listener) {
+            if (this.started) throw new Exception("Cannot add OnNewChannel listener after the ChannelServer is started");
             return new ListItemDisposable<ChannelListener>(onNewChannelListeners, new ChannelListener(path, listener));
         }
 
@@ -67,6 +69,12 @@ namespace Butterfly.Channel {
             }
         }
 
+        /// <summary>
+        /// Retrieve a channel by id
+        /// </summary>
+        /// <param name="channelId"></param>
+        /// <param name="throwExceptionIfMissing"></param>
+        /// <returns></returns>
         public IChannel GetChannel(string channelId, bool throwExceptionIfMissing = false) {
             if (!this.channelById.TryGetValue(channelId, out IChannel channel) && throwExceptionIfMissing) throw new Exception($"Invalid channel id '{channelId}'");
             return channel;
@@ -83,7 +91,7 @@ namespace Butterfly.Channel {
         /// <summary>
         /// Implementing classes should call this when the client creates a new channel to the server
         /// </summary>
-        public void AddAndStartChannel(string channelId, string path, IChannel channel) {
+        protected void AddAndStartChannel(string channelId, string path, IChannel channel) {
             var existingChannel = this.GetChannel(channelId);
             if (existingChannel!=null) {
                 existingChannel.Dispose();
@@ -94,6 +102,10 @@ namespace Butterfly.Channel {
         }
 
         protected bool started = false;
+
+        /// <summary>
+        /// Starts the channel server
+        /// </summary>
         public void Start() {
             this.started = true;
             Task backgroundTask = Task.Run(this.CheckForDeadChannelsAsync);

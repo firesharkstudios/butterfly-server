@@ -1,8 +1,15 @@
 # ChannelServer.GetChannel method
 
+Retrieve a channel by id
+
 ```csharp
 public IChannel GetChannel(string channelId, bool throwExceptionIfMissing = false)
 ```
+
+| parameter | description |
+| --- | --- |
+| channelId |  |
+| throwExceptionIfMissing |  |
 
 ## See Also
 

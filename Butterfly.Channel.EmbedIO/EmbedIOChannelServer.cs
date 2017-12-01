@@ -35,7 +35,9 @@ namespace Butterfly.Channel.EmbedIO {
         protected override void DoStart() {
             this.webServer.RegisterModule(new WebSocketsModule());
             foreach (var listener in this.onNewChannelListeners) {
-                this.webServer.Module<WebSocketsModule>().RegisterWebSocketsServer(listener.path, new MyWebSocketsServer(this));
+                this.webServer.Module<WebSocketsModule>().RegisterWebSocketsServer(listener.path, new MyWebSocketsServer(this, (channelId, path, channel) => {
+                    this.AddAndStartChannel(channelId, path, channel);
+                }));
             }
         }
     }
@@ -45,7 +47,7 @@ namespace Butterfly.Channel.EmbedIO {
 
         protected readonly ChannelServer channelServer;
 
-        public MyWebSocketsServer(ChannelServer channelServer) {
+        public MyWebSocketsServer(ChannelServer channelServer, Action<string, string, IChannel> addAndStartChannel) {
             this.channelServer = channelServer;
         }
 
@@ -55,9 +57,9 @@ namespace Butterfly.Channel.EmbedIO {
             string path = GetPath(context);
             string channelId = GetChannelId(context);
             logger.Debug($"OnClientConnected():Websocket created for path {path}, channelId {channelId}");
-            channelServer.AddAndStartChannel(channelId, path, new EmbedIOChannel(channelId, context, message => {
+            var channel = new EmbedIOChannel(channelId, context, message => {
                 this.Send(context, message);
-            }));
+            });
         }
 
         protected override void OnClientDisconnected(WebSocketContext context) {

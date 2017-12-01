@@ -1,8 +1,15 @@
 # ChannelServer.OnNewChannel method
 
+Add a listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed)
+
 ```csharp
 public IDisposable OnNewChannel(string path, Func<IChannel, IDisposable> listener)
 ```
+
+| parameter | description |
+| --- | --- |
+| path |  |
+| listener |  |
 
 ## See Also
 

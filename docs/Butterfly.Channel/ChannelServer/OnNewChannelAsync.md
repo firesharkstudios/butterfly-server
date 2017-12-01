@@ -1,8 +1,15 @@
 # ChannelServer.OnNewChannelAsync method
 
+Add an async listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed)
+
 ```csharp
 public IDisposable OnNewChannelAsync(string path, Func<IChannel, Task<IDisposable>> listener)
 ```
+
+| parameter | description |
+| --- | --- |
+| path |  |
+| listener |  |
 
 ## See Also
 

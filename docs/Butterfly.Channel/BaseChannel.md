@@ -18,19 +18,6 @@ public abstract class BaseChannel : IChannel
 | [Queue](BaseChannel/Queue.md)(…) | Queue an object to be sent over the channel to the client. The queue is processed by a background thread when the Channel is started. |
 | [Start](BaseChannel/Start.md)(…) |  |
 
-## Protected Members
-
-| name | description |
-| --- | --- |
-| readonly [buffer](BaseChannel/buffer.md) |  |
-| readonly [id](BaseChannel/id.md) |  |
-| [lastHeartbeat](BaseChannel/lastHeartbeat.md) | Stores when the datetime of the last heartbeat (set via Heartbeat) |
-| readonly [monitor](BaseChannel/monitor.md) |  |
-| [started](BaseChannel/started.md) |  |
-| virtual [DoDispose](BaseChannel/DoDispose.md)() | Implementing classes may optionally override this to cleanup resources as appropriate |
-| [RunAsync](BaseChannel/RunAsync.md)(…) |  |
-| abstract [SendAsync](BaseChannel/SendAsync.md)(…) | Implementing classes must override this to actually send the text to the client |
-
 ## See Also
 
 * interface [IChannel](IChannel.md)
