@@ -37,13 +37,13 @@ namespace Butterfly.Database.Test {
 
         [TestMethod]
         public async Task DynamicMySqlDatabase() {
-            Database database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=root;Pwd=kent!13304;Database=butterfly_test");
+            Database database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_test");
             await this.TestDatabase(database);
         }
 
         [TestMethod]
         public async Task DynamicPostgresDatabase() {
-            Database database = new Butterfly.Database.Postgres.PostgresDatabase("Host=localhost;Username=postgres;Password=schmuck;Database=butterfly_test");
+            Database database = new Butterfly.Database.Postgres.PostgresDatabase("Host=localhost;Username=postgres;Password=test!123;Database=butterfly_test");
             await this.TestDatabase(database);
         }
 
