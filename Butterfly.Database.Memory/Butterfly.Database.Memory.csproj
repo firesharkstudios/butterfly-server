@@ -7,8 +7,8 @@
     <ProjectGuid>{2DBFD7B1-18D0-46C8-B185-6A73E5F79BCD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Butterfly.Database.DataTable</RootNamespace>
-    <AssemblyName>Butterfly.Database.DataTable</AssemblyName>
+    <RootNamespace>Butterfly.Database.Memory</RootNamespace>
+    <AssemblyName>Butterfly.Database.Memory</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
