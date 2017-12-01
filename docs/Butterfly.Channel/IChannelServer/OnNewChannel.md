@@ -1,15 +1,19 @@
 # IChannelServer.OnNewChannel method
 
-Add a listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed)
+Add a listener when a new channel is created
 
 ```csharp
-public IDisposable OnNewChannel(string path, Func<IChannel, IDisposable> listener)
+public IDisposable OnNewChannel(string pathFilter, Func<IChannel, IDisposable> listener)
 ```
 
 | parameter | description |
 | --- | --- |
-| path |  |
-| listener |  |
+| pathFilter | Filters new channel requests by path (pass '/chat' to only match channels created with path '/chat') |
+| listener | Lambda to run to initialize the channel |
+
+## Return Value
+
+Any object that should be disposed when the channel is disposed
 
 ## See Also
 

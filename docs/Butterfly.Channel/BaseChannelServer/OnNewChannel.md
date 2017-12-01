@@ -1,7 +1,7 @@
 # BaseChannelServer.OnNewChannel method
 
 ```csharp
-public IDisposable OnNewChannel(string path, Func<IChannel, IDisposable> listener)
+public IDisposable OnNewChannel(string pathFilter, Func<IChannel, IDisposable> listener)
 ```
 
 ## See Also

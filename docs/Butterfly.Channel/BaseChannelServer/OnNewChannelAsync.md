@@ -1,7 +1,7 @@
 # BaseChannelServer.OnNewChannelAsync method
 
 ```csharp
-public IDisposable OnNewChannelAsync(string path, Func<IChannel, Task<IDisposable>> listener)
+public IDisposable OnNewChannelAsync(string pathFilter, Func<IChannel, Task<IDisposable>> listener)
 ```
 
 ## See Also

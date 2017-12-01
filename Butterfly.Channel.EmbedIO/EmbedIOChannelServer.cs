@@ -35,7 +35,7 @@ namespace Butterfly.Channel.EmbedIO {
         protected override void DoStart() {
             this.webServer.RegisterModule(new WebSocketsModule());
             foreach (var listener in this.onNewChannelListeners) {
-                this.webServer.Module<WebSocketsModule>().RegisterWebSocketsServer(listener.path, new MyWebSocketsServer(this, (channelId, path, channel) => {
+                this.webServer.Module<WebSocketsModule>().RegisterWebSocketsServer(listener.pathFilter, new MyWebSocketsServer(this, (channelId, path, channel) => {
                     this.AddAndStartChannel(channelId, path, channel);
                 }));
             }

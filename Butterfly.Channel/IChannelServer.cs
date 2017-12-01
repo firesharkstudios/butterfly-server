@@ -21,20 +21,20 @@ namespace Butterfly.Channel {
     /// </summary>
     public interface IChannelServer : IDisposable {
         /// <summary>
-        /// Add a listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed)
+        /// Add a listener when a new channel is created
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="listener"></param>
-        /// <returns></returns>
-        IDisposable OnNewChannel(string path, Func<IChannel, IDisposable> listener);
+        /// <param name="pathFilter">Filters new channel requests by path (pass '/chat' to only match channels created with path '/chat')</param>
+        /// <param name="listener">Lambda to run to initialize the channel</param>
+        /// <returns>Any object that should be disposed when the channel is disposed</returns>
+        IDisposable OnNewChannel(string pathFilter, Func<IChannel, IDisposable> listener);
 
         /// <summary>
         /// Add an async listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed)
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="listener"></param>
-        /// <returns></returns>
-        IDisposable OnNewChannelAsync(string path, Func<IChannel, Task<IDisposable>> listener);
+        /// <param name="pathFilter">Filters new channel requests by path (pass '/chat' to only match channels created with path '/chat')</param>
+        /// <param name="listener">Lambda to run to initialize the channel</param>
+        /// <returns>Any object that should be disposed when the channel is disposed</returns>
+        IDisposable OnNewChannelAsync(string pathFilter, Func<IChannel, Task<IDisposable>> listener);
 
         /// <summary>
         /// Number of channels

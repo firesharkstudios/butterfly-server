@@ -41,14 +41,14 @@ namespace Butterfly.Channel {
             this.mustReceiveHeartbeatMillis = mustReceiveHeartbeatMillis;
         }
 
-        public IDisposable OnNewChannel(string path, Func<IChannel, IDisposable> listener) {
+        public IDisposable OnNewChannel(string pathFilter, Func<IChannel, IDisposable> listener) {
             if (this.started) throw new Exception("Cannot add OnNewChannel listener after the ChannelServer is started");
-            return new ListItemDisposable<NewChannelListener>(onNewChannelListeners, new NewChannelListener(path, listener));
+            return new ListItemDisposable<NewChannelListener>(onNewChannelListeners, new NewChannelListener(pathFilter, listener));
         }
 
-        public IDisposable OnNewChannelAsync(string path, Func<IChannel, Task<IDisposable>> listener) {
+        public IDisposable OnNewChannelAsync(string pathFilter, Func<IChannel, Task<IDisposable>> listener) {
             if (this.started) throw new Exception("Cannot add OnNewChannel listener after the ChannelServer is started");
-            return new ListItemDisposable<NewChannelListener>(onNewChannelListeners, new NewChannelListener(path, listener));
+            return new ListItemDisposable<NewChannelListener>(onNewChannelListeners, new NewChannelListener(pathFilter, listener));
         }
 
         public int ChannelCount => this.channelById.Count;
@@ -71,7 +71,7 @@ namespace Butterfly.Channel {
             if (existingChannel!=null) {
                 existingChannel.Dispose();
             }
-            var initChannelListeners = this.onNewChannelListeners.Where(x => x.path == path).ToArray();
+            var initChannelListeners = this.onNewChannelListeners.Where(x => x.pathFilter == path).ToArray();
             channel.Start(initChannelListeners);
             this.channelById[channelId] = channel;
         }

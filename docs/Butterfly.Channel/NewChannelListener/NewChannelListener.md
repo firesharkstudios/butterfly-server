@@ -15,7 +15,7 @@ public NewChannelListener(string path, Func<IChannel, IDisposable> listener)
 # NewChannelListener constructor (2 of 2)
 
 ```csharp
-public NewChannelListener(string path, Func<IChannel, Task<IDisposable>> listener)
+public NewChannelListener(string pathFilter, Func<IChannel, Task<IDisposable>> listener)
 ```
 
 ## See Also

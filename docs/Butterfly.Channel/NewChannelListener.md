@@ -13,7 +13,7 @@ public class NewChannelListener
 | [NewChannelListener](NewChannelListener/NewChannelListener.md)(…) |  (2 constructors) |
 | readonly [listener](NewChannelListener/listener.md) |  |
 | readonly [listenerAsync](NewChannelListener/listenerAsync.md) |  |
-| readonly [path](NewChannelListener/path.md) |  |
+| readonly [pathFilter](NewChannelListener/pathFilter.md) |  |
 
 ## See Also
 

@@ -1,7 +1,7 @@
-# NewChannelListener.path field
+# NewChannelListener.pathFilter field
 
 ```csharp
-public readonly string path;
+public readonly string pathFilter;
 ```
 
 ## See Also

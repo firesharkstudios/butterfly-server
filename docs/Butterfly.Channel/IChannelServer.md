@@ -25,7 +25,7 @@ public interface IChannelServer : IDisposable
 | --- | --- |
 | [ChannelCount](IChannelServer/ChannelCount.md) { get; } | Number of channels |
 | [GetChannel](IChannelServer/GetChannel.md)(…) | Retrieve a channel by id |
-| [OnNewChannel](IChannelServer/OnNewChannel.md)(…) | Add a listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed) |
+| [OnNewChannel](IChannelServer/OnNewChannel.md)(…) | Add a listener when a new channel is created |
 | [OnNewChannelAsync](IChannelServer/OnNewChannelAsync.md)(…) | Add an async listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed) |
 | [Queue](IChannelServer/Queue.md)(…) | Queues a value to be sent to the specified channel (normally converted to JSON and transmitted as text) |
 | [Start](IChannelServer/Start.md)() | Starts the channel server. Must be called after adding new channel listeners (via [`OnNewChannel`](IChannelServer/OnNewChannel.md) and [`OnNewChannelAsync`](IChannelServer/OnNewChannelAsync.md)) |
