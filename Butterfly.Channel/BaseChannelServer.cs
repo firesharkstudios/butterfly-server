@@ -26,9 +26,9 @@ using Butterfly.Util;
 
 namespace Butterfly.Channel {
     /// <summary>
-    /// Allows clients to create new channels to the server and allows the server to push messages to a connected client
+    /// Base class implementing <see cref="IChannelServer"/>. New implementations may wish to extend this class.
     /// </summary>
-    public abstract class ChannelServer : IDisposable {
+    public abstract class BaseChannelServer : IChannelServer {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly ConcurrentDictionary<string, IChannel> channelById = new ConcurrentDictionary<string, IChannel>();
@@ -37,55 +37,27 @@ namespace Butterfly.Channel {
 
         protected readonly int mustReceiveHeartbeatMillis;
 
-        public ChannelServer(int mustReceiveHeartbeatMillis = 5000) {
+        public BaseChannelServer(int mustReceiveHeartbeatMillis = 5000) {
             this.mustReceiveHeartbeatMillis = mustReceiveHeartbeatMillis;
         }
 
-        /// <summary>
-        /// Add a listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed)
-        /// </summary>
-        /// <param name="path"></param>
-        /// <param name="listener"></param>
-        /// <returns></returns>
         public IDisposable OnNewChannel(string path, Func<IChannel, IDisposable> listener) {
             if (this.started) throw new Exception("Cannot add OnNewChannel listener after the ChannelServer is started");
             return new ListItemDisposable<NewChannelListener>(onNewChannelListeners, new NewChannelListener(path, listener));
         }
 
-        /// <summary>
-        /// Add an async listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed)
-        /// </summary>
-        /// <param name="path"></param>
-        /// <param name="listener"></param>
-        /// <returns></returns>
         public IDisposable OnNewChannelAsync(string path, Func<IChannel, Task<IDisposable>> listener) {
             if (this.started) throw new Exception("Cannot add OnNewChannel listener after the ChannelServer is started");
             return new ListItemDisposable<NewChannelListener>(onNewChannelListeners, new NewChannelListener(path, listener));
         }
 
-        /// <summary>
-        /// Number of channels
-        /// </summary>
-        public int ChannelCount {
-            get {
-                return this.channelById.Count;
-            }
-        }
+        public int ChannelCount => this.channelById.Count;
 
-        /// <summary>
-        /// Retrieve a channel by id
-        /// </summary>
-        /// <param name="channelId"></param>
-        /// <param name="throwExceptionIfMissing"></param>
-        /// <returns></returns>
         public IChannel GetChannel(string channelId, bool throwExceptionIfMissing = false) {
             if (!this.channelById.TryGetValue(channelId, out IChannel channel) && throwExceptionIfMissing) throw new Exception($"Invalid channel id '{channelId}'");
             return channel;
         }
 
-        /// <summary>
-        /// Queues a value to be sent to the specified channel
-        /// </summary>
         public void Queue(string channelId, object value) {
             var channel = this.GetChannel(channelId);
             channel.Queue(value);

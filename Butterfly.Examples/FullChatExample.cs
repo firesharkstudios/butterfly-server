@@ -11,7 +11,7 @@ namespace Butterfly.Examples {
     public static class FullChatExample {
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static void Setup(WebServer webServer, string apiPathPrefix, ChannelServer channelServer, string channelPathPrefix) {
+        public static void Setup(WebServer webServer, string apiPathPrefix, BaseChannelServer channelServer, string channelPathPrefix) {
             logger.Debug($"Setup():apiPathPrefix={apiPathPrefix},channelPathPrefix={channelPathPrefix}");
 
             // Setup database (may need to execute "GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' IDENTIFIED BY 'test!123'; CREATE DATABASE butterfly_chat;")

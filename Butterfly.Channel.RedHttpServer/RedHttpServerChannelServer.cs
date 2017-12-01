@@ -23,7 +23,7 @@ using NLog;
 using Butterfly.Util;
 
 namespace Butterfly.Channel.RedHttpServer {
-    public class RedHttpServerChannelServer : ChannelServer {
+    public class RedHttpServerChannelServer : BaseChannelServer {
         public readonly global::RedHttpServerNet45.RedHttpServer server;
 
         public RedHttpServerChannelServer(global::RedHttpServerNet45.RedHttpServer server, int mustReceiveHeartbeatMillis = 5000) : base(mustReceiveHeartbeatMillis) {

@@ -1,7 +1,7 @@
 # RedHttpServerChannelServer class
 
 ```csharp
-public class RedHttpServerChannelServer : ChannelServer
+public class RedHttpServerChannelServer : BaseChannelServer
 ```
 
 ## Public Members

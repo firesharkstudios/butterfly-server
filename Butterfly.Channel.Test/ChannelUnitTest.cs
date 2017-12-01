@@ -31,7 +31,7 @@ namespace Butterfly.Channel.Test {
             }
         }
 
-        public async Task TestChannel(ChannelServer channelServer, Action start) {
+        public async Task TestChannel(BaseChannelServer channelServer, Action start) {
             // Listen for new channels at /test to be created
             IChannel newChannel = null;
             TestDisposable testDisposable = new TestDisposable();

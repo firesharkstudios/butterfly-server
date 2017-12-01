@@ -70,8 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseChannel.cs" />
+    <Compile Include="IChannelServer.cs" />
     <Compile Include="NewChannelListener.cs" />
-    <Compile Include="ChannelServer.cs" />
+    <Compile Include="BaseChannelServer.cs" />
     <Compile Include="IChannel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

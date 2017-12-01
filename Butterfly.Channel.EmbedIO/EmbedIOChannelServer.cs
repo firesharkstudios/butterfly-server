@@ -25,7 +25,7 @@ using Unosquare.Labs.EmbedIO;
 using Butterfly.Util;
 
 namespace Butterfly.Channel.EmbedIO {
-    public class EmbedIOChannelServer : ChannelServer {
+    public class EmbedIOChannelServer : BaseChannelServer {
         public readonly WebServer webServer;
 
         public EmbedIOChannelServer(WebServer webServer, int mustReceiveHeartbeatMillis = 5000) : base(mustReceiveHeartbeatMillis) {
@@ -45,9 +45,9 @@ namespace Butterfly.Channel.EmbedIO {
     public class MyWebSocketsServer : WebSocketsServer {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected readonly ChannelServer channelServer;
+        protected readonly BaseChannelServer channelServer;
 
-        public MyWebSocketsServer(ChannelServer channelServer, Action<string, string, IChannel> addAndStartChannel) {
+        public MyWebSocketsServer(BaseChannelServer channelServer, Action<string, string, IChannel> addAndStartChannel) {
             this.channelServer = channelServer;
         }
 
