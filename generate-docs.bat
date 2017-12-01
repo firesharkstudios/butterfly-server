@@ -13,6 +13,6 @@ XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Database.SQLite\bin\Debug\Butt
 
 XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Util\bin\Debug\Butterfly.Util.dll docs --visibility public --clean
 
-XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Web\bin\Debug\Butterfly.Web.dll docs --visibility public --clean
-XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Web.EmbedIO\bin\Debug\Butterfly.Web.EmbedIO.dll docs --visibility public --clean
-XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Web.RedHttpServer\bin\Debug\Butterfly.Web.RedHttpServer.dll docs --visibility public --clean
+XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.WebApi\bin\Debug\Butterfly.WebApi.dll docs --visibility public --clean
+XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.WebApi.EmbedIO\bin\Debug\Butterfly.WebApi.EmbedIO.dll docs --visibility public --clean
+XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.WebApi.RedHttpServer\bin\Debug\Butterfly.WebApi.RedHttpServer.dll docs --visibility public --clean

@@ -1,6 +1,8 @@
 # IChannelServer interface
 
-Allows clients to create new channels to the server and allows the server to push messages to a connected client. Example code...
+Allows clients to create new channels to the server and allows the server to push messages to a connected client.
+
+Initializing a channel server instance...
 
 ```csharp
 var channelServer = new SomeChannelServer();
@@ -9,10 +11,18 @@ channelServer.OnNewChannel("/chat", channel => {
     // and return any object that should be disposed when the channel is disposed
 });
 channelServer.Start();
+```
 
-// Let's say a client has now created a channel to /chat?id=123, the server can now push data to the client via...
+If a client has now created a channel at /chat?id=123, the server can now push data to the client via...
 
+```csharp
 channelServer.Queue("123", "Hello");
+```
+
+If you no longer need a channel server instance, call Dispose() on the channel server...
+
+```csharp
+channelServer.Dispose();
 ```
 
 ```csharp
