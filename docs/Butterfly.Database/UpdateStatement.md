@@ -8,7 +8,7 @@ public class UpdateStatement : Statement
 
 | name | description |
 | --- | --- |
-| [UpdateStatement](UpdateStatement/UpdateStatement.md)(…) |  |
+| [UpdateStatement](UpdateStatement/UpdateStatement.md)(…) | Must only update a single row at a time. Must have a where clause that specifies the primary key fields. Where clause can only use ANDed equal conditions (like chat_id=2 AND chat_type='X")"; |
 | [SetRefs](UpdateStatement/SetRefs.md) { get; } |  |
 | readonly [fromClause](UpdateStatement/fromClause.md) |  |
 | readonly [setClause](UpdateStatement/setClause.md) |  |

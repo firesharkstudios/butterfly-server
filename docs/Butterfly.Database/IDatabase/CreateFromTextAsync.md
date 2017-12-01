@@ -1,8 +1,22 @@
 # IDatabase.CreateFromTextAsync method
 
+Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate).
+
+Comments (lines beginning with --) will be ignored.
+
+Each CREATE statement must include a PRIMARY KEY definition.
+
+If the table already exists, the CREATE statement is ignored.
+
+Creating your database tables with this method is not required to use the rest of the Butterfly framework (you can instead just load your schema from your existing database using !:LoadSchemaAsync.
+
 ```csharp
 public Task CreateFromTextAsync(string sql)
 ```
+
+| parameter | description |
+| --- | --- |
+| resourceFile |  |
 
 ## See Also
 

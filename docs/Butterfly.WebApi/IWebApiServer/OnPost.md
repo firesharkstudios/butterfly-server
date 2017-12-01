@@ -1,8 +1,15 @@
 # IWebApiServer.OnPost method
 
+Add a listener responding to POST requests
+
 ```csharp
 public void OnPost(string path, Func<IWebRequest, IWebResponse, Task> listener)
 ```
+
+| parameter | description |
+| --- | --- |
+| path |  |
+| listener |  |
 
 ## See Also
 

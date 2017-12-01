@@ -1,5 +1,7 @@
 # BaseDatabase class
 
+Base class implementing [`IDatabase`](IDatabase.md). New implementations will normally extend this class.
+
 ```csharp
 public abstract class BaseDatabase : IDatabase
 ```
@@ -17,7 +19,7 @@ public abstract class BaseDatabase : IDatabase
 | [CreateFromResourceFileAsync](BaseDatabase/CreateFromResourceFileAsync.md)(…) |  |
 | [CreateFromTextAsync](BaseDatabase/CreateFromTextAsync.md)(…) |  |
 | [DeleteAndCommitAsync](BaseDatabase/DeleteAndCommitAsync.md)(…) |  |
-| [GetInitialDataEventsAsync](BaseDatabase/GetInitialDataEventsAsync.md)(…) |  |
+| [GetInitialDataEventsAsync](BaseDatabase/GetInitialDataEventsAsync.md)(…) | Executes the select statement of the DynamicQuery and returns a sequence of DataChange events starting an InitialBegin event, then an Insert event for each row, and then an InitialEnd event. |
 | [GetInitialDataEventTransactionAsync](BaseDatabase/GetInitialDataEventTransactionAsync.md)(…) |  |
 | [InsertAndCommitAsync](BaseDatabase/InsertAndCommitAsync.md)(…) |  |
 | [OnNewCommittedTransaction](BaseDatabase/OnNewCommittedTransaction.md)(…) |  (2 methods) |

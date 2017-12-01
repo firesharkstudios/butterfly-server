@@ -1,5 +1,7 @@
 # BaseDatabase.GetInitialDataEventsAsync method
 
+Executes the select statement of the DynamicQuery and returns a sequence of DataChange events starting an InitialBegin event, then an Insert event for each row, and then an InitialEnd event.
+
 ```csharp
 public Task<DataEvent[]> GetInitialDataEventsAsync(string dataEventName, string[] keyFieldNames, 
     SelectStatement selectStatement, object statementParams = null)

@@ -11,9 +11,9 @@ public class DynamicViewSet : IDisposable
 | [DynamicViewSet](DynamicViewSet/DynamicViewSet.md)(…) |  (2 constructors) |
 | [Database](DynamicViewSet/Database.md) { get; } |  |
 | [Id](DynamicViewSet/Id.md) { get; } |  |
-| [CreateDynamicView](DynamicViewSet/CreateDynamicView.md)(…) |  |
+| [CreateDynamicView](DynamicViewSet/CreateDynamicView.md)(…) | Creates an instance of a DynamicQuery. Must call StartAync() to send initial DataChangeTransaction and listen for new DataChangeTransactions for this DynamicQuery. |
 | [Dispose](DynamicViewSet/Dispose.md)() |  |
-| [StartAsync](DynamicViewSet/StartAsync.md)() |  |
+| [StartAsync](DynamicViewSet/StartAsync.md)() | Sends the initial DataChangeTransactions to the registered listener. Listens for DataChangeTransactions and send appropriately filtered DataChangeTransactions to the registered listener. Stops listening when DynamicQuerySet is disposed. |
 
 ## See Also
 

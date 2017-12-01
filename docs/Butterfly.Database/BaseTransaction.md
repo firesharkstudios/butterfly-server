@@ -1,5 +1,7 @@
 # BaseTransaction class
 
+Base class implementing [`ITransaction`](ITransaction.md). New implementations will normally extend this class.
+
 ```csharp
 public abstract class BaseTransaction : ITransaction
 ```

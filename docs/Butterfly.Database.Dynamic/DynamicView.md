@@ -13,7 +13,7 @@ public class DynamicView
 | [Id](DynamicView/Id.md) { get; } |  |
 | [CreateMultiValueDynamicParam](DynamicView/CreateMultiValueDynamicParam.md)(…) |  |
 | [GetImpactedRecordsAsync](DynamicView/GetImpactedRecordsAsync.md)(…) |  |
-| [GetInitialDataEventsAsync](DynamicView/GetInitialDataEventsAsync.md)() |  |
+| [GetInitialDataEventsAsync](DynamicView/GetInitialDataEventsAsync.md)() | Executes the select statement of the DynamicQuery and returns a sequence of DataEvents starting an InitialBegin event, then an Insert event for each row, and then an InitialEnd event. |
 | [ProcessDataChange](DynamicView/ProcessDataChange.md)(…) |  |
 | [ResetDirtyParams](DynamicView/ResetDirtyParams.md)() |  |
 | [UpdateDynamicParams](DynamicView/UpdateDynamicParams.md)(…) |  (2 methods) |

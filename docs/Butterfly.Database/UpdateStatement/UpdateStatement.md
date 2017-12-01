@@ -1,8 +1,16 @@
 # UpdateStatement constructor
 
+Must only update a single row at a time. Must have a where clause that specifies the primary key fields. Where clause can only use ANDed equal conditions (like chat_id=2 AND chat_type='X")";
+
 ```csharp
 public UpdateStatement(IDatabase database, string sql)
 ```
+
+| parameter | description |
+| --- | --- |
+| database |  |
+| sourceSql |  |
+| sourceParams |  |
 
 ## See Also
 

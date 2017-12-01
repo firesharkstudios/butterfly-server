@@ -1,5 +1,7 @@
 # BaseWebApiServer class
 
+Base class implementing [`IWebApiServer`](IWebApiServer.md). New implementations will normally extend this class.
+
 ```csharp
 public abstract class BaseWebApiServer : IWebApiServer
 ```
