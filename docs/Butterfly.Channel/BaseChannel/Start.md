@@ -1,12 +1,12 @@
 # BaseChannel.Start method
 
 ```csharp
-public void Start(ICollection<ChannelListener> initChannelListeners)
+public void Start(ICollection<NewChannelListener> newChannelListeners)
 ```
 
 ## See Also
 
-* class [ChannelListener](../ChannelListener.md)
+* class [NewChannelListener](../NewChannelListener.md)
 * class [BaseChannel](../BaseChannel.md)
 * namespace [Butterfly.Channel](../../Butterfly.Channel.md)
 

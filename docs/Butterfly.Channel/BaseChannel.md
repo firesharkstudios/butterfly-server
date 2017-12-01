@@ -1,6 +1,6 @@
 # BaseChannel class
 
-Base class to implement new channels
+Base class to implement new types of channels (WebSockets, HTTP long polling, etc)
 
 ```csharp
 public abstract class BaseChannel : IChannel

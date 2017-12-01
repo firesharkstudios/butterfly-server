@@ -1,5 +1,7 @@
 # ChannelServer class
 
+Allows clients to create new channels to the server and allows the server to push messages to a connected client
+
 ```csharp
 public abstract class ChannelServer : IDisposable
 ```

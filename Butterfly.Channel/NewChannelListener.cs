@@ -18,18 +18,21 @@ using System;
 using System.Threading.Tasks;
 
 namespace Butterfly.Channel {
-    public class ChannelListener {
+    /// <summary>
+    /// Internal class used to store references to new channel listeners
+    /// </summary>
+    public class NewChannelListener {
         public readonly string path;
         public readonly Func<IChannel, IDisposable> listener;
         public readonly Func<IChannel, Task<IDisposable>> listenerAsync;
 
-        public ChannelListener(string path, Func<IChannel, IDisposable> listener) {
+        public NewChannelListener(string path, Func<IChannel, IDisposable> listener) {
             this.path = path;
             this.listener = listener;
             this.listenerAsync = null;
         }
 
-        public ChannelListener(string path, Func<IChannel, Task<IDisposable>> listener) {
+        public NewChannelListener(string path, Func<IChannel, Task<IDisposable>> listener) {
             this.path = path;
             this.listener = null;
             this.listenerAsync = listener;

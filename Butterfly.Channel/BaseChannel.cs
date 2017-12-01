@@ -26,7 +26,7 @@ using Butterfly.Util;
 namespace Butterfly.Channel {
 
     /// <summary>
-    /// Base class to implement new channels
+    /// Base class to implement new types of channels (WebSockets, HTTP long polling, etc)
     /// </summary>
     public abstract class BaseChannel : IChannel {
         protected readonly string id;
@@ -71,12 +71,12 @@ namespace Butterfly.Channel {
         }
 
         protected bool started = false;
-        public void Start(ICollection<ChannelListener> initChannelListeners) {
+        public void Start(ICollection<NewChannelListener> newChannelListeners) {
             this.started = true;
-            Task.Run(() => this.RunAsync(initChannelListeners));
+            Task.Run(() => this.RunAsync(newChannelListeners));
         }
 
-        protected async Task RunAsync(ICollection<ChannelListener> initChannelListeners) {
+        protected async Task RunAsync(ICollection<NewChannelListener> initChannelListeners) {
             List<IDisposable> disposables = new List<IDisposable>();
             try {
                 foreach (var listener in initChannelListeners) {

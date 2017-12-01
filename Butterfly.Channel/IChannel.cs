@@ -16,13 +16,15 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Butterfly.Channel {
+    /// <summary>
+    /// A channel represents a means for a server to communicate directly with a client (via WebSockets, HTTP long polling, etc)
+    /// </summary>
     public interface IChannel : IDisposable {
         string Id { get; }
         DateTime LastHeartbeat { get; }
-        void Start(ICollection<ChannelListener> initChannelListeners);
+        void Start(ICollection<NewChannelListener> newChannelListeners);
         void Queue(object value);
     }
 }

@@ -25,12 +25,15 @@ using NLog;
 using Butterfly.Util;
 
 namespace Butterfly.Channel {
+    /// <summary>
+    /// Allows clients to create new channels to the server and allows the server to push messages to a connected client
+    /// </summary>
     public abstract class ChannelServer : IDisposable {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly ConcurrentDictionary<string, IChannel> channelById = new ConcurrentDictionary<string, IChannel>();
 
-        protected readonly List<ChannelListener> onNewChannelListeners = new List<ChannelListener>();
+        protected readonly List<NewChannelListener> onNewChannelListeners = new List<NewChannelListener>();
 
         protected readonly int mustReceiveHeartbeatMillis;
 
@@ -46,7 +49,7 @@ namespace Butterfly.Channel {
         /// <returns></returns>
         public IDisposable OnNewChannel(string path, Func<IChannel, IDisposable> listener) {
             if (this.started) throw new Exception("Cannot add OnNewChannel listener after the ChannelServer is started");
-            return new ListItemDisposable<ChannelListener>(onNewChannelListeners, new ChannelListener(path, listener));
+            return new ListItemDisposable<NewChannelListener>(onNewChannelListeners, new NewChannelListener(path, listener));
         }
 
         /// <summary>
@@ -57,7 +60,7 @@ namespace Butterfly.Channel {
         /// <returns></returns>
         public IDisposable OnNewChannelAsync(string path, Func<IChannel, Task<IDisposable>> listener) {
             if (this.started) throw new Exception("Cannot add OnNewChannel listener after the ChannelServer is started");
-            return new ListItemDisposable<ChannelListener>(onNewChannelListeners, new ChannelListener(path, listener));
+            return new ListItemDisposable<NewChannelListener>(onNewChannelListeners, new NewChannelListener(path, listener));
         }
 
         /// <summary>
