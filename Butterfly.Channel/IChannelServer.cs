@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace Butterfly.Channel {
     /// <summary>
-    /// Allows clients to create new channels to the server and allows the server to push messages to a connected client.
+    /// Allows clients to create new channels to the server and allows the server to push messages to a connected client.<para/>
     /// 
-    /// Example code...
+    /// Initializing a channel server instance...<para/>
     /// <code>
     ///     var channelServer = new SomeChannelServer();
     ///     channelServer.OnNewChannel("/chat", channel => {
@@ -13,10 +13,16 @@ namespace Butterfly.Channel {
     ///         // and return any object that should be disposed when the channel is disposed
     ///     });
     ///     channelServer.Start();
-    ///     
-    ///     // Let's say a client has now created a channel to /chat?id=123, the server can now push data to the client via...
-    ///     
+    /// </code>
+    /// 
+    /// If a client has now created a channel at /chat?id=123, the server can now push data to the client via...<para/>
+    /// <code>
     ///     channelServer.Queue("123", "Hello");
+    /// </code>
+    /// 
+    /// If you no longer need a channel server instance, call Dispose() on the channel server...<para/>
+    /// <code>
+    ///     channelServer.Dispose();
     /// </code>
     /// </summary>
     public interface IChannelServer : IDisposable {

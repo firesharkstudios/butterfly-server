@@ -42,12 +42,12 @@ namespace Butterfly.Channel {
         }
 
         public IDisposable OnNewChannel(string pathFilter, Func<IChannel, IDisposable> listener) {
-            if (this.started) throw new Exception("Cannot add OnNewChannel listener after the ChannelServer is started");
+            if (this.started) throw new Exception("Cannot call OnNewChannel() after Start()");
             return new ListItemDisposable<NewChannelListener>(onNewChannelListeners, new NewChannelListener(pathFilter, listener));
         }
 
         public IDisposable OnNewChannelAsync(string pathFilter, Func<IChannel, Task<IDisposable>> listener) {
-            if (this.started) throw new Exception("Cannot add OnNewChannel listener after the ChannelServer is started");
+            if (this.started) throw new Exception("Cannot call OnNewChannelAsync() after Start()");
             return new ListItemDisposable<NewChannelListener>(onNewChannelListeners, new NewChannelListener(pathFilter, listener));
         }
 
@@ -59,6 +59,7 @@ namespace Butterfly.Channel {
         }
 
         public void Queue(string channelId, object value) {
+            if (!this.started) throw new Exception("Cannot call Queue() before Start()");
             var channel = this.GetChannel(channelId);
             channel.Queue(value);
         }
