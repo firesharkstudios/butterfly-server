@@ -3,13 +3,13 @@
 using NLog;
 
 using Butterfly.Channel;
-using Butterfly.Web;
+using Butterfly.WebApi;
 
 namespace Butterfly.Examples {
     public static class SimpleChatExample {
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static void Setup(WebServer webServer, string apiPathPrefix, BaseChannelServer channelServer, string channelPathPrefix) {
+        public static void Setup(IWebApiServer webServer, string apiPathPrefix, IChannelServer channelServer, string channelPathPrefix) {
             logger.Debug($"Setup():apiPathPrefix={apiPathPrefix},channelPathPrefix={channelPathPrefix}");
 
             // Setup database

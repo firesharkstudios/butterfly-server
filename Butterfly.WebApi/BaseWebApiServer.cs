@@ -19,23 +19,26 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Butterfly.Web {
-    public abstract class WebServer : IDisposable {
+namespace Butterfly.WebApi {
+    /// <summary>
+    /// Base class implementing <see cref="IWebApiServer"/>. New implementations will normally extend this class.
+    /// </summary>
+    public abstract class BaseWebApiServer : IWebApiServer {
         protected readonly List<WebHandler> webHandlers = new List<WebHandler>();
 
-        public void OnGet(string path, Func<IWebRequest, IWebResponse, Task> run) {
+        public void OnGet(string path, Func<IWebRequest, IWebResponse, Task> listener) {
             webHandlers.Add(new WebHandler {
                 method = HttpMethod.Get,
                 path = path,
-                run = run
+                listener = listener
             });
         }
 
-        public void OnPost(string path, Func<IWebRequest, IWebResponse, Task> run) {
+        public void OnPost(string path, Func<IWebRequest, IWebResponse, Task> listener) {
             webHandlers.Add(new WebHandler {
                 method = HttpMethod.Post,
                 path = path,
-                run = run
+                listener = listener
             });
         }
 

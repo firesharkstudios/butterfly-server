@@ -14,14 +14,15 @@
  * limitations under the License.
 */
 
-using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Butterfly.Web {
-    public class WebHandler {
-        public HttpMethod method;
-        public string path;
-        public Func<IWebRequest, IWebResponse, Task> run;
+using System.Collections.Specialized;
+using System.Net.Http.Headers;
+
+namespace Butterfly.WebApi {
+    public interface IWebRequest {
+        Task<T> ParseAsJsonAsync<T>();
+        NameValueCollection Headers { get; }
+        AuthenticationHeaderValue AuthenticationHeaderValue { get; }
     }
 }

@@ -26,8 +26,8 @@ using RedHttpServerNet45.Response;
 
 using Butterfly.Util;
 
-namespace Butterfly.Web.RedHttpServer {
-    public class RedHttpServerWebServer : WebServer {
+namespace Butterfly.WebApi.RedHttpServer {
+    public class RedHttpServerWebServer : BaseWebApiServer {
 
         public readonly global::RedHttpServerNet45.RedHttpServer server;
 
@@ -39,12 +39,12 @@ namespace Butterfly.Web.RedHttpServer {
             foreach (var webHandler in this.webHandlers) {
                 if (webHandler.method == HttpMethod.Get) {
                     this.server.Get(webHandler.path, async (req, res) => {
-                        await webHandler.run(new RedHttpServerWebRequest(req), new RedHttpServerWebResponse(res));
+                        await webHandler.listener(new RedHttpServerWebRequest(req), new RedHttpServerWebResponse(res));
                     });
                 }
                 else if (webHandler.method == HttpMethod.Post) {
                     this.server.Post(webHandler.path, async (req, res) => {
-                        await webHandler.run(new RedHttpServerWebRequest(req), new RedHttpServerWebResponse(res));
+                        await webHandler.listener(new RedHttpServerWebRequest(req), new RedHttpServerWebResponse(res));
                     });
                 }
             }

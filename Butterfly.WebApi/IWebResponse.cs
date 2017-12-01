@@ -16,13 +16,8 @@
 
 using System.Threading.Tasks;
 
-using System.Collections.Specialized;
-using System.Net.Http.Headers;
-
-namespace Butterfly.Web {
-    public interface IWebRequest {
-        Task<T> ParseAsJsonAsync<T>();
-        NameValueCollection Headers { get; }
-        AuthenticationHeaderValue AuthenticationHeaderValue { get; }
+namespace Butterfly.WebApi {
+    public interface IWebResponse {
+        Task WriteAsJsonAsync(object value);
     }
 }

@@ -23,7 +23,7 @@ namespace Butterfly.Examples {
             embedIOWebServer.RegisterModule(new StaticFilesModule(staticFullPath));
 
             // Configure and start web server and channel server
-            using (var webServer = new Butterfly.Web.EmbedIO.EmbedIOWebServer(embedIOWebServer))
+            using (var webServer = new Butterfly.WebApi.EmbedIO.EmbedIOWebServer(embedIOWebServer))
             using (var channelServer = new Butterfly.Channel.EmbedIO.EmbedIOChannelServer(embedIOWebServer)) {
                 FullChatExample.Setup(webServer, "/api/full-chat", channelServer, "/full-chat");
                 SimpleChatExample.Setup(webServer, "/api/simple-chat", channelServer, "/simple-chat");

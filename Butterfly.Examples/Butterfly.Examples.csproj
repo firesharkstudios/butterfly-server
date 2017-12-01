@@ -112,13 +112,13 @@
       <Project>{687a3fb4-8299-4f15-b74b-825fe7446823}</Project>
       <Name>Butterfly.Util</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Butterfly.Web.EmbedIO\Butterfly.Web.EmbedIO.csproj">
+    <ProjectReference Include="..\Butterfly.WebApi.EmbedIO\Butterfly.WebApi.EmbedIO.csproj">
       <Project>{b28d5022-9b47-4b0d-b607-5f3326af5677}</Project>
-      <Name>Butterfly.Web.EmbedIO</Name>
+      <Name>Butterfly.WebApi.EmbedIO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Butterfly.Web\Butterfly.Web.csproj">
-      <Project>{AAC77468-2570-4B46-ABAC-E9CF215942F1}</Project>
-      <Name>Butterfly.Web</Name>
+    <ProjectReference Include="..\Butterfly.WebApi\Butterfly.WebApi.csproj">
+      <Project>{aac77468-2570-4b46-abac-e9cf215942f1}</Project>
+      <Name>Butterfly.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -14,10 +14,17 @@
  * limitations under the License.
 */
 
+using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Butterfly.Web {
-    public interface IWebResponse {
-        Task WriteAsJsonAsync(object value);
+namespace Butterfly.WebApi {
+    /// <summary>
+    /// Internal class used to store references to new web handlers
+    /// </summary>
+    public class WebHandler {
+        public HttpMethod method;
+        public string path;
+        public Func<IWebRequest, IWebResponse, Task> listener;
     }
 }

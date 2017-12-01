@@ -45,9 +45,9 @@ namespace Butterfly.Channel.EmbedIO {
     public class MyWebSocketsServer : WebSocketsServer {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected readonly BaseChannelServer channelServer;
+        protected readonly IChannelServer channelServer;
 
-        public MyWebSocketsServer(BaseChannelServer channelServer, Action<string, string, IChannel> addAndStartChannel) {
+        public MyWebSocketsServer(IChannelServer channelServer, Action<string, string, IChannel> addAndStartChannel) {
             this.channelServer = channelServer;
         }
 
@@ -63,11 +63,9 @@ namespace Butterfly.Channel.EmbedIO {
         }
 
         protected override void OnClientDisconnected(WebSocketContext context) {
-            throw new NotImplementedException();
         }
 
         protected override void OnFrameReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult) {
-            throw new NotImplementedException();
         }
 
         protected override void OnMessageReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult) {

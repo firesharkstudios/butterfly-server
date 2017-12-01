@@ -7,8 +7,8 @@
     <ProjectGuid>{AAC77468-2570-4B46-ABAC-E9CF215942F1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Butterfly.Web</RootNamespace>
-    <AssemblyName>Butterfly.Web</AssemblyName>
+    <RootNamespace>Butterfly.WebApi</RootNamespace>
+    <AssemblyName>Butterfly.WebApi</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -46,11 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IWebApiServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebHandler.cs" />
     <Compile Include="IWebResponse.cs" />
     <Compile Include="IWebRequest.cs" />
-    <Compile Include="WebServer.cs" />
+    <Compile Include="BaseWebApiServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Butterfly.Util\Butterfly.Util.csproj">

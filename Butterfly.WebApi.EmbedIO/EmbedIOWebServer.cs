@@ -27,8 +27,8 @@ using Unosquare.Labs.EmbedIO.Constants;
 
 using Butterfly.Util;
 
-namespace Butterfly.Web.EmbedIO {
-    public class EmbedIOWebServer : WebServer {
+namespace Butterfly.WebApi.EmbedIO {
+    public class EmbedIOWebServer : BaseWebApiServer {
 
         public readonly Unosquare.Labs.EmbedIO.WebServer server;
 
@@ -58,7 +58,7 @@ namespace Butterfly.Web.EmbedIO {
                     throw new System.Exception($"Unknown method '{webHandler.method}'");
                 }
                 this.AddHandler(webHandler.path, httpVerb, async (context, cancellationToken) => {
-                    await webHandler.run(new EmbedIOWebRequest(context), new EmbedIOWebResponse(context));
+                    await webHandler.listener(new EmbedIOWebRequest(context), new EmbedIOWebResponse(context));
                     return true;
                 });
             }

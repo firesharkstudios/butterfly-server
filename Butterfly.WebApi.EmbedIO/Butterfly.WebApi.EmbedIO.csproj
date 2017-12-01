@@ -7,8 +7,8 @@
     <ProjectGuid>{B28D5022-9B47-4B0D-B607-5F3326AF5677}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Butterfly.Web.EmbedIO</RootNamespace>
-    <AssemblyName>Butterfly.Web.EmbedIO</AssemblyName>
+    <RootNamespace>Butterfly.WebApi.EmbedIO</RootNamespace>
+    <AssemblyName>Butterfly.WebApi.EmbedIO</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -80,7 +80,7 @@
       <Project>{687A3FB4-8299-4F15-B74B-825FE7446823}</Project>
       <Name>Butterfly.Util</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Butterfly.Web\Butterfly.Web.csproj">
+    <ProjectReference Include="..\Butterfly.WebApi\Butterfly.WebApi.csproj">
       <Project>{AAC77468-2570-4B46-ABAC-E9CF215942F1}</Project>
       <Name>Butterfly.Web</Name>
     </ProjectReference>
