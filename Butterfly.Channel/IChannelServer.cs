@@ -13,7 +13,7 @@ namespace Butterfly.Channel {
     ///     channelServer.Start();
     /// </code>
     /// </summary>
-    interface IChannelServer : IDisposable {
+    public interface IChannelServer : IDisposable {
         /// <summary>
         /// Add a listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed)
         /// </summary>
