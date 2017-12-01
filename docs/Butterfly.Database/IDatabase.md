@@ -71,6 +71,8 @@ public interface IDatabase
 | [ConnectionString](IDatabase/ConnectionString.md) { get; } |  |
 | [Tables](IDatabase/Tables.md) { get; } |  |
 | [BeginTransaction](IDatabase/BeginTransaction.md)() |  |
+| [CreateDynamicView](IDatabase/CreateDynamicView.md)(…) |  (2 methods) |
+| [CreateDynamicViewSet](IDatabase/CreateDynamicViewSet.md)(…) |  (2 methods) |
 | [CreateFromResourceFileAsync](IDatabase/CreateFromResourceFileAsync.md)(…) | Creates database tables from an embedded resource file by internally calling CreateFromTextAsync with the contents of the embedded resource file ([`CreateFromTextAsync`](IDatabase/CreateFromTextAsync.md). |
 | [CreateFromTextAsync](IDatabase/CreateFromTextAsync.md)(…) | Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate). |
 | [DeleteAndCommitAsync](IDatabase/DeleteAndCommitAsync.md)(…) |  |

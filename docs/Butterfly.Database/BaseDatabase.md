@@ -15,6 +15,7 @@ public abstract class BaseDatabase : IDatabase
 | [Tables](BaseDatabase/Tables.md) { get; } |  |
 | [ApplyDefaultValues](BaseDatabase/ApplyDefaultValues.md)(…) |  |
 | [BeginTransaction](BaseDatabase/BeginTransaction.md)() |  |
+| [CreateDynamicView](BaseDatabase/CreateDynamicView.md)(…) |  (2 methods) |
 | [CreateDynamicViewSet](BaseDatabase/CreateDynamicViewSet.md)(…) |  (2 methods) |
 | [CreateFromResourceFileAsync](BaseDatabase/CreateFromResourceFileAsync.md)(…) |  |
 | [CreateFromTextAsync](BaseDatabase/CreateFromTextAsync.md)(…) |  |

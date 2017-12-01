@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Butterfly.Database.Event;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
+using Butterfly.Database.Dynamic;
 
 namespace Butterfly.Database {
     /// <summary>
@@ -118,5 +119,11 @@ namespace Butterfly.Database {
         Task<ITransaction> BeginTransaction();
 
         void SetDefaultValue(string fieldName, Func<object> getDefaultValue, string tableName = null);
+
+        DynamicViewSet CreateDynamicViewSet(Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null);
+        DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> asyncListener, Func<DataEvent, bool> listenerDataEventFilter = null);
+
+        Task<DynamicViewSet> CreateDynamicView(string sql, dynamic values, Action<DataEventTransaction> listener, string name = null, string[] keyFieldNames = null, Func<DataEvent, bool> listenerDataEventFilter = null);
+        Task<DynamicViewSet> CreateDynamicView(string sql, dynamic values, Func<DataEventTransaction, Task> asyncListener, string name = null, string[] keyFieldNames = null, Func<DataEvent, bool> listenerDataEventFilter = null);
     }
 }
