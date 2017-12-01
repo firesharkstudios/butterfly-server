@@ -93,14 +93,14 @@ namespace Butterfly.Channel {
                 DateTime cutoffDateTime = DateTime.Now.AddMilliseconds(-this.mustReceiveHeartbeatMillis);
                 DateTime? oldestLastReceivedHearbeatReceived = null;
                 foreach ((string id, IChannel channel) in this.channelById.ToArray()) {
-                    logger.Debug($"CheckForDeadChannelsAsync():channel.LastHeartbeatReceived={channel.LastHeartbeatReceived},cutoffDateTime={cutoffDateTime}");
-                    if (channel.LastHeartbeatReceived < cutoffDateTime) {
+                    logger.Debug($"CheckForDeadChannelsAsync():channel.LastHeartbeatReceived={channel.LastHeartbeat},cutoffDateTime={cutoffDateTime}");
+                    if (channel.LastHeartbeat < cutoffDateTime) {
                         bool removed = this.channelById.TryRemove(id, out IChannel removedChannel);
                         if (!removed) throw new Exception($"Could not remove channel id {id}");
                         channel.Dispose();
                     }
-                    else if (oldestLastReceivedHearbeatReceived==null || oldestLastReceivedHearbeatReceived>channel.LastHeartbeatReceived) {
-                        oldestLastReceivedHearbeatReceived = channel.LastHeartbeatReceived;
+                    else if (oldestLastReceivedHearbeatReceived==null || oldestLastReceivedHearbeatReceived>channel.LastHeartbeat) {
+                        oldestLastReceivedHearbeatReceived = channel.LastHeartbeat;
                     }
                 }
                 int delayMillis = oldestLastReceivedHearbeatReceived == null ? this.mustReceiveHeartbeatMillis : (int)(oldestLastReceivedHearbeatReceived.Value.AddMilliseconds(this.mustReceiveHeartbeatMillis) - DateTime.Now).TotalMilliseconds;

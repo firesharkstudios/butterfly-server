@@ -1,0 +1,1 @@
+XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Channel\bin\Debug\Butterfly.Channel.dll docs

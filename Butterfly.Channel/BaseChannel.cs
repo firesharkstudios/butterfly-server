@@ -24,27 +24,40 @@ using Nito.AsyncEx;
 using Butterfly.Util;
 
 namespace Butterfly.Channel {
+
+    /// <summary>
+    /// Base class to implement new channels
+    /// </summary>
     public abstract class BaseChannel : IChannel {
         protected readonly string id;
 
         protected readonly ConcurrentQueue<string> buffer = new ConcurrentQueue<string>();
         protected readonly AsyncMonitor monitor = new AsyncMonitor();
 
-        protected DateTime lastHeartbeatReceived = DateTime.Now;
+        /// <summary>
+        /// Stores when the datetime of the last heartbeat (set via <ref>Heartbeat</ref>)
+        /// </summary>
+        protected DateTime lastHeartbeat = DateTime.Now;
 
         public BaseChannel(string id) {
             this.id = id;
         }
 
+        /// <summary>
+        /// Unique identifier for the channel
+        /// </summary>
         public string Id => this.id;
 
         /// <summary>
-        /// Implementing classes must keep this updated to avoid the channel being killed by the <ref>ChannelServer</ref>
+        /// When the last heartbeat was registered
         /// </summary>
-        public DateTime LastHeartbeatReceived => this.lastHeartbeatReceived;
+        public DateTime LastHeartbeat => this.lastHeartbeat;
 
+        /// <summary>
+        /// Implementing classes should call this periodically to keep the channel alive (otherwise <ref>ChannelServer</ref> will remove the channel)
+        /// </summary>
         public void Heartbeat() {
-            this.lastHeartbeatReceived = DateTime.Now;
+            this.lastHeartbeat = DateTime.Now;
         }
 
         /// <summary>
@@ -93,6 +106,9 @@ namespace Butterfly.Channel {
         /// </summary>
         protected abstract Task SendAsync(string text);
 
+        /// <summary>
+        /// Implements the IDispose interface
+        /// </summary>
         public void Dispose() {
             this.started = false;
             this.monitor.PulseAll();
@@ -103,7 +119,6 @@ namespace Butterfly.Channel {
         /// Implementing classes may optionally override this to cleanup resources as appropriate
         /// </summary>
         protected virtual void DoDispose() {
-
         }
 
     }

@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 namespace Butterfly.Channel {
     public interface IChannel : IDisposable {
         string Id { get; }
-        DateTime LastHeartbeatReceived { get; }
+        DateTime LastHeartbeat { get; }
         void Start(ICollection<ChannelListener> initChannelListeners);
         void Queue(object value);
     }
