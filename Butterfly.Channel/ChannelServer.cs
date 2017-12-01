@@ -38,14 +38,29 @@ namespace Butterfly.Channel {
             this.mustReceiveHeartbeatMillis = mustReceiveHeartbeatMillis;
         }
 
+        /// <summary>
+        /// Add a listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed)
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="listener"></param>
+        /// <returns></returns>
         public IDisposable OnNewChannel(string path, Func<IChannel, IDisposable> listener) {
             return new ListItemDisposable<ChannelListener>(onNewChannelListeners, new ChannelListener(path, listener));
         }
 
+        /// <summary>
+        /// Add an async listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed)
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="listener"></param>
+        /// <returns></returns>
         public IDisposable OnNewChannelAsync(string path, Func<IChannel, Task<IDisposable>> listener) {
             return new ListItemDisposable<ChannelListener>(onNewChannelListeners, new ChannelListener(path, listener));
         }
 
+        /// <summary>
+        /// Number of channels
+        /// </summary>
         public int ChannelCount {
             get {
                 return this.channelById.Count;

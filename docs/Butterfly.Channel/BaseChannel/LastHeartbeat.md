@@ -1,9 +1,9 @@
-# BaseChannel.lastHeartbeat field
+# BaseChannel.LastHeartbeat property
 
-Stores when the datetime of the last heartbeat (set via Heartbeat)
+When the last heartbeat was registered
 
 ```csharp
-protected DateTime lastHeartbeat;
+public DateTime LastHeartbeat { get; }
 ```
 
 ## See Also

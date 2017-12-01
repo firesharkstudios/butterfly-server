@@ -1,7 +1,9 @@
-# BaseChannel.id field
+# BaseChannel.Id property
+
+Unique identifier for the channel
 
 ```csharp
-protected readonly string id;
+public string Id { get; }
 ```
 
 ## See Also
