@@ -15,13 +15,13 @@
 */
 
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 using NLog;
 using Unosquare.Labs.EmbedIO.Modules;
 using Unosquare.Net;
 using Unosquare.Labs.EmbedIO;
+
 using Butterfly.Util;
 
 namespace Butterfly.Channel.EmbedIO {

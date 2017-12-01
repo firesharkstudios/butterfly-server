@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Butterfly.Channel {
     /// <summary>
-    /// Allows clients to create new channels to the server and allows the server to push messages to a connected client.<para/>
+    /// Allows clients to create new channels to the server and allows the server to push messages to connected clients.<para/>
     /// 
     /// Initializing a channel server instance...<para/>
     /// <code>

@@ -16,7 +16,7 @@ Example C# code running on a server...
 // Create an EmbedIO web server to use as the implementation for our ChannelServer and WebApiServer
 var embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer("http://localhost:8080/"));
 
-// Create a channelServer (allows the server to push data to client)
+// Create a channelServer allowing the server to push data to clients
 var channelServer = new EmbedIOChannelServer(embedIOWebServer);
 
 // Create a webApiServer (allows the server to receive RESTful API requests)
@@ -25,8 +25,8 @@ var webApiServer = new EmbedIOWebApiServer(embedIOWebServer);
 // Create a database (allows doing INSERTs, UPDATEs, and DELETEs while receiving data change events)
 var database = new MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=test");
 
-// Clients are expected to create and maintain a single channel to the server,
-// listen for clients creating new channels
+// Listen for clients creating new channels
+// (clients are expected to create and maintain a single channel to the server)
 channelServer.OnNewChannelAsync("/message", async(channel) => {
     // When a channel is created, create a dynamic view on the message table
     // and send all data events to the client over the channel
@@ -68,17 +68,19 @@ let channelClient = new WebSocketChannelClient({
 channelClient.start();
 ```
 
+Running the server and client code above would result in the server adding a "Hello World" record to the database and this record being replicated to the client which echoes the record to the console.
+
 ## Packages
 
 There are three key packages to the Butterfly Framework...
 
-- [Butterfly.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Database) - Server code that publishes data change events when executing INSERTs, UPDATEs, and DELETEs using the provided API.
+- [Butterfly.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Database) - Allows executing INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
  
-- [Butterfly.Channel](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel) - Client and server code that allow pushing data from the server to the client and updating local data structures.  Clients create a single channel to the server on startup.
+- [Butterfly.Channel](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel) - Allows clients to create new channels to the server and allows the server to push messages to connected clients.
 
-- [Butterfly.WebApi](https://firesharkstudios.github.io/Butterfly/Butterfly.WebApi) - Server code that allow serving static files and responding to API requests via HTTP requests.
+- [Butterfly.WebApi](https://firesharkstudios.github.io/Butterfly/Butterfly.WebApi) - Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.
 
-All the packages are independent with no interdependencies. Use all the packages together or use any subset of the packages you wish.
+There are no interdependencies between the packages. Use any subset of the packages you wish.
 
 ## Status
 
