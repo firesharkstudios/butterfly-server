@@ -10,7 +10,7 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 namespace Butterfly.Database {
     /// <summary>
     /// Allows executing INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data
-    /// change events both on tables and dynamic views
+    /// change events both on tables and dynamic views.<para/>
     /// 
     /// Adding records and echoing all data change events to the console...<para/>
     /// <code>
@@ -20,7 +20,7 @@ namespace Butterfly.Database {
     ///     // Listen for all database data events
     ///     var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {
     ///         console.WriteLine($"Low Level DataEventTransaction={dataEventTransaction}");
-    ///     }) {
+    ///     });
     ///     
     ///     // INSERT a couple of records (this will cause a single data even transaction with
     ///     // two INSERT data events to be written to the console above)
@@ -44,7 +44,7 @@ namespace Butterfly.Database {
     ///     
     ///     // Create a DynamicViewSet that print any data events to the console
     ///     // (this will immediately echo an INITIAL data event for each existing matching record)
-    ///     var dynamicView = database.CreateDynamicView(
+    ///     var dynamicViewSet = database.CreateAndStartDynamicViewSet(
     ///         "SELECT * FROM employee WHERE department_id=@departmentId", 
     ///         new {
     ///             departmentId = 1
@@ -54,17 +54,17 @@ namespace Butterfly.Database {
     ///         }
     ///     );
     /// 
-    ///     // This will cause the above DynamicView to echo an INSERT data event
+    ///     // This will cause the above DynamicViewSet to echo an INSERT data event
     ///     await database.InsertAndCommitAsync("employee", values: {
     ///         department_id: 1
     ///         name: "Mr Crabs"
     ///     });
     ///     
-    ///     // This will NOT cause the above DynamicView to echo an INSERT data event
+    ///     // This will NOT cause the above DynamicViewSet to echo an INSERT data event
     ///     // (because the department_id doesn't match)
     ///     await database.InsertAndCommitAsync("employee", values: {
     ///         department_id: 2
-    ///         name: "Mr Crabs"
+    ///         name: "Patrick Star"
     ///     });
     /// </code>
     /// </summary>
@@ -76,6 +76,7 @@ namespace Butterfly.Database {
         /// <summary>
         /// Creates database tables from an embedded resource file by internally calling CreateFromTextAsync with the contents of the embedded resource file (<see cref="CreateFromTextAsync(string)"/>.
         /// </summary>
+        /// <param name="assembly"></param>
         /// <param name="resourceFile"></param>
         /// <returns></returns>
         Task CreateFromResourceFileAsync(Assembly assembly, string resourceFile);
@@ -87,7 +88,7 @@ namespace Butterfly.Database {
         /// If the table already exists, the CREATE statement is ignored.<para/>
         /// Creating your database tables with this method is not required to use the rest of the Butterfly framework (you can instead just load your schema from your existing database using <see cref="LoadSchemaAsync"/>.
         /// </summary>
-        /// <param name="resourceFile"></param>
+        /// <param name="sql"></param>
         /// <returns></returns>
         Task CreateFromTextAsync(string sql);
 
@@ -117,8 +118,5 @@ namespace Butterfly.Database {
         Task<ITransaction> BeginTransaction();
 
         void SetDefaultValue(string fieldName, Func<object> getDefaultValue, string tableName = null);
-
-        Dict ApplyDefaultValues(Table table, Dict values);
-
     }
 }

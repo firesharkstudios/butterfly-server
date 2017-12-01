@@ -8,6 +8,7 @@ public Task CreateFromResourceFileAsync(Assembly assembly, string resourceFile)
 
 | parameter | description |
 | --- | --- |
+| assembly |  |
 | resourceFile |  |
 
 ## See Also

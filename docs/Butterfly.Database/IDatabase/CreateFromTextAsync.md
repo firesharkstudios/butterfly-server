@@ -16,7 +16,7 @@ public Task CreateFromTextAsync(string sql)
 
 | parameter | description |
 | --- | --- |
-| resourceFile |  |
+| sql |  |
 
 ## See Also
 

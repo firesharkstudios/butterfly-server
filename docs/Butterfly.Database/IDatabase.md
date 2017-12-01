@@ -1,6 +1,8 @@
 # IDatabase interface
 
-Allows executing INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views Adding records and echoing all data change events to the console...
+Allows executing INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.
+
+Adding records and echoing all data change events to the console...
 
 ```csharp
 // Create database instance (will also read the schema from the database)
@@ -9,7 +11,7 @@ var database = new SomeDatabase();
 // Listen for all database data events
 var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {
     console.WriteLine($"Low Level DataEventTransaction={dataEventTransaction}");
-}) {
+});
 
 // INSERT a couple of records (this will cause a single data even transaction with
 // two INSERT data events to be written to the console above)
@@ -34,7 +36,7 @@ var database = new SomeDatabase();
 
 // Create a DynamicViewSet that print any data events to the console
 // (this will immediately echo an INITIAL data event for each existing matching record)
-var dynamicView = database.CreateDynamicView(
+var dynamicViewSet = database.CreateAndStartDynamicViewSet(
     "SELECT * FROM employee WHERE department_id=@departmentId", 
     new {
         departmentId = 1
@@ -44,17 +46,17 @@ var dynamicView = database.CreateDynamicView(
     }
 );
 
-// This will cause the above DynamicView to echo an INSERT data event
+// This will cause the above DynamicViewSet to echo an INSERT data event
 await database.InsertAndCommitAsync("employee", values: {
     department_id: 1
     name: "Mr Crabs"
 });
 
-// This will NOT cause the above DynamicView to echo an INSERT data event
+// This will NOT cause the above DynamicViewSet to echo an INSERT data event
 // (because the department_id doesn't match)
 await database.InsertAndCommitAsync("employee", values: {
     department_id: 2
-    name: "Mr Crabs"
+    name: "Patrick Star"
 });
 ```
 
@@ -68,7 +70,6 @@ public interface IDatabase
 | --- | --- |
 | [ConnectionString](IDatabase/ConnectionString.md) { get; } |  |
 | [Tables](IDatabase/Tables.md) { get; } |  |
-| [ApplyDefaultValues](IDatabase/ApplyDefaultValues.md)(…) |  |
 | [BeginTransaction](IDatabase/BeginTransaction.md)() |  |
 | [CreateFromResourceFileAsync](IDatabase/CreateFromResourceFileAsync.md)(…) | Creates database tables from an embedded resource file by internally calling CreateFromTextAsync with the contents of the embedded resource file ([`CreateFromTextAsync`](IDatabase/CreateFromTextAsync.md). |
 | [CreateFromTextAsync](IDatabase/CreateFromTextAsync.md)(…) | Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate). |
