@@ -19,7 +19,7 @@ using System.Collections.Generic;
 
 namespace Butterfly.Channel {
     /// <summary>
-    /// Allows a server to communicate directly with a client (via WebSockets, HTTP long polling, etc)
+    /// Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
     /// </summary>
     public interface IChannel : IDisposable {
         string Id { get; }

@@ -1,6 +1,6 @@
 # BaseChannelServer class
 
-Base class implementing [`IChannelServer`](IChannelServer.md). New implementations may wish to extend this class.
+Base class implementing [`IChannelServer`](IChannelServer.md). New implementations will normally extend this class.
 
 ```csharp
 public abstract class BaseChannelServer : IChannelServer

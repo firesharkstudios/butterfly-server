@@ -26,7 +26,7 @@ using Butterfly.Util;
 namespace Butterfly.Channel {
 
     /// <summary>
-    /// Base class implementing <see cref="IChannel"/>. New implementations may wish to extend this class.
+    /// Base class implementing <see cref="IChannel"/>. New implementations will normally extend this class.
     /// </summary>
     public abstract class BaseChannel : IChannel {
         protected readonly string id;

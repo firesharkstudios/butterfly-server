@@ -26,7 +26,7 @@ using Butterfly.Util;
 
 namespace Butterfly.Channel {
     /// <summary>
-    /// Base class implementing <see cref="IChannelServer"/>. New implementations may wish to extend this class.
+    /// Base class implementing <see cref="IChannelServer"/>. New implementations will normally extend this class.
     /// </summary>
     public abstract class BaseChannelServer : IChannelServer {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();

@@ -5,12 +5,18 @@ namespace Butterfly.Channel {
     /// <summary>
     /// Allows clients to create new channels to the server and allows the server to push messages to a connected client.
     /// 
+    /// Example code...
     /// <code>
     ///     var channelServer = new SomeChannelServer();
-    ///     channelServer.OnNewChannel("/chat-message", channel => {
-    ///         // Do stuff here to initialize the channel and return any object that should be disposed with the channel
+    ///     channelServer.OnNewChannel("/chat", channel => {
+    ///         // Do stuff here to initialize the channel (send initial data, listen for specific data change events, etc)
+    ///         // and return any object that should be disposed when the channel is disposed
     ///     });
     ///     channelServer.Start();
+    ///     
+    ///     // Let's say a client has now created a channel to /chat?id=123, the server can now push data to the client via...
+    ///     
+    ///     channelServer.Queue("123", "Hello");
     /// </code>
     /// </summary>
     public interface IChannelServer : IDisposable {

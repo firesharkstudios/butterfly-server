@@ -1,6 +1,6 @@
 # IChannel interface
 
-Allows a server to communicate directly with a client (via WebSockets, HTTP long polling, etc)
+Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
 
 ```csharp
 public interface IChannel : IDisposable
