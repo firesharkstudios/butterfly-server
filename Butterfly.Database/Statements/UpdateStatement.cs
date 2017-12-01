@@ -35,7 +35,7 @@ namespace Butterfly.Database {
         /// <param name="database"></param>
         /// <param name="sourceSql"></param>
         /// <param name="sourceParams"></param>
-        public UpdateStatement(Database database, string sql) {
+        public UpdateStatement(IDatabase database, string sql) {
             this.SetSql(sql, "UPDATE @@tableName SET @@nameValues");
 
             // Confirm the sql is valid
@@ -60,7 +60,7 @@ namespace Butterfly.Database {
         // AND x.type=@type
         protected readonly static Regex NEXT_SET_REF_REGEX = new Regex(@"\s+,\s+(?<tableAliasWithDot>\w+\.)?(?<fieldName>\w+)\s*=\s*\@(?<paramName>\w+)");
 
-        public static SqlEqualsRef[] DetermineSetRefs(Database database, string whereClause) {
+        public static SqlEqualsRef[] DetermineSetRefs(IDatabase database, string whereClause) {
             var firstMatch = FIRST_SET_REF_REGEX.Match(whereClause);
             if (!firstMatch.Success) throw new Exception($"Invalid where clause '{whereClause}'");
 

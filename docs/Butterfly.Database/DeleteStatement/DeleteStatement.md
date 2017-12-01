@@ -1,12 +1,12 @@
 # DeleteStatement constructor
 
 ```csharp
-public DeleteStatement(Database database, string sql)
+public DeleteStatement(IDatabase database, string sql)
 ```
 
 ## See Also
 
-* class [Database](../Database.md)
+* interface [IDatabase](../IDatabase.md)
 * class [DeleteStatement](../DeleteStatement.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

@@ -1,7 +1,7 @@
 # MySqlDatabase class
 
 ```csharp
-public class MySqlDatabase : Database
+public class MySqlDatabase : BaseDatabase
 ```
 
 ## Public Members

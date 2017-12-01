@@ -28,29 +28,29 @@ namespace Butterfly.Database.Test {
     public class DatabaseUnitTest {
         [TestMethod]
         public async Task DataMemoryDatabase() {
-            Database database = new Butterfly.Database.Memory.MemoryDatabase();
+            IDatabase database = new Butterfly.Database.Memory.MemoryDatabase();
             await this.TestDatabase(database);
         }
 
         [TestMethod]
         public async Task DataMySqlDatabase() {
-            Database database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_test");
+            IDatabase database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_test");
             await this.TestDatabase(database);
         }
 
         [TestMethod]
         public async Task DataPostgresDatabase() {
-            Database database = new Butterfly.Database.Postgres.PostgresDatabase("Host=localhost;Username=postgres;Password=test!123;Database=butterfly_test");
+            IDatabase database = new Butterfly.Database.Postgres.PostgresDatabase("Host=localhost;Username=postgres;Password=test!123;Database=butterfly_test");
             await this.TestDatabase(database);
         }
 
         [TestMethod]
         public async Task DataSQLiteDatabase() {
-            Database database = new Butterfly.Database.SQLite.SQLiteDatabase("butterfly_test.sqlite");
+            IDatabase database = new Butterfly.Database.SQLite.SQLiteDatabase("butterfly_test.sqlite");
             await this.TestDatabase(database);
         }
 
-        public async Task TestDatabase(Database database) {
+        public async Task TestDatabase(IDatabase database) {
             database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Database.Test.db.sql").Wait();
             database.SetDefaultValue("id", () => Guid.NewGuid().ToString(), "employee");
             database.SetDefaultValue("created_at", () => DateTime.Now);
@@ -65,7 +65,7 @@ namespace Butterfly.Database.Test {
             await this.UpdateAndDeleteBasicData(database, hrDepartmentId);
         }
 
-        protected async Task TruncateData(Database database) {
+        protected async Task TruncateData(IDatabase database) {
             using (ITransaction transaction = await database.BeginTransaction()) {
                 foreach (var tableName in database.Tables.Keys) {
                     await transaction.TruncateAsync(tableName);
@@ -74,7 +74,7 @@ namespace Butterfly.Database.Test {
             }
         }
 
-        protected async Task<(object, object, object)> InsertBasicData(Database database) {
+        protected async Task<(object, object, object)> InsertBasicData(IDatabase database) {
             object salesDepartmentId;
             object hrDepartmentId;
             object customerServiceDepartmentId;
@@ -144,7 +144,7 @@ namespace Butterfly.Database.Test {
             return (salesDepartmentId, hrDepartmentId, customerServiceDepartmentId);
         }
 
-        protected async Task TestTransactions(Database database) {
+        protected async Task TestTransactions(IDatabase database) {
             using (ITransaction transaction = await database.BeginTransaction()) {
                 // Add Sales department using full INSERT statements with @@names and @@values
                 await transaction.InsertAsync("INSERT INTO department (@@names) VALUES (@@values)", new {
@@ -176,7 +176,7 @@ namespace Butterfly.Database.Test {
             Assert.AreEqual(1, allDepartments3.Length);
         }
 
-        protected async Task SelectBasicData(Database database, object salesDepartmentId, object hrDepartmentId, object customerServiceDepartmentId) {
+        protected async Task SelectBasicData(IDatabase database, object salesDepartmentId, object hrDepartmentId, object customerServiceDepartmentId) {
             // Test retrieving all departments
             Dict[] allDepartments = await database.SelectRowsAsync("SELECT * FROM department");
             Assert.AreEqual(3, allDepartments.Length);
@@ -285,7 +285,7 @@ namespace Butterfly.Database.Test {
             Assert.AreEqual(0, someEmployees4.Length);
         }
 
-        protected async Task UpdateAndDeleteBasicData(Database database, object hrDepartmentId) {
+        protected async Task UpdateAndDeleteBasicData(IDatabase database, object hrDepartmentId) {
             // Test updating rows on a non-indexed field
             int count1 = await database.UpdateAndCommitAsync("UPDATE department SET name=@newName WHERE name=@name", new {
                 name = "HR",

@@ -1,7 +1,7 @@
 # SQLiteDatabase class
 
 ```csharp
-public class SQLiteDatabase : Database
+public class SQLiteDatabase : BaseDatabase
 ```
 
 ## Public Members

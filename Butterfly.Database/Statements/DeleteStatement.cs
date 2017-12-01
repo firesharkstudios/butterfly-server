@@ -26,7 +26,7 @@ namespace Butterfly.Database {
         public readonly string fromClause;
         public readonly string whereClause;
 
-        public DeleteStatement(Database database, string sql) {
+        public DeleteStatement(IDatabase database, string sql) {
             this.SetSql(sql, "DELETE FROM @@tableName");
 
             // Confirm the sql is valid

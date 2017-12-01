@@ -57,7 +57,7 @@ namespace Butterfly.Database {
                         if (fieldMatch.Success) {
                             string fieldName = fieldMatch.Groups["fieldName"].Value;
                             string fieldTypeText = fieldMatch.Groups["fieldType"].Value;
-                            (Type fieldType, int maxLength) = Database.ConvertMySqlType(fieldTypeText);
+                            (Type fieldType, int maxLength) = BaseDatabase.ConvertMySqlType(fieldTypeText);
                             bool notNull = fieldMatch.Groups["not"].Success && fieldMatch.Groups["null"].Success;
                             bool autoIncrement = fieldMatch.Groups["autoIncrement"].Success;
                             fieldDefs.Add(new FieldDef(fieldName, fieldType, maxLength, !notNull, autoIncrement));

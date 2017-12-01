@@ -110,7 +110,7 @@ namespace Butterfly.Database {
         // INNER JOIN user u ON cp.user_id=U.id
         protected readonly static Regex JOIN_REGEX = new Regex(@"\s+INNER\s+JOIN\s+(\w+)(\s+\w+)?\s+ON\s+(\w+)\.(\w+)=(\w+)\.(\w+)");
 
-        public static TableRef[] ParseTableRefs(Database database, string fromClause) {
+        public static TableRef[] ParseTableRefs(IDatabase database, string fromClause) {
             var match = FIRST_TABLE_REGEX.Match(fromClause);
             if (!match.Success) throw new Exception($"Invalid from clause '{fromClause}'");
 

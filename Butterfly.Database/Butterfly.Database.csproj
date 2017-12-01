@@ -67,15 +67,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database.cs" />
+    <Compile Include="BaseDatabase.cs" />
     <Compile Include="Dynamic\DynamicParam.cs" />
     <Compile Include="Dynamic\DynamicView.cs" />
     <Compile Include="Dynamic\DynamicViewSet.cs" />
     <Compile Include="Dynamic\MultiValueDynamicParam.cs" />
     <Compile Include="Dynamic\SingleValueDynamicParam.cs" />
+    <Compile Include="IDatabase.cs" />
     <Compile Include="IDynamicParam.cs" />
+    <Compile Include="ITransaction.cs" />
     <Compile Include="Statements\CreateStatement.cs" />
-    <Compile Include="Transaction.cs" />
+    <Compile Include="BaseTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Statements\DeleteStatement.cs" />
     <Compile Include="Statements\InsertStatement.cs" />

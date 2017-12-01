@@ -1,12 +1,12 @@
 # InsertStatement constructor
 
 ```csharp
-public InsertStatement(Database database, string sql)
+public InsertStatement(IDatabase database, string sql)
 ```
 
 ## See Also
 
-* class [Database](../Database.md)
+* interface [IDatabase](../IDatabase.md)
 * class [InsertStatement](../InsertStatement.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

@@ -1,7 +1,7 @@
 # MemoryDatabase class
 
 ```csharp
-public class MemoryDatabase : Database
+public class MemoryDatabase : BaseDatabase
 ```
 
 ## Public Members

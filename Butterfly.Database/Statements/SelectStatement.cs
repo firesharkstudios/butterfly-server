@@ -31,7 +31,7 @@ namespace Butterfly.Database {
         public readonly string whereClause;
         public readonly string orderByClause;
 
-        public SelectStatement(Database database, string sql) {
+        public SelectStatement(IDatabase database, string sql) {
             this.SetSql(sql, "SELECT * FROM @@tableName");
 
             // Confirm the sql is valid

@@ -26,7 +26,7 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database.MySql {
 
-    public class MySqlDatabase : Database {
+    public class MySqlDatabase : BaseDatabase {
 
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -61,7 +61,7 @@ namespace Butterfly.Database.MySql {
                     string key = reader[3].ToString();
                     string extra = reader[5].ToString();
 
-                    (Type type, int maxLength) = Database.ConvertMySqlType(typeText);
+                    (Type type, int maxLength) = BaseDatabase.ConvertMySqlType(typeText);
                     bool allowNull = allowNullText.Equals("YES", StringComparison.OrdinalIgnoreCase);
                     bool isAutoIncrement = !string.IsNullOrEmpty(extra) && extra.Contains("auto_increment");
                     fields.Add(new FieldDef(name, type, maxLength, allowNull, isAutoIncrement));

@@ -4,14 +4,15 @@
 
 | public type | description |
 | --- | --- |
+| abstract class [BaseDatabase](Butterfly.Database/BaseDatabase.md) |  |
 | abstract class [BaseTransaction](Butterfly.Database/BaseTransaction.md) |  |
 | class [CreateStatement](Butterfly.Database/CreateStatement.md) |  |
-| abstract class [Database](Butterfly.Database/Database.md) |  |
 | class [DatabaseException](Butterfly.Database/DatabaseException.md) |  |
 | class [DeleteStatement](Butterfly.Database/DeleteStatement.md) |  |
 | class [DuplicateKeyDatabaseException](Butterfly.Database/DuplicateKeyDatabaseException.md) |  |
 | class [FieldDef](Butterfly.Database/FieldDef.md) |  |
 | class [FieldRef](Butterfly.Database/FieldRef.md) |  |
+| interface [IDatabase](Butterfly.Database/IDatabase.md) |  |
 | interface [IDynamicParam](Butterfly.Database/IDynamicParam.md) |  |
 | class [Index](Butterfly.Database/Index.md) |  |
 | class [InsertStatement](Butterfly.Database/InsertStatement.md) |  |

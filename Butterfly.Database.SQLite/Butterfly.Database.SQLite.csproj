@@ -89,6 +89,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Butterfly.Database.Event\Butterfly.Database.Event.csproj">
+      <Project>{3104D2EC-E8FE-47E9-8591-B5B8B9DAC963}</Project>
+      <Name>Butterfly.Database.Event</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Butterfly.Database\Butterfly.Database.csproj">
       <Project>{2b072f9e-35b4-4033-a272-e11474c4fa4d}</Project>
       <Name>Butterfly.Database</Name>

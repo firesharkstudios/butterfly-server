@@ -1,12 +1,12 @@
 # DynamicViewSet.Database property
 
 ```csharp
-public Database Database { get; }
+public IDatabase Database { get; }
 ```
 
 ## See Also
 
-* class [Database](../../Butterfly.Database/Database.md)
+* interface [IDatabase](../../Butterfly.Database/IDatabase.md)
 * class [DynamicViewSet](../DynamicViewSet.md)
 * namespace [Butterfly.Database.Dynamic](../../Butterfly.Database.md)
 

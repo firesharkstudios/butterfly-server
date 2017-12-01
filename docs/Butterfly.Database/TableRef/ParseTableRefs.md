@@ -1,12 +1,12 @@
 # TableRef.ParseTableRefs method
 
 ```csharp
-public static TableRef[] ParseTableRefs(Database database, string fromClause)
+public static TableRef[] ParseTableRefs(IDatabase database, string fromClause)
 ```
 
 ## See Also
 
-* class [Database](../Database.md)
+* interface [IDatabase](../IDatabase.md)
 * class [TableRef](../TableRef.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

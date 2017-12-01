@@ -1,12 +1,12 @@
 # SelectStatement constructor (1 of 2)
 
 ```csharp
-public SelectStatement(Database database, string sql)
+public SelectStatement(IDatabase database, string sql)
 ```
 
 ## See Also
 
-* class [Database](../Database.md)
+* interface [IDatabase](../IDatabase.md)
 * class [SelectStatement](../SelectStatement.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

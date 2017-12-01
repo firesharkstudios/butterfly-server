@@ -13,7 +13,7 @@ namespace Butterfly.Examples {
             logger.Debug($"Setup():apiPathPrefix={apiPathPrefix},channelPathPrefix={channelPathPrefix}");
 
             // Setup database
-            Butterfly.Database.Database database = new Butterfly.Database.Memory.MemoryDatabase();
+            var database = new Butterfly.Database.Memory.MemoryDatabase();
             database.CreateFromTextAsync(@"CREATE TABLE chat_message (
 	            id INT NOT NULL AUTO_INCREMENT,
 	            user_name VARCHAR(40) NOT NULL,

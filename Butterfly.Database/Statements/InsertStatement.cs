@@ -41,7 +41,7 @@ namespace Butterfly.Database {
         /// <param name="database"></param>
         /// <param name="sourceSql">Can be a table name or full SQL. Full SQL can use @@names and @@values tokens to retrieve values from the record parameter.</param>
         /// <param name="sourceParams"></param>
-        public InsertStatement(Database database, string sql) {
+        public InsertStatement(IDatabase database, string sql) {
             this.SetSql(sql, "INSERT INTO @@tableName (@@names) VALUES (@@values)");
 
             // Confirm the sql is valid

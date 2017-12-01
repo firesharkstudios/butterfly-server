@@ -105,8 +105,8 @@ namespace Butterfly.Database.Dynamic {
                     }
                     break;
                 case DataEventType.Update:
-                    var preCommitKeyValues = preCommitImpactedRecords.Select(x => Database.GetKeyValue(this.keyFieldNames, x)).ToArray();
-                    var postCommitKeyValues = postCommitImpactedRecords.Select(x => Database.GetKeyValue(this.keyFieldNames, x)).ToArray();
+                    var preCommitKeyValues = preCommitImpactedRecords.Select(x => BaseDatabase.GetKeyValue(this.keyFieldNames, x)).ToArray();
+                    var postCommitKeyValues = postCommitImpactedRecords.Select(x => BaseDatabase.GetKeyValue(this.keyFieldNames, x)).ToArray();
 
                     // Find updates and deletes
                     for (int i=0; i<preCommitKeyValues.Length; i++) {
@@ -209,7 +209,7 @@ namespace Butterfly.Database.Dynamic {
                     case DataEventType.Initial:
                     case DataEventType.Insert:
                     case DataEventType.Update: {
-                            object keyValue = Database.GetKeyValue(keyFieldNames, dataChange.record);
+                            object keyValue = BaseDatabase.GetKeyValue(keyFieldNames, dataChange.record);
                             object newValue = dataChange.record[this.fieldName];
                             if (!this.valueByKeyValue.TryGetValue(keyValue, out object existingValue) || existingValue != newValue) {
                                 changed = true;
@@ -220,7 +220,7 @@ namespace Butterfly.Database.Dynamic {
                             break;
                         }
                     case DataEventType.Delete: {
-                            object keyValue = Database.GetKeyValue(keyFieldNames, dataChange.record);
+                            object keyValue = BaseDatabase.GetKeyValue(keyFieldNames, dataChange.record);
                             changed = this.valueByKeyValue.Remove(keyValue);
                             break;
                         }

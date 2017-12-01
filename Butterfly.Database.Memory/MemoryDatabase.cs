@@ -28,7 +28,7 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database.Memory {
 
-    public class MemoryDatabase : Database {
+    public class MemoryDatabase : BaseDatabase {
 
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 

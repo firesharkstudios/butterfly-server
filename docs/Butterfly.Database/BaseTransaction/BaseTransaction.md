@@ -1,12 +1,12 @@
 # BaseTransaction constructor
 
 ```csharp
-public BaseTransaction(Database database)
+public BaseTransaction(BaseDatabase database)
 ```
 
 ## See Also
 
-* class [Database](../Database.md)
+* class [BaseDatabase](../BaseDatabase.md)
 * class [BaseTransaction](../BaseTransaction.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

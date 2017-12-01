@@ -1,7 +1,7 @@
 # PostgresDatabase class
 
 ```csharp
-public class PostgresDatabase : Database
+public class PostgresDatabase : BaseDatabase
 ```
 
 ## Public Members

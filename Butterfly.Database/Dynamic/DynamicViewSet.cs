@@ -44,14 +44,14 @@ namespace Butterfly.Database.Dynamic {
 
         protected readonly List<IDisposable> disposables = new List<IDisposable>();
 
-        public DynamicViewSet(Database database, Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null) {
+        public DynamicViewSet(IDatabase database, Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null) {
             this.Id = Guid.NewGuid().ToString();
             this.Database = database;
             this.listener = listener;
             this.listenerDataEventFilter = listenerDataEventFilter;
         }
 
-        public DynamicViewSet(Database database, Func<DataEventTransaction, Task> asyncListener, Func<DataEvent, bool> listenerDataEventFilter = null) {
+        public DynamicViewSet(IDatabase database, Func<DataEventTransaction, Task> asyncListener, Func<DataEvent, bool> listenerDataEventFilter = null) {
             this.Id = Guid.NewGuid().ToString();
             this.Database = database;
             this.asyncListener = asyncListener;
@@ -63,7 +63,7 @@ namespace Butterfly.Database.Dynamic {
             protected set;
         }
 
-        public Database Database {
+        public IDatabase Database {
             get;
             protected set;
         }
@@ -95,8 +95,8 @@ namespace Butterfly.Database.Dynamic {
             DataEvent[] dataEvents = await this.RequeryDynamicViewsIfDirtyAsync(force: true);
             await this.SendToListenerAsync(new DataEventTransaction(DateTime.Now, dataEvents));
 
-            this.disposables.Add(this.Database.AddUncommittedTransactionListener(this.ProcessUncommittedDataEventTransactionAsync));
-            this.disposables.Add(this.Database.AddCommittedTransactionListener(this.ProcessCommittedDataEventTransactionAsync));
+            this.disposables.Add(this.Database.OnNewUncommittedTransaction(this.ProcessUncommittedDataEventTransactionAsync));
+            this.disposables.Add(this.Database.OnNewCommittedTransaction(this.ProcessCommittedDataEventTransactionAsync));
             Task backgroundTask = Task.Run(this.RunAsync);
 
             return this;

@@ -1,12 +1,12 @@
 # UpdateStatement constructor
 
 ```csharp
-public UpdateStatement(Database database, string sql)
+public UpdateStatement(IDatabase database, string sql)
 ```
 
 ## See Also
 
-* class [Database](../Database.md)
+* interface [IDatabase](../IDatabase.md)
 * class [UpdateStatement](../UpdateStatement.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 
