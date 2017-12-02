@@ -16,13 +16,14 @@ Example C# code running on a server...
 // Create an EmbedIO web server to use as the implementation for our ChannelServer and WebApiServer
 var embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer("http://localhost:8080/"));
 
-// Create a channelServer allowing the server to push data to clients
+// Create a channelServer allowing pushing data to clients (this implementation wraps the EmbedIO web server)
 var channelServer = new EmbedIOChannelServer(embedIOWebServer);
 
-// Create a webApiServer (allows the server to receive RESTful API requests)
+// Create a webApiServer allowing receiving RESTful API requests (this implementation wraps the EmbedIO web server)
 var webApiServer = new EmbedIOWebApiServer(embedIOWebServer);
 
-// Create a database (allows doing INSERTs, UPDATEs, and DELETEs while receiving data change events)
+// Create a database allowing executing INSERTs, UPDATEs, and DELETEs while receiving data change events
+// (or use a MemoryDatabase, PostgresDatabase, SQLiteDatabase, etc)
 var database = new MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=test");
 
 // Listen for clients creating new channels
@@ -88,9 +89,23 @@ There are three key packages to the Butterfly Framework...
  
 - [Butterfly.Channel](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel) - Allows clients to create new channels to the server and allows the server to push messages to connected clients.
 
-- [Butterfly.WebApi](https://firesharkstudios.github.io/Butterfly/Butterfly.WebApi) - Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.
+- [Butterfly.WebApi](https://firesharkstudios.github.io/Butterfly/Butterfly.WebApi) - Allows receiving API requests via HTTP (inspired by Express JS) by wrapping existing C# web servers.
 
 There are no interdependencies between the packages. Use any subset of the packages you wish.
+
+## App Design
+
+#### Client Side
+- Use all static HTML, Javascript, and CSS files (no templating needed)
+- Perform actions by calling a RESTful Api on a `WebApiServer`
+- Create and maintain a `Channel` to a `ChannelServer` to receive data
+- Integrate with popular data binding libraries (Vue.js, Angular, React, etc) to auto update HTML as data changes
+
+#### Server Side 
+- Define the synchronized data each client receives by creating `DynamicViews` on a `Database` using a familiar SELECT syntax
+- Define the RESTful API of the `WebApiServer` using an Express JS like syntax
+- Integrate with various .NET web servers (EmbedIO, RedHttpServer, etc)
+- Integrate with popular databases (MySQL, Postgres, SQLite, etc)
 
 ## Status
 
