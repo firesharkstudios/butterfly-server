@@ -69,17 +69,17 @@ let channelClient = new WebSocketChannelClient({
 channelClient.start();
 ```
 
-Running the server above would cause a "Hello World" record to be inserted into the database and replicated to a client that echoes this data event to the console.
+Running the server code above would cause a "Hello World" record to be inserted into the database and replicated to a client that echoes this data event to the console.
 
-In more complex scenarios, you would define all the DynamicViews that a given client should see and let the framework handle synchronizing the data to the client.  Web clients can easily be integrated with Vue.js, Angular, React, etc to automatically update the web UI as the data changes.
+In more complex scenarios, you would define all the `DynamicViews` that a given client should see and let the framework handle synchronizing the data to the client.  Web clients can easily be integrated with Vue.js, Angular, React, etc to automatically update the web UI as the data changes.
 
 ## Demos
 
-- [Simple Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/simple-chat/index.vue.html)
+- [Simple Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/simple-chat/index.vue.html) - [Server Code](https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Examples/SimpleChatExample.cs), [Client Code](https://github.com/firesharkstudios/Butterfly/tree/master/Butterfly.Client.Web/examples/simple-chat)
 
-- [Simple Chat (Using Angular)](http://examples.butterflyframework.io/examples/simple-chat/index.angular.html)
+- [Simple Chat (Using Angular)](http://examples.butterflyframework.io/examples/simple-chat/index.angular.html) - [Server Code](https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Examples/SimpleChatExample.cs), [Client Code](https://github.com/firesharkstudios/Butterfly/tree/master/Butterfly.Client.Web/examples/simple-chat)
 
-- [Full Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/full-chat/index.vue.html)
+- [Full Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/full-chat/index.vue.html) - [Server Code](https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Examples/FullChatExample.cs), [Client Code](https://github.com/firesharkstudios/Butterfly/tree/master/Butterfly.Client.Web/examples/full-chat)
 
 ## Packages
 
