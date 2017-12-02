@@ -1,12 +1,14 @@
 # IDatabase.DeleteAndCommitAsync method
 
+Executes the DELETE statement as a single transaction (the DELETE statement may contain vars like @name specified in *vars*)
+
 ```csharp
-public Task<int> DeleteAndCommitAsync(string sql, object vars)
+public Task<int> DeleteAndCommitAsync(string deleteStatement, object vars)
 ```
 
 | parameter | description |
 | --- | --- |
-| sql |  |
+| deleteStatement |  |
 | vars |  |
 
 ## See Also

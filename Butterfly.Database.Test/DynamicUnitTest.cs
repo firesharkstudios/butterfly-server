@@ -55,9 +55,9 @@ namespace Butterfly.Database.Test {
 
         public async Task TestDatabase(BaseDatabase database) {
             database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Database.Test.db.sql").Wait();
-            database.SetDefaultValue("id", () => Guid.NewGuid().ToString(), "employee");
-            database.SetDefaultValue("created_at", () => DateTime.Now);
-            database.SetDefaultValue("updated_at", () => DateTime.Now);
+            database.SetInsertDefaultValue("id", () => Guid.NewGuid().ToString(), "employee");
+            database.SetInsertDefaultValue("created_at", () => DateTime.Now);
+            database.SetInsertDefaultValue("updated_at", () => DateTime.Now);
 
             await this.TruncateData(database);
             (object salesDepartmentId, object hrDepartmentId, object customerServiceDepartmentId) = await this.InsertBasicData(database);

@@ -103,14 +103,8 @@ namespace Butterfly.Database {
         protected readonly List<Action<DataEventTransaction>> uncommittedTransactionListeners = new List<Action<DataEventTransaction>>();
         public IDisposable OnNewUncommittedTransaction(Action<DataEventTransaction> listener) => new ListItemDisposable<Action<DataEventTransaction>>(uncommittedTransactionListeners, listener);
 
-        //protected readonly List<Func<DataEventTransaction, Task>> asyncUncommittedTransactionListeners = new List<Func<DataEventTransaction, Task>>();
-        //public IDisposable OnNewUncommittedTransaction(Func<DataEventTransaction, Task> listener) => new ListItemDisposable<Func<DataEventTransaction, Task>>(asyncUncommittedTransactionListeners, listener);
-
         protected readonly List<Action<DataEventTransaction>> committedTransactionListeners = new List<Action<DataEventTransaction>>();
         public IDisposable OnNewCommittedTransaction(Action<DataEventTransaction> listener) => new ListItemDisposable<Action<DataEventTransaction>>(committedTransactionListeners, listener);
-
-        //protected readonly List<Func<DataEventTransaction, Task>> asyncCommittedTransactionListeners = new List<Func<DataEventTransaction, Task>>();
-        //public IDisposable OnNewCommittedTransaction(Func<DataEventTransaction, Task> listener) => new ListItemDisposable<Func<DataEventTransaction, Task>>(asyncCommittedTransactionListeners, listener);
 
         internal async Task ProcessDataEventTransaction(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
             List<Task> tasks = new List<Task>();
@@ -120,12 +114,6 @@ namespace Butterfly.Database {
                     foreach (var listener in this.uncommittedTransactionListeners.ToArray()) {
                         listener(dataEventTransaction);
                     }
-                    /*
-                    // Use ToArray() to avoid the collection being modified during the loop
-                    foreach (var listener in this.asyncUncommittedTransactionListeners.ToArray()) {
-                        tasks.Add(listener(dataEventTransaction));
-                    }
-                    */
                     await Task.WhenAll(tasks);
                     break;
                 case TransactionState.Committed:
@@ -133,12 +121,6 @@ namespace Butterfly.Database {
                     foreach (var listener in this.committedTransactionListeners.ToArray()) {
                         listener(dataEventTransaction);
                     }
-                    /*
-                    // Use ToArray() to avoid the collection being modified during the loop
-                    foreach (var listener in this.asyncCommittedTransactionListeners.ToArray()) {
-                        tasks.Add(listener(dataEventTransaction));
-                    }
-                    */
                     await Task.WhenAll(tasks);
                     break;
             }
@@ -150,10 +132,6 @@ namespace Butterfly.Database {
             return new DataEventTransaction(DateTime.Now, initialDataEvents);
         }
 
-        /// <summary>
-        /// Executes the select statement of the DynamicQuery and returns a sequence of DataChange events starting an InitialBegin event, then an Insert event for each row, and then an InitialEnd event.
-        /// </summary>
-        /// <returns></returns>
         public async Task<DataEvent[]> GetInitialDataEventsAsync(string dataEventName, string[] keyFieldNames, SelectStatement selectStatement, dynamic statementParams = null) {
             logger.Debug($"GetInitialDataEvents():sql={selectStatement.Sql}");
 
@@ -242,7 +220,7 @@ namespace Butterfly.Database {
         protected abstract ITransaction CreateTransaction();
 
         protected readonly Dictionary<string, Func<object>> getDefaultValueByFieldName = new Dictionary<string, Func<object>>();
-        public void SetDefaultValue(string fieldName, Func<object> getDefaultValue, string tableName = null) {
+        public void SetInsertDefaultValue(string fieldName, Func<object> getDefaultValue, string tableName = null) {
             if (tableName == null) {
                 this.getDefaultValueByFieldName[fieldName] = getDefaultValue;
             }
@@ -324,23 +302,23 @@ namespace Butterfly.Database {
             return (type, maxLength);
         }
 
-        public DynamicViewSet CreateDynamicViewSet(Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null) {
-            return new DynamicViewSet(this, listener, listenerDataEventFilter);
+        public DynamicViewSet CreateDynamicViewSet(Action<DataEventTransaction> listener) {
+            return new DynamicViewSet(this, listener);
         }
 
-        public DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> asyncListener, Func<DataEvent, bool> listenerDataEventFilter = null) {
-            return new DynamicViewSet(this, asyncListener, listenerDataEventFilter);
+        public DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> asyncListener) {
+            return new DynamicViewSet(this, asyncListener);
         }
 
-        public async Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Action<DataEventTransaction> listener, dynamic values = null, string name = null, string[] keyFieldNames = null, Func<DataEvent, bool> listenerDataEventFilter = null) {
-            var dynamicViewSet = this.CreateDynamicViewSet(listener, listenerDataEventFilter);
+        public async Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Action<DataEventTransaction> listener, dynamic values = null, string name = null, string[] keyFieldNames = null) {
+            var dynamicViewSet = this.CreateDynamicViewSet(listener);
             dynamicViewSet.CreateDynamicView(sql, values, name, keyFieldNames);
             await dynamicViewSet.StartAsync();
             return dynamicViewSet;
         }
 
-        public async Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Func<DataEventTransaction, Task> asyncListener, dynamic values = null, string name = null, string[] keyFieldNames = null, Func<DataEvent, bool> listenerDataEventFilter = null) {
-            var dynamicViewSet = this.CreateDynamicViewSet(asyncListener, listenerDataEventFilter);
+        public async Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Func<DataEventTransaction, Task> asyncListener, dynamic values = null, string name = null, string[] keyFieldNames = null) {
+            var dynamicViewSet = this.CreateDynamicViewSet(asyncListener);
             dynamicViewSet.CreateDynamicView(sql, values, name, keyFieldNames);
             await dynamicViewSet.StartAsync();
             return dynamicViewSet;

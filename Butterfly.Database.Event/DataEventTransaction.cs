@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Butterfly.Database.Event {
     public enum TransactionState {
@@ -48,6 +49,10 @@ namespace Butterfly.Database.Event {
 
         public override string ToString() {
             return $"{{dateTime={dateTime},dataEvents={string.Join(";", (object[])dataEvents)}}}";
+        }
+
+        public static DataEventTransaction FilterDataEvents(DataEventTransaction dataEventTransaction, Func<DataEvent, bool> dataEventFilter) {
+            return new DataEventTransaction(dataEventTransaction.dateTime, dataEventTransaction.dataEvents.Where(dataEventFilter).ToArray());
         }
     }
 }

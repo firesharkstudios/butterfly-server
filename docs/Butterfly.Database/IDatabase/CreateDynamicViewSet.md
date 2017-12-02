@@ -1,13 +1,14 @@
 # IDatabase.CreateDynamicViewSet method (1 of 2)
 
+Allows creating a set of [`DynamicView`](../../Butterfly.Database.Dynamic/DynamicView.md) instances that publish a single DataEventTransaction instance with initial data and new DataEventTransaction instances when data changes. The DataEventTransaction instances are published to the lambda passed as the *listener*.
+
 ```csharp
-public DynamicViewSet CreateDynamicViewSet(Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null)
+public DynamicViewSet CreateDynamicViewSet(Action<DataEventTransaction> listener)
 ```
 
 | parameter | description |
 | --- | --- |
 | listener |  |
-| listenerDataEventFilter |  |
 
 ## See Also
 
@@ -19,14 +20,15 @@ public DynamicViewSet CreateDynamicViewSet(Action<DataEventTransaction> listener
 
 # IDatabase.CreateDynamicViewSet method (2 of 2)
 
+Allows creating a set of [`DynamicView`](../../Butterfly.Database.Dynamic/DynamicView.md) instances that publish a single DataEventTransaction instance with initial data and new DataEventTransaction instances when data changes. The DataEventTransaction instances are published to the lambda passed as the *listener*.
+
 ```csharp
-public DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> asyncListener, Func<DataEvent, bool> listenerDataEventFilter = null)
+public DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> asyncListener)
 ```
 
 | parameter | description |
 | --- | --- |
 | asyncListener |  |
-| listenerDataEventFilter |  |
 
 ## See Also
 

@@ -2,7 +2,7 @@
 
 ```csharp
 public Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Action<DataEventTransaction> listener, 
-    object values = null, string name = null, string[] keyFieldNames = null, Func<DataEvent, bool> listenerDataEventFilter = null)
+    object values = null, string name = null, string[] keyFieldNames = null)
 ```
 
 ## See Also
@@ -17,8 +17,7 @@ public Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Action<DataEve
 
 ```csharp
 public Task<DynamicViewSet> CreateAndStartDynamicView(string sql, 
-    Func<DataEventTransaction, Task> asyncListener, object values = null, string name = null, 
-    string[] keyFieldNames = null, Func<DataEvent, bool> listenerDataEventFilter = null)
+    Func<DataEventTransaction, Task> asyncListener, object values = null, string name = null, string[] keyFieldNames = null)
 ```
 
 ## See Also

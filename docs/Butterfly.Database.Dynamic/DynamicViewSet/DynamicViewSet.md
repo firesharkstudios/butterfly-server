@@ -1,7 +1,7 @@
 # DynamicViewSet constructor (1 of 2)
 
 ```csharp
-public DynamicViewSet(BaseDatabase database, Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null)
+public DynamicViewSet(BaseDatabase database, Action<DataEventTransaction> listener)
 ```
 
 ## See Also
@@ -15,7 +15,7 @@ public DynamicViewSet(BaseDatabase database, Action<DataEventTransaction> listen
 # DynamicViewSet constructor (2 of 2)
 
 ```csharp
-public DynamicViewSet(BaseDatabase database, Func<DataEventTransaction, Task> asyncListener, Func<DataEvent, bool> listenerDataEventFilter = null)
+public DynamicViewSet(BaseDatabase database, Func<DataEventTransaction, Task> asyncListener)
 ```
 
 ## See Also

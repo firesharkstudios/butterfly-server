@@ -32,7 +32,6 @@ namespace Butterfly.Database.Dynamic {
     public class DynamicViewSet : IDisposable {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected readonly Func<DataEvent, bool> listenerDataEventFilter;
         protected readonly Action<DataEventTransaction> listener;
         protected readonly Func<DataEventTransaction, Task> asyncListener;
 
@@ -44,18 +43,16 @@ namespace Butterfly.Database.Dynamic {
 
         protected readonly List<IDisposable> disposables = new List<IDisposable>();
 
-        public DynamicViewSet(BaseDatabase database, Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null) {
+        public DynamicViewSet(BaseDatabase database, Action<DataEventTransaction> listener) {
             this.Id = Guid.NewGuid().ToString();
             this.Database = database;
             this.listener = listener;
-            this.listenerDataEventFilter = listenerDataEventFilter;
         }
 
-        public DynamicViewSet(BaseDatabase database, Func<DataEventTransaction, Task> asyncListener, Func<DataEvent, bool> listenerDataEventFilter = null) {
+        public DynamicViewSet(BaseDatabase database, Func<DataEventTransaction, Task> asyncListener) {
             this.Id = Guid.NewGuid().ToString();
             this.Database = database;
             this.asyncListener = asyncListener;
-            this.listenerDataEventFilter = listenerDataEventFilter;
         }
 
         public string Id {
@@ -195,20 +192,11 @@ namespace Butterfly.Database.Dynamic {
         }
 
         protected async Task SendToListenerAsync(DataEventTransaction dataEventTransaction) {
-            DataEventTransaction newDataEventTransaction;
-            if (this.listenerDataEventFilter!=null) {
-                var newDataEvents = dataEventTransaction.dataEvents.Where(this.listenerDataEventFilter).ToArray();
-                newDataEventTransaction = new DataEventTransaction(dataEventTransaction.dateTime, newDataEvents);
-            }
-            else {
-                newDataEventTransaction = dataEventTransaction;
-            }
-
             if (this.listener != null) {
-                this.listener(newDataEventTransaction);
+                this.listener(dataEventTransaction);
             }
             if (this.asyncListener != null) {
-                await asyncListener(newDataEventTransaction);
+                await asyncListener(dataEventTransaction);
             }
         }
 

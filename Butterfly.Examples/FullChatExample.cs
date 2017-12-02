@@ -6,6 +6,7 @@ using NLog;
 using Butterfly.Channel;
 using Butterfly.Util;
 using Butterfly.WebApi;
+using Butterfly.Database.Event;
 
 namespace Butterfly.Examples {
     public static class FullChatExample {
@@ -17,10 +18,10 @@ namespace Butterfly.Examples {
             // Setup database (may need to execute "GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' IDENTIFIED BY 'test!123'; CREATE DATABASE butterfly_chat;")
             var database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_chat");
             database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Examples.full-chat-db.sql").Wait();
-            database.SetDefaultValue("id", () => Guid.NewGuid().ToString());
-            database.SetDefaultValue("created_at", () => DateTime.Now);
-            database.SetDefaultValue("updated_at", () => DateTime.Now);
-            database.SetDefaultValue("join_id", () => Guid.NewGuid().ToString().Substring(0, 8), "chat");
+            database.SetInsertDefaultValue("id", () => Guid.NewGuid().ToString());
+            database.SetInsertDefaultValue("created_at", () => DateTime.Now);
+            database.SetInsertDefaultValue("updated_at", () => DateTime.Now);
+            database.SetInsertDefaultValue("join_id", () => Guid.NewGuid().ToString().Substring(0, 8), "chat");
 
             // Initialize new channels created
             channelServer.OnNewChannelAsync(channelPathPrefix, async(channel) => {
@@ -32,9 +33,9 @@ namespace Butterfly.Examples {
 
                 // Create a dynamic select group that sends changes to the channel
                 var dynamicViewSet = database.CreateDynamicViewSet(
-                    listenerDataEventFilter: dataEvent => dataEvent.name != "chat_ids",
                     listener: dataEventTransaction => {
-                        channel.Queue(dataEventTransaction);
+                        var filteredDataEventTransaction = DataEventTransaction.FilterDataEvents(dataEventTransaction, dataEvent => dataEvent.name != "chat_ids");
+                        channel.Queue(filteredDataEventTransaction);
                     }
                 );
 

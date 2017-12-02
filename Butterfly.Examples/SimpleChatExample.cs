@@ -21,7 +21,7 @@ namespace Butterfly.Examples {
 	            created_at DATETIME NOT NULL,
 	            PRIMARY KEY (id)
             );").Wait();
-            database.SetDefaultValue("created_at", () => DateTime.Now);
+            database.SetInsertDefaultValue("created_at", () => DateTime.Now);
 
             // Send initial data events and subsequent data events to any new channels created
             channelServer.OnNewChannel(channelPathPrefix, channel => {

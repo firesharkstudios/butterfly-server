@@ -3,12 +3,12 @@
 Execute the SELECT statement and return the data in a DataEventTransaction
 
 ```csharp
-public Task<DataEventTransaction> GetInitialDataEventTransactionAsync(string sql, object vars = null)
+public Task<DataEventTransaction> GetInitialDataEventTransactionAsync(string selectStatement, object vars = null)
 ```
 
 | parameter | description |
 | --- | --- |
-| sql | A SELECT statement defining what data to return (can include parameters like @name) |
+| selectStatement | A SELECT statement defining what data to return (can include parameters like @name) |
 | vars | Either an anonymous type or Dictionary with the vars used in the SELECT statement |
 
 ## Return Value

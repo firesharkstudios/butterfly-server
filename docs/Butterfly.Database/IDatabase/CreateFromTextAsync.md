@@ -11,12 +11,12 @@ If the table already exists, the CREATE statement is ignored.
 Creating your database tables with this method is not required to use the rest of the Butterfly framework (you can instead just load your schema from your existing database using !:LoadSchemaAsync.
 
 ```csharp
-public Task CreateFromTextAsync(string sql)
+public Task CreateFromTextAsync(string createStatements)
 ```
 
 | parameter | description |
 | --- | --- |
-| sql |  |
+| createStatements |  |
 
 ## See Also
 

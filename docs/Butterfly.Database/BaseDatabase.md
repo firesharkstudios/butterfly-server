@@ -20,7 +20,7 @@ public abstract class BaseDatabase : IDatabase
 | [CreateFromResourceFileAsync](BaseDatabase/CreateFromResourceFileAsync.md)(…) |  |
 | [CreateFromTextAsync](BaseDatabase/CreateFromTextAsync.md)(…) |  |
 | [DeleteAndCommitAsync](BaseDatabase/DeleteAndCommitAsync.md)(…) |  |
-| [GetInitialDataEventsAsync](BaseDatabase/GetInitialDataEventsAsync.md)(…) | Executes the select statement of the DynamicQuery and returns a sequence of DataChange events starting an InitialBegin event, then an Insert event for each row, and then an InitialEnd event. |
+| [GetInitialDataEventsAsync](BaseDatabase/GetInitialDataEventsAsync.md)(…) |  |
 | [GetInitialDataEventTransactionAsync](BaseDatabase/GetInitialDataEventTransactionAsync.md)(…) |  |
 | [InsertAndCommitAsync](BaseDatabase/InsertAndCommitAsync.md)(…) |  |
 | [OnNewCommittedTransaction](BaseDatabase/OnNewCommittedTransaction.md)(…) |  |
@@ -28,7 +28,7 @@ public abstract class BaseDatabase : IDatabase
 | [SelectRowAsync](BaseDatabase/SelectRowAsync.md)(…) |  |
 | [SelectRowsAsync](BaseDatabase/SelectRowsAsync.md)(…) |  (3 methods) |
 | [SelectValue&lt;T&gt;](BaseDatabase/SelectValue.md)(…) |  |
-| [SetDefaultValue](BaseDatabase/SetDefaultValue.md)(…) |  |
+| [SetInsertDefaultValue](BaseDatabase/SetInsertDefaultValue.md)(…) |  |
 | [UpdateAndCommitAsync](BaseDatabase/UpdateAndCommitAsync.md)(…) |  |
 | static [ConvertMySqlType](BaseDatabase/ConvertMySqlType.md)(…) |  |
 | static [GetKeyValue](BaseDatabase/GetKeyValue.md)(…) |  |

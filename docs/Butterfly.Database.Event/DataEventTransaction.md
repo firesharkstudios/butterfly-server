@@ -9,6 +9,7 @@ public class DataEventTransaction
 | name | description |
 | --- | --- |
 | [DataEventTransaction](DataEventTransaction/DataEventTransaction.md)(…) |  (2 constructors) |
+| static [FilterDataEvents](DataEventTransaction/FilterDataEvents.md)(…) |  |
 | readonly [dataEvents](DataEventTransaction/dataEvents.md) |  |
 | readonly [dateTime](DataEventTransaction/dateTime.md) |  |
 | [Fetch](DataEventTransaction/Fetch.md)(…) |  |
