@@ -215,12 +215,12 @@ namespace Butterfly.Database {
         /// <summary>
         /// Convenience method which creates a <see cref="DynamicViewSet"/>, adds a single <see cref="DynamicView"/> to the <see cref="DynamicViewSet"/>, and starts the <see cref="DynamicViewSet"/>.
         /// </summary>
-        /// <param name="sql"></param>
+        /// <param name="selectStatement"></param>
         /// <param name="asyncListener"></param>
         /// <param name="values"></param>
         /// <param name="name"></param>
         /// <param name="keyFieldNames"></param>
         /// <returns></returns>
-        Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Func<DataEventTransaction, Task> asyncListener, dynamic values = null, string name = null, string[] keyFieldNames = null);
+        Task<DynamicViewSet> CreateAndStartDynamicView(string selectStatement, Func<DataEventTransaction, Task> asyncListener, dynamic values = null, string name = null, string[] keyFieldNames = null);
     }
 }
