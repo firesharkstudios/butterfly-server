@@ -103,14 +103,14 @@ namespace Butterfly.Database {
         protected readonly List<Action<DataEventTransaction>> uncommittedTransactionListeners = new List<Action<DataEventTransaction>>();
         public IDisposable OnNewUncommittedTransaction(Action<DataEventTransaction> listener) => new ListItemDisposable<Action<DataEventTransaction>>(uncommittedTransactionListeners, listener);
 
-        protected readonly List<Func<DataEventTransaction, Task>> asyncUncommittedTransactionListeners = new List<Func<DataEventTransaction, Task>>();
-        public IDisposable OnNewUncommittedTransaction(Func<DataEventTransaction, Task> listener) => new ListItemDisposable<Func<DataEventTransaction, Task>>(asyncUncommittedTransactionListeners, listener);
+        //protected readonly List<Func<DataEventTransaction, Task>> asyncUncommittedTransactionListeners = new List<Func<DataEventTransaction, Task>>();
+        //public IDisposable OnNewUncommittedTransaction(Func<DataEventTransaction, Task> listener) => new ListItemDisposable<Func<DataEventTransaction, Task>>(asyncUncommittedTransactionListeners, listener);
 
         protected readonly List<Action<DataEventTransaction>> committedTransactionListeners = new List<Action<DataEventTransaction>>();
         public IDisposable OnNewCommittedTransaction(Action<DataEventTransaction> listener) => new ListItemDisposable<Action<DataEventTransaction>>(committedTransactionListeners, listener);
 
-        protected readonly List<Func<DataEventTransaction, Task>> asyncCommittedTransactionListeners = new List<Func<DataEventTransaction, Task>>();
-        public IDisposable OnNewCommittedTransaction(Func<DataEventTransaction, Task> listener) => new ListItemDisposable<Func<DataEventTransaction, Task>>(asyncCommittedTransactionListeners, listener);
+        //protected readonly List<Func<DataEventTransaction, Task>> asyncCommittedTransactionListeners = new List<Func<DataEventTransaction, Task>>();
+        //public IDisposable OnNewCommittedTransaction(Func<DataEventTransaction, Task> listener) => new ListItemDisposable<Func<DataEventTransaction, Task>>(asyncCommittedTransactionListeners, listener);
 
         internal async Task ProcessDataEventTransaction(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
             List<Task> tasks = new List<Task>();
@@ -120,10 +120,12 @@ namespace Butterfly.Database {
                     foreach (var listener in this.uncommittedTransactionListeners.ToArray()) {
                         listener(dataEventTransaction);
                     }
+                    /*
                     // Use ToArray() to avoid the collection being modified during the loop
                     foreach (var listener in this.asyncUncommittedTransactionListeners.ToArray()) {
                         tasks.Add(listener(dataEventTransaction));
                     }
+                    */
                     await Task.WhenAll(tasks);
                     break;
                 case TransactionState.Committed:
@@ -131,10 +133,12 @@ namespace Butterfly.Database {
                     foreach (var listener in this.committedTransactionListeners.ToArray()) {
                         listener(dataEventTransaction);
                     }
+                    /*
                     // Use ToArray() to avoid the collection being modified during the loop
                     foreach (var listener in this.asyncCommittedTransactionListeners.ToArray()) {
                         tasks.Add(listener(dataEventTransaction));
                     }
+                    */
                     await Task.WhenAll(tasks);
                     break;
             }

@@ -31,29 +31,29 @@ namespace Butterfly.Database.Test {
     public class DynamicUnitTest {
         [TestMethod]
         public async Task DynamicMemoryDatabase() {
-            IDatabase database = new Butterfly.Database.Memory.MemoryDatabase();
+            BaseDatabase database = new Butterfly.Database.Memory.MemoryDatabase();
             await this.TestDatabase(database);
         }
 
         [TestMethod]
         public async Task DynamicMySqlDatabase() {
-            IDatabase database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_test");
+            BaseDatabase database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_test");
             await this.TestDatabase(database);
         }
 
         [TestMethod]
         public async Task DynamicPostgresDatabase() {
-            IDatabase database = new Butterfly.Database.Postgres.PostgresDatabase("Host=localhost;Username=postgres;Password=test!123;Database=butterfly_test");
+            BaseDatabase database = new Butterfly.Database.Postgres.PostgresDatabase("Host=localhost;Username=postgres;Password=test!123;Database=butterfly_test");
             await this.TestDatabase(database);
         }
 
         [TestMethod]
         public async Task DynamicSQLiteDatabase() {
-            IDatabase database = new Butterfly.Database.SQLite.SQLiteDatabase("butterfly_test.sqlite");
+            BaseDatabase database = new Butterfly.Database.SQLite.SQLiteDatabase("butterfly_test.sqlite");
             await this.TestDatabase(database);
         }
 
-        public async Task TestDatabase(IDatabase database) {
+        public async Task TestDatabase(BaseDatabase database) {
             database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Database.Test.db.sql").Wait();
             database.SetDefaultValue("id", () => Guid.NewGuid().ToString(), "employee");
             database.SetDefaultValue("created_at", () => DateTime.Now);
@@ -65,7 +65,7 @@ namespace Butterfly.Database.Test {
             await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId,"SELECT id, name FROM employee", "department_id", -1, 0);
         }
 
-        protected async Task TruncateData(IDatabase database) {
+        protected async Task TruncateData(BaseDatabase database) {
             using (ITransaction transaction = await database.BeginTransaction()) {
                 foreach (var tableName in database.Tables.Keys) {
                     await transaction.TruncateAsync(tableName);
@@ -74,7 +74,7 @@ namespace Butterfly.Database.Test {
             }
         }
 
-        protected async Task<(object, object, object)> InsertBasicData(IDatabase database) {
+        protected async Task<(object, object, object)> InsertBasicData(BaseDatabase database) {
             object salesDepartmentId;
             object hrDepartmentId;
             object customerServiceDepartmentId;
@@ -144,7 +144,7 @@ namespace Butterfly.Database.Test {
             return (salesDepartmentId, hrDepartmentId, customerServiceDepartmentId);
         }
 
-        public async Task TestInsertUpdateDeleteEvents(IDatabase database, object salesDepartmentId, string selectSourceSql, string updateField, object updateValue, int updateCount) {
+        public async Task TestInsertUpdateDeleteEvents(BaseDatabase database, object salesDepartmentId, string selectSourceSql, string updateField, object updateValue, int updateCount) {
             List<DataEventTransaction> dataEventTransactionCollector = new List<DataEventTransaction>();
             using (DynamicViewSet dynamicViewSet = new DynamicViewSet(database, listener: dataEventTransaction => {
                 dataEventTransactionCollector.Add(dataEventTransaction);
