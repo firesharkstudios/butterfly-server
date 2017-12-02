@@ -1,5 +1,7 @@
 # IDatabase.Tables property
 
+Dictionary of tables keyed by name
+
 ```csharp
 public Dictionary<string, Table> Tables { get; }
 ```

@@ -4,6 +4,11 @@
 public DynamicViewSet CreateDynamicViewSet(Action<DataEventTransaction> listener, Func<DataEvent, bool> listenerDataEventFilter = null)
 ```
 
+| parameter | description |
+| --- | --- |
+| listener |  |
+| listenerDataEventFilter |  |
+
 ## See Also
 
 * class [DynamicViewSet](../../Butterfly.Database.Dynamic/DynamicViewSet.md)
@@ -17,6 +22,11 @@ public DynamicViewSet CreateDynamicViewSet(Action<DataEventTransaction> listener
 ```csharp
 public DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> asyncListener, Func<DataEvent, bool> listenerDataEventFilter = null)
 ```
+
+| parameter | description |
+| --- | --- |
+| asyncListener |  |
+| listenerDataEventFilter |  |
 
 ## See Also
 

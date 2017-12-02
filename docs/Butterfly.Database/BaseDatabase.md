@@ -15,7 +15,7 @@ public abstract class BaseDatabase : IDatabase
 | [Tables](BaseDatabase/Tables.md) { get; } |  |
 | [ApplyDefaultValues](BaseDatabase/ApplyDefaultValues.md)(…) |  |
 | [BeginTransaction](BaseDatabase/BeginTransaction.md)() |  |
-| [CreateDynamicView](BaseDatabase/CreateDynamicView.md)(…) |  (2 methods) |
+| [CreateAndStartDynamicView](BaseDatabase/CreateAndStartDynamicView.md)(…) |  (2 methods) |
 | [CreateDynamicViewSet](BaseDatabase/CreateDynamicViewSet.md)(…) |  (2 methods) |
 | [CreateFromResourceFileAsync](BaseDatabase/CreateFromResourceFileAsync.md)(…) |  |
 | [CreateFromTextAsync](BaseDatabase/CreateFromTextAsync.md)(…) |  |
@@ -23,8 +23,8 @@ public abstract class BaseDatabase : IDatabase
 | [GetInitialDataEventsAsync](BaseDatabase/GetInitialDataEventsAsync.md)(…) | Executes the select statement of the DynamicQuery and returns a sequence of DataChange events starting an InitialBegin event, then an Insert event for each row, and then an InitialEnd event. |
 | [GetInitialDataEventTransactionAsync](BaseDatabase/GetInitialDataEventTransactionAsync.md)(…) |  |
 | [InsertAndCommitAsync](BaseDatabase/InsertAndCommitAsync.md)(…) |  |
-| [OnNewCommittedTransaction](BaseDatabase/OnNewCommittedTransaction.md)(…) |  (2 methods) |
-| [OnNewUncommittedTransaction](BaseDatabase/OnNewUncommittedTransaction.md)(…) |  (2 methods) |
+| [OnNewCommittedTransaction](BaseDatabase/OnNewCommittedTransaction.md)(…) |  |
+| [OnNewUncommittedTransaction](BaseDatabase/OnNewUncommittedTransaction.md)(…) |  |
 | [SelectRowAsync](BaseDatabase/SelectRowAsync.md)(…) |  |
 | [SelectRowsAsync](BaseDatabase/SelectRowsAsync.md)(…) |  (3 methods) |
 | [SelectValue&lt;T&gt;](BaseDatabase/SelectValue.md)(…) |  |

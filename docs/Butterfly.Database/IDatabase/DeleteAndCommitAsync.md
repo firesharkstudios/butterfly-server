@@ -1,8 +1,13 @@
 # IDatabase.DeleteAndCommitAsync method
 
 ```csharp
-public Task<int> DeleteAndCommitAsync(string sql, object whereParams)
+public Task<int> DeleteAndCommitAsync(string sql, object vars)
 ```
+
+| parameter | description |
+| --- | --- |
+| sql |  |
+| vars |  |
 
 ## See Also
 

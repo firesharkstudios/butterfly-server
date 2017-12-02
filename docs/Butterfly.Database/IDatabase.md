@@ -68,22 +68,21 @@ public interface IDatabase
 
 | name | description |
 | --- | --- |
-| [ConnectionString](IDatabase/ConnectionString.md) { get; } |  |
-| [Tables](IDatabase/Tables.md) { get; } |  |
+| [Tables](IDatabase/Tables.md) { get; } | Dictionary of tables keyed by name |
 | [BeginTransaction](IDatabase/BeginTransaction.md)() |  |
-| [CreateDynamicView](IDatabase/CreateDynamicView.md)(…) |  (2 methods) |
+| [CreateAndStartDynamicView](IDatabase/CreateAndStartDynamicView.md)(…) |  (2 methods) |
 | [CreateDynamicViewSet](IDatabase/CreateDynamicViewSet.md)(…) |  (2 methods) |
 | [CreateFromResourceFileAsync](IDatabase/CreateFromResourceFileAsync.md)(…) | Creates database tables from an embedded resource file by internally calling CreateFromTextAsync with the contents of the embedded resource file ([`CreateFromTextAsync`](IDatabase/CreateFromTextAsync.md). |
 | [CreateFromTextAsync](IDatabase/CreateFromTextAsync.md)(…) | Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate). |
 | [DeleteAndCommitAsync](IDatabase/DeleteAndCommitAsync.md)(…) |  |
-| [GetInitialDataEventsAsync](IDatabase/GetInitialDataEventsAsync.md)(…) | Executes the select statement of the DynamicQuery and returns a sequence of DataChange events starting an InitialBegin event, then an Insert event for each row, and then an InitialEnd event. |
-| [GetInitialDataEventTransactionAsync](IDatabase/GetInitialDataEventTransactionAsync.md)(…) |  |
+| [GetInitialDataEventsAsync](IDatabase/GetInitialDataEventsAsync.md)(…) | Executes the SELECT statement of the DynamicQuery and returns a sequence of DataChange events starting an InitialBegin event, then an Insert event for each row, and then an InitialEnd event. |
+| [GetInitialDataEventTransactionAsync](IDatabase/GetInitialDataEventTransactionAsync.md)(…) | Execute the SELECT statement and return the data in a DataEventTransaction |
 | [InsertAndCommitAsync](IDatabase/InsertAndCommitAsync.md)(…) |  |
-| [OnNewCommittedTransaction](IDatabase/OnNewCommittedTransaction.md)(…) |  (2 methods) |
-| [OnNewUncommittedTransaction](IDatabase/OnNewUncommittedTransaction.md)(…) |  (2 methods) |
+| [OnNewCommittedTransaction](IDatabase/OnNewCommittedTransaction.md)(…) | Adds a listener that is invoked when there is a new committed transaction |
+| [OnNewUncommittedTransaction](IDatabase/OnNewUncommittedTransaction.md)(…) | Adds a listener that is invoked when there is a new uncommitted transaction |
 | [SelectRowAsync](IDatabase/SelectRowAsync.md)(…) |  |
-| [SelectRowsAsync](IDatabase/SelectRowsAsync.md)(…) |  (3 methods) |
-| [SelectValue&lt;T&gt;](IDatabase/SelectValue.md)(…) |  |
+| [SelectRowsAsync](IDatabase/SelectRowsAsync.md)(…) |  |
+| [SelectValue&lt;T&gt;](IDatabase/SelectValue.md)(…) | Executes the SELECT statement and return the value of the first column of the first row (the SELECT statement may contain vars like @name specified in the vars parameter) |
 | [SetDefaultValue](IDatabase/SetDefaultValue.md)(…) |  |
 | [UpdateAndCommitAsync](IDatabase/UpdateAndCommitAsync.md)(…) |  |
 

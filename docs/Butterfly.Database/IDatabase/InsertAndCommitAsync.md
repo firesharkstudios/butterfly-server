@@ -1,8 +1,14 @@
 # IDatabase.InsertAndCommitAsync method
 
 ```csharp
-public Task<object> InsertAndCommitAsync(string sql, object record, bool ignoreIfDuplicate = false)
+public Task<object> InsertAndCommitAsync(string sql, object vars, bool ignoreIfDuplicate = false)
 ```
+
+| parameter | description |
+| --- | --- |
+| sql |  |
+| vars |  |
+| ignoreIfDuplicate |  |
 
 ## See Also
 

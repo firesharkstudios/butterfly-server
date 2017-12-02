@@ -1,8 +1,13 @@
 # IDatabase.SelectRowAsync method
 
 ```csharp
-public Task<Dictionary<string, object>> SelectRowAsync(string statementSql, object statementParams = null)
+public Task<Dictionary<string, object>> SelectRowAsync(string sql, object vars = null)
 ```
+
+| parameter | description |
+| --- | --- |
+| sql |  |
+| vars |  |
 
 ## See Also
 

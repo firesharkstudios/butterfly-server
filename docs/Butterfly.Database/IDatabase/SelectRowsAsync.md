@@ -1,40 +1,16 @@
-# IDatabase.SelectRowsAsync method (1 of 3)
+# IDatabase.SelectRowsAsync method
 
 ```csharp
-public Task<Dictionary<string, object>[]> SelectRowsAsync(SelectStatement statement, object statementParams)
+public Task<Dictionary<string, object>[]> SelectRowsAsync(string sql, object vars = null)
 ```
+
+| parameter | description |
+| --- | --- |
+| sql |  |
+| vars |  |
 
 ## See Also
 
-* class [SelectStatement](../SelectStatement.md)
-* interface [IDatabase](../IDatabase.md)
-* namespace [Butterfly.Database](../../Butterfly.Database.md)
-
----
-
-# IDatabase.SelectRowsAsync method (2 of 3)
-
-```csharp
-public Task<Dictionary<string, object>[]> SelectRowsAsync(string statementSql, object statementParams = null)
-```
-
-## See Also
-
-* interface [IDatabase](../IDatabase.md)
-* namespace [Butterfly.Database](../../Butterfly.Database.md)
-
----
-
-# IDatabase.SelectRowsAsync method (3 of 3)
-
-```csharp
-public Task<Dictionary<string, object>[]> SelectRowsAsync(SelectStatement statement, object statementParams, 
-    string newAndCondition, Dictionary<string, object> newWhereParams)
-```
-
-## See Also
-
-* class [SelectStatement](../SelectStatement.md)
 * interface [IDatabase](../IDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

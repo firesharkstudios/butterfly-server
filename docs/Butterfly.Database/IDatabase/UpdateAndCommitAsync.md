@@ -1,8 +1,13 @@
 # IDatabase.UpdateAndCommitAsync method
 
 ```csharp
-public Task<int> UpdateAndCommitAsync(string sourceSql, object sourceParams)
+public Task<int> UpdateAndCommitAsync(string sql, object vars)
 ```
+
+| parameter | description |
+| --- | --- |
+| sql |  |
+| vars |  |
 
 ## See Also
 

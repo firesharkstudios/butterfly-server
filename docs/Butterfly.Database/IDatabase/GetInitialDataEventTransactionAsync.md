@@ -1,8 +1,19 @@
 # IDatabase.GetInitialDataEventTransactionAsync method
 
+Execute the SELECT statement and return the data in a DataEventTransaction
+
 ```csharp
-public Task<DataEventTransaction> GetInitialDataEventTransactionAsync(string statementSql, object statementParams = null)
+public Task<DataEventTransaction> GetInitialDataEventTransactionAsync(string sql, object vars = null)
 ```
+
+| parameter | description |
+| --- | --- |
+| sql | A SELECT statement defining what data to return (can include parameters like @name) |
+| vars | Either an anonymous type or Dictionary with the vars used in the SELECT statement |
+
+## Return Value
+
+A DataEventTransaction with the returned data represented as a sequence of DataEvent
 
 ## See Also
 

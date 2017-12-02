@@ -1,6 +1,6 @@
 # IChannelServer interface
 
-Allows clients to create new channels to the server and allows the server to push messages to a connected client.
+Allows clients to create new channels to the server and allows the server to push messages to connected clients.
 
 Initializing a channel server instance...
 

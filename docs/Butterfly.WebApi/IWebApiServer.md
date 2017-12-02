@@ -1,6 +1,6 @@
 # IWebApiServer interface
 
-Allows receiving API requests via HTTP.
+Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.
 
 Initializing a web api server instance...
 
