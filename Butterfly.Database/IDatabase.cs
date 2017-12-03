@@ -10,8 +10,8 @@ using Butterfly.Database.Dynamic;
 
 namespace Butterfly.Database {
     /// <summary>
-    /// Allows executing INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data
-    /// change events both on tables and dynamic views.<para/>
+    /// Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; 
+    /// creating dynamic views; and receiving data change events both on tables and dynamic views.<para/>
     /// 
     /// Adding records and echoing all data change events to the console...<para/>
     /// <code>
@@ -123,7 +123,14 @@ namespace Butterfly.Database {
         Task<DataEvent[]> GetInitialDataEventsAsync(string dataEventName, string[] keyFieldNames, SelectStatement selectStatement, dynamic statementParams = null);
 
         /// <summary>
-        /// Executes the SELECT statement and return the value of the first column of the first row (the SELECT statement may contain vars like @name specified in <paramref name="vars"/>)
+        /// Executes the SELECT statement and return the value of the first column of the first row (the SELECT statement may contain vars like @name specified in <paramref name="vars"/>).<para/>
+        /// 
+        /// The WHERE clause will be rewritten to valid SQL in a few cases...
+        /// - name=@name (rewritten to "name IS NULL" if @name equals null)
+        /// - name!=@name (rewritten to "name IS NOT NULL" if @name equals null)
+        /// - name=@name (rewritten to "1=2" if @name is an empty array)
+        /// - name=@name (rewritten to "name='123' if @name is a single value array)
+        /// - name=@name (rewriten to "name IN ('Jim', 'Bob') if @name is a multi value array)
         /// </summary>
         /// <typeparam name="T">The return type of the single value returned</typeparam>
         /// <param name="selectStatement">The SELECT statement to execute (may contain vars like @name specified in <paramref name="vars"/>)</param>
