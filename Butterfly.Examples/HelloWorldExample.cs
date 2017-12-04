@@ -18,8 +18,8 @@ namespace Butterfly.Examples {
 	            PRIMARY KEY (id)
             );").Wait();
 
-            // Listen for clients creating new channels (each client is expected 
-            // to create and maintain a single channel to the server)
+            // Listen for clients creating new channels to /hello-world (each client
+            // is expected to create and maintain a single channel to the server)
             channelServer.OnNewChannel(channelPathPrefix, channel => {
                 // When a channel is created, create a dynamic view on the message table
                 // and send all data events to the client over the channel
@@ -31,7 +31,7 @@ namespace Butterfly.Examples {
                 );
             });
 
-            // Listen for POST requests to /api/message
+            // Listen for POST requests to /api/hello-world/message
             webApiServer.OnPost($"{apiPathPrefix}/message", async (req, res) => {
                 // Parse the received message
                 var message = await req.ParseAsJsonAsync<dynamic>();

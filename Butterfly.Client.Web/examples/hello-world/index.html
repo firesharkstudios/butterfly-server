@@ -11,13 +11,18 @@
 
     <h2>Detailed data flow</h2>
     <ol>
-        <li>Client executes a POST request to /api/hello-world/message sending "Hello World"</li>
-        <li>Server receives the POST request and INSERTs a "Hello World" record in the database which publishes a "Hello World" INSERT data event which triggers a database listener to send "Hello World" to the client over a channel</li>
-        <li>Client receives the data event over the channel and executes alert() to display "Hello World"</li>
+        <li>Client creates a "channel" to the server (using a WebSocket in this example)</li>
+        <li>When the channel connects, client executes a POST to /api/hello-world/message on the server sending "Hello World"</li>
+        <li>When the server receives the POST to /api/hello-world/message, the server INSERTs a "Hello World" record in the database which publishes a "Hello World" INSERT data event which triggers sending "Hello World" to the client over the channel</li>
+        <li>When the client receives the data event over the channel, the client calls alert() to display the message</li>
     </ol>
 
     <h2>Background</h2>
     <p>Like many Hello World examples, this is a rather convuluted way to send "Hello World" to a server and have it echoed back. The real power in this framework is having changes automatically update multiple views of multiple clients. For example, executing an UPDATE to change a department name from "HR" to "New HR" might automatically update all clients viewing employees by department, all clients viewing a list of departments, etc.</p>
+
+    <h2>The Code</h2>
+    <p>Client: <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Client.Web/examples/hello-world/index.html">index.html</a>
+    <p>Server: <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Examples/HelloWorldExample.cs">HelloWorldExample.cs</a></p>
 
     <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
     <script src="/js/butterfly.channel.websocket.js"></script>
