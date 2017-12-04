@@ -124,13 +124,10 @@ namespace Butterfly.Database {
 
         /// <summary>
         /// Executes the SELECT statement and return the value of the first column of the first row (the SELECT statement may contain vars like @name specified in <paramref name="vars"/>).<para/>
-        /// 
-        /// The WHERE clause will be rewritten to valid SQL in a few cases...
-        /// - name=@name (rewritten to "name IS NULL" if @name equals null)
-        /// - name!=@name (rewritten to "name IS NOT NULL" if @name equals null)
-        /// - name=@name (rewritten to "1=2" if @name is an empty array)
-        /// - name=@name (rewritten to "name='123' if @name is a single value array)
-        /// - name=@name (rewriten to "name IN ('Jim', 'Bob') if @name is a multi value array)
+        /// <para/>
+        /// If a var is null then references in the WHERE clause like <code>name=@name</code> will be rewritten as <code>name IS NULL</code> and references in the WHERE clause like <code>name!=@name</code> will be rewritten as <code>name IS NOT NULL</code>.<para/>
+        /// <para/>
+        /// If a var is an array then references in the WHERE clause like <code>name=@name</code> will be rewritten as <code>1=2</code> when the array is empty, rewritten as <code>name='Bob'</code> when the array contains a single element 'Bob', and rewritten as <code>name IN ('Bob', 'Jim')</code> when the array contains elements 'Bob' and 'Jim'.<para/>
         /// </summary>
         /// <typeparam name="T">The return type of the single value returned</typeparam>
         /// <param name="selectStatement">The SELECT statement to execute (may contain vars like @name specified in <paramref name="vars"/>)</param>
