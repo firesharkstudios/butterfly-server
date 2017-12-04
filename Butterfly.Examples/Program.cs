@@ -25,8 +25,9 @@ namespace Butterfly.Examples {
             // Configure and start web server and channel server
             using (var webServer = new Butterfly.WebApi.EmbedIO.EmbedIOWebApiServer(embedIOWebServer))
             using (var channelServer = new Butterfly.Channel.EmbedIO.EmbedIOChannelServer(embedIOWebServer)) {
+                HelloWorldExample.Setup(webServer, "/api/hello-world", channelServer, "/hello-world");
+                MinimalChatExample.Setup(webServer, "/api/minimal-chat", channelServer, "/minimal-chat");
                 FullChatExample.Setup(webServer, "/api/full-chat", channelServer, "/full-chat");
-                SimpleChatExample.Setup(webServer, "/api/simple-chat", channelServer, "/simple-chat");
                 webServer.Start();
                 channelServer.Start();
 

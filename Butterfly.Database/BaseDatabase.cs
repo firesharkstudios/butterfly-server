@@ -100,11 +100,13 @@ namespace Butterfly.Database {
         protected abstract Task<Table> LoadTableSchemaAsync(string tableName);
 
         // Manage data event transaction listeners
-        protected readonly List<Action<DataEventTransaction>> uncommittedTransactionListeners = new List<Action<DataEventTransaction>>();
-        public IDisposable OnNewUncommittedTransaction(Action<DataEventTransaction> listener) => new ListItemDisposable<Action<DataEventTransaction>>(uncommittedTransactionListeners, listener);
+        protected readonly List<DataEventTransactionListener> uncommittedTransactionListeners = new List<DataEventTransactionListener>();
+        public IDisposable OnNewUncommittedTransaction(Action<DataEventTransaction> listener) => new ListItemDisposable<DataEventTransactionListener>(uncommittedTransactionListeners, new DataEventTransactionListener(listener));
+        public IDisposable OnNewUncommittedTransaction(Func<DataEventTransaction, Task> listener) => new ListItemDisposable<DataEventTransactionListener>(uncommittedTransactionListeners, new DataEventTransactionListener(listener));
 
-        protected readonly List<Action<DataEventTransaction>> committedTransactionListeners = new List<Action<DataEventTransaction>>();
-        public IDisposable OnNewCommittedTransaction(Action<DataEventTransaction> listener) => new ListItemDisposable<Action<DataEventTransaction>>(committedTransactionListeners, listener);
+        protected readonly List<DataEventTransactionListener> committedTransactionListeners = new List<DataEventTransactionListener>();
+        public IDisposable OnNewCommittedTransaction(Action<DataEventTransaction> listener) => new ListItemDisposable<DataEventTransactionListener>(committedTransactionListeners, new DataEventTransactionListener(listener));
+        public IDisposable OnNewCommittedTransaction(Func<DataEventTransaction, Task> listener) => new ListItemDisposable<DataEventTransactionListener>(committedTransactionListeners, new DataEventTransactionListener(listener));
 
         internal async Task ProcessDataEventTransaction(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
             List<Task> tasks = new List<Task>();
@@ -112,14 +114,16 @@ namespace Butterfly.Database {
                 case TransactionState.Uncommitted:
                     // Use ToArray() to avoid the collection being modified during the loop
                     foreach (var listener in this.uncommittedTransactionListeners.ToArray()) {
-                        listener(dataEventTransaction);
+                        if (listener.listener != null) listener.listener(dataEventTransaction);
+                        else await listener.listenerAsync(dataEventTransaction);
                     }
                     await Task.WhenAll(tasks);
                     break;
                 case TransactionState.Committed:
                     // Use ToArray() to avoid the collection being modified during the loop
                     foreach (var listener in this.committedTransactionListeners.ToArray()) {
-                        listener(dataEventTransaction);
+                        if (listener.listener != null) listener.listener(dataEventTransaction);
+                        else await listener.listenerAsync(dataEventTransaction);
                     }
                     await Task.WhenAll(tasks);
                     break;
@@ -313,15 +317,13 @@ namespace Butterfly.Database {
         public async Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Action<DataEventTransaction> listener, dynamic values = null, string name = null, string[] keyFieldNames = null) {
             var dynamicViewSet = this.CreateDynamicViewSet(listener);
             dynamicViewSet.CreateDynamicView(sql, values, name, keyFieldNames);
-            await dynamicViewSet.StartAsync();
-            return dynamicViewSet;
+            return await dynamicViewSet.StartAsync();
         }
 
         public async Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Func<DataEventTransaction, Task> asyncListener, dynamic values = null, string name = null, string[] keyFieldNames = null) {
             var dynamicViewSet = this.CreateDynamicViewSet(asyncListener);
             dynamicViewSet.CreateDynamicView(sql, values, name, keyFieldNames);
-            await dynamicViewSet.StartAsync();
-            return dynamicViewSet;
+            return await dynamicViewSet.StartAsync();
         }
     }
 

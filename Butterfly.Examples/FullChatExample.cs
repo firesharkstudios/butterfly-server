@@ -12,7 +12,7 @@ namespace Butterfly.Examples {
     public static class FullChatExample {
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static void Setup(IWebApiServer webServer, string apiPathPrefix, IChannelServer channelServer, string channelPathPrefix) {
+        public static void Setup(IWebApiServer webApiServer, string apiPathPrefix, IChannelServer channelServer, string channelPathPrefix) {
             logger.Debug($"Setup():apiPathPrefix={apiPathPrefix},channelPathPrefix={channelPathPrefix}");
 
             // Setup database (may need to execute "GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' IDENTIFIED BY 'test!123'; CREATE DATABASE butterfly_chat;")
@@ -99,7 +99,7 @@ namespace Butterfly.Examples {
             });
 
             // Listen for API requests to /api/profile/update
-            webServer.OnPost($"{apiPathPrefix}/profile/update", async (req, res) => {
+            webApiServer.OnPost($"{apiPathPrefix}/profile/update", async (req, res) => {
                 logger.Debug("Main():/api/profile/update");
                 var auth = req.AuthenticationHeaderValue;
                 var user = await req.ParseAsJsonAsync<dynamic>();
@@ -112,7 +112,7 @@ namespace Butterfly.Examples {
             });
 
             // Listen for API requests to /api/chat/create
-            webServer.OnPost($"{apiPathPrefix}/chat/create", async(req, res) => {
+            webApiServer.OnPost($"{apiPathPrefix}/chat/create", async(req, res) => {
                 logger.Debug("Main():/api/chat/create");
                 var auth = req.AuthenticationHeaderValue;
                 var chat = await req.ParseAsJsonAsync<dynamic>();
@@ -132,7 +132,7 @@ namespace Butterfly.Examples {
             });
 
             // Listen for API requests to /api/chat/join
-            webServer.OnPost($"{apiPathPrefix}/chat/join", async (req, res) => {
+            webApiServer.OnPost($"{apiPathPrefix}/chat/join", async (req, res) => {
                 logger.Debug("Main():/api/chat/join");
                 var auth = req.AuthenticationHeaderValue;
                 var join = await req.ParseAsJsonAsync<dynamic>();
@@ -151,7 +151,7 @@ namespace Butterfly.Examples {
             });
 
             // Listen for API requests to /api/chat/delete
-            webServer.OnPost($"{apiPathPrefix}/chat/delete", async (req, res) => {
+            webApiServer.OnPost($"{apiPathPrefix}/chat/delete", async (req, res) => {
                 logger.Debug("Main():/api/chat/delete");
                 var auth = req.AuthenticationHeaderValue;
                 var chat = await req.ParseAsJsonAsync<dynamic>();
@@ -163,7 +163,7 @@ namespace Butterfly.Examples {
             });
 
             // Listen for API requests to /api/chat/message
-            webServer.OnPost($"{apiPathPrefix}/chat/message", async(req, res) => {
+            webApiServer.OnPost($"{apiPathPrefix}/chat/message", async(req, res) => {
                 var auth = req.AuthenticationHeaderValue;
                 var chatMessage = await req.ParseAsJsonAsync<dynamic>();
 

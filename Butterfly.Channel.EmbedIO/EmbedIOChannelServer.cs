@@ -35,7 +35,8 @@ namespace Butterfly.Channel.EmbedIO {
         protected override void DoStart() {
             this.webServer.RegisterModule(new WebSocketsModule());
             foreach (var listener in this.onNewChannelListeners) {
-                this.webServer.Module<WebSocketsModule>().RegisterWebSocketsServer(listener.pathFilter, new MyWebSocketsServer(this, (channelId, path, channel) => {
+                logger.Debug($"Listening for web socket requests at {listener.path}");
+                this.webServer.Module<WebSocketsModule>().RegisterWebSocketsServer(listener.path, new MyWebSocketsServer(this, (channelId, path, channel) => {
                     this.AddAndStartChannel(channelId, path, channel);
                 }));
             }
@@ -46,9 +47,11 @@ namespace Butterfly.Channel.EmbedIO {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly IChannelServer channelServer;
+        protected readonly Action<string, string, IChannel> addAndStartChannel;
 
         public MyWebSocketsServer(IChannelServer channelServer, Action<string, string, IChannel> addAndStartChannel) {
             this.channelServer = channelServer;
+            this.addAndStartChannel = addAndStartChannel;
         }
 
         public override string ServerName => "EmbedIO Channel Server";
@@ -60,6 +63,7 @@ namespace Butterfly.Channel.EmbedIO {
             var channel = new EmbedIOChannel(channelId, context, message => {
                 this.Send(context, message);
             });
+            this.addAndStartChannel(channelId, path, channel);
         }
 
         protected override void OnClientDisconnected(WebSocketContext context) {
@@ -71,7 +75,7 @@ namespace Butterfly.Channel.EmbedIO {
         protected override void OnMessageReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult) {
             string channelId = GetChannelId(context);
             var embedIOChannel = this.GetEmbedIOChannel(channelId);
-            embedIOChannel.Heartbeat();
+            if (embedIOChannel!=null) embedIOChannel.Heartbeat();
         }
 
         protected static string GetPath(WebSocketContext context) {

@@ -29,7 +29,7 @@
                 private.webSocket.onmessage = function (event) {
                     let dataEventTransaction = JSON.parse(event.data);
                     for (let i = 0; i < dataEventTransaction.dataEvents.length; i++) {
-                        onDataEvent.handle(dataEventTransaction.dataEvents[i]);
+                        onDataEvent(dataEventTransaction.dataEvents[i]);
                     }
                     if (onUpdated) onUpdated();
                 };

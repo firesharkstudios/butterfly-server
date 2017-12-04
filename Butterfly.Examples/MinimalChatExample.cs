@@ -6,10 +6,10 @@ using Butterfly.Channel;
 using Butterfly.WebApi;
 
 namespace Butterfly.Examples {
-    public static class SimpleChatExample {
+    public static class MinimalChatExample {
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static void Setup(IWebApiServer webServer, string apiPathPrefix, IChannelServer channelServer, string channelPathPrefix) {
+        public static void Setup(IWebApiServer webApiServer, string apiPathPrefix, IChannelServer channelServer, string channelPathPrefix) {
             logger.Debug($"Setup():apiPathPrefix={apiPathPrefix},channelPathPrefix={channelPathPrefix}");
 
             // Setup database
@@ -33,7 +33,7 @@ namespace Butterfly.Examples {
             });
 
             // Listen for API requests to /api/chat/message
-            webServer.OnPost($"{apiPathPrefix}/chat/message", async(req, res) => {
+            webApiServer.OnPost($"{apiPathPrefix}/chat/message", async(req, res) => {
                 var chatMessage = await req.ParseAsJsonAsync<dynamic>();
                 await database.InsertAndCommitAsync("chat_message", new {
                     user_name = chatMessage.userName,

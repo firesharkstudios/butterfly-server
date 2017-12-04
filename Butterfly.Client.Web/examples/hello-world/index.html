@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Butterfly Hello World Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+    <h2>Overview</h2>
+    <p>This example simply sends a "Hello World" from the client to the server and has the server echo "Hello World" back to the client.</p>
+
+    <h2>Detailed data flow</h2>
+    <ol>
+        <li>Client executes a POST request to /api/hello-world/message sending "Hello World"</li>
+        <li>Server receives the POST request and INSERTs a "Hello World" record in the database which publishes a "Hello World" INSERT data event which triggers a database listener to send "Hello World" to the client over a channel</li>
+        <li>Client receives the data event over the channel and executes alert() to display "Hello World"</li>
+    </ol>
+
+    <h2>Background</h2>
+    <p>Like many Hello World examples, this is a rather convuluted way to send "Hello World" to a server and have it echoed back. The real power in this framework is having changes automatically update multiple views of multiple clients. For example, executing an UPDATE to change a department name from "HR" to "New HR" might automatically update all clients viewing employees by department, all clients viewing a list of departments, etc.</p>
+
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="/js/butterfly.channel.websocket.js"></script>
+    <script src="/js/butterfly.util.js"></script>
+    <script>
+        // Create a unique channel id
+        let channelId = uuidv4();
+
+        // Create a channel to the server
+        let channelClient = new WebSocketChannelClient({
+            url: '/hello-world?id=' + channelId,
+            onDataEvent: function (dataEvent) {
+                // When an INSERT data event is received, display the text field value in an alert box
+                if (dataEvent.dataEventType == 'Insert') alert(dataEvent.record.text);
+            },
+            onStatusChange: function (status) {
+                // When the channel connects, POST a "Hello World" to the server
+                if (status == 'Connected') {
+                    // Post a "Hello World" message to the server
+                    $.ajax('/api/hello-world/message', {
+                        method: 'POST',
+                        data: JSON.stringify('Hello World'),
+                        processData: false,
+                    });
+                }
+            }
+        });
+        channelClient.start();
+
+    </script>
+</body>
+</html>

@@ -9,7 +9,7 @@ Vue.component('chat-messages-component', Vue.extend({
     },
     methods: {
         postMessage: function () {
-            $.ajax('/api/simple-chat/chat/message', {
+            $.ajax('/api/minimal-chat/chat/message', {
                 method: 'POST',
                 data: JSON.stringify({
                     userName: this.myUserName,
@@ -63,14 +63,16 @@ let app = new Vue({
             return generateCleverName();
         });
 
+        let arrayDataEventHandler = new ArrayDataEventHandler({
+            arrayMapping: {
+                chat_message: self.chatMessages,
+            }
+        });
+
         // Create channel to server and handle data events
         let channelClient = new WebSocketChannelClient({
-            url: '/simple-chat?id=' + self.myUserId,
-            onDataEvent: new ArrayDataEventHandler({
-                arrayMapping: {
-                    chat_message: self.chatMessages,
-                }
-            }),
+            url: '/minimal-chat?id=' + self.myUserId,
+            onDataEvent: arrayDataEventHandler.handle,
             onStatusChange: function (value) {
                 self.connectionStatus = value;
             },

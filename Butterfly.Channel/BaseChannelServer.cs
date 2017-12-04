@@ -72,7 +72,8 @@ namespace Butterfly.Channel {
             if (existingChannel!=null) {
                 existingChannel.Dispose();
             }
-            var initChannelListeners = this.onNewChannelListeners.Where(x => x.pathFilter == path).ToArray();
+            var initChannelListeners = this.onNewChannelListeners.Where(x => x.path == path).ToArray();
+            if (initChannelListeners == null || initChannelListeners.Length == 0) throw new Exception($"Invalid path '{path}'");
             channel.Start(initChannelListeners);
             this.channelById[channelId] = channel;
         }

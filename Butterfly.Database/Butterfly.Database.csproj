@@ -78,6 +78,7 @@
     <Compile Include="IDatabase.cs" />
     <Compile Include="IDynamicParam.cs" />
     <Compile Include="ITransaction.cs" />
+    <Compile Include="DataEventTransactionListener.cs" />
     <Compile Include="Statements\CreateStatement.cs" />
     <Compile Include="BaseTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

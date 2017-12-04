@@ -17,23 +17,22 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Butterfly.Channel {
-    /// <summary>
-    /// Internal class used to store references to new channel listeners
-    /// </summary>
-    public class NewChannelListener {
-        public readonly string path;
-        public readonly Func<IChannel, IDisposable> listener;
-        public readonly Func<IChannel, Task<IDisposable>> listenerAsync;
+using Butterfly.Database.Event;
 
-        public NewChannelListener(string path, Func<IChannel, IDisposable> listener) {
-            this.path = path;
+namespace Butterfly.Database {
+    /// <summary>
+    /// Internal class used to store references to data event transaction listeners
+    /// </summary>
+    public class DataEventTransactionListener {
+        public readonly Action<DataEventTransaction> listener;
+        public readonly Func<DataEventTransaction, Task> listenerAsync;
+
+        public DataEventTransactionListener(Action<DataEventTransaction> listener) {
             this.listener = listener;
             this.listenerAsync = null;
         }
 
-        public NewChannelListener(string pathFilter, Func<IChannel, Task<IDisposable>> listener) {
-            this.path = pathFilter;
+        public DataEventTransactionListener(Func<DataEventTransaction, Task> listener) {
             this.listener = null;
             this.listenerAsync = listener;
         }

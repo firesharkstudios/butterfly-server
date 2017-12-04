@@ -166,18 +166,20 @@ let app = new Vue({
             return uuidv4();
         });
 
+        let arrayDataEventHandler = new ArrayDataEventHandler({
+            arrayMapping: {
+                me: self.mes,
+                chat: self.chats,
+                chat_user: self.chatUsers,
+                chat_participant: self.chatParticipants,
+                chat_message: self.chatMessages,
+            }
+        });
+
         // Create channel to server and handle data events
         let channelClient = new WebSocketChannelClient({
             url: '/full-chat?id=' + self.myUserId,
-            onDataEvent: new ArrayDataEventHandler({
-                arrayMapping: {
-                    me: self.mes,
-                    chat: self.chats,
-                    chat_user: self.chatUsers,
-                    chat_participant: self.chatParticipants,
-                    chat_message: self.chatMessages,
-                }
-            }),
+            onDataEvent: arrayDataEventHandler.handle,
             onStatusChange: function (value) {
                 self.connectionStatus = value;
             },

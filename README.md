@@ -1,7 +1,9 @@
 # Butterfly Framework
 > Declarative framework for building real-time apps using C#
 
-Create real-time apps with minimal coding.  Declare the data that should be synchronized with each client using familiar SELECT syntax. Let the Butterfly Framework send the data and any changes to each client.
+A fast way to build real-time web apps using C# on the server and your favorite data binding library on the client ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)).  
+
+Declare the server data to synchronize with clients using a familiar SELECT syntax and have the data automatically synchronized to clients.
 
 ## Getting Started
 
@@ -71,13 +73,13 @@ channelClient.start();
 
 Running the server code above would cause a "Hello World" record to be inserted into the database and replicated to a client that echoes this data event to the console.
 
-In more complex scenarios, you would define all the `DynamicViews` that a given client should see and let the framework handle synchronizing the data to the client.  Web clients can easily be integrated with Vue.js, Angular, React, etc to automatically update the web UI as the data changes.
+In more complex scenarios, you would define all the `DynamicViews` that a given client should see and let the framework handle synchronizing the data to the client.  Web clients can easily be integrated with Vue.js, AngularJS, React, etc to automatically update the web UI as the data changes.
 
 ## Demos
 
-- [Simple Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/simple-chat/index.vue.html) - [Server Code](https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Examples/SimpleChatExample.cs), [Client Code](https://github.com/firesharkstudios/Butterfly/tree/master/Butterfly.Client.Web/examples/simple-chat)
+- [Minimal Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/minimal-chat/index.vue.html) - [Server Code](https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Examples/SimpleChatExample.cs), [Client Code](https://github.com/firesharkstudios/Butterfly/tree/master/Butterfly.Client.Web/examples/minimal-chat)
 
-- [Simple Chat (Using Angular)](http://examples.butterflyframework.io/examples/simple-chat/index.angular.html) - [Server Code](https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Examples/SimpleChatExample.cs), [Client Code](https://github.com/firesharkstudios/Butterfly/tree/master/Butterfly.Client.Web/examples/simple-chat)
+- [Minimal Chat (Using AngularJS)](http://examples.butterflyframework.io/examples/minimal-chat/index.angular.html) - [Server Code](https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Examples/SimpleChatExample.cs), [Client Code](https://github.com/firesharkstudios/Butterfly/tree/master/Butterfly.Client.Web/examples/minimal-chat)
 
 - [Full Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/full-chat/index.vue.html) - [Server Code](https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Examples/FullChatExample.cs), [Client Code](https://github.com/firesharkstudios/Butterfly/tree/master/Butterfly.Client.Web/examples/full-chat)
 
@@ -109,7 +111,7 @@ There are no interdependencies between the packages. Use any subset of the packa
 
 ## Status
 
-Still pre-alpha but actively implementing features and test cases.
+Alpha but actively implementing features and test cases.
 
 ## Contributing
 
@@ -120,7 +122,5 @@ branch. Pull requests are warmly welcome.
 
 The core server code is licensed under the Apache License 2.0.  
 
-The example server code is licensed under the MIT License.
-
-All the client code is licensed under the MIT License.
+All the example server code and client code is licensed under the MIT License.
 

@@ -10,14 +10,15 @@
         $scope.chatMessages = [];
 
         this.$onInit = function () {
+            let arrayDataEventHandler = new ArrayDataEventHandler({
+                arrayMapping: {
+                    chat_message: $scope.chatMessages,
+                }
+            });
             // Create channel to server and handle data events
             let channelClient = new WebSocketChannelClient({
-                url: 'ws://localhost:8080/simple-chat/' + $scope.myUserId,
-                onDataEvent: new ArrayDataEventHandler({
-                    arrayMapping: {
-                        chat_message: $scope.chatMessages,
-                    }
-                }),
+                url: 'ws://localhost:8080/minimal-chat/' + $scope.myUserId,
+                onDataEvent: arrayDataEventHandler.handle,
                 onUpdated: function () {
                     $scope.$apply();
                 },
@@ -41,7 +42,7 @@ angular.module('components', [])
             controller: function ($scope, $element) {
                 let self = this;
                 $scope.postMessage = function () {
-                    $.ajax('/api/simple-chat/chat/message', {
+                    $.ajax('/api/minimal-chat/chat/message', {
                         method: 'POST',
                         data: JSON.stringify({
                             userName: $scope.myUserName,

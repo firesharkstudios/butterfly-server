@@ -17,7 +17,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -66,8 +65,8 @@ namespace Butterfly.Database.Dynamic {
         }
 
         /// <summary>
-        /// Creates an instance of a DynamicQuery.
-        /// Must call StartAync() to send initial DataChangeTransaction and listen for new DataChangeTransactions for this DynamicQuery.
+        /// Creates an instance of a DynamicView.
+        /// Must call StartAync() to send initial DataEventTransaction and listen for new DataEventTransactions for this DynamicView.
         /// </summary>
         public DynamicView CreateDynamicView(string sql, dynamic values = null, string name = null, string[] keyFieldNames = null) {
             DynamicView dynamicQuery = new DynamicView(this, sql, values, name, keyFieldNames);
@@ -77,23 +76,24 @@ namespace Butterfly.Database.Dynamic {
 
         protected bool isStarted = false;
         /// <summary>
-        /// Sends the initial DataChangeTransactions to the registered listener.
-        /// Listens for DataChangeTransactions and send appropriately filtered DataChangeTransactions to the registered listener.
-        /// Stops listening when DynamicQuerySet is disposed.
+        /// Sends the initial DataEventTransactions to the registered listener.
+        /// Listens for DataEventTransactions and send appropriately filtered DataEventTransactions to the registered listener.
+        /// Stops listening when DynamicViewSet is disposed.
         /// </summary>
         /// <returns></returns>
         public async Task<DynamicViewSet> StartAsync() {
             logger.Debug("StartAsync");
             if (this.isStarted) throw new Exception("Dynamic Select Group is already started");
-            if (this.runCancellationTokenSource.IsCancellationRequested) throw new Exception("Cannot restart a stopped DynamicQuerySet");
+            if (this.runCancellationTokenSource.IsCancellationRequested) throw new Exception("Cannot restart a stopped DynamicViewSet");
 
             this.isStarted = true;
 
             DataEvent[] dataEvents = await this.RequeryDynamicViewsIfDirtyAsync(force: true);
             await this.SendToListenerAsync(new DataEventTransaction(DateTime.Now, dataEvents));
 
-            //this.disposables.Add(this.Database.OnNewUncommittedTransaction(this.ProcessUncommittedDataEventTransactionAsync));
-            //this.disposables.Add(this.Database.OnNewCommittedTransaction(this.ProcessCommittedDataEventTransactionAsync));
+            this.Database.OnNewUncommittedTransaction(this.ProcessUncommittedDataEventTransactionAsync);
+            this.Database.OnNewCommittedTransaction(this.ProcessCommittedDataEventTransactionAsync);
+
             Task backgroundTask = Task.Run(this.RunAsync);
 
             return this;

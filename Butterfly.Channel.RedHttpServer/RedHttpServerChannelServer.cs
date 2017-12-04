@@ -33,11 +33,11 @@ namespace Butterfly.Channel.RedHttpServer {
 
         protected override void DoStart() {
             foreach (var listener in this.onNewChannelListeners) {
-                logger.Debug($"DoStart():Websocket listening on path {listener.pathFilter}");
-                this.server.WebSocket(listener.pathFilter, (req, wsd) => {
+                logger.Debug($"DoStart():Websocket listening on path {listener.path}");
+                this.server.WebSocket(listener.path, (req, wsd) => {
                     string channelId = req.Queries["id"];
-                    logger.Debug($"DoStart():Websocket created for path {listener.pathFilter}, channelId {channelId}");
-                    this.AddAndStartChannel(channelId, listener.pathFilter, new WebSocketDialogChannel(channelId, wsd));
+                    logger.Debug($"DoStart():Websocket created for path {listener.path}, channelId {channelId}");
+                    this.AddAndStartChannel(channelId, listener.path, new WebSocketDialogChannel(channelId, wsd));
                 });
             }
         }
