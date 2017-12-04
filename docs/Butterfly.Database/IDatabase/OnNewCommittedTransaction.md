@@ -1,9 +1,32 @@
-# IDatabase.OnNewCommittedTransaction method
+# IDatabase.OnNewCommittedTransaction method (1 of 2)
 
 Adds a listener that is invoked when there is a new committed transaction
 
 ```csharp
 public IDisposable OnNewCommittedTransaction(Action<DataEventTransaction> listener)
+```
+
+| parameter | description |
+| --- | --- |
+| listener | The lambda to call when there is a new committed DataEventTransaction |
+
+## Return Value
+
+An IDisposable that allows removing the listener by calling Dispose()
+
+## See Also
+
+* interface [IDatabase](../IDatabase.md)
+* namespace [Butterfly.Database](../../Butterfly.Database.md)
+
+---
+
+# IDatabase.OnNewCommittedTransaction method (2 of 2)
+
+Adds a listener that is invoked when there is a new committed transaction
+
+```csharp
+public IDisposable OnNewCommittedTransaction(Func<DataEventTransaction, Task> listener)
 ```
 
 | parameter | description |

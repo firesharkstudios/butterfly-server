@@ -1,6 +1,6 @@
 # IDatabase.BeginTransaction method
 
-Creates a new [`ITransaction`](../ITransaction.md). Must execute [`CommitAsync`](../ITransaction/CommitAsync.md) to save the transaction changes. Calling Dispose() on the transaction without committing rolls back the changes./&gt;
+Creates a new [`ITransaction`](../ITransaction.md) instance. An [`ITransaction`](../ITransaction.md) instance allows performing an atomic set of modifications to the database. Must execute [`CommitAsync`](../ITransaction/CommitAsync.md) to save the transaction changes. Disposing the transaction without committing rolls back the changes./&gt;
 
 ```csharp
 public Task<ITransaction> BeginTransaction()

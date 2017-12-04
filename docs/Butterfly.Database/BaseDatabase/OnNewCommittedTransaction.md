@@ -1,7 +1,20 @@
-# BaseDatabase.OnNewCommittedTransaction method
+# BaseDatabase.OnNewCommittedTransaction method (1 of 2)
 
 ```csharp
 public IDisposable OnNewCommittedTransaction(Action<DataEventTransaction> listener)
+```
+
+## See Also
+
+* class [BaseDatabase](../BaseDatabase.md)
+* namespace [Butterfly.Database](../../Butterfly.Database.md)
+
+---
+
+# BaseDatabase.OnNewCommittedTransaction method (2 of 2)
+
+```csharp
+public IDisposable OnNewCommittedTransaction(Func<DataEventTransaction, Task> listener)
 ```
 
 ## See Also

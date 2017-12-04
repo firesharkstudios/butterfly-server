@@ -1,6 +1,6 @@
 # IDatabase.SetInsertDefaultValue method
 
-Allows specifying a lambda that creates a default value for a field when executing an INSERT. If the tableName parameter is left null, the getDefaultValue lambda will be applied to all tables.
+Allows specifying a lambda that creates a default value for a field when executing an INSERT. If *tableName* is null, the *getDefaultValue* lambda will be applied to all tables.
 
 ```csharp
 public void SetInsertDefaultValue(string fieldName, Func<object> getDefaultValue, string tableName = null)

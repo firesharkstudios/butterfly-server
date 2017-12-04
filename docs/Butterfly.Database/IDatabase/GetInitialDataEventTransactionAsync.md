@@ -13,7 +13,7 @@ public Task<DataEventTransaction> GetInitialDataEventTransactionAsync(string sel
 
 ## Return Value
 
-A DataEventTransaction with the returned data represented as a sequence of DataEvent
+A DataEventTransaction with the returned data represented as a sequence of DataEvent instances. The DataEvent instance will have a DataEventType of InitialBegin, each record will have a DataEventType of Initial, and the last record will have a DataEventType of InitialEnd.
 
 ## See Also
 

@@ -23,8 +23,8 @@ public abstract class BaseDatabase : IDatabase
 | [GetInitialDataEventsAsync](BaseDatabase/GetInitialDataEventsAsync.md)(…) |  |
 | [GetInitialDataEventTransactionAsync](BaseDatabase/GetInitialDataEventTransactionAsync.md)(…) |  |
 | [InsertAndCommitAsync](BaseDatabase/InsertAndCommitAsync.md)(…) |  |
-| [OnNewCommittedTransaction](BaseDatabase/OnNewCommittedTransaction.md)(…) |  |
-| [OnNewUncommittedTransaction](BaseDatabase/OnNewUncommittedTransaction.md)(…) |  |
+| [OnNewCommittedTransaction](BaseDatabase/OnNewCommittedTransaction.md)(…) |  (2 methods) |
+| [OnNewUncommittedTransaction](BaseDatabase/OnNewUncommittedTransaction.md)(…) |  (2 methods) |
 | [SelectRowAsync](BaseDatabase/SelectRowAsync.md)(…) |  |
 | [SelectRowsAsync](BaseDatabase/SelectRowsAsync.md)(…) |  (3 methods) |
 | [SelectValue&lt;T&gt;](BaseDatabase/SelectValue.md)(…) |  |

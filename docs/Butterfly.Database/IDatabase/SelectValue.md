@@ -1,6 +1,58 @@
 # IDatabase.SelectValue&lt;T&gt; method
 
-Executes the SELECT statement and return the value of the first column of the first row (the SELECT statement may contain vars like @name specified in *vars*)
+Executes the SELECT statement and return the value of the first column of the first row (the SELECT statement may contain vars like @name specified in *vars*).
+
+If a var is null then references in the WHERE clause like
+
+```csharp
+name=@name
+```
+
+will be rewritten as
+
+```csharp
+name IS NULL
+```
+
+and references in the WHERE clause like
+
+```csharp
+name!=@name
+```
+
+will be rewritten as
+
+```csharp
+name IS NOT NULL
+```
+
+.
+
+If a var is an array then references in the WHERE clause like
+
+```csharp
+name=@name
+```
+
+will be rewritten as
+
+```csharp
+1=2
+```
+
+when the array is empty, rewritten as
+
+```csharp
+name='Bob'
+```
+
+when the array contains a single element 'Bob', and rewritten as
+
+```csharp
+name IN ('Bob', 'Jim')
+```
+
+when the array contains elements 'Bob' and 'Jim'.
 
 ```csharp
 public Task<T> SelectValue<T>(string selectStatement, object vars, T defaultValue)

@@ -8,11 +8,12 @@
 | abstract class [BaseTransaction](Butterfly.Database/BaseTransaction.md) | Base class implementing [`ITransaction`](Butterfly.Database/ITransaction.md). New implementations will normally extend this class. |
 | class [CreateStatement](Butterfly.Database/CreateStatement.md) |  |
 | class [DatabaseException](Butterfly.Database/DatabaseException.md) |  |
+| class [DataEventTransactionListener](Butterfly.Database/DataEventTransactionListener.md) | Internal class used to store references to data event transaction listeners |
 | class [DeleteStatement](Butterfly.Database/DeleteStatement.md) |  |
 | class [DuplicateKeyDatabaseException](Butterfly.Database/DuplicateKeyDatabaseException.md) |  |
 | class [FieldDef](Butterfly.Database/FieldDef.md) |  |
 | class [FieldRef](Butterfly.Database/FieldRef.md) |  |
-| interface [IDatabase](Butterfly.Database/IDatabase.md) | Allows executing INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views. |
+| interface [IDatabase](Butterfly.Database/IDatabase.md) | Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views. |
 | interface [IDynamicParam](Butterfly.Database/IDynamicParam.md) |  |
 | class [Index](Butterfly.Database/Index.md) |  |
 | class [InsertStatement](Butterfly.Database/InsertStatement.md) |  |

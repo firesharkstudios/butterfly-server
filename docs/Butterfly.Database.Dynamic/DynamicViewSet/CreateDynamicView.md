@@ -1,6 +1,6 @@
 # DynamicViewSet.CreateDynamicView method
 
-Creates an instance of a DynamicQuery. Must call StartAync() to send initial DataChangeTransaction and listen for new DataChangeTransactions for this DynamicQuery.
+Creates an instance of a DynamicView. Must call StartAync() to send initial DataEventTransaction and listen for new DataEventTransactions for this DynamicView.
 
 ```csharp
 public DynamicView CreateDynamicView(string sql, object values = null, string name = null, string[] keyFieldNames = null)

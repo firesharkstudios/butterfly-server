@@ -8,7 +8,11 @@ public DynamicViewSet CreateDynamicViewSet(Action<DataEventTransaction> listener
 
 | parameter | description |
 | --- | --- |
-| listener |  |
+| listener | The lambda that should receive the DataEventTransaction instances |
+
+## Return Value
+
+A [`DynamicViewSet`](../../Butterfly.Database.Dynamic/DynamicViewSet.md) that can be disposed to remove all database listners
 
 ## See Also
 
@@ -28,7 +32,11 @@ public DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> asyn
 
 | parameter | description |
 | --- | --- |
-| asyncListener |  |
+| asyncListener | The lambda that should receive the DataEventTransaction instances |
+
+## Return Value
+
+A [`DynamicViewSet`](../../Butterfly.Database.Dynamic/DynamicViewSet.md) that can be disposed to remove all database listners
 
 ## See Also
 

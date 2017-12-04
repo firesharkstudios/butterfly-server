@@ -1,6 +1,6 @@
 # DynamicViewSet.StartAsync method
 
-Sends the initial DataChangeTransactions to the registered listener. Listens for DataChangeTransactions and send appropriately filtered DataChangeTransactions to the registered listener. Stops listening when DynamicQuerySet is disposed.
+Sends the initial DataEventTransactions to the registered listener. Listens for DataEventTransactions and send appropriately filtered DataEventTransactions to the registered listener. Stops listening when DynamicViewSet is disposed.
 
 ```csharp
 public Task<DynamicViewSet> StartAsync()

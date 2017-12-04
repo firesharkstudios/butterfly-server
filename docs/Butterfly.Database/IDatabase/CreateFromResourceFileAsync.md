@@ -1,6 +1,6 @@
 # IDatabase.CreateFromResourceFileAsync method
 
-Creates database tables from an embedded resource file by internally calling CreateFromTextAsync with the contents of the embedded resource file ([`CreateFromTextAsync`](CreateFromTextAsync.md).
+Creates database tables from an embedded resource file by internally calling [`CreateFromTextAsync`](CreateFromTextAsync.md) with the contents of the embedded resource file"/&gt;.
 
 ```csharp
 public Task CreateFromResourceFileAsync(Assembly assembly, string resourceFile)
