@@ -55,19 +55,19 @@ namespace Butterfly.Database {
             }
         }
 
-        public Dict ConvertParamsToDict(dynamic sourceParams, bool allowKeyValueAsSourceParams = false) {
-            // If sourceParams is null, return empty dictionary
-            if (sourceParams == null) {
+        public Dict ConvertParamsToDict(dynamic statementParams, bool allowKeyValueAsSourceParams = false) {
+            // If statementParams is null, return empty dictionary
+            if (statementParams == null) {
                 return new Dict();
             }
 
-            // If sourceParams is already a dictionary, return the dictionary
-            else if (sourceParams is Dict d) {
+            // If statementParams is already a dictionary, return the dictionary
+            else if (statementParams is Dict d) {
                 return d;
             }
 
-            // If sourceParams is a single string, assume it is a primary key value
-            else if (sourceParams is string keyValue) {
+            // If statementParams is a single string, assume it is a primary key value
+            else if (statementParams is string keyValue) {
                 if (!allowKeyValueAsSourceParams) throw new Exception("Statement doesn't allow passing single key value as source params");
                 if (this.TableRefs.Length != 1) throw new Exception("Statement must have exactly one table to pass single string value as where condition");
 
@@ -80,16 +80,22 @@ namespace Butterfly.Database {
                 return result;
             }
 
-            // Otherwise, convert source params to a dictionary
+            // Otherwise, convert statementParams to a dictionary
             else {
-                return DynamicX.ToDictionary(sourceParams);
+                return DynamicX.ToDictionary(statementParams);
             }
         }
+
+        /*
+        public static Dict ConvertParamsToFields(Dict statementParams) {
+
+        }
+        */
     }
 
     /*
      * "user u" would be...
-     *   talbeName=user
+     *   tableName=user
      *   tableAlias=u
      */
     public class TableRef {

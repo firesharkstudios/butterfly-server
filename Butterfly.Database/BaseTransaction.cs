@@ -113,6 +113,8 @@ namespace Butterfly.Database {
             statement.ConfirmAllParamsUsed(statementParamsDict);
             (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(statementParamsDict);
             int count = await this.DoDeleteAsync(executableSql, executableParams);
+
+            //Dict fieldDict = statement.ConvertStatementParamsToFields(statementParamsDict);
             this.changeDataEvents.Add(new ChangeDataEvent(DataEventType.Delete, statement.TableRefs[0].table.Name, statementParamsDict));
             return count;
         }

@@ -33,8 +33,7 @@ namespace Butterfly.Database {
         /// Must only update a single row at a time. Must have a where clause that specifies the primary key fields. Where clause can only use ANDed equal conditions (like chat_id=2 AND chat_type='X")";
         /// </summary>
         /// <param name="database"></param>
-        /// <param name="sourceSql"></param>
-        /// <param name="sourceParams"></param>
+        /// <param name="sql"></param>
         public UpdateStatement(IDatabase database, string sql) {
             this.SetSql(sql, "UPDATE @@tableName SET @@nameValues");
 

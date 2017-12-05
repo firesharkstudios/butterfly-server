@@ -21,7 +21,9 @@ namespace Butterfly.Examples {
             // Create the underlying EmbedIOWebServer (see https://github.com/unosquare/embedio)
             var embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer(port);
             embedIOWebServer.RegisterModule(new StaticFilesModule(staticFullPath, headers: new System.Collections.Generic.Dictionary<string, string> {
-                ["Cache-Control"] = "no-cache, no-store, must-revalidate"
+                ["Cache-Control"] = "no-cache, no-store, must-revalidate",
+                ["Pragma"] = "no-cache",
+                ["Expires"] = "0"
             }));
 
             // Setup and start a webApiServer and channelServer using embedIOWebServer

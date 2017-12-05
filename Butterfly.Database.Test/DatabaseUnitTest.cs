@@ -21,6 +21,8 @@ using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
+using Butterfly.Database.Event;
+using System.Collections.Generic;
 
 namespace Butterfly.Database.Test {
     [TestClass]
@@ -286,25 +288,42 @@ namespace Butterfly.Database.Test {
         }
 
         protected async Task UpdateAndDeleteBasicData(IDatabase database, object hrDepartmentId) {
-            // Test updating rows on a non-indexed field
-            int count1 = await database.UpdateAndCommitAsync("UPDATE department SET name=@newName WHERE name=@name", new {
-                name = "HR",
-                newName = "New HR",
-            });
-            Assert.AreEqual(1, count1);
+            List<DataEventTransaction> dataEventTransactionCollector = new List<DataEventTransaction>();
+            using (database.OnNewCommittedTransaction(dataEventTransaction => {
+                dataEventTransactionCollector.Add(dataEventTransaction);
+            })) {
+                // Test updating rows on a non-indexed field
+                dataEventTransactionCollector.Clear();
+                int count1 = await database.UpdateAndCommitAsync("UPDATE department SET name=@newName WHERE name=@name", new {
+                    name = "HR",
+                    newName = "New HR",
+                });
+                Assert.AreEqual(1, count1);
+                Assert.AreEqual(1, dataEventTransactionCollector.Count);
+                Assert.AreEqual(1, dataEventTransactionCollector[0].dataEvents.Length);
+                Assert.AreEqual(DataEventType.Update, dataEventTransactionCollector[0].dataEvents[0].dataEventType);
 
-            // Test updating rows on an indexed field
-            int count2 = await database.UpdateAndCommitAsync("UPDATE department SET name=@name WHERE id=@id", new {
-                id = hrDepartmentId,
-                name = "Newer HR"
-            });
-            Assert.AreEqual(1, count2);
+                // Test updating rows on an indexed field
+                dataEventTransactionCollector.Clear();
+                int count2 = await database.UpdateAndCommitAsync("UPDATE department SET name=@name WHERE id=@id", new {
+                    id = hrDepartmentId,
+                    name = "Newer HR"
+                });
+                Assert.AreEqual(1, count2);
+                Assert.AreEqual(1, dataEventTransactionCollector.Count);
+                Assert.AreEqual(1, dataEventTransactionCollector[0].dataEvents.Length);
+                Assert.AreEqual(DataEventType.Update, dataEventTransactionCollector[0].dataEvents[0].dataEventType);
 
-            // Test deleting rows on an indexed field
-            int count3 = await database.DeleteAndCommitAsync("DELETE FROM department WHERE id=@id", new {
-                id = hrDepartmentId
-            });
-            Assert.AreEqual(1, count3);
+                // Test deleting rows on an indexed field
+                dataEventTransactionCollector.Clear();
+                int count3 = await database.DeleteAndCommitAsync("DELETE FROM department WHERE id=@id", new {
+                    id = hrDepartmentId
+                });
+                Assert.AreEqual(1, count3);
+                Assert.AreEqual(1, dataEventTransactionCollector.Count);
+                Assert.AreEqual(1, dataEventTransactionCollector[0].dataEvents.Length);
+                Assert.AreEqual(DataEventType.Delete, dataEventTransactionCollector[0].dataEvents[0].dataEventType);
+            }
         }
 
     }
