@@ -25,19 +25,18 @@ namespace Butterfly.Examples {
             );").Wait();
             database.SetInsertDefaultValue("created_at", () => DateTime.Now);
 
-            // Listen for clients creating new channels to /minimal-chat
-            // (clients are expected to maintain a channel to the server)
-            channelServer.OnNewChannel("/minimal-chat", channel => {
-                // When a channel is created, create a dynamic view on the chat_message table
-                // and send all data event transactions to the client over the channel
-                // returning the dynamic view so the dynamic view is disposed when the channel is disposed
-                return database.CreateAndStartDynamicView(
-                    "chat_message",
-                    dataEventTransaction => {
-                        channel.Queue(dataEventTransaction);
-                    }
-                );
-            });
+            // Listen for clients creating new channels to /minimal-chat,
+            // clients are expected to maintain a channel to the server,
+            // channels are currently implemented over WebSockets
+            //
+            // When a channel is created, create a DynamicView on the message table sending all 
+            // initial data and data changes to the client over the channel
+            channelServer.OnNewChannel("/minimal-chat", channel => database.CreateAndStartDynamicView(
+                "chat_message",
+                dataEventTransaction => {
+                    channel.Queue(dataEventTransaction);
+                }
+            ));
 
             // Listen for API requests to /api/chat/message
             webApiServer.OnPost($"/api/minimal-chat/chat/message", async(req, res) => {

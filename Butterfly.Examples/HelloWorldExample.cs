@@ -19,19 +19,18 @@ namespace Butterfly.Examples {
 	            PRIMARY KEY (id)
             );").Wait();
 
-            // Listen for clients creating new channels to /hello-world
-            // (clients are expected to maintain a channel to the server)
-            channelServer.OnNewChannel("/hello-world", channel => {
-                // When a channel is created, create a dynamic view on the message table
-                // and send all data event transactions to the client over the channel
-                // returning the dynamic view so the dynamic view is disposed when the channel is disposed
-                return database.CreateAndStartDynamicView(
-                    "message",
-                    dataEventTransaction => {
-                        channel.Queue(dataEventTransaction);
-                    }
-                );
-            });
+            // Listen for clients creating new channels to /hello-world,
+            // clients are expected to maintain a channel to the server,
+            // channels are currently implemented over WebSockets
+            //
+            // When a channel is created, create a DynamicView on the message table sending all 
+            // initial data and data changes to the client over the channel
+            channelServer.OnNewChannel("/hello-world", channel => database.CreateAndStartDynamicView(
+            "message",
+                dataEventTransaction => {
+                    channel.Queue(dataEventTransaction);
+                }
+            ));
 
             // Listen for POST requests to /api/hello-world/message
             webApiServer.OnPost($"/api/hello-world/message", async (req, res) => {
