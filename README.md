@@ -26,19 +26,19 @@ There are three key packages to the Butterfly Framework...
 
 - [Butterfly.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Database) - Allows executing INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
  
-- [Butterfly.Channel](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel) - Allows clients to create new channels to the server and allows the server to push messages to connected clients.
+- [Butterfly.Channel](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
 
 - [Butterfly.WebApi](https://firesharkstudios.github.io/Butterfly/Butterfly.WebApi) - Allows receiving API requests via HTTP (inspired by Express JS) by wrapping existing C# web servers.
 
 There are no interdependencies between the packages. Use any subset of the packages you wish.
 
-## App Design
+## Recommened App Design
 
 #### Client Side
 - Use all static HTML, Javascript, and CSS files
 - Perform actions by calling a RESTful Api on a `WebApiServer`
 - Create and maintain a `Channel` to a `ChannelServer` to receive data
-- Use whatever data binding library you wish (Vue.js, Angular, React, etc)
+- Use whatever data binding library you wish (Vue.js, AngularJS, React, etc)
 - Use whatever client UI library you wish (Bootstrap, Foundation, Skeleton, etc)
 
 #### Server Side 
@@ -47,9 +47,19 @@ There are no interdependencies between the packages. Use any subset of the packa
 - Integrate with various .NET web servers (EmbedIO, RedHttpServer, etc)
 - Integrate with popular databases (MySQL, Postgres, SQLite, etc)
 
-## Status
+## Environments
 
-Alpha but actively implementing features and test cases.
+- Tested on .NET Framework 4.6.1, Windows 10 64 bit
+- Tested on Mono 4.2.1, Ubuntu 16.04.3 LTS
+
+## Next Steps
+
+- Create NuGet packages for Butterfly.Database, Butterfly.Channel, and Butterfly.WebApi
+- Add Butterfly.Database.MongoDB
+- Add Butterfly.WebApi.NancyFX
+- Add Butterfly.WebApi.Kestral
+- Add example using React on client
+- Add example running on Raspian
 
 ## Contributing
 
