@@ -3,7 +3,7 @@
 
 Build real-time web apps quickly using C# on the server and your favorite client libraries ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)).  
 
-Declare the data to automatically synchronize with clients using a familiar SELECT syntax...
+On the server, declare the data to automatically synchronize with clients using a familiar SELECT syntax...
 
 ```csharp
 // Listen for clients creating new channels to /hello-world,
@@ -20,6 +20,22 @@ channelServer.OnNewChannel("/hello-world", channel => {
         }
     );
 });
+```
+
+On the web client, synchronize the data received into local arrays bound to UI elements by [Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)...
+
+```js
+// Create channel to server and handle data events
+// (mapping data events for the 'message' DynamicView to a local chatMessages array)
+let channelClient = new WebSocketChannelClient({
+    url: '/hello-world?id=' + myChannelId,
+    onDataEvent: new ArrayDataEventHandler({
+        arrayMapping: {
+            message: messages,
+        }
+    })
+});
+channelClient.start();
 ```
 
 ## Getting Started

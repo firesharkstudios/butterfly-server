@@ -10,15 +10,14 @@
         $scope.chatMessages = [];
 
         this.$onInit = function () {
-            let arrayDataEventHandler = new ArrayDataEventHandler({
-                arrayMapping: {
-                    chat_message: $scope.chatMessages,
-                }
-            });
             // Create channel to server and handle data events
             let channelClient = new WebSocketChannelClient({
                 url: '/minimal-chat?id=' + $scope.myUserId,
-                onDataEvent: arrayDataEventHandler.handle,
+                onDataEvent: new ArrayDataEventHandler({
+                    arrayMapping: {
+                        chat_message: $scope.chatMessages,
+                    }
+                }),
                 onUpdated: function () {
                     $scope.$apply();
                 },

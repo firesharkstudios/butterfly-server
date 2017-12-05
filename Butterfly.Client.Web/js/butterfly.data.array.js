@@ -19,9 +19,7 @@
         return result;
     }
 
-    let public = {};
-
-    public.handle = function (dataEvent) {
+    return function (dataEvent) {
         console.log('ArrayDataEventHandler.handle():dataEvent.type=' + dataEvent.dataEventType + ',name=', dataEvent.name + ',keyValue=' + dataEvent.keyValue);
         let array = config.arrayMapping[dataEvent.name];
         if (dataEvent.dataEventType == 'InitialBegin') {

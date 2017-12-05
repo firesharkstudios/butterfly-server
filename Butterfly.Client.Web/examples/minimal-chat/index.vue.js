@@ -63,16 +63,14 @@ let app = new Vue({
             return generateCleverName();
         });
 
-        let arrayDataEventHandler = new ArrayDataEventHandler({
-            arrayMapping: {
-                chat_message: self.chatMessages,
-            }
-        });
-
         // Create channel to server and handle data events
         let channelClient = new WebSocketChannelClient({
             url: '/minimal-chat?id=' + self.myUserId,
-            onDataEvent: arrayDataEventHandler.handle,
+            onDataEvent: new ArrayDataEventHandler({
+                arrayMapping: {
+                    chat_message: self.chatMessages,
+                }
+            }),
             onStatusChange: function (value) {
                 self.connectionStatus = value;
             },
