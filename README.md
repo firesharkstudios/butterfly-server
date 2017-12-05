@@ -3,7 +3,24 @@
 
 Build real-time web apps quickly using C# on the server and your favorite client libraries ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)).  
 
-Declare the data to automatically synchronize with clients using a familiar SELECT syntax.
+Declare the data to automatically synchronize with clients using a familiar SELECT syntax...
+
+```csharp
+// Listen for clients creating new channels to /hello-world,
+// clients are expected to maintain a channel to the server,
+// channels are currently implemented over WebSockets
+channelServer.OnNewChannel("/hello-world", channel => {
+    // When a channel is created, create a DynamicView on the message table sending all 
+    // initial data and data changes to the client over the channel and returning the 
+    // DynamicView so the DynamicView is disposed when the Channel is disposed
+    return database.CreateAndStartDynamicView(
+        "SELECT * FROM message",
+        dataEventTransaction => {
+            channel.Queue(dataEventTransaction);
+        }
+    );
+});
+```
 
 ## Getting Started
 
