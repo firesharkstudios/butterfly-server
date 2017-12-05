@@ -71,11 +71,11 @@ There are no interdependencies between the packages. Use any subset of the packa
 - Use all static HTML, Javascript, and CSS files
 - Perform actions by calling a RESTful Api on a `WebApiServer`
 - Create and maintain a `Channel` to a `ChannelServer` to receive data
-- Use whatever data binding library you wish (Vue.js, AngularJS, React, etc)
-- Use whatever client UI library you wish (Bootstrap, Foundation, Skeleton, etc)
+- Use whatever data binding library you wish ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/), etc)
+- Use whatever client UI library you wish ([Bootstrap](https://getbootstrap.com/), [Foundation](https://foundation.zurb.com/), [Skeleton](http://getskeleton.com/), etc)
 
 #### Server Side 
-- Define the synchronized data each client receives by creating `DynamicViews` on a `Database` using a familiar SELECT syntax
+- Declare the data to automatically synchronize with clients using a familiar SELECT syntax
 - Define the RESTful API of the `WebApiServer` using an Express JS like syntax
 - Integrate with various .NET web servers (EmbedIO, RedHttpServer, etc)
 - Integrate with popular databases (MySQL, Postgres, SQLite, etc)
