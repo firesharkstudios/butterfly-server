@@ -1,7 +1,7 @@
 # Butterfly Framework
 > Declarative framework for building real-time apps using C#
 
-A fast way to build real-time web apps using C# on the server and still use your favorite client libraries ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)).  
+Build real-time web apps quickly using C# on the server and your favorite client libraries ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)).  
 
 Declare the server data to synchronize with clients using a familiar SELECT syntax and have the data automatically synchronized to clients.
 
