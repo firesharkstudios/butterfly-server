@@ -3,7 +3,7 @@
 
 Build real-time web apps quickly using C# on the server and your favorite client libraries ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)).  
 
-Declare the server data to synchronize with clients using a familiar SELECT syntax and have the data automatically synchronized to clients.
+Declare the data to automatically synchronize with clients using a familiar SELECT syntax.
 
 ## Getting Started
 
@@ -59,7 +59,7 @@ There are no interdependencies between the packages. Use any subset of the packa
 - Add Butterfly.WebApi.NancyFX
 - Add Butterfly.WebApi.Kestral
 - Add example using React on client
-- Add example running on Raspian
+- Add example running on Raspbian
 
 ## Contributing
 
