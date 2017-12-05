@@ -18,11 +18,13 @@ namespace Butterfly.Examples {
             string staticFullPath = staticPath.StartsWith(".") ? Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, staticPath)) : staticPath;
             logger.Debug($"Main():port={port},staticFullPath={staticFullPath}");
 
-            // Create the underlying EmbedIOServer (see https://github.com/unosquare/embedio)
+            // Create the underlying EmbedIOWebServer (see https://github.com/unosquare/embedio)
             var embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer(port);
-            embedIOWebServer.RegisterModule(new StaticFilesModule(staticFullPath));
+            embedIOWebServer.RegisterModule(new StaticFilesModule(staticFullPath, headers: new System.Collections.Generic.Dictionary<string, string> {
+                ["Cache-Control"] = "no-cache, no-store, must-revalidate"
+            }));
 
-            // Setup and start a webApiServer and channelServer
+            // Setup and start a webApiServer and channelServer using embedIOWebServer
             using (var webApiServer = new Butterfly.WebApi.EmbedIO.EmbedIOWebApiServer(embedIOWebServer))
             using (var channelServer = new Butterfly.Channel.EmbedIO.EmbedIOChannelServer(embedIOWebServer)) {
                 // Setup each example (should each listen on unique URL paths for both webApiServer and channelServer)
