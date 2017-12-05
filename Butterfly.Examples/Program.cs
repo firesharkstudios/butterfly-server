@@ -18,19 +18,23 @@ namespace Butterfly.Examples {
             string staticFullPath = staticPath.StartsWith(".") ? Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, staticPath)) : staticPath;
             logger.Debug($"Main():port={port},staticFullPath={staticFullPath}");
 
-            // Create EmbedIOServer
+            // Create the underlying EmbedIOServer (see https://github.com/unosquare/embedio)
             var embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer(port);
             embedIOWebServer.RegisterModule(new StaticFilesModule(staticFullPath));
 
-            // Configure and start web server and channel server
-            using (var webServer = new Butterfly.WebApi.EmbedIO.EmbedIOWebApiServer(embedIOWebServer))
+            // Setup and start a webApiServer and channelServer
+            using (var webApiServer = new Butterfly.WebApi.EmbedIO.EmbedIOWebApiServer(embedIOWebServer))
             using (var channelServer = new Butterfly.Channel.EmbedIO.EmbedIOChannelServer(embedIOWebServer)) {
-                HelloWorldExample.Setup(webServer, channelServer);
-                MinimalChatExample.Setup(webServer, channelServer);
-                FullChatExample.Setup(webServer, channelServer);
-                webServer.Start();
+                // Setup each example (should each listen on unique URL paths for both webApiServer and channelServer)
+                HelloWorldExample.Setup(webApiServer, channelServer);
+                MinimalChatExample.Setup(webApiServer, channelServer);
+                FullChatExample.Setup(webApiServer, channelServer);
+
+                // Start both servers
+                webApiServer.Start();
                 channelServer.Start();
 
+                // Start the underlying EmbedIOServer
                 embedIOWebServer.RunAsync().Wait();
 
                 Console.WriteLine($"Open http://<host>:{port} to view");

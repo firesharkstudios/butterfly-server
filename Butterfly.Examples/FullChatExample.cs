@@ -12,10 +12,11 @@ namespace Butterfly.Examples {
     public static class FullChatExample {
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
+        // This is called by Program.cs
         public static void Setup(IWebApiServer webApiServer, IChannelServer channelServer) {
             logger.Debug($"Setup()");
 
-            // Setup database (may need to execute "GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' IDENTIFIED BY 'test!123'; CREATE DATABASE butterfly_chat;")
+            // Setup a MySQL database (may need to execute "GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' IDENTIFIED BY 'test!123'; CREATE DATABASE butterfly_chat;")
             var database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_chat");
             database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Examples.full-chat-db.sql").Wait();
             database.SetInsertDefaultValue("id", () => Guid.NewGuid().ToString());
@@ -23,7 +24,8 @@ namespace Butterfly.Examples {
             database.SetInsertDefaultValue("updated_at", () => DateTime.Now);
             database.SetInsertDefaultValue("join_id", () => Guid.NewGuid().ToString().Substring(0, 8), "chat");
 
-            // Initialize new channels created
+            // Listen for clients creating new channels to /full-chat
+            // (clients are expected to maintain a channel to the server)
             channelServer.OnNewChannelAsync("/full-chat", async(channel) => {
                 // Create a user record if missing
                 await database.InsertAndCommitAsync("user", new {
@@ -31,7 +33,7 @@ namespace Butterfly.Examples {
                     name = CleverNameX.Generate(),
                 }, ignoreIfDuplicate: true);
 
-                // Create a dynamic select group that sends changes to the channel
+                // Create a DynamicViewSet that sends DataEventTransactions to the channel
                 var dynamicViewSet = database.CreateDynamicViewSet(
                     listener: dataEventTransaction => {
                         var filteredDataEventTransaction = DataEventTransaction.FilterDataEvents(dataEventTransaction, dataEvent => dataEvent.name != "chat_ids");
