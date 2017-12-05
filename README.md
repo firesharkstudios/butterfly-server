@@ -7,7 +7,7 @@ Declare the server data to synchronize with clients using a familiar SELECT synt
 
 ## Getting Started
 
-1. Clone the github repository `https://github.com/fireshark/butterfly-framework.git`
+1. Clone the github repository `https://github.com/fireshark/Butterfly.git`
 1. Open `Butterfly.sln` in Visual Studio 2017
 
 ## Examples
