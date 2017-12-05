@@ -1,7 +1,7 @@
 # Butterfly Framework
 > Declarative framework for building real-time apps using C#
 
-A fast way to build real-time web apps using C# on the server and your favorite data binding library on the client ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)).  
+A fast way to build real-time web apps using C# on the server and still use your favorite client libraries ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)).  
 
 Declare the server data to synchronize with clients using a familiar SELECT syntax and have the data automatically synchronized to clients.
 
@@ -10,78 +10,15 @@ Declare the server data to synchronize with clients using a familiar SELECT synt
 1. Clone the github repository `https://github.com/fireshark/butterfly-framework.git`
 1. Open `Butterfly.sln` in Visual Studio 2017
 
-## Hello World Example
+## Examples
 
-Example C# code running on a server...
+- [Hello World](http://examples.butterflyframework.io/examples/hello-world/index.html)
 
-```csharp
-// Create an EmbedIO web server to use as the implementation for our ChannelServer and WebApiServer
-var embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer("http://localhost:8080/"));
+- [Minimal Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/minimal-chat/index.vue.html)
 
-// Create a channelServer allowing pushing data to clients (this implementation wraps the EmbedIO web server)
-var channelServer = new EmbedIOChannelServer(embedIOWebServer);
+- [Minimal Chat (Using AngularJS)](http://examples.butterflyframework.io/examples/minimal-chat/index.angular.html)
 
-// Create a webApiServer allowing receiving RESTful API requests (this implementation wraps the EmbedIO web server)
-var webApiServer = new EmbedIOWebApiServer(embedIOWebServer);
-
-// Create a database allowing executing INSERTs, UPDATEs, and DELETEs while receiving data change events
-// (or use a MemoryDatabase, PostgresDatabase, SQLiteDatabase, etc)
-var database = new MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=test");
-
-// Listen for clients creating new channels
-// (clients are expected to create and maintain a single channel to the server)
-channelServer.OnNewChannelAsync("/message", async(channel) => {
-    // When a channel is created, create a dynamic view on the message table
-    // and send all data events to the client over the channel
-    return database.CreateAndStartDynamicView(
-        "SELECT * FROM message",
-        dataEventTransaction => {
-            channel.Queue(dataEventTransaction);
-        }
-    );
-});
-
-// Listen for POST requests to /api/message
-webApiServer.OnPost("/api/message", async(req, res) => {
-    // Parse the received message
-    var message = await req.ParseAsJsonAsync<dynamic>();
-
-    // INSERT a record into the message table
-    // (this will trigger the DynamicView above to send the INSERT event to the client over the channel)
-    await database.InsertAndCommitAsync("message", new {
-        text = message
-    });
-});
-
-channelServer.Start();
-webApiServer.Start();
-```
-
-Example javascript code running in a browser client...
-
-```js
-// This create a channel to the server (using a WebSocket)
-// and echoes any data events received to the console
-let channelClient = new WebSocketChannelClient({
-    url: 'ws://localhost:8080/message?id=123',
-    dataEventHandler: function(dataEventTransaction) {
-        console.log(dataEventTransaction.dataEvents[0].text);
-    } 
-});
-channelClient.start();
-```
-
-Running the server code above would cause a "Hello World" record to be inserted into the database and replicated to a client that echoes this data event to the console.
-
-In more complex scenarios, you would define all the `DynamicViews` that a given client should see and let the framework handle synchronizing the data to the client.  Web clients can easily be integrated with Vue.js, AngularJS, React, etc to automatically update the web UI as the data changes.
-
-## Demos
-
-- [Minimal Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/minimal-chat/index.vue.html) - [Server Code](https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Examples/SimpleChatExample.cs), [Client Code](https://github.com/firesharkstudios/Butterfly/tree/master/Butterfly.Client.Web/examples/minimal-chat)
-
-- [Minimal Chat (Using AngularJS)](http://examples.butterflyframework.io/examples/minimal-chat/index.angular.html) - [Server Code](https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Examples/SimpleChatExample.cs), [Client Code](https://github.com/firesharkstudios/Butterfly/tree/master/Butterfly.Client.Web/examples/minimal-chat)
-
-- [Full Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/full-chat/index.vue.html) - [Server Code](https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Examples/FullChatExample.cs), [Client Code](https://github.com/firesharkstudios/Butterfly/tree/master/Butterfly.Client.Web/examples/full-chat)
+- [Full Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/full-chat/index.vue.html)
 
 ## Packages
 

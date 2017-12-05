@@ -9,8 +9,8 @@ namespace Butterfly.Examples {
     public static class MinimalChatExample {
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static void Setup(IWebApiServer webApiServer, string apiPathPrefix, IChannelServer channelServer, string channelPathPrefix) {
-            logger.Debug($"Setup():apiPathPrefix={apiPathPrefix},channelPathPrefix={channelPathPrefix}");
+        public static void Setup(IWebApiServer webApiServer, IChannelServer channelServer) {
+            logger.Debug($"Setup()");
 
             // Setup database
             var database = new Butterfly.Database.Memory.MemoryDatabase();
@@ -24,7 +24,7 @@ namespace Butterfly.Examples {
             database.SetInsertDefaultValue("created_at", () => DateTime.Now);
 
             // Send initial data events and subsequent data events to any new channels created
-            channelServer.OnNewChannel(channelPathPrefix, channel => {
+            channelServer.OnNewChannel("/minimal-chat", channel => {
                 var initialDataEventTransaction = database.GetInitialDataEventTransactionAsync("chat_message").Result;
                 channel.Queue(initialDataEventTransaction);
                 return database.OnNewCommittedTransaction(dataEventTransaction => {
@@ -33,7 +33,7 @@ namespace Butterfly.Examples {
             });
 
             // Listen for API requests to /api/chat/message
-            webApiServer.OnPost($"{apiPathPrefix}/chat/message", async(req, res) => {
+            webApiServer.OnPost($"/api/minimal-chat/chat/message", async(req, res) => {
                 var chatMessage = await req.ParseAsJsonAsync<dynamic>();
                 await database.InsertAndCommitAsync("chat_message", new {
                     user_name = chatMessage.userName,

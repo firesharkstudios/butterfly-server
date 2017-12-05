@@ -7,8 +7,8 @@ namespace Butterfly.Examples {
     public static class HelloWorldExample {
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static void Setup(IWebApiServer webApiServer, string apiPathPrefix, IChannelServer channelServer, string channelPathPrefix) {
-            logger.Debug($"Setup():apiPathPrefix={apiPathPrefix},channelPathPrefix={channelPathPrefix}");
+        public static void Setup(IWebApiServer webApiServer, IChannelServer channelServer) {
+            logger.Debug($"Setup()");
 
             // Setup database
             var database = new Butterfly.Database.Memory.MemoryDatabase();
@@ -20,7 +20,7 @@ namespace Butterfly.Examples {
 
             // Listen for clients creating new channels to /hello-world (each client
             // is expected to create and maintain a single channel to the server)
-            channelServer.OnNewChannel(channelPathPrefix, channel => {
+            channelServer.OnNewChannel("/hello-world", channel => {
                 // When a channel is created, create a dynamic view on the message table
                 // and send all data events to the client over the channel
                 return database.CreateAndStartDynamicView(
@@ -32,7 +32,7 @@ namespace Butterfly.Examples {
             });
 
             // Listen for POST requests to /api/hello-world/message
-            webApiServer.OnPost($"{apiPathPrefix}/message", async (req, res) => {
+            webApiServer.OnPost($"/api/hello-world/message", async (req, res) => {
                 // Parse the received message
                 var message = await req.ParseAsJsonAsync<dynamic>();
 
