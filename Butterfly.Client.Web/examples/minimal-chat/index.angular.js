@@ -17,7 +17,7 @@
             });
             // Create channel to server and handle data events
             let channelClient = new WebSocketChannelClient({
-                url: 'ws://localhost:8080/minimal-chat/' + $scope.myUserId,
+                url: '/minimal-chat?id=' + $scope.myUserId,
                 onDataEvent: arrayDataEventHandler.handle,
                 onUpdated: function () {
                     $scope.$apply();
@@ -57,13 +57,13 @@ angular.module('components', [])
                         $scope.postMessage();
                     }
                 };
-                $scope.$watchCollection($scope.sortedchatMessages(), function () {
-                    let chatMessageHistory = $($element).find('.chat-message-history');
-                    chatMessageHistory.animate({ scrollTop: chatMessageHistory.prop("scrollHeight") }, 1000);
-                });
                 $scope.sortedChatMessages = function () {
                     return $scope.chatMessages.sort(FieldComparer('created_at'));
                 };
+                $scope.$watchCollection($scope.sortedChatMessages(), function () {
+                    let chatMessageHistory = $($element).find('.chat-message-history');
+                    chatMessageHistory.animate({ scrollTop: chatMessageHistory.prop("scrollHeight") }, 1000);
+                });
             },
             template:
             '<div class="d-flex flex-column">' +
