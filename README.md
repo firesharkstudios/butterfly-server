@@ -35,10 +35,11 @@ There are no interdependencies between the packages. Use any subset of the packa
 ## App Design
 
 #### Client Side
-- Use all static HTML, Javascript, and CSS files (no templating needed)
+- Use all static HTML, Javascript, and CSS files
 - Perform actions by calling a RESTful Api on a `WebApiServer`
 - Create and maintain a `Channel` to a `ChannelServer` to receive data
-- Integrate with popular data binding libraries (Vue.js, Angular, React, etc) to auto update HTML as data changes
+- Use whatever data binding library you wish (Vue.js, Angular, React, etc)
+- Use whatever client UI library you wish (Bootstrap, Foundation, Skeleton, etc)
 
 #### Server Side 
 - Define the synchronized data each client receives by creating `DynamicViews` on a `Database` using a familiar SELECT syntax
