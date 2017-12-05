@@ -23,8 +23,8 @@ namespace Butterfly.Examples {
             // (clients are expected to maintain a channel to the server)
             channelServer.OnNewChannel("/hello-world", channel => {
                 // When a channel is created, create a dynamic view on the message table
-                // and send all data event transactions to the client over the channel;
-                // return the dynamic view so the dynamic view is disposed when the channel is disposed
+                // and send all data event transactions to the client over the channel
+                // returning the dynamic view so the dynamic view is disposed when the channel is disposed
                 return database.CreateAndStartDynamicView(
                     "message",
                     dataEventTransaction => {

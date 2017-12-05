@@ -48,10 +48,10 @@ namespace Butterfly.Database {
             return Array.Find(this.TableRefs, x => x.table.Name == tableName);
         }
 
-        public void ConfirmAllParamsUsed(Dict statementParams) {
+        public static void ConfirmAllParamsUsed(string sql, Dict statementParams) {
             foreach (var key in statementParams.Keys) {
                 string paramName = $"@{key}";
-                if (!this.Sql.Contains(paramName)) throw new Exception($"Unused parameter '{key}'");
+                if (!sql.Contains(paramName)) throw new Exception($"Unused parameter '{key}'");
             }
         }
 
@@ -70,14 +70,7 @@ namespace Butterfly.Database {
             else if (statementParams is string keyValue) {
                 if (!allowKeyValueAsSourceParams) throw new Exception("Statement doesn't allow passing single key value as source params");
                 if (this.TableRefs.Length != 1) throw new Exception("Statement must have exactly one table to pass single string value as where condition");
-
-                Dict result = new Dict();
-                string[] keyValueParts = keyValue.Split(';');
-                string[] keyFieldNames = this.TableRefs[0].table.PrimaryIndex.FieldNames;
-                for (int i = 0; i < keyFieldNames.Length; i++) {
-                    result[keyFieldNames[i]] = keyValueParts[i];
-                }
-                return result;
+                return BaseDatabase.ParseKeyValue(keyValue, this.TableRefs[0].table.PrimaryIndex.FieldNames);
             }
 
             // Otherwise, convert statementParams to a dictionary
@@ -86,11 +79,28 @@ namespace Butterfly.Database {
             }
         }
 
-        /*
-        public static Dict ConvertParamsToFields(Dict statementParams) {
+        // x.id=@id
+        protected readonly static Regex EQUALS_REF_REGEX = new Regex(@"^(?<tableAliasWithDot>\w+\.)?(?<fieldName>\w+)\s*=\s*\@(?<paramName>\w+)");
 
+        public static EqualsRef[] DetermineEqualsRefs(IDatabase database, string clause) {
+            List<EqualsRef> setRefs = new List<EqualsRef>();
+            var matches = EQUALS_REF_REGEX.Matches(clause);
+            foreach (Match nextMatch in matches) {
+                setRefs.Add(new EqualsRef(nextMatch.Groups["tableAliasWithDot"].Value.Trim(), nextMatch.Groups["fieldName"].Value.Trim(), nextMatch.Groups["paramName"].Value.Trim()));
+            }
+            return setRefs.ToArray();
         }
-        */
+
+        public static Dict RemapStatementParamsToFieldValues(Dict statementParamsDict, EqualsRef[] equalsRefs) {
+            Dict result = new Dict();
+            foreach ((string statementParamName, object statementParamValue) in statementParamsDict) {
+                EqualsRef equalsRef = Array.Find(equalsRefs, x => x.paramName == statementParamName);
+                if (equalsRef != null) {
+                    result[equalsRef.fieldName] = statementParamValue;
+                }
+            }
+            return result;
+        }
     }
 
     /*
@@ -155,21 +165,21 @@ namespace Butterfly.Database {
         }
     }
 
-    public class SqlEqualsRef {
+    public class EqualsRef {
         public readonly string tableName;
         public readonly string fieldName;
         public readonly string paramName;
 
-        public SqlEqualsRef(string tableName, string fieldName, string paramName) {
+        public EqualsRef(string tableName, string fieldName, string paramName) {
             this.tableName = string.IsNullOrEmpty(tableName) ? null : tableName;
             this.fieldName = fieldName;
             this.paramName = paramName;
         }
 
-        public static Dict GetMatchingParams(SqlEqualsRef[] equalsRefs, Dict sourceParams) {
+        public static Dict GetMatchingParams(EqualsRef[] equalsRefs, Dict sourceParams) {
             Dict result = new Dict();
             foreach (var keyValuePair in sourceParams) {
-                SqlEqualsRef whereRef = Array.Find(equalsRefs, x => x.paramName == keyValuePair.Key);
+                EqualsRef whereRef = Array.Find(equalsRefs, x => x.paramName == keyValuePair.Key);
                 if (whereRef != null) {
                     result[whereRef.fieldName] = keyValuePair.Value;
                 }

@@ -50,37 +50,25 @@ namespace Butterfly.Database {
             this.TableRefs = TableRef.ParseTableRefs(database, this.fromClause);
 
             // Parse the SET clause
-            this.SetRefs = DetermineSetRefs(database, setClause);
+            this.SetRefs = DetermineEqualsRefs(database, setClause);
+            this.WhereRefs = DetermineEqualsRefs(database, whereClause);
         }
 
-        // x.id=@id
-        protected readonly static Regex FIRST_SET_REF_REGEX = new Regex(@"^(?<tableAliasWithDot>\w+\.)?(?<fieldName>\w+)\s*=\s*\@(?<paramName>\w+)");
-
-        // AND x.type=@type
-        protected readonly static Regex NEXT_SET_REF_REGEX = new Regex(@"\s+,\s+(?<tableAliasWithDot>\w+\.)?(?<fieldName>\w+)\s*=\s*\@(?<paramName>\w+)");
-
-        public static SqlEqualsRef[] DetermineSetRefs(IDatabase database, string whereClause) {
-            var firstMatch = FIRST_SET_REF_REGEX.Match(whereClause);
-            if (!firstMatch.Success) throw new Exception($"Invalid where clause '{whereClause}'");
-
-            List<SqlEqualsRef> setRefs = new List<SqlEqualsRef>();
-            setRefs.Add(new SqlEqualsRef(firstMatch.Groups["tableAliasWithDot"].Value.Trim(), firstMatch.Groups["fieldName"].Value.Trim(), firstMatch.Groups["paramName"].Value.Trim()));
-
-            var nextMatches = NEXT_SET_REF_REGEX.Matches(whereClause);
-            foreach (Match nextMatch in nextMatches) {
-                setRefs.Add(new SqlEqualsRef(nextMatch.Groups["tableAliasWithDot"].Value.Trim(), nextMatch.Groups["fieldName"].Value.Trim(), nextMatch.Groups["paramName"].Value.Trim()));
-            }
-            return setRefs.ToArray();
+        public EqualsRef[] SetRefs {
+            get;
+            protected set;
         }
 
-        public SqlEqualsRef[] SetRefs {
+        public EqualsRef[] WhereRefs {
             get;
             protected set;
         }
 
         public (string, Dict) GetExecutableSqlAndParams(Dict sourceParams) {
+            Statement.ConfirmAllParamsUsed(this.Sql, sourceParams);
             return (this.Sql, sourceParams);
         }
+
     }
 
 }

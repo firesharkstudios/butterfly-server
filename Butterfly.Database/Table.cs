@@ -18,6 +18,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using Butterfly.Database.Event;
+
+using Dict = System.Collections.Generic.Dictionary<string, object>;
+
 namespace Butterfly.Database {
 
     public abstract class Table {

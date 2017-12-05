@@ -58,16 +58,16 @@ namespace Butterfly.Database.Test {
             database.SetInsertDefaultValue("created_at", () => DateTime.Now);
             database.SetInsertDefaultValue("updated_at", () => DateTime.Now);
 
-            await this.TruncateData(database);
+            await TruncateData(database);
             await this.TestTransactions(database);
 
-            await this.TruncateData(database);
-            (object salesDepartmentId, object hrDepartmentId, object customerServiceDepartmentId) = await this.InsertBasicData(database);
+            await TruncateData(database);
+            (object salesDepartmentId, object hrDepartmentId, object customerServiceDepartmentId) = await InsertBasicData(database);
             await this.SelectBasicData(database, salesDepartmentId, hrDepartmentId, customerServiceDepartmentId);
             await this.UpdateAndDeleteBasicData(database, hrDepartmentId);
         }
 
-        protected async Task TruncateData(IDatabase database) {
+        public static async Task TruncateData(IDatabase database) {
             using (ITransaction transaction = await database.BeginTransaction()) {
                 foreach (var tableName in database.Tables.Keys) {
                     await transaction.TruncateAsync(tableName);
@@ -76,7 +76,7 @@ namespace Butterfly.Database.Test {
             }
         }
 
-        protected async Task<(object, object, object)> InsertBasicData(IDatabase database) {
+        public static async Task<(object, object, object)> InsertBasicData(IDatabase database) {
             object salesDepartmentId;
             object hrDepartmentId;
             object customerServiceDepartmentId;
@@ -102,10 +102,10 @@ namespace Butterfly.Database.Test {
                 });
 
                 // Add HR department using full INSERT statements with individual field parameters
-                hrDepartmentId = await transaction.InsertAsync("INSERT INTO department (name) VALUES (@name)", new {
-                    name = "HR",
+                hrDepartmentId = await transaction.InsertAsync("INSERT INTO department (name) VALUES (@someName)", new {
+                    someName = "HR",
                 });
-                object bobEmployeeId = await transaction.InsertAsync("INSERT INTO employee (name, department_id) VALUES (@name, @department_id)", new {
+                object bobEmployeeId = await transaction.InsertAsync("INSERT INTO employee (name, department_id, birthday) VALUES (@name, @department_id, @birthday)", new {
                     name = "Bob in HR",
                     department_id = hrDepartmentId,
                     birthday = new DateTime(1990, 01, 01),
@@ -292,6 +292,7 @@ namespace Butterfly.Database.Test {
             using (database.OnNewCommittedTransaction(dataEventTransaction => {
                 dataEventTransactionCollector.Add(dataEventTransaction);
             })) {
+                /*
                 // Test updating rows on a non-indexed field
                 dataEventTransactionCollector.Clear();
                 int count1 = await database.UpdateAndCommitAsync("UPDATE department SET name=@newName WHERE name=@name", new {
@@ -302,6 +303,7 @@ namespace Butterfly.Database.Test {
                 Assert.AreEqual(1, dataEventTransactionCollector.Count);
                 Assert.AreEqual(1, dataEventTransactionCollector[0].dataEvents.Length);
                 Assert.AreEqual(DataEventType.Update, dataEventTransactionCollector[0].dataEvents[0].dataEventType);
+                */
 
                 // Test updating rows on an indexed field
                 dataEventTransactionCollector.Clear();

@@ -93,10 +93,6 @@
       <Project>{ea4f6fe2-51c1-4f2b-b7f4-e21efbc65d4f}</Project>
       <Name>Butterfly.Channel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Butterfly.Database.Event\Butterfly.Database.Event.csproj">
-      <Project>{3104D2EC-E8FE-47E9-8591-B5B8B9DAC963}</Project>
-      <Name>Butterfly.Database.Event</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Butterfly.Database.Memory\Butterfly.Database.Memory.csproj">
       <Project>{2dbfd7b1-18d0-46c8-b185-6a73e5f79bcd}</Project>
       <Name>Butterfly.Database.Memory</Name>

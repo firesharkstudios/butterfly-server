@@ -59,12 +59,13 @@ namespace Butterfly.Database.Test {
             database.SetInsertDefaultValue("created_at", () => DateTime.Now);
             database.SetInsertDefaultValue("updated_at", () => DateTime.Now);
 
-            await this.TruncateData(database);
-            (object salesDepartmentId, object hrDepartmentId, object customerServiceDepartmentId) = await this.InsertBasicData(database);
+            await DatabaseUnitTest.TruncateData(database);
+            (object salesDepartmentId, object hrDepartmentId, object customerServiceDepartmentId) = await DatabaseUnitTest.InsertBasicData(database);
             await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT * FROM employee", "name", "Joe Sales, Jr", 1);
             await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId,"SELECT id, name FROM employee", "department_id", -1, 0);
         }
 
+        /*
         protected async Task TruncateData(BaseDatabase database) {
             using (ITransaction transaction = await database.BeginTransaction()) {
                 foreach (var tableName in database.Tables.Keys) {
@@ -143,6 +144,7 @@ namespace Butterfly.Database.Test {
 
             return (salesDepartmentId, hrDepartmentId, customerServiceDepartmentId);
         }
+        */
 
         public async Task TestInsertUpdateDeleteEvents(BaseDatabase database, object salesDepartmentId, string selectSourceSql, string updateField, object updateValue, int updateCount) {
             List<DataEventTransaction> dataEventTransactionCollector = new List<DataEventTransaction>();
@@ -191,7 +193,7 @@ namespace Butterfly.Database.Test {
                 if (updateCount > 0) {
                     Assert.AreEqual(1, dataEventTransactionCollector[0].dataEvents.Length);
                     Assert.AreEqual(DataEventType.Update, dataEventTransactionCollector[0].dataEvents[0].dataEventType);
-                    Assert.AreEqual(updateValue, (dataEventTransactionCollector[0].dataEvents[0] as ChangeDataEvent).record[updateField]);
+                    Assert.AreEqual(updateValue, (dataEventTransactionCollector[0].dataEvents[0] as RecordDataEvent).record[updateField]);
                 }
 
                 // Confirm that a delete event is created

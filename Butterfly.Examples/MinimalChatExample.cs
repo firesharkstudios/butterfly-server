@@ -28,14 +28,15 @@ namespace Butterfly.Examples {
             // Listen for clients creating new channels to /minimal-chat
             // (clients are expected to maintain a channel to the server)
             channelServer.OnNewChannel("/minimal-chat", channel => {
-                // Send initial chat messages to the new channel
-                var initialDataEventTransaction = database.GetInitialDataEventTransactionAsync("chat_message").Result;
-                channel.Queue(initialDataEventTransaction);
-
-                // Send any new chat messages to the new channel
-                return database.OnNewCommittedTransaction(dataEventTransaction => {
-                    channel.Queue(dataEventTransaction);
-                });
+                // When a channel is created, create a dynamic view on the chat_message table
+                // and send all data event transactions to the client over the channel
+                // returning the dynamic view so the dynamic view is disposed when the channel is disposed
+                return database.CreateAndStartDynamicView(
+                    "chat_message",
+                    dataEventTransaction => {
+                        channel.Queue(dataEventTransaction);
+                    }
+                );
             });
 
             // Listen for API requests to /api/chat/message

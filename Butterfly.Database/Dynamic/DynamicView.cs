@@ -28,6 +28,7 @@ using Butterfly.Util;
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database.Dynamic {
+
     public class DynamicView {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -90,18 +91,18 @@ namespace Butterfly.Database.Dynamic {
             }
         }
 
-        public ChangeDataEvent[] ProcessDataChange(DataEvent dataEvent, Dict[] preCommitImpactedRecords, Dict[] postCommitImpactedRecords) {
+        public RecordDataEvent[] ProcessDataChange(DataEvent dataEvent, Dict[] preCommitImpactedRecords, Dict[] postCommitImpactedRecords) {
             logger.Debug($"ProcessDataChange():dataEvent={dataEvent},preCommitImpactedRecords.Length={preCommitImpactedRecords?.Length},postCommitImpactedRecords.Length={postCommitImpactedRecords?.Length}");
             TableRef tableRef = this.statement.FindTableRefByTableName(dataEvent.name);
             if (tableRef == null) return null;
 
-            if (!(dataEvent is ChangeDataEvent dataChange)) return null;
+            if (!(dataEvent is KeyValueDataEvent transactionDataEvent)) return null;
 
-            List<ChangeDataEvent> newDataChanges = new List<ChangeDataEvent>();
-            switch (dataChange.dataEventType) {
+            List<RecordDataEvent> newDataChanges = new List<RecordDataEvent>();
+            switch (transactionDataEvent.dataEventType) {
                 case DataEventType.Insert:
                     foreach (var impactedRecord in postCommitImpactedRecords) {
-                        newDataChanges.Add(new ChangeDataEvent(DataEventType.Insert, this.name, impactedRecord));
+                        newDataChanges.Add(new RecordDataEvent(DataEventType.Insert, this.name, impactedRecord));
                     }
                     break;
                 case DataEventType.Update:
@@ -113,11 +114,11 @@ namespace Butterfly.Database.Dynamic {
                         int postCommitIndex = Array.IndexOf(postCommitKeyValues, preCommitKeyValues[i]);
                         if (postCommitIndex>=0) {
                             if (!preCommitImpactedRecords[i].IsSame(postCommitImpactedRecords[postCommitIndex])) {
-                                newDataChanges.Add(new ChangeDataEvent(DataEventType.Update, this.name, postCommitImpactedRecords[postCommitIndex]));
+                                newDataChanges.Add(new RecordDataEvent(DataEventType.Update, this.name, postCommitImpactedRecords[postCommitIndex]));
                             }
                         }
                         else {
-                            newDataChanges.Add(new ChangeDataEvent(DataEventType.Delete, this.name, preCommitImpactedRecords[i]));
+                            newDataChanges.Add(new RecordDataEvent(DataEventType.Delete, this.name, preCommitImpactedRecords[i]));
                         }
                     }
 
@@ -125,26 +126,28 @@ namespace Butterfly.Database.Dynamic {
                     for (int i = 0; i < postCommitKeyValues.Length; i++) {
                         int preCommitIndex = Array.IndexOf(preCommitKeyValues, postCommitKeyValues[i]);
                         if (preCommitIndex==-1) {
-                            newDataChanges.Add(new ChangeDataEvent(DataEventType.Insert, this.name, postCommitImpactedRecords[i]));
+                            newDataChanges.Add(new RecordDataEvent(DataEventType.Insert, this.name, postCommitImpactedRecords[i]));
                         }
                     }
                     break;
                 case DataEventType.Delete:
                     foreach (var impactedRecord in preCommitImpactedRecords) {
-                        newDataChanges.Add(new ChangeDataEvent(DataEventType.Delete, this.name, impactedRecord));
+                        newDataChanges.Add(new RecordDataEvent(DataEventType.Delete, this.name, impactedRecord));
                     }
                     break;
             }
             return newDataChanges.ToArray();
         }
 
-        public async Task<Dict[]> GetImpactedRecordsAsync(ChangeDataEvent dataChange) {
-            TableRef tableRef = this.statement.FindTableRefByTableName(dataChange.name);
+        public async Task<Dict[]> GetImpactedRecordsAsync(KeyValueDataEvent transactionDataEvent) {
+            TableRef tableRef = this.statement.FindTableRefByTableName(transactionDataEvent.name);
             if (tableRef == null) return null;
 
             StringBuilder newAndCondition = new StringBuilder();
             Dict newWhereParams = new Dict();
-            foreach (var fieldName in this.dynamicQuerySet.Database.Tables[dataChange.name].PrimaryIndex.FieldNames) {
+
+            Dict primaryKeyValues = BaseDatabase.ParseKeyValue(transactionDataEvent.keyValue, this.dynamicQuerySet.Database.Tables[transactionDataEvent.name].PrimaryIndex.FieldNames);
+            foreach (var fieldName in this.dynamicQuerySet.Database.Tables[transactionDataEvent.name].PrimaryIndex.FieldNames) {
                 string prefix;
                 if (this.statement.TableRefs.Length == 1) {
                     prefix = "";
@@ -160,7 +163,7 @@ namespace Butterfly.Database.Dynamic {
                 if (newAndCondition.Length > 0) newAndCondition.Append(" AND ");
                 newAndCondition.Append($"{prefix}{fieldName}=@{paramName}");
 
-                newWhereParams[paramName] = dataChange.record[fieldName];
+                newWhereParams[paramName] = primaryKeyValues[fieldName];
             }
             return await this.dynamicQuerySet.Database.SelectRowsAsync(this.statement, this.statementParams, newAndCondition.ToString(), newWhereParams);
         }
@@ -204,28 +207,28 @@ namespace Butterfly.Database.Dynamic {
                     this.dynamicParam.Clear();
                 }
             }
-            else if (dataEvent is ChangeDataEvent dataChange) {
+            /*
+            else if (dataEvent is KeyValueDataEvent keyValueDataEvent) {
                 switch (dataEvent.dataEventType) {
                     case DataEventType.Initial:
                     case DataEventType.Insert:
                     case DataEventType.Update: {
-                            object keyValue = BaseDatabase.GetKeyValue(keyFieldNames, dataChange.record);
-                            object newValue = dataChange.record[this.fieldName];
-                            if (!this.valueByKeyValue.TryGetValue(keyValue, out object existingValue) || existingValue != newValue) {
+                            object newValue = keyValueDataEvent.record[this.fieldName];
+                            if (!this.valueByKeyValue.TryGetValue(keyValueDataEvent.keyValue, out object existingValue) || existingValue != newValue) {
                                 changed = true;
                             }
                             if (changed) {
-                                this.valueByKeyValue[keyValue] = newValue;
+                                this.valueByKeyValue[keyValueDataEvent.keyValue] = newValue;
                             }
                             break;
                         }
                     case DataEventType.Delete: {
-                            object keyValue = BaseDatabase.GetKeyValue(keyFieldNames, dataChange.record);
-                            changed = this.valueByKeyValue.Remove(keyValue);
+                            changed = this.valueByKeyValue.Remove(keyValueDataEvent.keyValue);
                             break;
                         }
                 }
             }
+            */
 
             if (changed) {
                 if (dynamicParam is MultiValueDynamicParam multiValueDynamicParam) {

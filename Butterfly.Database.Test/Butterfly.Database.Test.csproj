@@ -79,10 +79,6 @@
     <EmbeddedResource Include="db.sql" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Butterfly.Database.Event\Butterfly.Database.Event.csproj">
-      <Project>{3104d2ec-e8fe-47e9-8591-b5b8b9dac963}</Project>
-      <Name>Butterfly.Database.Event</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Butterfly.Database.Memory\Butterfly.Database.Memory.csproj">
       <Project>{2dbfd7b1-18d0-46c8-b185-6a73e5f79bcd}</Project>
       <Name>Butterfly.Database.Memory</Name>

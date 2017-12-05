@@ -39,9 +39,16 @@ namespace Butterfly.Database {
 
             // Parse the FROM clause
             this.TableRefs = TableRef.ParseTableRefs(database, this.fromClause);
+            this.WhereRefs = DetermineEqualsRefs(database, whereClause);
+        }
+
+        public EqualsRef[] WhereRefs {
+            get;
+            protected set;
         }
 
         public (string, Dict) GetExecutableSqlAndParams(Dict sourceParams) {
+            Statement.ConfirmAllParamsUsed(this.Sql, sourceParams);
             return (this.Sql, sourceParams);
         }
     }

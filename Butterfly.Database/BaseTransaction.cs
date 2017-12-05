@@ -30,7 +30,7 @@ namespace Butterfly.Database {
     public abstract class BaseTransaction : ITransaction {
         protected readonly BaseDatabase database;
 
-        protected readonly List<ChangeDataEvent> changeDataEvents = new List<ChangeDataEvent>();
+        protected readonly List<KeyValueDataEvent> dataEvents = new List<KeyValueDataEvent>();
 
         public BaseTransaction(BaseDatabase database) {
             this.database = database;
@@ -50,40 +50,39 @@ namespace Butterfly.Database {
         }
 
         public async Task<object> InsertAsync(InsertStatement statement, dynamic statementParams, bool ignoreIfDuplicate = false) {
+            // Convert statementParams
             Dict statementParamsDict = statement.ConvertParamsToDict(statementParams);
-            Dict statementParamsDictWithDefaults = this.database.ApplyDefaultValues(statement.TableRefs[0].table, statementParamsDict);
-            (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(statementParamsDictWithDefaults);
+            Dict defaultValues = this.database.GetInsertDefaultValues(statement.TableRefs[0].table);
 
+            // Get the executable sql and params
+            (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(statementParamsDict, defaultValues);
+
+            // Execute insert and return getGenerateId lambda
             Func<object> getGeneratedId;
             try {
                 getGeneratedId = await this.DoInsertAsync(executableSql, executableParams, ignoreIfDuplicate);
             }
-            catch (DuplicateKeyDatabaseException e) {
+            catch (DuplicateKeyDatabaseException) {
                 if (ignoreIfDuplicate) return null;
                 throw;
             }
 
-            object generatedId = statement.TableRefs[0].table.AutoIncrementFieldName!=null && getGeneratedId != null ? getGeneratedId() : null;
-
-            // Generate change data event
-            Dict record;
-            if (generatedId != null) {
-                record = new Dict(statementParamsDictWithDefaults) {
-                    [statement.TableRefs[0].table.AutoIncrementFieldName] = generatedId
-                };
+            // Determine keyValue (either keyValue is from a generated id or was included in the statement params)
+            object keyValue;
+            if (statement.TableRefs[0].table.AutoIncrementFieldName != null && getGeneratedId != null) {
+                keyValue = getGeneratedId();
             }
             else {
-                record = statementParamsDictWithDefaults;
+                keyValue = BaseDatabase.GetKeyValue(statement.TableRefs[0].table.PrimaryIndex.FieldNames, executableParams);
             }
-            ChangeDataEvent changeDataEvent = new ChangeDataEvent(DataEventType.Insert, statement.TableRefs[0].table.Name, record);
-            this.changeDataEvents.Add(changeDataEvent);
 
-            // Return primary key value
-            return generatedId != null ? generatedId : BaseDatabase.GetKeyValue(statement.TableRefs[0].table.PrimaryIndex.FieldNames, statementParamsDictWithDefaults);
+            // Create data event
+            this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Insert, statement.TableRefs[0].table.Name, keyValue));
+
+            return keyValue;
         }
 
         protected abstract Task<Func<object>> DoInsertAsync(string executableSql, Dict executableParams, bool ignoreIfDuplicate);
-
 
         // Update methods
         public async Task<int> UpdateAsync(string statementSql, dynamic statementParams) {
@@ -92,11 +91,22 @@ namespace Butterfly.Database {
         }
 
         public async Task<int> UpdateAsync(UpdateStatement statement, dynamic statementParams) {
+            // Convert statementParams
             Dict statementParamsDict = statement.ConvertParamsToDict(statementParams);
-            statement.ConfirmAllParamsUsed(statementParamsDict);
+
+            // Determine keyValue
+            var fieldValues = Statement.RemapStatementParamsToFieldValues(statementParamsDict, statement.WhereRefs);
+            object keyValue = BaseDatabase.GetKeyValue(statement.TableRefs[0].table.PrimaryIndex.FieldNames, fieldValues);
+
+            // Get the executable sql and params
             (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(statementParamsDict);
+
+            // Execute update
             int count = await this.DoUpdateAsync(executableSql, executableParams);
-            this.changeDataEvents.Add(new ChangeDataEvent(DataEventType.Update, statement.TableRefs[0].table.Name, statementParamsDict));
+
+            // Create data event
+            this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Update, statement.TableRefs[0].table.Name, keyValue));
+
             return count;
         }
 
@@ -109,13 +119,22 @@ namespace Butterfly.Database {
         }
 
         public async Task<int> DeleteAsync(DeleteStatement statement, dynamic statementParams) {
+            // Convert statementParams
             Dict statementParamsDict = statement.ConvertParamsToDict(statementParams);
-            statement.ConfirmAllParamsUsed(statementParamsDict);
+
+            // Determine keyValue
+            var fieldValues = Statement.RemapStatementParamsToFieldValues(statementParamsDict, statement.WhereRefs);
+            object keyValue = BaseDatabase.GetKeyValue(statement.TableRefs[0].table.PrimaryIndex.FieldNames, fieldValues);
+
+            // Get the executable sql and params
             (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(statementParamsDict);
+
+            // Execute delete
             int count = await this.DoDeleteAsync(executableSql, executableParams);
 
-            //Dict fieldDict = statement.ConvertStatementParamsToFields(statementParamsDict);
-            this.changeDataEvents.Add(new ChangeDataEvent(DataEventType.Delete, statement.TableRefs[0].table.Name, statementParamsDict));
+            // Create data event
+            this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Delete, statement.TableRefs[0].table.Name, keyValue));
+
             return count;
         }
 
@@ -134,7 +153,7 @@ namespace Butterfly.Database {
 
         // Commit methods
         public async Task CommitAsync() {
-            DataEventTransaction dataEventTransaction = this.changeDataEvents.Count > 0 ? new DataEventTransaction(DateTime.Now, this.changeDataEvents.ToArray()) : null;
+            DataEventTransaction dataEventTransaction = this.dataEvents.Count > 0 ? new DataEventTransaction(DateTime.Now, this.dataEvents.ToArray()) : null;
             if (dataEventTransaction!=null) {
                 await this.database.ProcessDataEventTransaction(TransactionState.Uncommitted, dataEventTransaction);
             }

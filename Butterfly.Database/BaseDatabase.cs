@@ -143,7 +143,7 @@ namespace Butterfly.Database {
             dataEvents.Add(new InitialBeginDataEvent(dataEventName, keyFieldNames));
 
             Dict[] rows = await this.SelectRowsAsync(selectStatement, statementParams);
-            ChangeDataEvent[] changeDataEvents = rows.Select(x => new ChangeDataEvent(DataEventType.Initial, dataEventName, x)).ToArray();
+            RecordDataEvent[] changeDataEvents = rows.Select(x => new RecordDataEvent(DataEventType.Initial, dataEventName, x)).ToArray();
             dataEvents.AddRange(changeDataEvents);
 
             dataEvents.Add(new DataEvent(DataEventType.InitialEnd, dataEventName));
@@ -181,7 +181,7 @@ namespace Butterfly.Database {
 
         public async Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic statementParams) {
             Dict statementParamsDict = statement.ConvertParamsToDict(statementParams);
-            statement.ConfirmAllParamsUsed(statementParamsDict);
+            Statement.ConfirmAllParamsUsed(statement.Sql, statementParamsDict);
             (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(statementParamsDict);
             return await this.DoSelectRowsAsync(executableSql, executableParams);
         }
@@ -234,33 +234,17 @@ namespace Butterfly.Database {
             }
         }
 
-        public Dict ApplyDefaultValues(Table table, Dict values) {
-            Dictionary<string, object> newValues = new Dict(values);
+        public Dict GetInsertDefaultValues(Table table) {
+            Dictionary<string, object> defaultValues = new Dict();
             foreach ((string fieldName, Func<object> getDefaultValue) in table.GetDefaultValueByFieldName) {
                 FieldDef fieldDef = table.FindFieldDef(fieldName);
-                if (fieldDef!=null && !newValues.ContainsKey(fieldDef.name)) newValues[fieldDef.name] = getDefaultValue();
+                if (fieldDef!=null && !defaultValues.ContainsKey(fieldDef.name)) defaultValues[fieldDef.name] = getDefaultValue();
             }
             foreach ((string fieldName, Func<object> getDefaultValue) in this.getDefaultValueByFieldName) {
                 FieldDef fieldDef = table.FindFieldDef(fieldName);
-                if (fieldDef != null && !newValues.ContainsKey(fieldDef.name)) newValues[fieldDef.name] = getDefaultValue();
+                if (fieldDef != null && !defaultValues.ContainsKey(fieldDef.name)) defaultValues[fieldDef.name] = getDefaultValue();
             }
-            return newValues;
-        }
-
-        public static object GetKeyValue(string[] fieldNames, Dict record) {
-            if (fieldNames.Length == 1) {
-                return record[fieldNames.First()];
-            }
-            else {
-                StringBuilder sb = new StringBuilder();
-                bool isFirst = true;
-                foreach (var fieldName in fieldNames) {
-                    if (isFirst) isFirst = false;
-                    else sb.Append(";");
-                    sb.Append(record[fieldName]);
-                }
-                return sb.ToString();
-            }
+            return defaultValues;
         }
 
         protected readonly static Regex PARSE_TYPE = new Regex(@"^(?<type>.+?)(?<maxLengthWithParens>\(\d+\))?$");
@@ -324,6 +308,36 @@ namespace Butterfly.Database {
             var dynamicViewSet = this.CreateDynamicViewSet(asyncListener);
             dynamicViewSet.CreateDynamicView(sql, values, name, keyFieldNames);
             return await dynamicViewSet.StartAsync();
+        }
+
+        public static object GetKeyValue(string[] fieldNames, Dict record) {
+            StringBuilder sb = new StringBuilder();
+            bool isFirst = true;
+            foreach (var fieldName in fieldNames) {
+                if (isFirst) isFirst = false;
+                else sb.Append(";");
+
+                if (!record.ContainsKey(fieldName)) throw new Exception($"Could not get key field '{fieldName}' to build key value");
+                sb.Append(record[fieldName]);
+            }
+            return sb.ToString();
+        }
+
+        public static Dict ParseKeyValue(object keyValue, string[] keyFieldNames) {
+            Dict result = new Dict();
+            if (keyValue is string keyValueText) {
+                string[] keyValueParts = keyValueText.Split(';');
+                for (int i = 0; i < keyFieldNames.Length; i++) {
+                    result[keyFieldNames[i]] = keyValueParts[i];
+                }
+            }
+            else if (keyFieldNames.Length==1) {
+                result[keyFieldNames[0]] = keyValue;
+            }
+            else {
+                throw new Exception("Cannot parse key value that is not a string and keyFieldNames.Length!=1");
+            }
+            return result;
         }
     }
 

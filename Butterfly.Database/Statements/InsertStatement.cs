@@ -39,8 +39,7 @@ namespace Butterfly.Database {
         /// 
         /// </summary>
         /// <param name="database"></param>
-        /// <param name="sourceSql">Can be a table name or full SQL. Full SQL can use @@names and @@values tokens to retrieve values from the record parameter.</param>
-        /// <param name="sourceParams"></param>
+        /// <param name="sql">Can be a table name or full SQL. Full SQL can use @@names and @@values tokens to retrieve values from the record parameter.</param>
         public InsertStatement(IDatabase database, string sql) {
             this.SetSql(sql, "INSERT INTO @@tableName (@@names) VALUES (@@values)");
 
@@ -65,30 +64,53 @@ namespace Butterfly.Database {
             return valuesClause.Split(',').Select(x => x.Trim()).ToList();
         }
 
-        public (string, Dict) GetExecutableSqlAndParams(Dict statementParamsDict) {
-            string newNamesClause = this.namesClause;
-            string newValuesClause = this.valuesClause;
+        public (string, Dict) GetExecutableSqlAndParams(Dict statementParams, Dict defaultValues) {
+            Dict executableParams = new Dict();
+            executableParams.UpdateFrom(defaultValues);
+            executableParams.UpdateFrom(statementParams);
+            
+            (List<string> names, List<string> values) = this.GetNamesAndValues(executableParams, defaultValues);
 
-            if (newNamesClause==NAMES && newValuesClause == VALUES) {
-                newNamesClause = string.Join(",", statementParamsDict.Keys);
+            string newNamesClause = string.Join(",", names);
+            string newValuesClause = string.Join(",", values);
 
-                var paramNames = statementParamsDict.Keys.Select(x => $"@{x}");
-                newValuesClause = string.Join(",", paramNames);
+            string executableSql = $"INSERT INTO {this.TableRefs[0].table.Name} ({newNamesClause}) VALUES ({newValuesClause})";
+            Statement.ConfirmAllParamsUsed(executableSql, executableParams);
+
+            return (executableSql, executableParams);
+        }
+
+        public EqualsRef[] GetInsertRefs(Dict executableParams) {
+            (IList<string> names, IList<string> values) = this.GetNamesAndValues(executableParams);
+
+            List<EqualsRef> result = new List<EqualsRef>();
+            for (int i = 0; i < names.Count; i++) {
+                result.Add(new EqualsRef(this.TableRefs[0].table.Name, names[i], values[i].Substring(1)));
+            }
+            return result.ToArray();
+        }
+
+        protected (List<string>, List<string>) GetNamesAndValues(Dict executableParams, Dict defaultValues = null) {
+            List<string> names;
+            List<string> values;
+            if (this.namesClause == NAMES && this.valuesClause == VALUES) {
+                names = executableParams.Keys.ToList();
+                values = executableParams.Keys.Select(x => $"@{x}").ToList();
             }
             else {
-                List<string> names = ParseNamesClause(newNamesClause);
-                List<string> values = ParseValuesClause(newValuesClause);
-                foreach ((string key, object value) in statementParamsDict) {
-                    if (!names.Contains(key)) {
-                        names.Add(key);
-                        values.Add($"@{key}");
+                names = ParseNamesClause(this.namesClause);
+                values = ParseValuesClause(this.valuesClause);
+                if (defaultValues!=null) {
+                    foreach ((string key, object value) in defaultValues) {
+                        if (!names.Contains(key)) {
+                            names.Add(key);
+                            values.Add($"@{key}");
+                        }
                     }
                 }
-                newNamesClause = string.Join(",", names);
-                newValuesClause = string.Join(",", values);
             }
-
-            return ($"INSERT INTO {this.TableRefs[0].table.Name} ({newNamesClause}) VALUES ({newValuesClause})", statementParamsDict);
+            return (names, values);
         }
+
     }
 }

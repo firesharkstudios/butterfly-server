@@ -112,8 +112,8 @@ namespace Butterfly.Database.Dynamic {
         protected async Task StoreImpactedRecordsInDataEventTransaction(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
             foreach (var dynamicView in this.dynamicViews) {
                 foreach (var dataEvent in dataEventTransaction.dataEvents) {
-                    if (dataEvent is ChangeDataEvent dataChange && HasImpactedRecords(transactionState, dataChange)) {
-                        Dict[] impactedRecords = await dynamicView.GetImpactedRecordsAsync(dataChange);
+                    if (dataEvent is KeyValueDataEvent keyValueDataEvent && HasImpactedRecords(transactionState, keyValueDataEvent)) {
+                        Dict[] impactedRecords = await dynamicView.GetImpactedRecordsAsync(keyValueDataEvent);
                         if (impactedRecords != null && impactedRecords.Length > 0) {
                             string storageKey = GetImpactedRecordsStorageKey(dynamicView, dataEvent, transactionState);
                             dataEventTransaction.Store(storageKey, impactedRecords);
@@ -165,7 +165,7 @@ namespace Butterfly.Database.Dynamic {
                                 }
 
                                 // Determine the changes from each data event on each dynamic select
-                                ICollection<ChangeDataEvent> newChangeDataEvents = dynamicView.ProcessDataChange(dataEvent, preCommitImpactedRecords, postCommitImpactedRecords);
+                                ICollection<RecordDataEvent> newChangeDataEvents = dynamicView.ProcessDataChange(dataEvent, preCommitImpactedRecords, postCommitImpactedRecords);
                                 if (newChangeDataEvents != null) {
                                     foreach (var newChangeDataEvent in newChangeDataEvents) {
                                         dynamicView.UpdateDynamicParams(newChangeDataEvent);

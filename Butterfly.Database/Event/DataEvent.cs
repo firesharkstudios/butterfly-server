@@ -61,10 +61,22 @@ namespace Butterfly.Database.Event {
         }
     }
 
-    public class ChangeDataEvent : DataEvent {
+    public class KeyValueDataEvent : DataEvent {
+        public readonly object keyValue;
+
+        public KeyValueDataEvent(DataEventType dataEventType, string name, object keyValue) : base(dataEventType, name) {
+            this.keyValue = keyValue;
+        }
+
+        public override string ToString() {
+            return $"{{id={id},dataEventType={dataEventType},name={name},keyValue={keyValue}}}";
+        }
+    }
+
+    public class RecordDataEvent : DataEvent {
         public readonly Dict record;
 
-        public ChangeDataEvent(DataEventType dataEventType, string name, Dict record) : base(dataEventType, name) {
+        public RecordDataEvent(DataEventType dataEventType, string name, Dict record) : base(dataEventType, name) {
             this.record = record;
         }
 

@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using NLog;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
+using Butterfly.Util;
 
 namespace Butterfly.Database.Memory {
     public class MemoryTransaction : BaseTransaction {
@@ -58,8 +59,9 @@ namespace Butterfly.Database.Memory {
             var dataTable = new DataTable(statement.TableName);
 
             foreach (var fieldDef in statement.FieldDefs) {
-                DataColumn dataColumn = new DataColumn(fieldDef.name, fieldDef.type);
-                dataColumn.AutoIncrement = fieldDef.isAutoIncrement;
+                DataColumn dataColumn = new DataColumn(fieldDef.name, fieldDef.type) {
+                    AutoIncrement = fieldDef.isAutoIncrement
+                };
                 dataTable.Columns.Add(dataColumn);
             }
 
@@ -75,8 +77,11 @@ namespace Butterfly.Database.Memory {
             InsertStatement executableStatement = new InsertStatement(this.database, executableSql);
             var memoryTable = executableStatement.TableRefs[0].table as MemoryTable;
 
+            var insertRefs = executableStatement.GetInsertRefs(executableParams);
+            var fieldValues = Statement.RemapStatementParamsToFieldValues(executableParams, insertRefs);
+
             var dataRow = memoryTable.DataTable.NewRow();
-            foreach (var nameValuePair in executableParams) {
+            foreach (var nameValuePair in fieldValues) {
                 dataRow[nameValuePair.Key] = nameValuePair.Value;
             }
             memoryTable.DataTable.Rows.Add(dataRow);
@@ -95,15 +100,17 @@ namespace Butterfly.Database.Memory {
             UpdateStatement executableStatement = new UpdateStatement(this.database, executableSql);
             if (!(executableStatement.TableRefs[0].table is MemoryTable memoryTable)) throw new Exception("Table is not a MemoryTable");
 
+            var fieldValues = Statement.RemapStatementParamsToFieldValues(executableParams, executableStatement.SetRefs);
+
             string evaluatedWhereClause = MemoryDatabase.EvaluateWhereClause(executableStatement.whereClause, executableParams, executableStatement.TableRefs);
             var dataRows = memoryTable.DataTable.Select(evaluatedWhereClause);
             int count = 0;
             foreach (var dataRow in dataRows) {
                 bool changed = false;
-                foreach (var setRef in executableStatement.SetRefs) {
-                    object value = executableParams[setRef.paramName];
-                    if (dataRow[setRef.fieldName] != value) {
-                        dataRow[setRef.fieldName] = value;
+                foreach ((string name, object value) in fieldValues) {
+                    //object value = executableParams[setRef.paramName];
+                    if (dataRow[name] != value) {
+                        dataRow[name] = value;
                         changed = true;
                     }
                 }
