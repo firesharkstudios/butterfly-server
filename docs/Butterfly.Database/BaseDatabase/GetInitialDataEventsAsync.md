@@ -7,6 +7,7 @@ public Task<DataEvent[]> GetInitialDataEventsAsync(string dataEventName, string[
 
 ## See Also
 
+* class [DataEvent](../../Butterfly.Database.Event/DataEvent.md)
 * class [SelectStatement](../SelectStatement.md)
 * class [BaseDatabase](../BaseDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)

@@ -1,7 +1,7 @@
 # Statement.ConvertParamsToDict method
 
 ```csharp
-public Dictionary<string, object> ConvertParamsToDict(object sourceParams, bool allowKeyValueAsSourceParams = false)
+public Dictionary<string, object> ConvertParamsToDict(object statementParams, bool allowKeyValueAsSourceParams = false)
 ```
 
 ## See Also

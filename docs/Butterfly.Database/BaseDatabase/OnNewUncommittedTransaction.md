@@ -6,6 +6,7 @@ public IDisposable OnNewUncommittedTransaction(Action<DataEventTransaction> list
 
 ## See Also
 
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * class [BaseDatabase](../BaseDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 
@@ -19,6 +20,7 @@ public IDisposable OnNewUncommittedTransaction(Func<DataEventTransaction, Task> 
 
 ## See Also
 
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * class [BaseDatabase](../BaseDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

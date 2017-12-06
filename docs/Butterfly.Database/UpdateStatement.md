@@ -10,11 +10,11 @@ public class UpdateStatement : Statement
 | --- | --- |
 | [UpdateStatement](UpdateStatement/UpdateStatement.md)(…) | Must only update a single row at a time. Must have a where clause that specifies the primary key fields. Where clause can only use ANDed equal conditions (like chat_id=2 AND chat_type='X")"; |
 | [SetRefs](UpdateStatement/SetRefs.md) { get; } |  |
+| [WhereRefs](UpdateStatement/WhereRefs.md) { get; } |  |
 | readonly [fromClause](UpdateStatement/fromClause.md) |  |
 | readonly [setClause](UpdateStatement/setClause.md) |  |
 | readonly [whereClause](UpdateStatement/whereClause.md) |  |
 | [GetExecutableSqlAndParams](UpdateStatement/GetExecutableSqlAndParams.md)(…) |  |
-| static [DetermineSetRefs](UpdateStatement/DetermineSetRefs.md)(…) |  |
 
 ## See Also
 

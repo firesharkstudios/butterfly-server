@@ -1,6 +1,6 @@
 # IDatabase.GetInitialDataEventTransactionAsync method
 
-Execute the SELECT statement and return the data in a DataEventTransaction
+Execute the SELECT statement and return the data in a [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md)
 
 ```csharp
 public Task<DataEventTransaction> GetInitialDataEventTransactionAsync(string selectStatement, object vars = null)
@@ -13,10 +13,11 @@ public Task<DataEventTransaction> GetInitialDataEventTransactionAsync(string sel
 
 ## Return Value
 
-A DataEventTransaction with the returned data represented as a sequence of DataEvent instances. The DataEvent instance will have a DataEventType of InitialBegin, each record will have a DataEventType of Initial, and the last record will have a DataEventType of InitialEnd.
+A [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) with the returned data represented as a sequence of [`DataEvent`](../../Butterfly.Database.Event/DataEvent.md) instances. The [`DataEvent`](../../Butterfly.Database.Event/DataEvent.md) instance will have a [`DataEventType`](../../Butterfly.Database.Event/DataEventType.md) of InitialBegin, each record will have a [`DataEventType`](../../Butterfly.Database.Event/DataEventType.md) of Initial, and the last record will have a [`DataEventType`](../../Butterfly.Database.Event/DataEventType.md) of InitialEnd.
 
 ## See Also
 
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * interface [IDatabase](../IDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

@@ -1,6 +1,6 @@
 # IDatabase.CreateDynamicViewSet method (1 of 2)
 
-Allows creating a set of [`DynamicView`](../../Butterfly.Database.Dynamic/DynamicView.md) instances that publish a single DataEventTransaction instance with initial data and new DataEventTransaction instances when data changes. The DataEventTransaction instances are published to the lambda passed as the *listener*.
+Allows creating a set of [`DynamicView`](../../Butterfly.Database.Dynamic/DynamicView.md) instances that publish a single [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instance with initial data and new [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instances when data changes. The [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instances are published to the lambda passed as the *listener*.
 
 ```csharp
 public DynamicViewSet CreateDynamicViewSet(Action<DataEventTransaction> listener)
@@ -8,7 +8,7 @@ public DynamicViewSet CreateDynamicViewSet(Action<DataEventTransaction> listener
 
 | parameter | description |
 | --- | --- |
-| listener | The lambda that should receive the DataEventTransaction instances |
+| listener | The lambda that should receive the [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instances |
 
 ## Return Value
 
@@ -17,6 +17,7 @@ A [`DynamicViewSet`](../../Butterfly.Database.Dynamic/DynamicViewSet.md) that ca
 ## See Also
 
 * class [DynamicViewSet](../../Butterfly.Database.Dynamic/DynamicViewSet.md)
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * interface [IDatabase](../IDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 
@@ -24,7 +25,7 @@ A [`DynamicViewSet`](../../Butterfly.Database.Dynamic/DynamicViewSet.md) that ca
 
 # IDatabase.CreateDynamicViewSet method (2 of 2)
 
-Allows creating a set of [`DynamicView`](../../Butterfly.Database.Dynamic/DynamicView.md) instances that publish a single DataEventTransaction instance with initial data and new DataEventTransaction instances when data changes. The DataEventTransaction instances are published to the lambda passed as the *listener*.
+Allows creating a set of [`DynamicView`](../../Butterfly.Database.Dynamic/DynamicView.md) instances that publish a single [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instance with initial data and new [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instances when data changes. The [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instances are published to the lambda passed as the *listener*.
 
 ```csharp
 public DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> asyncListener)
@@ -32,7 +33,7 @@ public DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> asyn
 
 | parameter | description |
 | --- | --- |
-| asyncListener | The lambda that should receive the DataEventTransaction instances |
+| asyncListener | The lambda that should receive the [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instances |
 
 ## Return Value
 
@@ -41,6 +42,7 @@ A [`DynamicViewSet`](../../Butterfly.Database.Dynamic/DynamicViewSet.md) that ca
 ## See Also
 
 * class [DynamicViewSet](../../Butterfly.Database.Dynamic/DynamicViewSet.md)
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * interface [IDatabase](../IDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

@@ -9,8 +9,7 @@ public UpdateStatement(IDatabase database, string sql)
 | parameter | description |
 | --- | --- |
 | database |  |
-| sourceSql |  |
-| sourceParams |  |
+| sql |  |
 
 ## See Also
 

@@ -6,6 +6,7 @@ public DataEventTransactionListener(Action<DataEventTransaction> listener)
 
 ## See Also
 
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * class [DataEventTransactionListener](../DataEventTransactionListener.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 
@@ -19,6 +20,7 @@ public DataEventTransactionListener(Func<DataEventTransaction, Task> listener)
 
 ## See Also
 
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * class [DataEventTransactionListener](../DataEventTransactionListener.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

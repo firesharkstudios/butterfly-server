@@ -1,7 +1,7 @@
 # EmbedIOChannelServer constructor
 
 ```csharp
-public EmbedIOChannelServer(WebServer webServer, int mustReceiveHeartbeatMillis = 5000)
+public EmbedIOChannelServer(WebServer webServer, Func<string, string> authenticate = null, int mustReceiveHeartbeatMillis = 5000)
 ```
 
 ## See Also

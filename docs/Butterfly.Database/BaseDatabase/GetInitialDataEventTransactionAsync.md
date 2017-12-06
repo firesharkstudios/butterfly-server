@@ -6,6 +6,7 @@ public Task<DataEventTransaction> GetInitialDataEventTransactionAsync(string sta
 
 ## See Also
 
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * class [BaseDatabase](../BaseDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

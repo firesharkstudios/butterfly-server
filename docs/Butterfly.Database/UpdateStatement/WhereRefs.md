@@ -1,13 +1,12 @@
-# UpdateStatement.DetermineSetRefs method
+# UpdateStatement.WhereRefs property
 
 ```csharp
-public static SqlEqualsRef[] DetermineSetRefs(IDatabase database, string whereClause)
+public EqualsRef[] WhereRefs { get; }
 ```
 
 ## See Also
 
-* class [SqlEqualsRef](../SqlEqualsRef.md)
-* interface [IDatabase](../IDatabase.md)
+* class [EqualsRef](../EqualsRef.md)
 * class [UpdateStatement](../UpdateStatement.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

@@ -13,7 +13,6 @@ public abstract class BaseDatabase : IDatabase
 | [BaseDatabase](BaseDatabase/BaseDatabase.md)(…) |  |
 | [ConnectionString](BaseDatabase/ConnectionString.md) { get; } |  |
 | [Tables](BaseDatabase/Tables.md) { get; } |  |
-| [ApplyDefaultValues](BaseDatabase/ApplyDefaultValues.md)(…) |  |
 | [BeginTransaction](BaseDatabase/BeginTransaction.md)() |  |
 | [CreateAndStartDynamicView](BaseDatabase/CreateAndStartDynamicView.md)(…) |  (2 methods) |
 | [CreateDynamicViewSet](BaseDatabase/CreateDynamicViewSet.md)(…) |  (2 methods) |
@@ -22,6 +21,7 @@ public abstract class BaseDatabase : IDatabase
 | [DeleteAndCommitAsync](BaseDatabase/DeleteAndCommitAsync.md)(…) |  |
 | [GetInitialDataEventsAsync](BaseDatabase/GetInitialDataEventsAsync.md)(…) |  |
 | [GetInitialDataEventTransactionAsync](BaseDatabase/GetInitialDataEventTransactionAsync.md)(…) |  |
+| [GetInsertDefaultValues](BaseDatabase/GetInsertDefaultValues.md)(…) |  |
 | [InsertAndCommitAsync](BaseDatabase/InsertAndCommitAsync.md)(…) |  |
 | [OnNewCommittedTransaction](BaseDatabase/OnNewCommittedTransaction.md)(…) |  (2 methods) |
 | [OnNewUncommittedTransaction](BaseDatabase/OnNewUncommittedTransaction.md)(…) |  (2 methods) |
@@ -32,6 +32,7 @@ public abstract class BaseDatabase : IDatabase
 | [UpdateAndCommitAsync](BaseDatabase/UpdateAndCommitAsync.md)(…) |  |
 | static [ConvertMySqlType](BaseDatabase/ConvertMySqlType.md)(…) |  |
 | static [GetKeyValue](BaseDatabase/GetKeyValue.md)(…) |  |
+| static [ParseKeyValue](BaseDatabase/ParseKeyValue.md)(…) |  |
 
 ## See Also
 

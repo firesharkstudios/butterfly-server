@@ -6,6 +6,7 @@ public void UpdateDynamicParams(DataEvent dataEvent)
 
 ## See Also
 
+* class [DataEvent](../../Butterfly.Database.Event/DataEvent.md)
 * class [DynamicView](../DynamicView.md)
 * namespace [Butterfly.Database.Dynamic](../../Butterfly.Database.md)
 
@@ -19,6 +20,7 @@ public void UpdateDynamicParams(DataEvent[] dataEvents)
 
 ## See Also
 
+* class [DataEvent](../../Butterfly.Database.Event/DataEvent.md)
 * class [DynamicView](../DynamicView.md)
 * namespace [Butterfly.Database.Dynamic](../../Butterfly.Database.md)
 

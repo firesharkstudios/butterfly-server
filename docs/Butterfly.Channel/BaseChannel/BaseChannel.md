@@ -1,11 +1,12 @@
 # BaseChannel constructor
 
 ```csharp
-public BaseChannel(string id)
+public BaseChannel(BaseChannelServer channelServer, string path)
 ```
 
 ## See Also
 
+* class [BaseChannelServer](../BaseChannelServer.md)
 * class [BaseChannel](../BaseChannel.md)
 * namespace [Butterfly.Channel](../../Butterfly.Channel.md)
 

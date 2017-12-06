@@ -10,8 +10,10 @@ public interface IChannel : IDisposable
 
 | name | description |
 | --- | --- |
-| [Id](IChannel/Id.md) { get; } |  |
+| [AuthId](IChannel/AuthId.md) { get; } |  |
+| [Created](IChannel/Created.md) { get; } |  |
 | [LastHeartbeat](IChannel/LastHeartbeat.md) { get; } |  |
+| [Path](IChannel/Path.md) { get; } |  |
 | [Queue](IChannel/Queue.md)(…) |  |
 | [Start](IChannel/Start.md)(…) |  |
 

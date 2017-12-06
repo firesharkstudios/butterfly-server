@@ -1,12 +1,14 @@
 # DynamicView.ProcessDataChange method
 
 ```csharp
-public ChangeDataEvent[] ProcessDataChange(DataEvent dataEvent, 
+public RecordDataEvent[] ProcessDataChange(DataEvent dataEvent, 
     Dictionary<string, object>[] preCommitImpactedRecords, Dictionary<string, object>[] postCommitImpactedRecords)
 ```
 
 ## See Also
 
+* class [RecordDataEvent](../../Butterfly.Database.Event/RecordDataEvent.md)
+* class [DataEvent](../../Butterfly.Database.Event/DataEvent.md)
 * class [DynamicView](../DynamicView.md)
 * namespace [Butterfly.Database.Dynamic](../../Butterfly.Database.md)
 

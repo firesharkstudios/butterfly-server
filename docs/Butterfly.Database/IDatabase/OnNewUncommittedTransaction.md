@@ -8,7 +8,7 @@ public IDisposable OnNewUncommittedTransaction(Action<DataEventTransaction> list
 
 | parameter | description |
 | --- | --- |
-| listener | The lambda to call when there is a new uncommitted DataEventTransaction |
+| listener | The lambda to call when there is a new uncommitted [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) |
 
 ## Return Value
 
@@ -16,6 +16,7 @@ An IDisposable that allows removing the listener by calling Dispose()
 
 ## See Also
 
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * interface [IDatabase](../IDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 
@@ -31,7 +32,7 @@ public IDisposable OnNewUncommittedTransaction(Func<DataEventTransaction, Task> 
 
 | parameter | description |
 | --- | --- |
-| listener | The lambda to call when there is a new uncommitted DataEventTransaction |
+| listener | The lambda to call when there is a new uncommitted [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) |
 
 ## Return Value
 
@@ -39,6 +40,7 @@ An IDisposable that allows removing the listener by calling Dispose()
 
 ## See Also
 
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * interface [IDatabase](../IDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

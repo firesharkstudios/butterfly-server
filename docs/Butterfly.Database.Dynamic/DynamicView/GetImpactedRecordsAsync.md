@@ -1,11 +1,12 @@
 # DynamicView.GetImpactedRecordsAsync method
 
 ```csharp
-public Task<Dictionary<string, object>[]> GetImpactedRecordsAsync(ChangeDataEvent dataChange)
+public Task<Dictionary<string, object>[]> GetImpactedRecordsAsync(KeyValueDataEvent transactionDataEvent)
 ```
 
 ## See Also
 
+* class [KeyValueDataEvent](../../Butterfly.Database.Event/KeyValueDataEvent.md)
 * class [DynamicView](../DynamicView.md)
 * namespace [Butterfly.Database.Dynamic](../../Butterfly.Database.md)
 

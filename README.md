@@ -26,7 +26,8 @@ On the web client, synchronize the data received into local arrays bound to UI e
 // Create channel to server and handle data events
 // (mapping data events for the 'message' DynamicView to a local 'messages' array)
 let channelClient = new WebSocketChannelClient({
-    url: '/hello-world?id=' + myChannelId,
+    url: '/hello-world',
+    auth: 'Channel ' + myChannelId,
     onDataEvent: new ArrayDataEventHandler({
         arrayMapping: {
             message: messages,

@@ -1,7 +1,8 @@
 # InsertStatement.GetExecutableSqlAndParams method
 
 ```csharp
-public ValueTuple<string, Dictionary<string, object>> GetExecutableSqlAndParams(Dictionary<string, object> statementParamsDict)
+public ValueTuple<string, Dictionary<string, object>> GetExecutableSqlAndParams
+    (Dictionary<string, object> statementParams, Dictionary<string, object> defaultValues)
 ```
 
 ## See Also

@@ -8,6 +8,7 @@ public Task<DataEvent[]> GetInitialDataEventsAsync()
 
 ## See Also
 
+* class [DataEvent](../../Butterfly.Database.Event/DataEvent.md)
 * class [DynamicView](../DynamicView.md)
 * namespace [Butterfly.Database.Dynamic](../../Butterfly.Database.md)
 

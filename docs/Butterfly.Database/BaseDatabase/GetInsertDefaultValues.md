@@ -1,7 +1,7 @@
-# BaseDatabase.ApplyDefaultValues method
+# BaseDatabase.GetInsertDefaultValues method
 
 ```csharp
-public Dictionary<string, object> ApplyDefaultValues(Table table, Dictionary<string, object> values)
+public Dictionary<string, object> GetInsertDefaultValues(Table table)
 ```
 
 ## See Also

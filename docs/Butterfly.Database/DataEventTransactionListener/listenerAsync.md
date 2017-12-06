@@ -6,6 +6,7 @@ public readonly Func<DataEventTransaction, Task> listenerAsync;
 
 ## See Also
 
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * class [DataEventTransactionListener](../DataEventTransactionListener.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

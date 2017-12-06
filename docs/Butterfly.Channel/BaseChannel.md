@@ -11,11 +11,14 @@ public abstract class BaseChannel : IChannel
 | name | description |
 | --- | --- |
 | [BaseChannel](BaseChannel/BaseChannel.md)(…) |  |
-| [Id](BaseChannel/Id.md) { get; } | Unique identifier for the channel |
+| [AuthId](BaseChannel/AuthId.md) { get; } | Unique identifier for the channel |
+| [Created](BaseChannel/Created.md) { get; } |  |
 | [LastHeartbeat](BaseChannel/LastHeartbeat.md) { get; } | When the last heartbeat was registered |
+| [Path](BaseChannel/Path.md) { get; } |  |
 | [Dispose](BaseChannel/Dispose.md)() | Implements the IDispose interface |
 | [Heartbeat](BaseChannel/Heartbeat.md)() | Implementing classes should call this periodically to keep the channel alive (otherwise ChannelServer will remove the channel) |
 | [Queue](BaseChannel/Queue.md)(…) | Queue an object to be sent over the channel to the client. The queue is processed by a background thread when the Channel is started. |
+| [ReceiveMessage](BaseChannel/ReceiveMessage.md)(…) |  |
 | [Start](BaseChannel/Start.md)(…) |  |
 
 ## See Also

@@ -9,6 +9,7 @@ public class DeleteStatement : Statement
 | name | description |
 | --- | --- |
 | [DeleteStatement](DeleteStatement/DeleteStatement.md)(…) |  |
+| [WhereRefs](DeleteStatement/WhereRefs.md) { get; } |  |
 | readonly [fromClause](DeleteStatement/fromClause.md) |  |
 | readonly [whereClause](DeleteStatement/whereClause.md) |  |
 | [GetExecutableSqlAndParams](DeleteStatement/GetExecutableSqlAndParams.md)(…) |  |

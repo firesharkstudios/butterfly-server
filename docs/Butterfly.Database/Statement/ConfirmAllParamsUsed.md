@@ -1,7 +1,7 @@
 # Statement.ConfirmAllParamsUsed method
 
 ```csharp
-public void ConfirmAllParamsUsed(Dictionary<string, object> statementParams)
+public static void ConfirmAllParamsUsed(string sql, Dictionary<string, object> statementParams)
 ```
 
 ## See Also

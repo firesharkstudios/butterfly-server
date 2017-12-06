@@ -5,7 +5,6 @@ XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Channel.RedHttpServer\bin\Debu
 XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Client.DotNet\bin\Debug\Butterfly.Client.DotNet.dll docs --visibility public --clean
 
 XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Database\bin\Debug\Butterfly.Database.dll docs --visibility public --clean
-XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Database.Event\bin\Debug\Butterfly.Database.Event.dll docs --visibility public --clean
 XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Database.Memory\bin\Debug\Butterfly.Database.Memory.dll docs --visibility public --clean
 XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Database.MySql\bin\Debug\Butterfly.Database.MySql.dll docs --visibility public --clean
 XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Database.Postgres\bin\Debug\Butterfly.Database.Postgres.dll docs --visibility public --clean

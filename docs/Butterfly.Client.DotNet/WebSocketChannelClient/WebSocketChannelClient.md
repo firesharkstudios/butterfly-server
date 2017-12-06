@@ -1,7 +1,7 @@
 # WebSocketChannelClient constructor
 
 ```csharp
-public WebSocketChannelClient(string url, Action<string> onMessage, 
+public WebSocketChannelClient(string url, string authorization, Action<string> onMessage, 
     Action<WebSocketChannelClientStatus> onStatusChange = null, int heartbeatEveryMillis = 3000, int receiveBufferSize = 4096)
 ```
 

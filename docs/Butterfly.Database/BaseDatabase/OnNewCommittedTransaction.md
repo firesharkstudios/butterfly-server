@@ -6,6 +6,7 @@ public IDisposable OnNewCommittedTransaction(Action<DataEventTransaction> listen
 
 ## See Also
 
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * class [BaseDatabase](../BaseDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 
@@ -19,6 +20,7 @@ public IDisposable OnNewCommittedTransaction(Func<DataEventTransaction, Task> li
 
 ## See Also
 
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * class [BaseDatabase](../BaseDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

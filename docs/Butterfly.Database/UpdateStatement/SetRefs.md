@@ -1,12 +1,12 @@
 # UpdateStatement.SetRefs property
 
 ```csharp
-public SqlEqualsRef[] SetRefs { get; }
+public EqualsRef[] SetRefs { get; }
 ```
 
 ## See Also
 
-* class [SqlEqualsRef](../SqlEqualsRef.md)
+* class [EqualsRef](../EqualsRef.md)
 * class [UpdateStatement](../UpdateStatement.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

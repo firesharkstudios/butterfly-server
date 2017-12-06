@@ -6,6 +6,7 @@ public void UpdateFrom(string[] keyFieldNames, DataEvent dataEvent)
 
 ## See Also
 
+* class [DataEvent](../../Butterfly.Database.Event/DataEvent.md)
 * class [DynamicParamDependency](../DynamicParamDependency.md)
 * namespace [Butterfly.Database.Dynamic](../../Butterfly.Database.md)
 

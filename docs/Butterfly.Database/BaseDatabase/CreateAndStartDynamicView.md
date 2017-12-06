@@ -8,6 +8,7 @@ public Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Action<DataEve
 ## See Also
 
 * class [DynamicViewSet](../../Butterfly.Database.Dynamic/DynamicViewSet.md)
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * class [BaseDatabase](../BaseDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 
@@ -23,6 +24,7 @@ public Task<DynamicViewSet> CreateAndStartDynamicView(string sql,
 ## See Also
 
 * class [DynamicViewSet](../../Butterfly.Database.Dynamic/DynamicViewSet.md)
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * class [BaseDatabase](../BaseDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

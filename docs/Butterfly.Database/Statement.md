@@ -10,10 +10,12 @@ public abstract class Statement
 | --- | --- |
 | [Sql](Statement/Sql.md) { get; } |  |
 | [TableRefs](Statement/TableRefs.md) { get; } |  |
-| [ConfirmAllParamsUsed](Statement/ConfirmAllParamsUsed.md)(…) |  |
 | [ConvertParamsToDict](Statement/ConvertParamsToDict.md)(…) |  |
 | [FindTableRefByTableAlias](Statement/FindTableRefByTableAlias.md)(…) |  |
 | [FindTableRefByTableName](Statement/FindTableRefByTableName.md)(…) |  |
+| static [ConfirmAllParamsUsed](Statement/ConfirmAllParamsUsed.md)(…) |  |
+| static [DetermineEqualsRefs](Statement/DetermineEqualsRefs.md)(…) |  |
+| static [RemapStatementParamsToFieldValues](Statement/RemapStatementParamsToFieldValues.md)(…) |  |
 
 ## See Also
 

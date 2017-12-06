@@ -7,8 +7,7 @@ public InsertStatement(IDatabase database, string sql)
 | parameter | description |
 | --- | --- |
 | database |  |
-| sourceSql | Can be a table name or full SQL. Full SQL can use @@names and @@values tokens to retrieve values from the record parameter. |
-| sourceParams |  |
+| sql | Can be a table name or full SQL. Full SQL can use @@names and @@values tokens to retrieve values from the record parameter. |
 
 ## See Also
 

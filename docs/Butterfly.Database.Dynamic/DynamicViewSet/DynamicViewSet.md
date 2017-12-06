@@ -7,6 +7,7 @@ public DynamicViewSet(BaseDatabase database, Action<DataEventTransaction> listen
 ## See Also
 
 * class [BaseDatabase](../../Butterfly.Database/BaseDatabase.md)
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * class [DynamicViewSet](../DynamicViewSet.md)
 * namespace [Butterfly.Database.Dynamic](../../Butterfly.Database.md)
 
@@ -21,6 +22,7 @@ public DynamicViewSet(BaseDatabase database, Func<DataEventTransaction, Task> as
 ## See Also
 
 * class [BaseDatabase](../../Butterfly.Database/BaseDatabase.md)
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * class [DynamicViewSet](../DynamicViewSet.md)
 * namespace [Butterfly.Database.Dynamic](../../Butterfly.Database.md)
 

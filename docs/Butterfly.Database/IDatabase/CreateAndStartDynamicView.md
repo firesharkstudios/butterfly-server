@@ -18,6 +18,7 @@ public Task<DynamicViewSet> CreateAndStartDynamicView(string selectStatement,
 ## See Also
 
 * class [DynamicViewSet](../../Butterfly.Database.Dynamic/DynamicViewSet.md)
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * interface [IDatabase](../IDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 
@@ -43,6 +44,7 @@ public Task<DynamicViewSet> CreateAndStartDynamicView(string selectStatement,
 ## See Also
 
 * class [DynamicViewSet](../../Butterfly.Database.Dynamic/DynamicViewSet.md)
+* class [DataEventTransaction](../../Butterfly.Database.Event/DataEventTransaction.md)
 * interface [IDatabase](../IDatabase.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 
