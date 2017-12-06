@@ -63,7 +63,7 @@ There are three key packages to the Butterfly Framework...
 
 There are no interdependencies between the packages. Use any subset of the packages you wish.
 
-## Recommened App Design
+## Recommended App Design
 
 #### Client Side
 - Use all static HTML, Javascript, and CSS files
