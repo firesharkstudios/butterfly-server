@@ -18,12 +18,12 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 using NLog;
 
 using Butterfly.Util;
-using System.Net.Http.Headers;
 
 namespace Butterfly.Channel {
     /// <summary>
@@ -46,6 +46,7 @@ namespace Butterfly.Channel {
         }
 
         public void AddUnauthenticatedChannel(IChannel channel) {
+            logger.Debug($"AddUnauthenticatedChannel():channel.Path={channel.Path}");
             this.unauthenticatedChannels[channel] = channel;
         }
 
@@ -55,12 +56,10 @@ namespace Butterfly.Channel {
         }
 
         internal void Authenticate(string auth, BaseChannel channel) {
-            logger.Debug($"Authenticate()");
-
             var authId = this.authenticate==null ? StandardAuthenticate(auth) : this.authenticate(auth);
             if (string.IsNullOrEmpty(authId)) throw new Exception("Authentication failed");
-
             channel.SetAuthId(authId);
+            logger.Debug($"Authenticate():channel.Path={channel.Path},channel.AuthId={channel.AuthId}");
 
             this.unauthenticatedChannels.TryRemove(channel, out IChannel dummyChannel);
 
@@ -104,9 +103,10 @@ namespace Butterfly.Channel {
         /// Starts the channel server
         /// </summary>
         public void Start() {
+            if (this.started) throw new Exception("Channel Server already started");
+
             this.started = true;
             Task backgroundTask = Task.Run(this.CheckForDeadChannelsAsync);
-
             this.DoStart();
         }
 
@@ -115,36 +115,36 @@ namespace Butterfly.Channel {
         protected async Task CheckForDeadChannelsAsync() {
             while (this.started) {
                 DateTime cutoffDateTime = DateTime.Now.AddMilliseconds(-this.mustReceiveHeartbeatMillis);
-                DateTime? oldestLastReceivedHearbeatReceived = null;
+                DateTime? oldestLastReceivedHeartbeatReceived = null;
 
                 // Check for dead unauthenticated channels
                 foreach (IChannel channel in this.unauthenticatedChannels.Values.ToArray()) {
-                    logger.Debug($"CheckForDeadChannelsAsync():channel.Created={channel.Created},cutoffDateTime={cutoffDateTime}");
+                    logger.Trace($"CheckForDeadChannelsAsync():channel.Created={channel.Created},cutoffDateTime={cutoffDateTime}");
                     if (channel.Created < cutoffDateTime) {
                         bool removed = this.unauthenticatedChannels.TryRemove(channel, out IChannel removedChannel);
                         if (!removed) throw new Exception($"Could not remove unauthenticated channel");
                         channel.Dispose();
                     }
-                    else if (oldestLastReceivedHearbeatReceived == null || oldestLastReceivedHearbeatReceived > channel.Created) {
-                        oldestLastReceivedHearbeatReceived = channel.Created;
+                    else if (oldestLastReceivedHeartbeatReceived == null || oldestLastReceivedHeartbeatReceived > channel.Created) {
+                        oldestLastReceivedHeartbeatReceived = channel.Created;
                     }
                 }
 
                 // Check for dead authenticated channels
                 foreach (IChannel channel in this.authenticatedChannelById.Values.ToArray()) {
-                    logger.Debug($"CheckForDeadChannelsAsync():channel.LastHeartbeatReceived={channel.LastHeartbeat},cutoffDateTime={cutoffDateTime}");
+                    logger.Trace($"CheckForDeadChannelsAsync():channel.LastHeartbeatReceived={channel.LastHeartbeat},cutoffDateTime={cutoffDateTime}");
                     if (channel.LastHeartbeat < cutoffDateTime) {
                         bool removed = this.authenticatedChannelById.TryRemove(channel.AuthId, out IChannel removedChannel);
                         if (!removed) throw new Exception($"Could not remove channel id {channel.AuthId}");
                         channel.Dispose();
                     }
-                    else if (oldestLastReceivedHearbeatReceived==null || oldestLastReceivedHearbeatReceived>channel.LastHeartbeat) {
-                        oldestLastReceivedHearbeatReceived = channel.LastHeartbeat;
+                    else if (oldestLastReceivedHeartbeatReceived==null || oldestLastReceivedHeartbeatReceived>channel.LastHeartbeat) {
+                        oldestLastReceivedHeartbeatReceived = channel.LastHeartbeat;
                     }
                 }
 
-                int delayMillis = oldestLastReceivedHearbeatReceived == null ? this.mustReceiveHeartbeatMillis : (int)(oldestLastReceivedHearbeatReceived.Value.AddMilliseconds(this.mustReceiveHeartbeatMillis) - DateTime.Now).TotalMilliseconds;
-                logger.Debug($"CheckForDeadChannelsAsync():delayMillis={delayMillis}");
+                int delayMillis = oldestLastReceivedHeartbeatReceived == null ? this.mustReceiveHeartbeatMillis : (int)(oldestLastReceivedHeartbeatReceived.Value.AddMilliseconds(this.mustReceiveHeartbeatMillis) - DateTime.Now).TotalMilliseconds;
+                logger.Trace($"CheckForDeadChannelsAsync():delayMillis={delayMillis}");
                 await Task.Delay(delayMillis);
             }
         }

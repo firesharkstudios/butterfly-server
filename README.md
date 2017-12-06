@@ -92,6 +92,7 @@ There are no interdependencies between the packages. Use any subset of the packa
 - Add Butterfly.WebApi.Kestral
 - Add example using React on client
 - Add example running on Raspbian
+- Add example using native WinForms client
 
 ## Contributing
 

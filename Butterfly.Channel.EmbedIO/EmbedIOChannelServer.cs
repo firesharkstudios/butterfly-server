@@ -34,7 +34,7 @@ namespace Butterfly.Channel.EmbedIO {
         protected override void DoStart() {
             this.webServer.RegisterModule(new WebSocketsModule());
             foreach (var listener in this.onNewChannelListeners) {
-                logger.Debug($"Listening for web socket requests at {listener.path}");
+                logger.Info($"Listening for WebSocket requests at {listener.path}");
                 this.webServer.Module<WebSocketsModule>().RegisterWebSocketsServer(listener.path, new MyWebSocketsServer(this, channel => {
                     this.AddUnauthenticatedChannel(channel);
                 }));
@@ -58,7 +58,7 @@ namespace Butterfly.Channel.EmbedIO {
 
         protected override void OnClientConnected(WebSocketContext context) {
             string path = GetPath(context);
-            logger.Debug($"OnClientConnected():Websocket created for path {path}");
+            logger.Trace($"OnClientConnected():Websocket created for path {path}");
             var channel = new EmbedIOChannel(this.channelServer, path, context, message => {
                 this.Send(context, message);
             });
@@ -80,7 +80,7 @@ namespace Butterfly.Channel.EmbedIO {
                     embedIOChannel.ReceiveMessage(text);
                 }
                 catch (Exception e) {
-                    logger.Debug(e);
+                    logger.Trace(e);
                     context.WebSocket.CloseAsync().Wait();
                 }
             }
@@ -105,13 +105,13 @@ namespace Butterfly.Channel.EmbedIO {
         }
 
         protected override Task SendAsync(string text) {
-            //logger.Debug($"Send():channelId={channelId},text={text}");
+            //logger.Trace($"Send():channelId={channelId},text={text}");
             this.send(text);
             return Task.FromResult(0);
         }
 
         protected override void DoDispose() {
-            logger.Debug($"DoDispose():id={this.AuthId}");
+            logger.Trace($"DoDispose():id={this.AuthId}");
         }
 
     }

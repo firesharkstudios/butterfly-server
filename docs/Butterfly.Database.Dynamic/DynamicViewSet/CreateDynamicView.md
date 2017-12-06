@@ -1,6 +1,6 @@
 # DynamicViewSet.CreateDynamicView method
 
-Creates an instance of a DynamicView. Must call StartAync() to send initial DataEventTransaction and listen for new DataEventTransactions for this DynamicView.
+Creates an instance of a DynamicView. Must call [`StartAsync`](StartAsync.md) to send initial [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instance and listen for new [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md)instances.
 
 ```csharp
 public DynamicView CreateDynamicView(string sql, object values = null, string name = null, string[] keyFieldNames = null)

@@ -63,7 +63,7 @@ namespace Butterfly.Database {
 
             // If statementParams is already a dictionary, return the dictionary
             else if (statementParams is Dict d) {
-                return d;
+                return new Dict(d);
             }
 
             // If statementParams is a single string, assume it is a primary key value

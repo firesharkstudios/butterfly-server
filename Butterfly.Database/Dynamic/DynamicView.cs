@@ -38,7 +38,7 @@ namespace Butterfly.Database.Dynamic {
         protected readonly string name;
         protected readonly string[] keyFieldNames;
 
-        protected readonly List<DynamicParamDependency> dynamicParamDependencies = new List<DynamicParamDependency>();
+        protected readonly List<ChildDynamicParam> childDynamicParams = new List<ChildDynamicParam>();
 
         public DynamicView(DynamicViewSet dynamicQuerySet, string sql, dynamic parameters = null, string name = null, string[] keyFieldNames = null) {
             this.Id = Guid.NewGuid().ToString();
@@ -63,15 +63,20 @@ namespace Butterfly.Database.Dynamic {
 
         public DynamicParam CreateMultiValueDynamicParam(string fieldName) {
             DynamicParam dynamicParam = new MultiValueDynamicParam(fieldName);
-            this.dynamicParamDependencies.Add(new DynamicParamDependency(dynamicParam, fieldName));
+            this.childDynamicParams.Add(new ChildDynamicParam(dynamicParam, fieldName));
             return dynamicParam;
         }
 
-        public bool HasDirtyParams {
+        internal bool HasDirtyParams {
             get {
-                foreach (var dynamicParamDependency in this.dynamicParamDependencies) {
-                    if (dynamicParamDependency.dynamicParam.Dirty) return true;
+                foreach (var statementParamValue in this.statementParams.Values.ToArray()) {
+                    if (statementParamValue is DynamicParam dynamicParam && dynamicParam.Dirty) return true;
                 }
+                /*
+                foreach (var childDynamicParam in this.childDynamicParams) {
+                    if (childDynamicParam.dynamicParam.Dirty) return true;
+                }
+                */
                 return false;
             }
         }
@@ -80,19 +85,19 @@ namespace Butterfly.Database.Dynamic {
         /// Executes the select statement of the DynamicQuery and returns a sequence of DataEvents starting an InitialBegin event, then an Insert event for each row, and then an InitialEnd event.
         /// </summary>
         /// <returns></returns>
-        public async Task<DataEvent[]> GetInitialDataEventsAsync() {
+        internal async Task<DataEvent[]> GetInitialDataEventsAsync() {
             return await this.dynamicQuerySet.Database.GetInitialDataEventsAsync(this.name, this.keyFieldNames, this.statement, this.statementParams);
         }
 
-        public void ResetDirtyParams() {
-            logger.Debug($"ResetDirtyParams():Id={this.Id}");
-            foreach (var dynamicParamDependency in this.dynamicParamDependencies) {
-                dynamicParamDependency.dynamicParam.ResetDirty();
+        internal void ResetDirtyParams() {
+            logger.Trace($"ResetDirtyParams():Id={this.Id}");
+            foreach (var childDynamicParam in this.childDynamicParams) {
+                childDynamicParam.dynamicParam.ResetDirty();
             }
         }
 
-        public RecordDataEvent[] ProcessDataChange(DataEvent dataEvent, Dict[] preCommitImpactedRecords, Dict[] postCommitImpactedRecords) {
-            logger.Debug($"ProcessDataChange():dataEvent={dataEvent},preCommitImpactedRecords.Length={preCommitImpactedRecords?.Length},postCommitImpactedRecords.Length={postCommitImpactedRecords?.Length}");
+        internal RecordDataEvent[] ProcessDataChange(DataEvent dataEvent, Dict[] preCommitImpactedRecords, Dict[] postCommitImpactedRecords) {
+            logger.Trace($"ProcessDataChange():dataEvent={dataEvent},preCommitImpactedRecords.Length={preCommitImpactedRecords?.Length},postCommitImpactedRecords.Length={postCommitImpactedRecords?.Length}");
             TableRef tableRef = this.statement.FindTableRefByTableName(dataEvent.name);
             if (tableRef == null) return null;
 
@@ -101,24 +106,27 @@ namespace Butterfly.Database.Dynamic {
             List<RecordDataEvent> newDataChanges = new List<RecordDataEvent>();
             switch (transactionDataEvent.dataEventType) {
                 case DataEventType.Insert:
-                    foreach (var impactedRecord in postCommitImpactedRecords) {
-                        newDataChanges.Add(new RecordDataEvent(DataEventType.Insert, this.name, impactedRecord));
+                    if (postCommitImpactedRecords != null) {
+                        foreach (var impactedRecord in postCommitImpactedRecords) {
+                            object keyValue = BaseDatabase.GetKeyValue(this.keyFieldNames, impactedRecord);
+                            newDataChanges.Add(new RecordDataEvent(DataEventType.Insert, this.name, keyValue, impactedRecord));
+                        }
                     }
                     break;
                 case DataEventType.Update:
-                    var preCommitKeyValues = preCommitImpactedRecords.Select(x => BaseDatabase.GetKeyValue(this.keyFieldNames, x)).ToArray();
-                    var postCommitKeyValues = postCommitImpactedRecords.Select(x => BaseDatabase.GetKeyValue(this.keyFieldNames, x)).ToArray();
+                    var preCommitKeyValues = preCommitImpactedRecords==null ? new object[] { } : preCommitImpactedRecords.Select(x => BaseDatabase.GetKeyValue(this.keyFieldNames, x)).ToArray();
+                    var postCommitKeyValues = postCommitImpactedRecords==null ? new object[] { } : postCommitImpactedRecords.Select(x => BaseDatabase.GetKeyValue(this.keyFieldNames, x)).ToArray();
 
                     // Find updates and deletes
                     for (int i=0; i<preCommitKeyValues.Length; i++) {
                         int postCommitIndex = Array.IndexOf(postCommitKeyValues, preCommitKeyValues[i]);
                         if (postCommitIndex>=0) {
                             if (!preCommitImpactedRecords[i].IsSame(postCommitImpactedRecords[postCommitIndex])) {
-                                newDataChanges.Add(new RecordDataEvent(DataEventType.Update, this.name, postCommitImpactedRecords[postCommitIndex]));
+                                newDataChanges.Add(new RecordDataEvent(DataEventType.Update, this.name, preCommitKeyValues[i], postCommitImpactedRecords[postCommitIndex]));
                             }
                         }
                         else {
-                            newDataChanges.Add(new RecordDataEvent(DataEventType.Delete, this.name, preCommitImpactedRecords[i]));
+                            newDataChanges.Add(new RecordDataEvent(DataEventType.Delete, this.name, preCommitKeyValues[i], preCommitImpactedRecords[i]));
                         }
                     }
 
@@ -126,20 +134,23 @@ namespace Butterfly.Database.Dynamic {
                     for (int i = 0; i < postCommitKeyValues.Length; i++) {
                         int preCommitIndex = Array.IndexOf(preCommitKeyValues, postCommitKeyValues[i]);
                         if (preCommitIndex==-1) {
-                            newDataChanges.Add(new RecordDataEvent(DataEventType.Insert, this.name, postCommitImpactedRecords[i]));
+                            newDataChanges.Add(new RecordDataEvent(DataEventType.Insert, this.name, postCommitKeyValues[i], postCommitImpactedRecords[i]));
                         }
                     }
                     break;
                 case DataEventType.Delete:
-                    foreach (var impactedRecord in preCommitImpactedRecords) {
-                        newDataChanges.Add(new RecordDataEvent(DataEventType.Delete, this.name, impactedRecord));
+                    if (preCommitImpactedRecords != null) {
+                        foreach (var impactedRecord in preCommitImpactedRecords) {
+                            object keyValue = BaseDatabase.GetKeyValue(this.keyFieldNames, impactedRecord);
+                            newDataChanges.Add(new RecordDataEvent(DataEventType.Delete, this.name, keyValue, impactedRecord));
+                        }
                     }
                     break;
             }
             return newDataChanges.ToArray();
         }
 
-        public async Task<Dict[]> GetImpactedRecordsAsync(KeyValueDataEvent transactionDataEvent) {
+        internal async Task<Dict[]> GetImpactedRecordsAsync(KeyValueDataEvent transactionDataEvent) {
             TableRef tableRef = this.statement.FindTableRefByTableName(transactionDataEvent.name);
             if (tableRef == null) return null;
 
@@ -168,24 +179,16 @@ namespace Butterfly.Database.Dynamic {
             return await this.dynamicQuerySet.Database.SelectRowsAsync(this.statement, this.statementParams, newAndCondition.ToString(), newWhereParams);
         }
 
-        public void UpdateDynamicParams(DataEvent[] dataEvents) {
-            foreach (var dataEvent in dataEvents) {
-                this.UpdateDynamicParams(dataEvent);
+        internal void UpdateChildDynamicParams(DataEvent[] dataEvents) {
+            foreach (var childDynamicParam in this.childDynamicParams) {
+                foreach (var dataEvent in dataEvents) {
+                    childDynamicParam.UpdateFrom(this.keyFieldNames, dataEvent);
+                }
             }
-        }
-
-        public void UpdateDynamicParams(DataEvent dataEvent) {
-            foreach (var dynamicParamDependency in this.dynamicParamDependencies) {
-                dynamicParamDependency.UpdateFrom(this.keyFieldNames, dataEvent);
-            }
-        }
-
-        protected bool IsMatch(Dict record) {
-            return true;
         }
     }
 
-    public class DynamicParamDependency {
+    public class ChildDynamicParam {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public readonly DynamicParam dynamicParam;
@@ -193,12 +196,13 @@ namespace Butterfly.Database.Dynamic {
 
         protected readonly Dictionary<object, object> valueByKeyValue = new Dictionary<object, object>();
 
-        public DynamicParamDependency(DynamicParam dynamicParam, string fieldName) {
+        public ChildDynamicParam(DynamicParam dynamicParam, string fieldName) {
             this.dynamicParam = dynamicParam;
             this.fieldName = fieldName;
         }
 
         public void UpdateFrom(string[] keyFieldNames, DataEvent dataEvent) {
+            logger.Trace($"UpdateFrom():this.fieldName={this.fieldName},dataEvent={dataEvent}");
             bool changed = false;
             if (dataEvent.dataEventType == DataEventType.InitialBegin) {
                 if (this.valueByKeyValue.Count > 0) {
@@ -207,28 +211,26 @@ namespace Butterfly.Database.Dynamic {
                     this.dynamicParam.Clear();
                 }
             }
-            /*
-            else if (dataEvent is KeyValueDataEvent keyValueDataEvent) {
+            else if (dataEvent is RecordDataEvent recordDataEvent) {
                 switch (dataEvent.dataEventType) {
                     case DataEventType.Initial:
                     case DataEventType.Insert:
                     case DataEventType.Update: {
-                            object newValue = keyValueDataEvent.record[this.fieldName];
-                            if (!this.valueByKeyValue.TryGetValue(keyValueDataEvent.keyValue, out object existingValue) || existingValue != newValue) {
+                            object newValue = recordDataEvent.record[this.fieldName];
+                            if (!this.valueByKeyValue.TryGetValue(recordDataEvent.keyValue, out object existingValue) || existingValue != newValue) {
                                 changed = true;
                             }
                             if (changed) {
-                                this.valueByKeyValue[keyValueDataEvent.keyValue] = newValue;
+                                this.valueByKeyValue[recordDataEvent.keyValue] = newValue;
                             }
                             break;
                         }
                     case DataEventType.Delete: {
-                            changed = this.valueByKeyValue.Remove(keyValueDataEvent.keyValue);
+                            changed = this.valueByKeyValue.Remove(recordDataEvent.keyValue);
                             break;
                         }
                 }
             }
-            */
 
             if (changed) {
                 if (dynamicParam is MultiValueDynamicParam multiValueDynamicParam) {

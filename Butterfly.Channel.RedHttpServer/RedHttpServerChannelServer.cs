@@ -32,9 +32,8 @@ namespace Butterfly.Channel.RedHttpServer {
 
         protected override void DoStart() {
             foreach (var listener in this.onNewChannelListeners) {
-                logger.Debug($"DoStart():Websocket listening on path {listener.path}");
+                logger.Info($"DoStart():Listening for WebSocket requests at {listener.path}");
                 this.server.WebSocket(listener.path, (req, wsd) => {
-                    logger.Debug($"DoStart():Websocket created for path {listener.path}");
                     this.AddUnauthenticatedChannel(new WebSocketDialogChannel(this, listener.path, wsd));
                 });
             }
@@ -54,19 +53,19 @@ namespace Butterfly.Channel.RedHttpServer {
                     this.ReceiveMessage(eventArgs.Text);
                 }
                 catch (Exception e) {
-                    logger.Debug(e);
+                    logger.Trace(e);
                     webSocketDialog.Close();
                 }
             };
         }
 
         protected override Task SendAsync(string text) {
-            //logger.Debug($"Send():channelId={channelId},text={text}");
+            //logger.Trace($"Send():channelId={channelId},text={text}");
             return this.webSocketDialog.SendText(text);
         }
 
         protected override void DoDispose() {
-            logger.Debug($"DoDispose():id={this.AuthId}");
+            logger.Trace($"DoDispose():id={this.AuthId}");
             this.webSocketDialog.Close();
         }
 

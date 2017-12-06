@@ -9,11 +9,10 @@ public class DynamicViewSet : IDisposable
 | name | description |
 | --- | --- |
 | [DynamicViewSet](DynamicViewSet/DynamicViewSet.md)(…) |  (2 constructors) |
-| [Database](DynamicViewSet/Database.md) { get; } |  |
 | [Id](DynamicViewSet/Id.md) { get; } |  |
-| [CreateDynamicView](DynamicViewSet/CreateDynamicView.md)(…) | Creates an instance of a DynamicView. Must call StartAync() to send initial DataEventTransaction and listen for new DataEventTransactions for this DynamicView. |
+| [CreateDynamicView](DynamicViewSet/CreateDynamicView.md)(…) | Creates an instance of a DynamicView. Must call [`StartAsync`](DynamicViewSet/StartAsync.md) to send initial [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) instance and listen for new [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md)instances. |
 | [Dispose](DynamicViewSet/Dispose.md)() |  |
-| [StartAsync](DynamicViewSet/StartAsync.md)() | Sends the initial DataEventTransactions to the registered listener. Listens for DataEventTransactions and send appropriately filtered DataEventTransactions to the registered listener. Stops listening when DynamicViewSet is disposed. |
+| [StartAsync](DynamicViewSet/StartAsync.md)() | Send an initial [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) to the registered listener and sends new [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) instances when any data in the underlying [`DynamicView`](DynamicView.md) instances changes. Stops listening [`Dispose`](DynamicViewSet/Dispose.md) is called. |
 
 ## See Also
 

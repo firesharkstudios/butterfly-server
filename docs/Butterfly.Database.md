@@ -29,8 +29,8 @@
 
 | public type | description |
 | --- | --- |
+| class [ChildDynamicParam](Butterfly.Database.Dynamic/ChildDynamicParam.md) |  |
 | abstract class [DynamicParam](Butterfly.Database.Dynamic/DynamicParam.md) |  |
-| class [DynamicParamDependency](Butterfly.Database.Dynamic/DynamicParamDependency.md) |  |
 | class [DynamicView](Butterfly.Database.Dynamic/DynamicView.md) |  |
 | class [DynamicViewSet](Butterfly.Database.Dynamic/DynamicViewSet.md) |  |
 | class [MultiValueDynamicParam](Butterfly.Database.Dynamic/MultiValueDynamicParam.md) |  |

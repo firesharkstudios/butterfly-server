@@ -25,6 +25,7 @@ namespace Butterfly.Examples {
                 ["Pragma"] = "no-cache",
                 ["Expires"] = "0"
             }));
+            Unosquare.Swan.Terminal.Settings.DisplayLoggingMessageType = Unosquare.Swan.LogMessageType.None;
 
             // Setup and start a webApiServer and channelServer using embedIOWebServer
             using (var webApiServer = new Butterfly.WebApi.EmbedIO.EmbedIOWebApiServer(embedIOWebServer))

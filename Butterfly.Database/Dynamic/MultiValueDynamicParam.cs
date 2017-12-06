@@ -26,6 +26,7 @@ namespace Butterfly.Database.Dynamic {
 
         public override void Clear() {
             if (this.values.Count > 0) {
+                logger.Trace($"Clear()");
                 this.SetDirty();
                 this.values.Clear();
             }
@@ -38,7 +39,7 @@ namespace Butterfly.Database.Dynamic {
         public void SetValues(ICollection<object> value) {
             var differences = value.Except(this.values);
             if (differences.Count() > 0) {
-                logger.Debug($"Values.set():{this.name}={string.Join(",", value)}");
+                logger.Trace($"Values.set():{this.name}={string.Join(",", value)}");
                 this.SetDirty();
                 this.values.Clear();
                 this.values.AddRange(value);

@@ -143,7 +143,7 @@ namespace Butterfly.Database {
             dataEvents.Add(new InitialBeginDataEvent(dataEventName, keyFieldNames));
 
             Dict[] rows = await this.SelectRowsAsync(selectStatement, statementParams);
-            RecordDataEvent[] changeDataEvents = rows.Select(x => new RecordDataEvent(DataEventType.Initial, dataEventName, x)).ToArray();
+            RecordDataEvent[] changeDataEvents = rows.Select(x => new RecordDataEvent(DataEventType.Initial, dataEventName, GetKeyValue(keyFieldNames, x), x)).ToArray();
             dataEvents.AddRange(changeDataEvents);
 
             dataEvents.Add(new DataEvent(DataEventType.InitialEnd, dataEventName));

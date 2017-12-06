@@ -57,7 +57,7 @@ namespace Butterfly.Database.Event {
         }
 
         public override string ToString() {
-            return $"{{id={id},dataEventType={dataEventType},name={name},keyFieldNames={keyFieldNames}}}";
+            return $"{{id={id},dataEventType={dataEventType},name={name},keyFieldNames={string.Join(",", keyFieldNames)}}}";
         }
     }
 
@@ -73,15 +73,15 @@ namespace Butterfly.Database.Event {
         }
     }
 
-    public class RecordDataEvent : DataEvent {
+    public class RecordDataEvent : KeyValueDataEvent {
         public readonly Dict record;
 
-        public RecordDataEvent(DataEventType dataEventType, string name, Dict record) : base(dataEventType, name) {
+        public RecordDataEvent(DataEventType dataEventType, string name, object keyValue, Dict record) : base(dataEventType, name, keyValue) {
             this.record = record;
         }
 
         public override string ToString() {
-            return $"{{id={id},dataEventType={dataEventType},name={name},record={record}}}";
+            return $"{{id={id},dataEventType={dataEventType},name={name},keyValue={keyValue},record={record}}}";
         }
     }
 

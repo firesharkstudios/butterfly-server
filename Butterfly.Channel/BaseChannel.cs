@@ -75,7 +75,7 @@ namespace Butterfly.Channel {
         /// Implementing classes should call this periodically to keep the channel alive (otherwise <ref>ChannelServer</ref> will remove the channel)
         /// </summary>
         public void Heartbeat() {
-            logger.Debug($"Hearbeat()");
+            logger.Trace($"Heartbeat()");
             this.lastHeartbeat = DateTime.Now;
         }
 
