@@ -9,7 +9,7 @@ using Butterfly.WebApi;
 using Butterfly.Database.Event;
 
 namespace Butterfly.Examples {
-    public static class FullChatExample {
+    public static class BetterChatExample {
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         // This is called by Program.cs
@@ -18,18 +18,18 @@ namespace Butterfly.Examples {
 
             // Setup a MySQL database (may need to execute "GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' IDENTIFIED BY 'test!123'; CREATE DATABASE butterfly_chat;")
             var database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_chat");
-            database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Examples.full-chat-db.sql").Wait();
+            database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Examples.better-chat-db.sql").Wait();
             database.SetInsertDefaultValue("id", () => Guid.NewGuid().ToString());
             database.SetInsertDefaultValue("created_at", () => DateTime.Now);
             database.SetInsertDefaultValue("updated_at", () => DateTime.Now);
             database.SetInsertDefaultValue("join_id", () => Guid.NewGuid().ToString().Substring(0, 8), "chat");
 
-            // Listen for clients creating new channels to /full-chat
+            // Listen for clients creating new channels to /better-chat
             // (clients are expected to maintain a channel to the server)
-            channelServer.OnNewChannelAsync("/full-chat", async(channel) => {
+            channelServer.OnNewChannelAsync("/better-chat", async(channel) => {
                 // Create a user record if missing
                 await database.InsertAndCommitAsync("user", new {
-                    id = channel.Id,
+                    id = channel.AuthId,
                     name = CleverNameX.Generate(),
                 }, ignoreIfDuplicate: true);
 
@@ -45,7 +45,7 @@ namespace Butterfly.Examples {
                 dynamicViewSet.CreateDynamicView(
                     "SELECT id, name FROM user WHERE id=@userId", 
                     values: new {
-                        userId = channel.Id
+                        userId = channel.AuthId
                     },
                     name: "me"
                 );
@@ -54,7 +54,7 @@ namespace Butterfly.Examples {
                 var chatIdsDynamicView = dynamicViewSet.CreateDynamicView(
                     "SELECT id, chat_id FROM chat_participant WHERE user_id=@userId", 
                     values: new {
-                        userId = channel.Id
+                        userId = channel.AuthId
                     }, 
                     name: "chat_ids"
                 );
@@ -101,7 +101,7 @@ namespace Butterfly.Examples {
             });
 
             // Listen for API requests to /api/profile/update
-            webApiServer.OnPost($"/api/full-chat/profile/update", async (req, res) => {
+            webApiServer.OnPost($"/api/better-chat/profile/update", async (req, res) => {
                 logger.Debug("Main():/api/profile/update");
                 var auth = req.AuthenticationHeaderValue;
                 var user = await req.ParseAsJsonAsync<dynamic>();
@@ -114,7 +114,7 @@ namespace Butterfly.Examples {
             });
 
             // Listen for API requests to /api/chat/create
-            webApiServer.OnPost($"/api/full-chat/chat/create", async(req, res) => {
+            webApiServer.OnPost($"/api/better-chat/chat/create", async(req, res) => {
                 logger.Debug("Main():/api/chat/create");
                 var auth = req.AuthenticationHeaderValue;
                 var chat = await req.ParseAsJsonAsync<dynamic>();
@@ -134,7 +134,7 @@ namespace Butterfly.Examples {
             });
 
             // Listen for API requests to /api/chat/join
-            webApiServer.OnPost($"/api/full-chat/chat/join", async (req, res) => {
+            webApiServer.OnPost($"/api/better-chat/chat/join", async (req, res) => {
                 logger.Debug("Main():/api/chat/join");
                 var auth = req.AuthenticationHeaderValue;
                 var join = await req.ParseAsJsonAsync<dynamic>();
@@ -153,7 +153,7 @@ namespace Butterfly.Examples {
             });
 
             // Listen for API requests to /api/chat/delete
-            webApiServer.OnPost($"/api/full-chat/chat/delete", async (req, res) => {
+            webApiServer.OnPost($"/api/better-chat/chat/delete", async (req, res) => {
                 logger.Debug("Main():/api/chat/delete");
                 var auth = req.AuthenticationHeaderValue;
                 var chat = await req.ParseAsJsonAsync<dynamic>();
@@ -165,7 +165,7 @@ namespace Butterfly.Examples {
             });
 
             // Listen for API requests to /api/chat/message
-            webApiServer.OnPost($"/api/full-chat/chat/message", async(req, res) => {
+            webApiServer.OnPost($"/api/better-chat/chat/message", async(req, res) => {
                 var auth = req.AuthenticationHeaderValue;
                 var chatMessage = await req.ParseAsJsonAsync<dynamic>();
 

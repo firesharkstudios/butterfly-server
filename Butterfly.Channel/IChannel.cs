@@ -22,7 +22,9 @@ namespace Butterfly.Channel {
     /// Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
     /// </summary>
     public interface IChannel : IDisposable {
-        string Id { get; }
+        string AuthId { get; }
+        string Path { get; }
+        DateTime Created { get;  }
         DateTime LastHeartbeat { get; }
         void Start(ICollection<NewChannelListener> newChannelListeners);
         void Queue(object value);

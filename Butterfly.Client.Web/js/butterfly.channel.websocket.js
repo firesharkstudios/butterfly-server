@@ -4,6 +4,7 @@
 
     let heartbeatEveryMillis = options.heartbeatEveryMillis || 3000;
     let url = options.url;
+    let auth = options.auth;
     let onDataEvent = options.onDataEvent;
     let onUpdated = options.onUpdated;
     let onStatusChange = options.onStatusChange;
@@ -35,12 +36,14 @@
                 };
                 private.webSocket.onopen = function () {
                     private.setStatus('Connected');
+                    private.webSocket.send('Authorization:' + auth);
                 };
                 private.webSocket.onerror = function (error) {
                     private.webSocket = null;
                 }
             }
             catch (e) {
+                console.log(e);
                 private.webSocket = null;
             }
         }

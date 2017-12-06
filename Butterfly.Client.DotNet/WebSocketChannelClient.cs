@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using NLog;
+using System.Net;
 
 namespace Butterfly.Client.DotNet {
 
@@ -19,6 +20,7 @@ namespace Butterfly.Client.DotNet {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly Uri url;
+        protected readonly string authorization;
         protected readonly Action<string> onMessage;
 
         protected readonly int heartbeatEveryMillis;
@@ -26,8 +28,9 @@ namespace Butterfly.Client.DotNet {
 
         protected readonly Action<WebSocketChannelClientStatus> onStatusChange;
 
-        public WebSocketChannelClient(string url, Action<string> onMessage, Action<WebSocketChannelClientStatus> onStatusChange = null, int heartbeatEveryMillis = 3000, int receiveBufferSize = 4096) {
+        public WebSocketChannelClient(string url, string authorization, Action<string> onMessage, Action<WebSocketChannelClientStatus> onStatusChange = null, int heartbeatEveryMillis = 3000, int receiveBufferSize = 4096) {
             this.url = new Uri(url);
+            this.authorization = authorization;
             this.onMessage = onMessage;
             this.onStatusChange = onStatusChange;
 
@@ -48,9 +51,12 @@ namespace Butterfly.Client.DotNet {
                 if (this.onStatusChange != null) this.onStatusChange(isFirst ? WebSocketChannelClientStatus.Connecting : WebSocketChannelClientStatus.Reconnecting);
                 this.isFirst = false;
 
+                this.ioCancellationTokenSource = new CancellationTokenSource();
+
                 ClientWebSocket clientWebSocket = new ClientWebSocket();
                 try {
                     await clientWebSocket.ConnectAsync(this.url, this.connectingCancellationSource.Token);
+                    await this.SendText(clientWebSocket, $"{HttpRequestHeader.Authorization.ToString()}: {this.authorization}", this.ioCancellationTokenSource.Token);
                     if (this.onStatusChange != null) this.onStatusChange(WebSocketChannelClientStatus.Connected);
                 }
                 catch (Exception e) {
@@ -59,8 +65,6 @@ namespace Butterfly.Client.DotNet {
                     continue;
                 }
 
-                this.ioCancellationTokenSource = new CancellationTokenSource();
-                
                 Task receivingTask = Task.Run(async() => {
                     try {
                         while (!ioCancellationTokenSource.IsCancellationRequested) {
@@ -94,13 +98,12 @@ namespace Butterfly.Client.DotNet {
                     }
                 });
 
-                Task sendingTask = Task.Run(async () => {
-                    ArraySegment<byte> outputBuffer = new ArraySegment<byte>(Encoding.UTF8.GetBytes("!"));
+                Task heartbeatTask = Task.Run(async () => {
                     try {
                         while (!this.ioCancellationTokenSource.IsCancellationRequested) {
                             logger.Debug($"RunAsync():this.ioCancellationTokenSource.IsCancellationRequested={this.ioCancellationTokenSource.IsCancellationRequested}");
                             try {
-                                await clientWebSocket.SendAsync(outputBuffer, WebSocketMessageType.Text, true, this.ioCancellationTokenSource.Token);
+                                await this.SendText(clientWebSocket, "!", this.ioCancellationTokenSource.Token);
                             }
                             catch (Exception e) {
                                 logger.Error(e);
@@ -112,9 +115,14 @@ namespace Butterfly.Client.DotNet {
                     catch (TaskCanceledException) {
                     }
                 });
-                await Task.WhenAny(receivingTask, sendingTask);
+                await Task.WhenAny(receivingTask, heartbeatTask);
                 ioCancellationTokenSource.Cancel();
             }
+        }
+
+        protected async Task SendText(ClientWebSocket clientWebSocket, string text, CancellationToken cancellationToken) {
+            ArraySegment<byte> outputBuffer = new ArraySegment<byte>(Encoding.UTF8.GetBytes(text));
+            await clientWebSocket.SendAsync(outputBuffer, WebSocketMessageType.Text, true, cancellationToken);
         }
 
         public void Dispose() {

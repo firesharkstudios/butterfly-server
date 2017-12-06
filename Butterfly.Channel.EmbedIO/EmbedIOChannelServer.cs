@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
 using NLog;
@@ -22,13 +23,11 @@ using Unosquare.Labs.EmbedIO.Modules;
 using Unosquare.Net;
 using Unosquare.Labs.EmbedIO;
 
-using Butterfly.Util;
-
 namespace Butterfly.Channel.EmbedIO {
     public class EmbedIOChannelServer : BaseChannelServer {
         public readonly WebServer webServer;
 
-        public EmbedIOChannelServer(WebServer webServer, int mustReceiveHeartbeatMillis = 5000) : base(mustReceiveHeartbeatMillis) {
+        public EmbedIOChannelServer(WebServer webServer, Func<string, string> authenticate = null, int mustReceiveHeartbeatMillis = 5000) : base(authenticate, mustReceiveHeartbeatMillis) {
             this.webServer = webServer;
         }
 
@@ -36,8 +35,8 @@ namespace Butterfly.Channel.EmbedIO {
             this.webServer.RegisterModule(new WebSocketsModule());
             foreach (var listener in this.onNewChannelListeners) {
                 logger.Debug($"Listening for web socket requests at {listener.path}");
-                this.webServer.Module<WebSocketsModule>().RegisterWebSocketsServer(listener.path, new MyWebSocketsServer(this, (channelId, path, channel) => {
-                    this.AddAndStartChannel(channelId, path, channel);
+                this.webServer.Module<WebSocketsModule>().RegisterWebSocketsServer(listener.path, new MyWebSocketsServer(this, channel => {
+                    this.AddUnauthenticatedChannel(channel);
                 }));
             }
         }
@@ -46,44 +45,49 @@ namespace Butterfly.Channel.EmbedIO {
     public class MyWebSocketsServer : WebSocketsServer {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected readonly IChannelServer channelServer;
-        protected readonly Action<string, string, IChannel> addAndStartChannel;
+        protected readonly BaseChannelServer channelServer;
+        protected readonly Action<IChannel> onNewChannel;
+        protected readonly ConcurrentDictionary<WebSocketContext, EmbedIOChannel> channelByWebSocketContext = new ConcurrentDictionary<WebSocketContext, EmbedIOChannel>();
 
-        public MyWebSocketsServer(IChannelServer channelServer, Action<string, string, IChannel> addAndStartChannel) {
+        public MyWebSocketsServer(BaseChannelServer channelServer, Action<IChannel> onNewChannel) {
             this.channelServer = channelServer;
-            this.addAndStartChannel = addAndStartChannel;
+            this.onNewChannel = onNewChannel;
         }
 
         public override string ServerName => "EmbedIO Channel Server";
 
         protected override void OnClientConnected(WebSocketContext context) {
             string path = GetPath(context);
-            string channelId = GetChannelId(context);
-            logger.Debug($"OnClientConnected():Websocket created for path {path}, channelId {channelId}");
-            var channel = new EmbedIOChannel(channelId, context, message => {
+            logger.Debug($"OnClientConnected():Websocket created for path {path}");
+            var channel = new EmbedIOChannel(this.channelServer, path, context, message => {
                 this.Send(context, message);
             });
-            this.addAndStartChannel(channelId, path, channel);
+            this.onNewChannel(channel);
+            this.channelByWebSocketContext[context] = channel;
         }
 
         protected override void OnClientDisconnected(WebSocketContext context) {
+            this.channelByWebSocketContext.TryRemove(context, out EmbedIOChannel dummyContext);
         }
 
         protected override void OnFrameReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult) {
         }
 
         protected override void OnMessageReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult) {
-            string channelId = GetChannelId(context);
-            var embedIOChannel = this.GetEmbedIOChannel(channelId);
-            if (embedIOChannel!=null) embedIOChannel.Heartbeat();
+            if (this.channelByWebSocketContext.TryGetValue(context, out EmbedIOChannel embedIOChannel)) {
+                var text = System.Text.Encoding.UTF8.GetString(rxBuffer);
+                try {
+                    embedIOChannel.ReceiveMessage(text);
+                }
+                catch (Exception e) {
+                    logger.Debug(e);
+                    context.WebSocket.CloseAsync().Wait();
+                }
+            }
         }
 
         protected static string GetPath(WebSocketContext context) {
             return context.RequestUri.AbsolutePath;
-        }
-
-        protected static string GetChannelId(WebSocketContext context) {
-            return context.RequestUri.ParseQuery().GetAs("id", "");
         }
 
         protected EmbedIOChannel GetEmbedIOChannel(string channelId) {
@@ -92,13 +96,10 @@ namespace Butterfly.Channel.EmbedIO {
     }
 
     public class EmbedIOChannel : BaseChannel {
-
-        protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         protected readonly WebSocketContext context;
         protected readonly Action<string> send;
 
-        public EmbedIOChannel(string id, WebSocketContext context, Action<string> send) : base(id) {
+        public EmbedIOChannel(BaseChannelServer channelServer, string path, WebSocketContext context, Action<string> send) : base(channelServer, path) {
             this.context = context;
             this.send = send;
         }
@@ -110,7 +111,7 @@ namespace Butterfly.Channel.EmbedIO {
         }
 
         protected override void DoDispose() {
-            logger.Debug($"DoDispose():id={this.id}");
+            logger.Debug($"DoDispose():id={this.AuthId}");
         }
 
     }

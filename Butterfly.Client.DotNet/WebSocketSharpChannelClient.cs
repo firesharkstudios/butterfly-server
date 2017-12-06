@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,6 +18,7 @@ namespace Butterfly.Client.DotNet {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly string url;
+        protected readonly string authorization;
         protected readonly Action<string> onMessage;
 
         protected readonly int heartbeatEveryMillis;
@@ -26,8 +28,9 @@ namespace Butterfly.Client.DotNet {
 
         protected WebSocket webSocket = null;
 
-        public WebSocketSharpChannelClient(string url, Action<string> onMessage, Action<WebSocketChannelClientStatus> onStatusChange = null, int heartbeatEveryMillis = 3000, int receiveBufferSize = 4096) {
+        public WebSocketSharpChannelClient(string url, string authorization, Action<string> onMessage, Action<WebSocketChannelClientStatus> onStatusChange = null, int heartbeatEveryMillis = 3000, int receiveBufferSize = 4096) {
             this.url = url;
+            this.authorization = authorization;
             this.onMessage = onMessage;
 
             this.heartbeatEveryMillis = heartbeatEveryMillis;
@@ -49,9 +52,9 @@ namespace Butterfly.Client.DotNet {
                     this.webSocket = new WebSocket(
                         this.url,
                         cancellationToken: this.cancellationTokenSource.Token,
-                        onOpen: () => {
+                        onOpen: async() => {
                             if (this.onStatusChange != null) this.onStatusChange(WebSocketChannelClientStatus.Connected);
-                            return Task.FromResult(0);
+                            await this.webSocket.Send($"{HttpRequestHeader.Authorization.ToString()}: {this.authorization}");
                         },
                         onMessage: async (ea) => {
                             if (this.onMessage != null) {

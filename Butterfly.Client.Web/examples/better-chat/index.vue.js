@@ -1,4 +1,7 @@
-﻿// Chats Component
+﻿// Note: This example uses 'User 123' as the authorization header just to keep the example simple
+//       (in a real world app, you should use a more robust authorization mechanism)
+
+// Chats Component
 Vue.component('chats-component', Vue.extend({
     template: '#chats-component',
     props: ['myUserId', 'chats'],
@@ -10,7 +13,7 @@ Vue.component('chats-component', Vue.extend({
     methods: {
         deleteChat: function (chatId) {
             bootbox.confirm("Delete this chat?", function (result) {
-                authorizedAjax('POST', '/api/full-chat/chat/delete', 'User ' + self.myUserId, {
+                authorizedAjax('POST', '/api/better-chat/chat/delete', 'User ' + self.myUserId, {
                     id: chatId,
                 });
             });
@@ -46,7 +49,7 @@ Vue.component('chat-participants-component', Vue.extend({
                 title: 'Update Profile: What name do you want to use?',
                 value: name,
                 callback: function (result) {
-                    authorizedAjax('POST', '/api/full-chat/profile/update', 'User ' + self.myUserId, {
+                    authorizedAjax('POST', '/api/better-chat/profile/update', 'User ' + self.myUserId, {
                         name: result,
                     });
                 }
@@ -71,7 +74,7 @@ Vue.component('chat-messages-component', Vue.extend({
     },
     methods: {
         postMessage: function () {
-            authorizedAjax('POST', '/api/full-chat/chat/message', 'User ' + this.myUserId, {
+            authorizedAjax('POST', '/api/better-chat/chat/message', 'User ' + this.myUserId, {
                 chatId: this.selectedChatId,
                 text: this.formMessage,
             });
@@ -122,7 +125,7 @@ let app = new Vue({
                 title: 'Add Chat: What is the chat topic?',
                 value: '',
                 callback: function (result) {
-                    authorizedAjax('POST', '/api/full-chat/chat/create', 'User ' + self.myUserId, {
+                    authorizedAjax('POST', '/api/better-chat/chat/create', 'User ' + self.myUserId, {
                         name: result,
                     });
                 }
@@ -168,7 +171,8 @@ let app = new Vue({
 
         // Create channel to server and handle data events
         let channelClient = new WebSocketChannelClient({
-            url: '/full-chat?id=' + self.myUserId,
+            url: '/better-chat',
+            auth: 'User ' + self.myUserId,
             onDataEvent: new ArrayDataEventHandler({
                 arrayMapping: {
                     me: self.mes,
@@ -187,7 +191,7 @@ let app = new Vue({
         // Join chat if url has a join query string parameter
         let match = /join=(.*)/.exec(window.location.href);
         if (match) {
-            authorizedAjax('POST', '/api/full-chat/chat/join', 'User ' + self.myUserId, {
+            authorizedAjax('POST', '/api/better-chat/chat/join', 'User ' + self.myUserId, {
                 joinId: match[1],
             });
         }

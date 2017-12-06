@@ -18,7 +18,6 @@ using System;
 using System.Threading.Tasks;
 
 using RedHttpServerNet45.Response;
-using NLog;
 
 using Butterfly.Util;
 
@@ -26,7 +25,7 @@ namespace Butterfly.Channel.RedHttpServer {
     public class RedHttpServerChannelServer : BaseChannelServer {
         public readonly global::RedHttpServerNet45.RedHttpServer server;
 
-        public RedHttpServerChannelServer(global::RedHttpServerNet45.RedHttpServer server, int mustReceiveHeartbeatMillis = 5000) : base(mustReceiveHeartbeatMillis) {
+        public RedHttpServerChannelServer(global::RedHttpServerNet45.RedHttpServer server, Func<string, string> authenticate = null, int mustReceiveHeartbeatMillis = 5000) : base(authenticate, mustReceiveHeartbeatMillis) {
             if (EnvironmentX.IsRunningOnMono()) throw new Exception("Unfortunately, RedHttpServer does not support WebSockets on Mono");
             this.server = server;
         }
@@ -35,27 +34,29 @@ namespace Butterfly.Channel.RedHttpServer {
             foreach (var listener in this.onNewChannelListeners) {
                 logger.Debug($"DoStart():Websocket listening on path {listener.path}");
                 this.server.WebSocket(listener.path, (req, wsd) => {
-                    string channelId = req.Queries["id"];
-                    logger.Debug($"DoStart():Websocket created for path {listener.path}, channelId {channelId}");
-                    this.AddAndStartChannel(channelId, listener.path, new WebSocketDialogChannel(channelId, wsd));
+                    logger.Debug($"DoStart():Websocket created for path {listener.path}");
+                    this.AddUnauthenticatedChannel(new WebSocketDialogChannel(this, listener.path, wsd));
                 });
             }
         }
+
     }
 
     public class WebSocketDialogChannel : BaseChannel {
 
-        protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         protected readonly WebSocketDialog webSocketDialog;
 
-        public WebSocketDialogChannel(string id, WebSocketDialog webSocketDialog) : base(id) {
-            logger.Debug($"WebSocketDialogChannel():id={id}");
+        public WebSocketDialogChannel(BaseChannelServer channelServer, string path, WebSocketDialog webSocketDialog) : base(channelServer, path) {
             this.webSocketDialog = webSocketDialog;
 
             this.webSocketDialog.OnTextReceived += (sender, eventArgs) => {
-                logger.Debug($"WebSocketDialogChannel():New heartbeat...");
-                this.Heartbeat();
+                try {
+                    this.ReceiveMessage(eventArgs.Text);
+                }
+                catch (Exception e) {
+                    logger.Debug(e);
+                    webSocketDialog.Close();
+                }
             };
         }
 
@@ -65,7 +66,7 @@ namespace Butterfly.Channel.RedHttpServer {
         }
 
         protected override void DoDispose() {
-            logger.Debug($"DoDispose():id={this.id}");
+            logger.Debug($"DoDispose():id={this.AuthId}");
             this.webSocketDialog.Close();
         }
 

@@ -32,7 +32,7 @@ namespace Butterfly.Examples {
                 // Setup each example (should each listen on unique URL paths for both webApiServer and channelServer)
                 HelloWorldExample.Setup(webApiServer, channelServer);
                 MinimalChatExample.Setup(webApiServer, channelServer);
-                FullChatExample.Setup(webApiServer, channelServer);
+                BetterChatExample.Setup(webApiServer, channelServer);
 
                 // Start both servers
                 webApiServer.Start();

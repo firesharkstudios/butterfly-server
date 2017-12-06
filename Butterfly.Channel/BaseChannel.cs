@@ -17,9 +17,11 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 using Nito.AsyncEx;
+using NLog;
 
 using Butterfly.Util;
 
@@ -29,7 +31,11 @@ namespace Butterfly.Channel {
     /// Base class implementing <see cref="IChannel"/>. New implementations will normally extend this class.
     /// </summary>
     public abstract class BaseChannel : IChannel {
-        protected readonly string id;
+        protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
+        protected readonly BaseChannelServer channelServer;
+        protected readonly string path;
+        protected readonly DateTime created;
 
         protected readonly ConcurrentQueue<string> buffer = new ConcurrentQueue<string>();
         protected readonly AsyncMonitor monitor = new AsyncMonitor();
@@ -39,14 +45,26 @@ namespace Butterfly.Channel {
         /// </summary>
         protected DateTime lastHeartbeat = DateTime.Now;
 
-        public BaseChannel(string id) {
-            this.id = id;
+        protected string authId = null;
+
+        public BaseChannel(BaseChannelServer channelServer, string path) {
+            this.channelServer = channelServer;
+            this.path = path;
+            this.created = DateTime.Now;
         }
+
+        public string Path => this.path;
 
         /// <summary>
         /// Unique identifier for the channel
         /// </summary>
-        public string Id => this.id;
+        public string AuthId => this.authId;
+
+        internal void SetAuthId(string value) {
+            this.authId = value;
+        }
+
+        public DateTime Created => this.created;
 
         /// <summary>
         /// When the last heartbeat was registered
@@ -57,6 +75,7 @@ namespace Butterfly.Channel {
         /// Implementing classes should call this periodically to keep the channel alive (otherwise <ref>ChannelServer</ref> will remove the channel)
         /// </summary>
         public void Heartbeat() {
+            logger.Debug($"Hearbeat()");
             this.lastHeartbeat = DateTime.Now;
         }
 
@@ -105,6 +124,22 @@ namespace Butterfly.Channel {
         /// Implementing classes must override this to actually send the text to the client
         /// </summary>
         protected abstract Task SendAsync(string text);
+
+        public void ReceiveMessage(string text) {
+            if (text == "!") {
+                this.Heartbeat();
+            }
+            else {
+                int pos = text.IndexOf(':');
+                if (pos > 0) {
+                    string header = text.Substring(0, pos).Trim();
+                    string value = text.Substring(pos + 1).Trim();
+                    if (header == HttpRequestHeader.Authorization.ToString()) {
+                        this.channelServer.Authenticate(value, this);
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Implements the IDispose interface
