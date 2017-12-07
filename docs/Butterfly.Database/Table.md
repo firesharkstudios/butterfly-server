@@ -1,14 +1,14 @@
 # Table class
 
 ```csharp
-public abstract class Table
+public class Table
 ```
 
 ## Public Members
 
 | name | description |
 | --- | --- |
-| [Table](Table/Table.md)(…) |  |
+| [Table](Table/Table.md)(…) | Represents a table in an [`IDatabase`](IDatabase.md) |
 | [AutoIncrementFieldName](Table/AutoIncrementFieldName.md) { get; } |  |
 | [FieldDefs](Table/FieldDefs.md) { get; } |  |
 | [GetDefaultValueByFieldName](Table/GetDefaultValueByFieldName.md) { get; } |  |

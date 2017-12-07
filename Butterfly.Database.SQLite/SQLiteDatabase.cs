@@ -57,7 +57,7 @@ namespace Butterfly.Database.SQLite {
         protected override async Task<Table> LoadTableSchemaAsync(string tableName) {
             TableFieldDef[] fieldDefs = await this.GetFieldDefsAsync(tableName);
             TableIndex primaryIndex = await this.GetPrimaryIndexAsync(tableName);
-            return new SQLiteTable(this, tableName, fieldDefs, primaryIndex);
+            return new Table(tableName, fieldDefs, primaryIndex);
         }
 
         protected async Task<TableFieldDef[]> GetFieldDefsAsync(string tableName) {

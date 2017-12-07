@@ -68,7 +68,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SQLiteTable.cs" />
     <Compile Include="SQLiteDatabase.cs" />
     <Compile Include="SQLiteTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

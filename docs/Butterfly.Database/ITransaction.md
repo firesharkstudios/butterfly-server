@@ -1,5 +1,11 @@
 # ITransaction interface
 
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
+
+Must call [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is rolled back.
+
 ```csharp
 public interface ITransaction : IDisposable
 ```

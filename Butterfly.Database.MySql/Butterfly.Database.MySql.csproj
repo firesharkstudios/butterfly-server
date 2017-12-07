@@ -51,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MySqlTable.cs" />
     <Compile Include="MySqlDatabase.cs" />
     <Compile Include="MySqlTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
