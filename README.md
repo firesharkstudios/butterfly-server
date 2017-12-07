@@ -1,4 +1,4 @@
-# Butterfly Framework ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/logo-48x48.png) 
+# Butterfly Framework ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/logo-40x40.png) 
 
 > Real-time framework for building web apps using C#
 
