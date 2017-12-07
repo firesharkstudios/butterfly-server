@@ -44,13 +44,18 @@ channelClient.start();
 
 ## Examples
 
-- [Hello World](http://examples.butterflyframework.io/examples/hello-world/index.html)
+### Hello World Example ([Open](http://examples.butterflyframework.io/examples/hello-world/index.html))
 
-- [Minimal Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/minimal-chat/index.vue.html)
+![Hello World Example](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/screenshots/example-hello-world.png)
 
-- [Minimal Chat (Using AngularJS)](http://examples.butterflyframework.io/examples/minimal-chat/index.angular.html)
+### Minimal Chat Example ([Open](http://examples.butterflyframework.io/examples/minimal-chat/index.vue.html))
 
-- [Better Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/better-chat/index.vue.html)
+![Minimal Chat Example](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/screenshots/example-minimal-chat.png)
+
+### Better Chat Example ([Open](http://examples.butterflyframework.io/examples/better-chat/index.vue.html))
+
+![Minimal Chat Example](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/screenshots/example-better-chat.png)
+
 
 ## Packages
 
