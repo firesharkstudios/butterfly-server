@@ -32,6 +32,7 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database {
 
+    /// <inheritdoc cref="IDatabase"/>
     /// <summary>
     /// Base class implementing <see cref="IDatabase"/>. New implementations will normally extend this class.
     /// </summary>
@@ -40,9 +41,9 @@ namespace Butterfly.Database {
 
         protected readonly Dictionary<string, Table> tableByName = new Dictionary<string, Table>();
 
-        protected readonly static Regex SQL_COMMENT = new Regex(@"^\-\-(.*)$", RegexOptions.Multiline);
+        protected static readonly Regex SQL_COMMENT = new Regex(@"^\-\-(.*)$", RegexOptions.Multiline);
 
-        public BaseDatabase(string connectionString) {
+        protected BaseDatabase(string connectionString) {
             this.ConnectionString = connectionString;
             this.LoadSchemaAsync().Wait();
         }

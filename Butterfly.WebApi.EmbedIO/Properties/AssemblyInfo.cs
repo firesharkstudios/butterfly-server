@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Implementation of Butterfly.WebApi using the EmbedIO server")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Fireshark Studios, LLC")]
-[assembly: AssemblyProduct("Butterfly.WebApi.EmbedIO")]
+[assembly: AssemblyProduct("Butterfly Framework")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.1.0.2")]
-[assembly: AssemblyFileVersion("0.1.0.2")]
+[assembly: AssemblyVersion("0.1.0.15")]
+[assembly: AssemblyFileVersion("0.1.0.15")]

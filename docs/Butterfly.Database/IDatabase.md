@@ -16,11 +16,11 @@ var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction =
 // INSERT a couple of records (this will cause a single data even transaction with
 // two INSERT data events to be written to the console above)
 using (var transaction = database.BeginTransaction()) {
-    await database.InsertAndCommitAsync("employee", values: {
+    await database.InsertAndCommitAsync("employee", values: new {
         department_id: 1,
         name: "SpongeBob"
     });
-    await database.InsertAndCommitAsync("employee", values: {
+    await database.InsertAndCommitAsync("employee", values: new {
         department_id: 1,
         name: "Squidward"
     });
@@ -47,14 +47,14 @@ var dynamicViewSet = database.CreateAndStartDynamicViewSet(
 );
 
 // This will cause the above DynamicViewSet to echo an INSERT data event
-await database.InsertAndCommitAsync("employee", values: {
+await database.InsertAndCommitAsync("employee", values: new {
     department_id: 1
     name: "Mr Crabs"
 });
 
 // This will NOT cause the above DynamicViewSet to echo an INSERT data event
 // (because the department_id doesn't match)
-await database.InsertAndCommitAsync("employee", values: {
+await database.InsertAndCommitAsync("employee", values: new {
     department_id: 2
     name: "Patrick Star"
 });
@@ -69,10 +69,10 @@ public interface IDatabase
 | name | description |
 | --- | --- |
 | [Tables](IDatabase/Tables.md) { get; } | Dictionary of [`Table`](Table.md) instances keyed by name |
-| [BeginTransaction](IDatabase/BeginTransaction.md)() | Creates a new [`ITransaction`](ITransaction.md) instance. An [`ITransaction`](ITransaction.md) instance allows performing an atomic set of modifications to the database. Must execute [`CommitAsync`](ITransaction/CommitAsync.md) to save the transaction changes. Disposing the transaction without committing rolls back the changes./&gt; |
+| [BeginTransaction](IDatabase/BeginTransaction.md)() | Creates a new [`ITransaction`](ITransaction.md) instance. An [`ITransaction`](ITransaction.md) instance allows performing an atomic set of modifications to the database. Must execute [`CommitAsync`](ITransaction/CommitAsync.md) to save the transaction changes. Disposing the transaction without committing rolls back the changes. |
 | [CreateAndStartDynamicView](IDatabase/CreateAndStartDynamicView.md)(…) | Convenience method which creates a [`DynamicViewSet`](../Butterfly.Database.Dynamic/DynamicViewSet.md), adds a single [`DynamicView`](../Butterfly.Database.Dynamic/DynamicView.md) to the [`DynamicViewSet`](../Butterfly.Database.Dynamic/DynamicViewSet.md), and starts the [`DynamicViewSet`](../Butterfly.Database.Dynamic/DynamicViewSet.md). (2 methods) |
 | [CreateDynamicViewSet](IDatabase/CreateDynamicViewSet.md)(…) | Allows creating a set of [`DynamicView`](../Butterfly.Database.Dynamic/DynamicView.md) instances that publish a single [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) instance with initial data and new [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) instances when data changes. The [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) instances are published to the lambda passed as the *listener*. (2 methods) |
-| [CreateFromResourceFileAsync](IDatabase/CreateFromResourceFileAsync.md)(…) | Creates database tables from an embedded resource file by internally calling [`CreateFromTextAsync`](IDatabase/CreateFromTextAsync.md) with the contents of the embedded resource file"/&gt;. |
+| [CreateFromResourceFileAsync](IDatabase/CreateFromResourceFileAsync.md)(…) | Creates database tables from an embedded resource file by internally calling [`CreateFromTextAsync`](IDatabase/CreateFromTextAsync.md) with the contents of the embedded resource file" |
 | [CreateFromTextAsync](IDatabase/CreateFromTextAsync.md)(…) | Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate). |
 | [DeleteAndCommitAsync](IDatabase/DeleteAndCommitAsync.md)(…) | Executes the DELETE statement as a single transaction (the DELETE statement may contain vars like @name specified in *vars*) |
 | [GetInitialDataEventTransactionAsync](IDatabase/GetInitialDataEventTransactionAsync.md)(…) | Execute the SELECT statement and return the data in a [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) |

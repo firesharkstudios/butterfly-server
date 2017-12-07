@@ -10,7 +10,6 @@ public abstract class BaseDatabase : IDatabase
 
 | name | description |
 | --- | --- |
-| [BaseDatabase](BaseDatabase/BaseDatabase.md)(…) |  |
 | [ConnectionString](BaseDatabase/ConnectionString.md) { get; } |  |
 | [Tables](BaseDatabase/Tables.md) { get; } |  |
 | [BeginTransaction](BaseDatabase/BeginTransaction.md)() |  |
