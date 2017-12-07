@@ -1,5 +1,5 @@
-# Butterfly Framework
-> Declarative framework for building real-time apps using C#
+# ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/logo-48x48.png) Butterfly Framework
+> Real-time framework for building web apps using C#
 
 Build real-time web apps quickly using C# on the server and your favorite client libraries ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)).  
 
@@ -46,22 +46,22 @@ channelClient.start();
 
 ### Hello World Example ([Open](http://examples.butterflyframework.io/examples/hello-world/index.html))
 
-![Hello World Example](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/screenshots/example-hello-world.png)
+![Hello World Example](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/example-hello-world.png)
 
 ### Minimal Chat Example ([Open](http://examples.butterflyframework.io/examples/minimal-chat/index.vue.html))
 
-![Minimal Chat Example](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/screenshots/example-minimal-chat.png)
+![Minimal Chat Example](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/example-minimal-chat.png)
 
 ### Better Chat Example ([Open](http://examples.butterflyframework.io/examples/better-chat/index.vue.html))
 
-![Minimal Chat Example](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/screenshots/example-better-chat.png)
+![Minimal Chat Example](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/example-better-chat.png)
 
 
 ## Packages
 
 There are three key packages...
 
-- [Butterfly.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Database) - Allows executing INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
+- [Butterfly.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Database) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
  
 - [Butterfly.Channel](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
 

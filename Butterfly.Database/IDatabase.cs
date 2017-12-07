@@ -26,11 +26,11 @@ namespace Butterfly.Database {
     ///     // INSERT a couple of records (this will cause a single data even transaction with
     ///     // two INSERT data events to be written to the console above)
     ///     using (var transaction = database.BeginTransaction()) {
-    ///         await database.InsertAndCommitAsync("employee", values: {
+    ///         await database.InsertAndCommitAsync("employee", values: new {
     ///             department_id: 1,
     ///             name: "SpongeBob"
     ///         });
-    ///         await database.InsertAndCommitAsync("employee", values: {
+    ///         await database.InsertAndCommitAsync("employee", values: new {
     ///             department_id: 1,
     ///             name: "Squidward"
     ///         });
@@ -56,14 +56,14 @@ namespace Butterfly.Database {
     ///     );
     /// 
     ///     // This will cause the above DynamicViewSet to echo an INSERT data event
-    ///     await database.InsertAndCommitAsync("employee", values: {
+    ///     await database.InsertAndCommitAsync("employee", values: new {
     ///         department_id: 1
     ///         name: "Mr Crabs"
     ///     });
     ///     
     ///     // This will NOT cause the above DynamicViewSet to echo an INSERT data event
     ///     // (because the department_id doesn't match)
-    ///     await database.InsertAndCommitAsync("employee", values: {
+    ///     await database.InsertAndCommitAsync("employee", values: new {
     ///         department_id: 2
     ///         name: "Patrick Star"
     ///     });
@@ -77,7 +77,7 @@ namespace Butterfly.Database {
         Dictionary<string, Table> Tables { get; }
 
         /// <summary>
-        /// Creates database tables from an embedded resource file by internally calling <see cref="CreateFromTextAsync(string)"/> with the contents of the embedded resource file"/>.
+        /// Creates database tables from an embedded resource file by internally calling <see cref="CreateFromTextAsync(string)"/> with the contents of the embedded resource file"
         /// </summary>
         /// <param name="assembly"></param>
         /// <param name="resourceFile"></param>
@@ -184,7 +184,7 @@ namespace Butterfly.Database {
         Task<int> DeleteAndCommitAsync(string deleteStatement, dynamic vars);
 
         /// <summary>
-        /// Creates a new <see cref="ITransaction"/> instance.  An <see cref="ITransaction"/> instance allows performing an atomic set of modifications to the database.  Must execute <see cref="ITransaction.CommitAsync"/> to save the transaction changes.  Disposing the transaction without committing rolls back the changes./>
+        /// Creates a new <see cref="ITransaction"/> instance.  An <see cref="ITransaction"/> instance allows performing an atomic set of modifications to the database.  Must execute <see cref="ITransaction.CommitAsync"/> to save the transaction changes.  Disposing the transaction without committing rolls back the changes.
         /// </summary>
         /// <returns>An <see cref="ITransaction"/> instance (can then call InsertAsync(), UpdateAsync(), or DeleteAsync() on the ITransaction instance to make changes on the transaction)/></returns>
         Task<ITransaction> BeginTransaction();
