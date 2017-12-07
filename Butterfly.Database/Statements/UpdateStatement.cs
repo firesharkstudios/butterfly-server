@@ -48,7 +48,7 @@ namespace Butterfly.Database {
             this.whereClause = match.Groups[3].Value.Trim();
 
             // Parse the FROM clause
-            this.TableRefs = TableRef.ParseTableRefs(database, this.fromClause);
+            this.TableRefs = StatementTableRef.ParseTableRefs(database, this.fromClause);
 
             // Parse the SET clause
             this.SetRefs = DetermineEqualsRefs(database, setClause);

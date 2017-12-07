@@ -98,7 +98,7 @@ namespace Butterfly.Database.Dynamic {
 
         internal RecordDataEvent[] ProcessDataChange(DataEvent dataEvent, Dict[] preCommitImpactedRecords, Dict[] postCommitImpactedRecords) {
             logger.Trace($"ProcessDataChange():dataEvent={dataEvent},preCommitImpactedRecords.Length={preCommitImpactedRecords?.Length},postCommitImpactedRecords.Length={postCommitImpactedRecords?.Length}");
-            TableRef tableRef = this.statement.FindTableRefByTableName(dataEvent.name);
+            StatementTableRef tableRef = this.statement.FindTableRefByTableName(dataEvent.name);
             if (tableRef == null) return null;
 
             if (!(dataEvent is KeyValueDataEvent transactionDataEvent)) return null;
@@ -151,7 +151,7 @@ namespace Butterfly.Database.Dynamic {
         }
 
         internal async Task<Dict[]> GetImpactedRecordsAsync(KeyValueDataEvent transactionDataEvent) {
-            TableRef tableRef = this.statement.FindTableRefByTableName(transactionDataEvent.name);
+            StatementTableRef tableRef = this.statement.FindTableRefByTableName(transactionDataEvent.name);
             if (tableRef == null) return null;
 
             StringBuilder newAndCondition = new StringBuilder();

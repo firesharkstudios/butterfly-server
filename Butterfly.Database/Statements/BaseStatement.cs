@@ -37,16 +37,16 @@ namespace Butterfly.Database {
             protected set;
         }
 
-        public TableRef[] TableRefs {
+        public StatementTableRef[] TableRefs {
             get;
             protected set;
         }
 
-        public TableRef FindTableRefByTableAlias(string tableAlias) {
+        public StatementTableRef FindTableRefByTableAlias(string tableAlias) {
             return Array.Find(this.TableRefs, x => x.tableAlias == tableAlias);
         }
 
-        public TableRef FindTableRefByTableName(string tableName) {
+        public StatementTableRef FindTableRefByTableName(string tableName) {
             return Array.Find(this.TableRefs, x => x.table.Name == tableName);
         }
 
@@ -108,14 +108,14 @@ namespace Butterfly.Database {
     /// <summary>
     /// Internal class representing a SQL table reference like "table_name table_alias"
     /// </summary>
-    public class TableRef {
+    public class StatementTableRef {
         public readonly Table table;
         public readonly string tableAlias;
 
-        public TableRef(Table table) : this(table, table.Name) {
+        public StatementTableRef(Table table) : this(table, table.Name) {
         }
 
-        public TableRef(Table table, string tableAlias) {
+        public StatementTableRef(Table table, string tableAlias) {
             this.table = table;
             this.tableAlias = string.IsNullOrWhiteSpace(tableAlias) ? null : tableAlias;
         }
@@ -126,20 +126,20 @@ namespace Butterfly.Database {
         // INNER JOIN user u ON cp.user_id=U.id
         protected readonly static Regex JOIN_REGEX = new Regex(@"\s+INNER\s+JOIN\s+(\w+)(\s+\w+)?\s+ON\s+(\w+)\.(\w+)=(\w+)\.(\w+)");
 
-        public static TableRef[] ParseTableRefs(IDatabase database, string fromClause) {
+        public static StatementTableRef[] ParseTableRefs(IDatabase database, string fromClause) {
             var match = FIRST_TABLE_REGEX.Match(fromClause);
             if (!match.Success) throw new Exception($"Invalid from clause '{fromClause}'");
 
-            List<TableRef> tableRefs = new List<TableRef>();
+            List<StatementTableRef> tableRefs = new List<StatementTableRef>();
             string firstTableName = match.Groups[1].Value.Trim();
             if (!database.Tables.TryGetValue(firstTableName, out Table firstTable)) throw new Exception($"Invalid table name '{firstTableName}'");
-            tableRefs.Add(new TableRef(firstTable, match.Groups[2].Value.Trim()));
+            tableRefs.Add(new StatementTableRef(firstTable, match.Groups[2].Value.Trim()));
 
             var joinMatches = JOIN_REGEX.Matches(fromClause);
             foreach (Match joinMatch in joinMatches) {
                 string joinTableName = joinMatch.Groups[1].Value.Trim();
                 if (!database.Tables.TryGetValue(joinTableName, out Table joinTable)) throw new Exception($"Invalid table name '{joinTableName}'");
-                tableRefs.Add(new TableRef(joinTable, joinMatch.Groups[2].Value.Trim()));
+                tableRefs.Add(new StatementTableRef(joinTable, joinMatch.Groups[2].Value.Trim()));
             }
             return tableRefs.ToArray();
         }

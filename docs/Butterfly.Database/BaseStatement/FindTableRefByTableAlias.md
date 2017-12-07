@@ -1,12 +1,12 @@
 # BaseStatement.FindTableRefByTableAlias method
 
 ```csharp
-public TableRef FindTableRefByTableAlias(string tableAlias)
+public StatementTableRef FindTableRefByTableAlias(string tableAlias)
 ```
 
 ## See Also
 
-* class [TableRef](../TableRef.md)
+* class [StatementTableRef](../StatementTableRef.md)
 * class [BaseStatement](../BaseStatement.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

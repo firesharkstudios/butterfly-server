@@ -12,17 +12,17 @@
 | class [DataEventTransactionListener](Butterfly.Database/DataEventTransactionListener.md) | Internal class used to store references to data event transaction listeners |
 | class [DeleteStatement](Butterfly.Database/DeleteStatement.md) | Internal class used to parse DELETE statements |
 | class [DuplicateKeyDatabaseException](Butterfly.Database/DuplicateKeyDatabaseException.md) |  |
-| class [FieldRef](Butterfly.Database/FieldRef.md) | Internal class representing a SQL field reference like "table_alias.field_name field_alias" |
 | interface [IDatabase](Butterfly.Database/IDatabase.md) | Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views. |
 | interface [IDynamicParam](Butterfly.Database/IDynamicParam.md) | Use to implement a parameter value that can change |
 | class [InsertStatement](Butterfly.Database/InsertStatement.md) | Internal class used to parse INSERT statements |
 | interface [ITransaction](Butterfly.Database/ITransaction.md) | Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single [`DataEventTransaction`](Butterfly.Database.Event/DataEventTransaction.md) on the underlying [`IDatabase`](Butterfly.Database/IDatabase.md) instance when the transaction is committed. |
 | class [SelectStatement](Butterfly.Database/SelectStatement.md) | Internal class used to parse SELECT statements |
 | class [StatementEqualsRef](Butterfly.Database/StatementEqualsRef.md) | Internal class representing a SQL equality reference like "table_alias.field_name=@param_name" |
+| class [StatementFieldRef](Butterfly.Database/StatementFieldRef.md) | Internal class representing a SQL field reference like "table_alias.field_name field_alias" |
+| class [StatementTableRef](Butterfly.Database/StatementTableRef.md) | Internal class representing a SQL table reference like "table_name table_alias" |
 | class [Table](Butterfly.Database/Table.md) |  |
 | class [TableFieldDef](Butterfly.Database/TableFieldDef.md) | Defines a field definition for a [`Table`](Butterfly.Database/Table.md) |
 | class [TableIndex](Butterfly.Database/TableIndex.md) | Defines an index for a [`Table`](Butterfly.Database/Table.md) |
-| class [TableRef](Butterfly.Database/TableRef.md) | Internal class representing a SQL table reference like "table_name table_alias" |
 | class [UpdateStatement](Butterfly.Database/UpdateStatement.md) | Internal class used to parse UPDATE statements |
 
 ## Butterfly.Database.Dynamic namespace

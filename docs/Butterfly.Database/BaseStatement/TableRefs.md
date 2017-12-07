@@ -1,12 +1,12 @@
 # BaseStatement.TableRefs property
 
 ```csharp
-public TableRef[] TableRefs { get; }
+public StatementTableRef[] TableRefs { get; }
 ```
 
 ## See Also
 
-* class [TableRef](../TableRef.md)
+* class [StatementTableRef](../StatementTableRef.md)
 * class [BaseStatement](../BaseStatement.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

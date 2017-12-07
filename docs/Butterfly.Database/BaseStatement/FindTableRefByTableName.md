@@ -1,12 +1,12 @@
 # BaseStatement.FindTableRefByTableName method
 
 ```csharp
-public TableRef FindTableRefByTableName(string tableName)
+public StatementTableRef FindTableRefByTableName(string tableName)
 ```
 
 ## See Also
 
-* class [TableRef](../TableRef.md)
+* class [StatementTableRef](../StatementTableRef.md)
 * class [BaseStatement](../BaseStatement.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

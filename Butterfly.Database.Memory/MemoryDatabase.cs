@@ -68,7 +68,7 @@ namespace Butterfly.Database.Memory {
         protected static readonly Regex SIMPLE_REPLACE = new Regex(@"(?<tableAliasWithDot>\w+\.)?(?<fieldName>\w+)\s*(?<op>=|<>|!=|>|<)\s*(?<param>\@\w+)");
         protected static readonly Regex IN_REPLACE = new Regex(@"(?<tableAliasWithDot>\w+\.)?(?<fieldName>\w+)\s+(?<op>IN|NOT\s+IN)\s+\((?<param>[^\)]+)\)", RegexOptions.IgnoreCase);
 
-        public static string EvaluateWhereClause(string whereClause, Dict sqlParams, TableRef[] tableRefs) {
+        public static string EvaluateWhereClause(string whereClause, Dict sqlParams, StatementTableRef[] tableRefs) {
             string newWhereClause = whereClause;
             newWhereClause = EvaluateWhereClauseReplace(newWhereClause, SIMPLE_REPLACE, sqlParams, tableRefs, op => {
                 if (op == "!=") return "<>";
@@ -78,7 +78,7 @@ namespace Butterfly.Database.Memory {
             return newWhereClause;
         }
 
-        protected static string EvaluateWhereClauseReplace(string sql, Regex regex, Dict sqlParams, TableRef[] tableRefs, Func<string, string> remapOp = null) {
+        protected static string EvaluateWhereClauseReplace(string sql, Regex regex, Dict sqlParams, StatementTableRef[] tableRefs, Func<string, string> remapOp = null) {
             StringBuilder sb = new StringBuilder();
             int lastIndex = 0;
             foreach (Match match in regex.Matches(sql)) {
@@ -91,7 +91,7 @@ namespace Butterfly.Database.Memory {
 
                 // Get table ref
                 string tableAlias = match.Groups["tableAliasWithDot"].Value.Replace(".", "");
-                TableRef tableRef;
+                StatementTableRef tableRef;
                 if (string.IsNullOrEmpty(tableAlias)) {
                     if (tableRefs.Length > 1) throw new Exception("SELECT statements with more than one table reference must use table aliases for all where clause fields");
                     tableRef = tableRefs[0];

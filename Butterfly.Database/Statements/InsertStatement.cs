@@ -56,7 +56,7 @@ namespace Butterfly.Database {
             this.valuesClause = match.Groups["valuesClause"].Value.Trim();
 
             // Parse the FROM clause
-            this.TableRefs = TableRef.ParseTableRefs(database, this.fromClause);
+            this.TableRefs = StatementTableRef.ParseTableRefs(database, this.fromClause);
         }
 
         public static List<string> ParseNamesClause(string namesClause) {

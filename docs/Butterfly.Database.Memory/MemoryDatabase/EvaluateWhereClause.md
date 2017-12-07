@@ -1,7 +1,7 @@
 # MemoryDatabase.EvaluateWhereClause method
 
 ```csharp
-public static string EvaluateWhereClause(string whereClause, Dictionary<string, object> sqlParams, TableRef[] tableRefs)
+public static string EvaluateWhereClause(string whereClause, Dictionary<string, object> sqlParams, StatementTableRef[] tableRefs)
 ```
 
 ## See Also

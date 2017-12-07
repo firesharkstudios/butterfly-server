@@ -48,15 +48,15 @@ namespace Butterfly.Database {
             this.orderByClause = match.Groups[4].Value.Trim();
 
             // Parse the FROM clause
-            this.TableRefs = TableRef.ParseTableRefs(database, this.fromClause);
+            this.TableRefs = StatementTableRef.ParseTableRefs(database, this.fromClause);
 
             // Parse the SELECT clause
             if (this.selectClause == "*") {
                 if (this.TableRefs.Length != 1) throw new Exception("Select statement must have exactly one table to use * to select field names");
-                this.FieldRefs = this.TableRefs[0].table.FieldDefs.Select(x => new FieldRef(x.name)).ToArray();
+                this.FieldRefs = this.TableRefs[0].table.FieldDefs.Select(x => new StatementFieldRef(x.name)).ToArray();
             }
             else {
-                this.FieldRefs = FieldRef.ParseFieldRefs(selectClause);
+                this.FieldRefs = StatementFieldRef.ParseFieldRefs(selectClause);
             }
         }
 
@@ -151,7 +151,7 @@ namespace Butterfly.Database {
             return sb.ToString();
         }
 
-        public FieldRef[] FieldRefs {
+        public StatementFieldRef[] FieldRefs {
             get;
             protected set;
         }
@@ -160,23 +160,23 @@ namespace Butterfly.Database {
     /// <summary>
     /// Internal class representing a SQL field reference like "table_alias.field_name field_alias"
     /// </summary>
-    public class FieldRef {
+    public class StatementFieldRef {
         public readonly string tableAlias;
         public readonly string fieldName;
         public readonly string fieldAlias;
 
-        public FieldRef(string fieldName) : this(null, fieldName, null) {
+        public StatementFieldRef(string fieldName) : this(null, fieldName, null) {
         }
 
-        public FieldRef(string tableAlias, string fieldName, string fieldAlias) {
+        public StatementFieldRef(string tableAlias, string fieldName, string fieldAlias) {
             this.tableAlias = string.IsNullOrWhiteSpace(tableAlias) ? null : tableAlias;
             this.fieldName = fieldName;
             this.fieldAlias = string.IsNullOrWhiteSpace(fieldAlias) ? fieldName : fieldAlias;
         }
 
         protected readonly static Regex REGEX = new Regex(@"^(\w+\.)?(\w+)(\s+\w+)?");
-        public static FieldRef[] ParseFieldRefs(string selectClause) {
-            List<FieldRef> fieldRefs = new List<FieldRef>();
+        public static StatementFieldRef[] ParseFieldRefs(string selectClause) {
+            List<StatementFieldRef> fieldRefs = new List<StatementFieldRef>();
             string[] selectClauseParts = selectClause.Split(',').Select(x => x.Trim()).ToArray();
             foreach (var selectClausePart in selectClauseParts) {
                 Match match = REGEX.Match(selectClausePart);
@@ -185,7 +185,7 @@ namespace Butterfly.Database {
                 if (tableAlias.EndsWith(".")) tableAlias = tableAlias.Substring(0, tableAlias.Length - 1);
                 string fieldName = match.Groups[2].Value.Trim();
                 string fieldAlias = match.Groups[3].Value.Trim();
-                fieldRefs.Add(new FieldRef(tableAlias, fieldName, fieldAlias));
+                fieldRefs.Add(new StatementFieldRef(tableAlias, fieldName, fieldAlias));
             }
             return fieldRefs.ToArray();
         }
