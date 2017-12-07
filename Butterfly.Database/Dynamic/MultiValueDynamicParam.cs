@@ -18,7 +18,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Butterfly.Database.Dynamic {
-    public class MultiValueDynamicParam : DynamicParam {
+    /// <summary>
+    /// A <see cref="IDynamicParam"/> that may contain multiple values (like an array)
+    /// </summary>
+    public class MultiValueDynamicParam : BaseDynamicParam {
         protected readonly List<object> values = new List<object>();
 
         public MultiValueDynamicParam(string name) : base(name) {

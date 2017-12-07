@@ -1,5 +1,7 @@
 # DataEvent class
 
+Represents the initial data or a change in the data. The [`dataEventType`](DataEvent/dataEventType.md) indicates the type of change and the [`name`](DataEvent/name.md) indicates the table or view name.
+
 ```csharp
 public class DataEvent
 ```

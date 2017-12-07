@@ -1,16 +1,8 @@
 # Table constructor
 
-Represents a table in an [`IDatabase`](../IDatabase.md)
-
 ```csharp
 public Table(string name, TableFieldDef[] fieldDefs, TableIndex primaryIndex)
 ```
-
-| parameter | description |
-| --- | --- |
-| name |  |
-| fieldDefs |  |
-| primaryIndex |  |
 
 ## See Also
 

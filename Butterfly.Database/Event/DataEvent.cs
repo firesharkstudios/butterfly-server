@@ -28,6 +28,10 @@ namespace Butterfly.Database.Event {
         Delete,
     }
 
+    /// <summary>
+    /// Represents the initial data or a change in the data.  The <see cref="dataEventType"/> indicates 
+    /// the type of change and the <see cref="name"/> indicates the table or view name.<para/>
+    /// </summary>
     public class DataEvent {
 
         public readonly DataEventType dataEventType;

@@ -70,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDatabase.cs" />
-    <Compile Include="Dynamic\DynamicParam.cs" />
+    <Compile Include="Dynamic\BaseDynamicParam.cs" />
     <Compile Include="Dynamic\DynamicView.cs" />
     <Compile Include="Dynamic\DynamicViewSet.cs" />
     <Compile Include="Dynamic\MultiValueDynamicParam.cs" />

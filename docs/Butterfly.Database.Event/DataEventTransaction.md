@@ -1,5 +1,7 @@
 # DataEventTransaction class
 
+Represents a series of [`DataEvent`](DataEvent.md) instances resulting either from an initial query or from committing an [`IDatabase`](../Butterfly.Database/IDatabase.md) transaction
+
 ```csharp
 public class DataEventTransaction
 ```

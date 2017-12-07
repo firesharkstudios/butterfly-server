@@ -28,7 +28,12 @@ using Butterfly.Util;
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database.Dynamic {
-
+    /// <summary>
+    /// Represents a specific view (SELECT statement) that should be executed
+    /// to return the initial data as a sequence of <see cref="DataEvent"/> instances
+    /// and should publish <see cref="DataEvent"/> instances when any data in the
+    /// view changes
+    /// </summary>
     public class DynamicView {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -61,8 +66,8 @@ namespace Butterfly.Database.Dynamic {
             protected set;
         }
 
-        public DynamicParam CreateMultiValueDynamicParam(string fieldName) {
-            DynamicParam dynamicParam = new MultiValueDynamicParam(fieldName);
+        public BaseDynamicParam CreateMultiValueDynamicParam(string fieldName) {
+            BaseDynamicParam dynamicParam = new MultiValueDynamicParam(fieldName);
             this.childDynamicParams.Add(new ChildDynamicParam(dynamicParam, fieldName));
             return dynamicParam;
         }
@@ -70,7 +75,7 @@ namespace Butterfly.Database.Dynamic {
         internal bool HasDirtyParams {
             get {
                 foreach (var statementParamValue in this.statementParams.Values.ToArray()) {
-                    if (statementParamValue is DynamicParam dynamicParam && dynamicParam.Dirty) return true;
+                    if (statementParamValue is BaseDynamicParam dynamicParam && dynamicParam.Dirty) return true;
                 }
                 /*
                 foreach (var childDynamicParam in this.childDynamicParams) {
@@ -191,12 +196,12 @@ namespace Butterfly.Database.Dynamic {
     public class ChildDynamicParam {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public readonly DynamicParam dynamicParam;
+        public readonly BaseDynamicParam dynamicParam;
         public readonly string fieldName;
 
         protected readonly Dictionary<object, object> valueByKeyValue = new Dictionary<object, object>();
 
-        public ChildDynamicParam(DynamicParam dynamicParam, string fieldName) {
+        public ChildDynamicParam(BaseDynamicParam dynamicParam, string fieldName) {
             this.dynamicParam = dynamicParam;
             this.fieldName = fieldName;
         }

@@ -1,12 +1,12 @@
 # ChildDynamicParam.dynamicParam field
 
 ```csharp
-public readonly DynamicParam dynamicParam;
+public readonly BaseDynamicParam dynamicParam;
 ```
 
 ## See Also
 
-* class [DynamicParam](../DynamicParam.md)
+* class [BaseDynamicParam](../BaseDynamicParam.md)
 * class [ChildDynamicParam](../ChildDynamicParam.md)
 * namespace [Butterfly.Database.Dynamic](../../Butterfly.Database.md)
 

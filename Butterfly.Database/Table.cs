@@ -20,13 +20,10 @@ using System.Linq;
 
 namespace Butterfly.Database {
 
+    /// <summary>
+    /// Represents a table in an <see cref="IDatabase"/>
+    /// </summary>
     public class Table {
-        /// <summary>
-        /// Represents a table in an <see cref="IDatabase"/>
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="fieldDefs"></param>
-        /// <param name="primaryIndex"></param>
         public Table(string name, TableFieldDef[] fieldDefs, TableIndex primaryIndex) {
             this.Name = name;
             this.FieldDefs = fieldDefs;

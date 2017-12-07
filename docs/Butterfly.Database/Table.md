@@ -1,5 +1,7 @@
 # Table class
 
+Represents a table in an [`IDatabase`](IDatabase.md)
+
 ```csharp
 public class Table
 ```
@@ -8,7 +10,7 @@ public class Table
 
 | name | description |
 | --- | --- |
-| [Table](Table/Table.md)(…) | Represents a table in an [`IDatabase`](IDatabase.md) |
+| [Table](Table/Table.md)(…) |  |
 | [AutoIncrementFieldName](Table/AutoIncrementFieldName.md) { get; } |  |
 | [FieldDefs](Table/FieldDefs.md) { get; } |  |
 | [GetDefaultValueByFieldName](Table/GetDefaultValueByFieldName.md) { get; } |  |

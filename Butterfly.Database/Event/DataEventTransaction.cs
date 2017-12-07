@@ -24,6 +24,10 @@ namespace Butterfly.Database.Event {
         Committed,
     }
 
+    /// <summary>
+    /// Represents a series of <see cref="DataEvent"/> instances resulting either
+    /// from an initial query or from committing an <see cref="IDatabase"/> transaction
+    /// </summary>
     public class DataEventTransaction {
         public readonly DateTime dateTime;
         public readonly DataEvent[] dataEvents;

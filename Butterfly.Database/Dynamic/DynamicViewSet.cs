@@ -28,6 +28,11 @@ using Butterfly.Database.Event;
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database.Dynamic {
+    /// <summary>
+    /// Represents a collection of <see cref="DynamicView"/> instances.  Often a
+    /// <see cref="DynamicViewSet"/> instance will represent all the data that should be 
+    /// replicated to a specific client.
+    /// </summary>
     public class DynamicViewSet : IDisposable {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 

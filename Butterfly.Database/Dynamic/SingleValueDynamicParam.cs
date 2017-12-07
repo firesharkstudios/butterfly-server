@@ -15,7 +15,10 @@
 */
 
 namespace Butterfly.Database.Dynamic {
-    public class SingleValueDynamicParam : DynamicParam {
+    /// <summary>
+    /// A <see cref="IDynamicParam"/> that may only contain a single value
+    /// </summary>
+    public class SingleValueDynamicParam : BaseDynamicParam {
         protected object value = null;
 
         public SingleValueDynamicParam(string name) : base(name) {

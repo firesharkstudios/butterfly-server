@@ -17,7 +17,10 @@
 using NLog;
 
 namespace Butterfly.Database.Dynamic {
-    public abstract class DynamicParam : IDynamicParam {
+    /// <summary>
+    /// Base class for implementing dynamic params (see <see cref="IDynamicParam"/>)
+    /// </summary>
+    public abstract class BaseDynamicParam : IDynamicParam {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         private bool dirty = false;
@@ -25,7 +28,7 @@ namespace Butterfly.Database.Dynamic {
         public readonly string name;
 
 
-        public DynamicParam(string name) {
+        public BaseDynamicParam(string name) {
             this.name = name;
         }
 

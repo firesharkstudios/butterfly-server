@@ -1,12 +1,12 @@
 # DynamicView.CreateMultiValueDynamicParam method
 
 ```csharp
-public DynamicParam CreateMultiValueDynamicParam(string fieldName)
+public BaseDynamicParam CreateMultiValueDynamicParam(string fieldName)
 ```
 
 ## See Also
 
-* class [DynamicParam](../DynamicParam.md)
+* class [BaseDynamicParam](../BaseDynamicParam.md)
 * class [DynamicView](../DynamicView.md)
 * namespace [Butterfly.Database.Dynamic](../../Butterfly.Database.md)
 
