@@ -181,7 +181,7 @@ namespace Butterfly.Database {
 
         public async Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic statementParams) {
             Dict statementParamsDict = statement.ConvertParamsToDict(statementParams);
-            Statement.ConfirmAllParamsUsed(statement.Sql, statementParamsDict);
+            BaseStatement.ConfirmAllParamsUsed(statement.Sql, statementParamsDict);
             (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(statementParamsDict);
             return await this.DoSelectRowsAsync(executableSql, executableParams);
         }
@@ -237,11 +237,11 @@ namespace Butterfly.Database {
         public Dict GetInsertDefaultValues(Table table) {
             Dictionary<string, object> defaultValues = new Dict();
             foreach ((string fieldName, Func<object> getDefaultValue) in table.GetDefaultValueByFieldName) {
-                FieldDef fieldDef = table.FindFieldDef(fieldName);
+                TableFieldDef fieldDef = table.FindFieldDef(fieldName);
                 if (fieldDef!=null && !defaultValues.ContainsKey(fieldDef.name)) defaultValues[fieldDef.name] = getDefaultValue();
             }
             foreach ((string fieldName, Func<object> getDefaultValue) in this.getDefaultValueByFieldName) {
-                FieldDef fieldDef = table.FindFieldDef(fieldName);
+                TableFieldDef fieldDef = table.FindFieldDef(fieldName);
                 if (fieldDef != null && !defaultValues.ContainsKey(fieldDef.name)) defaultValues[fieldDef.name] = getDefaultValue();
             }
             return defaultValues;

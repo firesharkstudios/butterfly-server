@@ -26,7 +26,7 @@ namespace Butterfly.Database {
 
     public abstract class Table {
 
-        public Table(string name, FieldDef[] fieldDefs, Index primaryIndex) {
+        public Table(string name, TableFieldDef[] fieldDefs, TableIndex primaryIndex) {
             this.Name = name;
             this.FieldDefs = fieldDefs;
             this.PrimaryIndex = primaryIndex;
@@ -38,16 +38,16 @@ namespace Butterfly.Database {
             protected set;
         }
 
-        public FieldDef[] FieldDefs {
+        public TableFieldDef[] FieldDefs {
             get;
             protected set;
         }
 
-        public FieldDef FindFieldDef(string name) {
+        public TableFieldDef FindFieldDef(string name) {
             return Array.Find(this.FieldDefs, x => x.name == name);
         }
 
-        public Index PrimaryIndex {
+        public TableIndex PrimaryIndex {
             get;
             protected set;
         }

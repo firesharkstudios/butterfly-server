@@ -59,7 +59,7 @@ channelClient.start();
 
 ## Packages
 
-There are three key packages to the Butterfly Framework...
+There are three key packages...
 
 - [Butterfly.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Database) - Allows executing INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
  
@@ -69,10 +69,10 @@ There are three key packages to the Butterfly Framework...
 
 There are no interdependencies between the packages. Use any subset of the packages you wish.
 
-## Recommended App Design
+## Creating a Butterfly App
 
 #### Client Side
-- Use all static HTML, Javascript, and CSS files
+- Use all static HTML, Javascript, and CSS files (ideally served via favorite CDN)
 - Perform actions by calling a RESTful Api on a `WebApiServer`
 - Create and maintain a `Channel` to a `ChannelServer` to receive data
 - Use whatever data binding library you wish ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/), etc)
@@ -92,6 +92,7 @@ There are no interdependencies between the packages. Use any subset of the packa
 ## Next Steps
 
 - Create NuGet packages for Butterfly.Database, Butterfly.Channel, and Butterfly.WebApi
+- Add Butterfly.Database.MSSqlServer
 - Add Butterfly.Database.MongoDB
 - Add Butterfly.WebApi.NancyFX
 - Add Butterfly.WebApi.Kestral

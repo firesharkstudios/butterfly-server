@@ -1,7 +1,7 @@
 # SQLiteTable constructor
 
 ```csharp
-public SQLiteTable(SQLiteDatabase mySqlDatabase, string name, FieldDef[] fieldDefs, Index primaryIndex)
+public SQLiteTable(SQLiteDatabase mySqlDatabase, string name, TableFieldDef[] fieldDefs, TableIndex primaryIndex)
 ```
 
 ## See Also

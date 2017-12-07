@@ -1,13 +1,13 @@
 # Table constructor
 
 ```csharp
-public Table(string name, FieldDef[] fieldDefs, Index primaryIndex)
+public Table(string name, TableFieldDef[] fieldDefs, TableIndex primaryIndex)
 ```
 
 ## See Also
 
-* class [FieldDef](../FieldDef.md)
-* class [Index](../Index.md)
+* class [TableFieldDef](../TableFieldDef.md)
+* class [TableIndex](../TableIndex.md)
 * class [Table](../Table.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

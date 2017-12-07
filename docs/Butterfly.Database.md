@@ -5,25 +5,25 @@
 | public type | description |
 | --- | --- |
 | abstract class [BaseDatabase](Butterfly.Database/BaseDatabase.md) | Base class implementing [`IDatabase`](Butterfly.Database/IDatabase.md). New implementations will normally extend this class. |
+| abstract class [BaseStatement](Butterfly.Database/BaseStatement.md) | Base class for parsing SQL statements |
 | abstract class [BaseTransaction](Butterfly.Database/BaseTransaction.md) | Base class implementing [`ITransaction`](Butterfly.Database/ITransaction.md). New implementations will normally extend this class. |
-| class [CreateStatement](Butterfly.Database/CreateStatement.md) |  |
+| class [CreateStatement](Butterfly.Database/CreateStatement.md) | Internal class used to parse CREATE statements |
 | class [DatabaseException](Butterfly.Database/DatabaseException.md) |  |
 | class [DataEventTransactionListener](Butterfly.Database/DataEventTransactionListener.md) | Internal class used to store references to data event transaction listeners |
-| class [DeleteStatement](Butterfly.Database/DeleteStatement.md) |  |
+| class [DeleteStatement](Butterfly.Database/DeleteStatement.md) | Internal class used to parse DELETE statements |
 | class [DuplicateKeyDatabaseException](Butterfly.Database/DuplicateKeyDatabaseException.md) |  |
-| class [EqualsRef](Butterfly.Database/EqualsRef.md) |  |
-| class [FieldDef](Butterfly.Database/FieldDef.md) |  |
 | class [FieldRef](Butterfly.Database/FieldRef.md) |  |
 | interface [IDatabase](Butterfly.Database/IDatabase.md) | Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views. |
 | interface [IDynamicParam](Butterfly.Database/IDynamicParam.md) |  |
-| class [Index](Butterfly.Database/Index.md) |  |
-| class [InsertStatement](Butterfly.Database/InsertStatement.md) |  |
+| class [InsertStatement](Butterfly.Database/InsertStatement.md) | Internal class used to parse INSERT statements |
 | interface [ITransaction](Butterfly.Database/ITransaction.md) |  |
-| class [SelectStatement](Butterfly.Database/SelectStatement.md) |  |
-| abstract class [Statement](Butterfly.Database/Statement.md) |  |
+| class [SelectStatement](Butterfly.Database/SelectStatement.md) | Internal class used to parse SELECT statements |
+| class [StatementEqualsRef](Butterfly.Database/StatementEqualsRef.md) | Internal class representing a SQL equality reference like "x.my_field=@myField" |
 | abstract class [Table](Butterfly.Database/Table.md) |  |
-| class [TableRef](Butterfly.Database/TableRef.md) |  |
-| class [UpdateStatement](Butterfly.Database/UpdateStatement.md) |  |
+| class [TableFieldDef](Butterfly.Database/TableFieldDef.md) | Defines a field definition for a [`Table`](Butterfly.Database/Table.md) |
+| class [TableIndex](Butterfly.Database/TableIndex.md) | Defines an index for a [`Table`](Butterfly.Database/Table.md) |
+| class [TableRef](Butterfly.Database/TableRef.md) | Internal class representing a SQL table reference like "my_table mt" |
+| class [UpdateStatement](Butterfly.Database/UpdateStatement.md) | Internal class used to parse UPDATE statements |
 
 ## Butterfly.Database.Dynamic namespace
 

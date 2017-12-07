@@ -1,12 +1,12 @@
 # CreateStatement.FieldDefs property
 
 ```csharp
-public FieldDef[] FieldDefs { get; }
+public TableFieldDef[] FieldDefs { get; }
 ```
 
 ## See Also
 
-* class [FieldDef](../FieldDef.md)
+* class [TableFieldDef](../TableFieldDef.md)
 * class [CreateStatement](../CreateStatement.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

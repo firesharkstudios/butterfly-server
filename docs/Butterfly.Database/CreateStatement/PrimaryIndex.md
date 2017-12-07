@@ -1,12 +1,12 @@
 # CreateStatement.PrimaryIndex property
 
 ```csharp
-public Index PrimaryIndex { get; }
+public TableIndex PrimaryIndex { get; }
 ```
 
 ## See Also
 
-* class [Index](../Index.md)
+* class [TableIndex](../TableIndex.md)
 * class [CreateStatement](../CreateStatement.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

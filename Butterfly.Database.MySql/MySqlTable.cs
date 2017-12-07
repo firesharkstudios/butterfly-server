@@ -20,7 +20,7 @@ namespace Butterfly.Database.MySql {
 
         protected readonly MySqlDatabase mySqlDatabase;
 
-        public MySqlTable(MySqlDatabase mySqlDatabase, string name, FieldDef[] fieldDefs, Index primaryIndex) : base(name, fieldDefs, primaryIndex) {
+        public MySqlTable(MySqlDatabase mySqlDatabase, string name, TableFieldDef[] fieldDefs, TableIndex primaryIndex) : base(name, fieldDefs, primaryIndex) {
             this.mySqlDatabase = mySqlDatabase;
         }
 

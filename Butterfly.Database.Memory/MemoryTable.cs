@@ -19,7 +19,7 @@ using System.Data;
 namespace Butterfly.Database.Memory {
 
     public class MemoryTable : Table {
-        public MemoryTable(DataTable dataTable, FieldDef[] fieldDefs, Index primaryIndex) : base(dataTable.TableName, fieldDefs, primaryIndex) {
+        public MemoryTable(DataTable dataTable, TableFieldDef[] fieldDefs, TableIndex primaryIndex) : base(dataTable.TableName, fieldDefs, primaryIndex) {
             this.DataTable = dataTable;
         }
 

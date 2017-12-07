@@ -20,7 +20,10 @@ using System.Text.RegularExpressions;
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database {
-    public class DeleteStatement : Statement {
+    /// <summary>
+    /// Internal class used to parse DELETE statements
+    /// </summary>
+    public class DeleteStatement : BaseStatement {
         protected readonly static Regex STATEMENT_REGEX = new Regex(@"DELETE\s+FROM\s+(?<fromClause>\w+)\s+WHERE\s+(?<whereClause>.*)", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
         public readonly string fromClause;
@@ -42,13 +45,13 @@ namespace Butterfly.Database {
             this.WhereRefs = DetermineEqualsRefs(database, whereClause);
         }
 
-        public EqualsRef[] WhereRefs {
+        public StatementEqualsRef[] WhereRefs {
             get;
             protected set;
         }
 
         public (string, Dict) GetExecutableSqlAndParams(Dict sourceParams) {
-            Statement.ConfirmAllParamsUsed(this.Sql, sourceParams);
+            BaseStatement.ConfirmAllParamsUsed(this.Sql, sourceParams);
             return (this.Sql, sourceParams);
         }
     }

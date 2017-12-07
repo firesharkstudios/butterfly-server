@@ -45,13 +45,13 @@ namespace Butterfly.Database.MySql {
         }
 
         protected override async Task<Table> LoadTableSchemaAsync(string tableName) {
-            FieldDef[] fieldDefs = await this.GetFieldDefsAsync(tableName);
-            Index primaryIndex = await this.GetPrimaryIndexAsync(tableName);
+            TableFieldDef[] fieldDefs = await this.GetFieldDefsAsync(tableName);
+            TableIndex primaryIndex = await this.GetPrimaryIndexAsync(tableName);
             return new MySqlTable(this, tableName, fieldDefs, primaryIndex);
         }
 
-        protected async Task<FieldDef[]> GetFieldDefsAsync(string tableName) {
-            List<FieldDef> fields = new List<FieldDef>();
+        protected async Task<TableFieldDef[]> GetFieldDefsAsync(string tableName) {
+            List<TableFieldDef> fields = new List<TableFieldDef>();
             string commandText = $"DESCRIBE {tableName}";
             using (MySqlDataReader reader = await MySqlHelper.ExecuteReaderAsync(this.ConnectionString, commandText)) {
                 while (await reader.ReadAsync()) {
@@ -64,14 +64,14 @@ namespace Butterfly.Database.MySql {
                     (Type type, int maxLength) = BaseDatabase.ConvertMySqlType(typeText);
                     bool allowNull = allowNullText.Equals("YES", StringComparison.OrdinalIgnoreCase);
                     bool isAutoIncrement = !string.IsNullOrEmpty(extra) && extra.Contains("auto_increment");
-                    fields.Add(new FieldDef(name, type, maxLength, allowNull, isAutoIncrement));
+                    fields.Add(new TableFieldDef(name, type, maxLength, allowNull, isAutoIncrement));
                 }
             }
             return fields.ToArray();
         }
 
-        protected async Task<Index> GetPrimaryIndexAsync(string tableName) {
-            List<Index> uniqueIndexes = new List<Index>();
+        protected async Task<TableIndex> GetPrimaryIndexAsync(string tableName) {
+            List<TableIndex> uniqueIndexes = new List<TableIndex>();
             string commandText = $"SHOW INDEX FROM {tableName}";
             string lastIndexName = null;
             List<string> lastFieldNames = new List<string>();
@@ -84,7 +84,7 @@ namespace Butterfly.Database.MySql {
 
                         if (indexName != lastIndexName) {
                             if (lastFieldNames.Count > 0) {
-                                uniqueIndexes.Add(new Index(lastIndexName, lastFieldNames.ToArray()));
+                                uniqueIndexes.Add(new TableIndex(lastIndexName, lastFieldNames.ToArray()));
                             }
                             lastIndexName = indexName;
                             lastFieldNames.Clear();
@@ -93,13 +93,13 @@ namespace Butterfly.Database.MySql {
                     }
                 }
                 if (lastFieldNames.Count > 0) {
-                    Index uniqueIndex = new Index(lastIndexName, lastFieldNames.ToArray());
+                    TableIndex uniqueIndex = new TableIndex(lastIndexName, lastFieldNames.ToArray());
                     uniqueIndexes.Add(uniqueIndex);
                 }
             }
 
             //this.Indexes = uniqueIndexes.ToArray();
-            Index primaryIndex = Array.Find(uniqueIndexes.ToArray(), x => x.Name == "PRIMARY");
+            TableIndex primaryIndex = Array.Find(uniqueIndexes.ToArray(), x => x.Name == "PRIMARY");
             if (primaryIndex == null) throw new Exception($"Unable to determine primary index on table '{tableName}'");
             return primaryIndex;
         }

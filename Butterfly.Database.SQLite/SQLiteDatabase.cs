@@ -55,13 +55,13 @@ namespace Butterfly.Database.SQLite {
         }
 
         protected override async Task<Table> LoadTableSchemaAsync(string tableName) {
-            FieldDef[] fieldDefs = await this.GetFieldDefsAsync(tableName);
-            Index primaryIndex = await this.GetPrimaryIndexAsync(tableName);
+            TableFieldDef[] fieldDefs = await this.GetFieldDefsAsync(tableName);
+            TableIndex primaryIndex = await this.GetPrimaryIndexAsync(tableName);
             return new SQLiteTable(this, tableName, fieldDefs, primaryIndex);
         }
 
-        protected async Task<FieldDef[]> GetFieldDefsAsync(string tableName) {
-            List<FieldDef> fields = new List<FieldDef>();
+        protected async Task<TableFieldDef[]> GetFieldDefsAsync(string tableName) {
+            List<TableFieldDef> fields = new List<TableFieldDef>();
             string commandText = $"SELECT * FROM {tableName} WHERE 1 = 2";
             using (var connection = new SQLiteConnection(this.ConnectionString)) {
                 await connection.OpenAsync();
@@ -72,14 +72,14 @@ namespace Butterfly.Database.SQLite {
                 }
                 foreach (DataColumn dataColumn in dataTable.Columns) {
                     bool isAutoIncrement = dataColumn.DataType == typeof(long) && dataTable.PrimaryKey.Length==1 && dataTable.PrimaryKey[0].ColumnName == dataColumn.ColumnName;
-                    FieldDef fieldDef = new FieldDef(dataColumn.ColumnName, dataColumn.DataType, dataColumn.MaxLength, dataColumn.AllowDBNull, isAutoIncrement);
+                    TableFieldDef fieldDef = new TableFieldDef(dataColumn.ColumnName, dataColumn.DataType, dataColumn.MaxLength, dataColumn.AllowDBNull, isAutoIncrement);
                     fields.Add(fieldDef);
                 }
             }
             return fields.ToArray();
         }
 
-        protected async Task<Index> GetPrimaryIndexAsync(string tableName) {
+        protected async Task<TableIndex> GetPrimaryIndexAsync(string tableName) {
             string commandText = $"SELECT * FROM {tableName} WHERE 1 = 2";
             using (var connection = new SQLiteConnection(this.ConnectionString)) {
                 await connection.OpenAsync();
@@ -88,7 +88,7 @@ namespace Butterfly.Database.SQLite {
                 using (var reader = await command.ExecuteReaderAsync()) {
                     dataTable.Load(reader);
                 }
-                return new Index("PrimaryKey", dataTable.PrimaryKey.Select(x => x.ColumnName).ToArray());
+                return new TableIndex("PrimaryKey", dataTable.PrimaryKey.Select(x => x.ColumnName).ToArray());
             }
         }
 

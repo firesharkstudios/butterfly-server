@@ -20,7 +20,10 @@ using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Butterfly.Database {
-    public class CreateStatement : Statement {
+    /// <summary>
+    /// Internal class used to parse CREATE statements
+    /// </summary>
+    public class CreateStatement : BaseStatement {
         protected readonly static Regex STATEMENT_REGEX = new Regex(@"CREATE\s+TABLE\s+(?<tableName>\w+)\s*\(\s*(?<createTableDefs>[\s\S]*)\s*\)", RegexOptions.IgnoreCase | RegexOptions.Multiline);
         protected readonly static Regex FIELD_REGEX = new Regex(@"^\s*(?<fieldName>\w+)\s+(?<fieldType>[\w\(\)]+)(?<not>\s*NOT)?(?<null>\s*NULL)?(?<autoIncrement>\s*AUTO_INCREMENT)?\s*[,$]", RegexOptions.IgnoreCase);
         protected readonly static Regex PRIMARY_KEY_REGEX = new Regex(@"^\s*PRIMARY\s+KEY\s*\((?<fields>.*)\)\s*(?:,|$)", RegexOptions.IgnoreCase);
@@ -37,14 +40,14 @@ namespace Butterfly.Database {
 
             string createTableDefs = match.Groups["createTableDefs"].Value.Replace("\r", " ").Replace("\n", " ");
 
-            List<FieldDef> fieldDefs = new List<FieldDef>();
+            List<TableFieldDef> fieldDefs = new List<TableFieldDef>();
             int lastIndex = 0;
             while (lastIndex<createTableDefs.Length) {
                 string substring = createTableDefs.Substring(lastIndex);
                 Match primaryKeyMatch = PRIMARY_KEY_REGEX.Match(substring);
                 if (primaryKeyMatch.Success) {
                     string[] primaryKeyFieldNames = primaryKeyMatch.Groups["fields"].Value.Split(',').Select(x => x.Trim()).ToArray();
-                    this.PrimaryIndex = new Index("Primary", primaryKeyFieldNames);
+                    this.PrimaryIndex = new TableIndex("Primary", primaryKeyFieldNames);
                     lastIndex += primaryKeyMatch.Length;
                 }
                 else {
@@ -60,7 +63,7 @@ namespace Butterfly.Database {
                             (Type fieldType, int maxLength) = BaseDatabase.ConvertMySqlType(fieldTypeText);
                             bool notNull = fieldMatch.Groups["not"].Success && fieldMatch.Groups["null"].Success;
                             bool autoIncrement = fieldMatch.Groups["autoIncrement"].Success;
-                            fieldDefs.Add(new FieldDef(fieldName, fieldType, maxLength, !notNull, autoIncrement));
+                            fieldDefs.Add(new TableFieldDef(fieldName, fieldType, maxLength, !notNull, autoIncrement));
                             lastIndex += fieldMatch.Length;
                         }
                         else {
@@ -77,12 +80,12 @@ namespace Butterfly.Database {
             protected set;
         }
 
-        public FieldDef[] FieldDefs {
+        public TableFieldDef[] FieldDefs {
             get;
             protected set;
         }
         
-        public Index PrimaryIndex {
+        public TableIndex PrimaryIndex {
             get;
             protected set;
         }

@@ -95,7 +95,7 @@ namespace Butterfly.Database {
             Dict statementParamsDict = statement.ConvertParamsToDict(statementParams);
 
             // Determine keyValue
-            var fieldValues = Statement.RemapStatementParamsToFieldValues(statementParamsDict, statement.WhereRefs);
+            var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, statement.WhereRefs);
             object keyValue = BaseDatabase.GetKeyValue(statement.TableRefs[0].table.PrimaryIndex.FieldNames, fieldValues);
 
             // Get the executable sql and params
@@ -123,7 +123,7 @@ namespace Butterfly.Database {
             Dict statementParamsDict = statement.ConvertParamsToDict(statementParams);
 
             // Determine keyValue
-            var fieldValues = Statement.RemapStatementParamsToFieldValues(statementParamsDict, statement.WhereRefs);
+            var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, statement.WhereRefs);
             object keyValue = BaseDatabase.GetKeyValue(statement.TableRefs[0].table.PrimaryIndex.FieldNames, fieldValues);
 
             // Get the executable sql and params

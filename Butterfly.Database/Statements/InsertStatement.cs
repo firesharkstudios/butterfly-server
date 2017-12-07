@@ -24,7 +24,10 @@ using Butterfly.Util;
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database {
-    public class InsertStatement : Statement {
+    /// <summary>
+    /// Internal class used to parse INSERT statements
+    /// </summary>
+    public class InsertStatement : BaseStatement {
 
         public const string NAMES = "@@names";
         public const string VALUES = "@@values";
@@ -75,17 +78,17 @@ namespace Butterfly.Database {
             string newValuesClause = string.Join(",", values);
 
             string executableSql = $"INSERT INTO {this.TableRefs[0].table.Name} ({newNamesClause}) VALUES ({newValuesClause})";
-            Statement.ConfirmAllParamsUsed(executableSql, executableParams);
+            BaseStatement.ConfirmAllParamsUsed(executableSql, executableParams);
 
             return (executableSql, executableParams);
         }
 
-        public EqualsRef[] GetInsertRefs(Dict executableParams) {
+        public StatementEqualsRef[] GetInsertRefs(Dict executableParams) {
             (IList<string> names, IList<string> values) = this.GetNamesAndValues(executableParams);
 
-            List<EqualsRef> result = new List<EqualsRef>();
+            List<StatementEqualsRef> result = new List<StatementEqualsRef>();
             for (int i = 0; i < names.Count; i++) {
-                result.Add(new EqualsRef(this.TableRefs[0].table.Name, names[i], values[i].Substring(1)));
+                result.Add(new StatementEqualsRef(this.TableRefs[0].table.Name, names[i], values[i].Substring(1)));
             }
             return result.ToArray();
         }

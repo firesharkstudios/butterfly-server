@@ -15,14 +15,15 @@
 */
 
 using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database {
-
-    public class UpdateStatement : Statement {
+    /// <summary>
+    /// Internal class used to parse UPDATE statements
+    /// </summary>
+    public class UpdateStatement : BaseStatement {
         protected readonly static Regex STATEMENT_REGEX = new Regex(@"UPDATE\s+(\w+)\s+SET\s+(.+)\s+WHERE\s+(.*)", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
         public readonly string fromClause;
@@ -54,18 +55,18 @@ namespace Butterfly.Database {
             this.WhereRefs = DetermineEqualsRefs(database, whereClause);
         }
 
-        public EqualsRef[] SetRefs {
+        public StatementEqualsRef[] SetRefs {
             get;
             protected set;
         }
 
-        public EqualsRef[] WhereRefs {
+        public StatementEqualsRef[] WhereRefs {
             get;
             protected set;
         }
 
         public (string, Dict) GetExecutableSqlAndParams(Dict sourceParams) {
-            Statement.ConfirmAllParamsUsed(this.Sql, sourceParams);
+            BaseStatement.ConfirmAllParamsUsed(this.Sql, sourceParams);
             return (this.Sql, sourceParams);
         }
 

@@ -106,7 +106,7 @@ namespace Butterfly.Database.Memory {
                     lastIndex = match.Groups["param"].Index;
                 }
                 else {
-                    FieldDef fieldDef = tableRef.table.FindFieldDef(fieldName);
+                    TableFieldDef fieldDef = tableRef.table.FindFieldDef(fieldName);
 
                     // Get evaluated value
                     var paramNames = match.Groups["param"].Value.Split(',').Select(x => x.Replace("@", "").Trim());

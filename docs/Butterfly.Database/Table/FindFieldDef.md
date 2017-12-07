@@ -1,12 +1,12 @@
 # Table.FindFieldDef method
 
 ```csharp
-public FieldDef FindFieldDef(string name)
+public TableFieldDef FindFieldDef(string name)
 ```
 
 ## See Also
 
-* class [FieldDef](../FieldDef.md)
+* class [TableFieldDef](../TableFieldDef.md)
 * class [Table](../Table.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

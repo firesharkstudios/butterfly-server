@@ -78,7 +78,7 @@ namespace Butterfly.Database.Memory {
             var memoryTable = executableStatement.TableRefs[0].table as MemoryTable;
 
             var insertRefs = executableStatement.GetInsertRefs(executableParams);
-            var fieldValues = Statement.RemapStatementParamsToFieldValues(executableParams, insertRefs);
+            var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(executableParams, insertRefs);
 
             var dataRow = memoryTable.DataTable.NewRow();
             foreach (var nameValuePair in fieldValues) {
@@ -100,7 +100,7 @@ namespace Butterfly.Database.Memory {
             UpdateStatement executableStatement = new UpdateStatement(this.database, executableSql);
             if (!(executableStatement.TableRefs[0].table is MemoryTable memoryTable)) throw new Exception("Table is not a MemoryTable");
 
-            var fieldValues = Statement.RemapStatementParamsToFieldValues(executableParams, executableStatement.SetRefs);
+            var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(executableParams, executableStatement.SetRefs);
 
             string evaluatedWhereClause = MemoryDatabase.EvaluateWhereClause(executableStatement.whereClause, executableParams, executableStatement.TableRefs);
             var dataRows = memoryTable.DataTable.Select(evaluatedWhereClause);

@@ -87,10 +87,11 @@
     <Compile Include="Statements\DeleteStatement.cs" />
     <Compile Include="Statements\InsertStatement.cs" />
     <Compile Include="Statements\SelectStatement.cs" />
-    <Compile Include="Statements\Statement.cs" />
+    <Compile Include="Statements\BaseStatement.cs" />
     <Compile Include="Statements\UpdateStatement.cs" />
     <Compile Include="Table.cs" />
-    <Compile Include="Index.cs" />
+    <Compile Include="TableIndex.cs" />
+    <Compile Include="TableFieldDef.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

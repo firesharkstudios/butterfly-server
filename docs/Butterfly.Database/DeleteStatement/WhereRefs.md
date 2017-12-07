@@ -1,12 +1,12 @@
 # DeleteStatement.WhereRefs property
 
 ```csharp
-public EqualsRef[] WhereRefs { get; }
+public StatementEqualsRef[] WhereRefs { get; }
 ```
 
 ## See Also
 
-* class [EqualsRef](../EqualsRef.md)
+* class [StatementEqualsRef](../StatementEqualsRef.md)
 * class [DeleteStatement](../DeleteStatement.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

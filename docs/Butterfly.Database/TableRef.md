@@ -1,5 +1,7 @@
 # TableRef class
 
+Internal class representing a SQL table reference like "my_table mt"
+
 ```csharp
 public class TableRef
 ```

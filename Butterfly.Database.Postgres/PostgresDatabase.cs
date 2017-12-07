@@ -49,13 +49,13 @@ namespace Butterfly.Database.Postgres {
         }
 
         protected override async Task<Table> LoadTableSchemaAsync(string tableName) {
-            FieldDef[] fieldDefs = await this.GetFieldDefsAsync(tableName);
-            Index primaryIndex = await this.GetPrimaryIndexAsync(tableName);
+            TableFieldDef[] fieldDefs = await this.GetFieldDefsAsync(tableName);
+            TableIndex primaryIndex = await this.GetPrimaryIndexAsync(tableName);
             return new PostgresTable(this, tableName, fieldDefs, primaryIndex);
         }
 
-        protected async Task<FieldDef[]> GetFieldDefsAsync(string tableName) {
-            List<FieldDef> fields = new List<FieldDef>();
+        protected async Task<TableFieldDef[]> GetFieldDefsAsync(string tableName) {
+            List<TableFieldDef> fields = new List<TableFieldDef>();
             string commandText = $"select column_name, data_type, character_maximum_length, is_nullable, column_default from INFORMATION_SCHEMA.COLUMNS where table_name = @tableName";
             using (var connection = new NpgsqlConnection(this.ConnectionString)) {
                 await connection.OpenAsync();
@@ -73,15 +73,15 @@ namespace Butterfly.Database.Postgres {
                         bool allowNull = allowNullText.Equals("YES", StringComparison.OrdinalIgnoreCase);
                         bool isAutoIncrement = defaultText.StartsWith("NEXTVAL(", StringComparison.OrdinalIgnoreCase);
                         (Type type, _) = ConvertType(typeText);
-                        fields.Add(new FieldDef(name, type, maxLength, allowNull, isAutoIncrement));
+                        fields.Add(new TableFieldDef(name, type, maxLength, allowNull, isAutoIncrement));
                     }
                 }
             }
             return fields.ToArray();
         }
 
-        protected async Task<Index> GetPrimaryIndexAsync(string tableName) {
-            Index primaryIndex = null;
+        protected async Task<TableIndex> GetPrimaryIndexAsync(string tableName) {
+            TableIndex primaryIndex = null;
             string commandText = @"SELECT
                   trel.relname AS table_name,
                   irel.relname AS index_name,
@@ -108,7 +108,7 @@ namespace Butterfly.Database.Postgres {
                         string[] fieldNames = (string[])reader[4];
 
                         //string[] fieldNames = fieldNamesText.Replace("{", "").Replace("}", "").Split(',').Select(x => x.Trim()).ToArray();
-                        primaryIndex = new Index(indexName, fieldNames);
+                        primaryIndex = new TableIndex(indexName, fieldNames);
                     }
                 }
             }

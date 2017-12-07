@@ -1,7 +1,7 @@
 # PostgresTable constructor
 
 ```csharp
-public PostgresTable(PostgresDatabase mySqlDatabase, string name, FieldDef[] fieldDefs, Index primaryIndex)
+public PostgresTable(PostgresDatabase mySqlDatabase, string name, TableFieldDef[] fieldDefs, TableIndex primaryIndex)
 ```
 
 ## See Also

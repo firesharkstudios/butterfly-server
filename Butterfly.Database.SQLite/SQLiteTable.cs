@@ -20,7 +20,7 @@ namespace Butterfly.Database.SQLite {
 
         protected readonly SQLiteDatabase mySqlDatabase;
 
-        public SQLiteTable(SQLiteDatabase mySqlDatabase, string name, FieldDef[] fieldDefs, Index primaryIndex) : base(name, fieldDefs, primaryIndex) {
+        public SQLiteTable(SQLiteDatabase mySqlDatabase, string name, TableFieldDef[] fieldDefs, TableIndex primaryIndex) : base(name, fieldDefs, primaryIndex) {
             this.mySqlDatabase = mySqlDatabase;
         }
 

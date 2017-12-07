@@ -1,7 +1,7 @@
 # MySqlTable constructor
 
 ```csharp
-public MySqlTable(MySqlDatabase mySqlDatabase, string name, FieldDef[] fieldDefs, Index primaryIndex)
+public MySqlTable(MySqlDatabase mySqlDatabase, string name, TableFieldDef[] fieldDefs, TableIndex primaryIndex)
 ```
 
 ## See Also
