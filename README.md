@@ -1,4 +1,5 @@
-# ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/logo-48x48.png) Butterfly Framework
+![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/logo-48x48.png) 
+# Butterfly Framework
 > Real-time framework for building web apps using C#
 
 Build real-time web apps quickly using C# on the server and your favorite client libraries ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)).  
