@@ -157,12 +157,9 @@ namespace Butterfly.Database {
         }
     }
 
-    /*
-     * "u.id user_id" would be...
-     *   tableAlias=u
-     *   fieldName=id
-     *   fieldAlias=user_id
-     */
+    /// <summary>
+    /// Internal class representing a SQL field reference like "table_alias.field_name field_alias"
+    /// </summary>
     public class FieldRef {
         public readonly string tableAlias;
         public readonly string fieldName;

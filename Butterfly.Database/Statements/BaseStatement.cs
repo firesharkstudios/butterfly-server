@@ -106,7 +106,7 @@ namespace Butterfly.Database {
     }
 
     /// <summary>
-    /// Internal class representing a SQL table reference like "my_table mt"
+    /// Internal class representing a SQL table reference like "table_name table_alias"
     /// </summary>
     public class TableRef {
         public readonly Table table;
@@ -146,7 +146,7 @@ namespace Butterfly.Database {
     }
 
     /// <summary>
-    /// Internal class representing a SQL equality reference like "x.my_field=@myField"
+    /// Internal class representing a SQL equality reference like "table_alias.field_name=@param_name"
     /// </summary>
     public class StatementEqualsRef {
         public readonly string tableName;
