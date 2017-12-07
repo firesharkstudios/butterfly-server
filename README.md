@@ -50,7 +50,7 @@ channelClient.start();
 
 - [Minimal Chat (Using AngularJS)](http://examples.butterflyframework.io/examples/minimal-chat/index.angular.html)
 
-<!-- [Better Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/better-chat/index.vue.html) -->
+- [Better Chat (Using Vue.js)](http://examples.butterflyframework.io/examples/better-chat/index.vue.html)
 
 ## Packages
 
