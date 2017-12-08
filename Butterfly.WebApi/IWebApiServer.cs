@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 namespace Butterfly.WebApi {
     /// <summary>
     /// Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.<para/>
-    /// 
+    /// </summary>
+    /// <remarks>
     /// Initializing a web api server instance...<para/>
     /// <code>
     ///     var webApiServer = new SomeWebApiServer();
@@ -16,7 +17,7 @@ namespace Butterfly.WebApi {
     ///     });
     ///     webApiServer.Start();
     /// </code>
-    /// </summary>
+    /// </remarks>
     public interface IWebApiServer : IDisposable {
         /// <summary>
         /// Add a listener responding to GET requests

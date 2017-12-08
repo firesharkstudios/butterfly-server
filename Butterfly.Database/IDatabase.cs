@@ -27,8 +27,9 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 namespace Butterfly.Database {
     /// <summary>
     /// Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; 
-    /// creating dynamic views; and receiving data change events both on tables and dynamic views.<para/>
-    /// 
+    /// creating dynamic views; and receiving data change events both on tables and dynamic views.
+    /// </summary>
+    /// <remarks>
     /// Adding records and echoing all data change events to the console...<para/>
     /// <code>
     ///     // Create database instance (will also read the schema from the database)
@@ -84,7 +85,7 @@ namespace Butterfly.Database {
     ///         name: "Patrick Star"
     ///     });
     /// </code>
-    /// </summary>
+    /// </remarks>
     public interface IDatabase {
 
         /// <summary>

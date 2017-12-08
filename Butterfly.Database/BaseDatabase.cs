@@ -31,8 +31,7 @@ using Butterfly.Util;
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database {
-
-    /// <inheritdoc cref="IDatabase"/>
+    /// <inheritdoc/>
     /// <summary>
     /// Base class implementing <see cref="IDatabase"/>. New implementations will normally extend this class.
     /// </summary>

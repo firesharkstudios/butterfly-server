@@ -108,7 +108,5 @@ branch. Pull requests are warmly welcome.
 
 ## Licensing
 
-The core server code is licensed under the Apache License 2.0.  
-
-All the example server code and client code is licensed under the MIT License.
+The code is licensed under the Apache License 2.0.  
 

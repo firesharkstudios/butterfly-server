@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 namespace Butterfly.Channel {
     /// <summary>
     /// Allows clients to create new channels to the server and allows the server to push messages to connected clients.<para/>
-    /// 
+    /// </summary>
+    /// <remarks>
     /// Initializing a channel server instance...<para/>
     /// <code>
     ///     var channelServer = new SomeChannelServer();
@@ -24,7 +25,7 @@ namespace Butterfly.Channel {
     /// <code>
     ///     channelServer.Dispose();
     /// </code>
-    /// </summary>
+    /// </remarks>
     public interface IChannelServer : IDisposable {
 
         //Func<string, string> Authenticate { get; }
