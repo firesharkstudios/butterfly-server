@@ -15,6 +15,7 @@ public class PostgresTransaction : BaseTransaction
 | name | description |
 | --- | --- |
 | [PostgresTransaction](PostgresTransaction/PostgresTransaction.md)(…) |  |
+| override [Begin](PostgresTransaction/Begin.md)() |  |
 | override [BeginAsync](PostgresTransaction/BeginAsync.md)() |  |
 | override [Dispose](PostgresTransaction/Dispose.md)() |  |
 

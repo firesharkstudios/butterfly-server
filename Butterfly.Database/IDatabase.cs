@@ -94,12 +94,28 @@ namespace Butterfly.Database {
         Dictionary<string, Table> Tables { get; }
 
         /// <summary>
+        /// Creates database tables from an embedded resource file by internally calling <see cref="CreateFromText(string)"/> with the contents of the embedded resource file"
+        /// </summary>
+        /// <param name="assembly"></param>
+        /// <param name="resourceFile"></param>
+        /// <returns></returns>
+        void CreateFromResourceFile(Assembly assembly, string resourceFile);
+
+        /// <summary>
         /// Creates database tables from an embedded resource file by internally calling <see cref="CreateFromTextAsync(string)"/> with the contents of the embedded resource file"
         /// </summary>
         /// <param name="assembly"></param>
         /// <param name="resourceFile"></param>
         /// <returns></returns>
         Task CreateFromResourceFileAsync(Assembly assembly, string resourceFile);
+
+        /// <summary>
+        /// Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate).<para/>
+        /// Lines beginning with <code>--</code> will be ignored. Each CREATE statement must include a PRIMARY KEY definition. If the table already exists, the CREATE statement is ignored.<para/>
+        /// Creating database tables with this method is not required (primarily done as a convenience method for unit testing)"/>.
+        /// </summary>
+        /// <param name="createStatements"></param>
+        void CreateFromText(string createStatements);
 
         /// <summary>
         /// Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate).<para/>
@@ -149,7 +165,7 @@ namespace Butterfly.Database {
         /// <param name="vars">Either an anonymous type or Dictionary with the vars used in the SELECT statement</param>
         /// <param name="defaultValue">The value to return if no rows were returned or the value of the first column of the first row is null</param>
         /// <returns>The value of the first column of the first row</returns>
-        Task<T> SelectValue<T>(string selectStatement, dynamic vars, T defaultValue);
+        Task<T> SelectValueAsync<T>(string selectStatement, dynamic vars = null, T defaultValue = default(T));
 
         /// <summary>
         /// Executes the SELECT statement and return the first row (the SELECT statement may contain vars like @name specified in <paramref name="vars"/>)
@@ -196,7 +212,13 @@ namespace Butterfly.Database {
         /// Creates a new <see cref="ITransaction"/> instance.  An <see cref="ITransaction"/> instance allows performing an atomic set of modifications to the database.  Must execute <see cref="ITransaction.CommitAsync"/> to save the transaction changes.  Disposing the transaction without committing rolls back the changes.
         /// </summary>
         /// <returns>An <see cref="ITransaction"/> instance (can then call InsertAsync(), UpdateAsync(), or DeleteAsync() on the ITransaction instance to make changes on the transaction)/></returns>
-        Task<ITransaction> BeginTransaction();
+        ITransaction BeginTransaction();
+
+        /// <summary>
+        /// Creates a new <see cref="ITransaction"/> instance.  An <see cref="ITransaction"/> instance allows performing an atomic set of modifications to the database.  Must execute <see cref="ITransaction.CommitAsync"/> to save the transaction changes.  Disposing the transaction without committing rolls back the changes.
+        /// </summary>
+        /// <returns>An <see cref="ITransaction"/> instance (can then call InsertAsync(), UpdateAsync(), or DeleteAsync() on the ITransaction instance to make changes on the transaction)/></returns>
+        Task<ITransaction> BeginTransactionAsync();
 
         /// <summary>
         /// Allows specifying a lambda that creates a default value for a field when executing an INSERT.  If <paramref name="tableName"/> is null, the <paramref name="getDefaultValue"/> lambda will be applied to all tables.

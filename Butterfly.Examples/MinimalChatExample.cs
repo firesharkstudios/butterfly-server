@@ -16,13 +16,13 @@ namespace Butterfly.Examples {
             // Create a MemoryDatabase (no persistence, limited features)
             // with a single table "chat_message"
             var database = new Butterfly.Database.Memory.MemoryDatabase();
-            database.CreateFromTextAsync(@"CREATE TABLE chat_message (
+            database.CreateFromText(@"CREATE TABLE chat_message (
 	            id INT NOT NULL AUTO_INCREMENT,
 	            user_name VARCHAR(40) NOT NULL,
 	            text VARCHAR(255) NOT NULL,
 	            created_at DATETIME NOT NULL,
 	            PRIMARY KEY (id)
-            );").Wait();
+            );");
             database.SetInsertDefaultValue("created_at", () => DateTime.Now);
 
             // Listen for clients creating new channels to /minimal-chat,

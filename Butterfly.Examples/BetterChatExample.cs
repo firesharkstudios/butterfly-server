@@ -26,7 +26,7 @@ namespace Butterfly.Examples {
                 logger.Warn($"Unable to connect to MySQL server (modify BetterChatExample.cs to specify ConnectionString), skipping BetterChatExample");
                 return;
             }
-            database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Examples.better-chat-db.sql").Wait();
+            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Examples.better-chat-db.sql");
             database.SetInsertDefaultValue("id", () => Guid.NewGuid().ToString());
             database.SetInsertDefaultValue("created_at", () => DateTime.Now);
             database.SetInsertDefaultValue("updated_at", () => DateTime.Now);
@@ -126,7 +126,7 @@ namespace Butterfly.Examples {
                 var chat = await req.ParseAsJsonAsync<dynamic>();
 
                 // Create records in database
-                using (var transaction = await database.BeginTransaction()) {
+                using (var transaction = await database.BeginTransactionAsync()) {
                     object chatId = await transaction.InsertAsync("INSERT INTO chat (@@names) VALUES (@@values)", new {
                         name = chat.name,
                         owner_id = auth.Parameter
@@ -145,7 +145,7 @@ namespace Butterfly.Examples {
                 var auth = req.AuthenticationHeaderValue;
                 var join = await req.ParseAsJsonAsync<dynamic>();
 
-                var chatId = await database.SelectValue<string>("SELECT id FROM chat WHERE join_id=@joinId", new {
+                var chatId = await database.SelectValueAsync<string>("SELECT id FROM chat WHERE join_id=@joinId", new {
                     joinId = join.joinId,
                 }, null);
 

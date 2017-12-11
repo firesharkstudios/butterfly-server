@@ -3,7 +3,7 @@
 Creates a new [`ITransaction`](../ITransaction.md) instance. An [`ITransaction`](../ITransaction.md) instance allows performing an atomic set of modifications to the database. Must execute [`CommitAsync`](../ITransaction/CommitAsync.md) to save the transaction changes. Disposing the transaction without committing rolls back the changes.
 
 ```csharp
-public Task<ITransaction> BeginTransaction()
+public ITransaction BeginTransaction()
 ```
 
 ## Return Value

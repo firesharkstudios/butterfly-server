@@ -3,7 +3,7 @@
 Executes the SELECT statement and return the rows (the SELECT statement may contain vars like @name specified in *vars*)
 
 ```csharp
-public Task<Dictionary<string, object>[]> SelectRowsAsync(string statementSql, object statementParams = null)
+public Task<Dictionary<string, object>[]> SelectRowsAsync(string statementSql, object vars = null)
 ```
 
 | parameter | description |

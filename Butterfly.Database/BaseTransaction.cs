@@ -38,6 +38,12 @@ namespace Butterfly.Database {
         }
 
         // Create methods
+        public bool Create(CreateStatement statement) {
+            return this.DoCreate(statement);
+        }
+
+        protected abstract bool DoCreate(CreateStatement statement);
+
         public async Task<bool> CreateAsync(CreateStatement statement) {
             return await this.DoCreateAsync(statement);
         }
@@ -149,22 +155,37 @@ namespace Butterfly.Database {
 
         protected abstract Task DoTruncateAsync(string tableName);
 
+        // Begin methods
+        public abstract void Begin();
+
         public abstract Task BeginAsync();
 
-
         // Commit methods
-        public async Task CommitAsync() {
+        public void Commit() {
             DataEventTransaction dataEventTransaction = this.dataEvents.Count > 0 ? new DataEventTransaction(DateTime.Now, this.dataEvents.ToArray()) : null;
-            if (dataEventTransaction!=null) {
-                await this.database.ProcessDataEventTransaction(TransactionState.Uncommitted, dataEventTransaction);
+            if (dataEventTransaction != null) {
+                this.database.ProcessDataEventTransaction(TransactionState.Uncommitted, dataEventTransaction);
             }
-            await this.DoCommit();
-            if (dataEventTransaction!=null) {
-                await this.database.ProcessDataEventTransaction(TransactionState.Committed, dataEventTransaction);
+            this.DoCommit();
+            if (dataEventTransaction != null) {
+                this.database.ProcessDataEventTransaction(TransactionState.Committed, dataEventTransaction);
             }
         }
 
-        protected abstract Task DoCommit();
+        protected abstract void DoCommit();
+
+        public async Task CommitAsync() {
+            DataEventTransaction dataEventTransaction = this.dataEvents.Count > 0 ? new DataEventTransaction(DateTime.Now, this.dataEvents.ToArray()) : null;
+            if (dataEventTransaction!=null) {
+                await this.database.ProcessDataEventTransactionAsync(TransactionState.Uncommitted, dataEventTransaction);
+            }
+            await this.DoCommitAsync();
+            if (dataEventTransaction!=null) {
+                await this.database.ProcessDataEventTransactionAsync(TransactionState.Committed, dataEventTransaction);
+            }
+        }
+
+        protected abstract Task DoCommitAsync();
 
         // Rollback methods
         public void Rollback() {

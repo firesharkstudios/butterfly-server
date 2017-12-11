@@ -29,8 +29,10 @@ namespace Butterfly.Database {
     /// If the transaction is disposed without calling <see cref="CommitAsync"/> the transaction is rolled back.
     /// </summary>
     public interface ITransaction : IDisposable {
+        void Begin();
         Task BeginAsync();
 
+        bool Create(CreateStatement statement);
         Task<bool> CreateAsync(CreateStatement statement);
 
         Task<object> InsertAsync(string statementSql, dynamic statementParams, bool ignoreIfDuplicate = false);
@@ -44,6 +46,7 @@ namespace Butterfly.Database {
 
         Task TruncateAsync(string tableName);
 
+        void Commit();
         Task CommitAsync();
 
         void Rollback();

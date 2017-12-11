@@ -31,6 +31,9 @@ nuget pack Butterfly.WebApi.EmbedIO.csproj -IncludeReferencedProjects -Prop Conf
 cd "C:\Users\Kent\Documents\Visual Studio 2017\Projects\Butterfly\Butterfly.WebApi.RedHttpServer"
 nuget pack Butterfly.WebApi.RedHttpServer.csproj -IncludeReferencedProjects -Prop Configuration=Debug
 
+cd "C:\Users\Kent\Documents\Visual Studio 2017\Projects\Butterfly\Butterfly.Util"
+nuget pack Butterfly.Util.csproj -IncludeReferencedProjects -Prop Configuration=Debug
+
 #new-item "C:\Users\Kent\Documents\Visual Studio 2017\Projects\Butterfly\Nuget.local" -itemtype directory
 
 Copy-Item "C:\Users\Kent\Documents\Visual Studio 2017\Projects\Butterfly\*\*.nupkg" -Destination "C:\Users\Kent\Documents\Visual Studio 2017\Projects\Butterfly\Nuget.local\" -force

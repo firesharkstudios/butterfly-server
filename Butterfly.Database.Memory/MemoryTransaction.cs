@@ -36,14 +36,21 @@ namespace Butterfly.Database.Memory {
         public MemoryTransaction(MemoryDatabase database) : base(database) {
         }
 
+        public override void Begin() {
+        }
+
         public override Task BeginAsync() {
             return Task.FromResult(0);
         }
 
-        protected override Task DoCommit() {
+        protected override void DoCommit() {
             foreach (var changedTable in this.changedTables) {
                 changedTable.DataTable.AcceptChanges();
             }
+        }
+
+        protected override Task DoCommitAsync() {
+            this.DoCommit();
             return Task.FromResult(0);
         }
 
@@ -57,7 +64,7 @@ namespace Butterfly.Database.Memory {
             this.changedTables.Clear();
         }
 
-        protected override Task<bool> DoCreateAsync(CreateStatement statement) {
+        protected override bool DoCreate(CreateStatement statement) {
             var dataTable = new DataTable(statement.TableName);
 
             foreach (var fieldDef in statement.FieldDefs) {
@@ -72,7 +79,11 @@ namespace Butterfly.Database.Memory {
             Table table = new MemoryTable(dataTable, statement.FieldDefs, statement.PrimaryIndex);
             this.database.Tables.Add(table.Name, table);
 
-            return Task.FromResult(true);
+            return true;
+        }
+
+        protected override Task<bool> DoCreateAsync(CreateStatement statement) {
+            return Task.FromResult(this.DoCreate(statement));
         }
 
         protected override Task<Func<object>> DoInsertAsync(string executableSql, Dict executableParams, bool ignoreIfDuplicate) {

@@ -36,6 +36,13 @@ namespace Butterfly.Database.Postgres {
         public PostgresTransaction(PostgresDatabase database) : base(database) {
         }
 
+        public override void Begin() {
+            PostgresDatabase postgresDatabase = this.database as PostgresDatabase;
+            this.connection = new NpgsqlConnection(postgresDatabase.ConnectionString);
+            this.connection.Open();
+            this.transaction = this.connection.BeginTransaction();
+        }
+
         public override async Task BeginAsync() {
             PostgresDatabase postgresDatabase = this.database as PostgresDatabase;
             this.connection = new NpgsqlConnection(postgresDatabase.ConnectionString);
@@ -43,7 +50,11 @@ namespace Butterfly.Database.Postgres {
             this.transaction = this.connection.BeginTransaction();
         }
 
-        protected override async Task DoCommit() {
+        protected override void DoCommit() {
+            this.transaction.Commit();
+        }
+
+        protected override async Task DoCommitAsync() {
             await this.transaction.CommitAsync();
         }
 
@@ -56,6 +67,18 @@ namespace Butterfly.Database.Postgres {
             this.connection.Dispose();
         }
 
+        protected override bool DoCreate(CreateStatement statement) {
+            string sql = BuildCreate(statement);
+            this.DoExecute(sql);
+            return false;
+        }
+
+        protected override async Task<bool> DoCreateAsync(CreateStatement statement) {
+            string sql = BuildCreate(statement);
+            await this.DoExecuteAsync(sql);
+            return false;
+        }
+
         /*
          * Example...
          * CREATE TABLE distributors (
@@ -63,7 +86,7 @@ namespace Butterfly.Database.Postgres {
          *  name   varchar(40) NOT NULL CHECK (name <> '')
          * );
          */
-        protected override async Task<bool> DoCreateAsync(CreateStatement statement) {
+        protected static string BuildCreate(CreateStatement statement) {
             StringBuilder sb = new StringBuilder();
             sb.Append($"CREATE TABLE {statement.TableName} (\r\n");
             foreach (var fieldDef in statement.FieldDefs) {
@@ -72,16 +95,16 @@ namespace Butterfly.Database.Postgres {
                 if (fieldDef.isAutoIncrement) {
                     sb.Append($" SERIAL");
                 }
-                else if (fieldDef.type==typeof(string)) {
+                else if (fieldDef.type == typeof(string)) {
                     sb.Append($" VARCHAR({fieldDef.maxLength})");
                 }
-                else if (fieldDef.type==typeof(int)) {
+                else if (fieldDef.type == typeof(int)) {
                     sb.Append($" INTEGER");
                 }
-                else if (fieldDef.type==typeof(long)) {
+                else if (fieldDef.type == typeof(long)) {
                     sb.Append($" BIGINT");
                 }
-                else if (fieldDef.type==typeof(float)) {
+                else if (fieldDef.type == typeof(float)) {
                     sb.Append($" REAL");
                 }
                 else if (fieldDef.type == typeof(double)) {
@@ -98,9 +121,7 @@ namespace Butterfly.Database.Postgres {
             }
             sb.Append($" PRIMARY KEY ({string.Join(",", statement.PrimaryIndex.FieldNames)})");
             sb.Append(")");
-
-            await this.DoExecute(sb.ToString());
-            return false;
+            return sb.ToString();
         }
 
         protected override async Task<Func<object>> DoInsertAsync(string executableSql, Dict executableParams, bool ignoreIfDuplicate) {
@@ -140,18 +161,33 @@ namespace Butterfly.Database.Postgres {
         }
 
         protected override Task<int> DoUpdateAsync(string executableSql, Dict executableParams) {
-            return this.DoExecute(executableSql, executableParams);
+            return this.DoExecuteAsync(executableSql, executableParams);
         }
 
         protected override Task<int> DoDeleteAsync(string executableSql, Dict executableParams) {
-            return this.DoExecute(executableSql, executableParams);
+            return this.DoExecuteAsync(executableSql, executableParams);
         }
 
         protected override Task DoTruncateAsync(string tableName) {
-            return this.DoExecute($"TRUNCATE {tableName}");
+            return this.DoExecuteAsync($"TRUNCATE {tableName}");
         }
 
-        protected async Task<int> DoExecute(string executableSql, Dict executableParams = null) {
+        protected int DoExecute(string executableSql, Dict executableParams = null) {
+            try {
+                var command = new NpgsqlCommand(executableSql, this.connection);
+                if (executableParams != null) {
+                    foreach (var keyValuePair in executableParams) {
+                        command.Parameters.AddWithValue(keyValuePair.Key, keyValuePair.Value);
+                    }
+                }
+                return command.ExecuteNonQuery();
+            }
+            catch (PostgresException e) {
+                throw new DatabaseException(e.Message);
+            }
+        }
+
+        protected async Task<int> DoExecuteAsync(string executableSql, Dict executableParams = null) {
             try {
                 var command = new NpgsqlCommand(executableSql, this.connection);
                 if (executableParams != null) {

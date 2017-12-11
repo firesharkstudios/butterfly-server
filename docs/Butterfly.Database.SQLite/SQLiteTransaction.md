@@ -15,6 +15,7 @@ public class SQLiteTransaction : BaseTransaction
 | name | description |
 | --- | --- |
 | [SQLiteTransaction](SQLiteTransaction/SQLiteTransaction.md)(…) |  |
+| override [Begin](SQLiteTransaction/Begin.md)() |  |
 | override [BeginAsync](SQLiteTransaction/BeginAsync.md)() |  |
 | override [Dispose](SQLiteTransaction/Dispose.md)() |  |
 

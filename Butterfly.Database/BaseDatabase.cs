@@ -61,19 +61,52 @@ namespace Butterfly.Database {
 
         public Dictionary<string, Table> Tables => this.tableByName;
 
+        public void CreateFromResourceFile(Assembly assembly, string resourceFile) {
+            //logger.Debug($"CreateFromResourceFile():resourceNames={string.Join(",", assembly.GetManifestResourceNames())}");
+            string sql = FileX.LoadResourceAsText(assembly, resourceFile);
+            this.CreateFromText(sql);
+        }
+
         public async Task CreateFromResourceFileAsync(Assembly assembly, string resourceFile) {
             //logger.Debug($"CreateFromResourceFileAsync():resourceNames={string.Join(",", assembly.GetManifestResourceNames())}");
             string sql = await FileX.LoadResourceAsTextAsync(assembly, resourceFile);
             await this.CreateFromTextAsync(sql);
         }
 
-        public async Task CreateFromTextAsync(string createStatements) {
-            //logger.Debug($"CreateFromTextAsync():createStatements={createStatements}");
+        public void CreateFromText(string createStatements) {
+            logger.Trace($"CreateFromText():createStatements={createStatements}");
             var noCommentSql = SQL_COMMENT.Replace(createStatements, "");
             var sqlParts = noCommentSql.Split(';').Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x));
 
             List<string> tableSchemasToLoad = new List<string>();
-            using (var transaction = await this.BeginTransaction()) {
+            using (var transaction = this.BeginTransaction()) {
+                foreach (var sqlPart in sqlParts) {
+                    if (!string.IsNullOrWhiteSpace(sqlPart)) {
+                        CreateStatement statement = this.CreateStatement(sqlPart);
+                        if (!this.Tables.Keys.Contains(statement.TableName)) {
+                            bool tableSchemaLoaded = transaction.Create(statement);
+                            if (!tableSchemaLoaded) {
+                                tableSchemasToLoad.Add(statement.TableName);
+                            }
+                        }
+                    }
+                }
+                transaction.Commit();
+            }
+
+            foreach (var tableName in tableSchemasToLoad) {
+                Table table = this.LoadTableSchema(tableName);
+                this.tableByName[table.Name] = table;
+            }
+        }
+
+        public async Task CreateFromTextAsync(string createStatements) {
+            logger.Trace($"CreateFromTextAsync():createStatements={createStatements}");
+            var noCommentSql = SQL_COMMENT.Replace(createStatements, "");
+            var sqlParts = noCommentSql.Split(';').Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x));
+
+            List<string> tableSchemasToLoad = new List<string>();
+            using (var transaction = await this.BeginTransactionAsync()) {
                 foreach (var sqlPart in sqlParts) {
                     if (!string.IsNullOrWhiteSpace(sqlPart)) {
                         CreateStatement statement = this.CreateStatement(sqlPart);
@@ -115,8 +148,26 @@ namespace Butterfly.Database {
 
         public IDisposable OnNewCommittedTransaction(Func<DataEventTransaction, Task> listener) => new ListItemDisposable<DataEventTransactionListener>(committedTransactionListeners, new DataEventTransactionListener(listener));
 
-        internal async Task ProcessDataEventTransaction(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
-            List<Task> tasks = new List<Task>();
+        internal void ProcessDataEventTransaction(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
+            switch (transactionState) {
+                case TransactionState.Uncommitted:
+                    // Use ToArray() to avoid the collection being modified during the loop
+                    foreach (var listener in this.uncommittedTransactionListeners.ToArray()) {
+                        if (listener.listener != null) listener.listener(dataEventTransaction);
+                        else listener.listenerAsync(dataEventTransaction).Wait();
+                    }
+                    break;
+                case TransactionState.Committed:
+                    // Use ToArray() to avoid the collection being modified during the loop
+                    foreach (var listener in this.committedTransactionListeners.ToArray()) {
+                        if (listener.listener != null) listener.listener(dataEventTransaction);
+                        else listener.listenerAsync(dataEventTransaction).Wait();
+                    }
+                    break;
+            }
+        }
+
+        internal async Task ProcessDataEventTransactionAsync(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
             switch (transactionState) {
                 case TransactionState.Uncommitted:
                     // Use ToArray() to avoid the collection being modified during the loop
@@ -124,7 +175,6 @@ namespace Butterfly.Database {
                         if (listener.listener != null) listener.listener(dataEventTransaction);
                         else await listener.listenerAsync(dataEventTransaction);
                     }
-                    await Task.WhenAll(tasks);
                     break;
                 case TransactionState.Committed:
                     // Use ToArray() to avoid the collection being modified during the loop
@@ -132,7 +182,6 @@ namespace Butterfly.Database {
                         if (listener.listener != null) listener.listener(dataEventTransaction);
                         else await listener.listenerAsync(dataEventTransaction);
                     }
-                    await Task.WhenAll(tasks);
                     break;
             }
         }
@@ -158,36 +207,36 @@ namespace Butterfly.Database {
             return dataEvents.ToArray();
         }
 
-        public async Task<T> SelectValue<T>(string sql, dynamic values, T defaultValue) {
-            Dict row = await this.SelectRowAsync(sql, values);
+        public async Task<T> SelectValueAsync<T>(string sql, dynamic vars = null, T defaultValue = default(T)) {
+            Dict row = await this.SelectRowAsync(sql, vars);
             if (row == null || !row.TryGetValue(row.Keys.First(), out object value)) return defaultValue;
 
             return (T)Convert.ChangeType(value, typeof(T));
         }
 
-        public async Task<Dict> SelectRowAsync(string statementSql, dynamic statementParams = null) {
-            Dict[] rows = await this.SelectRowsAsync(statementSql, statementParams);
+        public async Task<Dict> SelectRowAsync(string statementSql, dynamic vars = null) {
+            Dict[] rows = await this.SelectRowsAsync(statementSql, vars);
             if (rows.Length == 0) return null;
             else if (rows.Length > 1) throw new Exception("SelectRow returned more than one row");
             return rows.First();
         }
 
-        public async Task<Dict[]> SelectRowsAsync(string statementSql, dynamic statementParams = null) {
+        public async Task<Dict[]> SelectRowsAsync(string statementSql, dynamic vars = null) {
             SelectStatement statement = new SelectStatement(this, statementSql);
-            return await this.SelectRowsAsync(statement, statementParams);
+            return await this.SelectRowsAsync(statement, vars);
         }
 
-        internal async Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic statementParams, string newAndCondition, Dict newWhereParams) {
+        internal async Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic vars, string newAndCondition, Dict newWhereParams) {
             string overrideWhereClause = string.IsNullOrEmpty(statement.whereClause) ? newAndCondition : $"({newAndCondition}) AND ({statement.whereClause})";
             SelectStatement newStatement = new SelectStatement(statement, overrideWhereClause, true);
-            Dict newStatementParamsDict = newStatement.ConvertParamsToDict(statementParams);
+            Dict newStatementParamsDict = newStatement.ConvertParamsToDict(vars);
             newStatementParamsDict.UpdateFrom(newWhereParams);
             (string executableSql, Dict executableParams) = newStatement.GetExecutableSqlAndParams(newStatementParamsDict);
             return await this.DoSelectRowsAsync(executableSql, executableParams);
         }
 
-        protected async Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic statementParams) {
-            Dict statementParamsDict = statement.ConvertParamsToDict(statementParams);
+        protected async Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic vars) {
+            Dict statementParamsDict = statement.ConvertParamsToDict(vars);
             BaseStatement.ConfirmAllParamsUsed(statement.Sql, statementParamsDict);
             (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(statementParamsDict);
             return await this.DoSelectRowsAsync(executableSql, executableParams);
@@ -197,7 +246,7 @@ namespace Butterfly.Database {
 
         public async Task<object> InsertAndCommitAsync(string sql, dynamic record, bool ignoreIfDuplicate = false) {
             object result;
-            using (var transaction = await this.BeginTransaction()) {
+            using (var transaction = await this.BeginTransactionAsync()) {
                 result = await transaction.InsertAsync(sql, record, ignoreIfDuplicate);
                 await transaction.CommitAsync();
             }
@@ -206,7 +255,7 @@ namespace Butterfly.Database {
 
         public async Task<int> UpdateAndCommitAsync(string sourceSql, dynamic sourceParams) {
             int count;
-            using (var transaction = await this.BeginTransaction()) {
+            using (var transaction = await this.BeginTransactionAsync()) {
                 count = await transaction.UpdateAsync(sourceSql, sourceParams);
                 await transaction.CommitAsync();
             }
@@ -215,14 +264,20 @@ namespace Butterfly.Database {
 
         public async Task<int> DeleteAndCommitAsync(string sql, dynamic whereParams) {
             int count;
-            using (var transaction = await this.BeginTransaction()) {
+            using (var transaction = await this.BeginTransactionAsync()) {
                 count = await transaction.DeleteAsync(sql, whereParams);
                 await transaction.CommitAsync();
             }
             return count;
         }
 
-        public async Task<ITransaction> BeginTransaction() {
+        public ITransaction BeginTransaction() {
+            var transaction = this.CreateTransaction();
+            transaction.Begin();
+            return transaction;
+        }
+
+        public async Task<ITransaction> BeginTransactionAsync() {
             var transaction = this.CreateTransaction();
             await transaction.BeginAsync();
             return transaction;

@@ -15,8 +15,11 @@ public abstract class BaseTransaction : ITransaction
 | name | description |
 | --- | --- |
 | [BaseTransaction](BaseTransaction/BaseTransaction.md)(…) |  |
+| abstract [Begin](BaseTransaction/Begin.md)() |  |
 | abstract [BeginAsync](BaseTransaction/BeginAsync.md)() |  |
+| [Commit](BaseTransaction/Commit.md)() |  |
 | [CommitAsync](BaseTransaction/CommitAsync.md)() |  |
+| [Create](BaseTransaction/Create.md)(…) |  |
 | [CreateAsync](BaseTransaction/CreateAsync.md)(…) |  |
 | [DeleteAsync](BaseTransaction/DeleteAsync.md)(…) |  (2 methods) |
 | abstract [Dispose](BaseTransaction/Dispose.md)() |  |

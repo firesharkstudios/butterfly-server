@@ -54,7 +54,7 @@ namespace Butterfly.Database.Test {
         }
 
         public async Task TestDatabase(BaseDatabase database) {
-            database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Database.Test.db.sql").Wait();
+            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Database.Test.db.sql");
             database.SetInsertDefaultValue("id", () => Guid.NewGuid().ToString(), "employee");
             database.SetInsertDefaultValue("created_at", () => DateTime.Now);
             database.SetInsertDefaultValue("updated_at", () => DateTime.Now);
@@ -165,7 +165,7 @@ namespace Butterfly.Database.Test {
                 // Confirm that an insert event is created
                 dataEventTransactionCollector.Clear();
                 object joeSalesEmployeeId;
-                using (ITransaction transaction = await database.BeginTransaction()) {
+                using (ITransaction transaction = await database.BeginTransactionAsync()) {
                     // Add Joe Sales employee
                     joeSalesEmployeeId = await transaction.InsertAsync("INSERT INTO employee (@@names) VALUES (@@values)", new {
                         name = "Joe Sales",
@@ -180,7 +180,7 @@ namespace Butterfly.Database.Test {
 
                 // Confirm that an update event is created
                 dataEventTransactionCollector.Clear();
-                using (ITransaction transaction = await database.BeginTransaction()) {
+                using (ITransaction transaction = await database.BeginTransactionAsync()) {
                     // Update Joe Sales employee
                     await transaction.UpdateAsync($"UPDATE employee SET {updateField}=@{updateField} WHERE id=@id", new Dict {
                         ["id"] = joeSalesEmployeeId,
@@ -198,7 +198,7 @@ namespace Butterfly.Database.Test {
 
                 // Confirm that a delete event is created
                 dataEventTransactionCollector.Clear();
-                using (ITransaction transaction = await database.BeginTransaction()) {
+                using (ITransaction transaction = await database.BeginTransactionAsync()) {
                     // Delete Joe Sales employee
                     await transaction.DeleteAsync("DELETE FROM employee WHERE id=@id", new {
                         id = joeSalesEmployeeId,

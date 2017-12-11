@@ -5,7 +5,6 @@ using NLog;
 using Unosquare.Labs.EmbedIO.Modules;
 
 using Butterfly.Util;
-using System.Net.Sockets;
 
 namespace Butterfly.Examples {
     class Program {

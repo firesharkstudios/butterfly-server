@@ -53,7 +53,7 @@ namespace Butterfly.Database.Test {
         }
 
         public async Task TestDatabase(IDatabase database) {
-            database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Database.Test.db.sql").Wait();
+            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Database.Test.db.sql");
             database.SetInsertDefaultValue("id", () => Guid.NewGuid().ToString(), "employee");
             database.SetInsertDefaultValue("created_at", () => DateTime.Now);
             database.SetInsertDefaultValue("updated_at", () => DateTime.Now);
@@ -68,7 +68,7 @@ namespace Butterfly.Database.Test {
         }
 
         public static async Task TruncateData(IDatabase database) {
-            using (ITransaction transaction = await database.BeginTransaction()) {
+            using (ITransaction transaction = await database.BeginTransactionAsync()) {
                 foreach (var tableName in database.Tables.Keys) {
                     await transaction.TruncateAsync(tableName);
                 }
@@ -80,7 +80,7 @@ namespace Butterfly.Database.Test {
             object salesDepartmentId;
             object hrDepartmentId;
             object customerServiceDepartmentId;
-            using (ITransaction transaction = await database.BeginTransaction()) {
+            using (ITransaction transaction = await database.BeginTransactionAsync()) {
                 // Add Sales department using full INSERT statements with @@names and @@values
                 salesDepartmentId = await transaction.InsertAsync("INSERT INTO department (@@names) VALUES (@@values)", new {
                     name = "Sales",
@@ -147,7 +147,7 @@ namespace Butterfly.Database.Test {
         }
 
         protected async Task TestTransactions(IDatabase database) {
-            using (ITransaction transaction = await database.BeginTransaction()) {
+            using (ITransaction transaction = await database.BeginTransactionAsync()) {
                 // Add Sales department using full INSERT statements with @@names and @@values
                 await transaction.InsertAsync("INSERT INTO department (@@names) VALUES (@@values)", new {
                     name = "Sales",
@@ -162,7 +162,7 @@ namespace Butterfly.Database.Test {
             Dict[] allDepartments2 = await database.SelectRowsAsync("SELECT * FROM department");
             Assert.AreEqual(0, allDepartments2.Length);
 
-            using (ITransaction transaction = await database.BeginTransaction()) {
+            using (ITransaction transaction = await database.BeginTransactionAsync()) {
                 // Add Sales department using full INSERT statements with @@names and @@values
                 await transaction.InsertAsync("INSERT INTO department (@@names) VALUES (@@values)", new {
                     name = "Sales",
@@ -190,7 +190,7 @@ namespace Butterfly.Database.Test {
             Assert.IsNotNull(hrDepartment);
 
             // Test retrieving a single value on a non-indexed field
-            long testHrDepartmentId1 = await database.SelectValue<long>("SELECT id FROM department WHERE name=@name", new {
+            long testHrDepartmentId1 = await database.SelectValueAsync<long>("SELECT id FROM department WHERE name=@name", new {
                 name = "HR"
             }, -1);
             Assert.AreEqual(hrDepartmentId, testHrDepartmentId1);

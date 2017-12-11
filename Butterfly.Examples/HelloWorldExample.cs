@@ -13,11 +13,11 @@ namespace Butterfly.Examples {
 
             // Create a MemoryDatabase (no persistence, limited features)
             var database = new Butterfly.Database.Memory.MemoryDatabase();
-            database.CreateFromTextAsync(@"CREATE TABLE message (
+            database.CreateFromText(@"CREATE TABLE message (
 	            id INT NOT NULL AUTO_INCREMENT,
 	            text VARCHAR(40) NOT NULL,
 	            PRIMARY KEY (id)
-            );").Wait();
+            );");
 
             // Listen for clients creating new channels to /hello-world,
             // clients are expected to maintain a channel to the server,

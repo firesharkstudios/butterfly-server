@@ -36,6 +36,13 @@ namespace Butterfly.Database.SQLite {
         public SQLiteTransaction(SQLiteDatabase database) : base(database) {
         }
 
+        public override void Begin() {
+            SQLiteDatabase sqliteDatabase = this.database as SQLiteDatabase;
+            this.connection = new SQLiteConnection(sqliteDatabase.ConnectionString);
+            this.connection.Open();
+            this.transaction = this.connection.BeginTransaction();
+        }
+
         public override async Task BeginAsync() {
             SQLiteDatabase sqliteDatabase = this.database as SQLiteDatabase;
             this.connection = new SQLiteConnection(sqliteDatabase.ConnectionString);
@@ -43,8 +50,12 @@ namespace Butterfly.Database.SQLite {
             this.transaction = this.connection.BeginTransaction();
         }
 
-        protected override Task DoCommit() {
+        protected override void DoCommit() {
             this.transaction.Commit();
+        }
+
+        protected override Task DoCommitAsync() {
+            this.DoCommit();
             return Task.FromResult(0);
         }
 
@@ -57,6 +68,18 @@ namespace Butterfly.Database.SQLite {
             this.connection.Dispose();
         }
 
+        protected override bool DoCreate(CreateStatement statement) {
+            string sql = BuildCreate(statement);
+            this.DoExecute(sql);
+            return false;
+        }
+
+        protected override async Task<bool> DoCreateAsync(CreateStatement statement) {
+            string sql = BuildCreate(statement);
+            await this.DoExecuteAsync(sql);
+            return false;
+        }
+
         /*
          * Example...
          * CREATE TABLE distributors (
@@ -64,7 +87,7 @@ namespace Butterfly.Database.SQLite {
          *  name   varchar(40) NOT NULL CHECK (name <> '')
          * );
          */
-        protected override async Task<bool> DoCreateAsync(CreateStatement statement) {
+        protected static string BuildCreate(CreateStatement statement) {
             StringBuilder sb = new StringBuilder();
 
             bool isFirst = true;
@@ -104,9 +127,7 @@ namespace Butterfly.Database.SQLite {
                 sb.Append($" PRIMARY KEY ({string.Join(",", statement.PrimaryIndex.FieldNames)})");
             }
             sb.Append(")");
-
-            await this.DoExecute(sb.ToString());
-            return false;
+            return sb.ToString();
         }
 
         protected override async Task<Func<object>> DoInsertAsync(string executableSql, Dict executableParams, bool ignoreIfDuplicate) {
@@ -143,18 +164,33 @@ namespace Butterfly.Database.SQLite {
         }
 
         protected override Task<int> DoUpdateAsync(string executableSql, Dict executableParams) {
-            return this.DoExecute(executableSql, executableParams);
+            return this.DoExecuteAsync(executableSql, executableParams);
         }
 
         protected override Task<int> DoDeleteAsync(string executableSql, Dict executableParams) {
-            return this.DoExecute(executableSql, executableParams);
+            return this.DoExecuteAsync(executableSql, executableParams);
         }
 
         protected override Task DoTruncateAsync(string tableName) {
-            return this.DoExecute($"DELETE FROM {tableName}");
+            return this.DoExecuteAsync($"DELETE FROM {tableName}");
         }
 
-        protected async Task<int> DoExecute(string executableSql, Dict executableParams = null) {
+        protected int DoExecute(string executableSql, Dict executableParams = null) {
+            try {
+                var command = new SQLiteCommand(executableSql, this.connection);
+                if (executableParams != null) {
+                    foreach (var keyValuePair in executableParams) {
+                        command.Parameters.AddWithValue(keyValuePair.Key, keyValuePair.Value);
+                    }
+                }
+                return command.ExecuteNonQuery();
+            }
+            catch (SQLiteException e) {
+                throw new DatabaseException(e.Message);
+            }
+        }
+
+        protected async Task<int> DoExecuteAsync(string executableSql, Dict executableParams = null) {
             try {
                 var command = new SQLiteCommand(executableSql, this.connection);
                 if (executableParams != null) {

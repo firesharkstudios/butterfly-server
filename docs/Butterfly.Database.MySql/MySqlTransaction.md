@@ -15,6 +15,7 @@ public class MySqlTransaction : BaseTransaction
 | name | description |
 | --- | --- |
 | [MySqlTransaction](MySqlTransaction/MySqlTransaction.md)(…) |  |
+| override [Begin](MySqlTransaction/Begin.md)() |  |
 | override [BeginAsync](MySqlTransaction/BeginAsync.md)() |  |
 | override [Dispose](MySqlTransaction/Dispose.md)() |  |
 

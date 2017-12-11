@@ -36,6 +36,13 @@ namespace Butterfly.Database.MySql {
         public MySqlTransaction(MySqlDatabase database) : base(database) {
         }
 
+        public override void Begin() {
+            MySqlDatabase mySqlDatabase = this.database as MySqlDatabase;
+            this.connection = new MySqlConnection(mySqlDatabase.ConnectionString);
+            this.connection.Open();
+            this.transaction = this.connection.BeginTransaction();
+        }
+
         public override async Task BeginAsync() {
             MySqlDatabase mySqlDatabase = this.database as MySqlDatabase;
             this.connection = new MySqlConnection(mySqlDatabase.ConnectionString);
@@ -43,8 +50,12 @@ namespace Butterfly.Database.MySql {
             this.transaction = await this.connection.BeginTransactionAsync();
         }
 
-        protected override Task DoCommit() {
+        protected override void DoCommit() {
             this.transaction.Commit();
+        }
+
+        protected override Task DoCommitAsync() {
+            this.DoCommit();
             return Task.FromResult(0);
         }
 
@@ -57,8 +68,13 @@ namespace Butterfly.Database.MySql {
             this.connection.Dispose();
         }
 
+        protected override bool DoCreate(CreateStatement statement) {
+            this.DoExecute(statement.Sql);
+            return false;
+        }
+
         protected override async Task<bool> DoCreateAsync(CreateStatement statement) {
-            await this.DoExecute(statement.Sql);
+            await this.DoExecuteAsync(statement.Sql);
             return false;
         }
 
@@ -84,18 +100,33 @@ namespace Butterfly.Database.MySql {
         }
 
         protected override Task<int> DoUpdateAsync(string executableSql, Dict executableParams) {
-            return this.DoExecute(executableSql, executableParams);
+            return this.DoExecuteAsync(executableSql, executableParams);
         }
 
         protected override Task<int> DoDeleteAsync(string executableSql, Dict executableParams) {
-            return this.DoExecute(executableSql, executableParams);
+            return this.DoExecuteAsync(executableSql, executableParams);
         }
 
         protected override Task DoTruncateAsync(string tableName) {
-            return this.DoExecute($"TRUNCATE {tableName}");
+            return this.DoExecuteAsync($"TRUNCATE {tableName}");
         }
 
-        protected async Task<int> DoExecute(string executableSql, Dict executableParams = null) {
+        protected int DoExecute(string executableSql, Dict executableParams = null) {
+            try {
+                using (MySqlCommand command = new MySqlCommand(executableSql, this.connection, this.transaction)) {
+                    if (executableParams != null) {
+                        MySqlParameter[] mySqlParams = executableParams.Select(keyValuePair => new MySqlParameter(keyValuePair.Key, keyValuePair.Value)).ToArray();
+                        command.Parameters.AddRange(mySqlParams);
+                    }
+                    return command.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException e) {
+                throw new DatabaseException(e.Message);
+            }
+        }
+
+        protected async Task<int> DoExecuteAsync(string executableSql, Dict executableParams = null) {
             try {
                 using (MySqlCommand command = new MySqlCommand(executableSql, this.connection, this.transaction)) {
                 if (executableParams != null) {

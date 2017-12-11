@@ -1,4 +1,4 @@
-# BaseDatabase.SelectValue&lt;T&gt; method
+# BaseDatabase.SelectValueAsync&lt;T&gt; method
 
 Executes the SELECT statement and return the value of the first column of the first row (the SELECT statement may contain vars like @name specified in *vars*).
 
@@ -55,7 +55,7 @@ name IN ('Bob', 'Jim')
 when the array contains elements 'Bob' and 'Jim'.
 
 ```csharp
-public Task<T> SelectValue<T>(string sql, object values, T defaultValue)
+public Task<T> SelectValueAsync<T>(string sql, object vars = null, T defaultValue = default(T))
 ```
 
 | parameter | description |

@@ -15,6 +15,7 @@ public class MemoryTransaction : BaseTransaction
 | name | description |
 | --- | --- |
 | [MemoryTransaction](MemoryTransaction/MemoryTransaction.md)(…) |  |
+| override [Begin](MemoryTransaction/Begin.md)() |  |
 | override [BeginAsync](MemoryTransaction/BeginAsync.md)() |  |
 | override [Dispose](MemoryTransaction/Dispose.md)() |  |
 

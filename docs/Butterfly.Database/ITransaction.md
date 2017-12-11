@@ -14,8 +14,11 @@ public interface ITransaction : IDisposable
 
 | name | description |
 | --- | --- |
+| [Begin](ITransaction/Begin.md)() |  |
 | [BeginAsync](ITransaction/BeginAsync.md)() |  |
+| [Commit](ITransaction/Commit.md)() |  |
 | [CommitAsync](ITransaction/CommitAsync.md)() |  |
+| [Create](ITransaction/Create.md)(…) |  |
 | [CreateAsync](ITransaction/CreateAsync.md)(…) |  |
 | [DeleteAsync](ITransaction/DeleteAsync.md)(…) |  (2 methods) |
 | [InsertAsync](ITransaction/InsertAsync.md)(…) |  (2 methods) |
