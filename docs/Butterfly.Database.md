@@ -23,6 +23,7 @@
 | class [Table](Butterfly.Database/Table.md) | Represents a table in an [`IDatabase`](Butterfly.Database/IDatabase.md) |
 | class [TableFieldDef](Butterfly.Database/TableFieldDef.md) | Defines a field definition for a [`Table`](Butterfly.Database/Table.md) |
 | class [TableIndex](Butterfly.Database/TableIndex.md) | Defines an index for a [`Table`](Butterfly.Database/Table.md) |
+| class [UnableToConnectDatabaseException](Butterfly.Database/UnableToConnectDatabaseException.md) |  |
 | class [UpdateStatement](Butterfly.Database/UpdateStatement.md) | Internal class used to parse UPDATE statements |
 
 ## Butterfly.Database.Dynamic namespace

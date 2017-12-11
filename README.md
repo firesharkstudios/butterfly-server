@@ -42,6 +42,10 @@ channelClient.start();
 
 1. Clone the github repository `https://github.com/fireshark/Butterfly.git`
 1. Open `Butterfly.sln` in Visual Studio 2017
+1. Click the Start button (will compile the solution and run the Butterfly.Examples project)
+1. Open [http://localhost:8080/](http://localhost:8080) to view the examples
+
+*Note:* The Better Chat example will only be available if `BetterChat.cs` has been configured to connect to a MySQL database.
 
 ## Examples
 

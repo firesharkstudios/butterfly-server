@@ -40,10 +40,10 @@ namespace Butterfly.Examples {
                 webApiServer.Start();
                 channelServer.Start();
 
+                logger.Info($"Open http://localhost:{port} to view the examples");
+
                 // Start the underlying EmbedIOServer
                 embedIOWebServer.RunAsync().Wait();
-
-                Console.WriteLine($"Open http://<host>:{port} to view");
             }
         }
     }
