@@ -65,7 +65,7 @@ There are three key packages each with alternative implementations...
 - [Butterfly.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Database) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
 
   - [Butterfly.Database.Memory](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.Memory) - In memory implementation (no persistence, no support for joins)
-  - [Butterfly.Database.MySQL](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.MySQL) - Implementation for MySQL
+  - [Butterfly.Database.MySql](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.MySql) - Implementation for MySql
   - [Butterfly.Database.Postgres](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.Postgres) - Implementation for Postgres
   - [Butterfly.Database.SQLite](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.SQLite) - Implementation for SQLIte
  
