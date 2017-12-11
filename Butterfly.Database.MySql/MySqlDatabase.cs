@@ -117,7 +117,7 @@ namespace Butterfly.Database.MySql {
 
 
 
-        protected override ITransaction CreateTransaction() {
+        protected override BaseTransaction CreateTransaction() {
             return new MySqlTransaction(this);
         }
 

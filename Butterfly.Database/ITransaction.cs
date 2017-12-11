@@ -16,6 +16,7 @@
 
 using System;
 using System.Threading.Tasks;
+
 using Butterfly.Database.Event;
 
 namespace Butterfly.Database {
@@ -24,15 +25,23 @@ namespace Butterfly.Database {
     /// a single <see cref="DataEventTransaction"/> on the underlying <see cref="IDatabase"/> instance
     /// when the transaction is committed.<para/>
     /// 
-    /// Must call <see cref="CommitAsync"/> to have the changes committed.<para/>
+    /// Must call <see cref="Commit"/> or <see cref="CommitAsync"/> to have the changes committed.<para/>
     /// 
-    /// If the transaction is disposed without calling <see cref="CommitAsync"/> the transaction is rolled back.
+    /// If the transaction is disposed without calling <see cref="Commit"/> or <see cref="CommitAsync"/> the transaction is automatically rolled back.
     /// </summary>
     public interface ITransaction : IDisposable {
-        void Begin();
-        Task BeginAsync();
-
+        /// <summary>
+        /// Create a new table
+        /// </summary>
+        /// <param name="statement"></param>
+        /// <returns></returns>
         bool Create(CreateStatement statement);
+
+        /// <summary>
+        /// Create a new table
+        /// </summary>
+        /// <param name="statement"></param>
+        /// <returns></returns>
         Task<bool> CreateAsync(CreateStatement statement);
 
         /// <summary>
@@ -221,11 +230,26 @@ namespace Butterfly.Database {
         /// <returns>Number of records deleted</returns>
         Task<int> DeleteAsync(DeleteStatement deleteStatement, dynamic vars);
 
+        /// <summary>
+        /// Truncate a table (deletes all records)
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
         Task TruncateAsync(string tableName);
 
+        /// <summary>
+        /// Commit the transaction
+        /// </summary>
         void Commit();
+
+        /// <summary>
+        /// Commit the transaction
+        /// </summary>
         Task CommitAsync();
 
+        /// <summary>
+        /// Rollback the transaction (called automatically if transaction is disposed without calling <see cref="Commit"/> or <see cref="CommitAsync"/>)
+        /// </summary>
         void Rollback();
     }
 

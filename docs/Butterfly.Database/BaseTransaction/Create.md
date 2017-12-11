@@ -1,8 +1,14 @@
 # BaseTransaction.Create method
 
+Create a new table
+
 ```csharp
 public bool Create(CreateStatement statement)
 ```
+
+| parameter | description |
+| --- | --- |
+| statement |  |
 
 ## See Also
 

@@ -1,8 +1,14 @@
 # ITransaction.CreateAsync method
 
+Create a new table
+
 ```csharp
 public Task<bool> CreateAsync(CreateStatement statement)
 ```
+
+| parameter | description |
+| --- | --- |
+| statement |  |
 
 ## See Also
 

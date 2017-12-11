@@ -118,7 +118,7 @@ namespace Butterfly.Database.Postgres {
             return primaryIndex;
         }
 
-        protected override ITransaction CreateTransaction() {
+        protected override BaseTransaction CreateTransaction() {
             return new PostgresTransaction(this);
         }
 

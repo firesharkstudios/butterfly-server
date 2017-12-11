@@ -2,9 +2,9 @@
 
 Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
 
-Must call [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
 
-If the transaction is disposed without calling [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is rolled back.
+If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
 
 ```csharp
 public interface ITransaction : IDisposable
@@ -14,16 +14,14 @@ public interface ITransaction : IDisposable
 
 | name | description |
 | --- | --- |
-| [Begin](ITransaction/Begin.md)() |  |
-| [BeginAsync](ITransaction/BeginAsync.md)() |  |
-| [Commit](ITransaction/Commit.md)() |  |
-| [CommitAsync](ITransaction/CommitAsync.md)() |  |
-| [Create](ITransaction/Create.md)(…) |  |
-| [CreateAsync](ITransaction/CreateAsync.md)(…) |  |
+| [Commit](ITransaction/Commit.md)() | Commit the transaction |
+| [CommitAsync](ITransaction/CommitAsync.md)() | Commit the transaction |
+| [Create](ITransaction/Create.md)(…) | Create a new table |
+| [CreateAsync](ITransaction/CreateAsync.md)(…) | Create a new table |
 | [DeleteAsync](ITransaction/DeleteAsync.md)(…) | Executes a DELETE statement within this transaction (2 methods) |
 | [InsertAsync](ITransaction/InsertAsync.md)(…) | Executes an INSERT statement within this transaction (2 methods) |
-| [Rollback](ITransaction/Rollback.md)() |  |
-| [TruncateAsync](ITransaction/TruncateAsync.md)(…) |  |
+| [Rollback](ITransaction/Rollback.md)() | Rollback the transaction (called automatically if transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md)) |
+| [TruncateAsync](ITransaction/TruncateAsync.md)(…) | Truncate a table (deletes all records) |
 | [UpdateAsync](ITransaction/UpdateAsync.md)(…) | Executes an UPDATE statement within this transaction (2 methods) |
 
 ## See Also

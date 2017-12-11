@@ -283,7 +283,7 @@ namespace Butterfly.Database {
             return transaction;
         }
 
-        protected abstract ITransaction CreateTransaction();
+        protected abstract BaseTransaction CreateTransaction();
 
         protected readonly Dictionary<string, Func<object>> getDefaultValueByFieldName = new Dictionary<string, Func<object>>();
 

@@ -93,7 +93,7 @@ namespace Butterfly.Database.SQLite {
             }
         }
 
-        protected override ITransaction CreateTransaction() {
+        protected override BaseTransaction CreateTransaction() {
             return new SQLiteTransaction(this);
         }
 
