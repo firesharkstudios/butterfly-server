@@ -60,7 +60,7 @@ channelClient.start();
 
 ## Packages
 
-There are three key packages...
+There are three key packages each with alternative implementations...
 
 - [Butterfly.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Database) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
 

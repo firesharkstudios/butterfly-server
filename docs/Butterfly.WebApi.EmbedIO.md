@@ -4,7 +4,7 @@
 
 | public type | description |
 | --- | --- |
-| class [EmbedIOWebApiServer](Butterfly.WebApi.EmbedIO/EmbedIOWebApiServer.md) |  |
+| class [EmbedIOWebApiServer](Butterfly.WebApi.EmbedIO/EmbedIOWebApiServer.md) | Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers. |
 | class [EmbedIOWebRequest](Butterfly.WebApi.EmbedIO/EmbedIOWebRequest.md) |  |
 | class [EmbedIOWebResponse](Butterfly.WebApi.EmbedIO/EmbedIOWebResponse.md) |  |
 | class [MyWebModule](Butterfly.WebApi.EmbedIO/MyWebModule.md) |  |

@@ -1,5 +1,11 @@
 # MySqlTransaction class
 
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single DataEventTransaction on the underlying IDatabase instance when the transaction is committed.
+
+Must call CommitAsync to have the changes committed.
+
+If the transaction is disposed without calling CommitAsync the transaction is rolled back.
+
 ```csharp
 public class MySqlTransaction : BaseTransaction
 ```

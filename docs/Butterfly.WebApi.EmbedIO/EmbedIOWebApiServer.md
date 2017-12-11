@@ -1,5 +1,7 @@
 # EmbedIOWebApiServer class
 
+Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.
+
 ```csharp
 public class EmbedIOWebApiServer : BaseWebApiServer
 ```
@@ -11,7 +13,22 @@ public class EmbedIOWebApiServer : BaseWebApiServer
 | [EmbedIOWebApiServer](EmbedIOWebApiServer/EmbedIOWebApiServer.md)(…) |  |
 | readonly [server](EmbedIOWebApiServer/server.md) |  |
 | override [Dispose](EmbedIOWebApiServer/Dispose.md)() |  |
-| override [Start](EmbedIOWebApiServer/Start.md)() |  |
+| override [Start](EmbedIOWebApiServer/Start.md)() | Start the web api server |
+
+## Remarks
+
+Initializing a web api server instance...
+
+```csharp
+var webApiServer = new SomeWebApiServer();
+webApiServer.OnGet("/chat-messages", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApiServer.OnPost("/login", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApiServer.Start();
+```
 
 ## See Also
 

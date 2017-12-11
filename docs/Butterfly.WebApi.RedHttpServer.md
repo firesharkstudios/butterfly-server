@@ -4,7 +4,7 @@
 
 | public type | description |
 | --- | --- |
-| class [RedHttpServerWebApiServer](Butterfly.WebApi.RedHttpServer/RedHttpServerWebApiServer.md) |  |
+| class [RedHttpServerWebApiServer](Butterfly.WebApi.RedHttpServer/RedHttpServerWebApiServer.md) | Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers. |
 | class [RedHttpServerWebRequest](Butterfly.WebApi.RedHttpServer/RedHttpServerWebRequest.md) |  |
 | class [RedHttpServerWebResponse](Butterfly.WebApi.RedHttpServer/RedHttpServerWebResponse.md) |  |
 

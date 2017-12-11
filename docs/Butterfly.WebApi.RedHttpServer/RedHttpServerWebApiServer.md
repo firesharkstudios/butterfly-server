@@ -1,5 +1,7 @@
 # RedHttpServerWebApiServer class
 
+Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.
+
 ```csharp
 public class RedHttpServerWebApiServer : BaseWebApiServer
 ```
@@ -11,7 +13,22 @@ public class RedHttpServerWebApiServer : BaseWebApiServer
 | [RedHttpServerWebApiServer](RedHttpServerWebApiServer/RedHttpServerWebApiServer.md)(…) |  |
 | readonly [server](RedHttpServerWebApiServer/server.md) |  |
 | override [Dispose](RedHttpServerWebApiServer/Dispose.md)() |  |
-| override [Start](RedHttpServerWebApiServer/Start.md)() |  |
+| override [Start](RedHttpServerWebApiServer/Start.md)() | Start the web api server |
+
+## Remarks
+
+Initializing a web api server instance...
+
+```csharp
+var webApiServer = new SomeWebApiServer();
+webApiServer.OnGet("/chat-messages", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApiServer.OnPost("/login", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApiServer.Start();
+```
 
 ## See Also
 
