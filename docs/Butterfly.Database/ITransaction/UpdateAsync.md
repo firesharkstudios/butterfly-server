@@ -1,7 +1,38 @@
 # ITransaction.UpdateAsync method (1 of 2)
 
+Executes an UPDATE statement within this transaction
+
 ```csharp
-public Task<int> UpdateAsync(string statementSql, object statementParams)
+public Task<int> UpdateAsync(string updateStatement, object vars)
+```
+
+| parameter | description |
+| --- | --- |
+| updateStatement | Either a table name or a full UPDATE statement with vars prefixed by @ (like |
+| vars | Either an anonymous type or a Dictionary. If *updateStatement* is a table name, the *vars* values will be used to build the SET clause and WHERE clause of the UPDATE statement. If *updateStatement* is a full UPDATE statement, there must be one entry for each var referenced in *updateStatement*. |
+
+## Return Value
+
+Number of records updated
+
+## Remarks
+
+Do an UPDATE using the table name and an anonymous type...
+
+```csharp
+await database.UpdateAsync("message", new {
+    id = 123,
+    text = "Hello",
+});
+```
+
+Do an UPDATE using a full statement and a Dictionary...
+
+```csharp
+await database.UpdateAsync("UPDATE message SET text=@t WHERE id=@id", new Dictionary<string, object> {
+    ["id"] = 123,
+    ["t"] = "Hello",
+});
 ```
 
 ## See Also
@@ -13,8 +44,39 @@ public Task<int> UpdateAsync(string statementSql, object statementParams)
 
 # ITransaction.UpdateAsync method (2 of 2)
 
+Executes an UPDATE statement within this transaction
+
 ```csharp
-public Task<int> UpdateAsync(UpdateStatement statement, object statementParams)
+public Task<int> UpdateAsync(UpdateStatement updateStatement, object vars)
+```
+
+| parameter | description |
+| --- | --- |
+| updateStatement | Either a table name or a full UPDATE statement with vars prefixed by @ (like |
+| vars | Either an anonymous type or a Dictionary. If *updateStatement* is a table name, the *vars* values will be used to build the SET clause and WHERE clause of the UPDATE statement. If *updateStatement* is a full UPDATE statement, there must be one entry for each var referenced in *updateStatement*. |
+
+## Return Value
+
+Number of records updated
+
+## Remarks
+
+Do an UPDATE using the table name and an anonymous type...
+
+```csharp
+await database.UpdateAsync("message", new {
+    id = 123,
+    text = "Hello",
+});
+```
+
+Do an UPDATE using a full statement and a Dictionary...
+
+```csharp
+await database.UpdateAsync("UPDATE message SET text=@t WHERE id=@id", new Dictionary<string, object> {
+    ["id"] = 123,
+    ["t"] = "Hello",
+});
 ```
 
 ## See Also

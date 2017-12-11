@@ -21,12 +21,12 @@ public abstract class BaseTransaction : ITransaction
 | [CommitAsync](BaseTransaction/CommitAsync.md)() |  |
 | [Create](BaseTransaction/Create.md)(…) |  |
 | [CreateAsync](BaseTransaction/CreateAsync.md)(…) |  |
-| [DeleteAsync](BaseTransaction/DeleteAsync.md)(…) |  (2 methods) |
+| [DeleteAsync](BaseTransaction/DeleteAsync.md)(…) | Executes a DELETE statement within this transaction (2 methods) |
 | abstract [Dispose](BaseTransaction/Dispose.md)() |  |
-| [InsertAsync](BaseTransaction/InsertAsync.md)(…) |  (2 methods) |
+| [InsertAsync](BaseTransaction/InsertAsync.md)(…) | Executes an INSERT statement within this transaction (2 methods) |
 | [Rollback](BaseTransaction/Rollback.md)() |  |
 | [TruncateAsync](BaseTransaction/TruncateAsync.md)(…) |  |
-| [UpdateAsync](BaseTransaction/UpdateAsync.md)(…) |  (2 methods) |
+| [UpdateAsync](BaseTransaction/UpdateAsync.md)(…) | Executes an UPDATE statement within this transaction (2 methods) |
 
 ## See Also
 

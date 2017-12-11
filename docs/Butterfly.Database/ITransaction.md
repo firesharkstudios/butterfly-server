@@ -20,11 +20,11 @@ public interface ITransaction : IDisposable
 | [CommitAsync](ITransaction/CommitAsync.md)() |  |
 | [Create](ITransaction/Create.md)(…) |  |
 | [CreateAsync](ITransaction/CreateAsync.md)(…) |  |
-| [DeleteAsync](ITransaction/DeleteAsync.md)(…) |  (2 methods) |
-| [InsertAsync](ITransaction/InsertAsync.md)(…) |  (2 methods) |
+| [DeleteAsync](ITransaction/DeleteAsync.md)(…) | Executes a DELETE statement within this transaction (2 methods) |
+| [InsertAsync](ITransaction/InsertAsync.md)(…) | Executes an INSERT statement within this transaction (2 methods) |
 | [Rollback](ITransaction/Rollback.md)() |  |
 | [TruncateAsync](ITransaction/TruncateAsync.md)(…) |  |
-| [UpdateAsync](ITransaction/UpdateAsync.md)(…) |  (2 methods) |
+| [UpdateAsync](ITransaction/UpdateAsync.md)(…) | Executes an UPDATE statement within this transaction (2 methods) |
 
 ## See Also
 

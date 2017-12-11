@@ -19,15 +19,15 @@ public interface IDatabase
 | [CreateFromResourceFileAsync](IDatabase/CreateFromResourceFileAsync.md)(…) | Creates database tables from an embedded resource file by internally calling [`CreateFromTextAsync`](IDatabase/CreateFromTextAsync.md) with the contents of the embedded resource file" |
 | [CreateFromText](IDatabase/CreateFromText.md)(…) | Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate). |
 | [CreateFromTextAsync](IDatabase/CreateFromTextAsync.md)(…) | Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate). |
-| [DeleteAndCommitAsync](IDatabase/DeleteAndCommitAsync.md)(…) | Executes the DELETE statement as a single transaction (the DELETE statement may contain vars like @name specified in *vars*) |
-| [InsertAndCommitAsync](IDatabase/InsertAndCommitAsync.md)(…) | Executes the INSERT statement as a single transaction (the INSERT statement may contain vars like @name specified in *vars*) |
+| [DeleteAndCommitAsync](IDatabase/DeleteAndCommitAsync.md)(…) | Executes a DELETE statement as a single transaction |
+| [InsertAndCommitAsync](IDatabase/InsertAndCommitAsync.md)(…) | Executes an INSERT statement as a single transaction |
 | [OnNewCommittedTransaction](IDatabase/OnNewCommittedTransaction.md)(…) | Adds a listener that is invoked when there is a new committed transaction (2 methods) |
 | [OnNewUncommittedTransaction](IDatabase/OnNewUncommittedTransaction.md)(…) | Adds a listener that is invoked when there is a new uncommitted transaction (2 methods) |
 | [SelectRowAsync](IDatabase/SelectRowAsync.md)(…) | Executes the SELECT statement and return the first row (the SELECT statement may contain vars like @name specified in *vars*) |
 | [SelectRowsAsync](IDatabase/SelectRowsAsync.md)(…) | Executes the SELECT statement and return the rows (the SELECT statement may contain vars like @name specified in *vars*) |
 | [SelectValueAsync&lt;T&gt;](IDatabase/SelectValueAsync.md)(…) | Executes the SELECT statement and return the value of the first column of the first row (the SELECT statement may contain vars like @name specified in *vars*). |
 | [SetInsertDefaultValue](IDatabase/SetInsertDefaultValue.md)(…) | Allows specifying a lambda that creates a default value for a field when executing an INSERT. If *tableName* is null, the *getDefaultValue* lambda will be applied to all tables. |
-| [UpdateAndCommitAsync](IDatabase/UpdateAndCommitAsync.md)(…) | Executes the UPDATE statement as a single transaction (the UPDATE statement may contain vars like @name specified in *vars*) |
+| [UpdateAndCommitAsync](IDatabase/UpdateAndCommitAsync.md)(…) | Executes an UPDATE statement as a single transaction |
 
 ## Remarks
 

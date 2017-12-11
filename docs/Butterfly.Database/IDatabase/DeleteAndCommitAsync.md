@@ -1,6 +1,6 @@
 # IDatabase.DeleteAndCommitAsync method
 
-Executes the DELETE statement as a single transaction (the DELETE statement may contain vars like @name specified in *vars*)
+Executes a DELETE statement as a single transaction
 
 ```csharp
 public Task<int> DeleteAndCommitAsync(string deleteStatement, object vars)
@@ -8,8 +8,30 @@ public Task<int> DeleteAndCommitAsync(string deleteStatement, object vars)
 
 | parameter | description |
 | --- | --- |
-| deleteStatement |  |
-| vars |  |
+| deleteStatement | Either a table name or a full DELETE statement with vars prefixed by @ (like |
+| vars | Either an anonymous type or a Dictionary. If *deleteStatement* is a table name, the *vars* values will be used to build the WHERE clause of the DELETE statement. If *deleteStatement* is a full DELETE statement, there must be one entry for each var referenced in *deleteStatement*. |
+
+## Return Value
+
+Number of records deleted
+
+## Remarks
+
+Do a DELETE using the table name and an anonymous type...
+
+```csharp
+await database.DeleteAndCommitAsync("message", new {
+    id = 123
+});
+```
+
+Do a DELETE using a full statement and a Dictionary...
+
+```csharp
+await database.DeleteAndCommitAsync("DELETE FROM message WHERE id=@id", new Dictionary<string, object> {
+    ["id"] = 123
+});
+```
 
 ## See Also
 

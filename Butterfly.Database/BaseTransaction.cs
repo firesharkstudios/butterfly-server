@@ -51,18 +51,18 @@ namespace Butterfly.Database {
         protected abstract Task<bool> DoCreateAsync(CreateStatement statement);
 
         // Insert methods
-        public async Task<object> InsertAsync(string statementSql, dynamic statementParams, bool ignoreIfDuplicate = false) {
-            InsertStatement statement = new InsertStatement(this.database, statementSql);
-            return await this.InsertAsync(statement, statementParams, ignoreIfDuplicate: ignoreIfDuplicate);
+        public async Task<object> InsertAsync(string insertStatement, dynamic vars, bool ignoreIfDuplicate = false) {
+            InsertStatement statement = new InsertStatement(this.database, insertStatement);
+            return await this.InsertAsync(statement, vars, ignoreIfDuplicate: ignoreIfDuplicate);
         }
 
-        public async Task<object> InsertAsync(InsertStatement statement, dynamic statementParams, bool ignoreIfDuplicate = false) {
+        public async Task<object> InsertAsync(InsertStatement insertStatement, dynamic statementParams, bool ignoreIfDuplicate = false) {
             // Convert statementParams
-            Dict statementParamsDict = statement.ConvertParamsToDict(statementParams);
-            Dict defaultValues = this.database.GetInsertDefaultValues(statement.TableRefs[0].table);
+            Dict statementParamsDict = insertStatement.ConvertParamsToDict(statementParams);
+            Dict defaultValues = this.database.GetInsertDefaultValues(insertStatement.TableRefs[0].table);
 
             // Get the executable sql and params
-            (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(statementParamsDict, defaultValues);
+            (string executableSql, Dict executableParams) = insertStatement.GetExecutableSqlAndParams(statementParamsDict, defaultValues);
 
             // Execute insert and return getGenerateId lambda
             Func<object> getGeneratedId;
@@ -76,15 +76,15 @@ namespace Butterfly.Database {
 
             // Determine keyValue (either keyValue is from a generated id or was included in the statement params)
             object keyValue;
-            if (statement.TableRefs[0].table.AutoIncrementFieldName != null && getGeneratedId != null) {
+            if (insertStatement.TableRefs[0].table.AutoIncrementFieldName != null && getGeneratedId != null) {
                 keyValue = getGeneratedId();
             }
             else {
-                keyValue = BaseDatabase.GetKeyValue(statement.TableRefs[0].table.PrimaryIndex.FieldNames, executableParams);
+                keyValue = BaseDatabase.GetKeyValue(insertStatement.TableRefs[0].table.PrimaryIndex.FieldNames, executableParams);
             }
 
             // Create data event
-            this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Insert, statement.TableRefs[0].table.Name, keyValue));
+            this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Insert, insertStatement.TableRefs[0].table.Name, keyValue));
 
             return keyValue;
         }
@@ -92,27 +92,27 @@ namespace Butterfly.Database {
         protected abstract Task<Func<object>> DoInsertAsync(string executableSql, Dict executableParams, bool ignoreIfDuplicate);
 
         // Update methods
-        public async Task<int> UpdateAsync(string statementSql, dynamic statementParams) {
-            UpdateStatement statement = new UpdateStatement(this.database, statementSql);
-            return await this.UpdateAsync(statement, statementParams);
+        public async Task<int> UpdateAsync(string updateStatement, dynamic vars) {
+            UpdateStatement statement = new UpdateStatement(this.database, updateStatement);
+            return await this.UpdateAsync(statement, vars);
         }
 
-        public async Task<int> UpdateAsync(UpdateStatement statement, dynamic statementParams) {
+        public async Task<int> UpdateAsync(UpdateStatement updateStatement, dynamic vars) {
             // Convert statementParams
-            Dict statementParamsDict = statement.ConvertParamsToDict(statementParams);
+            Dict statementParamsDict = updateStatement.ConvertParamsToDict(vars);
 
             // Determine keyValue
-            var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, statement.WhereRefs);
-            object keyValue = BaseDatabase.GetKeyValue(statement.TableRefs[0].table.PrimaryIndex.FieldNames, fieldValues);
+            var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, updateStatement.WhereRefs);
+            object keyValue = BaseDatabase.GetKeyValue(updateStatement.TableRefs[0].table.PrimaryIndex.FieldNames, fieldValues);
 
             // Get the executable sql and params
-            (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(statementParamsDict);
+            (string executableSql, Dict executableParams) = updateStatement.GetExecutableSqlAndParams(statementParamsDict);
 
             // Execute update
             int count = await this.DoUpdateAsync(executableSql, executableParams);
 
             // Create data event
-            this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Update, statement.TableRefs[0].table.Name, keyValue));
+            this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Update, updateStatement.TableRefs[0].table.Name, keyValue));
 
             return count;
         }
@@ -120,27 +120,27 @@ namespace Butterfly.Database {
         protected abstract Task<int> DoUpdateAsync(string executableSql, Dict executableParams);
 
         // Delete methods
-        public async Task<int> DeleteAsync(string sql, dynamic statementParams) {
-            DeleteStatement statement = new DeleteStatement(this.database, sql);
-            return await this.DeleteAsync(statement, statementParams);
+        public async Task<int> DeleteAsync(string deleteStatement, dynamic vars) {
+            DeleteStatement statement = new DeleteStatement(this.database, deleteStatement);
+            return await this.DeleteAsync(statement, vars);
         }
 
-        public async Task<int> DeleteAsync(DeleteStatement statement, dynamic statementParams) {
+        public async Task<int> DeleteAsync(DeleteStatement deleteStatement, dynamic vars) {
             // Convert statementParams
-            Dict statementParamsDict = statement.ConvertParamsToDict(statementParams);
+            Dict statementParamsDict = deleteStatement.ConvertParamsToDict(vars);
 
             // Determine keyValue
-            var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, statement.WhereRefs);
-            object keyValue = BaseDatabase.GetKeyValue(statement.TableRefs[0].table.PrimaryIndex.FieldNames, fieldValues);
+            var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, deleteStatement.WhereRefs);
+            object keyValue = BaseDatabase.GetKeyValue(deleteStatement.TableRefs[0].table.PrimaryIndex.FieldNames, fieldValues);
 
             // Get the executable sql and params
-            (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(statementParamsDict);
+            (string executableSql, Dict executableParams) = deleteStatement.GetExecutableSqlAndParams(statementParamsDict);
 
             // Execute delete
             int count = await this.DoDeleteAsync(executableSql, executableParams);
 
             // Create data event
-            this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Delete, statement.TableRefs[0].table.Name, keyValue));
+            this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Delete, deleteStatement.TableRefs[0].table.Name, keyValue));
 
             return count;
         }

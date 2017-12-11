@@ -244,28 +244,28 @@ namespace Butterfly.Database {
 
         protected abstract Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams);
 
-        public async Task<object> InsertAndCommitAsync(string sql, dynamic record, bool ignoreIfDuplicate = false) {
+        public async Task<object> InsertAndCommitAsync(string insertStatement, dynamic vars, bool ignoreIfDuplicate = false) {
             object result;
             using (var transaction = await this.BeginTransactionAsync()) {
-                result = await transaction.InsertAsync(sql, record, ignoreIfDuplicate);
+                result = await transaction.InsertAsync(insertStatement, vars, ignoreIfDuplicate);
                 await transaction.CommitAsync();
             }
             return result;
         }
 
-        public async Task<int> UpdateAndCommitAsync(string sourceSql, dynamic sourceParams) {
+        public async Task<int> UpdateAndCommitAsync(string updateStatement, dynamic vars) {
             int count;
             using (var transaction = await this.BeginTransactionAsync()) {
-                count = await transaction.UpdateAsync(sourceSql, sourceParams);
+                count = await transaction.UpdateAsync(updateStatement, vars);
                 await transaction.CommitAsync();
             }
             return count;
         }
 
-        public async Task<int> DeleteAndCommitAsync(string sql, dynamic whereParams) {
+        public async Task<int> DeleteAndCommitAsync(string deleteStatement, dynamic vars) {
             int count;
             using (var transaction = await this.BeginTransactionAsync()) {
-                count = await transaction.DeleteAsync(sql, whereParams);
+                count = await transaction.DeleteAsync(deleteStatement, vars);
                 await transaction.CommitAsync();
             }
             return count;

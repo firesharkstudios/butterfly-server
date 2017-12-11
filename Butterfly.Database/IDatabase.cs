@@ -184,28 +184,96 @@ namespace Butterfly.Database {
         Task<Dict[]> SelectRowsAsync(string selectStatement, dynamic vars = null);
 
         /// <summary>
-        /// Executes the INSERT statement as a single transaction (the INSERT statement may contain vars like @name specified in <paramref name="vars"/>)
+        /// Executes an INSERT statement as a single transaction
         /// </summary>
-        /// <param name="insertStatement"></param>
-        /// <param name="vars"></param>
-        /// <param name="ignoreIfDuplicate"></param>
-        /// <returns></returns>
+        /// <remarks>
+        /// Do an INSERT using the table name and an anonymous type...
+        /// <code>
+        /// await database.InsertAndCommitAsync("message", new {
+        ///     text = "Hello",
+        ///     owner_id = "123",
+        /// });
+        /// </code>
+        /// Do an INSERT using a full statement and a Dictionary...
+        /// <code>
+        /// await database.InsertAndCommitAsync("INSERT INTO message (text, owner_id) VALUES (@t, @oid)", new Dictionary&lt;string, object&gt; {
+        ///     ["t"] = "Hello",
+        ///     ["oid"] = "123",
+        /// });
+        /// </code>
+        /// </remarks>
+        /// <param name="insertStatement">
+        ///     Either a table name or a full INSERT statement with vars prefixed by @ (like <code>@name</code>)
+        /// </param>
+        /// <param name="vars">
+        ///     Either an anonymous type or a Dictionary. 
+        ///     If <paramref name="insertStatement"/> is a table name, the <paramref name="vars"/> values will be used to build the UPDATE statement.
+        ///     If <paramref name="insertStatement"/> is a full INSERT statement, there must be one entry for each var referenced in <paramref name="insertStatement"/>.
+        /// </param>
+        /// <param name="ignoreIfDuplicate">
+        ///     If the INSERT attempts to duplicate the primary key then either 
+        ///     throw an <see cref="DuplicateKeyDatabaseException"/> error if <paramref name="ignoreIfDuplicate"/> is true
+        ///     or just ignore if <paramref name="ignoreIfDuplicate"/> is false
+        /// </param>
+        /// <returns>Primary key value (semi-colon delimited string if multi-field primary key)</returns>
         Task<object> InsertAndCommitAsync(string insertStatement, dynamic vars, bool ignoreIfDuplicate = false);
 
         /// <summary>
-        /// Executes the UPDATE statement as a single transaction (the UPDATE statement may contain vars like @name specified in <paramref name="vars"/>)
+        /// Executes an UPDATE statement as a single transaction
         /// </summary>
-        /// <param name="updateStatement"></param>
-        /// <param name="vars"></param>
-        /// <returns></returns>
+        /// <remarks>
+        /// Do an UPDATE using the table name and an anonymous type...
+        /// <code>
+        /// await database.UpdateAndCommitAsync("message", new {
+        ///     id = 123,
+        ///     text = "Hello",
+        /// });
+        /// </code>
+        /// Do an UPDATE using a full statement and a Dictionary...
+        /// <code>
+        /// await database.UpdateAndCommitAsync("UPDATE message SET text=@t WHERE id=@id", new Dictionary&lt;string, object&gt; {
+        ///     ["id"] = 123,
+        ///     ["t"] = "Hello",
+        /// });
+        /// </code>
+        /// </remarks>
+        /// <param name="updateStatement">
+        ///     Either a table name or a full UPDATE statement with vars prefixed by @ (like <code>@name</code>)
+        /// </param>
+        /// <param name="vars">
+        ///     Either an anonymous type or a Dictionary. 
+        ///     If <paramref name="updateStatement"/> is a table name, the <paramref name="vars"/> values will be used to build the SET clause and WHERE clause of the UPDATE statement.
+        ///     If <paramref name="updateStatement"/> is a full UPDATE statement, there must be one entry for each var referenced in <paramref name="updateStatement"/>.
+        /// </param>
+        /// <returns>Number of records updated</returns>
         Task<int> UpdateAndCommitAsync(string updateStatement, dynamic vars);
 
         /// <summary>
-        /// Executes the DELETE statement as a single transaction (the DELETE statement may contain vars like @name specified in <paramref name="vars"/>)
+        /// Executes a DELETE statement as a single transaction
         /// </summary>
-        /// <param name="deleteStatement"></param>
-        /// <param name="vars"></param>
-        /// <returns></returns>
+        /// <remarks>
+        /// Do a DELETE using the table name and an anonymous type...
+        /// <code>
+        /// await database.DeleteAndCommitAsync("message", new {
+        ///     id = 123
+        /// });
+        /// </code>
+        /// Do a DELETE using a full statement and a Dictionary...
+        /// <code>
+        /// await database.DeleteAndCommitAsync("DELETE FROM message WHERE id=@id", new Dictionary&lt;string, object&gt; {
+        ///     ["id"] = 123
+        /// });
+        /// </code>
+        /// </remarks>
+        /// <param name="deleteStatement">
+        ///     Either a table name or a full DELETE statement with vars prefixed by @ (like <code>@name</code>)
+        /// </param>
+        /// <param name="vars">
+        ///     Either an anonymous type or a Dictionary. 
+        ///     If <paramref name="deleteStatement"/> is a table name, the <paramref name="vars"/> values will be used to build the WHERE clause of the DELETE statement.
+        ///     If <paramref name="deleteStatement"/> is a full DELETE statement, there must be one entry for each var referenced in <paramref name="deleteStatement"/>.
+        /// </param>
+        /// <returns>Number of records deleted</returns>
         Task<int> DeleteAndCommitAsync(string deleteStatement, dynamic vars);
 
         /// <summary>
