@@ -1,8 +1,15 @@
 # BaseDatabase.UpdateAndCommitAsync method
 
+Executes the UPDATE statement as a single transaction (the UPDATE statement may contain vars like @name specified in *vars*)
+
 ```csharp
 public Task<int> UpdateAndCommitAsync(string sourceSql, object sourceParams)
 ```
+
+| parameter | description |
+| --- | --- |
+| updateStatement |  |
+| vars |  |
 
 ## See Also
 

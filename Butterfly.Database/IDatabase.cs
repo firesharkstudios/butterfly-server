@@ -138,14 +138,6 @@ namespace Butterfly.Database {
         IDisposable OnNewCommittedTransaction(Func<DataEventTransaction, Task> listener);
 
         /// <summary>
-        /// Execute the SELECT statement and return the data in a <see cref="DataEventTransaction"/>
-        /// </summary>
-        /// <param name="selectStatement">A SELECT statement defining what data to return (can include parameters like @name)</param>
-        /// <param name="vars">Either an anonymous type or Dictionary with the vars used in the SELECT statement</param>
-        /// <returns>A <see cref="DataEventTransaction"/> with the returned data represented as a sequence of <see cref="DataEvent"/> instances.  The <see cref="DataEvent"/> instance will have a <see cref="DataEventType"/> of <see cref="DataEventType.InitialBegin"/>, each record will have a <see cref="DataEventType"/> of <see cref="DataEventType.Initial"/>, and the last record will have a <see cref="DataEventType"/> of <see cref="DataEventType.InitialEnd"/>.</returns>
-        Task<DataEventTransaction> GetInitialDataEventTransactionAsync(string selectStatement, dynamic vars = null);
-
-        /// <summary>
         /// Executes the SELECT statement and return the value of the first column of the first row (the SELECT statement may contain vars like @name specified in <paramref name="vars"/>).<para/>
         /// <para/>
         /// If a var is null then references in the WHERE clause like <code>name=@name</code> will be rewritten as <code>name IS NULL</code> and references in the WHERE clause like <code>name!=@name</code> will be rewritten as <code>name IS NOT NULL</code>.<para/>

@@ -1,6 +1,6 @@
 # BaseChannel class
 
-Base class implementing [`IChannel`](IChannel.md). New implementations will normally extend this class.
+Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
 
 ```csharp
 public abstract class BaseChannel : IChannel

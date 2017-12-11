@@ -4,8 +4,8 @@
 
 | public type | description |
 | --- | --- |
-| abstract class [BaseChannel](Butterfly.Channel/BaseChannel.md) | Base class implementing [`IChannel`](Butterfly.Channel/IChannel.md). New implementations will normally extend this class. |
-| abstract class [BaseChannelServer](Butterfly.Channel/BaseChannelServer.md) | Base class implementing [`IChannelServer`](Butterfly.Channel/IChannelServer.md). New implementations will normally extend this class. |
+| abstract class [BaseChannel](Butterfly.Channel/BaseChannel.md) | Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc) |
+| abstract class [BaseChannelServer](Butterfly.Channel/BaseChannelServer.md) | Allows clients to create new channels to the server and allows the server to push messages to connected clients. |
 | interface [IChannel](Butterfly.Channel/IChannel.md) | Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc) |
 | interface [IChannelServer](Butterfly.Channel/IChannelServer.md) | Allows clients to create new channels to the server and allows the server to push messages to connected clients. |
 | class [NewChannelListener](Butterfly.Channel/NewChannelListener.md) | Internal class used to store references to new channel listeners |

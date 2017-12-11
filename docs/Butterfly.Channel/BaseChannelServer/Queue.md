@@ -1,5 +1,7 @@
 # BaseChannelServer.Queue method
 
+Queues a value to be sent to the specified channel (normally converted to JSON and transmitted as text)
+
 ```csharp
 public void Queue(string channelId, object value)
 ```

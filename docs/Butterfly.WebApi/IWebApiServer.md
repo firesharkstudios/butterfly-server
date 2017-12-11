@@ -2,6 +2,20 @@
 
 Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.
 
+```csharp
+public interface IWebApiServer : IDisposable
+```
+
+## Members
+
+| name | description |
+| --- | --- |
+| [OnGet](IWebApiServer/OnGet.md)(…) | Add a listener responding to GET requests |
+| [OnPost](IWebApiServer/OnPost.md)(…) | Add a listener responding to POST requests |
+| [Start](IWebApiServer/Start.md)() | Start the web api server |
+
+## Remarks
+
 Initializing a web api server instance...
 
 ```csharp
@@ -14,18 +28,6 @@ webApiServer.OnPost("/login", async(req, res) => {
 });
 webApiServer.Start();
 ```
-
-```csharp
-public interface IWebApiServer : IDisposable
-```
-
-## Members
-
-| name | description |
-| --- | --- |
-| [OnGet](IWebApiServer/OnGet.md)(…) | Add a listener responding to GET requests |
-| [OnPost](IWebApiServer/OnPost.md)(…) | Add a listener responding to POST requests |
-| [Start](IWebApiServer/Start.md)() | Start the web api server |
 
 ## See Also
 

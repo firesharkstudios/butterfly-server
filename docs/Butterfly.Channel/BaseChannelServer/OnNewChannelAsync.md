@@ -1,8 +1,19 @@
 # BaseChannelServer.OnNewChannelAsync method
 
+Add an async listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed)
+
 ```csharp
 public IDisposable OnNewChannelAsync(string pathFilter, Func<IChannel, Task<IDisposable>> listener)
 ```
+
+| parameter | description |
+| --- | --- |
+| pathFilter | Filters new channel requests by path (pass '/chat' to only match channels created with path '/chat') |
+| listener | Lambda to run to initialize the channel |
+
+## Return Value
+
+Any object that should be disposed when the channel is disposed
 
 ## See Also
 

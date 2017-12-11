@@ -4,7 +4,7 @@
 
 | public type | description |
 | --- | --- |
-| abstract class [BaseDatabase](Butterfly.Database/BaseDatabase.md) | Base class implementing [`IDatabase`](Butterfly.Database/IDatabase.md). New implementations will normally extend this class. |
+| abstract class [BaseDatabase](Butterfly.Database/BaseDatabase.md) | Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views. |
 | abstract class [BaseStatement](Butterfly.Database/BaseStatement.md) | Base class for parsing SQL statements |
 | abstract class [BaseTransaction](Butterfly.Database/BaseTransaction.md) | Base class implementing [`ITransaction`](Butterfly.Database/ITransaction.md). New implementations will normally extend this class. |
 | class [CreateStatement](Butterfly.Database/CreateStatement.md) | Internal class used to parse CREATE statements |

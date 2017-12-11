@@ -2,6 +2,23 @@
 
 Allows clients to create new channels to the server and allows the server to push messages to connected clients.
 
+```csharp
+public interface IChannelServer : IDisposable
+```
+
+## Members
+
+| name | description |
+| --- | --- |
+| [ChannelCount](IChannelServer/ChannelCount.md) { get; } | Number of channels |
+| [GetChannel](IChannelServer/GetChannel.md)(…) | Retrieve a channel by id |
+| [OnNewChannel](IChannelServer/OnNewChannel.md)(…) | Add a listener when a new channel is created |
+| [OnNewChannelAsync](IChannelServer/OnNewChannelAsync.md)(…) | Add an async listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed) |
+| [Queue](IChannelServer/Queue.md)(…) | Queues a value to be sent to the specified channel (normally converted to JSON and transmitted as text) |
+| [Start](IChannelServer/Start.md)() | Starts the channel server. Must be called after adding new channel listeners (via [`OnNewChannel`](IChannelServer/OnNewChannel.md) and [`OnNewChannelAsync`](IChannelServer/OnNewChannelAsync.md)) |
+
+## Remarks
+
 Initializing a channel server instance...
 
 ```csharp
@@ -24,21 +41,6 @@ If you no longer need a channel server instance, call Dispose() on the channel s
 ```csharp
 channelServer.Dispose();
 ```
-
-```csharp
-public interface IChannelServer : IDisposable
-```
-
-## Members
-
-| name | description |
-| --- | --- |
-| [ChannelCount](IChannelServer/ChannelCount.md) { get; } | Number of channels |
-| [GetChannel](IChannelServer/GetChannel.md)(…) | Retrieve a channel by id |
-| [OnNewChannel](IChannelServer/OnNewChannel.md)(…) | Add a listener when a new channel is created |
-| [OnNewChannelAsync](IChannelServer/OnNewChannelAsync.md)(…) | Add an async listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed) |
-| [Queue](IChannelServer/Queue.md)(…) | Queues a value to be sent to the specified channel (normally converted to JSON and transmitted as text) |
-| [Start](IChannelServer/Start.md)() | Starts the channel server. Must be called after adding new channel listeners (via [`OnNewChannel`](IChannelServer/OnNewChannel.md) and [`OnNewChannelAsync`](IChannelServer/OnNewChannelAsync.md)) |
 
 ## See Also
 

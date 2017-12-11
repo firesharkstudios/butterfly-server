@@ -2,6 +2,32 @@
 
 Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.
 
+```csharp
+public interface IDatabase
+```
+
+## Members
+
+| name | description |
+| --- | --- |
+| [Tables](IDatabase/Tables.md) { get; } | Dictionary of [`Table`](Table.md) instances keyed by name |
+| [BeginTransaction](IDatabase/BeginTransaction.md)() | Creates a new [`ITransaction`](ITransaction.md) instance. An [`ITransaction`](ITransaction.md) instance allows performing an atomic set of modifications to the database. Must execute [`CommitAsync`](ITransaction/CommitAsync.md) to save the transaction changes. Disposing the transaction without committing rolls back the changes. |
+| [CreateAndStartDynamicView](IDatabase/CreateAndStartDynamicView.md)(…) | Convenience method which creates a [`DynamicViewSet`](../Butterfly.Database.Dynamic/DynamicViewSet.md), adds a single [`DynamicView`](../Butterfly.Database.Dynamic/DynamicView.md) to the [`DynamicViewSet`](../Butterfly.Database.Dynamic/DynamicViewSet.md), and starts the [`DynamicViewSet`](../Butterfly.Database.Dynamic/DynamicViewSet.md). (2 methods) |
+| [CreateDynamicViewSet](IDatabase/CreateDynamicViewSet.md)(…) | Allows creating a set of [`DynamicView`](../Butterfly.Database.Dynamic/DynamicView.md) instances that publish a single [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) instance with initial data and new [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) instances when data changes. The [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) instances are published to the lambda passed as the *listener*. (2 methods) |
+| [CreateFromResourceFileAsync](IDatabase/CreateFromResourceFileAsync.md)(…) | Creates database tables from an embedded resource file by internally calling [`CreateFromTextAsync`](IDatabase/CreateFromTextAsync.md) with the contents of the embedded resource file" |
+| [CreateFromTextAsync](IDatabase/CreateFromTextAsync.md)(…) | Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate). |
+| [DeleteAndCommitAsync](IDatabase/DeleteAndCommitAsync.md)(…) | Executes the DELETE statement as a single transaction (the DELETE statement may contain vars like @name specified in *vars*) |
+| [InsertAndCommitAsync](IDatabase/InsertAndCommitAsync.md)(…) | Executes the INSERT statement as a single transaction (the INSERT statement may contain vars like @name specified in *vars*) |
+| [OnNewCommittedTransaction](IDatabase/OnNewCommittedTransaction.md)(…) | Adds a listener that is invoked when there is a new committed transaction (2 methods) |
+| [OnNewUncommittedTransaction](IDatabase/OnNewUncommittedTransaction.md)(…) | Adds a listener that is invoked when there is a new uncommitted transaction (2 methods) |
+| [SelectRowAsync](IDatabase/SelectRowAsync.md)(…) | Executes the SELECT statement and return the first row (the SELECT statement may contain vars like @name specified in *vars*) |
+| [SelectRowsAsync](IDatabase/SelectRowsAsync.md)(…) | Executes the SELECT statement and return the rows (the SELECT statement may contain vars like @name specified in *vars*) |
+| [SelectValue&lt;T&gt;](IDatabase/SelectValue.md)(…) | Executes the SELECT statement and return the value of the first column of the first row (the SELECT statement may contain vars like @name specified in *vars*). |
+| [SetInsertDefaultValue](IDatabase/SetInsertDefaultValue.md)(…) | Allows specifying a lambda that creates a default value for a field when executing an INSERT. If *tableName* is null, the *getDefaultValue* lambda will be applied to all tables. |
+| [UpdateAndCommitAsync](IDatabase/UpdateAndCommitAsync.md)(…) | Executes the UPDATE statement as a single transaction (the UPDATE statement may contain vars like @name specified in *vars*) |
+
+## Remarks
+
 Adding records and echoing all data change events to the console...
 
 ```csharp
@@ -59,31 +85,6 @@ await database.InsertAndCommitAsync("employee", values: new {
     name: "Patrick Star"
 });
 ```
-
-```csharp
-public interface IDatabase
-```
-
-## Members
-
-| name | description |
-| --- | --- |
-| [Tables](IDatabase/Tables.md) { get; } | Dictionary of [`Table`](Table.md) instances keyed by name |
-| [BeginTransaction](IDatabase/BeginTransaction.md)() | Creates a new [`ITransaction`](ITransaction.md) instance. An [`ITransaction`](ITransaction.md) instance allows performing an atomic set of modifications to the database. Must execute [`CommitAsync`](ITransaction/CommitAsync.md) to save the transaction changes. Disposing the transaction without committing rolls back the changes. |
-| [CreateAndStartDynamicView](IDatabase/CreateAndStartDynamicView.md)(…) | Convenience method which creates a [`DynamicViewSet`](../Butterfly.Database.Dynamic/DynamicViewSet.md), adds a single [`DynamicView`](../Butterfly.Database.Dynamic/DynamicView.md) to the [`DynamicViewSet`](../Butterfly.Database.Dynamic/DynamicViewSet.md), and starts the [`DynamicViewSet`](../Butterfly.Database.Dynamic/DynamicViewSet.md). (2 methods) |
-| [CreateDynamicViewSet](IDatabase/CreateDynamicViewSet.md)(…) | Allows creating a set of [`DynamicView`](../Butterfly.Database.Dynamic/DynamicView.md) instances that publish a single [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) instance with initial data and new [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) instances when data changes. The [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) instances are published to the lambda passed as the *listener*. (2 methods) |
-| [CreateFromResourceFileAsync](IDatabase/CreateFromResourceFileAsync.md)(…) | Creates database tables from an embedded resource file by internally calling [`CreateFromTextAsync`](IDatabase/CreateFromTextAsync.md) with the contents of the embedded resource file" |
-| [CreateFromTextAsync](IDatabase/CreateFromTextAsync.md)(…) | Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate). |
-| [DeleteAndCommitAsync](IDatabase/DeleteAndCommitAsync.md)(…) | Executes the DELETE statement as a single transaction (the DELETE statement may contain vars like @name specified in *vars*) |
-| [GetInitialDataEventTransactionAsync](IDatabase/GetInitialDataEventTransactionAsync.md)(…) | Execute the SELECT statement and return the data in a [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) |
-| [InsertAndCommitAsync](IDatabase/InsertAndCommitAsync.md)(…) | Executes the INSERT statement as a single transaction (the INSERT statement may contain vars like @name specified in *vars*) |
-| [OnNewCommittedTransaction](IDatabase/OnNewCommittedTransaction.md)(…) | Adds a listener that is invoked when there is a new committed transaction (2 methods) |
-| [OnNewUncommittedTransaction](IDatabase/OnNewUncommittedTransaction.md)(…) | Adds a listener that is invoked when there is a new uncommitted transaction (2 methods) |
-| [SelectRowAsync](IDatabase/SelectRowAsync.md)(…) | Executes the SELECT statement and return the first row (the SELECT statement may contain vars like @name specified in *vars*) |
-| [SelectRowsAsync](IDatabase/SelectRowsAsync.md)(…) | Executes the SELECT statement and return the rows (the SELECT statement may contain vars like @name specified in *vars*) |
-| [SelectValue&lt;T&gt;](IDatabase/SelectValue.md)(…) | Executes the SELECT statement and return the value of the first column of the first row (the SELECT statement may contain vars like @name specified in *vars*). |
-| [SetInsertDefaultValue](IDatabase/SetInsertDefaultValue.md)(…) | Allows specifying a lambda that creates a default value for a field when executing an INSERT. If *tableName* is null, the *getDefaultValue* lambda will be applied to all tables. |
-| [UpdateAndCommitAsync](IDatabase/UpdateAndCommitAsync.md)(…) | Executes the UPDATE statement as a single transaction (the UPDATE statement may contain vars like @name specified in *vars*) |
 
 ## See Also
 

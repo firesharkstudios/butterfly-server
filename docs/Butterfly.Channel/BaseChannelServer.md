@@ -1,6 +1,6 @@
 # BaseChannelServer class
 
-Base class implementing [`IChannelServer`](IChannelServer.md). New implementations will normally extend this class.
+Allows clients to create new channels to the server and allows the server to push messages to connected clients.
 
 ```csharp
 public abstract class BaseChannelServer : IChannelServer
@@ -11,15 +11,40 @@ public abstract class BaseChannelServer : IChannelServer
 | name | description |
 | --- | --- |
 | [BaseChannelServer](BaseChannelServer/BaseChannelServer.md)(…) |  |
-| [ChannelCount](BaseChannelServer/ChannelCount.md) { get; } |  |
+| [ChannelCount](BaseChannelServer/ChannelCount.md) { get; } | Number of channels |
 | [AddUnauthenticatedChannel](BaseChannelServer/AddUnauthenticatedChannel.md)(…) |  |
 | [Dispose](BaseChannelServer/Dispose.md)() |  |
-| [GetChannel](BaseChannelServer/GetChannel.md)(…) |  |
-| [OnNewChannel](BaseChannelServer/OnNewChannel.md)(…) |  |
-| [OnNewChannelAsync](BaseChannelServer/OnNewChannelAsync.md)(…) |  |
-| [Queue](BaseChannelServer/Queue.md)(…) |  |
-| [Start](BaseChannelServer/Start.md)() | Starts the channel server |
+| [GetChannel](BaseChannelServer/GetChannel.md)(…) | Retrieve a channel by id |
+| [OnNewChannel](BaseChannelServer/OnNewChannel.md)(…) | Add a listener when a new channel is created |
+| [OnNewChannelAsync](BaseChannelServer/OnNewChannelAsync.md)(…) | Add an async listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed) |
+| [Queue](BaseChannelServer/Queue.md)(…) | Queues a value to be sent to the specified channel (normally converted to JSON and transmitted as text) |
+| [Start](BaseChannelServer/Start.md)() | Starts the channel server. Must be called after adding new channel listeners (via [`OnNewChannel`](IChannelServer/OnNewChannel.md) and [`OnNewChannelAsync`](IChannelServer/OnNewChannelAsync.md)) |
 | static [StandardAuthenticate](BaseChannelServer/StandardAuthenticate.md)(…) |  |
+
+## Remarks
+
+Initializing a channel server instance...
+
+```csharp
+var channelServer = new SomeChannelServer();
+channelServer.OnNewChannel("/chat", channel => {
+    // Do stuff here to initialize the channel (send initial data, listen for specific data change events, etc)
+    // and return any object that should be disposed when the channel is disposed
+});
+channelServer.Start();
+```
+
+If a client has now created a channel at /chat?id=123, the server can now push data to the client via...
+
+```csharp
+channelServer.Queue("123", "Hello");
+```
+
+If you no longer need a channel server instance, call Dispose() on the channel server...
+
+```csharp
+channelServer.Dispose();
+```
 
 ## See Also
 

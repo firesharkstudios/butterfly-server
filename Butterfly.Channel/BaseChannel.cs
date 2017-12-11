@@ -27,6 +27,7 @@ using Butterfly.Util;
 
 namespace Butterfly.Channel {
 
+    /// <inheritdoc/>
     /// <summary>
     /// Base class implementing <see cref="IChannel"/>. New implementations will normally extend this class.
     /// </summary>

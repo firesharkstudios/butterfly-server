@@ -1,8 +1,16 @@
 # BaseDatabase.InsertAndCommitAsync method
 
+Executes the INSERT statement as a single transaction (the INSERT statement may contain vars like @name specified in *vars*)
+
 ```csharp
 public Task<object> InsertAndCommitAsync(string sql, object record, bool ignoreIfDuplicate = false)
 ```
+
+| parameter | description |
+| --- | --- |
+| insertStatement |  |
+| vars |  |
+| ignoreIfDuplicate |  |
 
 ## See Also
 

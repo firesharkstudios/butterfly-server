@@ -31,6 +31,7 @@ using Butterfly.Util;
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database {
+
     /// <inheritdoc/>
     /// <summary>
     /// Base class implementing <see cref="IDatabase"/>. New implementations will normally extend this class.
@@ -47,6 +48,12 @@ namespace Butterfly.Database {
             this.LoadSchemaAsync().Wait();
         }
 
+        /// <summary>
+        /// Gets or sets the connection string
+        /// </summary>
+        /// <value>
+        /// The connection string
+        /// </value>
         public string ConnectionString {
             get;
             protected set;
@@ -60,9 +67,9 @@ namespace Butterfly.Database {
             await this.CreateFromTextAsync(sql);
         }
 
-        public async Task CreateFromTextAsync(string sql) {
-            //logger.Debug($"CreateFromTextAsync():sql={sql}");
-            var noCommentSql = SQL_COMMENT.Replace(sql, "");
+        public async Task CreateFromTextAsync(string createStatements) {
+            //logger.Debug($"CreateFromTextAsync():createStatements={createStatements}");
+            var noCommentSql = SQL_COMMENT.Replace(createStatements, "");
             var sqlParts = noCommentSql.Split(';').Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x));
 
             List<string> tableSchemasToLoad = new List<string>();
@@ -91,21 +98,21 @@ namespace Butterfly.Database {
             return new CreateStatement(sql);
         }
 
-        /// <summary>
-        /// Loads the database schema from an existing database.
-        /// </summary>
-        /// <returns></returns>
         protected abstract Task LoadSchemaAsync();
 
         protected abstract Task<Table> LoadTableSchemaAsync(string tableName);
 
         // Manage data event transaction listeners
         protected readonly List<DataEventTransactionListener> uncommittedTransactionListeners = new List<DataEventTransactionListener>();
+
         public IDisposable OnNewUncommittedTransaction(Action<DataEventTransaction> listener) => new ListItemDisposable<DataEventTransactionListener>(uncommittedTransactionListeners, new DataEventTransactionListener(listener));
+
         public IDisposable OnNewUncommittedTransaction(Func<DataEventTransaction, Task> listener) => new ListItemDisposable<DataEventTransactionListener>(uncommittedTransactionListeners, new DataEventTransactionListener(listener));
 
         protected readonly List<DataEventTransactionListener> committedTransactionListeners = new List<DataEventTransactionListener>();
+
         public IDisposable OnNewCommittedTransaction(Action<DataEventTransaction> listener) => new ListItemDisposable<DataEventTransactionListener>(committedTransactionListeners, new DataEventTransactionListener(listener));
+
         public IDisposable OnNewCommittedTransaction(Func<DataEventTransaction, Task> listener) => new ListItemDisposable<DataEventTransactionListener>(committedTransactionListeners, new DataEventTransactionListener(listener));
 
         internal async Task ProcessDataEventTransaction(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
@@ -130,13 +137,13 @@ namespace Butterfly.Database {
             }
         }
 
-        public async Task<DataEventTransaction> GetInitialDataEventTransactionAsync(string statementSql, dynamic statementParams = null) {
+        internal async Task<DataEventTransaction> GetInitialDataEventTransactionAsync(string statementSql, dynamic statementParams = null) {
             SelectStatement statement = new SelectStatement(this, statementSql);
             DataEvent[] initialDataEvents = await this.GetInitialDataEventsAsync(statement.TableRefs[0].table.Name, statement.TableRefs[0].table.PrimaryIndex.FieldNames, statement, statementParams);
             return new DataEventTransaction(DateTime.Now, initialDataEvents);
         }
 
-        public async Task<DataEvent[]> GetInitialDataEventsAsync(string dataEventName, string[] keyFieldNames, SelectStatement selectStatement, dynamic statementParams = null) {
+        internal async Task<DataEvent[]> GetInitialDataEventsAsync(string dataEventName, string[] keyFieldNames, SelectStatement selectStatement, dynamic statementParams = null) {
             logger.Debug($"GetInitialDataEvents():sql={selectStatement.Sql}");
 
             List<DataEvent> dataEvents = new List<DataEvent>();
@@ -170,7 +177,7 @@ namespace Butterfly.Database {
             return await this.SelectRowsAsync(statement, statementParams);
         }
 
-        public async Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic statementParams, string newAndCondition, Dict newWhereParams) {
+        internal async Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic statementParams, string newAndCondition, Dict newWhereParams) {
             string overrideWhereClause = string.IsNullOrEmpty(statement.whereClause) ? newAndCondition : $"({newAndCondition}) AND ({statement.whereClause})";
             SelectStatement newStatement = new SelectStatement(statement, overrideWhereClause, true);
             Dict newStatementParamsDict = newStatement.ConvertParamsToDict(statementParams);
@@ -179,7 +186,7 @@ namespace Butterfly.Database {
             return await this.DoSelectRowsAsync(executableSql, executableParams);
         }
 
-        public async Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic statementParams) {
+        protected async Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic statementParams) {
             Dict statementParamsDict = statement.ConvertParamsToDict(statementParams);
             BaseStatement.ConfirmAllParamsUsed(statement.Sql, statementParamsDict);
             (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(statementParamsDict);
@@ -216,7 +223,7 @@ namespace Butterfly.Database {
         }
 
         public async Task<ITransaction> BeginTransaction() {
-            ITransaction transaction = this.CreateTransaction();
+            var transaction = this.CreateTransaction();
             await transaction.BeginAsync();
             return transaction;
         }
@@ -224,6 +231,7 @@ namespace Butterfly.Database {
         protected abstract ITransaction CreateTransaction();
 
         protected readonly Dictionary<string, Func<object>> getDefaultValueByFieldName = new Dictionary<string, Func<object>>();
+
         public void SetInsertDefaultValue(string fieldName, Func<object> getDefaultValue, string tableName = null) {
             if (tableName == null) {
                 this.getDefaultValueByFieldName[fieldName] = getDefaultValue;
@@ -234,7 +242,7 @@ namespace Butterfly.Database {
             }
         }
 
-        public Dict GetInsertDefaultValues(Table table) {
+        internal Dict GetInsertDefaultValues(Table table) {
             Dictionary<string, object> defaultValues = new Dict();
             foreach ((string fieldName, Func<object> getDefaultValue) in table.GetDefaultValueByFieldName) {
                 TableFieldDef fieldDef = table.FindFieldDef(fieldName);
@@ -310,7 +318,7 @@ namespace Butterfly.Database {
             return await dynamicViewSet.StartAsync();
         }
 
-        public static object GetKeyValue(string[] fieldNames, Dict record) {
+        internal static object GetKeyValue(string[] fieldNames, Dict record) {
             StringBuilder sb = new StringBuilder();
             bool isFirst = true;
             foreach (var fieldName in fieldNames) {
@@ -323,7 +331,7 @@ namespace Butterfly.Database {
             return sb.ToString();
         }
 
-        public static Dict ParseKeyValue(object keyValue, string[] keyFieldNames) {
+        internal static Dict ParseKeyValue(object keyValue, string[] keyFieldNames) {
             Dict result = new Dict();
             if (keyValue is string keyValueText) {
                 string[] keyValueParts = keyValueText.Split(';');

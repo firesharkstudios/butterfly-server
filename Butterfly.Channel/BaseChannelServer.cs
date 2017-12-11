@@ -26,6 +26,8 @@ using NLog;
 using Butterfly.Util;
 
 namespace Butterfly.Channel {
+
+    /// <inheritdoc/>
     /// <summary>
     /// Base class implementing <see cref="IChannelServer"/>. New implementations will normally extend this class.
     /// </summary>

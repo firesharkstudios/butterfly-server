@@ -27,9 +27,6 @@ namespace Butterfly.Channel {
     /// </code>
     /// </remarks>
     public interface IChannelServer : IDisposable {
-
-        //Func<string, string> Authenticate { get; }
-
         /// <summary>
         /// Add a listener when a new channel is created
         /// </summary>
