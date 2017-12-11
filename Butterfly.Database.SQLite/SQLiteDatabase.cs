@@ -40,35 +40,35 @@ namespace Butterfly.Database.SQLite {
             }
         }
 
-        protected override async Task LoadSchemaAsync() {
+        protected override void LoadSchema() {
             string commandText = "SELECT name FROM sqlite_master WHERE type='table';";
             using (var connection = new SQLiteConnection(this.ConnectionString)) {
-                await connection.OpenAsync();
+                connection.Open();
                 var command = new SQLiteCommand(commandText, connection);
-                using (var reader = await command.ExecuteReaderAsync()) {
-                    while (await reader.ReadAsync()) {
+                using (var reader = command.ExecuteReader()) {
+                    while (reader.Read()) {
                         string tableName = reader[0].ToString();
-                        Table table = await this.LoadTableSchemaAsync(tableName);
+                        Table table = this.LoadTableSchema(tableName);
                         this.tableByName[table.Name] = table;
                     }
                 }
             }
         }
 
-        protected override async Task<Table> LoadTableSchemaAsync(string tableName) {
-            TableFieldDef[] fieldDefs = await this.GetFieldDefsAsync(tableName);
-            TableIndex primaryIndex = await this.GetPrimaryIndexAsync(tableName);
+        protected override Table LoadTableSchema(string tableName) {
+            TableFieldDef[] fieldDefs = this.GetFieldDefs(tableName);
+            TableIndex primaryIndex = this.GetPrimaryIndex(tableName);
             return new Table(tableName, fieldDefs, primaryIndex);
         }
 
-        protected async Task<TableFieldDef[]> GetFieldDefsAsync(string tableName) {
+        protected TableFieldDef[] GetFieldDefs(string tableName) {
             List<TableFieldDef> fields = new List<TableFieldDef>();
             string commandText = $"SELECT * FROM {tableName} WHERE 1 = 2";
             using (var connection = new SQLiteConnection(this.ConnectionString)) {
-                await connection.OpenAsync();
+                connection.OpenAsync();
                 var command = new SQLiteCommand(commandText, connection);
                 DataTable dataTable = new DataTable();
-                using (var reader = await command.ExecuteReaderAsync()) {
+                using (var reader = command.ExecuteReader()) {
                     dataTable.Load(reader);
                 }
                 foreach (DataColumn dataColumn in dataTable.Columns) {
@@ -80,13 +80,13 @@ namespace Butterfly.Database.SQLite {
             return fields.ToArray();
         }
 
-        protected async Task<TableIndex> GetPrimaryIndexAsync(string tableName) {
+        protected TableIndex GetPrimaryIndex(string tableName) {
             string commandText = $"SELECT * FROM {tableName} WHERE 1 = 2";
             using (var connection = new SQLiteConnection(this.ConnectionString)) {
-                await connection.OpenAsync();
+                connection.OpenAsync();
                 var command = new SQLiteCommand(commandText, connection);
                 DataTable dataTable = new DataTable();
-                using (var reader = await command.ExecuteReaderAsync()) {
+                using (var reader = command.ExecuteReader()) {
                     dataTable.Load(reader);
                 }
                 return new TableIndex("PrimaryKey", dataTable.PrimaryKey.Select(x => x.ColumnName).ToArray());

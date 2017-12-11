@@ -34,36 +34,36 @@ namespace Butterfly.Database.Postgres {
         public PostgresDatabase(string connectionString) : base(connectionString) {
         }
 
-        protected override async Task LoadSchemaAsync() {
+        protected override void LoadSchema() {
             string commandText = "SELECT table_name FROM information_schema.tables WHERE table_schema='public'";
             using (var connection = new NpgsqlConnection(this.ConnectionString)) {
-                await connection.OpenAsync();
+                connection.Open();
                 var command = new NpgsqlCommand(commandText, connection);
-                using (var reader = await command.ExecuteReaderAsync()) {
-                    while (await reader.ReadAsync()) {
+                using (var reader = command.ExecuteReader()) {
+                    while (reader.Read()) {
                         string tableName = reader[0].ToString();
-                        Table table = await this.LoadTableSchemaAsync(tableName);
+                        Table table = this.LoadTableSchema(tableName);
                         this.tableByName[table.Name] = table;
                     }
                 }
             }
         }
 
-        protected override async Task<Table> LoadTableSchemaAsync(string tableName) {
-            TableFieldDef[] fieldDefs = await this.GetFieldDefsAsync(tableName);
-            TableIndex primaryIndex = await this.GetPrimaryIndexAsync(tableName);
+        protected override Table LoadTableSchema(string tableName) {
+            TableFieldDef[] fieldDefs = this.GetFieldDefs(tableName);
+            TableIndex primaryIndex = this.GetPrimaryIndex(tableName);
             return new Table(tableName, fieldDefs, primaryIndex);
         }
 
-        protected async Task<TableFieldDef[]> GetFieldDefsAsync(string tableName) {
+        protected TableFieldDef[] GetFieldDefs(string tableName) {
             List<TableFieldDef> fields = new List<TableFieldDef>();
             string commandText = $"select column_name, data_type, character_maximum_length, is_nullable, column_default from INFORMATION_SCHEMA.COLUMNS where table_name = @tableName";
             using (var connection = new NpgsqlConnection(this.ConnectionString)) {
-                await connection.OpenAsync();
+                connection.Open();
                 var command = new NpgsqlCommand(commandText, connection);
                 command.Parameters.AddWithValue("tableName", tableName);
-                using (var reader = await command.ExecuteReaderAsync()) {
-                    while (await reader.ReadAsync()) {
+                using (var reader = command.ExecuteReader()) {
+                    while (reader.Read()) {
                         string name = reader[0].ToString();
                         string typeText = reader[1].ToString();
                         string maxLengthText = reader[2].ToString();
@@ -81,7 +81,7 @@ namespace Butterfly.Database.Postgres {
             return fields.ToArray();
         }
 
-        protected async Task<TableIndex> GetPrimaryIndexAsync(string tableName) {
+        protected TableIndex GetPrimaryIndex(string tableName) {
             TableIndex primaryIndex = null;
             string commandText = @"SELECT
                   trel.relname AS table_name,
@@ -98,11 +98,11 @@ namespace Butterfly.Database.Postgres {
                 WHERE trel.relname=@tableName AND i.indisprimary='True'
                 GROUP BY tnsp.nspname, trel.relname, irel.relname, i.indisunique, i.indisprimary";
             using (var connection = new NpgsqlConnection(this.ConnectionString)) {
-                await connection.OpenAsync();
+                connection.OpenAsync();
                 var command = new NpgsqlCommand(commandText, connection);
                 command.Parameters.AddWithValue("tableName", tableName);
-                using (var reader = await command.ExecuteReaderAsync()) {
-                    while (await reader.ReadAsync()) {
+                using (var reader = command.ExecuteReader()) {
+                    while (reader.Read()) {
                         string indexName = reader[1].ToString();
                         string isUniqueText = reader[2].ToString();
                         string isPrimaryText = reader[3].ToString();

@@ -45,7 +45,7 @@ namespace Butterfly.Database {
 
         protected BaseDatabase(string connectionString) {
             this.ConnectionString = connectionString;
-            this.LoadSchemaAsync().Wait();
+            this.LoadSchema();
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Butterfly.Database {
             }
 
             foreach (var tableName in tableSchemasToLoad) {
-                Table table = await this.LoadTableSchemaAsync(tableName);
+                Table table = this.LoadTableSchema(tableName);
                 this.tableByName[table.Name] = table;
             }
         }
@@ -98,9 +98,9 @@ namespace Butterfly.Database {
             return new CreateStatement(sql);
         }
 
-        protected abstract Task LoadSchemaAsync();
+        protected abstract void LoadSchema();
 
-        protected abstract Task<Table> LoadTableSchemaAsync(string tableName);
+        protected abstract Table LoadTableSchema(string tableName);
 
         // Manage data event transaction listeners
         protected readonly List<DataEventTransactionListener> uncommittedTransactionListeners = new List<DataEventTransactionListener>();
@@ -356,6 +356,11 @@ namespace Butterfly.Database {
 
     public class DuplicateKeyDatabaseException : DatabaseException {
         public DuplicateKeyDatabaseException(string message) : base(message) {
+        }
+    }
+
+    public class UnableToConnectDatabaseException : DatabaseException {
+        public UnableToConnectDatabaseException(string message) : base(message) {
         }
     }
 }

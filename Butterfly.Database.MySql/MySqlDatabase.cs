@@ -34,28 +34,38 @@ namespace Butterfly.Database.MySql {
         public MySqlDatabase(string connectionString) : base(connectionString) {
         }
 
-        protected override async Task LoadSchemaAsync() {
-            string commandText = "show tables";
-            using (MySqlDataReader reader = await MySqlHelper.ExecuteReaderAsync(this.ConnectionString, commandText)) {
-                while (await reader.ReadAsync()) {
-                    string tableName = reader[0].ToString();
-                    Table table = await this.LoadTableSchemaAsync(tableName);
-                    this.tableByName[tableName] = table;
+        protected override void LoadSchema() {
+            try {
+                string commandText = "show tables";
+                using (MySqlDataReader reader = MySqlHelper.ExecuteReader(this.ConnectionString, commandText)) {
+                    while (reader.Read()) {
+                        string tableName = reader[0].ToString();
+                        Table table = this.LoadTableSchema(tableName);
+                        this.tableByName[tableName] = table;
+                    }
+                }
+            }
+            catch (MySqlException e) {
+                if (e.Message.StartsWith("Unable to connect")) {
+                    throw new UnableToConnectDatabaseException(e.Message);
+                }
+                else {
+                    throw;
                 }
             }
         }
 
-        protected override async Task<Table> LoadTableSchemaAsync(string tableName) {
-            TableFieldDef[] fieldDefs = await this.GetFieldDefsAsync(tableName);
-            TableIndex primaryIndex = await this.GetPrimaryIndexAsync(tableName);
+        protected override Table LoadTableSchema(string tableName) {
+            TableFieldDef[] fieldDefs = this.GetFieldDefs(tableName);
+            TableIndex primaryIndex = this.GetPrimaryIndex(tableName);
             return new Table(tableName, fieldDefs, primaryIndex);
         }
 
-        protected async Task<TableFieldDef[]> GetFieldDefsAsync(string tableName) {
+        protected TableFieldDef[] GetFieldDefs(string tableName) {
             List<TableFieldDef> fields = new List<TableFieldDef>();
             string commandText = $"DESCRIBE {tableName}";
-            using (MySqlDataReader reader = await MySqlHelper.ExecuteReaderAsync(this.ConnectionString, commandText)) {
-                while (await reader.ReadAsync()) {
+            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(this.ConnectionString, commandText)) {
+                while (reader.Read()) {
                     string name = reader[0].ToString();
                     string typeText = reader[1].ToString();
                     string allowNullText = reader[2].ToString();
@@ -71,13 +81,13 @@ namespace Butterfly.Database.MySql {
             return fields.ToArray();
         }
 
-        protected async Task<TableIndex> GetPrimaryIndexAsync(string tableName) {
+        protected TableIndex GetPrimaryIndex(string tableName) {
             List<TableIndex> uniqueIndexes = new List<TableIndex>();
             string commandText = $"SHOW INDEX FROM {tableName}";
             string lastIndexName = null;
             List<string> lastFieldNames = new List<string>();
-            using (MySqlDataReader reader = await MySqlHelper.ExecuteReaderAsync(this.ConnectionString, commandText)) {
-                while (await reader.ReadAsync()) {
+            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(this.ConnectionString, commandText)) {
+                while (reader.Read()) {
                     bool unique = int.Parse(reader[1].ToString()) == 0;
                     if (unique) {
                         string indexName = reader[2].ToString();

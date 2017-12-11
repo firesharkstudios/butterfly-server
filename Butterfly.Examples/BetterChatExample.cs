@@ -7,6 +7,7 @@ using Butterfly.Channel;
 using Butterfly.Util;
 using Butterfly.WebApi;
 using Butterfly.Database.Event;
+using Butterfly.Database;
 
 namespace Butterfly.Examples {
     public static class BetterChatExample {
@@ -17,7 +18,14 @@ namespace Butterfly.Examples {
             logger.Debug($"Setup()");
 
             // Setup a MySQL database (may need to execute "GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' IDENTIFIED BY 'test!123'; CREATE DATABASE butterfly_chat;")
-            var database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_better_chat");
+            IDatabase database = null;
+            try {
+                database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_better_chat");
+            }
+            catch (UnableToConnectDatabaseException e) {
+                logger.Warn($"Unable to connect to MySQL server (modify BetterChatExample.cs to specify ConnectionString), skipping BetterChatExample");
+                return;
+            }
             database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Examples.better-chat-db.sql").Wait();
             database.SetInsertDefaultValue("id", () => Guid.NewGuid().ToString());
             database.SetInsertDefaultValue("created_at", () => DateTime.Now);
