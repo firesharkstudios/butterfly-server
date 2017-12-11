@@ -31,16 +31,6 @@ namespace Butterfly.Database {
     /// </summary>
     public interface ITransaction : IDisposable {
         /// <summary>
-        /// Create a new table
-        /// </summary>
-        /// <param name="statement"></param>
-        /// <returns>true if table was created (false if table already existed)</returns>
-        bool Create(CreateStatement statement);
-
-        /// <inheritdoc cref="Create(CreateStatement)"/>
-        Task<bool> CreateAsync(CreateStatement statement);
-
-        /// <summary>
         /// Executes an INSERT statement within this transaction
         /// </summary>
         /// <remarks>
@@ -75,9 +65,6 @@ namespace Butterfly.Database {
         /// <returns>Primary key value (semi-colon delimited string if multi-field primary key)</returns>
         Task<object> InsertAsync(string insertStatement, dynamic vars, bool ignoreIfDuplicate = false);
 
-        /// <inheritdoc cref="ITransaction.InsertAsync(string, dynamic, bool)"/>
-        Task<object> InsertAsync(InsertStatement insertStatement, dynamic vars, bool ignoreIfDuplicate = false);
-
         /// <summary>
         /// Executes an UPDATE statement within this transaction
         /// </summary>
@@ -108,9 +95,6 @@ namespace Butterfly.Database {
         /// <returns>Number of records updated</returns>
         Task<int> UpdateAsync(string updateStatement, dynamic vars);
 
-        /// <inheritdoc cref="ITransaction.UpdateAsync(string, dynamic)"/>
-        Task<int> UpdateAsync(UpdateStatement updateStatement, dynamic vars);
-
         /// <summary>
         /// Executes a DELETE statement within this transaction
         /// </summary>
@@ -138,9 +122,6 @@ namespace Butterfly.Database {
         /// </param>
         /// <returns>Number of records deleted</returns>
         Task<int> DeleteAsync(string deleteStatement, dynamic vars);
-
-        /// <inheritdoc cref="ITransaction.DeleteAsync(string, dynamic)"/>
-        Task<int> DeleteAsync(DeleteStatement deleteStatement, dynamic vars);
 
         /// <summary>
         /// Truncate a table (deletes all records)

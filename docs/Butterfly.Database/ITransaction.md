@@ -16,13 +16,11 @@ public interface ITransaction : IDisposable
 | --- | --- |
 | [Commit](ITransaction/Commit.md)() | Commit the transaction |
 | [CommitAsync](ITransaction/CommitAsync.md)() | Commit the transaction |
-| [Create](ITransaction/Create.md)(…) | Create a new table |
-| [CreateAsync](ITransaction/CreateAsync.md)(…) | Create a new table |
-| [DeleteAsync](ITransaction/DeleteAsync.md)(…) | Executes a DELETE statement within this transaction (2 methods) |
-| [InsertAsync](ITransaction/InsertAsync.md)(…) | Executes an INSERT statement within this transaction (2 methods) |
+| [DeleteAsync](ITransaction/DeleteAsync.md)(…) | Executes a DELETE statement within this transaction |
+| [InsertAsync](ITransaction/InsertAsync.md)(…) | Executes an INSERT statement within this transaction |
 | [Rollback](ITransaction/Rollback.md)() | Rollback the transaction (called automatically if transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md)) |
 | [TruncateAsync](ITransaction/TruncateAsync.md)(…) | Truncate a table (deletes all records) |
-| [UpdateAsync](ITransaction/UpdateAsync.md)(…) | Executes an UPDATE statement within this transaction (2 methods) |
+| [UpdateAsync](ITransaction/UpdateAsync.md)(…) | Executes an UPDATE statement within this transaction |
 
 ## See Also
 

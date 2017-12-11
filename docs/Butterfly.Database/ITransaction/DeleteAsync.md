@@ -1,47 +1,4 @@
-# ITransaction.DeleteAsync method (1 of 2)
-
-Executes a DELETE statement within this transaction
-
-```csharp
-public Task<int> DeleteAsync(DeleteStatement deleteStatement, object vars)
-```
-
-| parameter | description |
-| --- | --- |
-| deleteStatement | Either a table name or a full DELETE statement with vars prefixed by @ (like |
-| vars | Either an anonymous type or a Dictionary. If *deleteStatement* is a table name, the *vars* values will be used to build the WHERE clause of the DELETE statement. If *deleteStatement* is a full DELETE statement, there must be one entry for each var referenced in *deleteStatement*. |
-
-## Return Value
-
-Number of records deleted
-
-## Remarks
-
-Do a DELETE using the table name and an anonymous type...
-
-```csharp
-await database.DeleteAsync("message", new {
-    id = 123
-});
-```
-
-Do a DELETE using a full statement and a Dictionary...
-
-```csharp
-await database.DeleteAsync("DELETE FROM message WHERE id=@id", new Dictionary<string, object> {
-    ["id"] = 123
-});
-```
-
-## See Also
-
-* class [DeleteStatement](../DeleteStatement.md)
-* interface [ITransaction](../ITransaction.md)
-* namespace [Butterfly.Database](../../Butterfly.Database.md)
-
----
-
-# ITransaction.DeleteAsync method (2 of 2)
+# ITransaction.DeleteAsync method
 
 Executes a DELETE statement within this transaction
 

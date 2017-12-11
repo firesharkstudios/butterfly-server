@@ -1,18 +1,8 @@
 # BaseTransaction.CreateAsync method
 
-Create a new table
-
 ```csharp
 public Task<bool> CreateAsync(CreateStatement statement)
 ```
-
-| parameter | description |
-| --- | --- |
-| statement |  |
-
-## Return Value
-
-true if table was created (false if table already existed)
 
 ## See Also
 

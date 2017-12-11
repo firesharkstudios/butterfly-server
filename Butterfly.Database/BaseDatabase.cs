@@ -79,7 +79,7 @@ namespace Butterfly.Database {
             var sqlParts = noCommentSql.Split(';').Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x));
 
             List<string> tableSchemasToLoad = new List<string>();
-            using (var transaction = this.BeginTransaction()) {
+            using (var transaction = this.BeginTransaction() as BaseTransaction) {
                 foreach (var sqlPart in sqlParts) {
                     if (!string.IsNullOrWhiteSpace(sqlPart)) {
                         CreateStatement statement = this.CreateStatement(sqlPart);
@@ -106,7 +106,7 @@ namespace Butterfly.Database {
             var sqlParts = noCommentSql.Split(';').Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x));
 
             List<string> tableSchemasToLoad = new List<string>();
-            using (var transaction = await this.BeginTransactionAsync()) {
+            using (var transaction = await this.BeginTransactionAsync() as BaseTransaction) {
                 foreach (var sqlPart in sqlParts) {
                     if (!string.IsNullOrWhiteSpace(sqlPart)) {
                         CreateStatement statement = this.CreateStatement(sqlPart);

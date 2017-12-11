@@ -1,18 +1,8 @@
 # BaseTransaction.Create method
 
-Create a new table
-
 ```csharp
 public bool Create(CreateStatement statement)
 ```
-
-| parameter | description |
-| --- | --- |
-| statement |  |
-
-## Return Value
-
-true if table was created (false if table already existed)
 
 ## See Also
 

@@ -19,8 +19,8 @@ public abstract class BaseTransaction : ITransaction
 | abstract [BeginAsync](BaseTransaction/BeginAsync.md)() |  |
 | [Commit](BaseTransaction/Commit.md)() | Commit the transaction |
 | [CommitAsync](BaseTransaction/CommitAsync.md)() | Commit the transaction |
-| [Create](BaseTransaction/Create.md)(…) | Create a new table |
-| [CreateAsync](BaseTransaction/CreateAsync.md)(…) | Create a new table |
+| [Create](BaseTransaction/Create.md)(…) |  |
+| [CreateAsync](BaseTransaction/CreateAsync.md)(…) |  |
 | [DeleteAsync](BaseTransaction/DeleteAsync.md)(…) | Executes a DELETE statement within this transaction (2 methods) |
 | abstract [Dispose](BaseTransaction/Dispose.md)() |  |
 | [InsertAsync](BaseTransaction/InsertAsync.md)(…) | Executes an INSERT statement within this transaction (2 methods) |
