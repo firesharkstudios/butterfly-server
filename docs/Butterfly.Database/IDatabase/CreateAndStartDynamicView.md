@@ -30,13 +30,13 @@ Convenience method which creates a [`DynamicViewSet`](../../Butterfly.Database.D
 
 ```csharp
 public Task<DynamicViewSet> CreateAndStartDynamicView(string selectStatement, 
-    Func<DataEventTransaction, Task> asyncListener, object values = null, string name = null, string[] keyFieldNames = null)
+    Func<DataEventTransaction, Task> listener, object values = null, string name = null, string[] keyFieldNames = null)
 ```
 
 | parameter | description |
 | --- | --- |
 | selectStatement |  |
-| asyncListener |  |
+| listener |  |
 | values |  |
 | name |  |
 | keyFieldNames |  |

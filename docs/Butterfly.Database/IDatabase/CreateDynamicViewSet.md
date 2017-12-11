@@ -28,12 +28,12 @@ A [`DynamicViewSet`](../../Butterfly.Database.Dynamic/DynamicViewSet.md) that ca
 Allows creating a set of [`DynamicView`](../../Butterfly.Database.Dynamic/DynamicView.md) instances that publish a single [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instance with initial data and new [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instances when data changes. The [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instances are published to the lambda passed as the *listener*.
 
 ```csharp
-public DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> asyncListener)
+public DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> listener)
 ```
 
 | parameter | description |
 | --- | --- |
-| asyncListener | The lambda that should receive the [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instances |
+| listener | The lambda that should receive the [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instances |
 
 ## Return Value
 

@@ -34,14 +34,10 @@ namespace Butterfly.Database {
         /// Create a new table
         /// </summary>
         /// <param name="statement"></param>
-        /// <returns></returns>
+        /// <returns>true if table was created (false if table already existed)</returns>
         bool Create(CreateStatement statement);
 
-        /// <summary>
-        /// Create a new table
-        /// </summary>
-        /// <param name="statement"></param>
-        /// <returns></returns>
+        /// <inheritdoc cref="Create(CreateStatement)"/>
         Task<bool> CreateAsync(CreateStatement statement);
 
         /// <summary>
@@ -79,39 +75,7 @@ namespace Butterfly.Database {
         /// <returns>Primary key value (semi-colon delimited string if multi-field primary key)</returns>
         Task<object> InsertAsync(string insertStatement, dynamic vars, bool ignoreIfDuplicate = false);
 
-        /// <summary>
-        /// Executes an INSERT statement within this transaction
-        /// </summary>
-        /// <remarks>
-        /// Do an INSERT using the table name and an anonymous type...
-        /// <code>
-        /// await transaction.InsertAsync("message", new {
-        ///     text = "Hello",
-        ///     owner_id = "123",
-        /// });
-        /// </code>
-        /// Do an INSERT using a full statement and a Dictionary...
-        /// <code>
-        /// await transaction.InsertAsync("INSERT INTO message (text, owner_id) VALUES (@t, @oid)", new Dictionary&lt;string, object&gt; {
-        ///     ["t"] = "Hello",
-        ///     ["oid"] = "123",
-        /// });
-        /// </code>
-        /// </remarks>
-        /// <param name="insertStatement">
-        ///     Either a table name or a full INSERT statement with vars prefixed by @ (like <code>@name</code>)
-        /// </param>
-        /// <param name="vars">
-        ///     Either an anonymous type or a Dictionary. 
-        ///     If <paramref name="insertStatement"/> is a table name, the <paramref name="vars"/> values will be used to build the UPDATE statement.
-        ///     If <paramref name="insertStatement"/> is a full INSERT statement, there must be one entry for each var referenced in <paramref name="insertStatement"/>.
-        /// </param>
-        /// <param name="ignoreIfDuplicate">
-        ///     If the INSERT attempts to duplicate the primary key then either 
-        ///     throw an <see cref="DuplicateKeyDatabaseException"/> error if <paramref name="ignoreIfDuplicate"/> is true
-        ///     or just ignore if <paramref name="ignoreIfDuplicate"/> is false
-        /// </param>
-        /// <returns>Primary key value (semi-colon delimited string if multi-field primary key)</returns>
+        /// <inheritdoc cref="ITransaction.InsertAsync(string, dynamic, bool)"/>
         Task<object> InsertAsync(InsertStatement insertStatement, dynamic vars, bool ignoreIfDuplicate = false);
 
         /// <summary>
@@ -144,34 +108,7 @@ namespace Butterfly.Database {
         /// <returns>Number of records updated</returns>
         Task<int> UpdateAsync(string updateStatement, dynamic vars);
 
-        /// <summary>
-        /// Executes an UPDATE statement within this transaction
-        /// </summary>
-        /// <remarks>
-        /// Do an UPDATE using the table name and an anonymous type...
-        /// <code>
-        /// await database.UpdateAsync("message", new {
-        ///     id = 123,
-        ///     text = "Hello",
-        /// });
-        /// </code>
-        /// Do an UPDATE using a full statement and a Dictionary...
-        /// <code>
-        /// await database.UpdateAsync("UPDATE message SET text=@t WHERE id=@id", new Dictionary&lt;string, object&gt; {
-        ///     ["id"] = 123,
-        ///     ["t"] = "Hello",
-        /// });
-        /// </code>
-        /// </remarks>
-        /// <param name="updateStatement">
-        ///     Either a table name or a full UPDATE statement with vars prefixed by @ (like <code>@name</code>)
-        /// </param>
-        /// <param name="vars">
-        ///     Either an anonymous type or a Dictionary. 
-        ///     If <paramref name="updateStatement"/> is a table name, the <paramref name="vars"/> values will be used to build the SET clause and WHERE clause of the UPDATE statement.
-        ///     If <paramref name="updateStatement"/> is a full UPDATE statement, there must be one entry for each var referenced in <paramref name="updateStatement"/>.
-        /// </param>
-        /// <returns>Number of records updated</returns>
+        /// <inheritdoc cref="ITransaction.UpdateAsync(string, dynamic)"/>
         Task<int> UpdateAsync(UpdateStatement updateStatement, dynamic vars);
 
         /// <summary>
@@ -202,32 +139,7 @@ namespace Butterfly.Database {
         /// <returns>Number of records deleted</returns>
         Task<int> DeleteAsync(string deleteStatement, dynamic vars);
 
-        /// <summary>
-        /// Executes a DELETE statement within this transaction
-        /// </summary>
-        /// <remarks>
-        /// Do a DELETE using the table name and an anonymous type...
-        /// <code>
-        /// await database.DeleteAsync("message", new {
-        ///     id = 123
-        /// });
-        /// </code>
-        /// Do a DELETE using a full statement and a Dictionary...
-        /// <code>
-        /// await database.DeleteAsync("DELETE FROM message WHERE id=@id", new Dictionary&lt;string, object&gt; {
-        ///     ["id"] = 123
-        /// });
-        /// </code>
-        /// </remarks>
-        /// <param name="deleteStatement">
-        ///     Either a table name or a full DELETE statement with vars prefixed by @ (like <code>@name</code>)
-        /// </param>
-        /// <param name="vars">
-        ///     Either an anonymous type or a Dictionary. 
-        ///     If <paramref name="deleteStatement"/> is a table name, the <paramref name="vars"/> values will be used to build the WHERE clause of the DELETE statement.
-        ///     If <paramref name="deleteStatement"/> is a full DELETE statement, there must be one entry for each var referenced in <paramref name="deleteStatement"/>.
-        /// </param>
-        /// <returns>Number of records deleted</returns>
+        /// <inheritdoc cref="ITransaction.DeleteAsync(string, dynamic)"/>
         Task<int> DeleteAsync(DeleteStatement deleteStatement, dynamic vars);
 
         /// <summary>
@@ -242,9 +154,7 @@ namespace Butterfly.Database {
         /// </summary>
         void Commit();
 
-        /// <summary>
-        /// Commit the transaction
-        /// </summary>
+        /// <inheritdoc cref="Commit"/>
         Task CommitAsync();
 
         /// <summary>

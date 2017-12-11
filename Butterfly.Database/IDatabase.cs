@@ -101,12 +101,7 @@ namespace Butterfly.Database {
         /// <returns></returns>
         void CreateFromResourceFile(Assembly assembly, string resourceFile);
 
-        /// <summary>
-        /// Creates database tables from an embedded resource file by internally calling <see cref="CreateFromTextAsync(string)"/> with the contents of the embedded resource file"
-        /// </summary>
-        /// <param name="assembly"></param>
-        /// <param name="resourceFile"></param>
-        /// <returns></returns>
+        /// <inheritDoc cref="CreateFromResourceFile(Assembly, string)"/>
         Task CreateFromResourceFileAsync(Assembly assembly, string resourceFile);
 
         /// <summary>
@@ -117,12 +112,7 @@ namespace Butterfly.Database {
         /// <param name="createStatements"></param>
         void CreateFromText(string createStatements);
 
-        /// <summary>
-        /// Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate).<para/>
-        /// Lines beginning with <code>--</code> will be ignored. Each CREATE statement must include a PRIMARY KEY definition. If the table already exists, the CREATE statement is ignored.<para/>
-        /// Creating database tables with this method is not required (primarily done as a convenience method for unit testing)"/>.
-        /// </summary>
-        /// <param name="createStatements"></param>
+        /// <inheritDoc cref="CreateFromText(string)"/>
         Task CreateFromTextAsync(string createStatements);
 
         /// <summary>
@@ -132,11 +122,7 @@ namespace Butterfly.Database {
         /// <returns>An <see cref="IDisposable"/> that allows removing the listener by calling Dispose()</returns>
         IDisposable OnNewUncommittedTransaction(Action<DataEventTransaction> listener);
 
-        /// <summary>
-        /// Adds a listener that is invoked when there is a new uncommitted transaction
-        /// </summary>
-        /// <param name="listener">The lambda to call when there is a new uncommitted <see cref="DataEventTransaction"/></param>
-        /// <returns>An <see cref="IDisposable"/> that allows removing the listener by calling Dispose()</returns>
+        /// <inheritdoc cref="OnNewUncommittedTransaction(Action{DataEventTransaction})"/>
         IDisposable OnNewUncommittedTransaction(Func<DataEventTransaction, Task> listener);
 
         /// <summary>
@@ -146,11 +132,7 @@ namespace Butterfly.Database {
         /// <returns>An <see cref="IDisposable"/> that allows removing the listener by calling Dispose()</returns>
         IDisposable OnNewCommittedTransaction(Action<DataEventTransaction> listener);
 
-        /// <summary>
-        /// Adds a listener that is invoked when there is a new committed transaction
-        /// </summary>
-        /// <param name="listener">The lambda to call when there is a new committed <see cref="DataEventTransaction"/></param>
-        /// <returns>An <see cref="IDisposable"/> that allows removing the listener by calling Dispose()</returns>
+        /// <inheritdoc cref="OnNewCommittedTransaction(Action{DataEventTransaction})"/>
         IDisposable OnNewCommittedTransaction(Func<DataEventTransaction, Task> listener);
 
         /// <summary>
@@ -282,10 +264,7 @@ namespace Butterfly.Database {
         /// <returns>An <see cref="ITransaction"/> instance (can then call InsertAsync(), UpdateAsync(), or DeleteAsync() on the ITransaction instance to make changes on the transaction)/></returns>
         ITransaction BeginTransaction();
 
-        /// <summary>
-        /// Creates a new <see cref="ITransaction"/> instance.  An <see cref="ITransaction"/> instance allows performing an atomic set of modifications to the database.  Must execute <see cref="ITransaction.CommitAsync"/> to save the transaction changes.  Disposing the transaction without committing rolls back the changes.
-        /// </summary>
-        /// <returns>An <see cref="ITransaction"/> instance (can then call InsertAsync(), UpdateAsync(), or DeleteAsync() on the ITransaction instance to make changes on the transaction)/></returns>
+        /// <inheritdoc cref="BeginTransaction"/>
         Task<ITransaction> BeginTransactionAsync();
 
         /// <summary>
@@ -303,12 +282,8 @@ namespace Butterfly.Database {
         /// <returns>A <see cref="DynamicViewSet"/> that can be disposed to remove all database listners</returns>
         DynamicViewSet CreateDynamicViewSet(Action<DataEventTransaction> listener);
 
-        /// <summary>
-        /// Allows creating a set of <see cref="DynamicView"/> instances that publish a single <see cref="DataEventTransaction"/> instance with initial data and new <see cref="DataEventTransaction"/> instances when data changes.  The <see cref="DataEventTransaction"/> instances are published to the lambda passed as the <paramref name="listener"/>.
-        /// </summary>
-        /// <param name="asyncListener">The lambda that should receive the <see cref="DataEventTransaction"/> instances</param>
-        /// <returns>A <see cref="DynamicViewSet"/> that can be disposed to remove all database listners</returns>
-        DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> asyncListener);
+        /// <inheritdoc cref="CreateDynamicViewSet(Action{DataEventTransaction})"/>
+        DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> listener);
 
         /// <summary>
         /// Convenience method which creates a <see cref="DynamicViewSet"/>, adds a single <see cref="DynamicView"/> to the <see cref="DynamicViewSet"/>, and starts the <see cref="DynamicViewSet"/>.
@@ -321,15 +296,7 @@ namespace Butterfly.Database {
         /// <returns></returns>
         Task<DynamicViewSet> CreateAndStartDynamicView(string selectStatement, Action<DataEventTransaction> listener, dynamic values = null, string name = null, string[] keyFieldNames = null);
 
-        /// <summary>
-        /// Convenience method which creates a <see cref="DynamicViewSet"/>, adds a single <see cref="DynamicView"/> to the <see cref="DynamicViewSet"/>, and starts the <see cref="DynamicViewSet"/>.
-        /// </summary>
-        /// <param name="selectStatement"></param>
-        /// <param name="asyncListener"></param>
-        /// <param name="values"></param>
-        /// <param name="name"></param>
-        /// <param name="keyFieldNames"></param>
-        /// <returns></returns>
-        Task<DynamicViewSet> CreateAndStartDynamicView(string selectStatement, Func<DataEventTransaction, Task> asyncListener, dynamic values = null, string name = null, string[] keyFieldNames = null);
+        /// <inheritdoc cref="CreateAndStartDynamicView(string, Action{DataEventTransaction}, dynamic, string, string[])"/>
+        Task<DynamicViewSet> CreateAndStartDynamicView(string selectStatement, Func<DataEventTransaction, Task> listener, dynamic values = null, string name = null, string[] keyFieldNames = null);
     }
 }

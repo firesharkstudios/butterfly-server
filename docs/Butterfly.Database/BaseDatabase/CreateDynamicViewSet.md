@@ -33,7 +33,7 @@ public DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> asyn
 
 | parameter | description |
 | --- | --- |
-| asyncListener | The lambda that should receive the [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instances |
+| listener | The lambda that should receive the [`DataEventTransaction`](../../Butterfly.Database.Event/DataEventTransaction.md) instances |
 
 ## Return Value
 

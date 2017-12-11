@@ -36,7 +36,7 @@ public Task<DynamicViewSet> CreateAndStartDynamicView(string sql,
 | parameter | description |
 | --- | --- |
 | selectStatement |  |
-| asyncListener |  |
+| listener |  |
 | values |  |
 | name |  |
 | keyFieldNames |  |

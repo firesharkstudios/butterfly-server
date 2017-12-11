@@ -10,6 +10,10 @@ public bool Create(CreateStatement statement)
 | --- | --- |
 | statement |  |
 
+## Return Value
+
+true if table was created (false if table already existed)
+
 ## See Also
 
 * class [CreateStatement](../CreateStatement.md)
