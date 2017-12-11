@@ -25,6 +25,8 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 using Butterfly.Util;
 
 namespace Butterfly.Database.Memory {
+
+    /// <inheritdoc/>
     public class MemoryTransaction : BaseTransaction {
 
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();

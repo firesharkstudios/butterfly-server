@@ -26,6 +26,7 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database.Postgres {
 
+    /// <inheritdoc/>
     public class PostgresDatabase : BaseDatabase {
 
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();

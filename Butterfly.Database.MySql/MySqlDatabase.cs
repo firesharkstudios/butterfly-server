@@ -26,6 +26,7 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database.MySql {
 
+    /// <inheritdoc/>
     public class MySqlDatabase : BaseDatabase {
 
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();

@@ -24,6 +24,7 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database {
 
+    /// <inheritdoc/>
     /// <summary>
     /// Base class implementing <see cref="ITransaction"/>. New implementations will normally extend this class.
     /// </summary>

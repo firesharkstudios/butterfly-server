@@ -24,6 +24,8 @@ using Unosquare.Net;
 using Unosquare.Labs.EmbedIO;
 
 namespace Butterfly.Channel.EmbedIO {
+
+    /// <inheritdoc/>
     public class EmbedIOChannelServer : BaseChannelServer {
         public readonly WebServer webServer;
 

@@ -24,6 +24,8 @@ using NLog;
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database.MySql {
+
+    /// <inheritdoc/>
     public class MySqlTransaction : BaseTransaction {
 
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();

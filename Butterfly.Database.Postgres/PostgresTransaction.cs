@@ -24,6 +24,8 @@ using NLog;
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database.Postgres {
+
+    /// <inheritdoc/>
     public class PostgresTransaction : BaseTransaction {
 
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();

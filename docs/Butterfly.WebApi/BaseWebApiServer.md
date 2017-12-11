@@ -1,6 +1,6 @@
 # BaseWebApiServer class
 
-Base class implementing [`IWebApiServer`](IWebApiServer.md). New implementations will normally extend this class.
+Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.
 
 ```csharp
 public abstract class BaseWebApiServer : IWebApiServer
@@ -12,9 +12,24 @@ public abstract class BaseWebApiServer : IWebApiServer
 | --- | --- |
 | [WebHandlers](BaseWebApiServer/WebHandlers.md) { get; } |  |
 | abstract [Dispose](BaseWebApiServer/Dispose.md)() |  |
-| [OnGet](BaseWebApiServer/OnGet.md)(…) |  |
-| [OnPost](BaseWebApiServer/OnPost.md)(…) |  |
-| abstract [Start](BaseWebApiServer/Start.md)() |  |
+| [OnGet](BaseWebApiServer/OnGet.md)(…) | Add a listener responding to GET requests |
+| [OnPost](BaseWebApiServer/OnPost.md)(…) | Add a listener responding to POST requests |
+| abstract [Start](BaseWebApiServer/Start.md)() | Start the web api server |
+
+## Remarks
+
+Initializing a web api server instance...
+
+```csharp
+var webApiServer = new SomeWebApiServer();
+webApiServer.OnGet("/chat-messages", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApiServer.OnPost("/login", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApiServer.Start();
+```
 
 ## See Also
 

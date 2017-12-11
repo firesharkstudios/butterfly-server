@@ -6,7 +6,7 @@
 | --- | --- |
 | abstract class [BaseDatabase](Butterfly.Database/BaseDatabase.md) | Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views. |
 | abstract class [BaseStatement](Butterfly.Database/BaseStatement.md) | Base class for parsing SQL statements |
-| abstract class [BaseTransaction](Butterfly.Database/BaseTransaction.md) | Base class implementing [`ITransaction`](Butterfly.Database/ITransaction.md). New implementations will normally extend this class. |
+| abstract class [BaseTransaction](Butterfly.Database/BaseTransaction.md) | Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single [`DataEventTransaction`](Butterfly.Database.Event/DataEventTransaction.md) on the underlying [`IDatabase`](Butterfly.Database/IDatabase.md) instance when the transaction is committed. |
 | class [CreateStatement](Butterfly.Database/CreateStatement.md) | Internal class used to parse CREATE statements |
 | class [DatabaseException](Butterfly.Database/DatabaseException.md) |  |
 | class [DataEventTransactionListener](Butterfly.Database/DataEventTransactionListener.md) | Internal class used to store references to data event transaction listeners |

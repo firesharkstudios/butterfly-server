@@ -29,6 +29,7 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database.SQLite {
 
+    /// <inheritdoc/>
     public class SQLiteDatabase : BaseDatabase {
 
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();

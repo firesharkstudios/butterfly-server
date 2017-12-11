@@ -20,6 +20,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Butterfly.WebApi {
+
+    /// <inheritdoc/>
     /// <summary>
     /// Base class implementing <see cref="IWebApiServer"/>. New implementations will normally extend this class.
     /// </summary>

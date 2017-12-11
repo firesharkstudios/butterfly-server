@@ -27,6 +27,8 @@ using RedHttpServerNet45.Response;
 using Butterfly.Util;
 
 namespace Butterfly.WebApi.RedHttpServer {
+
+    /// <inheritdoc/>
     public class RedHttpServerWebApiServer : BaseWebApiServer {
 
         public readonly global::RedHttpServerNet45.RedHttpServer server;

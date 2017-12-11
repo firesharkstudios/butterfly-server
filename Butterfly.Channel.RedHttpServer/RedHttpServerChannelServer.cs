@@ -22,6 +22,8 @@ using RedHttpServerNet45.Response;
 using Butterfly.Util;
 
 namespace Butterfly.Channel.RedHttpServer {
+
+    /// <inheritdoc/>
     public class RedHttpServerChannelServer : BaseChannelServer {
         public readonly global::RedHttpServerNet45.RedHttpServer server;
 

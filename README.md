@@ -63,10 +63,21 @@ channelClient.start();
 There are three key packages...
 
 - [Butterfly.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Database) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
+
+  - [Butterfly.Database.Memory](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.Memory) - In memory implementation (no persistence, no support for joins)
+  - [Butterfly.Database.MySQL](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.MySQL) - Implementation for MySQL
+  - [Butterfly.Database.Postgres](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.Postgres) - Implementation for Postgres
+  - [Butterfly.Database.SQLite](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.SQLite) - Implementation for SQLIte
  
 - [Butterfly.Channel](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
 
+  - [Butterfly.Channel.EmbedIO](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel.EmbedIO) - Implementation for [EmbedIO](https://github.com/unosquare/embedio) server
+  - [Butterfly.Channel.RedHttpServer](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel.RedHttpServer) - Implementation for [RedHttpServer](https://github.com/rosenbjerg/RedHttpServer.CSharp)
+
 - [Butterfly.WebApi](https://firesharkstudios.github.io/Butterfly/Butterfly.WebApi) - Allows receiving API requests via HTTP (inspired by Express JS) by wrapping existing C# web servers.
+
+  - [Butterfly.WebApi.EmbedIO](https://firesharkstudios.github.io/Butterfly/Butterfly.WebApi.EmbedIO) - Implementation for [EmbedIO](https://github.com/unosquare/embedio) server
+  - [Butterfly.WebApi.RedHttpServer](https://firesharkstudios.github.io/Butterfly/Butterfly.WebApi.RedHttpServer) - Implementation for [RedHttpServer](https://github.com/rosenbjerg/RedHttpServer.CSharp)
 
 There are no interdependencies between the packages. Use any subset of the packages you wish.
 
