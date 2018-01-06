@@ -1,0 +1,23 @@
+{
+  "name": "butterfly-client",
+  "version": "1.0.0",
+  "description": "Client library for Butterfly Framework",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "butterfly",
+    "framework"
+  ],
+  "author": "Kent Johnson",
+  "license": "ISC",
+  "files": [
+    "js/butterfly.channel.websocket.js",
+    "js/butterfly.data.array.js",
+    "js/butterfly.util.js"
+  ]
+}

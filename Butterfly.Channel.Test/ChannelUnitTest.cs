@@ -35,27 +35,30 @@ namespace Butterfly.Channel.Test {
             // Listen for new channels at /test to be created
             IChannel newChannel = null;
             TestDisposable testDisposable = new TestDisposable();
-            channelServer.OnNewChannel("/test", channel => {
+            channelServer.OnNewChannel("/test", (authType, authValue, channel) => {
                 newChannel = channel;
-                return testDisposable;
+                channel.Attach(testDisposable);
+                return authValue;
             });
             channelServer.Start();
             if (start != null) start();
 
+            var testAuthToken = "123";
+
             // Test creating a channel from the client
             List<string> messageCollector = new List<string>();
-            var channelClient = new WebSocketChannelClient("ws://localhost:8080/test", "Custom 123", json => {
+            var channelClient = new WebSocketChannelClient("ws://localhost:8080/test", testAuthToken, json => {
                 var message = JsonUtil.Deserialize<string>(json);
                 messageCollector.Add(message);
             }, heartbeatEveryMillis: 1000);
             channelClient.Start();
-            await Task.Delay(200);
+            await Task.Delay(1000);
             Assert.IsNotNull(newChannel);
             Assert.AreEqual(1, channelServer.ChannelCount);
-            Assert.IsNotNull(channelServer.GetChannel("123"));
+            Assert.IsNotNull(channelServer.GetChannel(testAuthToken));
 
             // Test if sending a message on the server is received on the client
-            channelServer.Queue("123", "Hello");
+            channelServer.Queue(testAuthToken, "Hello");
             await Task.Delay(200);
             Assert.AreEqual(1, messageCollector.Count);
             Assert.AreEqual("Hello", messageCollector[0]);

@@ -37,53 +37,58 @@ namespace Butterfly.Channel {
         protected readonly ConcurrentDictionary<IChannel, IChannel> unauthenticatedChannels = new ConcurrentDictionary<IChannel, IChannel>();
         protected readonly ConcurrentDictionary<string, IChannel> authenticatedChannelById = new ConcurrentDictionary<string, IChannel>();
 
-        protected readonly List<NewChannelListener> onNewChannelListeners = new List<NewChannelListener>();
+        protected readonly List<NewChannelHandler> onNewChannelHandlers = new List<NewChannelHandler>();
 
-        protected readonly Func<string, string> authenticate;
         protected readonly int mustReceiveHeartbeatMillis;
 
-        public BaseChannelServer(Func<string, string> authenticate = null, int mustReceiveHeartbeatMillis = 5000) {
-            this.authenticate = authenticate;
+        public BaseChannelServer(int mustReceiveHeartbeatMillis = 5000) {
             this.mustReceiveHeartbeatMillis = mustReceiveHeartbeatMillis;
         }
 
         public void AddUnauthenticatedChannel(IChannel channel) {
-            logger.Debug($"AddUnauthenticatedChannel():channel.Path={channel.Path}");
+            //logger.Debug($"AddUnauthenticatedChannel():channel.Path={channel.WebRequest.RequestUri.AbsolutePath}");
             this.unauthenticatedChannels[channel] = channel;
         }
 
-        public static string StandardAuthenticate(string value) {
+        /*
+        public static T StandardAuthenticate(string value) {
             if (!AuthenticationHeaderValue.TryParse(value, out AuthenticationHeaderValue parsedValue)) throw new Exception("Could not parse authentication value");
             return parsedValue.Parameter;
         }
+        */
 
-        internal void Authenticate(string auth, BaseChannel channel) {
-            var authId = this.authenticate==null ? StandardAuthenticate(auth) : this.authenticate(auth);
-            if (string.IsNullOrEmpty(authId)) throw new Exception("Authentication failed");
-            channel.SetAuthId(authId);
-            logger.Debug($"Authenticate():channel.Path={channel.Path},channel.AuthId={channel.AuthId}");
-
+        internal void Authenticate(string authType, string authValue, BaseChannel channel) {
             this.unauthenticatedChannels.TryRemove(channel, out IChannel dummyChannel);
+            Task task = this.AuthenticateAsync(authType, authValue, channel);
+        }
 
-            var existingChannel = this.GetChannel(authId);
-            if (existingChannel != null) {
-                existingChannel.Dispose();
+        internal async Task AuthenticateAsync(string authType, string authValue, BaseChannel channel) {
+            var onNewChannelHandler = this.onNewChannelHandlers.Where(x => x.path == channel.WebRequest.RequestUri.AbsolutePath).FirstOrDefault();
+            if (onNewChannelHandler == null) throw new Exception($"Invalid path '{channel.WebRequest.RequestUri.AbsolutePath}'");
+            string id = onNewChannelHandler.handle != null ? onNewChannelHandler.handle(authType, authValue, channel) : await onNewChannelHandler.handleAsync(authType, authValue, channel);
+            if (!string.IsNullOrEmpty(id)) {
+                channel.SetId(id);
+
+                var existingChannel = this.GetChannel(id);
+                if (existingChannel != null) {
+                    existingChannel.Dispose();
+                }
+
+                channel.Start();
+                this.authenticatedChannelById[id] = channel;
             }
-
-            var initChannelListeners = this.onNewChannelListeners.Where(x => x.path == channel.Path).ToArray();
-            if (initChannelListeners == null || initChannelListeners.Length == 0) throw new Exception($"Invalid path '{channel.Path}'");
-            channel.Start(initChannelListeners);
-            this.authenticatedChannelById[authId] = channel;
         }
 
-        public IDisposable OnNewChannel(string pathFilter, Func<IChannel, IDisposable> listener) {
+        /// <inheritdoc/>
+        public IDisposable OnNewChannel(string path, Func<string, string, IChannel, string> handler) {
             if (this.started) throw new Exception("Cannot call OnNewChannel() after Start()");
-            return new ListItemDisposable<NewChannelListener>(onNewChannelListeners, new NewChannelListener(pathFilter, listener));
+            return new ListItemDisposable<NewChannelHandler>(onNewChannelHandlers, new NewChannelHandler(path, handler));
         }
 
-        public IDisposable OnNewChannelAsync(string pathFilter, Func<IChannel, Task<IDisposable>> listener) {
+        /// <inheritdoc/>
+        public IDisposable OnNewChannel(string path, Func<string, string, IChannel, Task<string>> handler) {
             if (this.started) throw new Exception("Cannot call OnNewChannelAsync() after Start()");
-            return new ListItemDisposable<NewChannelListener>(onNewChannelListeners, new NewChannelListener(pathFilter, listener));
+            return new ListItemDisposable<NewChannelHandler>(onNewChannelHandlers, new NewChannelHandler(path, handler));
         }
 
         public int ChannelCount => this.authenticatedChannelById.Count;
@@ -136,8 +141,8 @@ namespace Butterfly.Channel {
                 foreach (IChannel channel in this.authenticatedChannelById.Values.ToArray()) {
                     logger.Trace($"CheckForDeadChannelsAsync():channel.LastHeartbeatReceived={channel.LastHeartbeat},cutoffDateTime={cutoffDateTime}");
                     if (channel.LastHeartbeat < cutoffDateTime) {
-                        bool removed = this.authenticatedChannelById.TryRemove(channel.AuthId, out IChannel removedChannel);
-                        if (!removed) throw new Exception($"Could not remove channel id {channel.AuthId}");
+                        bool removed = this.authenticatedChannelById.TryRemove(channel.Id, out IChannel removedChannel);
+                        if (!removed) throw new Exception($"Could not remove channel id {channel.Id}");
                         channel.Dispose();
                     }
                     else if (oldestLastReceivedHeartbeatReceived==null || oldestLastReceivedHeartbeatReceived>channel.LastHeartbeat) {

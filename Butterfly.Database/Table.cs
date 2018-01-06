@@ -55,12 +55,12 @@ namespace Butterfly.Database {
             protected set;
         }
         
-        protected readonly Dictionary<string, Func<object>> getDefaultValueByFieldName = new Dictionary<string, Func<object>>();
-        internal void SetDefaultValue(string fieldName, Func<object> getDefaultValue) {
+        protected readonly Dictionary<string, Func<string, object>> getDefaultValueByFieldName = new Dictionary<string, Func<string, object>>();
+        internal void SetDefaultValue(string fieldName, Func<string, object> getDefaultValue) {
             this.getDefaultValueByFieldName[fieldName] = getDefaultValue;
         }
 
-        public Dictionary<string, Func<object>> GetDefaultValueByFieldName => this.getDefaultValueByFieldName;
+        public Dictionary<string, Func<string, object>> GetDefaultValueByFieldName => this.getDefaultValueByFieldName;
 
     }
 }

@@ -1,4 +1,7 @@
-﻿function WebSocketChannelClient(options) {
+﻿if (!butterfly) var butterfly = {};
+if (!butterfly.channel) butterfly.channel = {};
+
+butterfly.channel.WebSocketChannelClient = function(options) {
 
     let private = this;
 

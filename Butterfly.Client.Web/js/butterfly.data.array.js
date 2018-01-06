@@ -1,4 +1,7 @@
-﻿function ArrayDataEventHandler(config) {
+﻿if (!butterfly) var butterfly = {};
+if (!butterfly.data) butterfly.data = {};
+
+butterfly.data.ArrayDataEventHandler = function(config) {
 
     let private = this;
 

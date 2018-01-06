@@ -14,10 +14,16 @@
  * limitations under the License.
 */
 
-using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
 
-namespace Butterfly.WebApi {
-    public interface IWebResponse {
-        Task WriteAsJsonAsync(object value);
+namespace Butterfly.Util {
+    public interface IWebRequest {
+        Uri RequestUri { get;  }
+        Dictionary<string, string> Headers { get; }
+        
+        Dictionary<string, string> PathParams { get; }
+
+        Dictionary<string, string> QueryParams { get; }
     }
 }

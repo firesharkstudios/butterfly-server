@@ -25,6 +25,6 @@ namespace Butterfly.WebApi {
     public class WebHandler {
         public HttpMethod method;
         public string path;
-        public Func<IWebRequest, IWebResponse, Task> listener;
+        public Func<IHttpRequest, IHttpResponse, Task> listener;
     }
 }

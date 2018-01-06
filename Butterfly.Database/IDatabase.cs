@@ -198,7 +198,7 @@ namespace Butterfly.Database {
         ///     or just ignore if <paramref name="ignoreIfDuplicate"/> is false
         /// </param>
         /// <returns>Primary key value (semi-colon delimited string if multi-field primary key)</returns>
-        Task<object> InsertAndCommitAsync(string insertStatement, dynamic vars, bool ignoreIfDuplicate = false);
+        Task<T> InsertAndCommitAsync<T>(string insertStatement, dynamic vars, bool ignoreIfDuplicate = false);
 
         /// <summary>
         /// Executes an UPDATE statement as a single transaction
@@ -273,7 +273,7 @@ namespace Butterfly.Database {
         /// <param name="fieldName">Name of the field</param>
         /// <param name="getDefaultValue">The lambda that returns the default value</param>
         /// <param name="tableName">An optional table name.  If not null, the getDefaultValue lambda is only applied to the specified table. If null, the getDefaultValue lambda is applied to all tables.</param>
-        void SetInsertDefaultValue(string fieldName, Func<object> getDefaultValue, string tableName = null);
+        void SetInsertDefaultValue(string fieldName, Func<string, object> getDefaultValue, string tableName = null);
 
         /// <summary>
         /// Allows creating a set of <see cref="DynamicView"/> instances that publish a single <see cref="DataEventTransaction"/> instance with initial data and new <see cref="DataEventTransaction"/> instances when data changes.  The <see cref="DataEventTransaction"/> instances are published to the lambda passed as the <paramref name="listener"/>.

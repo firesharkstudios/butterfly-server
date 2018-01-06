@@ -27,17 +27,17 @@ namespace Butterfly.Examples {
                 return;
             }
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Examples.better-chat-db.sql");
-            database.SetInsertDefaultValue("id", () => Guid.NewGuid().ToString());
-            database.SetInsertDefaultValue("created_at", () => DateTime.Now);
-            database.SetInsertDefaultValue("updated_at", () => DateTime.Now);
-            database.SetInsertDefaultValue("join_id", () => Guid.NewGuid().ToString().Substring(0, 8), "chat");
+            database.SetInsertDefaultValue("id", tableName => Guid.NewGuid().ToString());
+            database.SetInsertDefaultValue("created_at", tableName => DateTime.Now);
+            database.SetInsertDefaultValue("updated_at", tableName => DateTime.Now);
+            database.SetInsertDefaultValue("join_id", tableName => Guid.NewGuid().ToString().Substring(0, 8), "chat");
 
             // Listen for clients creating new channels to /better-chat
             // (clients are expected to maintain a channel to the server)
-            channelServer.OnNewChannelAsync("/better-chat", async(channel) => {
+            channelServer.OnNewChannel("/better-chat", async(authType, authValue, channel) => {
                 // Create a user record if missing
-                await database.InsertAndCommitAsync("user", new {
-                    id = channel.AuthId,
+                await database.InsertAndCommitAsync<string>("user", new {
+                    id = channel.Id,
                     name = CleverNameX.Generate(),
                 }, ignoreIfDuplicate: true);
 
@@ -51,7 +51,7 @@ namespace Butterfly.Examples {
                 dynamicViewSet.CreateDynamicView(
                     "SELECT id, name FROM user WHERE id=@userId", 
                     values: new {
-                        userId = channel.AuthId
+                        userId = channel.Id
                     },
                     name: "me"
                 );
@@ -60,7 +60,7 @@ namespace Butterfly.Examples {
                 var chatIdsDynamicView = dynamicViewSet.CreateDynamicView(
                     "SELECT id, chat_id FROM chat_participant WHERE user_id=@userId", 
                     values: new {
-                        userId = channel.AuthId
+                        userId = channel.Id
                     }, 
                     name: "chat_ids"
                 );
@@ -103,13 +103,17 @@ namespace Butterfly.Examples {
                 );
 
                 // Start the DynamicView group (executes all the DynamicView queries and sends changes as they occur)
-                return await dynamicViewSet.StartAsync();
+                await dynamicViewSet.StartAsync();
+
+                channel.Attach(dynamicViewSet);
+
+                return "some-unique-channel-id";
             });
 
             // Listen for API requests to /api/profile/update
             webApiServer.OnPost($"/api/better-chat/profile/update", async (req, res) => {
                 logger.Debug("Main():/api/profile/update");
-                var auth = req.AuthenticationHeaderValue;
+                var auth = req.GetAuthenticationHeaderValue();
                 var user = await req.ParseAsJsonAsync<dynamic>();
 
                 // Update record in database
@@ -122,16 +126,16 @@ namespace Butterfly.Examples {
             // Listen for API requests to /api/chat/create
             webApiServer.OnPost($"/api/better-chat/chat/create", async(req, res) => {
                 logger.Debug("Main():/api/chat/create");
-                var auth = req.AuthenticationHeaderValue;
+                var auth = req.GetAuthenticationHeaderValue();
                 var chat = await req.ParseAsJsonAsync<dynamic>();
 
                 // Create records in database
                 using (var transaction = await database.BeginTransactionAsync()) {
-                    object chatId = await transaction.InsertAsync("INSERT INTO chat (@@names) VALUES (@@values)", new {
+                    string chatId = await transaction.InsertAsync<string>("INSERT INTO chat (@@names) VALUES (@@values)", new {
                         name = chat.name,
                         owner_id = auth.Parameter
                     });
-                    await transaction.InsertAsync("INSERT INTO chat_participant (@@names) VALUES (@@values)", new {
+                    await transaction.InsertAsync<string>("INSERT INTO chat_participant (@@names) VALUES (@@values)", new {
                         chat_id = chatId,
                         user_id = auth.Parameter,
                     });
@@ -142,7 +146,7 @@ namespace Butterfly.Examples {
             // Listen for API requests to /api/chat/join
             webApiServer.OnPost($"/api/better-chat/chat/join", async (req, res) => {
                 logger.Debug("Main():/api/chat/join");
-                var auth = req.AuthenticationHeaderValue;
+                var auth = req.GetAuthenticationHeaderValue();
                 var join = await req.ParseAsJsonAsync<dynamic>();
 
                 var chatId = await database.SelectValueAsync<string>("SELECT id FROM chat WHERE join_id=@joinId", new {
@@ -151,7 +155,7 @@ namespace Butterfly.Examples {
 
                 // Create records in database
                 if (chatId != null) {
-                    await database.InsertAndCommitAsync("INSERT INTO chat_participant (@@names) VALUES (@@values)", new {
+                    await database.InsertAndCommitAsync<string>("INSERT INTO chat_participant (@@names) VALUES (@@values)", new {
                         chat_id = chatId,
                         user_id = auth.Parameter,
                     }, ignoreIfDuplicate: true);
@@ -161,7 +165,7 @@ namespace Butterfly.Examples {
             // Listen for API requests to /api/chat/delete
             webApiServer.OnPost($"/api/better-chat/chat/delete", async (req, res) => {
                 logger.Debug("Main():/api/chat/delete");
-                var auth = req.AuthenticationHeaderValue;
+                var auth = req.GetAuthenticationHeaderValue();
                 var chat = await req.ParseAsJsonAsync<dynamic>();
 
                 // Create records in database
@@ -172,11 +176,11 @@ namespace Butterfly.Examples {
 
             // Listen for API requests to /api/chat/message
             webApiServer.OnPost($"/api/better-chat/chat/message", async(req, res) => {
-                var auth = req.AuthenticationHeaderValue;
+                var auth = req.GetAuthenticationHeaderValue();
                 var chatMessage = await req.ParseAsJsonAsync<dynamic>();
 
                 // Create record in database
-                await database.InsertAndCommitAsync("INSERT INTO chat_message (@@names) VALUES (@@values)", new {
+                await database.InsertAndCommitAsync<string>("INSERT INTO chat_message (@@names) VALUES (@@values)", new {
                     user_id = auth.Parameter,
                     chat_id = chatMessage.chatId,
                     text = chatMessage.text

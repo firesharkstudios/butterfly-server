@@ -14,15 +14,11 @@
  * limitations under the License.
 */
 
+using Butterfly.Util;
 using System.Threading.Tasks;
 
-using System.Collections.Specialized;
-using System.Net.Http.Headers;
-
 namespace Butterfly.WebApi {
-    public interface IWebRequest {
+    public interface IHttpRequest : IWebRequest {
         Task<T> ParseAsJsonAsync<T>();
-        NameValueCollection Headers { get; }
-        AuthenticationHeaderValue AuthenticationHeaderValue { get; }
     }
 }

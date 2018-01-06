@@ -24,6 +24,7 @@ using Nito.AsyncEx;
 using NLog;
 
 using Butterfly.Util;
+using System.Net.Http.Headers;
 
 namespace Butterfly.Channel {
 
@@ -35,37 +36,35 @@ namespace Butterfly.Channel {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly BaseChannelServer channelServer;
-        protected readonly string path;
+        protected readonly IWebRequest webRequest;
         protected readonly DateTime created;
 
         protected readonly ConcurrentQueue<string> buffer = new ConcurrentQueue<string>();
         protected readonly AsyncMonitor monitor = new AsyncMonitor();
+
+        protected string id = null;
 
         /// <summary>
         /// Stores when the datetime of the last heartbeat (set via <ref>Heartbeat</ref>)
         /// </summary>
         protected DateTime lastHeartbeat = DateTime.Now;
 
-        protected string authId = null;
-
-        public BaseChannel(BaseChannelServer channelServer, string path) {
+        public BaseChannel(BaseChannelServer channelServer, IWebRequest webRequest) {
             this.channelServer = channelServer;
-            this.path = path;
+            this.webRequest = webRequest;
             this.created = DateTime.Now;
         }
-
-        public string Path => this.path;
 
         /// <summary>
         /// Unique identifier for the channel
         /// </summary>
-        public string AuthId => this.authId;
+        public string Id => this.id;
 
-        internal void SetAuthId(string value) {
-            this.authId = value;
-        }
+        internal void SetId(string value) => this.id = value;
 
         public DateTime Created => this.created;
+
+        public IWebRequest WebRequest => this.webRequest;
 
         /// <summary>
         /// When the last heartbeat was registered
@@ -91,18 +90,18 @@ namespace Butterfly.Channel {
         }
 
         protected bool started = false;
-        public void Start(ICollection<NewChannelListener> newChannelListeners) {
+        public void Start() {
             this.started = true;
-            Task.Run(() => this.RunAsync(newChannelListeners));
+            Task.Run(() => this.RunAsync());
         }
 
-        protected async Task RunAsync(ICollection<NewChannelListener> initChannelListeners) {
-            List<IDisposable> disposables = new List<IDisposable>();
+        protected readonly List<IDisposable> disposables = new List<IDisposable>();
+        public void Attach(IDisposable disposable) {
+            this.disposables.Add(disposable);
+        }
+
+        protected async Task RunAsync() {
             try {
-                foreach (var listener in initChannelListeners) {
-                    var disposable = listener.listener!=null ? listener.listener(this) : await listener.listenerAsync(this);
-                    if (disposable != null) disposables.Add(disposable);
-                }
                 while (this.started) {
                     if (this.buffer.TryDequeue(out string result)) {
                         await this.SendAsync(result);
@@ -136,7 +135,8 @@ namespace Butterfly.Channel {
                     string header = text.Substring(0, pos).Trim();
                     string value = text.Substring(pos + 1).Trim();
                     if (header == HttpRequestHeader.Authorization.ToString()) {
-                        this.channelServer.Authenticate(value, this);
+                        var authenticationHeaderValue = AuthenticationHeaderValue.Parse(value);
+                        this.channelServer.Authenticate(authenticationHeaderValue.Scheme, authenticationHeaderValue.Parameter, this);
                     }
                 }
             }

@@ -24,20 +24,18 @@ namespace Butterfly.WebApi {
         /// </summary>
         /// <param name="path"></param>
         /// <param name="listener"></param>
-        void OnGet(string path, Func<IWebRequest, IWebResponse, Task> listener);
+        void OnGet(string path, Func<IHttpRequest, IHttpResponse, Task> listener);
 
         /// <summary>
         /// Add a listener responding to POST requests
         /// </summary>
         /// <param name="path"></param>
         /// <param name="listener"></param>
-        void OnPost(string path, Func<IWebRequest, IWebResponse, Task> listener);
+        void OnPost(string path, Func<IHttpRequest, IHttpResponse, Task> listener);
 
         /// <summary>
         /// Start the web api server
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="listener"></param>
         void Start();
     }
 }

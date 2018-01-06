@@ -14,6 +14,7 @@
  * limitations under the License.
 */
 
+using Butterfly.Util;
 using System;
 using System.Collections.Generic;
 
@@ -22,11 +23,12 @@ namespace Butterfly.Channel {
     /// Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
     /// </summary>
     public interface IChannel : IDisposable {
-        string AuthId { get; }
-        string Path { get; }
+        string Id { get; }
         DateTime Created { get;  }
+        IWebRequest WebRequest { get; }
         DateTime LastHeartbeat { get; }
-        void Start(ICollection<NewChannelListener> newChannelListeners);
+        void Start();
+        void Attach(IDisposable disposable);
         void Queue(object value);
     }
 }

@@ -51,7 +51,7 @@ namespace Butterfly.Database {
         protected abstract Task<bool> DoCreateAsync(CreateStatement statement);
 
         // Insert methods
-        public async Task<object> InsertAsync(string insertStatement, dynamic vars, bool ignoreIfDuplicate = false) {
+        public async Task<T> InsertAsync<T>(string insertStatement, dynamic vars, bool ignoreIfDuplicate = false) {
             InsertStatement statement = new InsertStatement(this.database, insertStatement);
             return await this.InsertAsync(statement, vars, ignoreIfDuplicate: ignoreIfDuplicate);
         }

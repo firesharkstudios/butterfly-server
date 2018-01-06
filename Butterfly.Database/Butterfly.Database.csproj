@@ -77,6 +77,7 @@
     <Compile Include="Dynamic\SingleValueDynamicParam.cs" />
     <Compile Include="Event\DataEvent.cs" />
     <Compile Include="Event\DataEventTransaction.cs" />
+    <Compile Include="FieldValidator.cs" />
     <Compile Include="IDatabase.cs" />
     <Compile Include="IDynamicParam.cs" />
     <Compile Include="ITransaction.cs" />

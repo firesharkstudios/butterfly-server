@@ -26,6 +26,9 @@ using Unosquare.Labs.EmbedIO;
 using Unosquare.Labs.EmbedIO.Constants;
 
 using Butterfly.Util;
+using System;
+using System.Linq;
+using NLog;
 
 namespace Butterfly.WebApi.EmbedIO {
 
@@ -47,6 +50,8 @@ namespace Butterfly.WebApi.EmbedIO {
     }
 
     public class MyWebModule : WebModuleBase {
+        protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         public MyWebModule(ICollection<WebHandler> webHandlers) {
             foreach (var webHandler in webHandlers) {
                 HttpVerbs httpVerb;
@@ -60,7 +65,12 @@ namespace Butterfly.WebApi.EmbedIO {
                     throw new System.Exception($"Unknown method '{webHandler.method}'");
                 }
                 this.AddHandler(webHandler.path, httpVerb, async (context, cancellationToken) => {
-                    await webHandler.listener(new EmbedIOWebRequest(context), new EmbedIOWebResponse(context));
+                    try {
+                        await webHandler.listener(new EmbedIOWebRequest(context), new EmbedIOWebResponse(context));
+                    }
+                    catch (Exception e) {
+                        logger.Error(e);
+                    }
                     return true;
                 });
             }
@@ -69,7 +79,7 @@ namespace Butterfly.WebApi.EmbedIO {
         public override string Name => "My Web Module";
     }
 
-    public class EmbedIOWebRequest : IWebRequest {
+    public class EmbedIOWebRequest : IHttpRequest {
 
         public readonly Unosquare.Net.HttpListenerContext context;
 
@@ -84,21 +94,16 @@ namespace Butterfly.WebApi.EmbedIO {
             }
         }
 
-        public NameValueCollection Headers {
-            get {
-                return this.context.Request.Headers;
-            }
-        }
+        public Uri RequestUri => this.context.Request.Url;
 
-        public AuthenticationHeaderValue AuthenticationHeaderValue {
-            get {
-                string text = this.Headers[HttpRequestHeader.Authorization.ToString()];
-                return AuthenticationHeaderValue.Parse(text);
-            }
-        }
+        public Dictionary<string, string> Headers => this.context.Request.Headers.ToDictionary();
+
+        public Dictionary<string, string> PathParams => this.context.RequestRegexUrlParams(this.context.Request.Url.AbsolutePath).ToDictionary(x => x.Key, y => Convert.ToString(y));
+
+        public Dictionary<string, string> QueryParams => this.RequestUri.ParseQuery();
     }
 
-    public class EmbedIOWebResponse : IWebResponse {
+    public class EmbedIOWebResponse : IHttpResponse {
 
         public readonly Unosquare.Net.HttpListenerContext context;
 

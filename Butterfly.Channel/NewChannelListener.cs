@@ -21,21 +21,21 @@ namespace Butterfly.Channel {
     /// <summary>
     /// Internal class used to store references to new channel listeners
     /// </summary>
-    public class NewChannelListener {
+    public class NewChannelHandler {
         public readonly string path;
-        public readonly Func<IChannel, IDisposable> listener;
-        public readonly Func<IChannel, Task<IDisposable>> listenerAsync;
+        public readonly Func<string, string, IChannel, string> handle;
+        public readonly Func<string, string, IChannel, Task<string>> handleAsync;
 
-        public NewChannelListener(string path, Func<IChannel, IDisposable> listener) {
+        public NewChannelHandler(string path, Func<string, string, IChannel, string> listener) {
             this.path = path;
-            this.listener = listener;
-            this.listenerAsync = null;
+            this.handle = listener;
+            this.handleAsync = null;
         }
 
-        public NewChannelListener(string pathFilter, Func<IChannel, Task<IDisposable>> listener) {
+        public NewChannelHandler(string pathFilter, Func<string, string, IChannel, Task<string>> listener) {
             this.path = pathFilter;
-            this.listener = null;
-            this.listenerAsync = listener;
+            this.handle = null;
+            this.handleAsync = listener;
         }
     }
 }

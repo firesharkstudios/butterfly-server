@@ -1,4 +1,7 @@
-﻿let COLORS = [
+﻿if (!butterfly) var butterfly = {};
+if (!butterfly.clever) butterfly.clever = {};
+
+butterfly.clever.COLORS = [
     'Aqua',
     'Aquamarine',
     'Azure',
@@ -52,7 +55,7 @@
     'Yellow',
 ];
 
-let ANIMALS = [
+butterfly.clever.ANIMALS = [
     'Aardvark',
     'Albatross',
     'Alligator',
@@ -242,6 +245,6 @@ let ANIMALS = [
     'Zebra',
 ];
 
-function generateCleverName() {
-    return COLORS[Math.floor(Math.random() * COLORS.length)] + ' ' + ANIMALS[Math.floor(Math.random() * ANIMALS.length)];
+butterfly.clever.generateCleverName = function() {
+    return butterfly.clever.COLORS[Math.floor(Math.random() * butterfly.clever.COLORS.length)] + ' ' + butterfly.clever.ANIMALS[Math.floor(Math.random() * butterfly.clever.ANIMALS.length)];
 }

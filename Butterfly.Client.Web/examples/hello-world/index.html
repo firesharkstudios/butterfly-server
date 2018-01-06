@@ -30,9 +30,9 @@
     <script src="/js/butterfly.util.js"></script>
     <script>
         // Create a channel to the server
-        let channelClient = new WebSocketChannelClient({
+        let channelClient = new butterfly.channel.WebSocketChannelClient({
             url: '/hello-world',
-            auth: 'Custom ' + uuidv4(),
+            auth: 'Custom ' + butterfly.util.uuidv4(),
             onDataEvent: function (dataEvent) {
                 // When an INSERT data event is received, display the text field value in an alert box
                 if (dataEvent.dataEventType == 'Insert') alert(dataEvent.record.text);

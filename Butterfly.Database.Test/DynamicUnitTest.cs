@@ -55,9 +55,9 @@ namespace Butterfly.Database.Test {
 
         public async Task TestDatabase(BaseDatabase database) {
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Database.Test.db.sql");
-            database.SetInsertDefaultValue("id", () => Guid.NewGuid().ToString(), "employee");
-            database.SetInsertDefaultValue("created_at", () => DateTime.Now);
-            database.SetInsertDefaultValue("updated_at", () => DateTime.Now);
+            database.SetInsertDefaultValue("id", tableName => Guid.NewGuid().ToString(), "employee");
+            database.SetInsertDefaultValue("created_at", tableName => DateTime.Now);
+            database.SetInsertDefaultValue("updated_at", tableName => DateTime.Now);
 
             await DatabaseUnitTest.TruncateData(database);
             (object salesDepartmentId, object hrDepartmentId, object customerServiceDepartmentId) = await DatabaseUnitTest.InsertBasicData(database);
@@ -164,10 +164,10 @@ namespace Butterfly.Database.Test {
 
                 // Confirm that an insert event is created
                 dataEventTransactionCollector.Clear();
-                object joeSalesEmployeeId;
+                string joeSalesEmployeeId;
                 using (ITransaction transaction = await database.BeginTransactionAsync()) {
                     // Add Joe Sales employee
-                    joeSalesEmployeeId = await transaction.InsertAsync("INSERT INTO employee (@@names) VALUES (@@values)", new {
+                    joeSalesEmployeeId = await transaction.InsertAsync<string>("INSERT INTO employee (@@names) VALUES (@@values)", new {
                         name = "Joe Sales",
                         department_id = salesDepartmentId,
                     });

@@ -3,6 +3,7 @@
 using NLog;
 
 using Butterfly.Channel;
+using Butterfly.Database.Dynamic;
 using Butterfly.WebApi;
 
 namespace Butterfly.Examples {
@@ -23,7 +24,7 @@ namespace Butterfly.Examples {
 	            created_at DATETIME NOT NULL,
 	            PRIMARY KEY (id)
             );");
-            database.SetInsertDefaultValue("created_at", () => DateTime.Now);
+            database.SetInsertDefaultValue("created_at", tableName => DateTime.Now);
 
             // Listen for clients creating new channels to /minimal-chat,
             // clients are expected to maintain a channel to the server,
@@ -31,12 +32,16 @@ namespace Butterfly.Examples {
             //
             // When a channel is created, create a DynamicView on the message table sending all 
             // initial data and data changes to the client over the channel
-            channelServer.OnNewChannel("/minimal-chat", channel => database.CreateAndStartDynamicView(
-                "chat_message",
-                dataEventTransaction => {
-                    channel.Queue(dataEventTransaction);
-                }
-            ));
+            channelServer.OnNewChannel("/minimal-chat", async(authType, authValue, channel) => {
+                DynamicViewSet dynamicViewSet = await database.CreateAndStartDynamicView(
+                    "chat_message",
+                    dataEventTransaction => {
+                        channel.Queue(dataEventTransaction);
+                    }
+                );
+                channel.Attach(dynamicViewSet);
+                return "some-unique-channel-id";
+            });
 
             // Listen for API requests to /api/chat/message
             webApiServer.OnPost($"/api/minimal-chat/chat/message", async(req, res) => {
@@ -45,9 +50,9 @@ namespace Butterfly.Examples {
 
                 // INSERT a record into the chat_message table (triggers any DynamicViews 
                 // with matching criteria to also publish an INSERT event)
-                await database.InsertAndCommitAsync("chat_message", new {
+                await database.InsertAndCommitAsync<long>("chat_message", new {
                     user_name = chatMessage.userName,
-                    text = chatMessage.text
+                    chatMessage.text
                 });
             });
         }

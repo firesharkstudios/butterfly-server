@@ -1,5 +1,7 @@
 ..\InheritDoc\InheritDoc\bin\Debug\InheritDoc.exe -a"Butterfly.*" -o
 
+XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Auth\bin\Debug\Butterfly.Auth.dll docs --visibility public --clean
+
 XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Channel\bin\Debug\Butterfly.Channel.dll docs --visibility public --clean
 XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Channel.EmbedIO\bin\Debug\Butterfly.Channel.EmbedIO.dll docs --visibility public --clean
 XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Channel.RedHttpServer\bin\Debug\Butterfly.Channel.RedHttpServer.dll docs --visibility public --clean

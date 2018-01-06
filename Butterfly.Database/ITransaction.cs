@@ -63,7 +63,7 @@ namespace Butterfly.Database {
         ///     or just ignore if <paramref name="ignoreIfDuplicate"/> is false
         /// </param>
         /// <returns>Primary key value (semi-colon delimited string if multi-field primary key)</returns>
-        Task<object> InsertAsync(string insertStatement, dynamic vars, bool ignoreIfDuplicate = false);
+        Task<T> InsertAsync<T>(string insertStatement, dynamic vars, bool ignoreIfDuplicate = false);
 
         /// <summary>
         /// Executes an UPDATE statement within this transaction

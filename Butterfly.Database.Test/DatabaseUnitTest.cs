@@ -54,9 +54,9 @@ namespace Butterfly.Database.Test {
 
         public async Task TestDatabase(IDatabase database) {
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Database.Test.db.sql");
-            database.SetInsertDefaultValue("id", () => Guid.NewGuid().ToString(), "employee");
-            database.SetInsertDefaultValue("created_at", () => DateTime.Now);
-            database.SetInsertDefaultValue("updated_at", () => DateTime.Now);
+            database.SetInsertDefaultValue("id", tableName => Guid.NewGuid().ToString(), "employee");
+            database.SetInsertDefaultValue("created_at", tableName => DateTime.Now);
+            database.SetInsertDefaultValue("updated_at", tableName => DateTime.Now);
 
             await TruncateData(database);
             await this.TestTransactions(database);
@@ -77,64 +77,64 @@ namespace Butterfly.Database.Test {
         }
 
         public static async Task<(object, object, object)> InsertBasicData(IDatabase database) {
-            object salesDepartmentId;
-            object hrDepartmentId;
-            object customerServiceDepartmentId;
+            string salesDepartmentId;
+            string hrDepartmentId;
+            string customerServiceDepartmentId;
             using (ITransaction transaction = await database.BeginTransactionAsync()) {
                 // Add Sales department using full INSERT statements with @@names and @@values
-                salesDepartmentId = await transaction.InsertAsync("INSERT INTO department (@@names) VALUES (@@values)", new {
+                salesDepartmentId = await transaction.InsertAsync<string>("INSERT INTO department (@@names) VALUES (@@values)", new {
                     name = "Sales",
                 });
-                object mikeEmployeeId = await transaction.InsertAsync("INSERT INTO employee (@@names) VALUES (@@values)", new {
+                string mikeEmployeeId = await transaction.InsertAsync<string>("INSERT INTO employee (@@names) VALUES (@@values)", new {
                     name = "Mike in Sales",
                     department_id = salesDepartmentId,
                     birthday = DBNull.Value,
                 });
-                await transaction.InsertAsync("INSERT INTO employee_contact (@@names) VALUES (@@values)", new {
+                await transaction.InsertAsync<string>("INSERT INTO employee_contact (@@names) VALUES (@@values)", new {
                     employee_id = mikeEmployeeId,
                     contact_type = "Phone",
                     contact_data = "+18005551000",
                 });
-                await transaction.InsertAsync("INSERT INTO employee_contact (@@names) VALUES (@@values)", new {
+                await transaction.InsertAsync<string>("INSERT INTO employee_contact (@@names) VALUES (@@values)", new {
                     employee_id = mikeEmployeeId,
                     contact_type = "Email",
                     contact_data = "mike.sales@butterfly.com",
                 });
 
                 // Add HR department using full INSERT statements with individual field parameters
-                hrDepartmentId = await transaction.InsertAsync("INSERT INTO department (name) VALUES (@someName)", new {
+                hrDepartmentId = await transaction.InsertAsync<string>("INSERT INTO department (name) VALUES (@someName)", new {
                     someName = "HR",
                 });
-                object bobEmployeeId = await transaction.InsertAsync("INSERT INTO employee (name, department_id, birthday) VALUES (@name, @department_id, @birthday)", new {
+                object bobEmployeeId = await transaction.InsertAsync<string>("INSERT INTO employee (name, department_id, birthday) VALUES (@name, @department_id, @birthday)", new {
                     name = "Bob in HR",
                     department_id = hrDepartmentId,
                     birthday = new DateTime(1990, 01, 01),
                 });
-                await transaction.InsertAsync("INSERT INTO employee_contact (employee_id, contact_type, contact_data) VALUES (@employee_id, @contact_type, @contact_data)", new {
+                await transaction.InsertAsync<string>("INSERT INTO employee_contact (employee_id, contact_type, contact_data) VALUES (@employee_id, @contact_type, @contact_data)", new {
                     employee_id = bobEmployeeId,
                     contact_type = "Phone",
                     contact_data = "+18005551000",
                 });
-                await transaction.InsertAsync("INSERT INTO employee_contact (employee_id, contact_type, contact_data) VALUES (@employee_id, @contact_type, @contact_data)", new {
+                await transaction.InsertAsync<string>("INSERT INTO employee_contact (employee_id, contact_type, contact_data) VALUES (@employee_id, @contact_type, @contact_data)", new {
                     employee_id = bobEmployeeId,
                     contact_type = "Email",
                     contact_data = "bob.hr@butterfly.com",
                 });
 
                 // Add Customer Service department using just table names
-                customerServiceDepartmentId = await transaction.InsertAsync("department", new {
+                customerServiceDepartmentId = await transaction.InsertAsync<string>("department", new {
                     name = "Customer Service",
                 });
-                object maryEmployeeId = await transaction.InsertAsync("employee", new {
+                string maryEmployeeId = await transaction.InsertAsync<string>("employee", new {
                     name = "Mary in Customer Service",
                     department_id = customerServiceDepartmentId,
                 });
-                await transaction.InsertAsync("employee_contact", new {
+                await transaction.InsertAsync<string>("employee_contact", new {
                     employee_id = maryEmployeeId,
                     contact_type = "Phone",
                     contact_data = "+18005551001",
                 });
-                await transaction.InsertAsync("employee_contact", new {
+                await transaction.InsertAsync<string>("employee_contact", new {
                     employee_id = maryEmployeeId,
                     contact_type = "Email",
                     contact_data = "mary.sales@butterfly.com",
@@ -149,7 +149,7 @@ namespace Butterfly.Database.Test {
         protected async Task TestTransactions(IDatabase database) {
             using (ITransaction transaction = await database.BeginTransactionAsync()) {
                 // Add Sales department using full INSERT statements with @@names and @@values
-                await transaction.InsertAsync("INSERT INTO department (@@names) VALUES (@@values)", new {
+                await transaction.InsertAsync<string>("INSERT INTO department (@@names) VALUES (@@values)", new {
                     name = "Sales",
                 });
 
@@ -164,7 +164,7 @@ namespace Butterfly.Database.Test {
 
             using (ITransaction transaction = await database.BeginTransactionAsync()) {
                 // Add Sales department using full INSERT statements with @@names and @@values
-                await transaction.InsertAsync("INSERT INTO department (@@names) VALUES (@@values)", new {
+                await transaction.InsertAsync<string>("INSERT INTO department (@@names) VALUES (@@values)", new {
                     name = "Sales",
                 });
 

@@ -25,6 +25,8 @@ using RedHttpServerNet45.Request;
 using RedHttpServerNet45.Response;
 
 using Butterfly.Util;
+using System;
+using System.Collections.Generic;
 
 namespace Butterfly.WebApi.RedHttpServer {
 
@@ -56,13 +58,15 @@ namespace Butterfly.WebApi.RedHttpServer {
         }
     }
 
-    public class RedHttpServerWebRequest : IWebRequest {
+    public class RedHttpServerWebRequest : IHttpRequest {
 
         public readonly RRequest request;
 
         public RedHttpServerWebRequest(RRequest request) {
             this.request = request;
         }
+
+        public Uri RequestUri => this.request.UnderlyingRequest.Url;
 
         public async Task<T> ParseAsJsonAsync<T>() {
             using (StreamReader reader = new StreamReader(this.request.GetBodyStream())) {
@@ -71,21 +75,14 @@ namespace Butterfly.WebApi.RedHttpServer {
             }
         }
 
-        public NameValueCollection Headers {
-            get {
-                return this.request.Headers;
-            }
-        }
+        public Dictionary<string, string> Headers => this.request.Headers.ToDictionary();
 
-        public AuthenticationHeaderValue AuthenticationHeaderValue {
-            get {
-                string text = this.Headers[HttpRequestHeader.Authorization.ToString()];
-                return AuthenticationHeaderValue.Parse(text);
-            }
-        }
+        public Dictionary<string, string> PathParams => throw new NotImplementedException();
+
+        public Dictionary<string, string> QueryParams => this.RequestUri.ParseQuery();
     }
 
-    public class RedHttpServerWebResponse : IWebResponse {
+    public class RedHttpServerWebResponse : IHttpResponse {
 
         public readonly RResponse response;
 

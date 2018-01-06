@@ -244,10 +244,10 @@ namespace Butterfly.Database {
 
         protected abstract Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams);
 
-        public async Task<object> InsertAndCommitAsync(string insertStatement, dynamic vars, bool ignoreIfDuplicate = false) {
-            object result;
+        public async Task<T> InsertAndCommitAsync<T>(string insertStatement, dynamic vars, bool ignoreIfDuplicate = false) {
+            T result;
             using (var transaction = await this.BeginTransactionAsync()) {
-                result = await transaction.InsertAsync(insertStatement, vars, ignoreIfDuplicate);
+                result = await transaction.InsertAsync<T>(insertStatement, vars, ignoreIfDuplicate);
                 await transaction.CommitAsync();
             }
             return result;
@@ -285,9 +285,9 @@ namespace Butterfly.Database {
 
         protected abstract BaseTransaction CreateTransaction();
 
-        protected readonly Dictionary<string, Func<object>> getDefaultValueByFieldName = new Dictionary<string, Func<object>>();
+        protected readonly Dictionary<string, Func<string, object>> getDefaultValueByFieldName = new Dictionary<string, Func<string, object>>();
 
-        public void SetInsertDefaultValue(string fieldName, Func<object> getDefaultValue, string tableName = null) {
+        public void SetInsertDefaultValue(string fieldName, Func<string, object> getDefaultValue, string tableName = null) {
             if (tableName == null) {
                 this.getDefaultValueByFieldName[fieldName] = getDefaultValue;
             }
@@ -299,13 +299,13 @@ namespace Butterfly.Database {
 
         internal Dict GetInsertDefaultValues(Table table) {
             Dictionary<string, object> defaultValues = new Dict();
-            foreach ((string fieldName, Func<object> getDefaultValue) in table.GetDefaultValueByFieldName) {
+            foreach ((string fieldName, Func<string, object> getDefaultValue) in table.GetDefaultValueByFieldName) {
                 TableFieldDef fieldDef = table.FindFieldDef(fieldName);
-                if (fieldDef!=null && !defaultValues.ContainsKey(fieldDef.name)) defaultValues[fieldDef.name] = getDefaultValue();
+                if (fieldDef!=null && !defaultValues.ContainsKey(fieldDef.name)) defaultValues[fieldDef.name] = getDefaultValue(table.Name);
             }
-            foreach ((string fieldName, Func<object> getDefaultValue) in this.getDefaultValueByFieldName) {
+            foreach ((string fieldName, Func<string, object> getDefaultValue) in this.getDefaultValueByFieldName) {
                 TableFieldDef fieldDef = table.FindFieldDef(fieldName);
-                if (fieldDef != null && !defaultValues.ContainsKey(fieldDef.name)) defaultValues[fieldDef.name] = getDefaultValue();
+                if (fieldDef != null && !defaultValues.ContainsKey(fieldDef.name)) defaultValues[fieldDef.name] = getDefaultValue(table.Name);
             }
             return defaultValues;
         }

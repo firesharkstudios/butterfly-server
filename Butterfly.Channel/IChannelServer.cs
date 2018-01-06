@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Butterfly.Util;
+using System;
 using System.Threading.Tasks;
 
 namespace Butterfly.Channel {
@@ -28,20 +29,20 @@ namespace Butterfly.Channel {
     /// </remarks>
     public interface IChannelServer : IDisposable {
         /// <summary>
-        /// Add a listener when a new channel is created
+        /// Add a handler when a new channel is created
         /// </summary>
         /// <param name="pathFilter">Filters new channel requests by path (pass '/chat' to only match channels created with path '/chat')</param>
-        /// <param name="listener">Lambda to run to initialize the channel</param>
-        /// <returns>Any object that should be disposed when the channel is disposed</returns>
-        IDisposable OnNewChannel(string pathFilter, Func<IChannel, IDisposable> listener);
+        /// <param name="handler">Lambda to run to initialize the channel</param>
+        /// <returns>If the channel should be kept</returns>
+        IDisposable OnNewChannel(string pathFilter, Func<string, string, IChannel, string> handler);
 
         /// <summary>
-        /// Add an async listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed)
+        /// Add an async handler when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed)
         /// </summary>
         /// <param name="pathFilter">Filters new channel requests by path (pass '/chat' to only match channels created with path '/chat')</param>
-        /// <param name="listener">Lambda to run to initialize the channel</param>
-        /// <returns>Any object that should be disposed when the channel is disposed</returns>
-        IDisposable OnNewChannelAsync(string pathFilter, Func<IChannel, Task<IDisposable>> listener);
+        /// <param name="handler">Lambda to run to initialize the channel</param>
+        /// <returns>If the channel should be kept</returns>
+        IDisposable OnNewChannel(string pathFilter, Func<string, string, IChannel, Task<string>> handler);
 
         /// <summary>
         /// Number of channels

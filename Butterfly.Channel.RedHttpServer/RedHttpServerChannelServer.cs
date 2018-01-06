@@ -20,6 +20,8 @@ using System.Threading.Tasks;
 using RedHttpServerNet45.Response;
 
 using Butterfly.Util;
+using System.Collections.Specialized;
+using System.Collections.Generic;
 
 namespace Butterfly.Channel.RedHttpServer {
 
@@ -27,16 +29,16 @@ namespace Butterfly.Channel.RedHttpServer {
     public class RedHttpServerChannelServer : BaseChannelServer {
         public readonly global::RedHttpServerNet45.RedHttpServer server;
 
-        public RedHttpServerChannelServer(global::RedHttpServerNet45.RedHttpServer server, Func<string, string> authenticate = null, int mustReceiveHeartbeatMillis = 5000) : base(authenticate, mustReceiveHeartbeatMillis) {
+        public RedHttpServerChannelServer(global::RedHttpServerNet45.RedHttpServer server, int mustReceiveHeartbeatMillis = 5000) : base(mustReceiveHeartbeatMillis) {
             if (EnvironmentX.IsRunningOnMono()) throw new Exception("Unfortunately, RedHttpServer does not support WebSockets on Mono");
             this.server = server;
         }
 
         protected override void DoStart() {
-            foreach (var listener in this.onNewChannelListeners) {
+            foreach (var listener in this.onNewChannelHandlers) {
                 logger.Info($"DoStart():Listening for WebSocket requests at {listener.path}");
                 this.server.WebSocket(listener.path, (req, wsd) => {
-                    this.AddUnauthenticatedChannel(new WebSocketDialogChannel(this, listener.path, wsd));
+                    this.AddUnauthenticatedChannel(new WebSocketDialogChannel(this, new WebSocketDialogWebRequest(wsd), wsd));
                 });
             }
         }
@@ -47,7 +49,7 @@ namespace Butterfly.Channel.RedHttpServer {
 
         protected readonly WebSocketDialog webSocketDialog;
 
-        public WebSocketDialogChannel(BaseChannelServer channelServer, string path, WebSocketDialog webSocketDialog) : base(channelServer, path) {
+        public WebSocketDialogChannel(BaseChannelServer channelServer, IWebRequest webRequest, WebSocketDialog webSocketDialog) : base(channelServer, webRequest) {
             this.webSocketDialog = webSocketDialog;
 
             this.webSocketDialog.OnTextReceived += (sender, eventArgs) => {
@@ -67,9 +69,26 @@ namespace Butterfly.Channel.RedHttpServer {
         }
 
         protected override void DoDispose() {
-            logger.Trace($"DoDispose():id={this.AuthId}");
+            logger.Trace($"DoDispose():id={this.Id}");
             this.webSocketDialog.Close();
         }
+
+    }
+
+    public class WebSocketDialogWebRequest : IWebRequest {
+
+        protected readonly WebSocketDialog webSocketDialog;
+
+        public WebSocketDialogWebRequest(WebSocketDialog webSocketDialog) {
+            this.webSocketDialog = webSocketDialog;
+        }
+        public Uri RequestUri => this.webSocketDialog.UnderlyingContext.RequestUri;
+
+        public Dictionary<string, string> Headers => this.webSocketDialog.UnderlyingContext.Headers.ToDictionary();
+
+        public Dictionary<string, string> PathParams => throw new NotImplementedException();
+
+        public Dictionary<string, string> QueryParams => this.RequestUri.ParseQuery();
 
     }
 }

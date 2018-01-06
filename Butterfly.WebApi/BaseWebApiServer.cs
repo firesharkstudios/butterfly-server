@@ -14,6 +14,7 @@
  * limitations under the License.
 */
 
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -26,9 +27,11 @@ namespace Butterfly.WebApi {
     /// Base class implementing <see cref="IWebApiServer"/>. New implementations will normally extend this class.
     /// </summary>
     public abstract class BaseWebApiServer : IWebApiServer {
+        protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         protected readonly List<WebHandler> webHandlers = new List<WebHandler>();
 
-        public void OnGet(string path, Func<IWebRequest, IWebResponse, Task> listener) {
+        public void OnGet(string path, Func<IHttpRequest, IHttpResponse, Task> listener) {
             webHandlers.Add(new WebHandler {
                 method = HttpMethod.Get,
                 path = path,
@@ -36,7 +39,7 @@ namespace Butterfly.WebApi {
             });
         }
 
-        public void OnPost(string path, Func<IWebRequest, IWebResponse, Task> listener) {
+        public void OnPost(string path, Func<IHttpRequest, IHttpResponse, Task> listener) {
             webHandlers.Add(new WebHandler {
                 method = HttpMethod.Post,
                 path = path,

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Util", "Butterfly.Util\Butterfly.Util.csproj", "{687A3FB4-8299-4F15-B74B-825FE7446823}"
 EndProject
@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Database.SQLite",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ABFE981E-65DD-4764-952A-DE4F2D055AEA}"
 	ProjectSection(SolutionItems) = preProject
+		generate-docs.bat = generate-docs.bat
+		generate-nuget-packages.ps1 = generate-nuget-packages.ps1
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -62,6 +64,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.WebApi.RedHttpServer", "Butterfly.WebApi.RedHttpServer\Butterfly.WebApi.RedHttpServer.csproj", "{55E2D538-7067-42E3-9806-A34EAF030404}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.WebApi.Test", "Butterfly.WebApi.Test\Butterfly.WebApi.Test.csproj", "{F6633BB4-BD67-47BF-8A55-9D459D5CB061}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Auth", "Butterfly.Auth\Butterfly.Auth.csproj", "{A7BE1F28-30A9-4D1D-9FEE-967FEC8C4AEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +145,10 @@ Global
 		{F6633BB4-BD67-47BF-8A55-9D459D5CB061}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6633BB4-BD67-47BF-8A55-9D459D5CB061}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6633BB4-BD67-47BF-8A55-9D459D5CB061}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7BE1F28-30A9-4D1D-9FEE-967FEC8C4AEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7BE1F28-30A9-4D1D-9FEE-967FEC8C4AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7BE1F28-30A9-4D1D-9FEE-967FEC8C4AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7BE1F28-30A9-4D1D-9FEE-967FEC8C4AEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
