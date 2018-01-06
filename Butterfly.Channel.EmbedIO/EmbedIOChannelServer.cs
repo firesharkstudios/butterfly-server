@@ -113,7 +113,7 @@ namespace Butterfly.Channel.EmbedIO {
         }
 
         protected override void DoDispose() {
-            logger.Trace($"DoDispose():id={this.Id}");
+            //logger.Trace($"DoDispose():id={this.Id}");
         }
 
     }

@@ -22,7 +22,7 @@ namespace Butterfly.Examples {
             try {
                 database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_better_chat");
             }
-            catch (UnableToConnectDatabaseException e) {
+            catch (UnableToConnectDatabaseException) {
                 logger.Warn($"Unable to connect to MySQL server (modify BetterChatExample.cs to specify ConnectionString), skipping BetterChatExample");
                 return;
             }
@@ -37,7 +37,7 @@ namespace Butterfly.Examples {
             channelServer.OnNewChannel("/better-chat", async(authType, authValue, channel) => {
                 // Create a user record if missing
                 await database.InsertAndCommitAsync<string>("user", new {
-                    id = channel.Id,
+                    id = authValue,
                     name = CleverNameX.Generate(),
                 }, ignoreIfDuplicate: true);
 
@@ -51,7 +51,7 @@ namespace Butterfly.Examples {
                 dynamicViewSet.CreateDynamicView(
                     "SELECT id, name FROM user WHERE id=@userId", 
                     values: new {
-                        userId = channel.Id
+                        userId = authValue
                     },
                     name: "me"
                 );
@@ -60,7 +60,7 @@ namespace Butterfly.Examples {
                 var chatIdsDynamicView = dynamicViewSet.CreateDynamicView(
                     "SELECT id, chat_id FROM chat_participant WHERE user_id=@userId", 
                     values: new {
-                        userId = channel.Id
+                        userId = authValue
                     }, 
                     name: "chat_ids"
                 );
@@ -72,7 +72,7 @@ namespace Butterfly.Examples {
                       FROM chat c INNER JOIN user u ON c.owner_id=u.id
                       WHERE c.id=@chatIds",
                     values: new {
-                        chatIds = chatIds
+                        chatIds
                     },
                     name: "chat",
                     keyFieldNames: new string[] { "id" }
@@ -84,7 +84,7 @@ namespace Butterfly.Examples {
                       FROM chat_participant cp INNER JOIN user u ON cp.user_id=u.id
                       WHERE cp.chat_id=@chatIds", 
                     values: new {
-                        chatIds = chatIds
+                        chatIds
                     },
                     name: "chat_participant",
                     keyFieldNames: new string[] { "id" }
@@ -96,7 +96,7 @@ namespace Butterfly.Examples {
                       FROM chat_message cm INNER JOIN user u ON cm.user_id=u.id
                       WHERE cm.chat_id=@chatIds",
                     values: new {
-                        chatIds = chatIds
+                        chatIds
                     },
                     name: "chat_message",
                     keyFieldNames: new string[] { "id" }
@@ -107,7 +107,7 @@ namespace Butterfly.Examples {
 
                 channel.Attach(dynamicViewSet);
 
-                return "some-unique-channel-id";
+                return authValue;
             });
 
             // Listen for API requests to /api/profile/update
@@ -132,7 +132,7 @@ namespace Butterfly.Examples {
                 // Create records in database
                 using (var transaction = await database.BeginTransactionAsync()) {
                     string chatId = await transaction.InsertAsync<string>("INSERT INTO chat (@@names) VALUES (@@values)", new {
-                        name = chat.name,
+                        chat.name,
                         owner_id = auth.Parameter
                     });
                     await transaction.InsertAsync<string>("INSERT INTO chat_participant (@@names) VALUES (@@values)", new {

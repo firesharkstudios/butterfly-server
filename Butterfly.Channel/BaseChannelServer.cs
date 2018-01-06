@@ -18,7 +18,6 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 using NLog;
@@ -65,17 +64,20 @@ namespace Butterfly.Channel {
         internal async Task AuthenticateAsync(string authType, string authValue, BaseChannel channel) {
             var onNewChannelHandler = this.onNewChannelHandlers.Where(x => x.path == channel.WebRequest.RequestUri.AbsolutePath).FirstOrDefault();
             if (onNewChannelHandler == null) throw new Exception($"Invalid path '{channel.WebRequest.RequestUri.AbsolutePath}'");
-            string id = onNewChannelHandler.handle != null ? onNewChannelHandler.handle(authType, authValue, channel) : await onNewChannelHandler.handleAsync(authType, authValue, channel);
-            if (!string.IsNullOrEmpty(id)) {
-                channel.SetId(id);
+            try {
+                string id = onNewChannelHandler.handle != null ? onNewChannelHandler.handle(authType, authValue, channel) : await onNewChannelHandler.handleAsync(authType, authValue, channel);
+                if (!string.IsNullOrEmpty(id)) {
+                    var existingChannel = this.GetChannel(id);
+                    if (existingChannel != null) {
+                        existingChannel.Dispose();
+                    }
 
-                var existingChannel = this.GetChannel(id);
-                if (existingChannel != null) {
-                    existingChannel.Dispose();
+                    channel.Start();
+                    this.authenticatedChannelById[id] = channel;
                 }
-
-                channel.Start();
-                this.authenticatedChannelById[id] = channel;
+            }
+            catch (Exception e) {
+                logger.Error(e);
             }
         }
 
@@ -138,11 +140,11 @@ namespace Butterfly.Channel {
                 }
 
                 // Check for dead authenticated channels
-                foreach (IChannel channel in this.authenticatedChannelById.Values.ToArray()) {
+                foreach ((string id, IChannel channel) in this.authenticatedChannelById.ToArray()) {
                     logger.Trace($"CheckForDeadChannelsAsync():channel.LastHeartbeatReceived={channel.LastHeartbeat},cutoffDateTime={cutoffDateTime}");
                     if (channel.LastHeartbeat < cutoffDateTime) {
-                        bool removed = this.authenticatedChannelById.TryRemove(channel.Id, out IChannel removedChannel);
-                        if (!removed) throw new Exception($"Could not remove channel id {channel.Id}");
+                        bool removed = this.authenticatedChannelById.TryRemove(id, out IChannel removedChannel);
+                        if (!removed) throw new Exception($"Could not remove channel id {id}");
                         channel.Dispose();
                     }
                     else if (oldestLastReceivedHeartbeatReceived==null || oldestLastReceivedHeartbeatReceived>channel.LastHeartbeat) {

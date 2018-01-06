@@ -69,7 +69,7 @@ namespace Butterfly.Channel.RedHttpServer {
         }
 
         protected override void DoDispose() {
-            logger.Trace($"DoDispose():id={this.Id}");
+            //logger.Trace($"DoDispose():id={this.Id}");
             this.webSocketDialog.Close();
         }
 
