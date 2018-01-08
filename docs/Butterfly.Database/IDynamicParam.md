@@ -1,7 +1,5 @@
 # IDynamicParam interface
 
-Use to implement a parameter value that can change
-
 ```csharp
 public interface IDynamicParam
 ```

@@ -1,15 +1,8 @@
 # BaseWebApiServer.Start method
 
-Start the web api server
-
 ```csharp
 public abstract void Start()
 ```
-
-| parameter | description |
-| --- | --- |
-| path |  |
-| listener |  |
 
 ## See Also
 

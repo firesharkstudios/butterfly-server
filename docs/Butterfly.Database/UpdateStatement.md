@@ -1,7 +1,5 @@
 # UpdateStatement class
 
-Internal class used to parse UPDATE statements
-
 ```csharp
 public class UpdateStatement : BaseStatement
 ```
@@ -10,7 +8,7 @@ public class UpdateStatement : BaseStatement
 
 | name | description |
 | --- | --- |
-| [UpdateStatement](UpdateStatement/UpdateStatement.md)(…) | Must only update a single row at a time. Must have a where clause that specifies the primary key fields. Where clause can only use ANDed equal conditions (like chat_id=2 AND chat_type='X")"; |
+| [UpdateStatement](UpdateStatement/UpdateStatement.md)(…) |  |
 | [SetRefs](UpdateStatement/SetRefs.md) { get; } |  |
 | [WhereRefs](UpdateStatement/WhereRefs.md) { get; } |  |
 | readonly [fromClause](UpdateStatement/fromClause.md) |  |

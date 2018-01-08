@@ -1,7 +1,5 @@
 # IChannel interface
 
-Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
-
 ```csharp
 public interface IChannel : IDisposable
 ```
@@ -10,12 +8,12 @@ public interface IChannel : IDisposable
 
 | name | description |
 | --- | --- |
-| [AuthId](IChannel/AuthId.md) { get; } |  |
 | [Created](IChannel/Created.md) { get; } |  |
 | [LastHeartbeat](IChannel/LastHeartbeat.md) { get; } |  |
-| [Path](IChannel/Path.md) { get; } |  |
+| [WebRequest](IChannel/WebRequest.md) { get; } |  |
+| [Attach](IChannel/Attach.md)(…) |  |
 | [Queue](IChannel/Queue.md)(…) |  |
-| [Start](IChannel/Start.md)(…) |  |
+| [Start](IChannel/Start.md)() |  |
 
 ## See Also
 

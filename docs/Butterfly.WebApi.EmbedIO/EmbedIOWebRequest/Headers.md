@@ -1,7 +1,7 @@
 # EmbedIOWebRequest.Headers property
 
 ```csharp
-public NameValueCollection Headers { get; }
+public Dictionary<string, string> Headers { get; }
 ```
 
 ## See Also

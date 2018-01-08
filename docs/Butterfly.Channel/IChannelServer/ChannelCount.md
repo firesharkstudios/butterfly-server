@@ -1,7 +1,5 @@
 # IChannelServer.ChannelCount property
 
-Number of channels
-
 ```csharp
 public int ChannelCount { get; }
 ```

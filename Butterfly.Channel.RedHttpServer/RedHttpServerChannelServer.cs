@@ -35,21 +35,21 @@ namespace Butterfly.Channel.RedHttpServer {
         }
 
         protected override void DoStart() {
-            foreach (var listener in this.onNewChannelHandlers) {
-                logger.Info($"DoStart():Listening for WebSocket requests at {listener.path}");
-                this.server.WebSocket(listener.path, (req, wsd) => {
-                    this.AddUnauthenticatedChannel(new WebSocketDialogChannel(this, new WebSocketDialogWebRequest(wsd), wsd));
+            foreach ((string routePath, RegisteredRoute registeredRoute) in this.registeredRouteByPath) {
+                logger.Info($"DoStart():Listening for WebSocket requests at {routePath}");
+                this.server.WebSocket(routePath, (req, wsd) => {
+                    this.AddUnauthenticatedConnection(new WebSocketDialogChannel(this, registeredRoute, wsd));
                 });
             }
         }
 
     }
 
-    public class WebSocketDialogChannel : BaseChannel {
+    public class WebSocketDialogChannel : BaseChannelServerConnection {
 
         protected readonly WebSocketDialog webSocketDialog;
 
-        public WebSocketDialogChannel(BaseChannelServer channelServer, IWebRequest webRequest, WebSocketDialog webSocketDialog) : base(channelServer, webRequest) {
+        public WebSocketDialogChannel(BaseChannelServer channelServer, RegisteredRoute registeredRoute, WebSocketDialog webSocketDialog) : base(channelServer, registeredRoute) {
             this.webSocketDialog = webSocketDialog;
 
             this.webSocketDialog.OnTextReceived += (sender, eventArgs) => {

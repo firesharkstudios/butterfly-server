@@ -1,24 +1,8 @@
 # IDatabase.CreateFromText method
 
-Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate).
-
-Lines beginning with
-
-```csharp
---
-```
-
-will be ignored. Each CREATE statement must include a PRIMARY KEY definition. If the table already exists, the CREATE statement is ignored.
-
-Creating database tables with this method is not required (primarily done as a convenience method for unit testing)"/&gt;.
-
 ```csharp
 public void CreateFromText(string createStatements)
 ```
-
-| parameter | description |
-| --- | --- |
-| createStatements |  |
 
 ## See Also
 

@@ -1,7 +1,5 @@
 # IChannelServer.Start method
 
-Starts the channel server. Must be called after adding new channel listeners (via [`OnNewChannel`](OnNewChannel.md) and [`OnNewChannelAsync`](OnNewChannelAsync.md))
-
 ```csharp
 public void Start()
 ```

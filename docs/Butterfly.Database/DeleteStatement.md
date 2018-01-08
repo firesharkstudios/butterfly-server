@@ -1,7 +1,5 @@
 # DeleteStatement class
 
-Internal class used to parse DELETE statements
-
 ```csharp
 public class DeleteStatement : BaseStatement
 ```

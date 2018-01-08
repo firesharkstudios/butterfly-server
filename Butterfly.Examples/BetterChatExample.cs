@@ -32,15 +32,19 @@ namespace Butterfly.Examples {
             database.SetInsertDefaultValue("updated_at", tableName => DateTime.Now);
             database.SetInsertDefaultValue("join_id", tableName => Guid.NewGuid().ToString().Substring(0, 8), "chat");
 
-            // Listen for clients creating new channels to /better-chat
-            // (clients are expected to maintain a channel to the server)
-            channelServer.OnNewChannel("/better-chat", async(authType, authValue, channel) => {
+            // Listen for connections to /better-chat
+            var route = channelServer.RegisterRoute("/better-chat", getAuthIdAsync: async (authType, authValue) => {
                 // Create a user record if missing
                 await database.InsertAndCommitAsync<string>("user", new {
                     id = authValue,
                     name = CleverNameX.Generate(),
                 }, ignoreIfDuplicate: true);
 
+                return authValue;
+            });
+
+            // Register a default channel that creates all DynamicView instances needed and sends all data to the channel
+            route.RegisterChannel(handlerAsync: async (vars, channel) => {
                 // Create a DynamicViewSet that sends DataEventTransactions to the channel
                 var dynamicViewSet = database.CreateDynamicViewSet(dataEventTransaction => {
                     var filteredDataEventTransaction = DataEventTransaction.FilterDataEvents(dataEventTransaction, dataEvent => dataEvent.name != "chat_ids");
@@ -51,7 +55,7 @@ namespace Butterfly.Examples {
                 dynamicViewSet.CreateDynamicView(
                     "SELECT id, name FROM user WHERE id=@userId", 
                     values: new {
-                        userId = authValue
+                        userId = channel.Connection.AuthId
                     },
                     name: "me"
                 );
@@ -60,7 +64,7 @@ namespace Butterfly.Examples {
                 var chatIdsDynamicView = dynamicViewSet.CreateDynamicView(
                     "SELECT id, chat_id FROM chat_participant WHERE user_id=@userId", 
                     values: new {
-                        userId = authValue
+                        userId = channel.Connection.AuthId
                     }, 
                     name: "chat_ids"
                 );
@@ -105,9 +109,7 @@ namespace Butterfly.Examples {
                 // Start the DynamicView group (executes all the DynamicView queries and sends changes as they occur)
                 await dynamicViewSet.StartAsync();
 
-                channel.Attach(dynamicViewSet);
-
-                return authValue;
+                return dynamicViewSet;
             });
 
             // Listen for API requests to /api/profile/update

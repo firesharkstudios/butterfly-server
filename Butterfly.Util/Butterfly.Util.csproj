@@ -62,6 +62,7 @@
     <Compile Include="IWebRequest.cs" />
     <Compile Include="IWebRequestX.cs" />
     <Compile Include="JsonUtil.cs" />
+    <Compile Include="DictionaryItemDisposable.cs" />
     <Compile Include="ListItemDisposable.cs" />
     <Compile Include="NameValueCollectionX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

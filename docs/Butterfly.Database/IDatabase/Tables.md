@@ -1,7 +1,5 @@
 # IDatabase.Tables property
 
-Dictionary of [`Table`](../Table.md) instances keyed by name
-
 ```csharp
 public Dictionary<string, Table> Tables { get; }
 ```

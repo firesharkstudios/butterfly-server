@@ -1,7 +1,5 @@
 # BaseTransaction.Rollback method
 
-Rollback the transaction (called automatically if transaction is disposed without calling [`Commit`](../ITransaction/Commit.md) or [`CommitAsync`](../ITransaction/CommitAsync.md))
-
 ```csharp
 public void Rollback()
 ```

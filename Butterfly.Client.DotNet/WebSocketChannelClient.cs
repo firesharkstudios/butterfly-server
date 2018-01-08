@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 using NLog;
 using System.Net;
+using System.Collections.Generic;
+
+using Dict = System.Collections.Generic.Dictionary<string, object>;
+using System.Linq;
+using Butterfly.Util;
 
 namespace Butterfly.Client.DotNet {
 
@@ -21,21 +26,36 @@ namespace Butterfly.Client.DotNet {
 
         protected readonly Uri url;
         protected readonly string authorization;
-        protected readonly Action<string> onMessage;
 
         protected readonly int heartbeatEveryMillis;
+        protected readonly int sendSubscriptionsCheckEveryMillis;
         protected readonly int receiveBufferSize;
 
         protected readonly Action<WebSocketChannelClientStatus> onStatusChange;
 
-        public WebSocketChannelClient(string url, string authorization, Action<string> onMessage, Action<WebSocketChannelClientStatus> onStatusChange = null, int heartbeatEveryMillis = 3000, int receiveBufferSize = 4096) {
+        protected readonly Dictionary<string, Subscription> subscriptionByChannelKey = new Dictionary<string, Subscription>();
+
+        protected bool sendSubscriptions = false;
+
+        public WebSocketChannelClient(string url, string authorization, Action<WebSocketChannelClientStatus> onStatusChange = null, int heartbeatEveryMillis = 3000, int sendSubscriptionsCheckEveryMillis = 100, int receiveBufferSize = 4096) {
             this.url = new Uri(url);
             this.authorization = authorization;
-            this.onMessage = onMessage;
             this.onStatusChange = onStatusChange;
 
             this.heartbeatEveryMillis = heartbeatEveryMillis;
+            this.sendSubscriptionsCheckEveryMillis = sendSubscriptionsCheckEveryMillis;
             this.receiveBufferSize = receiveBufferSize;
+        }
+
+        public void Subscribe(Action<string> onMessage, string channelKey = "default", Dict vars = null) {
+            this.subscriptionByChannelKey[channelKey] = new Subscription(vars, onMessage);
+            this.sendSubscriptions = true;
+        }
+
+        public void Unsubscribe(string channelKey = "default") {
+            if (this.subscriptionByChannelKey.Remove(channelKey)) {
+                this.sendSubscriptions = true;
+            }
         }
 
         public void Start() {
@@ -65,7 +85,7 @@ namespace Butterfly.Client.DotNet {
                     continue;
                 }
 
-                Task receivingTask = Task.Run(async() => {
+                Task receivingTask = Task.Run(async () => {
                     try {
                         while (!ioCancellationTokenSource.IsCancellationRequested) {
                             string message = null;
@@ -91,7 +111,14 @@ namespace Butterfly.Client.DotNet {
                                 logger.Error(e);
                                 break;
                             }
-                            if (!string.IsNullOrEmpty(message) && this.onMessage != null) this.onMessage(message);
+                            if (!string.IsNullOrEmpty(message)) {
+                                int pos = message.IndexOf(':');
+                                var channelKey = message.Substring(0, pos).Trim();
+                                if (this.subscriptionByChannelKey.TryGetValue(channelKey, out Subscription subscription)) {
+                                    var payload = message.Substring(pos + 1).Trim();
+                                    subscription.onMessage(payload);
+                                }
+                            }
                         }
                     }
                     catch (TaskCanceledException) {
@@ -115,9 +142,38 @@ namespace Butterfly.Client.DotNet {
                     catch (TaskCanceledException) {
                     }
                 });
-                await Task.WhenAny(receivingTask, heartbeatTask);
+
+                Task subscriptionsTask = Task.Run(async () => {
+                    try {
+                        while (!this.ioCancellationTokenSource.IsCancellationRequested) {
+                            logger.Debug($"RunAsync():this.ioCancellationTokenSource.IsCancellationRequested={this.ioCancellationTokenSource.IsCancellationRequested}");
+                            if (this.sendSubscriptions) {
+                                try {
+                                    var payload = subscriptionByChannelKey.Select(x => new {
+                                        channelKey = x.Key,
+                                        x.Value.vars
+                                    });
+                                    var json = JsonUtil.Serialize(payload);
+                                    await this.SendText(clientWebSocket, $"Subscriptions: {json}", this.ioCancellationTokenSource.Token);
+                                }
+                                catch (Exception e) {
+                                    logger.Error(e);
+                                    break;
+                                }
+                                this.sendSubscriptions = false;
+                            }
+                            await Task.Delay(this.sendSubscriptionsCheckEveryMillis, this.ioCancellationTokenSource.Token);
+                        }
+                    }
+                    catch (TaskCanceledException) {
+                    }
+                });
+                await Task.WhenAny(receivingTask, heartbeatTask, subscriptionsTask);
                 ioCancellationTokenSource.Cancel();
             }
+        }
+
+        protected async Task SendSubscriptions(ClientWebSocket clientWebSocket, CancellationToken cancellationToken) {
         }
 
         protected async Task SendText(ClientWebSocket clientWebSocket, string text, CancellationToken cancellationToken) {
@@ -129,6 +185,16 @@ namespace Butterfly.Client.DotNet {
             logger.Debug("Dispose()");
             this.connectingCancellationSource.Cancel();
             this.ioCancellationTokenSource.Cancel();
+        }
+    }
+
+    public class Subscription {
+        public readonly Dict vars;
+        public readonly Action<string> onMessage;
+
+        public Subscription(Dict vars, Action<string> onMessage) {
+            this.vars = vars;
+            this.onMessage = onMessage;
         }
     }
 }

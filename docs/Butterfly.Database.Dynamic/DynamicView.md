@@ -1,7 +1,5 @@
 # DynamicView class
 
-Represents a specific view (SELECT statement) that should be executed to return the initial data as a sequence of [`DataEvent`](../Butterfly.Database.Event/DataEvent.md) instances and should publish [`DataEvent`](../Butterfly.Database.Event/DataEvent.md) instances when any data in the view changes
-
 ```csharp
 public class DynamicView
 ```

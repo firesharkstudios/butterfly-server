@@ -1,7 +1,5 @@
 # MultiValueDynamicParam class
 
-A [`IDynamicParam`](../Butterfly.Database/IDynamicParam.md) that may contain multiple values (like an array)
-
 ```csharp
 public class MultiValueDynamicParam : BaseDynamicParam
 ```

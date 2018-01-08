@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Database.SQLite",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ABFE981E-65DD-4764-952A-DE4F2D055AEA}"
 	ProjectSection(SolutionItems) = preProject
-		generate-docs.bat = generate-docs.bat
+		generate-docs.ps1 = generate-docs.ps1
 		generate-nuget-packages.ps1 = generate-nuget-packages.ps1
 		README.md = README.md
 	EndProjectSection

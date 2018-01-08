@@ -1,7 +1,7 @@
 # EmbedIOChannel constructor
 
 ```csharp
-public EmbedIOChannel(BaseChannelServer channelServer, string path, WebSocketContext context, Action<string> send)
+public EmbedIOChannel(BaseChannelServer channelServer, IWebRequest webRequest, Action<string> send)
 ```
 
 ## See Also

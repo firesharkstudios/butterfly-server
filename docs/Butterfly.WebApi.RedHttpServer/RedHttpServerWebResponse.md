@@ -1,7 +1,7 @@
 # RedHttpServerWebResponse class
 
 ```csharp
-public class RedHttpServerWebResponse : IWebResponse
+public class RedHttpServerWebResponse : IHttpResponse
 ```
 
 ## Public Members

@@ -24,6 +24,8 @@ using NLog;
 
 using Butterfly.Util;
 
+using Dict = System.Collections.Generic.Dictionary<string, object>;
+
 namespace Butterfly.Channel {
 
     /// <inheritdoc/>
@@ -33,10 +35,10 @@ namespace Butterfly.Channel {
     public abstract class BaseChannelServer : IChannelServer {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected readonly ConcurrentDictionary<IChannel, IChannel> unauthenticatedChannels = new ConcurrentDictionary<IChannel, IChannel>();
-        protected readonly ConcurrentDictionary<string, IChannel> authenticatedChannelById = new ConcurrentDictionary<string, IChannel>();
+        protected readonly ConcurrentDictionary<IChannelServerConnection, IChannelServerConnection> unauthenticatedConnections = new ConcurrentDictionary<IChannelServerConnection, IChannelServerConnection>();
+        protected readonly ConcurrentDictionary<string, IChannelServerConnection> authenticatedConnectionByAuthId = new ConcurrentDictionary<string, IChannelServerConnection>();
 
-        protected readonly List<NewChannelHandler> onNewChannelHandlers = new List<NewChannelHandler>();
+        protected readonly Dictionary<string, RegisteredRoute> registeredRouteByPath = new Dictionary<string, RegisteredRoute>();
 
         protected readonly int mustReceiveHeartbeatMillis;
 
@@ -44,36 +46,24 @@ namespace Butterfly.Channel {
             this.mustReceiveHeartbeatMillis = mustReceiveHeartbeatMillis;
         }
 
-        public void AddUnauthenticatedChannel(IChannel channel) {
+        public void AddUnauthenticatedConnection(IChannelServerConnection connection) {
             //logger.Debug($"AddUnauthenticatedChannel():channel.Path={channel.WebRequest.RequestUri.AbsolutePath}");
-            this.unauthenticatedChannels[channel] = channel;
+            this.unauthenticatedConnections[connection] = connection;
         }
 
-        /*
-        public static T StandardAuthenticate(string value) {
-            if (!AuthenticationHeaderValue.TryParse(value, out AuthenticationHeaderValue parsedValue)) throw new Exception("Could not parse authentication value");
-            return parsedValue.Parameter;
-        }
-        */
 
-        internal void Authenticate(string authType, string authValue, BaseChannel channel) {
-            this.unauthenticatedChannels.TryRemove(channel, out IChannel dummyChannel);
-            Task task = this.AuthenticateAsync(authType, authValue, channel);
-        }
-
-        internal async Task AuthenticateAsync(string authType, string authValue, BaseChannel channel) {
-            var onNewChannelHandler = this.onNewChannelHandlers.Where(x => x.path == channel.WebRequest.RequestUri.AbsolutePath).FirstOrDefault();
-            if (onNewChannelHandler == null) throw new Exception($"Invalid path '{channel.WebRequest.RequestUri.AbsolutePath}'");
+        internal async Task AuthenticateAsync(string authType, string authValue, BaseChannelServerConnection connection) {
+            this.unauthenticatedConnections.TryRemove(connection, out IChannelServerConnection dummyChannel);
+            if (!this.registeredRouteByPath.TryGetValue(connection.RegisteredRoute.path, out RegisteredRoute registeredRoute)) throw new Exception($"Invalid path '{connection.RegisteredRoute.path}'");
             try {
-                string id = onNewChannelHandler.handle != null ? onNewChannelHandler.handle(authType, authValue, channel) : await onNewChannelHandler.handleAsync(authType, authValue, channel);
-                if (!string.IsNullOrEmpty(id)) {
-                    var existingChannel = this.GetChannel(id);
+                string authId = registeredRoute.getAuthId != null ? registeredRoute.getAuthId(authType, authValue) : await registeredRoute.getAuthIdAsync(authType, authValue);
+                if (!string.IsNullOrEmpty(authId)) {
+                    var existingChannel = this.GetConnection(authId);
                     if (existingChannel != null) {
                         existingChannel.Dispose();
                     }
-
-                    channel.Start();
-                    this.authenticatedChannelById[id] = channel;
+                    connection.Start(authId);
+                    this.authenticatedConnectionByAuthId[authId] = connection;
                 }
             }
             catch (Exception e) {
@@ -82,28 +72,31 @@ namespace Butterfly.Channel {
         }
 
         /// <inheritdoc/>
-        public IDisposable OnNewChannel(string path, Func<string, string, IChannel, string> handler) {
-            if (this.started) throw new Exception("Cannot call OnNewChannel() after Start()");
-            return new ListItemDisposable<NewChannelHandler>(onNewChannelHandlers, new NewChannelHandler(path, handler));
+        public RegisteredRoute RegisterRoute(string routePath, Func<string, string, string> getAuthId = null, Func<string, string, Task<string>> getAuthIdAsync = null) {
+            if (this.started) throw new Exception("Cannot call OnNewConnection() after Start()");
+
+            RegisteredRoute registeredRoute;
+            if (getAuthId!=null && getAuthIdAsync!=null) {
+                throw new Exception("Can only specify a getAuthId or getAuthIdAsync but not both");
+            }
+            else if (getAuthId != null) {
+                registeredRoute = new RegisteredRoute(routePath, getAuthId);
+            }
+            else if (getAuthIdAsync!=null) {
+                registeredRoute = new RegisteredRoute(routePath, getAuthIdAsync);
+            }
+            else {
+                registeredRoute = new RegisteredRoute(routePath, (authType, authValue) => authValue);
+            }
+            this.registeredRouteByPath[routePath] = registeredRoute;
+            return registeredRoute;
         }
 
-        /// <inheritdoc/>
-        public IDisposable OnNewChannel(string path, Func<string, string, IChannel, Task<string>> handler) {
-            if (this.started) throw new Exception("Cannot call OnNewChannelAsync() after Start()");
-            return new ListItemDisposable<NewChannelHandler>(onNewChannelHandlers, new NewChannelHandler(path, handler));
-        }
+        public int ConnectionCount => this.authenticatedConnectionByAuthId.Count;
 
-        public int ChannelCount => this.authenticatedChannelById.Count;
-
-        public IChannel GetChannel(string channelId, bool throwExceptionIfMissing = false) {
-            if (!this.authenticatedChannelById.TryGetValue(channelId, out IChannel channel) && throwExceptionIfMissing) throw new Exception($"Invalid channel id '{channelId}'");
-            return channel;
-        }
-
-        public void Queue(string channelId, object value) {
-            if (!this.started) throw new Exception("Cannot call Queue() before Start()");
-            var channel = this.GetChannel(channelId);
-            channel.Queue(value);
+        public IChannelServerConnection GetConnection(string authId, bool throwExceptionIfMissing = false) {
+            if (!this.authenticatedConnectionByAuthId.TryGetValue(authId, out IChannelServerConnection connection) && throwExceptionIfMissing) throw new Exception($"Invalid channel id '{authId}'");
+            return connection;
         }
 
         protected bool started = false;
@@ -113,7 +106,7 @@ namespace Butterfly.Channel {
         /// </summary>
         public void Start() {
             if (this.started) throw new Exception("Channel Server already started");
-
+            if (this.registeredRouteByPath.Count() == 0) throw new Exception("Must register at least one route");
             this.started = true;
             Task backgroundTask = Task.Run(this.CheckForDeadChannelsAsync);
             this.DoStart();
@@ -127,10 +120,10 @@ namespace Butterfly.Channel {
                 DateTime? oldestLastReceivedHeartbeatReceived = null;
 
                 // Check for dead unauthenticated channels
-                foreach (IChannel channel in this.unauthenticatedChannels.Values.ToArray()) {
+                foreach (IChannelServerConnection channel in this.unauthenticatedConnections.Values.ToArray()) {
                     logger.Trace($"CheckForDeadChannelsAsync():channel.Created={channel.Created},cutoffDateTime={cutoffDateTime}");
                     if (channel.Created < cutoffDateTime) {
-                        bool removed = this.unauthenticatedChannels.TryRemove(channel, out IChannel removedChannel);
+                        bool removed = this.unauthenticatedConnections.TryRemove(channel, out IChannelServerConnection removedChannel);
                         if (!removed) throw new Exception($"Could not remove unauthenticated channel");
                         channel.Dispose();
                     }
@@ -140,10 +133,10 @@ namespace Butterfly.Channel {
                 }
 
                 // Check for dead authenticated channels
-                foreach ((string id, IChannel channel) in this.authenticatedChannelById.ToArray()) {
+                foreach ((string id, IChannelServerConnection channel) in this.authenticatedConnectionByAuthId.ToArray()) {
                     logger.Trace($"CheckForDeadChannelsAsync():channel.LastHeartbeatReceived={channel.LastHeartbeat},cutoffDateTime={cutoffDateTime}");
                     if (channel.LastHeartbeat < cutoffDateTime) {
-                        bool removed = this.authenticatedChannelById.TryRemove(id, out IChannel removedChannel);
+                        bool removed = this.authenticatedConnectionByAuthId.TryRemove(id, out IChannelServerConnection removedChannel);
                         if (!removed) throw new Exception($"Could not remove channel id {id}");
                         channel.Dispose();
                     }
@@ -160,6 +153,16 @@ namespace Butterfly.Channel {
 
         public void Dispose() {
             this.started = false;
+
+            foreach (var connection in this.unauthenticatedConnections.Values) {
+                connection.Dispose();
+            }
+            this.unauthenticatedConnections.Clear();
+
+            foreach (var connection in this.authenticatedConnectionByAuthId.Values) {
+                connection.Dispose();
+            }
+            this.authenticatedConnectionByAuthId.Clear();
         }
     }
 

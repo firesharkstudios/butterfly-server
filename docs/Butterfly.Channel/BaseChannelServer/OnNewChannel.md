@@ -1,19 +1,22 @@
-# BaseChannelServer.OnNewChannel method
-
-Add a listener when a new channel is created
+# BaseChannelServer.OnNewChannel method (1 of 2)
 
 ```csharp
-public IDisposable OnNewChannel(string pathFilter, Func<IChannel, IDisposable> listener)
+public IDisposable OnNewChannel(string path, Func<string, string, IChannel, string> handler)
 ```
 
-| parameter | description |
-| --- | --- |
-| pathFilter | Filters new channel requests by path (pass '/chat' to only match channels created with path '/chat') |
-| listener | Lambda to run to initialize the channel |
+## See Also
 
-## Return Value
+* interface [IChannel](../IChannel.md)
+* class [BaseChannelServer](../BaseChannelServer.md)
+* namespace [Butterfly.Channel](../../Butterfly.Channel.md)
 
-Any object that should be disposed when the channel is disposed
+---
+
+# BaseChannelServer.OnNewChannel method (2 of 2)
+
+```csharp
+public IDisposable OnNewChannel(string path, Func<string, string, IChannel, Task<string>> handler)
+```
 
 ## See Also
 

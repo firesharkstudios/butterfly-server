@@ -1,7 +1,7 @@
 # BaseChannelServer constructor
 
 ```csharp
-public BaseChannelServer(Func<string, string> authenticate = null, int mustReceiveHeartbeatMillis = 5000)
+public BaseChannelServer(int mustReceiveHeartbeatMillis = 5000)
 ```
 
 ## See Also

@@ -1,7 +1,5 @@
 # InsertStatement class
 
-Internal class used to parse INSERT statements
-
 ```csharp
 public class InsertStatement : BaseStatement
 ```

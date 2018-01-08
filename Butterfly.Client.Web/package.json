@@ -2,7 +2,7 @@
   "name": "butterfly-client",
   "version": "1.0.0",
   "description": "Client library for Butterfly Framework",
-  "main": "index.js",
+  "main": "",
   "directories": {
     "example": "examples"
   },

@@ -1,7 +1,5 @@
 # SingleValueDynamicParam class
 
-A [`IDynamicParam`](../Butterfly.Database/IDynamicParam.md) that may only contain a single value
-
 ```csharp
 public class SingleValueDynamicParam : BaseDynamicParam
 ```

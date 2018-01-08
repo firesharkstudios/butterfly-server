@@ -1,7 +1,5 @@
 # IChannelServer interface
 
-Allows clients to create new channels to the server and allows the server to push messages to connected clients.
-
 ```csharp
 public interface IChannelServer : IDisposable
 ```
@@ -10,37 +8,11 @@ public interface IChannelServer : IDisposable
 
 | name | description |
 | --- | --- |
-| [ChannelCount](IChannelServer/ChannelCount.md) { get; } | Number of channels |
-| [GetChannel](IChannelServer/GetChannel.md)(…) | Retrieve a channel by id |
-| [OnNewChannel](IChannelServer/OnNewChannel.md)(…) | Add a listener when a new channel is created |
-| [OnNewChannelAsync](IChannelServer/OnNewChannelAsync.md)(…) | Add an async listener when a new channel is created (return an IDisposable to dispose any objects when the channel is disposed) |
-| [Queue](IChannelServer/Queue.md)(…) | Queues a value to be sent to the specified channel (normally converted to JSON and transmitted as text) |
-| [Start](IChannelServer/Start.md)() | Starts the channel server. Must be called after adding new channel listeners (via [`OnNewChannel`](IChannelServer/OnNewChannel.md) and [`OnNewChannelAsync`](IChannelServer/OnNewChannelAsync.md)) |
-
-## Remarks
-
-Initializing a channel server instance...
-
-```csharp
-var channelServer = new SomeChannelServer();
-channelServer.OnNewChannel("/chat", channel => {
-    // Do stuff here to initialize the channel (send initial data, listen for specific data change events, etc)
-    // and return any object that should be disposed when the channel is disposed
-});
-channelServer.Start();
-```
-
-If a client has now created a channel at /chat?id=123, the server can now push data to the client via...
-
-```csharp
-channelServer.Queue("123", "Hello");
-```
-
-If you no longer need a channel server instance, call Dispose() on the channel server...
-
-```csharp
-channelServer.Dispose();
-```
+| [ChannelCount](IChannelServer/ChannelCount.md) { get; } |  |
+| [GetChannel](IChannelServer/GetChannel.md)(…) |  |
+| [OnNewChannel](IChannelServer/OnNewChannel.md)(…) |  (2 methods) |
+| [Queue](IChannelServer/Queue.md)(…) |  |
+| [Start](IChannelServer/Start.md)() |  |
 
 ## See Also
 

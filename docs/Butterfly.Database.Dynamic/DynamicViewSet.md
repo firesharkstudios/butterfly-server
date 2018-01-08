@@ -1,7 +1,5 @@
 # DynamicViewSet class
 
-Represents a collection of [`DynamicView`](DynamicView.md) instances. Often a [`DynamicViewSet`](DynamicViewSet.md) instance will represent all the data that should be replicated to a specific client.
-
 ```csharp
 public class DynamicViewSet : IDisposable
 ```
@@ -12,9 +10,9 @@ public class DynamicViewSet : IDisposable
 | --- | --- |
 | [DynamicViewSet](DynamicViewSet/DynamicViewSet.md)(…) |  (2 constructors) |
 | [Id](DynamicViewSet/Id.md) { get; } |  |
-| [CreateDynamicView](DynamicViewSet/CreateDynamicView.md)(…) | Creates an instance of a DynamicView. Must call [`StartAsync`](DynamicViewSet/StartAsync.md) to send initial [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) instance and listen for new [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md)instances. |
+| [CreateDynamicView](DynamicViewSet/CreateDynamicView.md)(…) |  |
 | [Dispose](DynamicViewSet/Dispose.md)() |  |
-| [StartAsync](DynamicViewSet/StartAsync.md)() | Send an initial [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) to the registered listener and sends new [`DataEventTransaction`](../Butterfly.Database.Event/DataEventTransaction.md) instances when any data in the underlying [`DynamicView`](DynamicView.md) instances changes. Stops listening [`Dispose`](DynamicViewSet/Dispose.md) is called. |
+| [StartAsync](DynamicViewSet/StartAsync.md)() |  |
 
 ## See Also
 

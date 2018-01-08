@@ -1,15 +1,8 @@
 # BaseDatabase.CreateFromResourceFile method
 
-Creates database tables from an embedded resource file by internally calling [`CreateFromText`](../IDatabase/CreateFromText.md) with the contents of the embedded resource file"
-
 ```csharp
 public void CreateFromResourceFile(Assembly assembly, string resourceFile)
 ```
-
-| parameter | description |
-| --- | --- |
-| assembly |  |
-| resourceFile |  |
 
 ## See Also
 

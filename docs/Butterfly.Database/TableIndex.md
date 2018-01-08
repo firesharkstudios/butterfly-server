@@ -1,7 +1,5 @@
 # TableIndex class
 
-Defines an index for a [`Table`](Table.md)
-
 ```csharp
 public class TableIndex
 ```

@@ -1,20 +1,13 @@
 # BaseWebApiServer.OnGet method
 
-Add a listener responding to GET requests
-
 ```csharp
-public void OnGet(string path, Func<IWebRequest, IWebResponse, Task> listener)
+public void OnGet(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
 ```
-
-| parameter | description |
-| --- | --- |
-| path |  |
-| listener |  |
 
 ## See Also
 
-* interface [IWebRequest](../IWebRequest.md)
-* interface [IWebResponse](../IWebResponse.md)
+* interface [IHttpRequest](../IHttpRequest.md)
+* interface [IHttpResponse](../IHttpResponse.md)
 * class [BaseWebApiServer](../BaseWebApiServer.md)
 * namespace [Butterfly.WebApi](../../Butterfly.WebApi.md)
 

@@ -1,20 +1,13 @@
 # IWebApiServer.OnPost method
 
-Add a listener responding to POST requests
-
 ```csharp
-public void OnPost(string path, Func<IWebRequest, IWebResponse, Task> listener)
+public void OnPost(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
 ```
-
-| parameter | description |
-| --- | --- |
-| path |  |
-| listener |  |
 
 ## See Also
 
-* interface [IWebRequest](../IWebRequest.md)
-* interface [IWebResponse](../IWebResponse.md)
+* interface [IHttpRequest](../IHttpRequest.md)
+* interface [IHttpResponse](../IHttpResponse.md)
 * interface [IWebApiServer](../IWebApiServer.md)
 * namespace [Butterfly.WebApi](../../Butterfly.WebApi.md)
 

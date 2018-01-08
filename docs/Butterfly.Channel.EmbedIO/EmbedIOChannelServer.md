@@ -1,7 +1,5 @@
 # EmbedIOChannelServer class
 
-Allows clients to create new channels to the server and allows the server to push messages to connected clients.
-
 ```csharp
 public class EmbedIOChannelServer : BaseChannelServer
 ```
@@ -12,31 +10,6 @@ public class EmbedIOChannelServer : BaseChannelServer
 | --- | --- |
 | [EmbedIOChannelServer](EmbedIOChannelServer/EmbedIOChannelServer.md)(…) |  |
 | readonly [webServer](EmbedIOChannelServer/webServer.md) |  |
-
-## Remarks
-
-Initializing a channel server instance...
-
-```csharp
-var channelServer = new SomeChannelServer();
-channelServer.OnNewChannel("/chat", channel => {
-    // Do stuff here to initialize the channel (send initial data, listen for specific data change events, etc)
-    // and return any object that should be disposed when the channel is disposed
-});
-channelServer.Start();
-```
-
-If a client has now created a channel at /chat?id=123, the server can now push data to the client via...
-
-```csharp
-channelServer.Queue("123", "Hello");
-```
-
-If you no longer need a channel server instance, call Dispose() on the channel server...
-
-```csharp
-channelServer.Dispose();
-```
 
 ## See Also
 

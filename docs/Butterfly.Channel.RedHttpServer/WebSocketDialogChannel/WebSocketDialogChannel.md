@@ -1,7 +1,7 @@
 # WebSocketDialogChannel constructor
 
 ```csharp
-public WebSocketDialogChannel(BaseChannelServer channelServer, string path, WebSocketDialog webSocketDialog)
+public WebSocketDialogChannel(BaseChannelServer channelServer, IWebRequest webRequest, WebSocketDialog webSocketDialog)
 ```
 
 ## See Also

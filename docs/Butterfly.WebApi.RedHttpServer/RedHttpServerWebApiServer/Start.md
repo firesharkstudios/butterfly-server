@@ -1,15 +1,8 @@
 # RedHttpServerWebApiServer.Start method
 
-Start the web api server
-
 ```csharp
 public override void Start()
 ```
-
-| parameter | description |
-| --- | --- |
-| path |  |
-| listener |  |
 
 ## See Also
 

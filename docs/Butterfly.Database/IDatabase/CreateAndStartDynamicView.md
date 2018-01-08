@@ -1,19 +1,9 @@
 # IDatabase.CreateAndStartDynamicView method (1 of 2)
 
-Convenience method which creates a [`DynamicViewSet`](../../Butterfly.Database.Dynamic/DynamicViewSet.md), adds a single [`DynamicView`](../../Butterfly.Database.Dynamic/DynamicView.md) to the [`DynamicViewSet`](../../Butterfly.Database.Dynamic/DynamicViewSet.md), and starts the [`DynamicViewSet`](../../Butterfly.Database.Dynamic/DynamicViewSet.md).
-
 ```csharp
 public Task<DynamicViewSet> CreateAndStartDynamicView(string selectStatement, 
     Action<DataEventTransaction> listener, object values = null, string name = null, string[] keyFieldNames = null)
 ```
-
-| parameter | description |
-| --- | --- |
-| selectStatement |  |
-| listener |  |
-| values |  |
-| name |  |
-| keyFieldNames |  |
 
 ## See Also
 
@@ -26,20 +16,10 @@ public Task<DynamicViewSet> CreateAndStartDynamicView(string selectStatement,
 
 # IDatabase.CreateAndStartDynamicView method (2 of 2)
 
-Convenience method which creates a [`DynamicViewSet`](../../Butterfly.Database.Dynamic/DynamicViewSet.md), adds a single [`DynamicView`](../../Butterfly.Database.Dynamic/DynamicView.md) to the [`DynamicViewSet`](../../Butterfly.Database.Dynamic/DynamicViewSet.md), and starts the [`DynamicViewSet`](../../Butterfly.Database.Dynamic/DynamicViewSet.md).
-
 ```csharp
 public Task<DynamicViewSet> CreateAndStartDynamicView(string selectStatement, 
     Func<DataEventTransaction, Task> listener, object values = null, string name = null, string[] keyFieldNames = null)
 ```
-
-| parameter | description |
-| --- | --- |
-| selectStatement |  |
-| listener |  |
-| values |  |
-| name |  |
-| keyFieldNames |  |
 
 ## See Also
 

@@ -1,7 +1,7 @@
 # BaseChannel constructor
 
 ```csharp
-public BaseChannel(BaseChannelServer channelServer, string path)
+public BaseChannel(BaseChannelServer channelServer, IWebRequest webRequest)
 ```
 
 ## See Also

@@ -1,7 +1,7 @@
 # RedHttpServerWebRequest class
 
 ```csharp
-public class RedHttpServerWebRequest : IWebRequest
+public class RedHttpServerWebRequest : IHttpRequest
 ```
 
 ## Public Members
@@ -9,8 +9,10 @@ public class RedHttpServerWebRequest : IWebRequest
 | name | description |
 | --- | --- |
 | [RedHttpServerWebRequest](RedHttpServerWebRequest/RedHttpServerWebRequest.md)(…) |  |
-| [AuthenticationHeaderValue](RedHttpServerWebRequest/AuthenticationHeaderValue.md) { get; } |  |
 | [Headers](RedHttpServerWebRequest/Headers.md) { get; } |  |
+| [PathParams](RedHttpServerWebRequest/PathParams.md) { get; } |  |
+| [QueryParams](RedHttpServerWebRequest/QueryParams.md) { get; } |  |
+| [RequestUri](RedHttpServerWebRequest/RequestUri.md) { get; } |  |
 | readonly [request](RedHttpServerWebRequest/request.md) |  |
 | [ParseAsJsonAsync&lt;T&gt;](RedHttpServerWebRequest/ParseAsJsonAsync.md)() |  |
 

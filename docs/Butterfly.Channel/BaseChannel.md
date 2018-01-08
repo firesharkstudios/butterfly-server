@@ -1,7 +1,5 @@
 # BaseChannel class
 
-Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
-
 ```csharp
 public abstract class BaseChannel : IChannel
 ```
@@ -11,15 +9,15 @@ public abstract class BaseChannel : IChannel
 | name | description |
 | --- | --- |
 | [BaseChannel](BaseChannel/BaseChannel.md)(…) |  |
-| [AuthId](BaseChannel/AuthId.md) { get; } | Unique identifier for the channel |
 | [Created](BaseChannel/Created.md) { get; } |  |
-| [LastHeartbeat](BaseChannel/LastHeartbeat.md) { get; } | When the last heartbeat was registered |
-| [Path](BaseChannel/Path.md) { get; } |  |
-| [Dispose](BaseChannel/Dispose.md)() | Implements the IDispose interface |
-| [Heartbeat](BaseChannel/Heartbeat.md)() | Implementing classes should call this periodically to keep the channel alive (otherwise ChannelServer will remove the channel) |
-| [Queue](BaseChannel/Queue.md)(…) | Queue an object to be sent over the channel to the client. The queue is processed by a background thread when the Channel is started. |
+| [LastHeartbeat](BaseChannel/LastHeartbeat.md) { get; } |  |
+| [WebRequest](BaseChannel/WebRequest.md) { get; } |  |
+| [Attach](BaseChannel/Attach.md)(…) |  |
+| [Dispose](BaseChannel/Dispose.md)() |  |
+| [Heartbeat](BaseChannel/Heartbeat.md)() |  |
+| [Queue](BaseChannel/Queue.md)(…) |  |
 | [ReceiveMessage](BaseChannel/ReceiveMessage.md)(…) |  |
-| [Start](BaseChannel/Start.md)(…) |  |
+| [Start](BaseChannel/Start.md)() |  |
 
 ## See Also
 

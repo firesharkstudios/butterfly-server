@@ -1,11 +1,5 @@
 # PostgresTransaction class
 
-Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single DataEventTransaction on the underlying IDatabase instance when the transaction is committed.
-
-Must call Commit or CommitAsync to have the changes committed.
-
-If the transaction is disposed without calling Commit or CommitAsync the transaction is automatically rolled back.
-
 ```csharp
 public class PostgresTransaction : BaseTransaction
 ```

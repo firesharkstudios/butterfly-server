@@ -1,7 +1,7 @@
 # EmbedIOWebResponse class
 
 ```csharp
-public class EmbedIOWebResponse : IWebResponse
+public class EmbedIOWebResponse : IHttpResponse
 ```
 
 ## Public Members

@@ -69,11 +69,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseChannel.cs" />
+    <Compile Include="BaseChannelServerConnection.cs" />
+    <Compile Include="Channel.cs" />
+    <Compile Include="RegisteredRoute.cs" />
     <Compile Include="IChannelServer.cs" />
-    <Compile Include="NewChannelListener.cs" />
+    <Compile Include="RegisteredChannel.cs" />
     <Compile Include="BaseChannelServer.cs" />
-    <Compile Include="IChannel.cs" />
+    <Compile Include="IChannelServerConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 # RedHttpServerChannelServer constructor
 
 ```csharp
-public RedHttpServerChannelServer(RedHttpServer server, Func<string, string> authenticate = null, int mustReceiveHeartbeatMillis = 5000)
+public RedHttpServerChannelServer(RedHttpServer server, int mustReceiveHeartbeatMillis = 5000)
 ```
 
 ## See Also

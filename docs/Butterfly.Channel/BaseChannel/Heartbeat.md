@@ -1,7 +1,5 @@
 # BaseChannel.Heartbeat method
 
-Implementing classes should call this periodically to keep the channel alive (otherwise ChannelServer will remove the channel)
-
 ```csharp
 public void Heartbeat()
 ```

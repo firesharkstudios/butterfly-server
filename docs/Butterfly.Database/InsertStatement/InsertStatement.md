@@ -4,11 +4,6 @@
 public InsertStatement(IDatabase database, string sql)
 ```
 
-| parameter | description |
-| --- | --- |
-| database |  |
-| sql | Can be a table name or full SQL. Full SQL can use @@names and @@values tokens to retrieve values from the record parameter. |
-
 ## See Also
 
 * interface [IDatabase](../IDatabase.md)

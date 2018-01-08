@@ -33,44 +33,49 @@ namespace Butterfly.Channel.Test {
 
         public async Task TestChannel(IChannelServer channelServer, Action start) {
             // Listen for new channels at /test to be created
-            IChannel newChannel = null;
+            Channel newChannel = null;
             TestDisposable testDisposable = new TestDisposable();
-            channelServer.OnNewChannel("/test", (authType, authValue, channel) => {
+
+            // Register route
+            var route = channelServer.RegisterRoute("/test");
+
+            // Register channel
+            route.RegisterChannel(handler: (vars, channel) => {
                 newChannel = channel;
-                channel.Attach(testDisposable);
-                return authValue;
+                return testDisposable;
             });
             channelServer.Start();
             if (start != null) start();
 
-            var testAuthToken = "123";
+            var testAuthId = "123";
 
             // Test creating a channel from the client
             List<string> messageCollector = new List<string>();
-            var channelClient = new WebSocketChannelClient("ws://localhost:8080/test", testAuthToken, json => {
+            var channelClient = new WebSocketChannelClient("ws://localhost:8080/test", $"Test {testAuthId}", heartbeatEveryMillis: 1000);
+            channelClient.Start();
+            channelClient.Subscribe(json => {
                 var message = JsonUtil.Deserialize<string>(json);
                 messageCollector.Add(message);
-            }, heartbeatEveryMillis: 1000);
-            channelClient.Start();
+            });
             await Task.Delay(1000);
             Assert.IsNotNull(newChannel);
-            Assert.AreEqual(1, channelServer.ChannelCount);
-            Assert.IsNotNull(channelServer.GetChannel(testAuthToken));
+            Assert.AreEqual(1, channelServer.ConnectionCount);
+            Assert.IsNotNull(channelServer.GetConnection(testAuthId));
 
             // Test if sending a message on the server is received on the client
-            channelServer.Queue(testAuthToken, "Hello");
+            channelServer.GetConnection(testAuthId, true).Queue("Hello");
             await Task.Delay(200);
             Assert.AreEqual(1, messageCollector.Count);
             Assert.AreEqual("Hello", messageCollector[0]);
 
             // Test if heartbeats keep the channel alive properly
             await Task.Delay(3000);
-            Assert.AreEqual(1, channelServer.ChannelCount);
+            Assert.AreEqual(1, channelServer.ConnectionCount);
 
             // Test if channel is disposed if it is removed from server
             channelClient.Dispose();
             await Task.Delay(3000);
-            Assert.AreEqual(0, channelServer.ChannelCount);
+            Assert.AreEqual(0, channelServer.ConnectionCount);
 
             // Test if the disposable returned by OnNewChannel() was disposed as well
             Assert.AreEqual(true, testDisposable.disposed);

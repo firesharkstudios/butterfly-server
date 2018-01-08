@@ -1,13 +1,13 @@
 # WebHandler.listener field
 
 ```csharp
-public Func<IWebRequest, IWebResponse, Task> listener;
+public Func<IHttpRequest, IHttpResponse, Task> listener;
 ```
 
 ## See Also
 
-* interface [IWebRequest](../IWebRequest.md)
-* interface [IWebResponse](../IWebResponse.md)
+* interface [IHttpRequest](../IHttpRequest.md)
+* interface [IHttpResponse](../IHttpResponse.md)
 * class [WebHandler](../WebHandler.md)
 * namespace [Butterfly.WebApi](../../Butterfly.WebApi.md)
 

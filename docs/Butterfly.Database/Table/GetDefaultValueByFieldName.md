@@ -1,7 +1,7 @@
 # Table.GetDefaultValueByFieldName property
 
 ```csharp
-public Dictionary<string, Func<object>> GetDefaultValueByFieldName { get; }
+public Dictionary<string, Func<string, object>> GetDefaultValueByFieldName { get; }
 ```
 
 ## See Also
