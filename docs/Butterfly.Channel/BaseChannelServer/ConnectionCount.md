@@ -1,7 +1,7 @@
-# BaseChannelServer.ChannelCount property
+# BaseChannelServer.ConnectionCount property
 
 ```csharp
-public int ChannelCount { get; }
+public int ConnectionCount { get; }
 ```
 
 ## See Also

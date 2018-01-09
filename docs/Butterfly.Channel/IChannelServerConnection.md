@@ -8,11 +8,10 @@ public interface IChannelServerConnection : IDisposable
 
 | name | description |
 | --- | --- |
-| [AuthId](IChannelServerConnection/AuthId.md) { get; } |  |
-| [ChannelByPath](IChannelServerConnection/ChannelByPath.md) { get; } |  |
 | [Created](IChannelServerConnection/Created.md) { get; } |  |
+| [Id](IChannelServerConnection/Id.md) { get; } |  |
 | [LastHeartbeat](IChannelServerConnection/LastHeartbeat.md) { get; } |  |
-| [WebRequest](IChannelServerConnection/WebRequest.md) { get; } |  |
+| [RegisteredRoute](IChannelServerConnection/RegisteredRoute.md) { get; } |  |
 | [Queue](IChannelServerConnection/Queue.md)(…) |  |
 | [Start](IChannelServerConnection/Start.md)(…) |  |
 

@@ -1,11 +1,12 @@
-# RegisteredRoute.getAuthIdAsync field
+# RegisteredRoute.RegisteredChannelByKey property
 
 ```csharp
-public readonly Func<string, string, Task<string>> getAuthIdAsync;
+public Dictionary<string, RegisteredChannel> RegisteredChannelByKey { get; }
 ```
 
 ## See Also
 
+* class [RegisteredChannel](../RegisteredChannel.md)
 * class [RegisteredRoute](../RegisteredRoute.md)
 * namespace [Butterfly.Channel](../../Butterfly.Channel.md)
 

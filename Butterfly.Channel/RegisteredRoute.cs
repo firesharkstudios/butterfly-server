@@ -27,21 +27,49 @@ namespace Butterfly.Channel {
     public class RegisteredRoute {
 
         public readonly string path;
-        public readonly Func<string, string, string> getAuthId;
-        public readonly Func<string, string, Task<string>> getAuthIdAsync;
+
+        public readonly Func<string, string, object> getAuthToken;
+        public readonly Func<string, string, Task<object>> getAuthTokenAsync;
+
+        public readonly Func<object, string> getId;
+        public readonly Func<object, Task<string>> getIdAsync;
 
         protected readonly Dictionary<string, RegisteredChannel> registeredChannelByKey = new Dictionary<string, RegisteredChannel>();
 
-        public RegisteredRoute(string path, Func<string, string, string> getAuthId) {
+        public RegisteredRoute(string path, Func<string, string, object> getAuthToken, Func<string, string, Task<object>> getAuthTokenAsync, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null) {
             this.path = path;
-            this.getAuthId = getAuthId;
-            this.getAuthIdAsync = null;
-        }
 
-        public RegisteredRoute(string path, Func<string, string, Task<string>> getAuthIdAsync) {
-            this.path = path;
-            this.getAuthId = null;
-            this.getAuthIdAsync = getAuthIdAsync;
+            if (getAuthToken != null && getAuthTokenAsync != null) {
+                throw new Exception("Can specify getAuthToken or getAuthTokenAsync but not both");
+            }
+            else if (getAuthToken != null) {
+                this.getAuthToken = getAuthToken;
+                this.getAuthTokenAsync = null;
+            }
+            else if (getAuthTokenAsync != null) {
+                this.getAuthToken = null;
+                this.getAuthTokenAsync = getAuthTokenAsync;
+            }
+            else {
+                this.getAuthToken = (authType, authValue) => authValue;
+                this.getAuthTokenAsync = null;
+            }
+
+            if (getId != null && getIdAsync != null) {
+                throw new Exception("Can specify getId or getIdAsync but not both");
+            }
+            else if (getId != null) {
+                this.getId = getId;
+                this.getIdAsync = null;
+            }
+            else if (getIdAsync != null) {
+                this.getId = null;
+                this.getIdAsync = getIdAsync;
+            }
+            else {
+                this.getId = authToken => authToken.ToString();
+                this.getIdAsync = null;
+            }
         }
 
         public Dictionary<string, RegisteredChannel> RegisteredChannelByKey => this.registeredChannelByKey;

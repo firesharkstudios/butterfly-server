@@ -1,7 +1,7 @@
-# RegisteredRoute.getAuthId field
+# RegisteredRoute.getAuthTokenAsync field
 
 ```csharp
-public readonly Func<string, string, string> getAuthId;
+public readonly Func<string, string, Task<object>> getAuthTokenAsync;
 ```
 
 ## See Also

@@ -21,11 +21,12 @@ namespace Butterfly.Channel {
     /// Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
     /// </summary>
     public interface IChannelServerConnection : IDisposable {
-        string AuthId { get; }
+        object AuthToken { get; }
+        string Id { get; }
         DateTime Created { get;  }
         RegisteredRoute RegisteredRoute { get; }
         DateTime LastHeartbeat { get; }
-        void Start(string authId);
+        void Start(object authToken, string id);
         void Queue(object value, string channelKey = "default");
     }
 }

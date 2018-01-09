@@ -45,7 +45,8 @@ namespace Butterfly.Channel {
         protected readonly ConcurrentQueue<string> buffer = new ConcurrentQueue<string>();
         protected readonly AsyncMonitor monitor = new AsyncMonitor();
 
-        protected string authId = null;
+        protected object authToken;
+        protected string id = null;
 
         /// <summary>
         /// Stores when the datetime of the last heartbeat (set via <ref>Heartbeat</ref>)
@@ -58,7 +59,9 @@ namespace Butterfly.Channel {
             this.created = DateTime.Now;
         }
 
-        public string AuthId => this.authId;
+        public object AuthToken => this.authToken;
+
+        public string Id => this.id;
 
         public DateTime Created => this.created;
 
@@ -90,8 +93,9 @@ namespace Butterfly.Channel {
         }
 
         protected bool started = false;
-        public void Start(string authId) {
-            this.authId = authId;
+        public void Start(object authToken, string id) {
+            this.authToken = authToken;
+            this.id = id;
             this.started = true;
             Task.Run(() => this.RunAsync());
         }

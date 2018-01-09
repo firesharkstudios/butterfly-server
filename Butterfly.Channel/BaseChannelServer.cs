@@ -56,14 +56,15 @@ namespace Butterfly.Channel {
             this.unauthenticatedConnections.TryRemove(connection, out IChannelServerConnection dummyChannel);
             if (!this.registeredRouteByPath.TryGetValue(connection.RegisteredRoute.path, out RegisteredRoute registeredRoute)) throw new Exception($"Invalid path '{connection.RegisteredRoute.path}'");
             try {
-                string authId = registeredRoute.getAuthId != null ? registeredRoute.getAuthId(authType, authValue) : await registeredRoute.getAuthIdAsync(authType, authValue);
-                if (!string.IsNullOrEmpty(authId)) {
-                    var existingChannel = this.GetConnection(authId);
+                object authToken = registeredRoute.getAuthToken != null ? registeredRoute.getAuthToken(authType, authValue) : await registeredRoute.getAuthTokenAsync(authType, authValue);
+                string id = registeredRoute.getId != null ? registeredRoute.getId(authToken) : await registeredRoute.getIdAsync(authToken);
+                if (!string.IsNullOrEmpty(id)) {
+                    var existingChannel = this.GetConnection(id);
                     if (existingChannel != null) {
                         existingChannel.Dispose();
                     }
-                    connection.Start(authId);
-                    this.authenticatedConnectionByAuthId[authId] = connection;
+                    connection.Start(authToken, id);
+                    this.authenticatedConnectionByAuthId[id] = connection;
                 }
             }
             catch (Exception e) {
@@ -72,22 +73,10 @@ namespace Butterfly.Channel {
         }
 
         /// <inheritdoc/>
-        public RegisteredRoute RegisterRoute(string routePath, Func<string, string, string> getAuthId = null, Func<string, string, Task<string>> getAuthIdAsync = null) {
+        public RegisteredRoute RegisterRoute(string routePath, Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null) {
             if (this.started) throw new Exception("Cannot call OnNewConnection() after Start()");
 
-            RegisteredRoute registeredRoute;
-            if (getAuthId!=null && getAuthIdAsync!=null) {
-                throw new Exception("Can only specify a getAuthId or getAuthIdAsync but not both");
-            }
-            else if (getAuthId != null) {
-                registeredRoute = new RegisteredRoute(routePath, getAuthId);
-            }
-            else if (getAuthIdAsync!=null) {
-                registeredRoute = new RegisteredRoute(routePath, getAuthIdAsync);
-            }
-            else {
-                registeredRoute = new RegisteredRoute(routePath, (authType, authValue) => authValue);
-            }
+            RegisteredRoute registeredRoute = new RegisteredRoute(routePath, getAuthToken, getAuthTokenAsync, getId, getIdAsync);
             this.registeredRouteByPath[routePath] = registeredRoute;
             return registeredRoute;
         }

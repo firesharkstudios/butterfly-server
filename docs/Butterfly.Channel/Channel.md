@@ -9,9 +9,9 @@ public class Channel : IDisposable
 | name | description |
 | --- | --- |
 | [Channel](Channel/Channel.md)(…) |  |
-| [ChannelPath](Channel/ChannelPath.md) { get; } |  |
+| [ChannelKey](Channel/ChannelKey.md) { get; } |  |
 | [Connection](Channel/Connection.md) { get; } |  |
-| [QueryParams](Channel/QueryParams.md) { get; } |  |
+| [Vars](Channel/Vars.md) { get; } |  |
 | [Attach](Channel/Attach.md)(…) |  |
 | [Dispose](Channel/Dispose.md)() |  |
 | [Queue](Channel/Queue.md)(…) |  |

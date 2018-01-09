@@ -4,6 +4,7 @@
 
 | public type | description |
 | --- | --- |
+| class [Subscription](Butterfly.Client.DotNet/Subscription.md) |  |
 | class [WebSocketChannelClient](Butterfly.Client.DotNet/WebSocketChannelClient.md) |  |
 | enum [WebSocketChannelClientStatus](Butterfly.Client.DotNet/WebSocketChannelClientStatus.md) |  |
 | class [WebSocketSharpChannelClient](Butterfly.Client.DotNet/WebSocketSharpChannelClient.md) |  |

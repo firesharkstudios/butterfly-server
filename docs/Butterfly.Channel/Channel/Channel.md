@@ -1,7 +1,7 @@
 # Channel constructor
 
 ```csharp
-public Channel(IChannelServerConnection connection, string channelPath, Dictionary<string, string> queryParams)
+public Channel(IChannelServerConnection connection, string channelKey, Dictionary<string, object> vars)
 ```
 
 ## See Also

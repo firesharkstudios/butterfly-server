@@ -9,13 +9,12 @@ public abstract class BaseChannelServerConnection : IChannelServerConnection
 | name | description |
 | --- | --- |
 | [BaseChannelServerConnection](BaseChannelServerConnection/BaseChannelServerConnection.md)(…) |  |
-| [AuthId](BaseChannelServerConnection/AuthId.md) { get; } |  |
-| [ChannelByPath](BaseChannelServerConnection/ChannelByPath.md) { get; } |  |
+| [AuthToken](BaseChannelServerConnection/AuthToken.md) { get; } |  |
 | [Created](BaseChannelServerConnection/Created.md) { get; } |  |
+| [Id](BaseChannelServerConnection/Id.md) { get; } |  |
 | [LastHeartbeat](BaseChannelServerConnection/LastHeartbeat.md) { get; } |  |
-| [WebRequest](BaseChannelServerConnection/WebRequest.md) { get; } |  |
+| [RegisteredRoute](BaseChannelServerConnection/RegisteredRoute.md) { get; } |  |
 | [Dispose](BaseChannelServerConnection/Dispose.md)() |  |
-| [Heartbeat](BaseChannelServerConnection/Heartbeat.md)() |  |
 | [Queue](BaseChannelServerConnection/Queue.md)(…) |  |
 | [ReceiveMessage](BaseChannelServerConnection/ReceiveMessage.md)(…) |  |
 | [Start](BaseChannelServerConnection/Start.md)(…) |  |

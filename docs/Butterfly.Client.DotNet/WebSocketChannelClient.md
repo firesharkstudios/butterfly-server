@@ -11,6 +11,8 @@ public class WebSocketChannelClient : IDisposable
 | [WebSocketChannelClient](WebSocketChannelClient/WebSocketChannelClient.md)(…) |  |
 | [Dispose](WebSocketChannelClient/Dispose.md)() |  |
 | [Start](WebSocketChannelClient/Start.md)() |  |
+| [Subscribe](WebSocketChannelClient/Subscribe.md)(…) |  |
+| [Unsubscribe](WebSocketChannelClient/Unsubscribe.md)(…) |  |
 
 ## See Also
 

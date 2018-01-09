@@ -1,20 +1,8 @@
-# RegisteredRoute constructor (1 of 2)
+# RegisteredRoute constructor
 
 ```csharp
-public RegisteredRoute(string path, Func<string, string, string> getAuthId)
-```
-
-## See Also
-
-* class [RegisteredRoute](../RegisteredRoute.md)
-* namespace [Butterfly.Channel](../../Butterfly.Channel.md)
-
----
-
-# RegisteredRoute constructor (2 of 2)
-
-```csharp
-public RegisteredRoute(string path, Func<string, string, Task<string>> getAuthIdAsync)
+public RegisteredRoute(string path, Func<string, string, object> getAuthToken, 
+    Func<string, string, Task<object>> getAuthTokenAsync, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null)
 ```
 
 ## See Also

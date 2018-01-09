@@ -1,12 +1,13 @@
 # BaseChannelServerConnection constructor
 
 ```csharp
-public BaseChannelServerConnection(BaseChannelServer channelServer, IWebRequest webRequest)
+public BaseChannelServerConnection(BaseChannelServer channelServer, RegisteredRoute registeredRoute)
 ```
 
 ## See Also
 
 * class [BaseChannelServer](../BaseChannelServer.md)
+* class [RegisteredRoute](../RegisteredRoute.md)
 * class [BaseChannelServerConnection](../BaseChannelServerConnection.md)
 * namespace [Butterfly.Channel](../../Butterfly.Channel.md)
 

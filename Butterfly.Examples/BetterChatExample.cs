@@ -33,7 +33,7 @@ namespace Butterfly.Examples {
             database.SetInsertDefaultValue("join_id", tableName => Guid.NewGuid().ToString().Substring(0, 8), "chat");
 
             // Listen for connections to /better-chat
-            var route = channelServer.RegisterRoute("/better-chat", getAuthIdAsync: async (authType, authValue) => {
+            var route = channelServer.RegisterRoute("/better-chat", getAuthTokenAsync: async (authType, authValue) => {
                 // Create a user record if missing
                 await database.InsertAndCommitAsync<string>("user", new {
                     id = authValue,
@@ -55,7 +55,7 @@ namespace Butterfly.Examples {
                 dynamicViewSet.CreateDynamicView(
                     "SELECT id, name FROM user WHERE id=@userId", 
                     values: new {
-                        userId = channel.Connection.AuthId
+                        userId = channel.Connection.Id
                     },
                     name: "me"
                 );
@@ -64,7 +64,7 @@ namespace Butterfly.Examples {
                 var chatIdsDynamicView = dynamicViewSet.CreateDynamicView(
                     "SELECT id, chat_id FROM chat_participant WHERE user_id=@userId", 
                     values: new {
-                        userId = channel.Connection.AuthId
+                        userId = channel.Connection.Id
                     }, 
                     name: "chat_ids"
                 );

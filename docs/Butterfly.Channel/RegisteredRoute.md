@@ -8,10 +8,12 @@ public class RegisteredRoute
 
 | name | description |
 | --- | --- |
-| [RegisteredRoute](RegisteredRoute/RegisteredRoute.md)(…) |  (2 constructors) |
-| [RegisteredChannelCount](RegisteredRoute/RegisteredChannelCount.md) { get; } |  |
-| readonly [getAuthId](RegisteredRoute/getAuthId.md) |  |
-| readonly [getAuthIdAsync](RegisteredRoute/getAuthIdAsync.md) |  |
+| [RegisteredRoute](RegisteredRoute/RegisteredRoute.md)(…) |  |
+| [RegisteredChannelByKey](RegisteredRoute/RegisteredChannelByKey.md) { get; } |  |
+| readonly [getAuthToken](RegisteredRoute/getAuthToken.md) |  |
+| readonly [getAuthTokenAsync](RegisteredRoute/getAuthTokenAsync.md) |  |
+| readonly [getId](RegisteredRoute/getId.md) |  |
+| readonly [getIdAsync](RegisteredRoute/getIdAsync.md) |  |
 | readonly [path](RegisteredRoute/path.md) |  |
 | [RegisterChannel](RegisteredRoute/RegisterChannel.md)(…) |  |
 

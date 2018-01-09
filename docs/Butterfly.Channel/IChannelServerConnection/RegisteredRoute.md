@@ -1,11 +1,12 @@
-# IChannelServerConnection.Queue method
+# IChannelServerConnection.RegisteredRoute property
 
 ```csharp
-public void Queue(object value, string channelKey = "default")
+public RegisteredRoute RegisteredRoute { get; }
 ```
 
 ## See Also
 
+* class [RegisteredRoute](../RegisteredRoute.md)
 * interface [IChannelServerConnection](../IChannelServerConnection.md)
 * namespace [Butterfly.Channel](../../Butterfly.Channel.md)
 

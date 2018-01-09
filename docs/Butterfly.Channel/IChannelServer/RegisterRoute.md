@@ -1,7 +1,8 @@
 # IChannelServer.RegisterRoute method
 
 ```csharp
-public RegisteredRoute RegisterRoute(string routePath, Func<string, string, string> getAuthId = null, Func<string, string, Task<string>> getAuthIdAsync = null)
+public RegisteredRoute RegisterRoute(string routePath, Func<string, string, object> getAuthToken = null, 
+    Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null)
 ```
 
 ## See Also

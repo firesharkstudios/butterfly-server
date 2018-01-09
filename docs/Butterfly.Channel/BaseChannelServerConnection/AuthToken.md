@@ -1,7 +1,7 @@
-# BaseChannelServerConnection.WebRequest property
+# BaseChannelServerConnection.AuthToken property
 
 ```csharp
-public IWebRequest WebRequest { get; }
+public object AuthToken { get; }
 ```
 
 ## See Also

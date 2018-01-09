@@ -1,7 +1,7 @@
 # BaseChannelServerConnection.Start method
 
 ```csharp
-public void Start(string authId)
+public void Start(object authToken, string id)
 ```
 
 ## See Also

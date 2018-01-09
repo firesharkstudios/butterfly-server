@@ -1,7 +1,7 @@
 # IChannelServerConnection.Start method
 
 ```csharp
-public void Start(string id)
+public void Start(object authToken, string id)
 ```
 
 ## See Also

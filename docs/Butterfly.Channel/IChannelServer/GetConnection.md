@@ -1,7 +1,7 @@
 # IChannelServer.GetConnection method
 
 ```csharp
-public IChannelServerConnection GetConnection(string channelId, bool throwExceptionIfMissing = false)
+public IChannelServerConnection GetConnection(string authId, bool throwExceptionIfMissing = false)
 ```
 
 ## See Also
