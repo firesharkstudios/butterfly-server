@@ -20,18 +20,15 @@ namespace Butterfly.Examples {
 	            PRIMARY KEY (id)
             );");
 
-            // Listen for connections to /hello-world
+            // Listen for websocket connections to /hello-world
             var route = channelServer.RegisterRoute("/hello-world");
 
             // Register a default channel that creates a DynamicView on the message table sending all data to the channel
             route.RegisterChannel(handlerAsync: async (vars, channel) => {
-                DynamicViewSet dynamicViewSet = await database.CreateAndStartDynamicView(
-                "message",
-                    dataEventTransaction => {
-                        channel.Queue(dataEventTransaction);
-                    }
+                return await database.CreateAndStartDynamicView(
+                    "SELECT * FROM message",
+                    dataEventTransaction => channel.Queue(dataEventTransaction)
                 );
-                return dynamicViewSet;
             });
 
             // Listen for POST requests to /api/hello-world/message

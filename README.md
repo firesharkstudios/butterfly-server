@@ -7,34 +7,30 @@ Build real-time web apps quickly using C# on the server and your favorite client
 On the server, declare the data to automatically synchronize with clients using a familiar SELECT syntax...
 
 ```csharp
-// Listen for clients creating new channels to /hello-world,
-// clients are expected to maintain a channel to the server,
-// channels are currently implemented over WebSockets
-//
-// When a channel is created, create a DynamicView on the message table sending all 
-// initial data and data changes to the client over the channel
-channelServer.OnNewChannel("/hello-world", channel => database.CreateAndStartDynamicView(
-    "SELECT * FROM message",
-    dataEventTransaction => {
-        channel.Queue(dataEventTransaction);
-    }
-));
+// Listen for websocket connections to /hello-world
+var route = channelServer.RegisterRoute("/hello-world");
+
+// Register a default channel that creates a DynamicView on the message table sending all data to the channel
+route.RegisterChannel(handlerAsync: async (vars, channel) => {
+    return await database.CreateAndStartDynamicView(
+        "SELECT * FROM message",
+        dataEventTransaction => channel.Queue(dataEventTransaction)
+    );
+});
 ```
 
 On the web client, synchronize the data received into local arrays bound to UI elements by [Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)...
 
 ```js
-// Create channel to server and handle data events
-// (mapping data events for the 'message' DynamicView to a local 'messages' array)
-let channelClient = new WebSocketChannelClient({
-    url: '/hello-world',
-    auth: 'Channel ' + myChannelId,
-    onDataEvent: new ArrayDataEventHandler({
-        arrayMapping: {
-            message: messages,
-        }
-    })
+let messages = [];
+let channelClient = new butterfly.channel.WebSocketChannelClient({
+    url: '/hello-world'
 });
+channelClient.subscribe(new butterfly.data.ArrayDataEventHandler({
+    arrayMapping: {
+        message: messages,
+    }
+}));
 channelClient.start();
 ```
 
