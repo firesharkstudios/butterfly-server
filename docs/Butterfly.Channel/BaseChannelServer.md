@@ -10,12 +10,12 @@ public abstract class BaseChannelServer : IChannelServer
 | --- | --- |
 | [BaseChannelServer](BaseChannelServer/BaseChannelServer.md)(…) |  |
 | [ChannelCount](BaseChannelServer/ChannelCount.md) { get; } |  |
-| [AddUnauthenticatedChannel](BaseChannelServer/AddUnauthenticatedChannel.md)(…) |  |
+| [AddUnauthenticatedConnection](BaseChannelServer/AddUnauthenticatedConnection.md)(…) |  |
 | [Dispose](BaseChannelServer/Dispose.md)() |  |
-| [GetChannel](BaseChannelServer/GetChannel.md)(…) |  |
-| [OnNewChannel](BaseChannelServer/OnNewChannel.md)(…) |  (2 methods) |
-| [Queue](BaseChannelServer/Queue.md)(…) |  |
+| [GetConnection](BaseChannelServer/GetConnection.md)(…) |  |
+| [RegisterRoute](BaseChannelServer/RegisterRoute.md)(…) |  |
 | [Start](BaseChannelServer/Start.md)() |  |
+| static [DefaultAuthenticate](BaseChannelServer/DefaultAuthenticate.md)(…) |  |
 
 ## See Also
 

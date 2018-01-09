@@ -1,7 +1,7 @@
 # MyWebSocketsServer constructor
 
 ```csharp
-public MyWebSocketsServer(BaseChannelServer channelServer, Func<IWebRequest, IChannel, bool> onNewChannel)
+public MyWebSocketsServer(BaseChannelServer channelServer, Func<IWebRequest, IChannelServerConnection, bool> onNewChannel)
 ```
 
 ## See Also

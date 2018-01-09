@@ -9,9 +9,8 @@ public interface IChannelServer : IDisposable
 | name | description |
 | --- | --- |
 | [ChannelCount](IChannelServer/ChannelCount.md) { get; } |  |
-| [GetChannel](IChannelServer/GetChannel.md)(…) |  |
-| [OnNewChannel](IChannelServer/OnNewChannel.md)(…) |  (2 methods) |
-| [Queue](IChannelServer/Queue.md)(…) |  |
+| [GetConnection](IChannelServer/GetConnection.md)(…) |  |
+| [RegisterRoute](IChannelServer/RegisterRoute.md)(…) |  |
 | [Start](IChannelServer/Start.md)() |  |
 
 ## See Also

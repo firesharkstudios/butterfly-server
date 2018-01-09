@@ -1,7 +1,7 @@
 # WebSocketDialogChannel class
 
 ```csharp
-public class WebSocketDialogChannel : BaseChannel
+public class WebSocketDialogChannel : BaseChannelServerConnection
 ```
 
 ## Public Members

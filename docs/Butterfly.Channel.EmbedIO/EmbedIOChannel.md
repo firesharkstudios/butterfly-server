@@ -1,7 +1,7 @@
 # EmbedIOChannel class
 
 ```csharp
-public class EmbedIOChannel : BaseChannel
+public class EmbedIOChannel : BaseChannelServerConnection
 ```
 
 ## Public Members
