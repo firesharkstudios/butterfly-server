@@ -12,7 +12,7 @@ var route = channelServer.RegisterRoute("/hello-world");
 
 // Register a default channel that creates a DynamicView on the message table sending all data to the channel
 route.RegisterChannel(channelKey: "my-channel", handlerAsync: async (vars, channel) => await database.CreateAndStartDynamicView(
-    sql: "SELECT * FROM message",
+    sql: "SELECT * FROM chat_message",
     listener: dataEventTransaction => channel.Queue(dataEventTransaction)
 ));
 ```
@@ -20,13 +20,13 @@ route.RegisterChannel(channelKey: "my-channel", handlerAsync: async (vars, chann
 On the web client, synchronize the data received into local arrays bound to UI elements by [Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)...
 
 ```js
-let messages = [];
+let chatMessages = [];
 let channelClient = new butterfly.channel.WebSocketChannelClient({
     url: '/hello-world'
 });
 channelClient.subscribe(new butterfly.data.ArrayDataEventHandler({
     arrayMapping: {
-        message: messages,
+        chat_message: chatMessages,
     }
 }, 'my-channel'));
 channelClient.start();
