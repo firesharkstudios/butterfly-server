@@ -8,14 +8,17 @@ namespace Butterfly.Channel {
     /// Allows clients to create new channels to the server and allows the server to push messages to connected clients.<para/>
     /// </summary>
     /// <remarks>
-    /// Initializing a channel server instance...<para/>
+    /// Initialize a channel server instance with a single route and default channel...<para/>
     /// <code>
     ///     var channelServer = new SomeChannelServer();
-    ///     channelServer.OnNewChannel("/chat", channel => {
+    ///     var route = channelServer.RegisterRoute("/chat");
+    ///     route.RegisterChannel(handlerAsync: async(vars, channel) => {
     ///         // Do stuff here to initialize the channel (send initial data, listen for specific data change events, etc)
     ///         // and return any object that should be disposed when the channel is disposed
     ///     });
     ///     channelServer.Start();
+    ///     
+    // Register a default channel that creates a DynamicView on the chat_message table sending all data to the channel
     /// </code>
     /// 
     /// If a client has now created a channel at /chat?id=123, the server can now push data to the client via...<para/>

@@ -1,5 +1,5 @@
 cd "C:\Users\Kent\Documents\Visual Studio 2017\Projects\Butterfly"
-packages\InheritDoc.1.0.2.1\tools\InheritDoc.exe -kF5PUPQ-SV2BEJ-UDJGKI-SKX4BJ-RDTQ25-I3ICQQ -o
+..\InheritDoc\InheritDoc\bin\Release\InheritDoc.exe -kF5PUPQ-SV2BEJ-UDJGKI-SKX4BJ-RDTQ25-I3ICQQ -f"Butterfly.*" -o
 
 cd "C:\Users\Kent\Documents\Visual Studio 2017\Projects\Butterfly\Butterfly.Auth"
 ..\packages\NuGet.CommandLine.4.4.1\tools\NuGet.exe pack Butterfly.Auth.csproj -IncludeReferencedProjects -Prop Configuration=Release -OutputDirectory \NuGet.local

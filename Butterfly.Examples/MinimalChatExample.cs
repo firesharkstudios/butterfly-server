@@ -30,14 +30,12 @@ namespace Butterfly.Examples {
             var route = channelServer.RegisterRoute("/minimal-chat");
 
             // Register a default channel that creates a DynamicView on the chat_message table sending all data to the channel
-            route.RegisterChannel(handlerAsync: async(vars, channel) => {
-                return await database.CreateAndStartDynamicView(
-                    "chat_message",
-                    dataEventTransaction => {
-                        channel.Queue(dataEventTransaction);
-                    }
-                );
-            });
+            route.RegisterChannel(handlerAsync: async(vars, channel) => await database.CreateAndStartDynamicView(
+                sql: "chat_message",
+                listener: dataEventTransaction => {
+                    channel.Queue(dataEventTransaction);
+                }
+            ));
 
             // Listen for API requests to /api/chat/message
             webApiServer.OnPost($"/api/minimal-chat/chat/message", async(req, res) => {

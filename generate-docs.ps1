@@ -1,4 +1,4 @@
-..\InheritDoc\InheritDoc\bin\Release\InheritDoc.exe -f"Butterfly.*" -o
+..\InheritDoc\InheritDoc\bin\Release\InheritDoc.exe -kF5PUPQ-SV2BEJ-UDJGKI-SKX4BJ-RDTQ25-I3ICQQ -f"Butterfly.*" -o
 
 XmlDocMarkdown\tools\XmlDocMarkdown.exe Butterfly.Auth\bin\Release\Butterfly.Auth.dll docs --visibility public --clean
 

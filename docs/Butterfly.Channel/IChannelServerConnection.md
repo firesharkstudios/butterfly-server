@@ -8,6 +8,7 @@ public interface IChannelServerConnection : IDisposable
 
 | name | description |
 | --- | --- |
+| [AuthToken](IChannelServerConnection/AuthToken.md) { get; } |  |
 | [Created](IChannelServerConnection/Created.md) { get; } |  |
 | [Id](IChannelServerConnection/Id.md) { get; } |  |
 | [LastHeartbeat](IChannelServerConnection/LastHeartbeat.md) { get; } |  |
