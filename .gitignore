@@ -261,5 +261,5 @@ __pycache__/
 *.pyc
 
 # Custom
-Nuget.local/
 /Butterfly.Examples/InheritTest.cs
+*.ps1
