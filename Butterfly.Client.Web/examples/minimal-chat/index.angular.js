@@ -14,18 +14,17 @@
             let channelClient = new butterfly.channel.WebSocketChannelClient({
                 url: '/minimal-chat',
                 auth: 'User ' + $scope.myUserId,
-                onDataEvent: new butterfly.data.ArrayDataEventHandler({
-                    arrayMapping: {
-                        chat_message: $scope.chatMessages,
-                    }
-                }),
-                onUpdated: function () {
-                    $scope.$apply();
-                },
                 onStatusChange: function (value) {
                     self.connectionStatus = value;
                 },
             });
+            channelClient.subscribe([new butterfly.data.ArrayDataEventHandler({
+                arrayMapping: {
+                    chat_message: $scope.chatMessages,
+                }
+            }), function () {
+                $scope.$apply();
+            }]);
             channelClient.start();
         };
     });

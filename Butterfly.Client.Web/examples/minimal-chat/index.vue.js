@@ -67,15 +67,15 @@ let app = new Vue({
         let channelClient = new butterfly.channel.WebSocketChannelClient({
             url: '/minimal-chat',
             auth: 'User ' + self.myUserId,
-            onDataEvent: new butterfly.data.ArrayDataEventHandler({
-                arrayMapping: {
-                    chat_message: self.chatMessages,
-                }
-            }),
             onStatusChange: function (value) {
                 self.connectionStatus = value;
             },
         });
+        channelClient.subscribe(new butterfly.data.ArrayDataEventHandler({
+            arrayMapping: {
+                chat_message: self.chatMessages,
+            }
+        }));
         channelClient.start();
     }
 });

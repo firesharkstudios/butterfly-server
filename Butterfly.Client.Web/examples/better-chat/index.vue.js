@@ -173,19 +173,19 @@ let app = new Vue({
         let channelClient = new butterfly.channel.WebSocketChannelClient({
             url: '/better-chat',
             auth: 'User ' + self.myUserId,
-            onDataEvent: new butterfly.data.ArrayDataEventHandler({
-                arrayMapping: {
-                    me: self.mes,
-                    chat: self.chats,
-                    chat_user: self.chatUsers,
-                    chat_participant: self.chatParticipants,
-                    chat_message: self.chatMessages,
-                }
-            }),
             onStatusChange: function (value) {
                 self.connectionStatus = value;
             },
         });
+        channelClient.subscribe(new butterfly.data.ArrayDataEventHandler({
+            arrayMapping: {
+                me: self.mes,
+                chat: self.chats,
+                chat_user: self.chatUsers,
+                chat_participant: self.chatParticipants,
+                chat_message: self.chatMessages,
+            }
+        }));
         channelClient.start();
 
         // Join chat if url has a join query string parameter

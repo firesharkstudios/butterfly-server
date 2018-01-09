@@ -6,16 +6,20 @@ butterfly.channel.WebSocketChannelClient = function(options) {
     let private = this;
 
     let heartbeatEveryMillis = options.heartbeatEveryMillis || 3000;
+    let sendSubscriptionsCheckEveryMillis = options.sendSubscriptionsCheckEveryMillis || 100;
     let url = options.url;
     let auth = options.auth;
-    let onDataEvent = options.onDataEvent;
-    let onUpdated = options.onUpdated;
+    let onSubscriptionsUpdated = options.onSubscriptionsUpdated;
     let onStatusChange = options.onStatusChange;
 
     if (url.indexOf('://') == -1) {
         url = (window.location.protocol=='https:' ? 'wss:' : 'ws:') + '//' + window.location.host + url;
     }
     console.log('WebSocketChannelClient():url=' + url);
+
+    private.subscriptions = [];
+    private.handlersByKey = {};
+    private.sendSubscriptions = true;
 
     private.setStatus = function (value) {
         if (public.status != value) {
@@ -31,11 +35,16 @@ butterfly.channel.WebSocketChannelClient = function(options) {
                 private.setStatus(firstAttempt ? 'Connecting...' : 'Reconnecting...');
                 private.webSocket = new WebSocket(url);
                 private.webSocket.onmessage = function (event) {
-                    let dataEventTransaction = JSON.parse(event.data);
-                    for (let i = 0; i < dataEventTransaction.dataEvents.length; i++) {
-                        onDataEvent(dataEventTransaction.dataEvents[i]);
+                    let pos = event.data.indexOf(':');
+                    let channelKey = event.data.substring(0, pos);
+                    let handlers = private.handlersByKey[channelKey];
+                    if (handlers) {
+                        let json = event.data.substring(pos + 1);
+                        let dataEventTransaction = JSON.parse(json);
+                        for (let i = 0; i < handlers.length; i++) {
+                            handlers[i](dataEventTransaction);
+                        }
                     }
-                    if (onUpdated) onUpdated();
                 };
                 private.webSocket.onopen = function () {
                     private.setStatus('Connected');
@@ -65,9 +74,18 @@ butterfly.channel.WebSocketChannelClient = function(options) {
             private.webSocket = null;
         }
 
-        private.timeout = setTimeout(function () {
+        private.heartbeatTimeout = setTimeout(function () {
             private.testConnection(false);
         }, heartbeatEveryMillis);
+
+        private.sendSubscriptionstimeout = setTimeout(function () {
+            if (private.sendSubscriptions && private.webSocket.readyState==1) {
+                let text = 'Subscriptions:' + JSON.stringify(private.subscriptions);
+                private.webSocket.send(text);
+                if (onSubscriptionsUpdated) onSubscriptionsUpdated();
+                private.sendSubscriptions = false;
+            }
+        }, sendSubscriptionsCheckEveryMillis);
     }
 
     let public = {
@@ -75,8 +93,23 @@ butterfly.channel.WebSocketChannelClient = function(options) {
         start: function () {
             private.testConnection(true);
         },
+        subscribe: function (handler, channelKey, vars) {
+            if (!channelKey) channelKey = 'default';
+            public.unsubscribe(channelKey);
+            private.subscriptions.push({
+                channelKey: channelKey,
+                vars: vars
+            });
+            private.handlersByKey[channelKey] = Array.isArray(handler) ? handler : [handler];
+            private.sendSubscriptions = true;
+        },
+        unsubscribe: function (channelKey) {
+            let index = private.subscriptions.indexOf(x => x.channelKey == channelKey);
+            if (index >= 0) private.subscriptions.removeAt(index);
+            delete private.handlersByKey[channelKey];
+        },
         stop: function () {
-            clearTimeout(private.timeout);
+            clearTimeout(private.heartbeatTimeout);
             private.setStatus('Disconnected');
         }
     };
