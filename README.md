@@ -11,12 +11,10 @@ On the server, declare the data to automatically synchronize with clients using 
 var route = channelServer.RegisterRoute("/hello-world");
 
 // Register a default channel that creates a DynamicView on the message table sending all data to the channel
-route.RegisterChannel(handlerAsync: async (vars, channel) => {
-    return await database.CreateAndStartDynamicView(
-        "SELECT * FROM message",
-        dataEventTransaction => channel.Queue(dataEventTransaction)
-    );
-});
+route.RegisterChannel(handlerAsync: async (vars, channel) => await database.CreateAndStartDynamicView(
+    "SELECT * FROM message",
+    dataEventTransaction => channel.Queue(dataEventTransaction)
+));
 ```
 
 On the web client, synchronize the data received into local arrays bound to UI elements by [Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)...
