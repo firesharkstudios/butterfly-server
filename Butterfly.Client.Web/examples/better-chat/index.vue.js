@@ -172,10 +172,10 @@ let app = new Vue({
         // Create channel to server and handle data events
         let channelClient = new butterfly.channel.WebSocketChannelClient({
             url: '/better-chat',
-            auth: 'User ' + self.myUserId,
-            onStatusChange: function (value) {
-                self.connectionStatus = value;
-            },
+            auth: 'User ' + self.myUserId
+        });
+        channelClient.onStatusChange(function (value) {
+            self.connectionStatus = value;
         });
         channelClient.subscribe(new butterfly.data.ArrayDataEventHandler({
             arrayMapping: {

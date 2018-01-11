@@ -14,9 +14,9 @@
             let channelClient = new butterfly.channel.WebSocketChannelClient({
                 url: '/minimal-chat',
                 auth: 'User ' + $scope.myUserId,
-                onStatusChange: function (value) {
-                    self.connectionStatus = value;
-                },
+            });
+            channelClient.onStatusChange(function (value) {
+                self.connectionStatus = value;
             });
             channelClient.subscribe([new butterfly.data.ArrayDataEventHandler({
                 arrayMapping: {
