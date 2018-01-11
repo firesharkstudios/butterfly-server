@@ -8,7 +8,7 @@ namespace Butterfly.Channel {
     /// Allows clients to create new channels to the server and allows the server to push messages to connected clients.<para/>
     /// </summary>
     /// <remarks>
-    /// Initialize a channel server instance with a single route and default channel...<para/>
+    /// Initialize a channel server instance with a single route and single default channel...<para/>
     /// <code>
     ///     var channelServer = new SomeChannelServer();
     ///     var route = channelServer.RegisterRoute("/chat");

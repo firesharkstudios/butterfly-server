@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="index.css" />
 </head>
 <body>
-    <br/>
+    <br />
 
     <!-- App Template -->
     <div id="app">
@@ -58,14 +58,14 @@
     <script type="text/x-template" id="chats-component">
         <div>
             <ul class="list-group" v-if="sortedChats.length>0">
-                <li class="list-group-item d-flex justify-content-between align-items-center"  v-for="chat in sortedChats" v-bind:class="{active:chat.id==selectedChatId}">
-                    <i class="fa" v-bind:class="{'fa-star': chat.owner_id==myUserId, 'fa-star-o': chat.owner_id!=myUserId}" v-bind:title="'Owned by ' + chat.owner_name" style="padding-right: 0.5em"></i> 
+                <li class="list-group-item d-flex justify-content-between align-items-center" v-for="chat in sortedChats" v-bind:class="{active:chat.id==selectedChatId}">
+                    <i class="fa" v-bind:class="{'fa-star': chat.owner_id==myUserId, 'fa-star-o': chat.owner_id!=myUserId}" v-bind:title="'Owned by ' + chat.owner_name" style="padding-right: 0.5em"></i>
                     <a class="chat-name flex-grow" href="#" tabindex="-1" @click.prevent="selectedChatId=chat.id">{{ chat.name }}</a>
                     <a class="close" href="#" title="Delete Chat" @click.prevent="deleteChat(chat.id)" v-if="chat.owner_id==myUserId">&times;</a>
                 </li>
             </ul>
             <div class="text-center" v-else>
-                <br/>
+                <br />
                 <p>There are no chats yet.</p>
                 <p>Click Add to create your first chat.</p>
             </div>
@@ -91,7 +91,7 @@
                 </div>
             </div>
             <div>
-                <br/>
+                <br />
                 <div class="d-flex">
                     <div class="flex-grow">
                         <input class="form-control" v-model="formMessage" placeholder="Type your message" @keyup.enter="postMessage" />
@@ -110,9 +110,8 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/vue"></script>
-    <script src="/js/butterfly.channel.websocket.js"></script>
-    <script src="/js/butterfly.data.array.js"></script>
-    <script src="/js/butterfly.util.js"></script>
+    <script src="/js/butterfly-client.js"></script>
+    <script src="/js/butterfly-clever.js"></script>
     <script src="index.vue.js"></script>
 </body>
 </html>

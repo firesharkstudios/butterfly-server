@@ -1,8 +1,8 @@
 {
   "name": "butterfly-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Client library for Butterfly Framework",
-  "main": "",
+  "main": "js/butterfly-client.module.js",
   "directories": {
     "example": "examples"
   },
@@ -16,8 +16,7 @@
   "author": "Kent Johnson",
   "license": "ISC",
   "files": [
-    "js/butterfly.channel.websocket.js",
-    "js/butterfly.data.array.js",
-    "js/butterfly.util.js"
+    "js/butterfly-client.module.js",
+    "js/butterfly-client.js"
   ]
 }

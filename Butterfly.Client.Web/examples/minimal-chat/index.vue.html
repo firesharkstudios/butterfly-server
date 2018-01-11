@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./index.css" />
 </head>
 <body>
-    <br/>
+    <br />
 
     <!-- App Template -->
     <div id="app">
@@ -17,7 +17,7 @@
             <h3>Messages</h3>
             <chat-messages-component class="flex-grow" :chat-messages="chatMessages" :my-user-name="myUserName"></chat-messages-component>
 
-            <br/>
+            <br />
             <h3>Trying It Out</h3>
             <p>To simulate two different clients chatting, open this page in two different browsers (or two different personas in Chrome)</p>
 
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div>
-                <br/>
+                <br />
                 <div class="d-flex">
                     <div class="flex-grow">
                         <input class="form-control" v-model="formMessage" placeholder="Type your message" @keyup.enter="postMessage" />
@@ -63,10 +63,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/vue"></script>
-    <script src="/js/butterfly.clever.js"></script>
-    <script src="/js/butterfly.channel.websocket.js"></script>
-    <script src="/js/butterfly.data.array.js"></script>
-    <script src="/js/butterfly.util.js"></script>
+    <script src="/js/butterfly-client.js"></script>
+    <script src="/js/butterfly-clever.js"></script>
     <script src="index.vue.js"></script>
 </body>
 </html>
