@@ -184,24 +184,29 @@ namespace Butterfly.Database.Test {
             Dict[] allDepartments = await database.SelectRowsAsync("SELECT * FROM department");
             Assert.AreEqual(3, allDepartments.Length);
 
-            // Test retrieving a single row on a non-indexed field
-            Dict hrDepartment = await database.SelectRowAsync("SELECT * FROM department WHERE name=@name", new {
+            // Test retrieving a single row on a non-indexed field (long syntax)
+            Dict hrDepartmentA = await database.SelectRowAsync("SELECT * FROM department WHERE name=@name", new {
                 name = "HR"
             });
-            Assert.IsNotNull(hrDepartment);
+            Assert.IsNotNull(hrDepartmentA);
 
-            // Test retrieving a single value on a non-indexed field
-            string testHrDepartmentId1 = await database.SelectValueAsync<string>("SELECT id FROM department WHERE name=@name", new {
+            // Test retrieving a single row on a non-indexed field (short syntax)
+            Dict hrDepartmentB = await database.SelectRowAsync("department", new {
                 name = "HR"
-            }, null);
-            Assert.AreEqual(hrDepartmentId, testHrDepartmentId1);
-
+            });
+            Assert.IsNotNull(hrDepartmentB);
 
             // Test retrieving rows on an indexed field
             Dict[] someDepartments0 = await database.SelectRowsAsync("SELECT * FROM department WHERE id=@id", new {
                 id = salesDepartmentId,
             });
             Assert.AreEqual(1, someDepartments0.Length);
+
+            // Test retrieving a single value on a non-indexed field
+            string testHrDepartmentId1 = await database.SelectValueAsync<string>("SELECT id FROM department WHERE name=@name", new {
+                name = "HR"
+            }, null);
+            Assert.AreEqual(hrDepartmentId, testHrDepartmentId1);
 
             // Test retrieving rows on an indexed field with an empty array
             Dict[] someDepartments1 = await database.SelectRowsAsync("SELECT * FROM department WHERE id=@id", new {

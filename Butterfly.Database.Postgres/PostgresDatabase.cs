@@ -51,8 +51,8 @@ namespace Butterfly.Database.Postgres {
 
         protected override Table LoadTableSchema(string tableName) {
             TableFieldDef[] fieldDefs = this.GetFieldDefs(tableName);
-            TableIndex primaryIndex = this.GetPrimaryIndex(tableName);
-            return new Table(tableName, fieldDefs, primaryIndex);
+            TableIndex[] uniqueIndexes = this.GetUniqueIndexes(tableName);
+            return new Table(tableName, fieldDefs, uniqueIndexes);
         }
 
         protected TableFieldDef[] GetFieldDefs(string tableName) {
@@ -81,8 +81,8 @@ namespace Butterfly.Database.Postgres {
             return fields.ToArray();
         }
 
-        protected TableIndex GetPrimaryIndex(string tableName) {
-            TableIndex primaryIndex = null;
+        protected TableIndex[] GetUniqueIndexes(string tableName) {
+            List<TableIndex> uniqueIndexes = new List<TableIndex>();
             string commandText = @"SELECT
                   trel.relname AS table_name,
                   irel.relname AS index_name,
@@ -95,7 +95,7 @@ namespace Butterfly.Database.Postgres {
                 JOIN pg_class AS irel ON irel.oid = i.indexrelid
                 CROSS JOIN LATERAL unnest (i.indkey) WITH ORDINALITY AS c (colnum, ordinality)
                 JOIN pg_attribute AS a ON trel.oid = a.attrelid AND a.attnum = c.colnum
-                WHERE trel.relname=@tableName AND i.indisprimary='True'
+                WHERE trel.relname=@tableName AND i.indisunique='True'
                 GROUP BY tnsp.nspname, trel.relname, irel.relname, i.indisunique, i.indisprimary";
             using (var connection = new NpgsqlConnection(this.ConnectionString)) {
                 connection.OpenAsync();
@@ -108,14 +108,21 @@ namespace Butterfly.Database.Postgres {
                         string isPrimaryText = reader[3].ToString();
                         string[] fieldNames = (string[])reader[4];
 
-                        //string[] fieldNames = fieldNamesText.Replace("{", "").Replace("}", "").Split(',').Select(x => x.Trim()).ToArray();
-                        primaryIndex = new TableIndex(indexName, fieldNames);
+                        TableIndexType tableIndexType;
+                        if (isPrimaryText=="True") {
+                            tableIndexType = TableIndexType.Primary;
+                        }
+                        else if (isUniqueText=="True") {
+                            tableIndexType = TableIndexType.Unique;
+                        }
+                        else {
+                            tableIndexType = TableIndexType.Other;
+                        }
+                        uniqueIndexes.Add(new TableIndex(tableIndexType, fieldNames));
                     }
                 }
             }
-
-            if (primaryIndex == null) throw new Exception($"Unable to determine primary index on table '{tableName}'");
-            return primaryIndex;
+            return uniqueIndexes.ToArray();
         }
 
         protected override BaseTransaction CreateTransaction() {

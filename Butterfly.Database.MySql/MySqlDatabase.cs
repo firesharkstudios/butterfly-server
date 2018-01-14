@@ -57,8 +57,8 @@ namespace Butterfly.Database.MySql {
 
         protected override Table LoadTableSchema(string tableName) {
             TableFieldDef[] fieldDefs = this.GetFieldDefs(tableName);
-            TableIndex primaryIndex = this.GetPrimaryIndex(tableName);
-            return new Table(tableName, fieldDefs, primaryIndex);
+            TableIndex[] uniqueIndexes = this.GetUniqueIndexes(tableName);
+            return new Table(tableName, fieldDefs, uniqueIndexes);
         }
 
         protected TableFieldDef[] GetFieldDefs(string tableName) {
@@ -81,41 +81,43 @@ namespace Butterfly.Database.MySql {
             return fields.ToArray();
         }
 
-        protected TableIndex GetPrimaryIndex(string tableName) {
+        protected TableIndex[] GetUniqueIndexes(string tableName) {
             List<TableIndex> uniqueIndexes = new List<TableIndex>();
             string commandText = $"SHOW INDEX FROM {tableName}";
+            TableIndexType lastTableIndexType = TableIndexType.Other;
             string lastIndexName = null;
             List<string> lastFieldNames = new List<string>();
             using (MySqlDataReader reader = MySqlHelper.ExecuteReader(this.ConnectionString, commandText)) {
                 while (reader.Read()) {
                     bool unique = int.Parse(reader[1].ToString()) == 0;
-                    if (unique) {
-                        string indexName = reader[2].ToString();
-                        string columnName = reader[4].ToString();
+                    string indexName = reader[2].ToString();
+                    string columnName = reader[4].ToString();
 
-                        if (indexName != lastIndexName) {
-                            if (lastFieldNames.Count > 0) {
-                                uniqueIndexes.Add(new TableIndex(lastIndexName, lastFieldNames.ToArray()));
-                            }
-                            lastIndexName = indexName;
-                            lastFieldNames.Clear();
+                    if (indexName != lastIndexName) {
+                        if (lastFieldNames.Count > 0) {
+                            uniqueIndexes.Add(new TableIndex(lastTableIndexType, lastFieldNames.ToArray()));
                         }
-                        lastFieldNames.Add(columnName);
+                        if (indexName=="PRIMARY") {
+                            lastTableIndexType = TableIndexType.Primary;
+                        }
+                        else if (unique) {
+                            lastTableIndexType = TableIndexType.Unique;
+                        }
+                        else {
+                            lastTableIndexType = TableIndexType.Other;
+                        }
+                        lastIndexName = indexName;
+                        lastFieldNames.Clear();
                     }
+                    lastFieldNames.Add(columnName);
                 }
                 if (lastFieldNames.Count > 0) {
-                    TableIndex uniqueIndex = new TableIndex(lastIndexName, lastFieldNames.ToArray());
+                    TableIndex uniqueIndex = new TableIndex(lastTableIndexType, lastFieldNames.ToArray());
                     uniqueIndexes.Add(uniqueIndex);
                 }
             }
-
-            //this.Indexes = uniqueIndexes.ToArray();
-            TableIndex primaryIndex = Array.Find(uniqueIndexes.ToArray(), x => x.Name == "PRIMARY");
-            if (primaryIndex == null) throw new Exception($"Unable to determine primary index on table '{tableName}'");
-            return primaryIndex;
+            return uniqueIndexes.ToArray();
         }
-
-
 
         protected override BaseTransaction CreateTransaction() {
             return new MySqlTransaction(this);

@@ -79,7 +79,10 @@ namespace Butterfly.Database {
         }
 
         public (string, Dict) GetExecutableSqlAndParams(Dict sourceParams) {
-            string dataSql = this.Sql;
+            //string dataSql = this.Sql;
+
+            string newWhereClause = string.IsNullOrEmpty(this.whereClause) && sourceParams.Count > 0 ? string.Join(" AND ", sourceParams.Keys.Select(x => $"{x}=@{x}")) : this.whereClause;
+
             Dict dataParams = new Dict();
             foreach (var sourceParam in sourceParams) {
                 // Get value
@@ -94,7 +97,7 @@ namespace Butterfly.Database {
                 Regex conditionRegex = new Regex($"(\\w+\\.)?(\\w+)\\s*(!=|=)\\s*\\@{sourceParam.Key}");
                 // Convert where conditions like "id=@id" to "id IN (@id0, @id1, @id2)" if value is collection
                 if (value is null || value.Equals(DBNull.Value)) {
-                    dataSql = ReplaceAll(dataSql, conditionRegex, match => {
+                    newWhereClause = ReplaceAll(newWhereClause, conditionRegex, match => {
                         string tableAliasWithDot = match.Groups[1].Value.Trim();
                         string fieldName = match.Groups[2].Value.Trim();
                         string condition = match.Groups[3].Value.Trim();
@@ -105,7 +108,7 @@ namespace Butterfly.Database {
                 // Convert where conditions like "id=@id" to "id IN (@id0, @id1, @id2)" if value is collection
                 else if (value is ICollection<object> collection) {
                     if (collection.Count == 0) {
-                        dataSql = ReplaceAll(dataSql, conditionRegex, match => {
+                        newWhereClause = ReplaceAll(newWhereClause, conditionRegex, match => {
                             string condition = match.Groups[3].Value;
                             return condition == "=" ? "1=2" : "1=1";
                         });
@@ -121,7 +124,7 @@ namespace Butterfly.Database {
                         }
 
                         string rangeText = string.Join(",", collection.Select((x, index) => $"@{sourceParam.Key}{index}"));
-                        dataSql = ReplaceAll(dataSql, conditionRegex, match => {
+                        newWhereClause = ReplaceAll(newWhereClause, conditionRegex, match => {
                             string tableAliasWithDot = match.Groups[1].Value.Trim();
                             string fieldName = match.Groups[2].Value.Trim();
                             string condition = match.Groups[3].Value.Trim();
@@ -134,7 +137,16 @@ namespace Butterfly.Database {
                     dataParams.Add(sourceParam.Key, value);
                 }
             }
-            return (dataSql, dataParams);
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"SELECT {this.selectClause} FROM {this.fromClause}");
+            if (!string.IsNullOrEmpty(newWhereClause)) {
+                sb.Append($" WHERE {newWhereClause}");
+            }
+            if (!string.IsNullOrEmpty(this.orderByClause)) {
+                sb.Append($" ORDER BY {this.orderByClause}");
+            }
+            return (sb.ToString(), dataParams);
         }
 
         protected static string ReplaceAll(string sql, Regex regex, Func<Match, string> getReplacement) {

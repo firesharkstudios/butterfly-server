@@ -24,10 +24,10 @@ namespace Butterfly.Database {
     /// Represents a table in an <see cref="IDatabase"/>
     /// </summary>
     public class Table {
-        public Table(string name, TableFieldDef[] fieldDefs, TableIndex primaryIndex) {
+        public Table(string name, TableFieldDef[] fieldDefs, TableIndex[] indexes) {
             this.Name = name;
             this.FieldDefs = fieldDefs;
-            this.PrimaryIndex = primaryIndex;
+            this.Indexes = indexes;
             this.AutoIncrementFieldName = this.FieldDefs.FirstOrDefault(x => x.isAutoIncrement)?.name;
         }
 
@@ -45,7 +45,7 @@ namespace Butterfly.Database {
             return Array.Find(this.FieldDefs, x => x.name == name);
         }
 
-        public TableIndex PrimaryIndex {
+        public TableIndex[] Indexes {
             get;
             protected set;
         }

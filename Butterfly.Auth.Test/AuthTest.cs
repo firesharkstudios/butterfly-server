@@ -20,6 +20,7 @@ namespace Butterfly.Auth.Test {
                 first_name = "John",
                 last_name = "Smith",
                 email = "john@fireshark.com",
+                password = "test123"
             });
             AuthToken authenticateAuthToken = await authManager.Authenticate(registerAuthToken.id);
         }

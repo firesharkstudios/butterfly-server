@@ -104,8 +104,8 @@ namespace Butterfly.Auth {
 
             this.usernameFieldValidator = new FieldValidator(this.userTableUsernameFieldName, @"^[_A-z0-9\-\.]{3,25}$", allowNull: false, forceLowerCase: true, includeValueInError: true);
             this.passwordFieldValidator = new FieldValidator("password", "^.{6,255}$", allowNull: false, forceLowerCase: false, includeValueInError: false);
-            this.firstNameFieldValidator = new FieldValidator(this.userTableFirstNameFieldName, "^[^\\\'\\\"]{ 1, 25 }$", allowNull: false, forceLowerCase: false, includeValueInError: true);
-            this.lastNameFieldValidator = new FieldValidator(this.userTableLastNameFieldName, "^[^\\\'\\\"]{ 1, 25 }$", allowNull: false, forceLowerCase: false, includeValueInError: true);
+            this.firstNameFieldValidator = new FieldValidator(this.userTableFirstNameFieldName, "^[^\\\'\\\"]{1,25}$", allowNull: false, forceLowerCase: false, includeValueInError: true);
+            this.lastNameFieldValidator = new FieldValidator(this.userTableLastNameFieldName, "^[^\\\'\\\"]{1,25}$", allowNull: false, forceLowerCase: false, includeValueInError: true);
             this.emailFieldValidator = new FieldValidator(this.userTableEmailFieldName, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", allowNull: false, forceLowerCase: false, includeValueInError: true);
         }
 

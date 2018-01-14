@@ -119,7 +119,7 @@ namespace Butterfly.Database.Postgres {
 
                 sb.Append(",\r\n");
             }
-            sb.Append($" PRIMARY KEY ({string.Join(",", statement.PrimaryIndex.FieldNames)})");
+            sb.Append($" PRIMARY KEY ({string.Join(",", statement.Indexes[0].FieldNames)})");
             sb.Append(")");
             return sb.ToString();
         }

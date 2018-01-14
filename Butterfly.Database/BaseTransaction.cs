@@ -81,7 +81,7 @@ namespace Butterfly.Database {
                 keyValue = getGeneratedId();
             }
             else {
-                keyValue = BaseDatabase.GetKeyValue(insertStatement.TableRefs[0].table.PrimaryIndex.FieldNames, executableParams);
+                keyValue = BaseDatabase.GetKeyValue(insertStatement.TableRefs[0].table.Indexes[0].FieldNames, executableParams);
             }
 
             // Create data event
@@ -104,7 +104,7 @@ namespace Butterfly.Database {
 
             // Determine keyValue
             var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, updateStatement.WhereRefs);
-            object keyValue = BaseDatabase.GetKeyValue(updateStatement.TableRefs[0].table.PrimaryIndex.FieldNames, fieldValues);
+            object keyValue = BaseDatabase.GetKeyValue(updateStatement.TableRefs[0].table.Indexes[0].FieldNames, fieldValues);
 
             // Get the executable sql and params
             (string executableSql, Dict executableParams) = updateStatement.GetExecutableSqlAndParams(statementParamsDict);
@@ -132,7 +132,7 @@ namespace Butterfly.Database {
 
             // Determine keyValue
             var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, deleteStatement.WhereRefs);
-            object keyValue = BaseDatabase.GetKeyValue(deleteStatement.TableRefs[0].table.PrimaryIndex.FieldNames, fieldValues);
+            object keyValue = BaseDatabase.GetKeyValue(deleteStatement.TableRefs[0].table.Indexes[0].FieldNames, fieldValues);
 
             // Get the executable sql and params
             (string executableSql, Dict executableParams) = deleteStatement.GetExecutableSqlAndParams(statementParamsDict);

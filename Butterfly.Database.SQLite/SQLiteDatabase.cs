@@ -57,8 +57,8 @@ namespace Butterfly.Database.SQLite {
 
         protected override Table LoadTableSchema(string tableName) {
             TableFieldDef[] fieldDefs = this.GetFieldDefs(tableName);
-            TableIndex primaryIndex = this.GetPrimaryIndex(tableName);
-            return new Table(tableName, fieldDefs, primaryIndex);
+            TableIndex[] indexes = this.GetIndexes(tableName);
+            return new Table(tableName, fieldDefs, indexes);
         }
 
         protected TableFieldDef[] GetFieldDefs(string tableName) {
@@ -80,7 +80,7 @@ namespace Butterfly.Database.SQLite {
             return fields.ToArray();
         }
 
-        protected TableIndex GetPrimaryIndex(string tableName) {
+        protected TableIndex[] GetIndexes(string tableName) {
             string commandText = $"SELECT * FROM {tableName} WHERE 1 = 2";
             using (var connection = new SQLiteConnection(this.ConnectionString)) {
                 connection.OpenAsync();
@@ -89,7 +89,7 @@ namespace Butterfly.Database.SQLite {
                 using (var reader = command.ExecuteReader()) {
                     dataTable.Load(reader);
                 }
-                return new TableIndex("PrimaryKey", dataTable.PrimaryKey.Select(x => x.ColumnName).ToArray());
+                return new TableIndex[] { new TableIndex(TableIndexType.Primary, dataTable.PrimaryKey.Select(x => x.ColumnName).ToArray()) };
             }
         }
 

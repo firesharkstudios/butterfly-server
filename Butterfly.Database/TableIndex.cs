@@ -15,16 +15,23 @@
 */
 
 namespace Butterfly.Database {
+
+    public enum TableIndexType {
+        Primary,
+        Unique,
+        Other
+    }
+
     /// <summary>
     /// Defines an index for a <see cref="Table"/>
     /// </summary>
     public class TableIndex {
-        public TableIndex(string name, string[] fieldNames) {
-            this.Name = name;
+        public TableIndex(TableIndexType indexType, string[] fieldNames) {
+            this.IndexType = indexType;
             this.FieldNames = fieldNames;
         }
 
-        public string Name {
+        public TableIndexType IndexType {
             get;
             protected set;
         }

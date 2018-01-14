@@ -54,7 +54,7 @@ namespace Butterfly.Database.Dynamic {
 
             if (keyFieldNames == null) {
                 if (this.statement.TableRefs.Length != 1) throw new System.Exception("Must specify key field names if the DynamicView contains multiple table references");
-                this.keyFieldNames = dynamicQuerySet.Database.Tables[this.statement.TableRefs[0].table.Name].PrimaryIndex.FieldNames;
+                this.keyFieldNames = dynamicQuerySet.Database.Tables[this.statement.TableRefs[0].table.Name].Indexes[0].FieldNames;
             }
             else {
                 this.keyFieldNames = keyFieldNames;
@@ -162,8 +162,8 @@ namespace Butterfly.Database.Dynamic {
             StringBuilder newAndCondition = new StringBuilder();
             Dict newWhereParams = new Dict();
 
-            Dict primaryKeyValues = BaseDatabase.ParseKeyValue(transactionDataEvent.keyValue, this.dynamicQuerySet.Database.Tables[transactionDataEvent.name].PrimaryIndex.FieldNames);
-            foreach (var fieldName in this.dynamicQuerySet.Database.Tables[transactionDataEvent.name].PrimaryIndex.FieldNames) {
+            Dict primaryKeyValues = BaseDatabase.ParseKeyValue(transactionDataEvent.keyValue, this.dynamicQuerySet.Database.Tables[transactionDataEvent.name].Indexes[0].FieldNames);
+            foreach (var fieldName in this.dynamicQuerySet.Database.Tables[transactionDataEvent.name].Indexes[0].FieldNames) {
                 string prefix;
                 if (this.statement.TableRefs.Length == 1) {
                     prefix = "";

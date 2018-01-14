@@ -40,19 +40,22 @@ namespace Butterfly.Database {
 
             string createTableDefs = match.Groups["createTableDefs"].Value.Replace("\r", " ").Replace("\n", " ");
 
+            List<TableIndex> indexes = new List<TableIndex>();
             List<TableFieldDef> fieldDefs = new List<TableFieldDef>();
             int lastIndex = 0;
             while (lastIndex<createTableDefs.Length) {
                 string substring = createTableDefs.Substring(lastIndex);
                 Match primaryKeyMatch = PRIMARY_KEY_REGEX.Match(substring);
                 if (primaryKeyMatch.Success) {
-                    string[] primaryKeyFieldNames = primaryKeyMatch.Groups["fields"].Value.Split(',').Select(x => x.Trim()).ToArray();
-                    this.PrimaryIndex = new TableIndex("Primary", primaryKeyFieldNames);
+                    string[] keyFieldNames = primaryKeyMatch.Groups["fields"].Value.Split(',').Select(x => x.Trim()).ToArray();
+                    indexes.Add(new TableIndex(TableIndexType.Primary, keyFieldNames));
                     lastIndex += primaryKeyMatch.Length;
                 }
                 else {
                     Match indexMatch = INDEX_REGEX.Match(substring);
                     if (indexMatch.Success) {
+                        string[] keyFieldNames = indexMatch.Groups["fields"].Value.Split(',').Select(x => x.Trim()).ToArray();
+                        indexes.Add(new TableIndex(string.IsNullOrEmpty(indexMatch.Groups["unique"].Value) ? TableIndexType.Other : TableIndexType.Unique, keyFieldNames));
                         lastIndex += indexMatch.Length;
                     }
                     else {
@@ -73,6 +76,7 @@ namespace Butterfly.Database {
                 }
             }
             this.FieldDefs = fieldDefs.ToArray();
+            this.Indexes = indexes.ToArray();
         }
 
         public string TableName {
@@ -85,7 +89,7 @@ namespace Butterfly.Database {
             protected set;
         }
         
-        public TableIndex PrimaryIndex {
+        public TableIndex[] Indexes {
             get;
             protected set;
         }

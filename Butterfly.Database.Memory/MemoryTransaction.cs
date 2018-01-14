@@ -74,9 +74,9 @@ namespace Butterfly.Database.Memory {
                 dataTable.Columns.Add(dataColumn);
             }
 
-            dataTable.PrimaryKey = Array.ConvertAll(statement.PrimaryIndex.FieldNames, x => dataTable.Columns[x]);
+            dataTable.PrimaryKey = Array.ConvertAll(statement.Indexes[0].FieldNames, x => dataTable.Columns[x]);
 
-            Table table = new MemoryTable(dataTable, statement.FieldDefs, statement.PrimaryIndex);
+            Table table = new MemoryTable(dataTable, statement.FieldDefs, statement.Indexes);
             this.database.Tables.Add(table.Name, table);
 
             return true;

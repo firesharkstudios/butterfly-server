@@ -188,7 +188,7 @@ namespace Butterfly.Database {
 
         internal async Task<DataEventTransaction> GetInitialDataEventTransactionAsync(string statementSql, dynamic statementParams = null) {
             SelectStatement statement = new SelectStatement(this, statementSql);
-            DataEvent[] initialDataEvents = await this.GetInitialDataEventsAsync(statement.TableRefs[0].table.Name, statement.TableRefs[0].table.PrimaryIndex.FieldNames, statement, statementParams);
+            DataEvent[] initialDataEvents = await this.GetInitialDataEventsAsync(statement.TableRefs[0].table.Name, statement.TableRefs[0].table.Indexes[0].FieldNames, statement, statementParams);
             return new DataEventTransaction(DateTime.Now, initialDataEvents);
         }
 
@@ -237,7 +237,7 @@ namespace Butterfly.Database {
 
         protected async Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic vars) {
             Dict statementParamsDict = statement.ConvertParamsToDict(vars);
-            BaseStatement.ConfirmAllParamsUsed(statement.Sql, statementParamsDict);
+            //BaseStatement.ConfirmAllParamsUsed(statement.Sql, statementParamsDict);
             (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(statementParamsDict);
             return await this.DoSelectRowsAsync(executableSql, executableParams);
         }
