@@ -53,7 +53,8 @@ namespace Butterfly.Database {
         // Insert methods
         public async Task<T> InsertAsync<T>(string insertStatement, dynamic vars, bool ignoreIfDuplicate = false) {
             InsertStatement statement = new InsertStatement(this.database, insertStatement);
-            return await this.InsertAsync(statement, vars, ignoreIfDuplicate: ignoreIfDuplicate);
+            object result = await this.InsertAsync(statement, vars, ignoreIfDuplicate: ignoreIfDuplicate);
+            return (T)Convert.ChangeType(result, typeof(T));
         }
 
         public async Task<object> InsertAsync(InsertStatement insertStatement, dynamic statementParams, bool ignoreIfDuplicate = false) {

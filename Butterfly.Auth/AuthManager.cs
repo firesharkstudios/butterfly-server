@@ -124,7 +124,7 @@ namespace Butterfly.Auth {
 
             webApiServer.OnPost($"{pathPrefix}/register", async(req, res) => {
                 Dict registration = await req.ParseAsJsonAsync<Dict>();
-                AuthToken authToken = await this.Register(registration);
+                AuthToken authToken = await this.RegisterAsync(registration);
                 await res.WriteAsJsonAsync(authToken);
             });
 
@@ -151,7 +151,9 @@ namespace Butterfly.Auth {
         /// </summary>
         /// <param name="registration"></param>
         /// <returns></returns>
-        public async Task<AuthToken> Register(Dict registration) {
+        public async Task<AuthToken> RegisterAsync(dynamic input) {
+            Dict registration = this.ConvertInputToDict(input);
+
             // Handle registering an anonymous user
             string userId = registration.GetAs(this.userTableIdFieldName, (string)null);
             Dict existingUserByUserId = await this.database.SelectRowAsync(this.userTableName, userId);
@@ -345,6 +347,24 @@ namespace Butterfly.Auth {
             });
 
             return resetCode;
+        }
+
+
+        public Dict ConvertInputToDict(dynamic input) {
+            // If is null, return empty dictionary
+            if (input == null) {
+                return new Dict();
+            }
+
+            // If is already a dictionary, return the dictionary
+            else if (input is Dict d) {
+                return new Dict(d);
+            }
+
+            // Otherwise, convert input to a dictionary
+            else {
+                return DynamicX.ToDictionary(input);
+            }
         }
 
     }

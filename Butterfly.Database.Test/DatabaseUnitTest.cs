@@ -15,14 +15,15 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Reflection;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Dict = System.Collections.Generic.Dictionary<string, object>;
 using Butterfly.Database.Event;
-using System.Collections.Generic;
+
+using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database.Test {
     [TestClass]
@@ -190,9 +191,9 @@ namespace Butterfly.Database.Test {
             Assert.IsNotNull(hrDepartment);
 
             // Test retrieving a single value on a non-indexed field
-            long testHrDepartmentId1 = await database.SelectValueAsync<long>("SELECT id FROM department WHERE name=@name", new {
+            string testHrDepartmentId1 = await database.SelectValueAsync<string>("SELECT id FROM department WHERE name=@name", new {
                 name = "HR"
-            }, -1);
+            }, null);
             Assert.AreEqual(hrDepartmentId, testHrDepartmentId1);
 
 

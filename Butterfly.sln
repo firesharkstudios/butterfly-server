@@ -67,6 +67,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.WebApi.Test", "Bu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Auth", "Butterfly.Auth\Butterfly.Auth.csproj", "{A7BE1F28-30A9-4D1D-9FEE-967FEC8C4AEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Auth.Test", "Butterfly.Auth.Test\Butterfly.Auth.Test.csproj", "{76344900-6108-470B-BEC0-03D436D9725D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -149,6 +151,10 @@ Global
 		{A7BE1F28-30A9-4D1D-9FEE-967FEC8C4AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7BE1F28-30A9-4D1D-9FEE-967FEC8C4AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7BE1F28-30A9-4D1D-9FEE-967FEC8C4AEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76344900-6108-470B-BEC0-03D436D9725D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76344900-6108-470B-BEC0-03D436D9725D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76344900-6108-470B-BEC0-03D436D9725D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76344900-6108-470B-BEC0-03D436D9725D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

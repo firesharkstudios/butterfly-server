@@ -2,19 +2,19 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Butterfly.Channel.Test")]
+[assembly: AssemblyTitle("Butterfly.Auth.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Butterfly Framework")]
-[assembly: AssemblyCopyright("Copyright © 2017-2018")]
+[assembly: AssemblyProduct("Butterfly.Auth.Test")]
+[assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 
-[assembly: Guid("8cb8c40d-85b1-472d-a5bc-b67109589b91")]
+[assembly: Guid("76344900-6108-470b-bec0-03d436d9725d")]
 
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.249")]
-[assembly: AssemblyFileVersion("1.0.0.249")]
+[assembly: AssemblyVersion("1.0.0.3")]
+[assembly: AssemblyFileVersion("1.0.0.3")]
