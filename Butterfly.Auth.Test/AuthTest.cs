@@ -11,6 +11,7 @@ namespace Butterfly.Auth.Test {
         public async Task SimpleAuthTest() {
             IDatabase database = new Butterfly.Database.Memory.MemoryDatabase();
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Auth.Test.db.sql");
+            database.SetInsertDefaultValue("id", tableName => Guid.NewGuid().ToString());
             database.SetInsertDefaultValue("created_at", tableName => DateTime.Now);
             database.SetInsertDefaultValue("updated_at", tableName => DateTime.Now);
 
