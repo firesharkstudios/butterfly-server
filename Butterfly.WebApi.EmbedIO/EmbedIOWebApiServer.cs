@@ -14,20 +14,17 @@
  * limitations under the License.
 */
 
+using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.IO;
-using System.Net;
+using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 using Unosquare.Labs.EmbedIO;
 using Unosquare.Labs.EmbedIO.Constants;
 
 using Butterfly.Util;
-using System;
-using System.Linq;
 using NLog;
 
 namespace Butterfly.WebApi.EmbedIO {
@@ -96,7 +93,7 @@ namespace Butterfly.WebApi.EmbedIO {
 
         public Uri RequestUri => this.context.Request.Url;
 
-        public Dictionary<string, string> Headers => this.context.Request.Headers.ToDictionary();
+        public Dictionary<string, string> Headers => this.context.Request.Headers?.ToDictionary(forceUpperCaseKeys: true);
 
         public Dictionary<string, string> PathParams => this.context.RequestRegexUrlParams(this.context.Request.Url.AbsolutePath).ToDictionary(x => x.Key, y => Convert.ToString(y));
 

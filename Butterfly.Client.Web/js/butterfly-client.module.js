@@ -75,7 +75,7 @@
             }, heartbeatEveryMillis);
 
             private.sendSubscriptionstimeout = setTimeout(function () {
-                if (private.sendSubscriptions && private.webSocket.readyState == 1) {
+                if (private.sendSubscriptions && private.webSocket && private.webSocket.readyState == 1) {
                     let text = 'Subscriptions:' + JSON.stringify(private.subscriptions);
                     private.webSocket.send(text);
                     if (onSubscriptionsUpdated) onSubscriptionsUpdated();

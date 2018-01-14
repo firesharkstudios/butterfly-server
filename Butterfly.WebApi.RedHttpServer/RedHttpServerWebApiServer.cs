@@ -43,12 +43,22 @@ namespace Butterfly.WebApi.RedHttpServer {
             foreach (var webHandler in this.webHandlers) {
                 if (webHandler.method == HttpMethod.Get) {
                     this.server.Get(webHandler.path, async (req, res) => {
-                        await webHandler.listener(new RedHttpServerWebRequest(req), new RedHttpServerWebResponse(res));
+                        try {
+                            await webHandler.listener(new RedHttpServerWebRequest(req), new RedHttpServerWebResponse(res));
+                        }
+                        catch (Exception e) {
+                            logger.Error(e);
+                        }
                     });
                 }
                 else if (webHandler.method == HttpMethod.Post) {
                     this.server.Post(webHandler.path, async (req, res) => {
-                        await webHandler.listener(new RedHttpServerWebRequest(req), new RedHttpServerWebResponse(res));
+                        try {
+                            await webHandler.listener(new RedHttpServerWebRequest(req), new RedHttpServerWebResponse(res));
+                        }
+                        catch (Exception e) {
+                            logger.Error(e);
+                        }
                     });
                 }
             }

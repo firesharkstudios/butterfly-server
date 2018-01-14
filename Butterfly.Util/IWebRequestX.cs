@@ -5,8 +5,10 @@ using System.Net.Http.Headers;
 namespace Butterfly.Util {
     public static class IWebRequestX {
         public static AuthenticationHeaderValue GetAuthenticationHeaderValue(this IWebRequest me) {
-            string text = me.Headers[HttpRequestHeader.Authorization.ToString()];
-            return System.Net.Http.Headers.AuthenticationHeaderValue.Parse(text);
+            if (me.Headers!=null && me.Headers.TryGetValue(HttpRequestHeader.Authorization.ToString().ToUpper(), out string text)) {
+                if (text!=null && AuthenticationHeaderValue.TryParse(text, out AuthenticationHeaderValue result)) return result;
+            }
+            return null;
         }
     }
 }
