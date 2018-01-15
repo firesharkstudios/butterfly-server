@@ -69,7 +69,8 @@ namespace Butterfly.Database.Memory {
 
             foreach (var fieldDef in statement.FieldDefs) {
                 DataColumn dataColumn = new DataColumn(fieldDef.name, fieldDef.type) {
-                    AutoIncrement = fieldDef.isAutoIncrement
+                    AutoIncrement = fieldDef.isAutoIncrement,
+                    AllowDBNull = fieldDef.allowNull
                 };
                 dataTable.Columns.Add(dataColumn);
             }

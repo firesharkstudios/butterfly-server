@@ -62,9 +62,9 @@
       <Project>{a7be1f28-30a9-4d1d-9fee-967fec8c4aee}</Project>
       <Name>Butterfly.Auth</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Butterfly.Database.Memory\Butterfly.Database.Memory.csproj">
-      <Project>{2dbfd7b1-18d0-46c8-b185-6a73e5f79bcd}</Project>
-      <Name>Butterfly.Database.Memory</Name>
+    <ProjectReference Include="..\Butterfly.Database.MySql\Butterfly.Database.MySql.csproj">
+      <Project>{c900a510-1661-45c5-b34d-bdb712686b39}</Project>
+      <Name>Butterfly.Database.MySql</Name>
     </ProjectReference>
     <ProjectReference Include="..\Butterfly.Database\Butterfly.Database.csproj">
       <Project>{2B072F9E-35B4-4033-A272-E11474C4FA4D}</Project>

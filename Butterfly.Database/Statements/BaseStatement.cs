@@ -57,7 +57,7 @@ namespace Butterfly.Database {
             }
         }
 
-        public Dict ConvertParamsToDict(dynamic statementParams, bool allowKeyValueAsSourceParams = false) {
+        public Dict ConvertParamsToDict(dynamic statementParams, bool allowKeyValueAsSourceParams = true) {
             // If statementParams is null, return empty dictionary
             if (statementParams == null) {
                 return new Dict();

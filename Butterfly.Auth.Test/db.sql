@@ -13,7 +13,7 @@ CREATE TABLE user (
 	last_name VARCHAR(255) NOT NULL,
 	email VARCHAR(255) NOT NULL,
 	salt VARCHAR(40) NOT NULL,
-	password_hash VARCHAR(40) NOT NULL,	
+	password_hash VARCHAR(90) NOT NULL,	
 	created_at DATETIME NOT NULL,
 	updated_at DATETIME NOT NULL,
 	PRIMARY KEY(id),

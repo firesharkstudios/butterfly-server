@@ -172,6 +172,12 @@ namespace Butterfly.Auth {
             });
             if (existingUserByUsername != null) throw new Exception("Username '" + username + "' is unavailable");
 
+            string accountId = registration.GetAs(this.userTableAccountIdFieldName, (string)null);
+            if (string.IsNullOrEmpty(accountId)) {
+                accountId = await this.database.InsertAndCommitAsync<string>("account", new {
+                });
+            }
+
             string password = this.passwordFieldValidator.Validate(registration?.GetAs("password", (string)null));
             string email = this.emailFieldValidator.Validate(registration?.GetAs(this.userTableEmailFieldName, (string)null));
             string firstName = this.firstNameFieldValidator.Validate(registration?.GetAs(this.userTableFirstNameFieldName, (string)null));
@@ -181,6 +187,7 @@ namespace Butterfly.Auth {
             string passwordHash = $"{salt} {password}".Hash();
 
             Dict user = new Dict {
+                { this.userTableAccountIdFieldName, accountId },
                 { this.userTableUsernameFieldName, username },
                 { this.userTableSaltFieldName, salt },
                 { this.userTablePasswordHashFieldName, passwordHash },
@@ -207,7 +214,9 @@ namespace Butterfly.Auth {
         /// <param name="authTokenId"></param>
         /// <returns>An <see cref="AuthToken"/> instance</returns>
         public async Task<AuthToken> Authenticate(string authTokenId) {
-            Dict authTokenDict = await this.database.SelectRowAsync($"SELECT at.{this.authTokenIdFieldName}, at.{this.authTokenTableUserIdFieldName}, u.{this.userTableAccountIdFieldName}, at.{this.authTokenTableExpiresAtFieldName} FROM {this.authTokenTableName} at INNER JOIN {this.userTableName} u ON at.user_id=u.id", authTokenId);
+            Dict authTokenDict = await this.database.SelectRowAsync($"SELECT at.{this.authTokenIdFieldName}, at.{this.authTokenTableUserIdFieldName}, u.{this.userTableAccountIdFieldName}, at.{this.authTokenTableExpiresAtFieldName} FROM {this.authTokenTableName} at INNER JOIN {this.userTableName} u ON at.user_id=u.id WHERE at.id=@authTokenId", new {
+                authTokenId
+            });
             if (authTokenDict == null) throw new Exception(AuthManager.UNAUTHORIZED);
             var authToken = AuthToken.FromDict(authTokenDict, this.authTokenIdFieldName, this.authTokenTableUserIdFieldName, this.userTableAccountIdFieldName, this.authTokenTableExpiresAtFieldName);
 

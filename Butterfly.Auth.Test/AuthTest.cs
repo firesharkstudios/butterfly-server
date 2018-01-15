@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
-using Butterfly.Database;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Butterfly.Auth.Test {
@@ -9,7 +9,9 @@ namespace Butterfly.Auth.Test {
     public class AuthTest {
         [TestMethod]
         public async Task SimpleAuthTest() {
-            IDatabase database = new Butterfly.Database.Memory.MemoryDatabase();
+            //var database = new Butterfly.Database.Memory.MemoryDatabase();
+            var database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_auth_test");
+
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Auth.Test.db.sql");
             database.SetInsertDefaultValue("id", tableName => Guid.NewGuid().ToString());
             database.SetInsertDefaultValue("created_at", tableName => DateTime.Now);
