@@ -22,7 +22,7 @@ Vue.component('chat-messages-component', Vue.extend({
     },
     computed: {
         selectedChatMessages: function () {
-            return this.chatMessages.sort(butterfly.util.FieldComparer('created_at'));
+            return this.chatMessages.sort(FieldComparer('created_at'));
         },
     },
     watch: {
@@ -54,24 +54,24 @@ let app = new Vue({
         let self = this;
 
         // Create user id
-        self.myUserId = butterfly.util. getOrCreateLocalStorageItem('userId', function () {
-            return butterfly.util.uuidv4();
+        self.myUserId =  getOrCreateLocalStorageItem('userId', function () {
+            return uuidv4();
         });
 
         // Create user name
-        self.myUserName = butterfly.util. getOrCreateLocalStorageItem('userName', function () {
+        self.myUserName =  getOrCreateLocalStorageItem('userName', function () {
             return generateCleverName();
         });
 
         // Create channel to server and handle data events
-        let channelClient = new butterfly.channel.WebSocketChannelClient({
+        let channelClient = new WebSocketChannelClient({
             url: '/minimal-chat',
             auth: 'User ' + self.myUserId,
         });
         channelClient.onStatusChange(function (value) {
             self.connectionStatus = value;
         });
-        channelClient.subscribe(new butterfly.data.ArrayDataEventHandler({
+        channelClient.subscribe(new ArrayDataEventHandler({
             arrayMapping: {
                 chat_message: self.chatMessages,
             }

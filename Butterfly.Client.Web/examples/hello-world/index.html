@@ -29,9 +29,9 @@
     <script src="/js/butterfly-client.js"></script>
     <script>
         // Create a channel to the server
-        let channelClient = new butterfly.channel.WebSocketChannelClient({
+        let channelClient = new WebSocketChannelClient({
             url: '/hello-world',
-            auth: 'Custom ' + butterfly.util.uuidv4(),
+            auth: 'Custom ' + uuidv4(),
             onSubscriptionsUpdated: function () {
                 // Post a "Hello World" message to the server
                 $.ajax('/api/hello-world/message', {

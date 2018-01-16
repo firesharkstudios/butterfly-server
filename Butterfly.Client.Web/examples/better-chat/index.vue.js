@@ -13,7 +13,7 @@ Vue.component('chats-component', Vue.extend({
     methods: {
         deleteChat: function (chatId) {
             bootbox.confirm("Delete this chat?", function (result) {
-                butterfly.util.authorizedAjax('POST', '/api/better-chat/chat/delete', 'User ' + self.myUserId, {
+                authorizedAjax('POST', '/api/better-chat/chat/delete', 'User ' + self.myUserId, {
                     id: chatId,
                 });
             });
@@ -33,7 +33,7 @@ Vue.component('chats-component', Vue.extend({
     },
     computed: {
         sortedChats: function () {
-            return this.chats.sort(butterfly.util.FieldComparer('name'));
+            return this.chats.sort(FieldComparer('name'));
         },
     },
 }));
@@ -49,7 +49,7 @@ Vue.component('chat-participants-component', Vue.extend({
                 title: 'Update Profile: What name do you want to use?',
                 value: name,
                 callback: function (result) {
-                    butterfly.util.authorizedAjax('POST', '/api/better-chat/profile/update', 'User ' + self.myUserId, {
+                    authorizedAjax('POST', '/api/better-chat/profile/update', 'User ' + self.myUserId, {
                         name: result,
                     });
                 }
@@ -58,7 +58,7 @@ Vue.component('chat-participants-component', Vue.extend({
     },
     computed: {
         selectedChatParticipants: function () {
-            return this.chatParticipants && this.selectedChatId ? this.chatParticipants.filter(x => x.chat_id == this.selectedChatId).sort(butterfly.util.FieldComparer('name')) : null;
+            return this.chatParticipants && this.selectedChatId ? this.chatParticipants.filter(x => x.chat_id == this.selectedChatId).sort(FieldComparer('name')) : null;
         },
     },
 }));
@@ -74,7 +74,7 @@ Vue.component('chat-messages-component', Vue.extend({
     },
     methods: {
         postMessage: function () {
-            butterfly.util.authorizedAjax('POST', '/api/better-chat/chat/message', 'User ' + this.myUserId, {
+            authorizedAjax('POST', '/api/better-chat/chat/message', 'User ' + this.myUserId, {
                 chatId: this.selectedChatId,
                 text: this.formMessage,
             });
@@ -83,7 +83,7 @@ Vue.component('chat-messages-component', Vue.extend({
     },
     computed: {
         selectedChatMessages: function () {
-            return this.chatMessages && this.selectedChatId ? this.chatMessages.filter(x => x.chat_id == this.selectedChatId).sort(butterfly.util.FieldComparer('created_at')) : null;
+            return this.chatMessages && this.selectedChatId ? this.chatMessages.filter(x => x.chat_id == this.selectedChatId).sort(FieldComparer('created_at')) : null;
         },
     },
     watch: {
@@ -125,7 +125,7 @@ let app = new Vue({
                 title: 'Add Chat: What is the chat topic?',
                 value: '',
                 callback: function (result) {
-                    butterfly.util.authorizedAjax('POST', '/api/better-chat/chat/create', 'User ' + self.myUserId, {
+                    authorizedAjax('POST', '/api/better-chat/chat/create', 'User ' + self.myUserId, {
                         name: result,
                     });
                 }
@@ -165,19 +165,19 @@ let app = new Vue({
         let self = this;
 
         // Create user id
-        self.myUserId = butterfly.util. getOrCreateLocalStorageItem('userId', function () {
-            return butterfly.util.uuidv4();
+        self.myUserId = getOrCreateLocalStorageItem('userId', function () {
+            return uuidv4();
         });
 
         // Create channel to server and handle data events
-        let channelClient = new butterfly.channel.WebSocketChannelClient({
+        let channelClient = new WebSocketChannelClient({
             url: '/better-chat',
             auth: 'User ' + self.myUserId
         });
         channelClient.onStatusChange(function (value) {
             self.connectionStatus = value;
         });
-        channelClient.subscribe(new butterfly.data.ArrayDataEventHandler({
+        channelClient.subscribe(new ArrayDataEventHandler({
             arrayMapping: {
                 me: self.mes,
                 chat: self.chats,
@@ -191,7 +191,7 @@ let app = new Vue({
         // Join chat if url has a join query string parameter
         let match = /join=(.*)/.exec(window.location.href);
         if (match) {
-            butterfly.util.authorizedAjax('POST', '/api/better-chat/chat/join', 'User ' + self.myUserId, {
+            authorizedAjax('POST', '/api/better-chat/chat/join', 'User ' + self.myUserId, {
                 joinId: match[1],
             });
         }

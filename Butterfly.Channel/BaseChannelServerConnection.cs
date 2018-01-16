@@ -136,54 +136,86 @@ namespace Butterfly.Channel {
                 if (pos > 0) {
                     string name = text.Substring(0, pos).Trim();
                     string value = text.Substring(pos + 1).Trim();
+                    logger.Debug($"ReceiveMessage():name={name},value={value}");
                     if (name == HttpRequestHeader.Authorization.ToString()) {
-                        var authenticationHeaderValue = AuthenticationHeaderValue.Parse(value);
-                        Task task = this.channelServer.AuthenticateAsync(authenticationHeaderValue.Scheme, authenticationHeaderValue.Parameter, this);
+                        try {
+                            var authenticationHeaderValue = AuthenticationHeaderValue.Parse(value);
+                            Task task = this.channelServer.AuthenticateAsync(authenticationHeaderValue.Scheme, authenticationHeaderValue.Parameter, this);
+                        }
+                        catch (Exception e) {
+                            logger.Error(e);
+                        }
                     }
                     else if (name == "Subscriptions") {
-                        List<Dict> subscriptions = JsonUtil.Deserialize<List<Dict>>(value);
-                        Task task = this.SubscribeAsync(subscriptions);
+                        try {
+                            Dict[] subscriptions = JsonUtil.Deserialize<Dict[]>(value);
+                            Task task = this.SubscribeAsync(subscriptions);
+                        }
+                        catch (Exception e) {
+                            logger.Error(e);
+                        }
+                    }
+                    else {
+                        logger.Warn($"ReceiveMessage():Unknown message '{name}'");
                     }
                 }
             }
         }
 
         protected async Task SubscribeAsync(ICollection<Dict> subscriptions) {
-            var channelKeys = subscriptions.Select(x => x.GetAs("channelKey", (string)null));
+            try {
+                logger.Debug($"SubscribeAsync()");
 
-            var channelPathsToDelete = this.channelByKey.Keys.ToList();
+                var channelKeys = subscriptions.Select(x => x.GetAs("channelKey", (string)null));
+                logger.Debug($"SubscribeAsync():channelKeys={string.Join(", ", channelKeys)}");
 
-            foreach (var subscription in subscriptions) {
-                string channelKey = subscription.GetAs("channelKey", (string)null);
-                var vars = subscription.GetAs("vars", (Dict)null);
+                var channelKeysToDelete = this.channelByKey.Keys.ToList();
 
-                bool addChannel = false;
-                if (!this.channelByKey.TryGetValue(channelKey, out Channel existingChannel)) {
-                    addChannel = true;
-                }
-                else {
-                    if (vars.Except(existingChannel.Vars).Count() > 0 || existingChannel.Vars.Except(vars).Count() > 0) {
-                        existingChannel.Dispose();
-                        this.channelByKey.Remove(channelKey);
+                foreach (var subscription in subscriptions) {
+                    var channelKey = subscription.GetAs("channelKey", (string)null);
+                    logger.Debug($"SubscribeAsync():channelKey={channelKey}");
+
+                    var vars = subscription.GetAs("vars", (Dict)null);
+                    logger.Debug($"SubscribeAsync():vars={vars}");
+
+                    bool addChannel = false;
+                    if (!this.channelByKey.TryGetValue(channelKey, out Channel existingChannel)) {
                         addChannel = true;
                     }
-                    channelPathsToDelete.Remove(channelKey);
-                }
-                if (addChannel) {
-                    var channel = new Channel(this, channelKey, vars);
-                    if (this.registeredRoute.RegisteredChannelByKey.TryGetValue(channelKey, out RegisteredChannel registeredChannel)) {
-                        var disposable = registeredChannel.handle != null ? registeredChannel.handle(vars, channel) : await registeredChannel.handleAsync(vars, channel);
-                        channel.Attach(disposable);
+                    else {
+                        if (vars.Except(existingChannel.Vars).Count() > 0 || existingChannel.Vars.Except(vars).Count() > 0) {
+                            existingChannel.Dispose();
+                            this.channelByKey.Remove(channelKey);
+                            addChannel = true;
+                        }
+                        channelKeysToDelete.Remove(channelKey);
                     }
-                    this.channelByKey.Add(channelKey, channel);
+                    logger.Debug($"SubscribeAsync():addChannel={addChannel},registeredRoute.RegisteredChannelByKey.Count={this.registeredRoute.RegisteredChannelByKey.Count}");
+
+                    if (addChannel) {
+                        var channel = new Channel(this, channelKey, vars);
+                        if (this.registeredRoute.RegisteredChannelByKey.TryGetValue(channelKey, out RegisteredChannel registeredChannel)) {
+                            var disposable = registeredChannel.handle != null ? registeredChannel.handle(vars, channel) : await registeredChannel.handleAsync(vars, channel);
+                            if (disposable != null) {
+                                channel.Attach(disposable);
+                            }
+                        }
+                        else {
+                            logger.Debug($"SubscribeAsync():Unknown registered channel key '{channelKey}'");
+                        }
+                        this.channelByKey.Add(channelKey, channel);
+                    }
+                }
+
+                foreach (var channelPath in channelKeysToDelete) {
+                    if (!this.channelByKey.TryGetValue(channelPath, out Channel existingChannel)) {
+                        existingChannel.Dispose();
+                        this.channelByKey.Remove(channelPath);
+                    }
                 }
             }
-
-            foreach (var channelPath in channelPathsToDelete) {
-                if (!this.channelByKey.TryGetValue(channelPath, out Channel existingChannel)) {
-                    existingChannel.Dispose();
-                    this.channelByKey.Remove(channelPath);
-                }
+            catch (Exception e) {
+                logger.Error(e);
             }
         }
 

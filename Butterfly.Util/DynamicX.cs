@@ -17,11 +17,13 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 
 namespace Butterfly.Util {
     public static class DynamicX {
         public static ICollection<PropertyInfo> GetProperties(dynamic values) {
-            return values.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+            PropertyInfo[] propertyInfos = values.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+            return propertyInfos.Where(x => x.GetIndexParameters().Length == 0).ToArray();
         }
 
         public static ICollection<string> GetKeys(dynamic values) {

@@ -53,9 +53,9 @@ namespace Butterfly.Channel {
 
 
         internal async Task AuthenticateAsync(string authType, string authValue, BaseChannelServerConnection connection) {
-            this.unauthenticatedConnections.TryRemove(connection, out IChannelServerConnection dummyChannel);
-            if (!this.registeredRouteByPath.TryGetValue(connection.RegisteredRoute.path, out RegisteredRoute registeredRoute)) throw new Exception($"Invalid path '{connection.RegisteredRoute.path}'");
             try {
+                this.unauthenticatedConnections.TryRemove(connection, out IChannelServerConnection dummyChannel);
+                if (!this.registeredRouteByPath.TryGetValue(connection.RegisteredRoute.path, out RegisteredRoute registeredRoute)) throw new Exception($"Invalid path '{connection.RegisteredRoute.path}'");
                 object authToken = registeredRoute.getAuthToken != null ? registeredRoute.getAuthToken(authType, authValue) : await registeredRoute.getAuthTokenAsync(authType, authValue);
                 string id = registeredRoute.getId != null ? registeredRoute.getId(authToken) : await registeredRoute.getIdAsync(authToken);
                 if (!string.IsNullOrEmpty(id)) {

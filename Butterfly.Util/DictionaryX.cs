@@ -14,6 +14,7 @@
  * limitations under the License.
 */
 
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 
@@ -22,7 +23,15 @@ namespace Butterfly.Util {
 
         public static V GetAs<T, U, V>(this Dictionary<T, U> me, T key, V defaultValue) {
             if (me.TryGetValue(key, out U value)) {
-                return (V)Convert.ChangeType(value, typeof(V));
+                if (value is JObject) {
+                    return (value as JObject).ToObject<V>();
+                }
+                else if (value is JArray) {
+                    return (value as JArray).ToObject<V>();
+                }
+                else {
+                    return (V)Convert.ChangeType(value, typeof(V));
+                }
             }
             else {
                 return defaultValue;

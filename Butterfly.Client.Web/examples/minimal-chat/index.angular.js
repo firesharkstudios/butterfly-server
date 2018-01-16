@@ -1,24 +1,24 @@
 ﻿angular.module('app', ['components'])
     .controller('SimpleChat', function ($scope, $locale) {
         $scope.connectionStatus = 'Connecting...';
-        $scope.myUserId = butterfly.util. getOrCreateLocalStorageItem('userId', function () {
-            return butterfly.util.uuidv4();
+        $scope.myUserId = getOrCreateLocalStorageItem('userId', function () {
+            return uuidv4();
         });
-        $scope.myUserName = butterfly.util. getOrCreateLocalStorageItem('userName', function () {
+        $scope.myUserName = getOrCreateLocalStorageItem('userName', function () {
             return generateCleverName();
         });
         $scope.chatMessages = [];
 
         this.$onInit = function () {
             // Create channel to server and handle data events
-            let channelClient = new butterfly.channel.WebSocketChannelClient({
+            let channelClient = new WebSocketChannelClient({
                 url: '/minimal-chat',
                 auth: 'User ' + $scope.myUserId,
             });
             channelClient.onStatusChange(function (value) {
                 self.connectionStatus = value;
             });
-            channelClient.subscribe([new butterfly.data.ArrayDataEventHandler({
+            channelClient.subscribe([new ArrayDataEventHandler({
                 arrayMapping: {
                     chat_message: $scope.chatMessages,
                 }
@@ -57,7 +57,7 @@ angular.module('components', [])
                     }
                 };
                 $scope.sortedChatMessages = function () {
-                    return $scope.chatMessages.sort(butterfly.util.FieldComparer('created_at'));
+                    return $scope.chatMessages.sort(FieldComparer('created_at'));
                 };
                 $scope.$watchCollection($scope.sortedChatMessages(), function () {
                     let chatMessageHistory = $($element).find('.chat-message-history');
