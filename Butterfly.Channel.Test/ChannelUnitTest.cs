@@ -33,16 +33,23 @@ namespace Butterfly.Channel.Test {
 
         public async Task TestChannel(IChannelServer channelServer, Action start) {
             // Listen for new channels at /test to be created
-            Channel newChannel = null;
-            TestDisposable testDisposable = new TestDisposable();
+            Channel channelA = null;
+            TestDisposable testDisposableA = new TestDisposable();
+
+            Channel channelB = null;
+            TestDisposable testDisposableB = new TestDisposable();
 
             // Register route
             var route = channelServer.RegisterRoute("/test");
 
             // Register channel
-            route.RegisterChannel(handler: (vars, channel) => {
-                newChannel = channel;
-                return testDisposable;
+            route.RegisterChannel(channelKey: "A", handler: (vars, channel) => {
+                channelA = channel;
+                return testDisposableA;
+            });
+            route.RegisterChannel(channelKey: "B", handler: (vars, channel) => {
+                channelB = channel;
+                return testDisposableB;
             });
             channelServer.Start();
             if (start != null) start();
@@ -50,23 +57,41 @@ namespace Butterfly.Channel.Test {
             var testAuthId = "123";
 
             // Test creating a channel from the client
-            List<string> messageCollector = new List<string>();
             var channelClient = new WebSocketChannelClient("ws://localhost:8080/test", $"Test {testAuthId}", heartbeatEveryMillis: 1000);
             channelClient.Start();
-            channelClient.Subscribe(json => {
-                var message = JsonUtil.Deserialize<string>(json);
-                messageCollector.Add(message);
-            });
-            await Task.Delay(1000);
-            Assert.IsNotNull(newChannel);
+            await Task.Delay(500);
             Assert.AreEqual(1, channelServer.ConnectionCount);
             Assert.IsNotNull(channelServer.GetConnection(testAuthId));
 
+            List<string> messageCollectorA = new List<string>();
+            channelClient.Subscribe(json => {
+                var message = JsonUtil.Deserialize<string>(json);
+                messageCollectorA.Add(message);
+            }, channelKey: "A");
+            await Task.Delay(500);
+            Assert.IsNotNull(channelA);
+
+            List<string> messageCollectorB = new List<string>();
+            channelClient.Subscribe(json => {
+                var message = JsonUtil.Deserialize<string>(json);
+                messageCollectorB.Add(message);
+            }, channelKey: "B");
+            await Task.Delay(500);
+            Assert.IsNotNull(channelB);
+
             // Test if sending a message on the server is received on the client
-            channelServer.GetConnection(testAuthId, true).Queue("Hello");
+            channelServer.GetConnection(testAuthId, true).Queue("HelloA", channelKey: "A");
             await Task.Delay(200);
-            Assert.AreEqual(1, messageCollector.Count);
-            Assert.AreEqual("Hello", messageCollector[0]);
+            Assert.AreEqual(1, messageCollectorA.Count);
+            Assert.AreEqual(0, messageCollectorB.Count);
+            Assert.AreEqual("HelloA", messageCollectorA[0]);
+
+            // Test if sending a message on the server is received on the client
+            channelServer.GetConnection(testAuthId, true).Queue("HelloB", channelKey: "B");
+            await Task.Delay(200);
+            Assert.AreEqual(1, messageCollectorA.Count);
+            Assert.AreEqual(1, messageCollectorB.Count);
+            Assert.AreEqual("HelloB", messageCollectorB[0]);
 
             // Test if heartbeats keep the channel alive properly
             await Task.Delay(3000);
@@ -78,7 +103,8 @@ namespace Butterfly.Channel.Test {
             Assert.AreEqual(0, channelServer.ConnectionCount);
 
             // Test if the disposable returned by OnNewChannel() was disposed as well
-            Assert.AreEqual(true, testDisposable.disposed);
+            Assert.AreEqual(true, testDisposableA.disposed);
+            Assert.AreEqual(true, testDisposableB.disposed);
         }
     }
 

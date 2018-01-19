@@ -8,12 +8,6 @@ using WebSocketSharp;
 
 namespace Butterfly.Client.DotNet {
 
-    public enum WebSocketSharpChannelClientStatus {
-        Connecting,
-        Reconnecting,
-        Connected
-    }
-
     public class WebSocketSharpChannelClient : IDisposable {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 

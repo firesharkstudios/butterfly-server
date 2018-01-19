@@ -162,11 +162,14 @@ namespace Butterfly.Channel {
             }
         }
 
+        protected Dict EMPTY_DICT = new Dict();
+
         protected async Task SubscribeAsync(ICollection<Dict> subscriptions) {
             try {
                 logger.Debug($"SubscribeAsync()");
 
                 var channelKeys = subscriptions.Select(x => x.GetAs("channelKey", (string)null));
+                int count = channelKeys.Count();
                 logger.Debug($"SubscribeAsync():channelKeys={string.Join(", ", channelKeys)}");
 
                 var channelKeysToDelete = this.channelByKey.Keys.ToList();
@@ -175,7 +178,7 @@ namespace Butterfly.Channel {
                     var channelKey = subscription.GetAs("channelKey", (string)null);
                     logger.Debug($"SubscribeAsync():channelKey={channelKey}");
 
-                    var vars = subscription.GetAs("vars", (Dict)null);
+                    var vars = subscription.GetAs("vars", (Dict)null) ?? EMPTY_DICT;
                     logger.Debug($"SubscribeAsync():vars={vars}");
 
                     bool addChannel = false;

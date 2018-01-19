@@ -154,6 +154,7 @@ namespace Butterfly.Client.DotNet {
                                         x.Value.vars
                                     });
                                     var json = JsonUtil.Serialize(payload);
+                                    logger.Debug($"RunAsync():json={json}");
                                     await this.SendText(clientWebSocket, $"Subscriptions: {json}", this.ioCancellationTokenSource.Token);
                                 }
                                 catch (Exception e) {
@@ -171,9 +172,6 @@ namespace Butterfly.Client.DotNet {
                 await Task.WhenAny(receivingTask, heartbeatTask, subscriptionsTask);
                 ioCancellationTokenSource.Cancel();
             }
-        }
-
-        protected async Task SendSubscriptions(ClientWebSocket clientWebSocket, CancellationToken cancellationToken) {
         }
 
         protected async Task SendText(ClientWebSocket clientWebSocket, string text, CancellationToken cancellationToken) {
