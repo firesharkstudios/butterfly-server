@@ -11,7 +11,6 @@ public class DataEvent
 | [DataEvent](DataEvent/DataEvent.md)(…) |  |
 | [id](DataEvent/id.md) { get; } |  |
 | readonly [dataEventType](DataEvent/dataEventType.md) |  |
-| readonly [name](DataEvent/name.md) |  |
 | override [ToString](DataEvent/ToString.md)() |  |
 
 ## See Also

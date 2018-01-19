@@ -202,7 +202,7 @@ namespace Butterfly.Database {
             RecordDataEvent[] changeDataEvents = rows.Select(x => new RecordDataEvent(DataEventType.Initial, dataEventName, GetKeyValue(keyFieldNames, x), x)).ToArray();
             dataEvents.AddRange(changeDataEvents);
 
-            dataEvents.Add(new DataEvent(DataEventType.InitialEnd, dataEventName));
+            //dataEvents.Add(new DataEvent(DataEventType.InitialEnd));
 
             return dataEvents.ToArray();
         }

@@ -34,11 +34,6 @@ namespace Butterfly.Database.Event {
 
         protected readonly Dictionary<string, object> storage = new Dictionary<string, object>();
 
-        public DataEventTransaction(string text) {
-            this.dateTime = DateTime.Now;
-            this.dataEvents = new DataEvent[] { new DataEvent(DataEventType.Insert, text) };
-        }
-
         public DataEventTransaction(DateTime dateTime, DataEvent[] dataEvents) {
             this.dateTime = dateTime;
             this.dataEvents = dataEvents;

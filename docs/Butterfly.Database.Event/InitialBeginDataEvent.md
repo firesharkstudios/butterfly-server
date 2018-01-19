@@ -10,6 +10,7 @@ public class InitialBeginDataEvent : DataEvent
 | --- | --- |
 | [InitialBeginDataEvent](InitialBeginDataEvent/InitialBeginDataEvent.md)(…) |  |
 | readonly [keyFieldNames](InitialBeginDataEvent/keyFieldNames.md) |  |
+| readonly [name](InitialBeginDataEvent/name.md) |  |
 | override [ToString](InitialBeginDataEvent/ToString.md)() |  |
 
 ## See Also

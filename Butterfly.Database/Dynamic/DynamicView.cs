@@ -37,7 +37,7 @@ namespace Butterfly.Database.Dynamic {
     public class DynamicView {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected readonly DynamicViewSet dynamicQuerySet;
+        protected readonly DynamicViewSet dynamicViewSet;
         protected readonly SelectStatement statement;
         protected readonly Dict statementParams;
         protected readonly string name;
@@ -47,7 +47,7 @@ namespace Butterfly.Database.Dynamic {
 
         public DynamicView(DynamicViewSet dynamicQuerySet, string sql, dynamic parameters = null, string name = null, string[] keyFieldNames = null) {
             this.Id = Guid.NewGuid().ToString();
-            this.dynamicQuerySet = dynamicQuerySet; 
+            this.dynamicViewSet = dynamicQuerySet; 
             this.statement = new SelectStatement(dynamicQuerySet.Database, sql);
             this.statementParams = this.statement.ConvertParamsToDict(parameters);
             this.name = string.IsNullOrEmpty(name) ? string.Join("_", this.statement.TableRefs.Select(x => x.table.Name)) : name;
@@ -77,11 +77,6 @@ namespace Butterfly.Database.Dynamic {
                 foreach (var statementParamValue in this.statementParams.Values.ToArray()) {
                     if (statementParamValue is BaseDynamicParam dynamicParam && dynamicParam.Dirty) return true;
                 }
-                /*
-                foreach (var childDynamicParam in this.childDynamicParams) {
-                    if (childDynamicParam.dynamicParam.Dirty) return true;
-                }
-                */
                 return false;
             }
         }
@@ -91,7 +86,7 @@ namespace Butterfly.Database.Dynamic {
         /// </summary>
         /// <returns></returns>
         internal async Task<DataEvent[]> GetInitialDataEventsAsync() {
-            return await this.dynamicQuerySet.Database.GetInitialDataEventsAsync(this.name, this.keyFieldNames, this.statement, this.statementParams);
+            return await this.dynamicViewSet.Database.GetInitialDataEventsAsync(this.name, this.keyFieldNames, this.statement, this.statementParams);
         }
 
         internal void ResetDirtyParams() {
@@ -103,13 +98,13 @@ namespace Butterfly.Database.Dynamic {
 
         internal RecordDataEvent[] ProcessDataChange(DataEvent dataEvent, Dict[] preCommitImpactedRecords, Dict[] postCommitImpactedRecords) {
             logger.Trace($"ProcessDataChange():dataEvent={dataEvent},preCommitImpactedRecords.Length={preCommitImpactedRecords?.Length},postCommitImpactedRecords.Length={postCommitImpactedRecords?.Length}");
-            StatementTableRef tableRef = this.statement.FindTableRefByTableName(dataEvent.name);
+            if (!(dataEvent is KeyValueDataEvent keyValueDataEvent)) return null;
+
+            StatementTableRef tableRef = this.statement.FindTableRefByTableName(keyValueDataEvent.name);
             if (tableRef == null) return null;
 
-            if (!(dataEvent is KeyValueDataEvent transactionDataEvent)) return null;
-
             List<RecordDataEvent> newDataChanges = new List<RecordDataEvent>();
-            switch (transactionDataEvent.dataEventType) {
+            switch (keyValueDataEvent.dataEventType) {
                 case DataEventType.Insert:
                     if (postCommitImpactedRecords != null) {
                         foreach (var impactedRecord in postCommitImpactedRecords) {
@@ -162,8 +157,8 @@ namespace Butterfly.Database.Dynamic {
             StringBuilder newAndCondition = new StringBuilder();
             Dict newWhereParams = new Dict();
 
-            Dict primaryKeyValues = BaseDatabase.ParseKeyValue(transactionDataEvent.keyValue, this.dynamicQuerySet.Database.Tables[transactionDataEvent.name].Indexes[0].FieldNames);
-            foreach (var fieldName in this.dynamicQuerySet.Database.Tables[transactionDataEvent.name].Indexes[0].FieldNames) {
+            Dict primaryKeyValues = BaseDatabase.ParseKeyValue(transactionDataEvent.keyValue, this.dynamicViewSet.Database.Tables[transactionDataEvent.name].Indexes[0].FieldNames);
+            foreach (var fieldName in this.dynamicViewSet.Database.Tables[transactionDataEvent.name].Indexes[0].FieldNames) {
                 string prefix;
                 if (this.statement.TableRefs.Length == 1) {
                     prefix = "";
@@ -181,7 +176,7 @@ namespace Butterfly.Database.Dynamic {
 
                 newWhereParams[paramName] = primaryKeyValues[fieldName];
             }
-            return await this.dynamicQuerySet.Database.SelectRowsAsync(this.statement, this.statementParams, newAndCondition.ToString(), newWhereParams);
+            return await this.dynamicViewSet.Database.SelectRowsAsync(this.statement, this.statementParams, newAndCondition.ToString(), newWhereParams);
         }
 
         internal void UpdateChildDynamicParams(DataEvent[] dataEvents) {

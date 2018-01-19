@@ -139,43 +139,45 @@
             for (let i = 0; i < dataEventTransaction.dataEvents.length; i++) {
                 let dataEvent = dataEventTransaction.dataEvents[i];
                 console.log('ArrayDataEventHandler.handle():dataEvent.type=' + dataEvent.dataEventType + ',name=', dataEvent.name + ',keyValue=' + dataEvent.keyValue);
-                let array = config.arrayMapping[dataEvent.name];
-                if (!array) {
-                    console.error('No mapping for data event \'' + dataEvent.name + '\'');
+                if (dataEvent.dataEventType == 'InitialEnd') {
+                    if (config.onInitialEnd) config.onInitialEnd();
                 }
-                else if (dataEvent.dataEventType == 'InitialBegin') {
-                    array.splice(0, array.length);
-                    keyFieldNamesByName[dataEvent.name] = dataEvent.keyFieldNames;
-                }
-                else if (dataEvent.dataEventType == 'Insert' || dataEvent.dataEventType == 'Initial') {
-                    let keyValue = private.getKeyValue(dataEvent.name, dataEvent.record);
-                    let index = private.findIndex(array, keyValue);
-                    if (index >= 0) {
-                        console.error('Duplicate key \'' + keyValue + '\' in table \'' + dataEvent.name + '\'');
+                else {
+                    let array = config.arrayMapping[dataEvent.name];
+                    if (!array) {
+                        console.error('No mapping for data event \'' + dataEvent.name + '\'');
                     }
-                    else {
-                        dataEvent.record['_keyValue'] = keyValue;
-                        array.push(dataEvent.record);
+                    else if (dataEvent.dataEventType == 'InitialBegin') {
+                        array.splice(0, array.length);
+                        keyFieldNamesByName[dataEvent.name] = dataEvent.keyFieldNames;
                     }
-                }
-                else if (dataEvent.dataEventType == 'Update') {
-                    let keyValue = private.getKeyValue(dataEvent.name, dataEvent.record);
-                    let index = private.findIndex(array, keyValue);
-                    if (index == -1) {
-                        console.error('Could not find key \'' + keyValue + '\' in table \'' + dataEvent.name + '\'');
+                    else if (dataEvent.dataEventType == 'Insert' || dataEvent.dataEventType == 'Initial') {
+                        let keyValue = private.getKeyValue(dataEvent.name, dataEvent.record);
+                        let index = private.findIndex(array, keyValue);
+                        if (index >= 0) {
+                            console.error('Duplicate key \'' + keyValue + '\' in table \'' + dataEvent.name + '\'');
+                        }
+                        else {
+                            dataEvent.record['_keyValue'] = keyValue;
+                            array.push(dataEvent.record);
+                        }
                     }
-                    else {
-                        dataEvent.record['_keyValue'] = keyValue;
-                        array.splice(index, 1, dataEvent.record);
+                    else if (dataEvent.dataEventType == 'Update') {
+                        let keyValue = private.getKeyValue(dataEvent.name, dataEvent.record);
+                        let index = private.findIndex(array, keyValue);
+                        if (index == -1) {
+                            console.error('Could not find key \'' + keyValue + '\' in table \'' + dataEvent.name + '\'');
+                        }
+                        else {
+                            dataEvent.record['_keyValue'] = keyValue;
+                            array.splice(index, 1, dataEvent.record);
+                        }
                     }
-                }
-                else if (dataEvent.dataEventType == 'Delete') {
-                    let keyValue = private.getKeyValue(dataEvent.name, dataEvent.record);
-                    let index = private.findIndex(array, keyValue);
-                    array.splice(index, 1);
-                }
-                else if (dataEvent.dataEventType == 'InitialEnd') {
-                    if (config.loaded) config.loaded();
+                    else if (dataEvent.dataEventType == 'Delete') {
+                        let keyValue = private.getKeyValue(dataEvent.name, dataEvent.record);
+                        let index = private.findIndex(array, keyValue);
+                        array.splice(index, 1);
+                    }
                 }
             }
         }

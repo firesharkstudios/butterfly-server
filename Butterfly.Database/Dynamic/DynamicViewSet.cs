@@ -26,6 +26,7 @@ using NLog;
 using Butterfly.Database.Event;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
+using System.Linq;
 
 namespace Butterfly.Database.Dynamic {
     /// <summary>
@@ -229,6 +230,10 @@ namespace Butterfly.Database.Dynamic {
                     dynamicView.ResetDirtyParams();
                     dynamicView.UpdateChildDynamicParams(initialDataEvents);
                 }
+            }
+            bool hasInitialBegin = dataEvents.Any(x => x.dataEventType==DataEventType.InitialBegin);
+            if (hasInitialBegin) {
+                dataEvents.Add(new DataEvent(DataEventType.InitialEnd));
             }
             return dataEvents.ToArray();
         }

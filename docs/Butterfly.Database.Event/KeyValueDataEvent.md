@@ -10,6 +10,7 @@ public class KeyValueDataEvent : DataEvent
 | --- | --- |
 | [KeyValueDataEvent](KeyValueDataEvent/KeyValueDataEvent.md)(…) |  |
 | readonly [keyValue](KeyValueDataEvent/keyValue.md) |  |
+| readonly [name](KeyValueDataEvent/name.md) |  |
 | override [ToString](KeyValueDataEvent/ToString.md)() |  |
 
 ## See Also

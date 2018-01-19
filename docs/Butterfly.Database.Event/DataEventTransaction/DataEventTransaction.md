@@ -1,17 +1,4 @@
-# DataEventTransaction constructor (1 of 2)
-
-```csharp
-public DataEventTransaction(string text)
-```
-
-## See Also
-
-* class [DataEventTransaction](../DataEventTransaction.md)
-* namespace [Butterfly.Database.Event](../../Butterfly.Database.md)
-
----
-
-# DataEventTransaction constructor (2 of 2)
+# DataEventTransaction constructor
 
 ```csharp
 public DataEventTransaction(DateTime dateTime, DataEvent[] dataEvents)

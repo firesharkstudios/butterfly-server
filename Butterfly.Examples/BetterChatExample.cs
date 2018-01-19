@@ -47,8 +47,8 @@ namespace Butterfly.Examples {
             route.RegisterChannel(handlerAsync: async (vars, channel) => {
                 // Create a DynamicViewSet that sends DataEventTransactions to the channel
                 var dynamicViewSet = database.CreateDynamicViewSet(dataEventTransaction => {
-                    var filteredDataEventTransaction = DataEventTransaction.FilterDataEvents(dataEventTransaction, dataEvent => dataEvent.name != "chat_ids");
-                    channel.Queue(filteredDataEventTransaction);
+                    //var filteredDataEventTransaction = DataEventTransaction.FilterDataEvents(dataEventTransaction, dataEvent => dataEvent.name != "chat_ids");
+                    channel.Queue(dataEventTransaction);
                 });
 
                 // Add a "me" DynamicView that includes the user's record
