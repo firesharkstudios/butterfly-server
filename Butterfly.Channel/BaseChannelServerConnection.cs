@@ -210,10 +210,11 @@ namespace Butterfly.Channel {
                     }
                 }
 
-                foreach (var channelPath in channelKeysToDelete) {
-                    if (!this.channelByKey.TryGetValue(channelPath, out Channel existingChannel)) {
+                foreach (var channelKey in channelKeysToDelete) {
+                    if (this.channelByKey.TryGetValue(channelKey, out Channel existingChannel)) {
+                        logger.Debug($"SubscribeAsync():Removing channel key '{channelKey}'");
                         existingChannel.Dispose();
-                        this.channelByKey.Remove(channelPath);
+                        this.channelByKey.Remove(channelKey);
                     }
                 }
             }
