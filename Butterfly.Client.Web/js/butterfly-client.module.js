@@ -15,7 +15,6 @@
 
         private.subscriptions = [];
         private.handlersByKey = {};
-        private.sendSubscriptions = true;
 
         private.setStatus = function (value) {
             if (public.status != value) {
@@ -45,6 +44,7 @@
                     private.webSocket.onopen = function () {
                         private.setStatus('Connected');
                         private.webSocket.send('Authorization:' + auth);
+                        private.sendSubscriptions();
                     };
                     private.webSocket.onerror = function (error) {
                         private.webSocket = null;
@@ -74,14 +74,12 @@
                 private.testConnection(false);
             }, heartbeatEveryMillis);
 
-            private.sendSubscriptionstimeout = setTimeout(function () {
-                if (private.sendSubscriptions && private.webSocket && private.webSocket.readyState == 1) {
+            private.sendSubscriptions = function () {
+                if (private.webSocket && private.webSocket.readyState == 1) {
                     let text = 'Subscriptions:' + JSON.stringify(private.subscriptions);
                     private.webSocket.send(text);
-                    if (onSubscriptionsUpdated) onSubscriptionsUpdated();
-                    private.sendSubscriptions = false;
                 }
-            }, sendSubscriptionsCheckEveryMillis);
+            }
         }
 
         let public = {
@@ -100,7 +98,8 @@
                     vars: vars
                 });
                 private.handlersByKey[channelKey] = Array.isArray(handler) ? handler : [handler];
-                private.sendSubscriptions = true;
+                private.sendSubscriptions();
+                if (onSubscriptionsUpdated) onSubscriptionsUpdated();
             },
             unsubscribe: function (channelKey) {
                 let index = private.subscriptions.indexOf(x => x.channelKey == channelKey);
