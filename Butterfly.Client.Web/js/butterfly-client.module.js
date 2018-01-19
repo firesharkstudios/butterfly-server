@@ -102,7 +102,7 @@
                 if (onSubscriptionsUpdated) onSubscriptionsUpdated();
             },
             unsubscribe: function (channelKey) {
-                let index = private.subscriptions.indexOf(x => x.channelKey == channelKey);
+                let index = private.subscriptions.findIndex(x => x.channelKey == channelKey);
                 if (index >= 0) private.subscriptions.removeAt(index);
                 delete private.handlersByKey[channelKey];
             },
