@@ -15,6 +15,9 @@
 */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
@@ -36,38 +39,64 @@ namespace Butterfly.Database {
         /// <param name="database"></param>
         /// <param name="sql"></param>
         public UpdateStatement(IDatabase database, string sql) {
-            this.SetSql(sql, "UPDATE @@tableName SET @@nameValues");
+            this.Sql = sql;
 
-            // Confirm the sql is valid
-            Match match = STATEMENT_REGEX.Match(this.Sql);
-            if (!match.Success) throw new Exception($"Invalid sql '{this.Sql}'");
+            if (this.IsSqlTableName) {
+                this.fromClause = this.Sql;
+                this.setClause = null;
+                this.whereClause = null;
+            }
+            else {
+                // Confirm the sql is valid
+                Match match = STATEMENT_REGEX.Match(this.Sql);
+                if (!match.Success) throw new Exception($"Invalid sql '{this.Sql}'");
 
-            // Extract each clause
-            this.fromClause = match.Groups[1].Value.Trim();
-            this.setClause = match.Groups[2].Value.Trim();
-            this.whereClause = match.Groups[3].Value.Trim();
+                // Extract each clause
+                this.fromClause = match.Groups[1].Value.Trim();
+                this.setClause = match.Groups[2].Value.Trim();
+                this.whereClause = match.Groups[3].Value.Trim();
+            }
 
             // Parse the FROM clause
             this.TableRefs = StatementTableRef.ParseTableRefs(database, this.fromClause);
-
-            // Parse the SET clause
-            this.SetRefs = DetermineEqualsRefs(database, setClause);
-            this.WhereRefs = DetermineEqualsRefs(database, whereClause);
         }
 
-        public StatementEqualsRef[] SetRefs {
-            get;
-            protected set;
+        public (StatementEqualsRef[], StatementEqualsRef[]) GetSetAndWhereRefs(IDatabase database, Dict statementParams) {
+            if (string.IsNullOrEmpty(this.setClause) && string.IsNullOrEmpty(this.whereClause)) {
+                if (this.TableRefs.Length > 1) throw new Exception("Cannot auto fill set clause and where clause with more than one table in update statement");
+
+                List<StatementEqualsRef> setRefs = statementParams.Select(x => new StatementEqualsRef(this.TableRefs[0].table.Name, x.Key, x.Key)).ToList();
+                List<StatementEqualsRef> whereRefs = new List<StatementEqualsRef>();
+                foreach (var fieldName in this.TableRefs[0].table.Indexes[0].FieldNames) {
+                    var setRef = setRefs.Find(x => x.fieldName == fieldName);
+                    if (setRef == null) throw new Exception("Could not find primary key field '{fieldName}' building WHERE clause of update statement");
+                    whereRefs.Add(setRef);
+                    setRefs.Remove(setRef);
+                }
+                return (setRefs.ToArray(), whereRefs.ToArray());
+            }
+            else {
+                var setRefs = BaseStatement.DetermineEqualsRefs(database, this.setClause);
+                var whereRefs = BaseStatement.DetermineEqualsRefs(database, this.whereClause);
+                return (setRefs, whereRefs);
+            }
         }
 
-        public StatementEqualsRef[] WhereRefs {
-            get;
-            protected set;
-        }
+        public (string, Dict) GetExecutableSqlAndParams(Dict sourceParams, StatementEqualsRef[] setRefs, StatementEqualsRef[] whereRefs) {
+            //BaseStatement.ConfirmAllParamsUsed(this.Sql, sourceParams);
+            string newSetClause;
+            string newWhereClause;
+            if (string.IsNullOrEmpty(this.setClause) && string.IsNullOrEmpty(this.whereClause)) {
+                newSetClause = string.Join(",", setRefs.Select(x => $"{x.fieldName}=@{x.paramName}"));
+                newWhereClause = string.Join(" AND ", whereRefs.Select(x => $"{x.fieldName}=@{x.paramName}"));
+            }
+            else {
+                newSetClause = this.setClause;
+                newWhereClause = this.whereClause;
+            }
 
-        public (string, Dict) GetExecutableSqlAndParams(Dict sourceParams) {
-            BaseStatement.ConfirmAllParamsUsed(this.Sql, sourceParams);
-            return (this.Sql, sourceParams);
+            string sql = $"UPDATE {this.fromClause} SET {newSetClause} WHERE {newWhereClause}";
+            return (sql, sourceParams);
         }
 
     }

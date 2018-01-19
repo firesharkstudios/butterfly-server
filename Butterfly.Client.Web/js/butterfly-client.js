@@ -141,7 +141,10 @@ function ArrayDataEventHandler(config) {
             let dataEvent = dataEventTransaction.dataEvents[i];
             console.log('ArrayDataEventHandler.handle():dataEvent.type=' + dataEvent.dataEventType + ',name=', dataEvent.name + ',keyValue=' + dataEvent.keyValue);
             let array = config.arrayMapping[dataEvent.name];
-            if (dataEvent.dataEventType == 'InitialBegin') {
+            if (!array) {
+                console.error('No mapping for data event \'' + dataEvent.name + '\'');
+            }
+            else if (dataEvent.dataEventType == 'InitialBegin') {
                 array.splice(0, array.length);
                 keyFieldNamesByName[dataEvent.name] = dataEvent.keyFieldNames;
             }

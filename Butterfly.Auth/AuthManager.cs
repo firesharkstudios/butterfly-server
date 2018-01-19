@@ -14,7 +14,7 @@ namespace Butterfly.Auth {
     public class AuthManager {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public const string UNAUTHORIZED = "Unauthorized";
+        //public const string UNAUTHORIZED = "Unauthorized";
 
         protected readonly IDatabase database;
 
@@ -217,10 +217,10 @@ namespace Butterfly.Auth {
             Dict authTokenDict = await this.database.SelectRowAsync($"SELECT at.{this.authTokenIdFieldName}, at.{this.authTokenTableUserIdFieldName}, u.{this.userTableAccountIdFieldName}, at.{this.authTokenTableExpiresAtFieldName} FROM {this.authTokenTableName} at INNER JOIN {this.userTableName} u ON at.user_id=u.id WHERE at.id=@authTokenId", new {
                 authTokenId
             });
-            if (authTokenDict == null) throw new Exception(AuthManager.UNAUTHORIZED);
+            if (authTokenDict == null) throw new UnauthorizedException();
             var authToken = AuthToken.FromDict(authTokenDict, this.authTokenIdFieldName, this.authTokenTableUserIdFieldName, this.userTableAccountIdFieldName, this.authTokenTableExpiresAtFieldName);
 
-            if (authToken.expiresAt == DateTime.MinValue || authToken.expiresAt < DateTime.Now) throw new Exception(AuthManager.UNAUTHORIZED);
+            if (authToken.expiresAt == DateTime.MinValue || authToken.expiresAt < DateTime.Now) throw new UnauthorizedException();
 
             return authToken;
         }
@@ -397,6 +397,11 @@ namespace Butterfly.Auth {
             string accountId = dict.GetAs(accountIdFieldName, (string)null);
             DateTime expiresAt = dict.GetAs(expiresAtFieldName, DateTime.MinValue);
             return new AuthToken(id, userId, accountId, expiresAt);
+        }
+    }
+
+    public class UnauthorizedException : Exception {
+        public UnauthorizedException() : base("Unauthorized") {
         }
     }
 }

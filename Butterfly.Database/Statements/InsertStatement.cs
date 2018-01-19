@@ -29,8 +29,8 @@ namespace Butterfly.Database {
     /// </summary>
     public class InsertStatement : BaseStatement {
 
-        public const string NAMES = "@@names";
-        public const string VALUES = "@@values";
+        //public const string NAMES = "@@names";
+        //public const string VALUES = "@@values";
 
         protected readonly static Regex STATEMENT_REGEX = new Regex(@"INSERT INTO (?<fromClause>.*) \((?<namesClause>.*)\) VALUES \((?<valuesClause>.*)\)", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
@@ -44,16 +44,24 @@ namespace Butterfly.Database {
         /// <param name="database"></param>
         /// <param name="sql">Can be a table name or full SQL. Full SQL can use @@names and @@values tokens to retrieve values from the record parameter.</param>
         public InsertStatement(IDatabase database, string sql) {
-            this.SetSql(sql, "INSERT INTO @@tableName (@@names) VALUES (@@values)");
+            this.Sql = sql;
+            //this.SetSql(sql, "INSERT INTO @@tableName (@@names) VALUES (@@values)");
 
-            // Confirm the sql is valid
-            Match match = STATEMENT_REGEX.Match(this.Sql);
-            if (!match.Success) throw new Exception($"Invalid sql '{this.Sql}'");
+            if (this.IsSqlTableName) {
+                this.fromClause = this.Sql;
+                this.namesClause = null;
+                this.valuesClause = null;
+            }
+            else {
+                // Confirm the sql is valid
+                Match match = STATEMENT_REGEX.Match(this.Sql);
+                if (!match.Success) throw new Exception($"Invalid sql '{this.Sql}'");
 
-            // Extract each clause
-            this.fromClause = match.Groups["fromClause"].Value.Trim();
-            this.namesClause = match.Groups["namesClause"].Value.Trim();
-            this.valuesClause = match.Groups["valuesClause"].Value.Trim();
+                // Extract each clause
+                this.fromClause = match.Groups["fromClause"].Value.Trim();
+                this.namesClause = match.Groups["namesClause"].Value.Trim();
+                this.valuesClause = match.Groups["valuesClause"].Value.Trim();
+            }
 
             // Parse the FROM clause
             this.TableRefs = StatementTableRef.ParseTableRefs(database, this.fromClause);
@@ -96,7 +104,7 @@ namespace Butterfly.Database {
         protected (List<string>, List<string>) GetNamesAndValues(Dict executableParams, Dict defaultValues = null) {
             List<string> names;
             List<string> values;
-            if (this.namesClause == NAMES && this.valuesClause == VALUES) {
+            if (string.IsNullOrEmpty(this.namesClause) && string.IsNullOrEmpty(this.valuesClause)) {
                 names = executableParams.Keys.ToList();
                 values = executableParams.Keys.Select(x => $"@{x}").ToList();
             }

@@ -35,23 +35,30 @@ namespace Butterfly.Database {
         public readonly string orderByClause;
 
         public SelectStatement(IDatabase database, string sql) {
-            this.SetSql(sql, "SELECT * FROM @@tableName");
+            this.Sql = sql;
 
             // Confirm the sql is valid
-            Match match = STATEMENT_REGEX.Match(this.Sql);
-            if (!match.Success) throw new Exception($"Invalid sql '{this.Sql}'");
+            if (this.IsSqlTableName) {
+                this.selectClause = null;
+                this.fromClause = this.Sql;
+                this.whereClause = null;
+                this.orderByClause = null;
+            }
+            else {
+                Match match = STATEMENT_REGEX.Match(this.Sql);
+                if (!match.Success) throw new Exception($"Invalid sql '{this.Sql}'");
 
-            // Extract each clause
-            this.selectClause = match.Groups[1].Value.Trim();
-            this.fromClause = match.Groups[2].Value.Trim();
-            this.whereClause = match.Groups[3].Value.Trim();
-            this.orderByClause = match.Groups[4].Value.Trim();
+                // Extract each clause
+                this.selectClause = match.Groups[1].Value.Trim();
+                this.fromClause = match.Groups[2].Value.Trim();
+                this.whereClause = match.Groups[3].Value.Trim();
+                this.orderByClause = match.Groups[4].Value.Trim();
+            }
 
             // Parse the FROM clause
             this.TableRefs = StatementTableRef.ParseTableRefs(database, this.fromClause);
 
-            // Parse the SELECT clause
-            if (this.selectClause == "*") {
+            if (this.selectClause == "*" || string.IsNullOrEmpty(this.selectClause)) {
                 if (this.TableRefs.Length != 1) throw new Exception("Select statement must have exactly one table to use * to select field names");
                 this.FieldRefs = this.TableRefs[0].table.FieldDefs.Select(x => new StatementFieldRef(x.name)).ToArray();
             }
@@ -81,6 +88,7 @@ namespace Butterfly.Database {
         public (string, Dict) GetExecutableSqlAndParams(Dict sourceParams) {
             //string dataSql = this.Sql;
 
+            string newSelectClause = string.IsNullOrEmpty(this.selectClause) ? "*" : this.selectClause;
             string newWhereClause = string.IsNullOrEmpty(this.whereClause) && sourceParams.Count > 0 ? string.Join(" AND ", sourceParams.Keys.Select(x => $"{x}=@{x}")) : this.whereClause;
 
             Dict dataParams = new Dict();
@@ -139,7 +147,7 @@ namespace Butterfly.Database {
             }
 
             StringBuilder sb = new StringBuilder();
-            sb.Append($"SELECT {this.selectClause} FROM {this.fromClause}");
+            sb.Append($"SELECT {newSelectClause} FROM {this.fromClause}");
             if (!string.IsNullOrEmpty(newWhereClause)) {
                 sb.Append($" WHERE {newWhereClause}");
             }

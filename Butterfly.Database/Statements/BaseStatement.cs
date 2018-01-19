@@ -28,8 +28,16 @@ namespace Butterfly.Database {
     /// Base class for parsing SQL statements
     /// </summary>
     public abstract class BaseStatement {
+        /*
         protected void SetSql(string sql, string defaultStatement) {
             this.Sql = sql.Contains(" ") ? sql : defaultStatement.Replace("@@tableName", sql);
+        }
+        */
+
+        protected bool IsSqlTableName {
+            get {
+                return !this.Sql.Contains(" ");
+            }
         }
 
         public string Sql {
@@ -84,7 +92,7 @@ namespace Butterfly.Database {
         // x.id=@id
         protected readonly static Regex EQUALS_REF_REGEX = new Regex(@"^(?<tableAliasWithDot>\w+\.)?(?<fieldName>\w+)\s*=\s*\@(?<paramName>\w+)");
 
-        public static StatementEqualsRef[] DetermineEqualsRefs(IDatabase database, string clause) {
+        internal static StatementEqualsRef[] DetermineEqualsRefs(IDatabase database, string clause) {
             List<StatementEqualsRef> setRefs = new List<StatementEqualsRef>();
             var matches = EQUALS_REF_REGEX.Matches(clause);
             foreach (Match nextMatch in matches) {

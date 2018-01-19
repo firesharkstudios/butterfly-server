@@ -30,24 +30,29 @@ namespace Butterfly.Database {
         public readonly string whereClause;
 
         public DeleteStatement(IDatabase database, string sql) {
-            this.SetSql(sql, "DELETE FROM @@tableName");
+            //this.SetSql(sql, "DELETE FROM @@tableName");
+            this.Sql = sql;
 
-            // Confirm the sql is valid
-            Match match = STATEMENT_REGEX.Match(this.Sql);
-            if (!match.Success) throw new Exception($"Invalid sql '{this.Sql}'");
+            if (this.IsSqlTableName) {
+                this.fromClause = this.Sql;
+                this.whereClause = null;
+            }
+            else {
+                // Confirm the sql is valid
+                Match match = STATEMENT_REGEX.Match(this.Sql);
+                if (!match.Success) throw new Exception($"Invalid sql '{this.Sql}'");
 
-            // Extract each clause
-            this.fromClause = match.Groups["fromClause"].Value.Trim();
-            this.whereClause = match.Groups["whereClause"].Value.Trim();
+                // Extract each clause
+                this.fromClause = match.Groups["fromClause"].Value.Trim();
+                this.whereClause = match.Groups["whereClause"].Value.Trim();
+            }
 
             // Parse the FROM clause
             this.TableRefs = StatementTableRef.ParseTableRefs(database, this.fromClause);
-            this.WhereRefs = DetermineEqualsRefs(database, whereClause);
         }
 
-        public StatementEqualsRef[] WhereRefs {
-            get;
-            protected set;
+        public StatementEqualsRef[] GetWhereRefs(IDatabase database) {
+            return BaseStatement.DetermineEqualsRefs(database, this.whereClause);
         }
 
         public (string, Dict) GetExecutableSqlAndParams(Dict sourceParams) {

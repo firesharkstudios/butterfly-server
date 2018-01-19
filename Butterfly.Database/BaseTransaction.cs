@@ -103,11 +103,12 @@ namespace Butterfly.Database {
             Dict statementParamsDict = updateStatement.ConvertParamsToDict(vars);
 
             // Determine keyValue
-            var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, updateStatement.WhereRefs);
+            (var setRefs, var whereRefs) = updateStatement.GetSetAndWhereRefs(this.database, statementParamsDict);
+            var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, whereRefs);
             object keyValue = BaseDatabase.GetKeyValue(updateStatement.TableRefs[0].table.Indexes[0].FieldNames, fieldValues);
 
             // Get the executable sql and params
-            (string executableSql, Dict executableParams) = updateStatement.GetExecutableSqlAndParams(statementParamsDict);
+            (string executableSql, Dict executableParams) = updateStatement.GetExecutableSqlAndParams(statementParamsDict, setRefs, whereRefs);
 
             // Execute update
             int count = await this.DoUpdateAsync(executableSql, executableParams);
@@ -131,7 +132,8 @@ namespace Butterfly.Database {
             Dict statementParamsDict = deleteStatement.ConvertParamsToDict(vars);
 
             // Determine keyValue
-            var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, deleteStatement.WhereRefs);
+            var whereRefs = deleteStatement.GetWhereRefs(this.database);
+            var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, whereRefs);
             object keyValue = BaseDatabase.GetKeyValue(deleteStatement.TableRefs[0].table.Indexes[0].FieldNames, fieldValues);
 
             // Get the executable sql and params

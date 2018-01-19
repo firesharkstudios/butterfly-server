@@ -82,21 +82,21 @@ namespace Butterfly.Database.Test {
             string hrDepartmentId;
             string customerServiceDepartmentId;
             using (ITransaction transaction = await database.BeginTransactionAsync()) {
-                // Add Sales department using full INSERT statements with @@names and @@values
-                salesDepartmentId = await transaction.InsertAsync<string>("INSERT INTO department (@@names) VALUES (@@values)", new {
+                // Add Sales department
+                salesDepartmentId = await transaction.InsertAsync<string>("department", new {
                     name = "Sales",
                 });
-                string mikeEmployeeId = await transaction.InsertAsync<string>("INSERT INTO employee (@@names) VALUES (@@values)", new {
+                string mikeEmployeeId = await transaction.InsertAsync<string>("employee", new {
                     name = "Mike in Sales",
                     department_id = salesDepartmentId,
                     birthday = DBNull.Value,
                 });
-                await transaction.InsertAsync<string>("INSERT INTO employee_contact (@@names) VALUES (@@values)", new {
+                await transaction.InsertAsync<string>("employee_contact", new {
                     employee_id = mikeEmployeeId,
                     contact_type = "Phone",
                     contact_data = "+18005551000",
                 });
-                await transaction.InsertAsync<string>("INSERT INTO employee_contact (@@names) VALUES (@@values)", new {
+                await transaction.InsertAsync<string>("employee_contact", new {
                     employee_id = mikeEmployeeId,
                     contact_type = "Email",
                     contact_data = "mike.sales@butterfly.com",
@@ -149,8 +149,8 @@ namespace Butterfly.Database.Test {
 
         protected async Task TestTransactions(IDatabase database) {
             using (ITransaction transaction = await database.BeginTransactionAsync()) {
-                // Add Sales department using full INSERT statements with @@names and @@values
-                await transaction.InsertAsync<string>("INSERT INTO department (@@names) VALUES (@@values)", new {
+                // Add Sales department
+                await transaction.InsertAsync<string>("department", new {
                     name = "Sales",
                 });
 
@@ -164,8 +164,8 @@ namespace Butterfly.Database.Test {
             Assert.AreEqual(0, allDepartments2.Length);
 
             using (ITransaction transaction = await database.BeginTransactionAsync()) {
-                // Add Sales department using full INSERT statements with @@names and @@values
-                await transaction.InsertAsync<string>("INSERT INTO department (@@names) VALUES (@@values)", new {
+                // Add Sales department
+                await transaction.InsertAsync<string>("department", new {
                     name = "Sales",
                 });
 
@@ -298,18 +298,16 @@ namespace Butterfly.Database.Test {
             using (database.OnNewCommittedTransaction(dataEventTransaction => {
                 dataEventTransactionCollector.Add(dataEventTransaction);
             })) {
-                /*
-                // Test updating rows on a non-indexed field
+                // Test updating rows on an indexed field
                 dataEventTransactionCollector.Clear();
-                int count1 = await database.UpdateAndCommitAsync("UPDATE department SET name=@newName WHERE name=@name", new {
-                    name = "HR",
-                    newName = "New HR",
+                int count1 = await database.UpdateAndCommitAsync("department", new {
+                    id = hrDepartmentId,
+                    name = "Newest HR"
                 });
                 Assert.AreEqual(1, count1);
                 Assert.AreEqual(1, dataEventTransactionCollector.Count);
                 Assert.AreEqual(1, dataEventTransactionCollector[0].dataEvents.Length);
                 Assert.AreEqual(DataEventType.Update, dataEventTransactionCollector[0].dataEvents[0].dataEventType);
-                */
 
                 // Test updating rows on an indexed field
                 dataEventTransactionCollector.Clear();
