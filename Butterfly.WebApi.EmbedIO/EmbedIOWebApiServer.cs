@@ -62,11 +62,17 @@ namespace Butterfly.WebApi.EmbedIO {
                     throw new System.Exception($"Unknown method '{webHandler.method}'");
                 }
                 this.AddHandler(webHandler.path, httpVerb, async (context, cancellationToken) => {
+                    var webRequest = new EmbedIOWebRequest(context);
+                    var webResponse = new EmbedIOWebResponse(context);
                     try {
-                        await webHandler.listener(new EmbedIOWebRequest(context), new EmbedIOWebResponse(context));
+                        await webHandler.listener(webRequest, webResponse);
+                    }
+                    catch (IOException) {
                     }
                     catch (Exception e) {
                         logger.Error(e);
+                        webResponse.StatusCode = 500;
+                        await webResponse.WriteAsJsonAsync(e.Message);
                     }
                     return true;
                 });
@@ -106,6 +112,15 @@ namespace Butterfly.WebApi.EmbedIO {
 
         public EmbedIOWebResponse(Unosquare.Net.HttpListenerContext context) {
             this.context = context;
+        }
+
+        public int StatusCode {
+            get {
+                return this.context.Response.StatusCode;
+            }
+            set {
+                this.context.Response.StatusCode = value;
+            }
         }
 
         public async Task WriteAsJsonAsync(object value) {

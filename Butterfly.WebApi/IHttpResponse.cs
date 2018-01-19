@@ -18,6 +18,9 @@ using System.Threading.Tasks;
 
 namespace Butterfly.WebApi {
     public interface IHttpResponse {
+
+        int StatusCode { get; set; }
+
         Task WriteAsJsonAsync(object value);
     }
 }

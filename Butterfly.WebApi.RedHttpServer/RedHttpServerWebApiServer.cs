@@ -100,6 +100,15 @@ namespace Butterfly.WebApi.RedHttpServer {
             this.response = response;
         }
 
+        public int StatusCode {
+            get {
+                return -1;
+            }
+            set {
+                throw new NotImplementedException();
+            }
+        }
+
         public Task WriteAsJsonAsync(object value) {
             this.response.SendJson(value);
             return Task.FromResult(0);

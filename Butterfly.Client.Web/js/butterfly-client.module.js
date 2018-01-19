@@ -150,13 +150,25 @@
                 }
                 else if (dataEvent.dataEventType == 'Insert' || dataEvent.dataEventType == 'Initial') {
                     let keyValue = private.getKeyValue(dataEvent.name, dataEvent.record);
-                    dataEvent.record['_keyValue'] = keyValue;
-                    array.push(dataEvent.record);
+                    let index = private.findIndex(array, keyValue);
+                    if (index >= 0) {
+                        console.error('Duplicate key \'' + keyValue + '\' in table \'' + dataEvent.name + '\'');
+                    }
+                    else {
+                        dataEvent.record['_keyValue'] = keyValue;
+                        array.push(dataEvent.record);
+                    }
                 }
                 else if (dataEvent.dataEventType == 'Update') {
                     let keyValue = private.getKeyValue(dataEvent.name, dataEvent.record);
                     let index = private.findIndex(array, keyValue);
-                    array.splice(index, 1, dataEvent.record);
+                    if (index == -1) {
+                        console.error('Could not find key \'' + keyValue + '\' in table \'' + dataEvent.name + '\'');
+                    }
+                    else {
+                        dataEvent.record['_keyValue'] = keyValue;
+                        array.splice(index, 1, dataEvent.record);
+                    }
                 }
                 else if (dataEvent.dataEventType == 'Delete') {
                     let keyValue = private.getKeyValue(dataEvent.name, dataEvent.record);
