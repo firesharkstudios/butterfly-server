@@ -1,11 +1,13 @@
 # DeleteStatement.GetExecutableSqlAndParams method
 
 ```csharp
-public ValueTuple<string, Dictionary<string, object>> GetExecutableSqlAndParams(Dictionary<string, object> sourceParams)
+public ValueTuple<string, Dictionary<string, object>> GetExecutableSqlAndParams
+    (Dictionary<string, object> sourceParams, StatementEqualsRef[] whereRefs)
 ```
 
 ## See Also
 
+* class [StatementEqualsRef](../StatementEqualsRef.md)
 * class [DeleteStatement](../DeleteStatement.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

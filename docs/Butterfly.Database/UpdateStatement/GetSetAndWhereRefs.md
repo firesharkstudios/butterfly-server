@@ -1,12 +1,13 @@
-# UpdateStatement.WhereRefs property
+# UpdateStatement.GetSetAndWhereRefs method
 
 ```csharp
-public StatementEqualsRef[] WhereRefs { get; }
+public ValueTuple<StatementEqualsRef[], StatementEqualsRef[]> GetSetAndWhereRefs(IDatabase database, Dictionary<string, object> statementParams)
 ```
 
 ## See Also
 
 * class [StatementEqualsRef](../StatementEqualsRef.md)
+* interface [IDatabase](../IDatabase.md)
 * class [UpdateStatement](../UpdateStatement.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

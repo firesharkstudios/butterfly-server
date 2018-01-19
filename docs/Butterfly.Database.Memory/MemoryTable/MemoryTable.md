@@ -1,7 +1,7 @@
 # MemoryTable constructor
 
 ```csharp
-public MemoryTable(DataTable dataTable, TableFieldDef[] fieldDefs, TableIndex primaryIndex)
+public MemoryTable(DataTable dataTable, TableFieldDef[] fieldDefs, TableIndex[] indexes)
 ```
 
 ## See Also

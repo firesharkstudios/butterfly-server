@@ -8,6 +8,7 @@ public interface IHttpResponse
 
 | name | description |
 | --- | --- |
+| [StatusCode](IHttpResponse/StatusCode.md) { get; set; } |  |
 | [WriteAsJsonAsync](IHttpResponse/WriteAsJsonAsync.md)(…) |  |
 
 ## See Also

@@ -24,6 +24,7 @@
 | class [Table](Butterfly.Database/Table.md) |  |
 | class [TableFieldDef](Butterfly.Database/TableFieldDef.md) |  |
 | class [TableIndex](Butterfly.Database/TableIndex.md) |  |
+| enum [TableIndexType](Butterfly.Database/TableIndexType.md) |  |
 | class [UnableToConnectDatabaseException](Butterfly.Database/UnableToConnectDatabaseException.md) |  |
 | class [UpdateStatement](Butterfly.Database/UpdateStatement.md) |  |
 

@@ -1,7 +1,7 @@
-# AuthManager.UNAUTHORIZED field
+# AuthManager.ConvertInputToDict method
 
 ```csharp
-public const string UNAUTHORIZED;
+public Dictionary<string, object> ConvertInputToDict(object input)
 ```
 
 ## See Also

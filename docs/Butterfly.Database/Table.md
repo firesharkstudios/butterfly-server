@@ -12,8 +12,8 @@ public class Table
 | [AutoIncrementFieldName](Table/AutoIncrementFieldName.md) { get; } |  |
 | [FieldDefs](Table/FieldDefs.md) { get; } |  |
 | [GetDefaultValueByFieldName](Table/GetDefaultValueByFieldName.md) { get; } |  |
+| [Indexes](Table/Indexes.md) { get; } |  |
 | [Name](Table/Name.md) { get; } |  |
-| [PrimaryIndex](Table/PrimaryIndex.md) { get; } |  |
 | [FindFieldDef](Table/FindFieldDef.md)(…) |  |
 
 ## See Also

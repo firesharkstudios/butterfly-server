@@ -1,11 +1,12 @@
 # TableIndex constructor
 
 ```csharp
-public TableIndex(string name, string[] fieldNames)
+public TableIndex(TableIndexType indexType, string[] fieldNames)
 ```
 
 ## See Also
 
+* enum [TableIndexType](../TableIndexType.md)
 * class [TableIndex](../TableIndex.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

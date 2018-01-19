@@ -10,7 +10,7 @@ public class TableIndex
 | --- | --- |
 | [TableIndex](TableIndex/TableIndex.md)(…) |  |
 | [FieldNames](TableIndex/FieldNames.md) { get; } |  |
-| [Name](TableIndex/Name.md) { get; } |  |
+| [IndexType](TableIndex/IndexType.md) { get; } |  |
 
 ## See Also
 

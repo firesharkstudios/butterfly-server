@@ -15,6 +15,8 @@
 */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
@@ -51,13 +53,37 @@ namespace Butterfly.Database {
             this.TableRefs = StatementTableRef.ParseTableRefs(database, this.fromClause);
         }
 
-        public StatementEqualsRef[] GetWhereRefs(IDatabase database) {
-            return BaseStatement.DetermineEqualsRefs(database, this.whereClause);
+        public StatementEqualsRef[] GetWhereRefs(IDatabase database, Dict statementParams) {
+            if (string.IsNullOrEmpty(this.whereClause)) {
+                if (this.TableRefs.Length > 1) throw new Exception("Cannot auto fill where clause with more than one table in DELETE statement");
+
+                List<StatementEqualsRef> equalsRefs = statementParams.Select(x => new StatementEqualsRef(this.TableRefs[0].table.Name, x.Key, x.Key)).ToList();
+                List<StatementEqualsRef> whereRefs = new List<StatementEqualsRef>();
+                foreach (var fieldName in this.TableRefs[0].table.Indexes[0].FieldNames) {
+                    var equalRef = equalsRefs.Find(x => x.fieldName == fieldName);
+                    if (equalRef == null) throw new Exception("Could not find primary key field '{fieldName}' building WHERE clause of DELETE statement");
+                    whereRefs.Add(equalRef);
+                    equalsRefs.Remove(equalRef);
+                }
+                if (equalsRefs.Count > 0) throw new Exception($"Unused fields auto filling WHERE clause of DELETE statement ({string.Join(",", equalsRefs.Select(x => x.fieldName))})");
+                return whereRefs.ToArray();
+            }
+            else {
+                return BaseStatement.DetermineEqualsRefs(database, this.whereClause);
+            }
         }
 
-        public (string, Dict) GetExecutableSqlAndParams(Dict sourceParams) {
-            BaseStatement.ConfirmAllParamsUsed(this.Sql, sourceParams);
-            return (this.Sql, sourceParams);
+        public (string, Dict) GetExecutableSqlAndParams(Dict sourceParams, StatementEqualsRef[] whereRefs) {
+            string newWhereClause;
+            if (string.IsNullOrEmpty(this.whereClause)) {
+                newWhereClause = string.Join(" AND ", whereRefs.Select(x => $"{x.fieldName}=@{x.paramName}"));
+            }
+            else {
+                newWhereClause = this.whereClause;
+            }
+
+            string sql = $"DELETE FROM {this.fromClause} WHERE {newWhereClause}";
+            return (sql, sourceParams);
         }
     }
 }

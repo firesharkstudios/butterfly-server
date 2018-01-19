@@ -132,12 +132,12 @@ namespace Butterfly.Database {
             Dict statementParamsDict = deleteStatement.ConvertParamsToDict(vars);
 
             // Determine keyValue
-            var whereRefs = deleteStatement.GetWhereRefs(this.database);
+            var whereRefs = deleteStatement.GetWhereRefs(this.database, statementParamsDict);
             var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, whereRefs);
             object keyValue = BaseDatabase.GetKeyValue(deleteStatement.TableRefs[0].table.Indexes[0].FieldNames, fieldValues);
 
             // Get the executable sql and params
-            (string executableSql, Dict executableParams) = deleteStatement.GetExecutableSqlAndParams(statementParamsDict);
+            (string executableSql, Dict executableParams) = deleteStatement.GetExecutableSqlAndParams(statementParamsDict, whereRefs);
 
             // Execute delete
             int count = await this.DoDeleteAsync(executableSql, executableParams);

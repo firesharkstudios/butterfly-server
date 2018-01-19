@@ -10,15 +10,15 @@ public class AuthManager
 | --- | --- |
 | [AuthManager](AuthManager/AuthManager.md)(…) |  |
 | [Authenticate](AuthManager/Authenticate.md)(…) |  |
+| [ConvertInputToDict](AuthManager/ConvertInputToDict.md)(…) |  |
 | [CreateAnonymousUser](AuthManager/CreateAnonymousUser.md)() |  |
 | [CreateAuthToken](AuthManager/CreateAuthToken.md)(…) |  |
 | [ForgotPassword](AuthManager/ForgotPassword.md)(…) |  |
 | [Login](AuthManager/Login.md)(…) |  |
 | [LookupUsername](AuthManager/LookupUsername.md)(…) |  |
-| [Register](AuthManager/Register.md)(…) |  |
+| [RegisterAsync](AuthManager/RegisterAsync.md)(…) |  |
 | [ResetPassword](AuthManager/ResetPassword.md)(…) |  |
 | [SetupWebApi](AuthManager/SetupWebApi.md)(…) |  |
-| const [UNAUTHORIZED](AuthManager/UNAUTHORIZED.md) |  |
 
 ## See Also
 

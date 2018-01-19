@@ -1,7 +1,7 @@
 # Table constructor
 
 ```csharp
-public Table(string name, TableFieldDef[] fieldDefs, TableIndex primaryIndex)
+public Table(string name, TableFieldDef[] fieldDefs, TableIndex[] indexes)
 ```
 
 ## See Also

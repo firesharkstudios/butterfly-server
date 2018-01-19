@@ -9,12 +9,11 @@ public class UpdateStatement : BaseStatement
 | name | description |
 | --- | --- |
 | [UpdateStatement](UpdateStatement/UpdateStatement.md)(…) |  |
-| [SetRefs](UpdateStatement/SetRefs.md) { get; } |  |
-| [WhereRefs](UpdateStatement/WhereRefs.md) { get; } |  |
 | readonly [fromClause](UpdateStatement/fromClause.md) |  |
 | readonly [setClause](UpdateStatement/setClause.md) |  |
 | readonly [whereClause](UpdateStatement/whereClause.md) |  |
 | [GetExecutableSqlAndParams](UpdateStatement/GetExecutableSqlAndParams.md)(…) |  |
+| [GetSetAndWhereRefs](UpdateStatement/GetSetAndWhereRefs.md)(…) |  |
 
 ## See Also
 

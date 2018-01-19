@@ -1,7 +1,7 @@
-# Table.PrimaryIndex property
+# Table.Indexes property
 
 ```csharp
-public TableIndex PrimaryIndex { get; }
+public TableIndex[] Indexes { get; }
 ```
 
 ## See Also

@@ -11,8 +11,6 @@ public class InsertStatement : BaseStatement
 | [InsertStatement](InsertStatement/InsertStatement.md)(…) |  |
 | [GetExecutableSqlAndParams](InsertStatement/GetExecutableSqlAndParams.md)(…) |  |
 | [GetInsertRefs](InsertStatement/GetInsertRefs.md)(…) |  |
-| const [NAMES](InsertStatement/NAMES.md) |  |
-| const [VALUES](InsertStatement/VALUES.md) |  |
 | static [ParseNamesClause](InsertStatement/ParseNamesClause.md)(…) |  |
 | static [ParseValuesClause](InsertStatement/ParseValuesClause.md)(…) |  |
 

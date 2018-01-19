@@ -9,6 +9,7 @@ public class RedHttpServerWebResponse : IHttpResponse
 | name | description |
 | --- | --- |
 | [RedHttpServerWebResponse](RedHttpServerWebResponse/RedHttpServerWebResponse.md)(…) |  |
+| [StatusCode](RedHttpServerWebResponse/StatusCode.md) { get; set; } |  |
 | readonly [response](RedHttpServerWebResponse/response.md) |  |
 | [WriteAsJsonAsync](RedHttpServerWebResponse/WriteAsJsonAsync.md)(…) |  |
 

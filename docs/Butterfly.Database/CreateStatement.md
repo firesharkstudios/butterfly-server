@@ -10,7 +10,7 @@ public class CreateStatement : BaseStatement
 | --- | --- |
 | [CreateStatement](CreateStatement/CreateStatement.md)(…) |  |
 | [FieldDefs](CreateStatement/FieldDefs.md) { get; } |  |
-| [PrimaryIndex](CreateStatement/PrimaryIndex.md) { get; } |  |
+| [Indexes](CreateStatement/Indexes.md) { get; } |  |
 | [TableName](CreateStatement/TableName.md) { get; } |  |
 
 ## See Also

@@ -1,7 +1,7 @@
 # NameValueCollectionX.ToDictionary method
 
 ```csharp
-public static Dictionary<string, string> ToDictionary(this NameValueCollection nvc)
+public static Dictionary<string, string> ToDictionary(this NameValueCollection nameValueCollection, bool forceUpperCaseKeys = false)
 ```
 
 ## See Also

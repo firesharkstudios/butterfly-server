@@ -14,7 +14,6 @@ public abstract class BaseStatement
 | [FindTableRefByTableAlias](BaseStatement/FindTableRefByTableAlias.md)(…) |  |
 | [FindTableRefByTableName](BaseStatement/FindTableRefByTableName.md)(…) |  |
 | static [ConfirmAllParamsUsed](BaseStatement/ConfirmAllParamsUsed.md)(…) |  |
-| static [DetermineEqualsRefs](BaseStatement/DetermineEqualsRefs.md)(…) |  |
 | static [RemapStatementParamsToFieldValues](BaseStatement/RemapStatementParamsToFieldValues.md)(…) |  |
 
 ## See Also

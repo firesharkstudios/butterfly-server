@@ -1,7 +1,7 @@
-# AuthManager.Register method
+# AuthManager.RegisterAsync method
 
 ```csharp
-public Task<AuthToken> Register(Dictionary<string, object> registration)
+public Task<AuthToken> RegisterAsync(object input)
 ```
 
 ## See Also
