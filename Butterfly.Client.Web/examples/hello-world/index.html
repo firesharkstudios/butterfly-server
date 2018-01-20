@@ -31,21 +31,22 @@
         // Create a channel to the server
         let channelClient = new WebSocketChannelClient({
             url: '/hello-world',
-            auth: 'Custom ' + uuidv4(),
-            onSubscriptionsUpdated: function () {
-                // Post a "Hello World" message to the server
-                $.ajax('/api/hello-world/message', {
-                    method: 'POST',
-                    data: JSON.stringify('Hello World'),
-                    processData: false,
-                });
-            }
+            auth: 'Custom ' + uuidv4()
         });
         channelClient.subscribe(function (dataEventTransaction) {
             // When an INSERT data event is received, display the text field value in an alert box
-            if (dataEventTransaction.dataEvents.length == 1 && dataEventTransaction.dataEvents[0].dataEventType == 'Insert') alert(dataEventTransaction.dataEvents[0].record.text);
+            if (dataEventTransaction.dataEvents.length>0 && dataEventTransaction.dataEvents[0].dataEventType == 'Insert') alert(dataEventTransaction.dataEvents[0].record.text);
         }, 'my-channel');
         channelClient.start();
+
+        setTimeout(function () {
+            // Post a "Hello World" message to the server
+            $.ajax('/api/hello-world/message', {
+                method: 'POST',
+                data: JSON.stringify('Hello World'),
+                processData: false,
+            });
+        }, 500);
     </script>
 </body>
 </html>

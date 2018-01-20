@@ -74,11 +74,12 @@
                 private.testConnection(false);
             }, heartbeatEveryMillis);
 
-            private.sendSubscriptions = function () {
-                if (private.webSocket && private.webSocket.readyState == 1) {
-                    let text = 'Subscriptions:' + JSON.stringify(private.subscriptions);
-                    private.webSocket.send(text);
-                }
+        }
+
+        private.sendSubscriptions = function () {
+            if (private.webSocket && private.webSocket.readyState == 1) {
+                let text = 'Subscriptions:' + JSON.stringify(private.subscriptions);
+                private.webSocket.send(text);
             }
         }
 
