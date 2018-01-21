@@ -30,6 +30,20 @@ namespace Butterfly.Database.Test {
     [DeploymentItem(@"x86\SQLite.Interop.dll", "x86")]
     public class DatabaseUnitTest {
         [TestMethod]
+        public void ParseTableRefs() {
+            IDatabase database = new Butterfly.Database.Memory.MemoryDatabase();
+            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Database.Test.db.sql");
+            var tableRefs = StatementTableRef.ParseTableRefs(database, "employee_contact ec INNER JOIN employee e ON ec.employee_id=e.id AND 1=2 left JOIN department d on e.department_id=d.id and 1=2");
+            Assert.AreEqual(3, tableRefs.Length);
+            Assert.AreEqual(tableRefs[0].table.Name, "employee_contact");
+            Assert.AreEqual(tableRefs[0].tableAlias, "ec");
+            Assert.AreEqual(tableRefs[1].table.Name, "employee");
+            Assert.AreEqual(tableRefs[1].tableAlias, "e");
+            Assert.AreEqual(tableRefs[2].table.Name, "department");
+            Assert.AreEqual(tableRefs[2].tableAlias, "d");
+        }
+
+        [TestMethod]
         public async Task DataMemoryDatabase() {
             IDatabase database = new Butterfly.Database.Memory.MemoryDatabase();
             await this.TestDatabase(database);

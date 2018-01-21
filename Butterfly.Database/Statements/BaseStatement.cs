@@ -132,7 +132,7 @@ namespace Butterfly.Database {
         protected readonly static Regex FIRST_TABLE_REGEX = new Regex(@"^(?<tableName>\w+)(?<tableAlias>\s+\w+)?");
 
         // INNER JOIN user u ON cp.user_id=U.id
-        protected readonly static Regex JOIN_REGEX = new Regex(@"\s+INNER\s+JOIN\s+(?<tableName>\w+)(?<tableAlias>\s+\w+)?\s+ON\s+(\w+)\.(\w+)=(\w+)\.(\w+)");
+        protected readonly static Regex JOIN_REGEX = new Regex(@"\s+(INNER|LEFT|RIGHT)\s+JOIN\s+(?<tableName>\w+)(?<tableAlias>\s+\w+)?\s+ON\s+", RegexOptions.IgnoreCase);
 
         public static StatementTableRef[] ParseTableRefs(IDatabase database, string fromClause) {
             var match = FIRST_TABLE_REGEX.Match(fromClause);
@@ -143,7 +143,7 @@ namespace Butterfly.Database {
             if (!database.Tables.TryGetValue(firstTableName, out Table firstTable)) throw new Exception($"Invalid table name '{firstTableName}'");
             tableRefs.Add(new StatementTableRef(firstTable, match.Groups["tableAlias"].Value.Trim()));
 
-            var joinMatches = JOIN_REGEX.Matches(fromClause);
+            var joinMatches = JOIN_REGEX.Matches(fromClause, match.Index + match.Length);
             foreach (Match joinMatch in joinMatches) {
                 string joinTableName = joinMatch.Groups["tableName"].Value.Trim();
                 if (!database.Tables.TryGetValue(joinTableName, out Table joinTable)) throw new Exception($"Invalid table name '{joinTableName}'");
