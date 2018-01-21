@@ -1,6 +1,6 @@
 {
   "name": "butterfly-client",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Client library for Butterfly Framework",
   "main": "js/butterfly-client.module.js",
   "directories": {

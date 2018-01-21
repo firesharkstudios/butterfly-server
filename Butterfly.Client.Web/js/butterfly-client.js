@@ -2,7 +2,6 @@
     let private = this;
 
     let heartbeatEveryMillis = options.heartbeatEveryMillis || 3000;
-    let sendSubscriptionsCheckEveryMillis = options.sendSubscriptionsCheckEveryMillis || 100;
     let url = options.url;
     let auth = options.auth;
     let onSubscriptionsUpdated = options.onSubscriptionsUpdated;
@@ -43,7 +42,7 @@
                 private.webSocket.onopen = function () {
                     private.setStatus('Connected');
                     private.webSocket.send('Authorization:' + auth);
-                    private.sendSubscriptions();
+                    private.sendSubscribe(private.subscriptions);
                 };
                 private.webSocket.onerror = function (error) {
                     private.webSocket = null;
@@ -75,10 +74,30 @@
 
     }
 
-    private.sendSubscriptions = function () {
+    private.sendSubscribe = function (subscriptions) {
         if (private.webSocket && private.webSocket.readyState == 1) {
-            let text = 'Subscriptions:' + JSON.stringify(private.subscriptions);
+            let text = 'Subscribe:' + JSON.stringify(subscriptions);
             private.webSocket.send(text);
+        }
+    }
+
+    private.addSubscription = function (handler, channelKey, subscription) {
+        private.subscriptions.push(subscription);
+        private.handlersByKey[channelKey] = Array.isArray(handler) ? handler : [handler];
+    }
+
+    private.sendUnsubscribe = function (channelKey) {
+        if (private.webSocket && private.webSocket.readyState == 1) {
+            let text = 'Unsubscribe:' + JSON.stringify(channelKey);
+            private.webSocket.send(text);
+        }
+    }
+
+    private.removeSubscription = function (channelKey) {
+        let index = private.subscriptions.findIndex(x => x.channelKey == channelKey);
+        if (index >= 0) {
+            private.subscriptions.splice(index, 1);
+            delete private.handlersByKey[channelKey];
         }
     }
 
@@ -92,19 +111,20 @@
         },
         subscribe: function (handler, channelKey, vars) {
             if (!channelKey) channelKey = 'default';
-            public.unsubscribe(channelKey);
-            private.subscriptions.push({
+            private.removeSubscription(channelKey);
+            let subscription = {
                 channelKey: channelKey,
                 vars: vars
-            });
-            private.handlersByKey[channelKey] = Array.isArray(handler) ? handler : [handler];
-            private.sendSubscriptions();
+            };
+            private.addSubscription(handler, channelKey, subscription);
+            private.sendSubscribe(subscription);
             if (onSubscriptionsUpdated) onSubscriptionsUpdated();
         },
         unsubscribe: function (channelKey) {
-            let index = private.subscriptions.findIndex(x => x.channelKey == channelKey);
-            if (index >= 0) private.subscriptions.splice(index, 1);
-            delete private.handlersByKey[channelKey];
+            if (!channelKey) channelKey = 'default';
+            private.removeSubscription(channelKey);
+            private.sendUnsubscribe(channelKey);
+            if (onSubscriptionsUpdated) onSubscriptionsUpdated();
         },
         stop: function () {
             clearTimeout(private.heartbeatTimeout);

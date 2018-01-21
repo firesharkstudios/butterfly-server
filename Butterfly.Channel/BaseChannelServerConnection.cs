@@ -146,10 +146,25 @@ namespace Butterfly.Channel {
                             logger.Error(e);
                         }
                     }
-                    else if (name == "Subscriptions") {
+                    else if (name == "Subscribe") {
                         try {
                             Dict[] subscriptions = JsonUtil.Deserialize<Dict[]>(value);
                             Task task = this.SubscribeAsync(subscriptions);
+                        }
+                        catch (Exception e) {
+                            logger.Error(e);
+                        }
+                    }
+                    else if (name == "Unsubscribe") {
+                        try {
+                            string[] channelKeys;
+                            if (value == "*") {
+                                channelKeys = this.channelByKey.Keys.ToArray();
+                            }
+                            else {
+                                channelKeys = JsonUtil.Deserialize<string[]>(value);
+                            }
+                            this.Unsubscribe(channelKeys);
                         }
                         catch (Exception e) {
                             logger.Error(e);
@@ -168,49 +183,38 @@ namespace Butterfly.Channel {
             try {
                 logger.Debug($"SubscribeAsync()");
 
-                var channelKeys = subscriptions.Select(x => x.GetAs("channelKey", (string)null));
-                int count = channelKeys.Count();
-                logger.Debug($"SubscribeAsync():channelKeys={string.Join(", ", channelKeys)}");
-
-                var channelKeysToDelete = this.channelByKey.Keys.ToList();
-
                 foreach (var subscription in subscriptions) {
                     var channelKey = subscription.GetAs("channelKey", (string)null);
-                    logger.Debug($"SubscribeAsync():channelKey={channelKey}");
-
                     var vars = subscription.GetAs("vars", (Dict)null) ?? EMPTY_DICT;
-                    logger.Debug($"SubscribeAsync():vars={vars}");
+                    logger.Debug($"SubscribeAsync():channelKey={channelKey},vars={vars}");
 
-                    bool addChannel = false;
-                    if (!this.channelByKey.TryGetValue(channelKey, out Channel existingChannel)) {
-                        addChannel = true;
+                    if (this.channelByKey.TryGetValue(channelKey, out Channel existingChannel)) {
+                        existingChannel.Dispose();
+                        this.channelByKey.Remove(channelKey);
+                    }
+
+                    var channel = new Channel(this, channelKey, vars);
+                    if (this.registeredRoute.RegisteredChannelByKey.TryGetValue(channelKey, out RegisteredChannel registeredChannel)) {
+                        var disposable = registeredChannel.handle != null ? registeredChannel.handle(vars, channel) : await registeredChannel.handleAsync(vars, channel);
+                        if (disposable != null) {
+                            channel.Attach(disposable);
+                        }
                     }
                     else {
-                        if (vars.Except(existingChannel.Vars).Count() > 0 || existingChannel.Vars.Except(vars).Count() > 0) {
-                            existingChannel.Dispose();
-                            this.channelByKey.Remove(channelKey);
-                            addChannel = true;
-                        }
-                        channelKeysToDelete.Remove(channelKey);
+                        logger.Debug($"SubscribeAsync():Unknown subscription channel key '{channelKey}'");
                     }
-                    logger.Debug($"SubscribeAsync():addChannel={addChannel},registeredRoute.RegisteredChannelByKey.Count={this.registeredRoute.RegisteredChannelByKey.Count}");
-
-                    if (addChannel) {
-                        var channel = new Channel(this, channelKey, vars);
-                        if (this.registeredRoute.RegisteredChannelByKey.TryGetValue(channelKey, out RegisteredChannel registeredChannel)) {
-                            var disposable = registeredChannel.handle != null ? registeredChannel.handle(vars, channel) : await registeredChannel.handleAsync(vars, channel);
-                            if (disposable != null) {
-                                channel.Attach(disposable);
-                            }
-                        }
-                        else {
-                            logger.Debug($"SubscribeAsync():Unknown registered channel key '{channelKey}'");
-                        }
-                        this.channelByKey.Add(channelKey, channel);
-                    }
+                    this.channelByKey.Add(channelKey, channel);
                 }
+            }
+            catch (Exception e) {
+                logger.Error(e);
+            }
+        }
 
-                foreach (var channelKey in channelKeysToDelete) {
+        protected void Unsubscribe(ICollection<string> channelKeys) {
+            try {
+                logger.Debug($"UnubscribeAsync()");
+                foreach (var channelKey in channelKeys) {
                     if (this.channelByKey.TryGetValue(channelKey, out Channel existingChannel)) {
                         logger.Debug($"SubscribeAsync():Removing channel key '{channelKey}'");
                         existingChannel.Dispose();
@@ -222,8 +226,6 @@ namespace Butterfly.Channel {
                 logger.Error(e);
             }
         }
-
-
 
         /// <summary>
         /// Implements the IDispose interface

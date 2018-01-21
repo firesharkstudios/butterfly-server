@@ -155,7 +155,7 @@ namespace Butterfly.Client.DotNet {
                                     });
                                     var json = JsonUtil.Serialize(payload);
                                     logger.Debug($"RunAsync():json={json}");
-                                    await this.SendText(clientWebSocket, $"Subscriptions: {json}", this.ioCancellationTokenSource.Token);
+                                    await this.SendText(clientWebSocket, $"Subscribe: {json}", this.ioCancellationTokenSource.Token);
                                 }
                                 catch (Exception e) {
                                     logger.Error(e);

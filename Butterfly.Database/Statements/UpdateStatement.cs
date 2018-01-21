@@ -69,7 +69,7 @@ namespace Butterfly.Database {
                 List<StatementEqualsRef> whereRefs = new List<StatementEqualsRef>();
                 foreach (var fieldName in this.TableRefs[0].table.Indexes[0].FieldNames) {
                     var setRef = setRefs.Find(x => x.fieldName == fieldName);
-                    if (setRef == null) throw new Exception("Could not find primary key field '{fieldName}' building WHERE clause of update statement");
+                    if (setRef == null) throw new Exception($"Could not find primary key field '{fieldName}' building WHERE clause of UPDATE statement");
                     whereRefs.Add(setRef);
                     setRefs.Remove(setRef);
                 }
