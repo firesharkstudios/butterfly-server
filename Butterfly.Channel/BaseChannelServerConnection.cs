@@ -162,7 +162,8 @@ namespace Butterfly.Channel {
                                 channelKeys = this.channelByKey.Keys.ToArray();
                             }
                             else {
-                                channelKeys = JsonUtil.Deserialize<string[]>(value);
+                                string channelKey = JsonUtil.Deserialize<string>(value);
+                                channelKeys = new string[] { channelKey };
                             }
                             this.Unsubscribe(channelKeys);
                         }
