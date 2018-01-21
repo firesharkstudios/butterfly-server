@@ -150,15 +150,18 @@ namespace Butterfly.Database.Dynamic {
             return newDataChanges.ToArray();
         }
 
-        internal async Task<Dict[]> GetImpactedRecordsAsync(KeyValueDataEvent transactionDataEvent) {
-            StatementTableRef tableRef = this.statement.FindTableRefByTableName(transactionDataEvent.name);
+        internal async Task<Dict[]> GetImpactedRecordsAsync(KeyValueDataEvent keyValueDataEvent) {
+            StatementTableRef tableRef = this.statement.FindTableRefByTableName(keyValueDataEvent.name);
             if (tableRef == null) return null;
+            logger.Trace($"GetImpactedRecordsAsync():tableRef={tableRef}");
 
             StringBuilder newAndCondition = new StringBuilder();
             Dict newWhereParams = new Dict();
 
-            Dict primaryKeyValues = BaseDatabase.ParseKeyValue(transactionDataEvent.keyValue, this.dynamicViewSet.Database.Tables[transactionDataEvent.name].Indexes[0].FieldNames);
-            foreach (var fieldName in this.dynamicViewSet.Database.Tables[transactionDataEvent.name].Indexes[0].FieldNames) {
+            Dict primaryKeyValues = BaseDatabase.ParseKeyValue(keyValueDataEvent.keyValue, this.dynamicViewSet.Database.Tables[keyValueDataEvent.name].Indexes[0].FieldNames);
+            foreach (var fieldName in this.dynamicViewSet.Database.Tables[keyValueDataEvent.name].Indexes[0].FieldNames) {
+                logger.Trace($"GetImpactedRecordsAsync():fieldName={fieldName}");
+
                 string prefix;
                 if (this.statement.TableRefs.Length == 1) {
                     prefix = "";
@@ -169,13 +172,19 @@ namespace Butterfly.Database.Dynamic {
                 else {
                     prefix = $"{tableRef.table.Name}.";
                 }
+                logger.Trace($"GetImpactedRecordsAsync():prefix={prefix}");
 
-                string paramName = $"__{ fieldName}";
+                var paramName = $"__{ fieldName}";
+                var condition = $"{prefix}{fieldName}=@{paramName}";
+                logger.Trace($"GetImpactedRecordsAsync():condition={condition}");
+
                 if (newAndCondition.Length > 0) newAndCondition.Append(" AND ");
-                newAndCondition.Append($"{prefix}{fieldName}=@{paramName}");
+                newAndCondition.Append(condition);
 
                 newWhereParams[paramName] = primaryKeyValues[fieldName];
             }
+            logger.Trace($"GetImpactedRecordsAsync():newAndCondition={newAndCondition}");
+
             return await this.dynamicViewSet.Database.SelectRowsAsync(this.statement, this.statementParams, newAndCondition.ToString(), newWhereParams);
         }
 

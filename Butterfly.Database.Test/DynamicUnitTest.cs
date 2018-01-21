@@ -61,25 +61,27 @@ namespace Butterfly.Database.Test {
 
             await DatabaseUnitTest.TruncateData(database);
             (object salesDepartmentId, object hrDepartmentId, object customerServiceDepartmentId) = await DatabaseUnitTest.InsertBasicData(database);
-            await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT * FROM employee", "name", "Joe Sales, Jr", 1);
-            await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId,"SELECT id, name FROM employee", "department_id", -1, 0);
+            await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT * FROM employee", "name", "Joe Sales, Jr", 5, 1, 1, 1);
+            await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT id, name FROM employee", "department_id", -1, 5, 1, 0, 1);
+            await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT e.id, e.name FROM employee e INNER JOIN department d ON e.department_id=d.id", "name", "Joe Sales, Sr", 5, 1, 1, 1, new string[] { "id" });
+            await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT ec.employee_id, ec.contact_type, ec.contact_data, e.name FROM employee_contact ec INNER JOIN employee e ON ec.employee_id=e.id", "name", "Joe Sales, Sr", 8, 0, 0, 0, new string[] { "employee_id", "contact_type" });
         }
 
-        public async Task TestInsertUpdateDeleteEvents(BaseDatabase database, object salesDepartmentId, string selectSourceSql, string updateField, object updateValue, int updateCount) {
+        public async Task TestInsertUpdateDeleteEvents(BaseDatabase database, object salesDepartmentId, string selectSourceSql, string updateField, object updateValue, int initialCount, int insertCount, int updateCount, int deleteCount, string[] keyFieldNames = null) {
             List<DataEventTransaction> dataEventTransactionCollector = new List<DataEventTransaction>();
             using (DynamicViewSet dynamicViewSet = new DynamicViewSet(database, listener: dataEventTransaction => {
                 dataEventTransactionCollector.Add(dataEventTransaction);
             })) {
                 dataEventTransactionCollector.Clear();
-                DynamicView employeeDynamicView = dynamicViewSet.CreateDynamicView(selectSourceSql);
+                DynamicView employeeDynamicView = dynamicViewSet.CreateDynamicView(selectSourceSql, keyFieldNames: keyFieldNames);
                 await dynamicViewSet.StartAsync();
                 Assert.AreEqual(1, dataEventTransactionCollector.Count);
-                Assert.AreEqual(5, dataEventTransactionCollector[0].dataEvents.Length);
+                Assert.AreEqual(initialCount, dataEventTransactionCollector[0].dataEvents.Length);
                 Assert.AreEqual(DataEventType.InitialBegin, dataEventTransactionCollector[0].dataEvents[0].dataEventType);
                 Assert.AreEqual(DataEventType.Initial, dataEventTransactionCollector[0].dataEvents[1].dataEventType);
                 Assert.AreEqual(DataEventType.Initial, dataEventTransactionCollector[0].dataEvents[2].dataEventType);
                 Assert.AreEqual(DataEventType.Initial, dataEventTransactionCollector[0].dataEvents[3].dataEventType);
-                Assert.AreEqual(DataEventType.InitialEnd, dataEventTransactionCollector[0].dataEvents[4].dataEventType);
+                Assert.AreEqual(DataEventType.InitialEnd, dataEventTransactionCollector[0].dataEvents[dataEventTransactionCollector[0].dataEvents.Length-1].dataEventType);
 
                 // Confirm that an insert event is created
                 dataEventTransactionCollector.Clear();
@@ -93,9 +95,11 @@ namespace Butterfly.Database.Test {
                     await transaction.CommitAsync();
                 }
                 await Task.Delay(50);
-                Assert.AreEqual(1, dataEventTransactionCollector.Count);
-                Assert.AreEqual(1, dataEventTransactionCollector[0].dataEvents.Length);
-                Assert.AreEqual(DataEventType.Insert, dataEventTransactionCollector[0].dataEvents[0].dataEventType);
+                Assert.AreEqual(insertCount, dataEventTransactionCollector.Count);
+                if (insertCount > 0) {
+                    Assert.AreEqual(1, dataEventTransactionCollector[0].dataEvents.Length);
+                    Assert.AreEqual(DataEventType.Insert, dataEventTransactionCollector[0].dataEvents[0].dataEventType);
+                }
 
                 // Confirm that an update event is created
                 dataEventTransactionCollector.Clear();
@@ -125,9 +129,11 @@ namespace Butterfly.Database.Test {
                     await transaction.CommitAsync();
                 }
                 await Task.Delay(50);
-                Assert.AreEqual(1, dataEventTransactionCollector.Count);
-                Assert.AreEqual(1, dataEventTransactionCollector[0].dataEvents.Length);
-                Assert.AreEqual(DataEventType.Delete, dataEventTransactionCollector[0].dataEvents[0].dataEventType);
+                Assert.AreEqual(deleteCount, dataEventTransactionCollector.Count);
+                if (deleteCount > 0) {
+                    Assert.AreEqual(1, dataEventTransactionCollector[0].dataEvents.Length);
+                    Assert.AreEqual(DataEventType.Delete, dataEventTransactionCollector[0].dataEvents[0].dataEventType);
+                }
             }
         }
 

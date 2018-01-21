@@ -129,27 +129,31 @@ namespace Butterfly.Database {
         }
 
         // chat_participant cp
-        protected readonly static Regex FIRST_TABLE_REGEX = new Regex(@"^(\w+)(\s+\w+)?");
+        protected readonly static Regex FIRST_TABLE_REGEX = new Regex(@"^(?<tableName>\w+)(?<tableAlias>\s+\w+)?");
 
         // INNER JOIN user u ON cp.user_id=U.id
-        protected readonly static Regex JOIN_REGEX = new Regex(@"\s+INNER\s+JOIN\s+(\w+)(\s+\w+)?\s+ON\s+(\w+)\.(\w+)=(\w+)\.(\w+)");
+        protected readonly static Regex JOIN_REGEX = new Regex(@"\s+INNER\s+JOIN\s+(?<tableName>\w+)(?<tableAlias>\s+\w+)?\s+ON\s+(\w+)\.(\w+)=(\w+)\.(\w+)");
 
         public static StatementTableRef[] ParseTableRefs(IDatabase database, string fromClause) {
             var match = FIRST_TABLE_REGEX.Match(fromClause);
             if (!match.Success) throw new Exception($"Invalid from clause '{fromClause}'");
 
             List<StatementTableRef> tableRefs = new List<StatementTableRef>();
-            string firstTableName = match.Groups[1].Value.Trim();
+            string firstTableName = match.Groups["tableName"].Value.Trim();
             if (!database.Tables.TryGetValue(firstTableName, out Table firstTable)) throw new Exception($"Invalid table name '{firstTableName}'");
-            tableRefs.Add(new StatementTableRef(firstTable, match.Groups[2].Value.Trim()));
+            tableRefs.Add(new StatementTableRef(firstTable, match.Groups["tableAlias"].Value.Trim()));
 
             var joinMatches = JOIN_REGEX.Matches(fromClause);
             foreach (Match joinMatch in joinMatches) {
-                string joinTableName = joinMatch.Groups[1].Value.Trim();
+                string joinTableName = joinMatch.Groups["tableName"].Value.Trim();
                 if (!database.Tables.TryGetValue(joinTableName, out Table joinTable)) throw new Exception($"Invalid table name '{joinTableName}'");
-                tableRefs.Add(new StatementTableRef(joinTable, joinMatch.Groups[2].Value.Trim()));
+                tableRefs.Add(new StatementTableRef(joinTable, joinMatch.Groups["tableAlias"].Value.Trim()));
             }
             return tableRefs.ToArray();
+        }
+
+        public override string ToString() {
+            return $"{{table={this.table.Name},alias={this.tableAlias}}}";
         }
     }
 
