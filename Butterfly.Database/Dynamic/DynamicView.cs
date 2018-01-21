@@ -50,11 +50,18 @@ namespace Butterfly.Database.Dynamic {
             this.dynamicViewSet = dynamicQuerySet; 
             this.statement = new SelectStatement(dynamicQuerySet.Database, sql);
             this.statementParams = this.statement.ConvertParamsToDict(parameters);
-            this.name = string.IsNullOrEmpty(name) ? string.Join("_", this.statement.TableRefs.Select(x => x.table.Name)) : name;
+
+            if (string.IsNullOrEmpty(name)) {
+                if (this.statement.TableRefs.Length != 1) throw new System.Exception("Must specify name if the DynamicView contains multiple table references");
+                this.name = this.statement.TableRefs[0].table.Name;
+            }
+            else {
+                this.name = name;
+            }
 
             if (keyFieldNames == null) {
                 if (this.statement.TableRefs.Length != 1) throw new System.Exception("Must specify key field names if the DynamicView contains multiple table references");
-                this.keyFieldNames = dynamicQuerySet.Database.Tables[this.statement.TableRefs[0].table.Name].Indexes[0].FieldNames;
+                this.keyFieldNames = this.statement.TableRefs[0].table.Indexes[0].FieldNames;
             }
             else {
                 this.keyFieldNames = keyFieldNames;

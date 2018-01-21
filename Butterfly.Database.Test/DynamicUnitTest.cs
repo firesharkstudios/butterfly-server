@@ -73,7 +73,7 @@ namespace Butterfly.Database.Test {
                 dataEventTransactionCollector.Add(dataEventTransaction);
             })) {
                 dataEventTransactionCollector.Clear();
-                DynamicView employeeDynamicView = dynamicViewSet.CreateDynamicView(selectSourceSql, keyFieldNames: keyFieldNames);
+                DynamicView employeeDynamicView = dynamicViewSet.CreateDynamicView(selectSourceSql, name: "xyz", keyFieldNames: keyFieldNames);
                 await dynamicViewSet.StartAsync();
                 Assert.AreEqual(1, dataEventTransactionCollector.Count);
                 Assert.AreEqual(initialCount, dataEventTransactionCollector[0].dataEvents.Length);
