@@ -15,7 +15,8 @@ CREATE TABLE employee (
 	birthday DATETIME NULL,
 	created_at DATETIME NOT NULL,
 	updated_at DATETIME NOT NULL,
-	PRIMARY KEY(id)
+	PRIMARY KEY(id),
+	UNIQUE INDEX name (name)
 );
 
 -- Uses a multiple field primary key

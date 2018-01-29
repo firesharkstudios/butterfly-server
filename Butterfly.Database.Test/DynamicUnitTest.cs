@@ -63,7 +63,7 @@ namespace Butterfly.Database.Test {
             (object salesDepartmentId, object hrDepartmentId, object customerServiceDepartmentId) = await DatabaseUnitTest.InsertBasicData(database);
             await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT * FROM employee", "name", "Joe Sales, Jr", 5, 1, 1, 1);
             await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT id, name FROM employee", "department_id", -1, 5, 1, 0, 1);
-            await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT e.id, e.name FROM employee e INNER JOIN department d ON e.department_id=d.id", "name", "Joe Sales, Sr", 5, 1, 1, 1, new string[] { "id" });
+            await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT e.id, e.name FROM employee e INNER JOIN department d ON e.department_id=d.id ORDER BY e.name", "name", "Joe Sales, Sr", 5, 1, 1, 1, new string[] { "id" });
             await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT ec.employee_id, ec.contact_type, ec.contact_data, e.name FROM employee_contact ec INNER JOIN employee e ON ec.employee_id=e.id", "name", "Joe Sales, Sr", 8, 0, 0, 0, new string[] { "employee_id", "contact_type" });
         }
 

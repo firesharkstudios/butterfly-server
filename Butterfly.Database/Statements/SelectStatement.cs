@@ -27,7 +27,7 @@ namespace Butterfly.Database {
     /// Internal class used to parse SELECT statements
     /// </summary>
     public class SelectStatement : BaseStatement {
-        protected readonly static Regex STATEMENT_REGEX = new Regex(@"^SELECT\s+(.+)\s+FROM\s+(.+?)(?:\s+WHERE\s+(.*))?(?:\s+ORDER\s+BY\s+(.*))?$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+        protected readonly static Regex STATEMENT_REGEX = new Regex(@"^SELECT\s+(.+)\s+FROM\s+(.+?)(?:\s+WHERE\s+(.+?))?(?:\s+ORDER\s+BY\s+(.+?))?$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
         public readonly string selectClause;
         public readonly string fromClause;
@@ -86,8 +86,6 @@ namespace Butterfly.Database {
         }
 
         public (string, Dict) GetExecutableSqlAndParams(Dict sourceParams) {
-            //string dataSql = this.Sql;
-
             string newSelectClause = string.IsNullOrEmpty(this.selectClause) ? "*" : this.selectClause;
             string newWhereClause = string.IsNullOrEmpty(this.whereClause) && sourceParams.Count > 0 ? string.Join(" AND ", sourceParams.Keys.Select(x => $"{x}=@{x}")) : this.whereClause;
 

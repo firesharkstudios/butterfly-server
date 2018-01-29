@@ -75,7 +75,7 @@ namespace Butterfly.Channel {
         public Dictionary<string, RegisteredChannel> RegisteredChannelByKey => this.registeredChannelByKey;
 
         public RegisteredChannel RegisterChannel(string channelKey = "default", Func<Dict, Channel, IDisposable> handler = null, Func<Dict, Channel, Task<IDisposable>> handlerAsync = null) {
-            if (this.registeredChannelByKey.TryGetValue(channelKey, out RegisteredChannel registerChannel)) throw new Exception("Already a registered channel '{channelKey}'");
+            if (this.registeredChannelByKey.TryGetValue(channelKey, out RegisteredChannel registerChannel)) throw new Exception($"Already a registered channel '{channelKey}'");
             if (handler!=null && handlerAsync!=null) {
                 throw new Exception("Can only specify a handler or handlerAsync but not both");
             }

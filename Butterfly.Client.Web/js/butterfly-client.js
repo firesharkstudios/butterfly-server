@@ -76,7 +76,8 @@
 
     private.sendSubscribe = function (subscriptions) {
         if (private.webSocket && private.webSocket.readyState == 1) {
-            let text = 'Subscribe:' + JSON.stringify(subscriptions);
+            let newSubscriptions = Array.isArray(subscriptions) ? subscriptions : [subscriptions];
+            let text = 'Subscribe:' + JSON.stringify(newSubscriptions);
             private.webSocket.send(text);
         }
     }

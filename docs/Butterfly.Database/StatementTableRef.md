@@ -11,6 +11,7 @@ public class StatementTableRef
 | [StatementTableRef](StatementTableRef/StatementTableRef.md)(…) |  (2 constructors) |
 | readonly [table](StatementTableRef/table.md) |  |
 | readonly [tableAlias](StatementTableRef/tableAlias.md) |  |
+| override [ToString](StatementTableRef/ToString.md)() |  |
 | static [ParseTableRefs](StatementTableRef/ParseTableRefs.md)(…) |  |
 
 ## See Also

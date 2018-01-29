@@ -30,7 +30,7 @@ namespace Butterfly.Database.Test {
     [DeploymentItem(@"x86\SQLite.Interop.dll", "x86")]
     public class DatabaseUnitTest {
         [TestMethod]
-        public void ParseTableRefs() {
+        public void Parse() {
             IDatabase database = new Butterfly.Database.Memory.MemoryDatabase();
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Database.Test.db.sql");
             var tableRefs = StatementTableRef.ParseTableRefs(database, "employee_contact ec INNER JOIN employee e ON ec.employee_id=e.id AND 1=2 left JOIN department d on e.department_id=d.id and 1=2");
@@ -41,6 +41,12 @@ namespace Butterfly.Database.Test {
             Assert.AreEqual(tableRefs[1].tableAlias, "e");
             Assert.AreEqual(tableRefs[2].table.Name, "department");
             Assert.AreEqual(tableRefs[2].tableAlias, "d");
+
+            var selectStatement = new SelectStatement(database, "SELECT * FROM employee_contact WHERE contact_id=@contactId ORDER BY seq");
+            Assert.AreEqual("*", selectStatement.selectClause);
+            Assert.AreEqual("employee_contact", selectStatement.fromClause);
+            Assert.AreEqual("contact_id=@contactId", selectStatement.whereClause);
+            Assert.AreEqual("seq", selectStatement.orderByClause);
         }
 
         [TestMethod]

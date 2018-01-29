@@ -209,7 +209,7 @@ namespace Butterfly.Database {
 
         public async Task<T> SelectValueAsync<T>(string sql, dynamic vars = null, T defaultValue = default(T)) {
             Dict row = await this.SelectRowAsync(sql, vars);
-            if (row == null || !row.TryGetValue(row.Keys.First(), out object value)) return defaultValue;
+            if (row == null || !row.TryGetValue(row.Keys.First(), out object value) || value==null) return defaultValue;
 
             return (T)Convert.ChangeType(value, typeof(T));
         }
