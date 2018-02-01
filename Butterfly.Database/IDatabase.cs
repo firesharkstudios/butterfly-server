@@ -258,6 +258,8 @@ namespace Butterfly.Database {
         /// <returns>Number of records deleted</returns>
         Task<int> DeleteAndCommitAsync(string deleteStatement, dynamic vars);
 
+        Task<bool> Synchronize<T>(Table table, List<Dict> existingRecords, List<Dict> newRecords, ITransaction transaction = null);
+
         /// <summary>
         /// Creates a new <see cref="ITransaction"/> instance.  An <see cref="ITransaction"/> instance allows performing an atomic set of modifications to the database.  Must execute <see cref="ITransaction.CommitAsync"/> to save the transaction changes.  Disposing the transaction without committing rolls back the changes.
         /// </summary>

@@ -271,6 +271,48 @@ namespace Butterfly.Database {
             return count;
         }
 
+        public async Task<bool> Synchronize<T>(Table table, List<Dict> existingRecords, List<Dict> newRecords, ITransaction transaction = null) {
+            bool changed = false;
+            bool createTransaction = false;
+
+            if (transaction==null) {
+                createTransaction = true;
+                transaction = this.BeginTransaction();
+            }
+
+            List<object> existingIds = existingRecords.Select(x => BaseDatabase.GetKeyValue(table.Indexes[0].FieldNames, x)).ToList();
+            List<object> newIds = newRecords.Select(x => BaseDatabase.GetKeyValue(table.Indexes[0].FieldNames, x)).ToList();
+
+            for (int i=0; i<existingIds.Count; i++) {
+                int newIndex = newIds.IndexOf(existingIds[i]);
+                int count;
+                if (newIndex == -1) {
+                    count = await transaction.DeleteAsync(table.Name, existingIds[i]);
+                }
+                else {
+                    count = await transaction.UpdateAsync(table.Name, newRecords[newIndex]);
+                }
+                if (count > 0) changed = true;
+            }
+
+            for (int i=0; i<newIds.Count; i++) {
+                int existingIndex = existingIds.IndexOf(newIds[i]);
+                if (existingIndex == -1) {
+                    await transaction.InsertAsync<object>(table.Name, newRecords[i]);
+                    changed = true;
+                }
+            }
+
+            if (createTransaction) {
+                await transaction.CommitAsync();
+            }
+
+            return changed;
+        }
+
+
+
+
         public ITransaction BeginTransaction() {
             var transaction = this.CreateTransaction();
             transaction.Begin();

@@ -26,6 +26,7 @@ public abstract class BaseDatabase : IDatabase
 | [SelectRowsAsync](BaseDatabase/SelectRowsAsync.md)(…) |  |
 | [SelectValueAsync&lt;T&gt;](BaseDatabase/SelectValueAsync.md)(…) |  |
 | [SetInsertDefaultValue](BaseDatabase/SetInsertDefaultValue.md)(…) |  |
+| [Synchronize&lt;T&gt;](BaseDatabase/Synchronize.md)(…) |  |
 | [UpdateAndCommitAsync](BaseDatabase/UpdateAndCommitAsync.md)(…) |  |
 | static [ConvertMySqlType](BaseDatabase/ConvertMySqlType.md)(…) |  |
 
