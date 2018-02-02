@@ -15,9 +15,10 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using Butterfly.Database.Event;
+using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database {
     /// <summary>
@@ -30,6 +31,9 @@ namespace Butterfly.Database {
     /// If the transaction is disposed without calling <see cref="Commit"/> or <see cref="CommitAsync"/> the transaction is automatically rolled back.
     /// </summary>
     public interface ITransaction : IDisposable {
+
+        IDatabase Database { get; }
+
         /// <summary>
         /// Executes an INSERT statement within this transaction
         /// </summary>
@@ -122,6 +126,8 @@ namespace Butterfly.Database {
         /// </param>
         /// <returns>Number of records deleted</returns>
         Task<int> DeleteAsync(string deleteStatement, dynamic vars);
+
+        Task<bool> Synchronize(Table table, List<Dict> existingRecords, List<Dict> newRecords);
 
         /// <summary>
         /// Truncate a table (deletes all records)

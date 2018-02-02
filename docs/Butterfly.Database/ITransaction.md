@@ -8,11 +8,13 @@ public interface ITransaction : IDisposable
 
 | name | description |
 | --- | --- |
+| [Database](ITransaction/Database.md) { get; } |  |
 | [Commit](ITransaction/Commit.md)() |  |
 | [CommitAsync](ITransaction/CommitAsync.md)() |  |
 | [DeleteAsync](ITransaction/DeleteAsync.md)(…) |  |
 | [InsertAsync&lt;T&gt;](ITransaction/InsertAsync.md)(…) |  |
 | [Rollback](ITransaction/Rollback.md)() |  |
+| [Synchronize&lt;T&gt;](ITransaction/Synchronize.md)(…) |  |
 | [TruncateAsync](ITransaction/TruncateAsync.md)(…) |  |
 | [UpdateAsync](ITransaction/UpdateAsync.md)(…) |  |
 

@@ -9,6 +9,7 @@ public abstract class BaseTransaction : ITransaction
 | name | description |
 | --- | --- |
 | [BaseTransaction](BaseTransaction/BaseTransaction.md)(…) |  |
+| [Database](BaseTransaction/Database.md) { get; } |  |
 | abstract [Begin](BaseTransaction/Begin.md)() |  |
 | abstract [BeginAsync](BaseTransaction/BeginAsync.md)() |  |
 | [Commit](BaseTransaction/Commit.md)() |  |
@@ -20,6 +21,7 @@ public abstract class BaseTransaction : ITransaction
 | [InsertAsync](BaseTransaction/InsertAsync.md)(…) |  |
 | [InsertAsync&lt;T&gt;](BaseTransaction/InsertAsync.md)(…) |  |
 | [Rollback](BaseTransaction/Rollback.md)() |  |
+| [Synchronize&lt;T&gt;](BaseTransaction/Synchronize.md)(…) |  |
 | [TruncateAsync](BaseTransaction/TruncateAsync.md)(…) |  |
 | [UpdateAsync](BaseTransaction/UpdateAsync.md)(…) |  (2 methods) |
 

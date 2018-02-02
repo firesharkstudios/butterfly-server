@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Butterfly.Database.Event;
@@ -36,6 +37,8 @@ namespace Butterfly.Database {
         public BaseTransaction(BaseDatabase database) {
             this.database = database;
         }
+
+        public IDatabase Database => this.database;
 
         // Create methods
         public bool Create(CreateStatement statement) {
@@ -150,6 +153,34 @@ namespace Butterfly.Database {
 
         protected abstract Task<int> DoDeleteAsync(string executableSql, Dict executableParams);
 
+        public async Task<bool> Synchronize(Table table, List<Dict> existingRecords, List<Dict> newRecords) {
+            bool changed = false;
+
+            List<object> existingIds = existingRecords.Select(x => BaseDatabase.GetKeyValue(table.Indexes[0].FieldNames, x)).ToList();
+            List<object> newIds = newRecords.Select(x => BaseDatabase.GetKeyValue(table.Indexes[0].FieldNames, x)).ToList();
+
+            for (int i = 0; i < existingIds.Count; i++) {
+                int newIndex = newIds.IndexOf(existingIds[i]);
+                int count;
+                if (newIndex == -1) {
+                    count = await this.DeleteAsync(table.Name, existingIds[i]);
+                }
+                else {
+                    count = await this.UpdateAsync(table.Name, newRecords[newIndex]);
+                }
+                if (count > 0) changed = true;
+            }
+
+            for (int i = 0; i < newIds.Count; i++) {
+                int existingIndex = existingIds.IndexOf(newIds[i]);
+                if (existingIndex == -1) {
+                    await this.InsertAsync<object>(table.Name, newRecords[i]);
+                    changed = true;
+                }
+            }
+
+            return changed;
+        }
 
         // Truncate methods
         public async Task TruncateAsync(string tableName) {
