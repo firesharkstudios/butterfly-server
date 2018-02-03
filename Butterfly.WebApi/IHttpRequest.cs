@@ -15,10 +15,12 @@
 */
 
 using Butterfly.Util;
+using System;
 using System.Threading.Tasks;
 
 namespace Butterfly.WebApi {
     public interface IHttpRequest : IWebRequest {
         Task<T> ParseAsJsonAsync<T>();
+        void ParseAsMultipartStreamAsync(Action<string, string, string, string, byte[], int> onData, Action onDone = null, Action<string, string> onParameter = null);
     }
 }

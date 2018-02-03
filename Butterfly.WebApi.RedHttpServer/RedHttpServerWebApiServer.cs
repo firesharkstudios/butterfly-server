@@ -68,7 +68,7 @@ namespace Butterfly.WebApi.RedHttpServer {
         }
     }
 
-    public class RedHttpServerWebRequest : IHttpRequest {
+    public class RedHttpServerWebRequest : BaseHttpRequest {
 
         public readonly RRequest request;
 
@@ -76,20 +76,15 @@ namespace Butterfly.WebApi.RedHttpServer {
             this.request = request;
         }
 
-        public Uri RequestUri => this.request.UnderlyingRequest.Url;
+        protected override Stream InputStream => this.request.GetBodyStream();
 
-        public async Task<T> ParseAsJsonAsync<T>() {
-            using (StreamReader reader = new StreamReader(this.request.GetBodyStream())) {
-                string json = await reader.ReadToEndAsync();
-                return JsonUtil.Deserialize<T>(json);
-            }
-        }
+        public override Uri RequestUri => this.request.UnderlyingRequest.Url;
 
-        public Dictionary<string, string> Headers => this.request.Headers.ToDictionary();
+        public override Dictionary<string, string> Headers => this.request.Headers.ToDictionary();
 
-        public Dictionary<string, string> PathParams => throw new NotImplementedException();
+        public override Dictionary<string, string> PathParams => throw new NotImplementedException();
 
-        public Dictionary<string, string> QueryParams => this.RequestUri.ParseQuery();
+        public override Dictionary<string, string> QueryParams => this.RequestUri.ParseQuery();
     }
 
     public class RedHttpServerWebResponse : IHttpResponse {

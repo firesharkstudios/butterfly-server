@@ -82,7 +82,7 @@ namespace Butterfly.WebApi.EmbedIO {
         public override string Name => "My Web Module";
     }
 
-    public class EmbedIOWebRequest : IHttpRequest {
+    public class EmbedIOWebRequest : BaseHttpRequest {
 
         public readonly Unosquare.Net.HttpListenerContext context;
 
@@ -90,20 +90,16 @@ namespace Butterfly.WebApi.EmbedIO {
             this.context = context;
         }
 
-        public async Task<T> ParseAsJsonAsync<T>() {
-            using (StreamReader reader = new StreamReader(this.context.Request.InputStream)) {
-                string json = await reader.ReadToEndAsync();
-                return JsonUtil.Deserialize<T>(json);
-            }
-        }
+        protected override Stream InputStream => this.context.Request.InputStream;
 
-        public Uri RequestUri => this.context.Request.Url;
+        public override Uri RequestUri => this.context.Request.Url;
 
-        public Dictionary<string, string> Headers => this.context.Request.Headers?.ToDictionary(forceUpperCaseKeys: true);
+        public override Dictionary<string, string> Headers => this.context.Request.Headers?.ToDictionary(forceUpperCaseKeys: true);
 
-        public Dictionary<string, string> PathParams => this.context.RequestRegexUrlParams(this.context.Request.Url.AbsolutePath).ToDictionary(x => x.Key, y => Convert.ToString(y));
+        public override Dictionary<string, string> PathParams => this.context.RequestRegexUrlParams(this.context.Request.Url.AbsolutePath).ToDictionary(x => x.Key, y => Convert.ToString(y));
 
-        public Dictionary<string, string> QueryParams => this.RequestUri.ParseQuery();
+        public override Dictionary<string, string> QueryParams => this.RequestUri.ParseQuery();
+
     }
 
     public class EmbedIOWebResponse : IHttpResponse {

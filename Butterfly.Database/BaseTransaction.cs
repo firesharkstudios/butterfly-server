@@ -153,11 +153,15 @@ namespace Butterfly.Database {
 
         protected abstract Task<int> DoDeleteAsync(string executableSql, Dict executableParams);
 
-        public async Task<bool> Synchronize(Table table, List<Dict> existingRecords, List<Dict> newRecords) {
+        public async Task<bool> Synchronize(string tableName, Dict[] existingRecords, Dict[] newRecords, string[] keyFieldNames = null) {
+            if (!this.database.Tables.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
+
             bool changed = false;
 
-            List<object> existingIds = existingRecords.Select(x => BaseDatabase.GetKeyValue(table.Indexes[0].FieldNames, x)).ToList();
-            List<object> newIds = newRecords.Select(x => BaseDatabase.GetKeyValue(table.Indexes[0].FieldNames, x)).ToList();
+            if (keyFieldNames == null) keyFieldNames = table.Indexes[0].FieldNames;
+
+            List<object> existingIds = existingRecords.Select(x => BaseDatabase.GetKeyValue(keyFieldNames, x)).ToList();
+            List<object> newIds = newRecords.Select(x => BaseDatabase.GetKeyValue(keyFieldNames, x)).ToList();
 
             for (int i = 0; i < existingIds.Count; i++) {
                 int newIndex = newIds.IndexOf(existingIds[i]);
