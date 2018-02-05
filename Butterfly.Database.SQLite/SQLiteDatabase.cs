@@ -34,6 +34,8 @@ namespace Butterfly.Database.SQLite {
 
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
+        public override bool CanJoin => true;
+
         public SQLiteDatabase(string fileName) : base($"Data Source={fileName};Version=3;") {
             if (!File.Exists(fileName)) {
                 SQLiteConnection.CreateFile(fileName);

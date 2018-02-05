@@ -1,7 +1,7 @@
 # EmbedIOWebRequest.PathParams property
 
 ```csharp
-public Dictionary<string, string> PathParams { get; }
+public override Dictionary<string, string> PathParams { get; }
 ```
 
 ## See Also

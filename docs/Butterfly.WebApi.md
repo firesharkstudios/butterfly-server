@@ -4,6 +4,7 @@
 
 | public type | description |
 | --- | --- |
+| abstract class [BaseHttpRequest](Butterfly.WebApi/BaseHttpRequest.md) |  |
 | abstract class [BaseWebApiServer](Butterfly.WebApi/BaseWebApiServer.md) |  |
 | interface [IHttpRequest](Butterfly.WebApi/IHttpRequest.md) |  |
 | interface [IHttpResponse](Butterfly.WebApi/IHttpResponse.md) |  |

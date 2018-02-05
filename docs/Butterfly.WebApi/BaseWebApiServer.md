@@ -13,6 +13,7 @@ public abstract class BaseWebApiServer : IWebApiServer
 | [OnGet](BaseWebApiServer/OnGet.md)(…) |  |
 | [OnPost](BaseWebApiServer/OnPost.md)(…) |  |
 | abstract [Start](BaseWebApiServer/Start.md)() |  |
+| static [FileUploadHandlerAsync](BaseWebApiServer/FileUploadHandlerAsync.md)(…) |  |
 
 ## See Also
 

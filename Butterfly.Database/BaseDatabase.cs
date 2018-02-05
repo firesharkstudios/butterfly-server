@@ -61,6 +61,8 @@ namespace Butterfly.Database {
 
         public Dictionary<string, Table> Tables => this.tableByName;
 
+        public abstract bool CanJoin { get; }
+
         public void CreateFromResourceFile(Assembly assembly, string resourceFile) {
             //logger.Debug($"CreateFromResourceFile():resourceNames={string.Join(",", assembly.GetManifestResourceNames())}");
             string sql = FileX.LoadResourceAsText(assembly, resourceFile);

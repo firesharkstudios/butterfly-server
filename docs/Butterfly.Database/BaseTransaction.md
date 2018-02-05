@@ -21,7 +21,7 @@ public abstract class BaseTransaction : ITransaction
 | [InsertAsync](BaseTransaction/InsertAsync.md)(…) |  |
 | [InsertAsync&lt;T&gt;](BaseTransaction/InsertAsync.md)(…) |  |
 | [Rollback](BaseTransaction/Rollback.md)() |  |
-| [Synchronize&lt;T&gt;](BaseTransaction/Synchronize.md)(…) |  |
+| [Synchronize](BaseTransaction/Synchronize.md)(…) |  |
 | [TruncateAsync](BaseTransaction/TruncateAsync.md)(…) |  |
 | [UpdateAsync](BaseTransaction/UpdateAsync.md)(…) |  (2 methods) |
 

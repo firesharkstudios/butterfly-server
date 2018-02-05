@@ -97,8 +97,11 @@ namespace Butterfly.Database.Dynamic {
             DataEvent[] dataEvents = await this.RequeryDynamicViewsAsync(false);
             await this.SendToListenerAsync(new DataEventTransaction(DateTime.Now, dataEvents));
 
-            this.Database.OnNewUncommittedTransaction(this.ProcessUncommittedDataEventTransactionAsync);
-            this.Database.OnNewCommittedTransaction(this.ProcessCommittedDataEventTransactionAsync);
+            var uncommittedTransactionDisposable = this.Database.OnNewUncommittedTransaction(this.ProcessUncommittedDataEventTransactionAsync);
+            this.disposables.Add(uncommittedTransactionDisposable);
+
+            var committedTransactionDisposable = this.Database.OnNewCommittedTransaction(this.ProcessCommittedDataEventTransactionAsync);
+            this.disposables.Add(committedTransactionDisposable);
 
             Task backgroundTask = Task.Run(this.RunAsync);
 
@@ -110,6 +113,7 @@ namespace Butterfly.Database.Dynamic {
         }
 
         protected async Task ProcessCommittedDataEventTransactionAsync(DataEventTransaction dataEventTransaction) {
+            logger.Trace($"ProcessCommittedDataEventTransactionAsync():dataEventTransaction={dataEventTransaction}");
             await this.StoreImpactedRecordsInDataEventTransaction(TransactionState.Committed, dataEventTransaction);
             this.incomingDataEventTransactions.Enqueue(dataEventTransaction);
             this.monitor.PulseAll();
@@ -151,11 +155,12 @@ namespace Butterfly.Database.Dynamic {
             while (!this.runCancellationTokenSource.IsCancellationRequested) {
                 try {
                     if (this.incomingDataEventTransactions.TryDequeue(out DataEventTransaction dataEventTransaction)) {
-                        logger.Debug($"RunAsync():dataEventTransaction={dataEventTransaction}");
-                        List<DataEvent> newDataEvents = new List<DataEvent>();
+                        logger.Trace($"RunAsync():dataEventTransaction={dataEventTransaction}");
+                        HashSet<string> newRecordDataEventFullKeys = new HashSet<string>();
+                        List<DataEvent> newRecordDataEvents = new List<DataEvent>();
                         foreach (var dataEvent in dataEventTransaction.dataEvents) {
-                            logger.Debug($"RunAsync():dataEventTransaction.dataEvents.Length={dataEventTransaction.dataEvents.Length}");
                             foreach (var dynamicView in this.dynamicViews) {
+                                logger.Trace($"RunAsync():dynamicView.name={dynamicView.Name}");
                                 // Don't send data events if DynamicView has dirty params because
                                 // the DynamicView will be requeried anyways
                                 if (!dynamicView.HasDirtyParams) {
@@ -174,20 +179,28 @@ namespace Butterfly.Database.Dynamic {
                                     }
 
                                     // Determine the changes from each data event on each dynamic select
-                                    RecordDataEvent[] newChangeDataEvents = dynamicView.ProcessDataChange(dataEvent, preCommitImpactedRecords, postCommitImpactedRecords);
-                                    if (newChangeDataEvents != null) {
-                                        dynamicView.UpdateChildDynamicParams(newChangeDataEvents);
-                                        newDataEvents.AddRange(newChangeDataEvents);
+                                    RecordDataEvent[] recordDataEvents = dynamicView.ProcessDataChange(dataEvent, preCommitImpactedRecords, postCommitImpactedRecords);
+                                    if (recordDataEvents != null) {
+                                        dynamicView.UpdateChildDynamicParams(recordDataEvents);
+                                        foreach (var recordDataEvent in recordDataEvents) {
+                                            string fullKey = $"{recordDataEvent.name}:{recordDataEvent.keyValue}";
+                                            if (!newRecordDataEventFullKeys.Contains(fullKey)) {
+                                                newRecordDataEventFullKeys.Add(fullKey);
+                                                newRecordDataEvents.Add(recordDataEvent);
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
+                        logger.Trace($"RunAsync():newRecordDataEvents={string.Join(",", newRecordDataEvents)}");
 
                         DataEvent[] initialDataEvents = await this.RequeryDynamicViewsAsync(true);
-                        newDataEvents.AddRange(initialDataEvents);
+                        logger.Trace($"RunAsync():initialDataEvents={string.Join(",", initialDataEvents.ToList())}");
+                        newRecordDataEvents.AddRange(initialDataEvents);
 
-                        if (newDataEvents.Count > 0) {
-                            await this.SendToListenerAsync(new DataEventTransaction(dataEventTransaction.dateTime, newDataEvents.ToArray()));
+                        if (newRecordDataEvents.Count > 0) {
+                            await this.SendToListenerAsync(new DataEventTransaction(dataEventTransaction.dateTime, newRecordDataEvents.ToArray()));
                         }
                     }
                     else {
@@ -204,7 +217,7 @@ namespace Butterfly.Database.Dynamic {
         }
 
         protected async Task SendToListenerAsync(DataEventTransaction dataEventTransaction) {
-            if (logger.IsTraceEnabled) logger.Debug($"SendToListenerAsync():dataEventTransaction.dataEvents={dataEventTransaction.dataEvents}");
+            if (logger.IsTraceEnabled) logger.Trace($"SendToListenerAsync():dataEventTransaction={dataEventTransaction}");
             else if (logger.IsDebugEnabled) logger.Debug($"SendToListenerAsync():dataEventTransaction.dataEvents.Length={dataEventTransaction.dataEvents.Length}");
 
             if (this.listener != null) {

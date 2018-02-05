@@ -9,6 +9,7 @@ public class SQLiteDatabase : BaseDatabase
 | name | description |
 | --- | --- |
 | [SQLiteDatabase](SQLiteDatabase/SQLiteDatabase.md)(…) |  |
+| override [CanJoin](SQLiteDatabase/CanJoin.md) { get; } |  |
 | static [ConvertPostgresType](SQLiteDatabase/ConvertPostgresType.md)(…) |  |
 
 ## See Also

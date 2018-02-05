@@ -1,12 +1,12 @@
-# BaseTransaction.Synchronize&lt;T&gt; method
+# BaseTransaction.Synchronize method
 
 ```csharp
-public Task<bool> Synchronize<T>(Table table, List<Dictionary<string, object>> existingRecords, List<Dictionary<string, object>> newRecords)
+public Task<bool> Synchronize(string tableName, Dictionary<string, object>[] existingRecords, 
+    Dictionary<string, object>[] newRecords, string[] keyFieldNames = null)
 ```
 
 ## See Also
 
-* class [Table](../Table.md)
 * class [BaseTransaction](../BaseTransaction.md)
 * namespace [Butterfly.Database](../../Butterfly.Database.md)
 

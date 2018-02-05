@@ -1,7 +1,7 @@
 # RedHttpServerWebRequest.Headers property
 
 ```csharp
-public Dictionary<string, string> Headers { get; }
+public override Dictionary<string, string> Headers { get; }
 ```
 
 ## See Also

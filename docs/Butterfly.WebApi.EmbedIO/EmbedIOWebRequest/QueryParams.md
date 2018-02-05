@@ -1,7 +1,7 @@
 # EmbedIOWebRequest.QueryParams property
 
 ```csharp
-public Dictionary<string, string> QueryParams { get; }
+public override Dictionary<string, string> QueryParams { get; }
 ```
 
 ## See Also

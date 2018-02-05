@@ -88,6 +88,8 @@ namespace Butterfly.Database {
     /// </remarks>
     public interface IDatabase {
 
+        bool CanJoin { get;  }
+
         /// <summary>
         /// Dictionary of <see cref="Table"/> instances keyed by name
         /// </summary>

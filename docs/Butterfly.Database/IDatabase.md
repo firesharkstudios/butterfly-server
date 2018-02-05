@@ -8,6 +8,7 @@ public interface IDatabase
 
 | name | description |
 | --- | --- |
+| [CanJoin](IDatabase/CanJoin.md) { get; } |  |
 | [Tables](IDatabase/Tables.md) { get; } |  |
 | [BeginTransaction](IDatabase/BeginTransaction.md)() |  |
 | [BeginTransactionAsync](IDatabase/BeginTransactionAsync.md)() |  |

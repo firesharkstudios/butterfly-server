@@ -1,7 +1,7 @@
 # EmbedIOWebRequest class
 
 ```csharp
-public class EmbedIOWebRequest : IHttpRequest
+public class EmbedIOWebRequest : BaseHttpRequest
 ```
 
 ## Public Members
@@ -9,12 +9,11 @@ public class EmbedIOWebRequest : IHttpRequest
 | name | description |
 | --- | --- |
 | [EmbedIOWebRequest](EmbedIOWebRequest/EmbedIOWebRequest.md)(…) |  |
-| [Headers](EmbedIOWebRequest/Headers.md) { get; } |  |
-| [PathParams](EmbedIOWebRequest/PathParams.md) { get; } |  |
-| [QueryParams](EmbedIOWebRequest/QueryParams.md) { get; } |  |
-| [RequestUri](EmbedIOWebRequest/RequestUri.md) { get; } |  |
+| override [Headers](EmbedIOWebRequest/Headers.md) { get; } |  |
+| override [PathParams](EmbedIOWebRequest/PathParams.md) { get; } |  |
+| override [QueryParams](EmbedIOWebRequest/QueryParams.md) { get; } |  |
+| override [RequestUri](EmbedIOWebRequest/RequestUri.md) { get; } |  |
 | readonly [context](EmbedIOWebRequest/context.md) |  |
-| [ParseAsJsonAsync&lt;T&gt;](EmbedIOWebRequest/ParseAsJsonAsync.md)() |  |
 
 ## See Also
 

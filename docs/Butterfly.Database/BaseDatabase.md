@@ -8,6 +8,7 @@ public abstract class BaseDatabase : IDatabase
 
 | name | description |
 | --- | --- |
+| abstract [CanJoin](BaseDatabase/CanJoin.md) { get; } |  |
 | [ConnectionString](BaseDatabase/ConnectionString.md) { get; } |  |
 | [Tables](BaseDatabase/Tables.md) { get; } |  |
 | [BeginTransaction](BaseDatabase/BeginTransaction.md)() |  |

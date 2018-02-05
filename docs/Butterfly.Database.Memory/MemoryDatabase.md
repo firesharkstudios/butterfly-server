@@ -9,6 +9,7 @@ public class MemoryDatabase : BaseDatabase
 | name | description |
 | --- | --- |
 | [MemoryDatabase](MemoryDatabase/MemoryDatabase.md)() | The default constructor. |
+| override [CanJoin](MemoryDatabase/CanJoin.md) { get; } |  |
 | static [EvaluateWhereClause](MemoryDatabase/EvaluateWhereClause.md)(…) |  |
 
 ## See Also

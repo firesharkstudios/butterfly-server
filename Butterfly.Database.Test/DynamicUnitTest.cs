@@ -63,8 +63,11 @@ namespace Butterfly.Database.Test {
             (object salesDepartmentId, object hrDepartmentId, object customerServiceDepartmentId) = await DatabaseUnitTest.InsertBasicData(database);
             await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT * FROM employee", "name", "Joe Sales, Jr", 5, 1, 1, 1);
             await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT id, name FROM employee", "department_id", -1, 5, 1, 0, 1);
-            await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT e.id, e.name FROM employee e INNER JOIN department d ON e.department_id=d.id ORDER BY e.name", "name", "Joe Sales, Sr", 5, 1, 1, 1, new string[] { "id" });
-            await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT ec.employee_id, ec.contact_type, ec.contact_data, e.name FROM employee_contact ec INNER JOIN employee e ON ec.employee_id=e.id", "name", "Joe Sales, Sr", 8, 0, 0, 0, new string[] { "employee_id", "contact_type" });
+            if (database.CanJoin) {
+                await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT e.id, e.name FROM employee e INNER JOIN department d ON e.department_id=d.id ORDER BY e.name", "name", "Joe Sales, Sr", 5, 1, 1, 1, new string[] { "id" });
+                await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT ec.employee_id, ec.contact_type, ec.contact_data, e.name FROM employee_contact ec INNER JOIN employee e ON ec.employee_id=e.id", "name", "Joe Sales, Sr", 8, 0, 0, 0, new string[] { "employee_id", "contact_type" });
+                await this.TestEstimateInputOption(database);
+            }
         }
 
         public async Task TestInsertUpdateDeleteEvents(BaseDatabase database, object salesDepartmentId, string selectSourceSql, string updateField, object updateValue, int initialCount, int insertCount, int updateCount, int deleteCount, string[] keyFieldNames = null) {
@@ -137,5 +140,56 @@ namespace Butterfly.Database.Test {
             }
         }
 
+        public async Task TestEstimateInputOption(BaseDatabase database) {
+            List<DataEventTransaction> dataEventTransactionCollector = new List<DataEventTransaction>();
+            using (DynamicViewSet dynamicViewSet = new DynamicViewSet(database, listener: dataEventTransaction => {
+                dataEventTransactionCollector.Add(dataEventTransaction);
+            })) {
+                dataEventTransactionCollector.Clear();
+                dynamicViewSet.CreateDynamicView(
+                    "SELECT * FROM estimate_input_option WHERE estimate_input_id=@estimateInputId ORDER BY seq",
+                    values: new {
+                        estimateInputId = "123"
+                    },
+                    name: "option"
+                );
+                dynamicViewSet.CreateDynamicView(
+                    "SELECT eiov.id, eiov.estimate_input_option_id, eiov.estimate_input_var_id, eiov.value FROM estimate_input_option_var eiov INNER JOIN estimate_input_option eio ON eiov.estimate_input_option_id=eio.id WHERE eio.estimate_input_id=@estimateInputId",
+                    values: new {
+                        estimateInputId = "123"
+                    },
+                    name: "option_var",
+                    keyFieldNames: new string[] { "id" }
+                );
+                await dynamicViewSet.StartAsync();
+                await Task.Delay(100);
+                dataEventTransactionCollector.Clear();
+
+                using (ITransaction transaction = await database.BeginTransactionAsync()) {
+                    string estimateInputOptionId = await transaction.InsertAsync<string>("estimate_input_option", new {
+                        id = Guid.NewGuid().ToString(),
+                        seq = 0,
+                        name = "Lowes #1",
+                        estimate_input_id = "123",
+                    });
+                    await transaction.InsertAsync<string>("estimate_input_option_var", new {
+                        id = Guid.NewGuid().ToString(),
+                        estimate_input_option_id = estimateInputOptionId,
+                        estimate_input_var_id = "456",
+                        value = 5.0,
+                    });
+                    await transaction.InsertAsync<string>("estimate_input_option_var", new {
+                        id = Guid.NewGuid().ToString(),
+                        estimate_input_option_id = estimateInputOptionId,
+                        estimate_input_var_id = "789",
+                        value = 6.0,
+                    });
+                    await transaction.CommitAsync();
+                }
+                await Task.Delay(100);
+                Assert.AreEqual(1, dataEventTransactionCollector.Count);
+                Assert.AreEqual(3, dataEventTransactionCollector[0].dataEvents.Length);
+            }
+        }
     }
 }

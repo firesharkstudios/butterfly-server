@@ -1,7 +1,7 @@
 # EmbedIOWebRequest.RequestUri property
 
 ```csharp
-public Uri RequestUri { get; }
+public override Uri RequestUri { get; }
 ```
 
 ## See Also

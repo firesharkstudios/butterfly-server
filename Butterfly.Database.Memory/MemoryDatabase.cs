@@ -68,6 +68,8 @@ namespace Butterfly.Database.Memory {
         protected static readonly Regex SIMPLE_REPLACE = new Regex(@"(?<tableAliasWithDot>\w+\.)?(?<fieldName>\w+)\s*(?<op>=|<>|!=|>|<)\s*(?<param>\@\w+)");
         protected static readonly Regex IN_REPLACE = new Regex(@"(?<tableAliasWithDot>\w+\.)?(?<fieldName>\w+)\s+(?<op>IN|NOT\s+IN)\s+\((?<param>[^\)]+)\)", RegexOptions.IgnoreCase);
 
+        public override bool CanJoin => false;
+
         public static string EvaluateWhereClause(string whereClause, Dict sqlParams, StatementTableRef[] tableRefs) {
             string newWhereClause = whereClause;
             newWhereClause = EvaluateWhereClauseReplace(newWhereClause, SIMPLE_REPLACE, sqlParams, tableRefs, op => {

@@ -9,6 +9,7 @@ public interface IHttpRequest : IWebRequest
 | name | description |
 | --- | --- |
 | [ParseAsJsonAsync&lt;T&gt;](IHttpRequest/ParseAsJsonAsync.md)() |  |
+| [ParseAsMultipartStream](IHttpRequest/ParseAsMultipartStream.md)(…) |  |
 
 ## See Also
 

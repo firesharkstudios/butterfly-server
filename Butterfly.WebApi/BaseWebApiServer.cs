@@ -14,11 +14,13 @@
  * limitations under the License.
 */
 
-using NLog;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+
+using NLog;
 
 namespace Butterfly.WebApi {
 
@@ -47,6 +49,42 @@ namespace Butterfly.WebApi {
             });
         }
 
+        public static async Task FileUploadHandlerAsync(IHttpRequest req, IHttpResponse res, string tempPath, string finalPath) {
+            var fileStreamByName = new Dictionary<string, FileStream>();
+            var uploadFileNameByName = new Dictionary<string, string>();
+
+            // Parse stream
+            try {
+                req.ParseAsMultipartStream(
+                    onData: (name, fileName, type, disposition, buffer, bytes) => {
+                        if (!fileStreamByName.TryGetValue(name, out FileStream fileStream)) {
+                            string uploadFileName = Path.Combine(tempPath, $"{Guid.NewGuid().ToString()}.{fileName}");
+                            fileStream = new FileStream(uploadFileName, FileMode.CreateNew);
+                            uploadFileNameByName[name] = uploadFileName;
+                            fileStreamByName[name] = fileStream;
+                        }
+                        fileStream.Write(buffer, 0, bytes);
+                    }
+                );
+            }
+            catch (Exception e) {
+                logger.Error(e);
+            }
+
+            // Move files from tempPath to finalPath
+            List<string> mediaFileNames = new List<string>();
+            foreach (var pair in fileStreamByName) {
+                await pair.Value.FlushAsync();
+                pair.Value.Close();
+                var uploadFileName = uploadFileNameByName[pair.Key];
+                var mediaFileName = Path.Combine(finalPath, Path.GetFileName(uploadFileName));
+                mediaFileNames.Add(Path.GetFileName(mediaFileName));
+                File.Move(uploadFileName, mediaFileName);
+            }
+
+            logger.Debug($"FileUploadHandler():Uploaded media files: {string.Join(", ", mediaFileNames)}");
+            await res.WriteAsJsonAsync(mediaFileNames);
+        }
         public List<WebHandler> WebHandlers {
             get {
                 return this.webHandlers;

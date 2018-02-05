@@ -26,15 +26,12 @@ namespace Butterfly.WebApi {
             }
         }
 
-        public void ParseAsMultipartStreamAsync(Action<string, string, string, string, byte[], int> onData, Action onDone = null, Action<string, string> onParameter = null) {
+        public void ParseAsMultipartStream(Action<string, string, string, string, byte[], int> onData, Action<string, string> onParameter = null) {
             var parser = new StreamingMultipartFormDataParser(this.InputStream);
             if (onParameter != null) {
                 parser.ParameterHandler += parameter => onParameter(parameter.Name, parameter.Data);
             }
             parser.FileHandler += (name, fileName, type, disposition, buffer, bytes) => onData(name, fileName, type, disposition, buffer, bytes);
-            if (onDone != null) {
-                parser.StreamClosedHandler += () => onDone();
-            }
             parser.Run();
         }
 

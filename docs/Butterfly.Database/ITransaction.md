@@ -14,7 +14,7 @@ public interface ITransaction : IDisposable
 | [DeleteAsync](ITransaction/DeleteAsync.md)(…) |  |
 | [InsertAsync&lt;T&gt;](ITransaction/InsertAsync.md)(…) |  |
 | [Rollback](ITransaction/Rollback.md)() |  |
-| [Synchronize&lt;T&gt;](ITransaction/Synchronize.md)(…) |  |
+| [Synchronize](ITransaction/Synchronize.md)(…) |  |
 | [TruncateAsync](ITransaction/TruncateAsync.md)(…) |  |
 | [UpdateAsync](ITransaction/UpdateAsync.md)(…) |  |
 

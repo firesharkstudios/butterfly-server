@@ -22,7 +22,7 @@ namespace Butterfly.Util {
     public static class DictionaryX {
 
         public static V GetAs<T, U, V>(this Dictionary<T, U> me, T key, V defaultValue) {
-            if (me.TryGetValue(key, out U value)) {
+            if (me.TryGetValue(key, out U value) && value != null) {
                 if (value is JObject) {
                     return (value as JObject).ToObject<V>();
                 }

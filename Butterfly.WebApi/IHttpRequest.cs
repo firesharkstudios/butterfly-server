@@ -14,13 +14,14 @@
  * limitations under the License.
 */
 
-using Butterfly.Util;
 using System;
 using System.Threading.Tasks;
+
+using Butterfly.Util;
 
 namespace Butterfly.WebApi {
     public interface IHttpRequest : IWebRequest {
         Task<T> ParseAsJsonAsync<T>();
-        void ParseAsMultipartStreamAsync(Action<string, string, string, string, byte[], int> onData, Action onDone = null, Action<string, string> onParameter = null);
+        void ParseAsMultipartStream(Action<string, string, string, string, byte[], int> onData, Action<string, string> onParameter = null);
     }
 }

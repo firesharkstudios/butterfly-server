@@ -34,6 +34,8 @@ namespace Butterfly.Database.MySql {
         public MySqlDatabase(string connectionString) : base(connectionString) {
         }
 
+        public override bool CanJoin => true;
+
         protected override void LoadSchema() {
             try {
                 string commandText = "show tables";

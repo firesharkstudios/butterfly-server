@@ -9,6 +9,7 @@ public class PostgresDatabase : BaseDatabase
 | name | description |
 | --- | --- |
 | [PostgresDatabase](PostgresDatabase/PostgresDatabase.md)(…) |  |
+| override [CanJoin](PostgresDatabase/CanJoin.md) { get; } |  |
 | static [ConvertType](PostgresDatabase/ConvertType.md)(…) |  |
 
 ## See Also
