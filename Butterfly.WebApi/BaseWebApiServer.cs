@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 
 using NLog;
@@ -49,7 +50,7 @@ namespace Butterfly.WebApi {
             });
         }
 
-        public static async Task FileUploadHandlerAsync(IHttpRequest req, IHttpResponse res, string tempPath, string finalPath) {
+        public static async Task FileUploadHandlerAsync(IHttpRequest req, IHttpResponse res, string tempPath, string finalPath, int chunkDelayInMillis = 0) {
             var fileStreamByName = new Dictionary<string, FileStream>();
             var uploadFileNameByName = new Dictionary<string, string>();
 
@@ -64,6 +65,9 @@ namespace Butterfly.WebApi {
                             fileStreamByName[name] = fileStream;
                         }
                         fileStream.Write(buffer, 0, bytes);
+                        if (chunkDelayInMillis > 0) {
+                            Thread.Sleep(chunkDelayInMillis);
+                        }
                     }
                 );
             }
