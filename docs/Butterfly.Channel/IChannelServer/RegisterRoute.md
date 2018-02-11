@@ -2,7 +2,7 @@
 
 ```csharp
 public RegisteredRoute RegisterRoute(string routePath, Func<string, string, object> getAuthToken = null, 
-    Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null)
+    Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getConnectionId = null, Func<object, Task<string>> getConnectionIdAsync = null)
 ```
 
 ## See Also

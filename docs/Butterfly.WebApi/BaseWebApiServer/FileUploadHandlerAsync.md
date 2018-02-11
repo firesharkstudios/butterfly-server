@@ -1,7 +1,8 @@
 # BaseWebApiServer.FileUploadHandlerAsync method
 
 ```csharp
-public static Task FileUploadHandlerAsync(IHttpRequest req, IHttpResponse res, string tempPath, string finalPath)
+public static Task FileUploadHandlerAsync(IHttpRequest req, IHttpResponse res, string tempPath, 
+    string finalPath, int chunkDelayInMillis = 0)
 ```
 
 ## See Also
