@@ -50,7 +50,7 @@ namespace Butterfly.WebApi {
             });
         }
 
-        public static async Task FileUploadHandlerAsync(IHttpRequest req, IHttpResponse res, string tempPath, string finalPath, int chunkDelayInMillis = 0) {
+        public static async Task<string[]> FileUploadHandlerAsync(IHttpRequest req, IHttpResponse res, string tempPath, string finalPath, int chunkDelayInMillis = 0) {
             var fileStreamByName = new Dictionary<string, FileStream>();
             var uploadFileNameByName = new Dictionary<string, string>();
 
@@ -87,8 +87,9 @@ namespace Butterfly.WebApi {
             }
 
             logger.Debug($"FileUploadHandler():Uploaded media files: {string.Join(", ", mediaFileNames)}");
-            await res.WriteAsJsonAsync(mediaFileNames);
+            return mediaFileNames.ToArray();
         }
+
         public List<WebHandler> WebHandlers {
             get {
                 return this.webHandlers;

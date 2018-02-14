@@ -33,11 +33,14 @@ namespace Butterfly.Channel {
     /// </remarks>
     public interface IChannelServer : IDisposable {
         /// <summary>
-        /// Add a handler when a new channel is created
+        /// Registeres a route
         /// </summary>
-        /// <param name="routePath">Filters new channel requests by path (pass '/chat' to only match channels created with path '/chat')</param>
-        /// <param name="getAuthId">Lambda to run to initialize the channel</param>
-        /// <returns>If the channel should be kept</returns>
+        /// <param name="routePath"></param>
+        /// <param name="getAuthToken"></param>
+        /// <param name="getAuthTokenAsync"></param>
+        /// <param name="getConnectionId"></param>
+        /// <param name="getConnectionIdAsync"></param>
+        /// <returns></returns>
         RegisteredRoute RegisterRoute(string routePath, Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getConnectionId = null, Func<object, Task<string>> getConnectionIdAsync = null);
 
         /// <summary>

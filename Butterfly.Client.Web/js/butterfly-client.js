@@ -3,7 +3,6 @@
 
     let heartbeatEveryMillis = options.heartbeatEveryMillis || 3000;
     let url = options.url;
-    let auth = options.auth;
     let onSubscriptionsUpdated = options.onSubscriptionsUpdated;
 
     if (url.indexOf('://') == -1) {
@@ -11,6 +10,7 @@
     }
     console.log('WebSocketChannelClient():url=' + url);
 
+    private.auth = null;
     private.subscriptions = [];
     private.handlersByKey = {};
 
@@ -41,7 +41,7 @@
                 };
                 private.webSocket.onopen = function () {
                     private.setStatus('Connected');
-                    private.webSocket.send('Authorization:' + auth);
+                    private.sendAuthorization();
                     private.sendSubscribe(private.subscriptions);
                 };
                 private.webSocket.onerror = function (error) {
@@ -72,6 +72,12 @@
             private.testConnection(false);
         }, heartbeatEveryMillis);
 
+    }
+
+    private.sendAuthorization = function () {
+        if (private.webSocket && private.webSocket.readyState == 1) {
+            private.webSocket.send('Authorization:' + (private.auth || ''));
+        }
     }
 
     private.sendSubscribe = function (subscriptions) {
@@ -109,6 +115,11 @@
         },
         start: function () {
             private.testConnection(true);
+        },
+        authorize: function (newValue) {
+            private.auth = newValue;
+            private.sendAuthorization();
+            private.sendSubscribe(private.subscriptions);
         },
         subscribe: function (handler, channelKey, vars) {
             if (!channelKey) channelKey = 'default';

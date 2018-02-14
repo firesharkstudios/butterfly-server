@@ -2,10 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 
+using NLog;
+
 using Butterfly.Database;
 using Butterfly.Util;
 using Butterfly.WebApi;
-using NLog;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
@@ -13,8 +14,6 @@ namespace Butterfly.Auth {
 
     public class AuthManager {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
-
-        //public const string UNAUTHORIZED = "Unauthorized";
 
         protected readonly IDatabase database;
 
@@ -109,15 +108,15 @@ namespace Butterfly.Auth {
             this.emailFieldValidator = new FieldValidator(this.userTableEmailFieldName, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", allowNull: false, forceLowerCase: false, includeValueInError: true);
         }
 
-        public void SetupWebApi(IWebApiServer webApiServer, string pathPrefix) {
+        public void SetupWebApi(IWebApiServer webApiServer, string pathPrefix = "/api/auth") {
             webApiServer.OnGet($"{pathPrefix}/check-username/{{username}}", async(req, res) => {
-                string username = req.QueryParams.GetAs("username", (string)null);
+                string username = req.PathParams.GetAs("username", (string)null);
                 Dict user = await this.LookupUsername(username, this.userTableIdFieldName);
                 bool available = user == null;
                 await res.WriteAsJsonAsync(available);
             });
 
-            webApiServer.OnPost($"{pathPrefix}/auth-token", async(req, res) => {
+            webApiServer.OnPost($"{pathPrefix}/create-anonymous", async(req, res) => {
                 AuthToken authToken = await this.CreateAnonymousUser();
                 await res.WriteAsJsonAsync(authToken);
             });
@@ -135,7 +134,7 @@ namespace Butterfly.Auth {
             });
 
             webApiServer.OnPost($"{pathPrefix}/forgot-password/{{username}}", async(req, res) => {
-                string username = req.QueryParams.GetAs("username", (string)null);
+                string username = req.PathParams.GetAs("username", (string)null);
                 await this.ForgotPassword(username);
             });
 

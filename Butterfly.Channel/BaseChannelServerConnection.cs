@@ -138,12 +138,16 @@ namespace Butterfly.Channel {
                     string value = text.Substring(pos + 1).Trim();
                     logger.Debug($"ReceiveMessage():name={name},value={value}");
                     if (name == HttpRequestHeader.Authorization.ToString()) {
-                        try {
-                            var authenticationHeaderValue = AuthenticationHeaderValue.Parse(value);
-                            Task task = this.channelServer.AuthenticateAsync(authenticationHeaderValue.Scheme, authenticationHeaderValue.Parameter, this);
-                        }
-                        catch (Exception e) {
-                            logger.Error(e);
+                        this.UnsubscribeAll();
+                        if (!string.IsNullOrEmpty(value)) {
+                            try {
+                                var authenticationHeaderValue = AuthenticationHeaderValue.Parse(value);
+                                Task task = this.channelServer.AuthenticateAsync(authenticationHeaderValue.Scheme, authenticationHeaderValue.Parameter, this);
+                            }
+                            catch (Exception e) {
+                                this.UnsubscribeAll();
+                                logger.Error(e);
+                            }
                         }
                     }
                     else if (name == "Subscribe") {
@@ -159,13 +163,13 @@ namespace Butterfly.Channel {
                         try {
                             string[] channelKeys;
                             if (value == "*") {
-                                channelKeys = this.channelByKey.Keys.ToArray();
+                                this.UnsubscribeAll();
                             }
                             else {
                                 string channelKey = JsonUtil.Deserialize<string>(value);
                                 channelKeys = new string[] { channelKey };
+                                this.Unsubscribe(channelKeys);
                             }
-                            this.Unsubscribe(channelKeys);
                         }
                         catch (Exception e) {
                             logger.Error(e);
@@ -210,6 +214,10 @@ namespace Butterfly.Channel {
             catch (Exception e) {
                 logger.Error(e);
             }
+        }
+
+        protected void UnsubscribeAll() {
+            this.Unsubscribe(this.channelByKey.Keys.ToArray());
         }
 
         protected void Unsubscribe(ICollection<string> channelKeys) {
