@@ -27,7 +27,7 @@ namespace Butterfly.Database {
     /// Internal class used to parse SELECT statements
     /// </summary>
     public class SelectStatement : BaseStatement {
-        protected readonly static Regex STATEMENT_REGEX = new Regex(@"^SELECT\s+(.+)\s+FROM\s+(.+?)(?:\s+WHERE\s+(.+?))?(?:\s+ORDER\s+BY\s+(.+?))?$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+        protected readonly static Regex STATEMENT_REGEX = new Regex(@"^SELECT\s+(.+)\s+FROM\s+(.+?)(?:\s+WHERE\s+(.+?))?(?:\s+ORDER\s+BY\s+(.+?))?$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         public readonly string selectClause;
         public readonly string fromClause;

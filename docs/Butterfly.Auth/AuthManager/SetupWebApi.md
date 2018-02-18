@@ -1,7 +1,7 @@
 # AuthManager.SetupWebApi method
 
 ```csharp
-public void SetupWebApi(IWebApiServer webApiServer, string pathPrefix)
+public void SetupWebApi(IWebApiServer webApiServer, string pathPrefix = "/api/auth")
 ```
 
 ## See Also

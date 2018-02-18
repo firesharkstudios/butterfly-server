@@ -47,6 +47,12 @@ namespace Butterfly.Database.Test {
             Assert.AreEqual("employee_contact", selectStatement.fromClause);
             Assert.AreEqual("contact_id=@contactId", selectStatement.whereClause);
             Assert.AreEqual("seq", selectStatement.orderByClause);
+
+            var selectStatement2 = new SelectStatement(database, @"SELECT ec.id 
+                FROM employee_contact ec 
+                    INNER JOIN employee e ON ec.employee_id=e.id 
+                WHERE contact_id=@contactId ORDER BY seq");
+            Assert.AreEqual("ec.id", selectStatement2.selectClause);
         }
 
         [TestMethod]
