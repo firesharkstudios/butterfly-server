@@ -35,14 +35,15 @@ namespace Butterfly.WebApi {
         protected readonly List<WebHandler> webHandlers = new List<WebHandler>();
 
         public void OnGet(string path, Func<IHttpRequest, IHttpResponse, Task> listener) {
+            logger.Debug($"OnGet():path={path}");
             webHandlers.Add(new WebHandler {
                 method = HttpMethod.Get,
                 path = path,
                 listener = listener
             });
         }
-
         public void OnPost(string path, Func<IHttpRequest, IHttpResponse, Task> listener) {
+            logger.Debug($"OnPost():path={path}");
             webHandlers.Add(new WebHandler {
                 method = HttpMethod.Post,
                 path = path,

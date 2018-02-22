@@ -62,7 +62,7 @@ namespace Butterfly.WebApi.EmbedIO {
                     throw new System.Exception($"Unknown method '{webHandler.method}'");
                 }
                 this.AddHandler(webHandler.path, httpVerb, async (context, cancellationToken) => {
-                    var webRequest = new EmbedIOWebRequest(context);
+                    var webRequest = new EmbedIOWebRequest(webHandler.path, context);
                     var webResponse = new EmbedIOWebResponse(context);
                     try {
                         await webHandler.listener(webRequest, webResponse);
@@ -70,8 +70,11 @@ namespace Butterfly.WebApi.EmbedIO {
                     catch (IOException) {
                     }
                     catch (Exception e) {
-                        logger.Error(e);
+                        if (!(e is UnauthorizedException)) {
+                            logger.Error(e);
+                        }
                         webResponse.StatusCode = 500;
+                        webResponse.StatusText = e.Message;
                         await webResponse.WriteAsJsonAsync(e.Message);
                     }
                     return true;
@@ -84,9 +87,11 @@ namespace Butterfly.WebApi.EmbedIO {
 
     public class EmbedIOWebRequest : BaseHttpRequest {
 
+        public readonly string pathPattern;
         public readonly Unosquare.Net.HttpListenerContext context;
 
-        public EmbedIOWebRequest(Unosquare.Net.HttpListenerContext context) {
+        public EmbedIOWebRequest(string pathPattern, Unosquare.Net.HttpListenerContext context) {
+            this.pathPattern = pathPattern;
             this.context = context;
         }
 
@@ -96,7 +101,12 @@ namespace Butterfly.WebApi.EmbedIO {
 
         public override Dictionary<string, string> Headers => this.context.Request.Headers?.ToDictionary(forceUpperCaseKeys: true);
 
-        public override Dictionary<string, string> PathParams => this.context.RequestRegexUrlParams(this.context.Request.Url.AbsolutePath).ToDictionary(x => x.Key, y => Convert.ToString(y));
+        public override Dictionary<string, string> PathParams {
+            get {
+                var regexUrlParams = this.context.RequestRegexUrlParams(this.pathPattern);
+                return regexUrlParams.ToDictionary(x => x.Key, x => Convert.ToString(x.Value));
+            }
+        }
 
         public override Dictionary<string, string> QueryParams => this.RequestUri.ParseQuery();
 
@@ -116,6 +126,15 @@ namespace Butterfly.WebApi.EmbedIO {
             }
             set {
                 this.context.Response.StatusCode = value;
+            }
+        }
+
+        public string StatusText {
+            get {
+                return this.context.Response.StatusDescription;
+            }
+            set {
+                this.context.Response.StatusDescription = value;
             }
         }
 

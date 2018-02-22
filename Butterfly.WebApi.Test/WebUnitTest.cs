@@ -23,7 +23,7 @@ namespace Butterfly.WebApi.Test {
 
         [TestMethod]
         public async Task EmbedIOWeb() {
-            using (var embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer("http://localhost:8080/"))
+            using (var embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer("http://localhost:8080/", Unosquare.Labs.EmbedIO.Constants.RoutingStrategy.Regex))
             using (var webApiServer = new EmbedIOWebApiServer(embedIOWebServer)) {
                 await this.TestWeb(webApiServer, "http://localhost:8080/", () => {
                     embedIOWebServer.RunAsync();
@@ -33,8 +33,11 @@ namespace Butterfly.WebApi.Test {
 
         public async Task TestWeb(IWebApiServer webServer, string url, Action start) {
             // Add routes
-            webServer.OnGet("/test-get", async (req, res) => {
+            webServer.OnGet("/test-get1", async (req, res) => {
                 await res.WriteAsJsonAsync("test-get-response");
+            });
+            webServer.OnGet("/test-get2/{id}", async (req, res) => {
+                await res.WriteAsJsonAsync(req.PathParams.GetAs("id", (string)null));
             });
             webServer.OnPost("/test-post", async (req, res) => {
                 var text = await req.ParseAsJsonAsync<string>();
@@ -47,11 +50,18 @@ namespace Butterfly.WebApi.Test {
             // Start the underlying server
             start();
 
-            // Test GET request
+            // Test GET request #1
             using (WebClient webClient = new WebClient()) {
-                string json = await webClient.DownloadStringTaskAsync(new Uri($"{url}test-get"));
+                string json = await webClient.DownloadStringTaskAsync(new Uri($"{url}test-get1"));
                 string text = JsonUtil.Deserialize<string>(json);
                 Assert.AreEqual("test-get-response", text);
+            }
+
+            // Test GET request #2
+            using (WebClient webClient = new WebClient()) {
+                string json = await webClient.DownloadStringTaskAsync(new Uri($"{url}test-get2/abc"));
+                string text = JsonUtil.Deserialize<string>(json);
+                Assert.AreEqual("abc", text);
             }
 
             // Test POST request

@@ -54,10 +54,11 @@ namespace Butterfly.Channel.RedHttpServer {
 
             this.webSocketDialog.OnTextReceived += (sender, eventArgs) => {
                 try {
-                    this.ReceiveMessage(eventArgs.Text);
+                    this.ReceiveMessageAsync(eventArgs.Text).Wait();
                 }
                 catch (Exception e) {
                     logger.Trace(e);
+                    this.Dispose();
                     webSocketDialog.Close();
                 }
             };

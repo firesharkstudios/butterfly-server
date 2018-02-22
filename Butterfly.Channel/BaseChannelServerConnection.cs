@@ -127,7 +127,7 @@ namespace Butterfly.Channel {
         /// </summary>
         protected abstract Task SendAsync(string text);
 
-        public void ReceiveMessage(string text) {
+        public async Task ReceiveMessageAsync(string text) {
             if (text == "!") {
                 this.Heartbeat();
             }
@@ -140,20 +140,14 @@ namespace Butterfly.Channel {
                     if (name == HttpRequestHeader.Authorization.ToString()) {
                         this.UnsubscribeAll();
                         if (!string.IsNullOrEmpty(value)) {
-                            try {
-                                var authenticationHeaderValue = AuthenticationHeaderValue.Parse(value);
-                                Task task = this.channelServer.AuthenticateAsync(authenticationHeaderValue.Scheme, authenticationHeaderValue.Parameter, this);
-                            }
-                            catch (Exception e) {
-                                this.UnsubscribeAll();
-                                logger.Error(e);
-                            }
+                            var authenticationHeaderValue = AuthenticationHeaderValue.Parse(value);
+                            await this.channelServer.AuthenticateAsync(authenticationHeaderValue.Scheme, authenticationHeaderValue.Parameter, this);
                         }
                     }
                     else if (name == "Subscribe") {
                         try {
                             Dict[] subscriptions = JsonUtil.Deserialize<Dict[]>(value);
-                            Task task = this.SubscribeAsync(subscriptions);
+                            await this.SubscribeAsync(subscriptions);
                         }
                         catch (Exception e) {
                             logger.Error(e);
@@ -185,9 +179,9 @@ namespace Butterfly.Channel {
         protected Dict EMPTY_DICT = new Dict();
 
         protected async Task SubscribeAsync(ICollection<Dict> subscriptions) {
-            try {
-                logger.Debug($"SubscribeAsync()");
+            logger.Debug($"SubscribeAsync()");
 
+            if (subscriptions != null) {
                 foreach (var subscription in subscriptions) {
                     var channelKey = subscription.GetAs("channelKey", (string)null);
                     var vars = subscription.GetAs("vars", (Dict)null) ?? EMPTY_DICT;
@@ -198,21 +192,26 @@ namespace Butterfly.Channel {
                         this.channelByKey.Remove(channelKey);
                     }
 
+                    logger.Debug($"SubscribeAsync():Creating new channel {channelKey}");
                     var channel = new Channel(this, channelKey, vars);
                     if (this.registeredRoute.RegisteredChannelByKey.TryGetValue(channelKey, out RegisteredChannel registeredChannel)) {
-                        var disposable = registeredChannel.handle != null ? registeredChannel.handle(vars, channel) : await registeredChannel.handleAsync(vars, channel);
-                        if (disposable != null) {
-                            channel.Attach(disposable);
+                        try {
+                            var disposable = registeredChannel.handle != null ? registeredChannel.handle(vars, channel) : await registeredChannel.handleAsync(vars, channel);
+                            if (disposable != null) {
+                                channel.Attach(disposable);
+                            }
+                            this.channelByKey.Add(channelKey, channel);
+                        }
+                        catch (Exception e) {
+                            channel.Queue($"!{e.Message}");
+                            channel.Dispose();
+                            logger.Error(e);
                         }
                     }
                     else {
                         logger.Debug($"SubscribeAsync():Unknown subscription channel key '{channelKey}'");
                     }
-                    this.channelByKey.Add(channelKey, channel);
                 }
-            }
-            catch (Exception e) {
-                logger.Error(e);
             }
         }
 
@@ -222,7 +221,7 @@ namespace Butterfly.Channel {
 
         protected void Unsubscribe(ICollection<string> channelKeys) {
             try {
-                logger.Debug($"UnubscribeAsync()");
+                logger.Debug($"UnsubscribeAsync()");
                 foreach (var channelKey in channelKeys) {
                     if (this.channelByKey.TryGetValue(channelKey, out Channel existingChannel)) {
                         logger.Debug($"SubscribeAsync():Removing channel key '{channelKey}'");

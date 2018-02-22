@@ -111,9 +111,17 @@ namespace Butterfly.Auth {
         public void SetupWebApi(IWebApiServer webApiServer, string pathPrefix = "/api/auth") {
             webApiServer.OnGet($"{pathPrefix}/check-username/{{username}}", async(req, res) => {
                 string username = req.PathParams.GetAs("username", (string)null);
+                logger.Debug($"/check-username/{username}");
                 Dict user = await this.LookupUsername(username, this.userTableIdFieldName);
                 bool available = user == null;
                 await res.WriteAsJsonAsync(available);
+            });
+
+            webApiServer.OnGet($"{pathPrefix}/check-auth-token/{{id}}", async (req, res) => {
+                string id = req.PathParams.GetAs("id", (string)null);
+                logger.Debug($"/check-auth-token/{id}");
+                AuthToken authToken = await this.Authenticate(id);
+                await res.WriteAsJsonAsync(authToken);
             });
 
             webApiServer.OnPost($"{pathPrefix}/create-anonymous", async(req, res) => {
@@ -154,18 +162,22 @@ namespace Butterfly.Auth {
             Dict registration = this.ConvertInputToDict(input);
 
             // Handle registering an anonymous user
-            string userId = registration.GetAs(this.userTableIdFieldName, (string)null);
-            Dict existingUserByUserId = await this.database.SelectRowAsync(this.userTableName, userId);
-            if (existingUserByUserId == null) {
-                userId = null;
-            }
-            else {
-                string userName = existingUserByUserId.GetAs(this.userTableUsernameFieldName, (string)null);
-                if (!string.IsNullOrEmpty(userName)) throw new Exception("User '" + userId + "' already registered");
+            string userId = registration.GetAs(this.authTokenTableUserIdFieldName, (string)null);
+            logger.Trace($"RegisterAsync():userId={userId}");
+            if (!string.IsNullOrEmpty(userId)) {
+                Dict existingUserByUserId = await this.database.SelectRowAsync(this.userTableName, userId);
+                if (existingUserByUserId == null) {
+                    userId = null;
+                }
+                else {
+                    string userName = existingUserByUserId.GetAs(this.userTableUsernameFieldName, (string)null);
+                    if (!string.IsNullOrEmpty(userName)) throw new Exception("User '" + userId + "' already registered");
+                }
             }
 
             // Check if username is available
             string username = this.usernameFieldValidator.Validate(registration?.GetAs(this.userTableUsernameFieldName, (string)null));
+            logger.Trace($"RegisterAsync():username={username}");
             Dict existingUserByUsername = await this.database.SelectRowAsync(this.userTableName, new Dict {
                 { this.userTableUsernameFieldName, username }
             });
@@ -213,12 +225,14 @@ namespace Butterfly.Auth {
         /// <param name="authTokenId"></param>
         /// <returns>An <see cref="AuthToken"/> instance</returns>
         public async Task<AuthToken> Authenticate(string authTokenId) {
-            Dict authTokenDict = await this.database.SelectRowAsync($"SELECT at.{this.authTokenIdFieldName}, at.{this.authTokenTableUserIdFieldName}, u.{this.userTableAccountIdFieldName}, at.{this.authTokenTableExpiresAtFieldName} FROM {this.authTokenTableName} at INNER JOIN {this.userTableName} u ON at.user_id=u.id WHERE at.id=@authTokenId", new {
+            Dict authTokenDict = await this.database.SelectRowAsync($"SELECT at.{this.authTokenIdFieldName}, at.{this.authTokenTableUserIdFieldName}, u.{this.userTableAccountIdFieldName}, u.{this.userTableUsernameFieldName}, u.{this.userTableFirstNameFieldName}, u.{this.userTableLastNameFieldName}, at.{this.authTokenTableExpiresAtFieldName} FROM {this.authTokenTableName} at INNER JOIN {this.userTableName} u ON at.user_id=u.id WHERE at.id=@authTokenId", new {
                 authTokenId
             });
+            logger.Debug($"Authenticate():authTokenDict={authTokenDict}");
             if (authTokenDict == null) throw new UnauthorizedException();
-            var authToken = AuthToken.FromDict(authTokenDict, this.authTokenIdFieldName, this.authTokenTableUserIdFieldName, this.userTableAccountIdFieldName, this.authTokenTableExpiresAtFieldName);
 
+            var authToken = AuthToken.FromDict(authTokenDict, this.authTokenIdFieldName, this.authTokenTableUserIdFieldName, this.userTableUsernameFieldName, this.userTableFirstNameFieldName, this.userTableLastNameFieldName, this.userTableAccountIdFieldName, this.authTokenTableExpiresAtFieldName);
+            logger.Debug($"Authenticate():authToken.expiresAt={authToken.expiresAt}");
             if (authToken.expiresAt == DateTime.MinValue || authToken.expiresAt < DateTime.Now) throw new UnauthorizedException();
 
             return authToken;
@@ -241,9 +255,11 @@ namespace Butterfly.Auth {
                 string accountId = await transaction.InsertAsync<string>(this.accountTableName, new Dict {
                 });
 
+                var firstName = CleverNameX.COLORS[random.Next(0, CleverNameX.COLORS.Length)];
+                var lastName = CleverNameX.ANIMALS[random.Next(0, CleverNameX.ANIMALS.Length)];
                 string userId = await transaction.InsertAsync<string>(this.userTableName, new Dict {
-                    { this.userTableFirstNameFieldName, CleverNameX.COLORS[random.Next(0, CleverNameX.COLORS.Length)] },
-                    { this.userTableLastNameFieldName, CleverNameX.ANIMALS[random.Next(0, CleverNameX.ANIMALS.Length)] },
+                    { this.userTableFirstNameFieldName, firstName },
+                    { this.userTableLastNameFieldName, lastName },
                     { this.userTableAccountIdFieldName, accountId }
                 });
 
@@ -253,7 +269,9 @@ namespace Butterfly.Auth {
                     { this.authTokenTableExpiresAtFieldName, expiresAt },
                 });
 
-                return new AuthToken(id, userId, accountId, expiresAt);
+                await transaction.CommitAsync();
+
+                return new AuthToken(id, userId, null, firstName, lastName, accountId, expiresAt);
             }
         }
 
@@ -263,10 +281,10 @@ namespace Butterfly.Auth {
         /// <param name="userId"></param>
         /// <returns>The AuthToken instance created</returns>
         public async Task<AuthToken> CreateAuthToken(string userId) {
-            string accountId = await this.database.SelectValueAsync<string>("SELECT account_id FROM user WHERE id=@userId", new {
+            Dict user = await this.database.SelectRowAsync($"SELECT {this.userTableUsernameFieldName}, {this.userTableFirstNameFieldName}, {this.userTableLastNameFieldName}, {this.userTableAccountIdFieldName} FROM user WHERE id=@userId", new {
                 userId
             });
-            if (string.IsNullOrEmpty(accountId)) throw new Exception("Invalid user");
+            if (user==null) throw new Exception("Invalid user");
 
             DateTime expiresAt = DateTime.Now.AddDays(this.authTokenDurationDays);
             string id = await this.database.InsertAndCommitAsync<string>(this.authTokenTableName, new Dict {
@@ -274,7 +292,7 @@ namespace Butterfly.Auth {
                 { this.authTokenTableExpiresAtFieldName, expiresAt },
             });
 
-            return new AuthToken(id, userId, accountId, expiresAt);
+            return new AuthToken(id, userId, user.GetAs(this.userTableUsernameFieldName, (string)null), user.GetAs(this.userTableFirstNameFieldName, (string)null), user.GetAs(this.userTableLastNameFieldName, (string)null), user.GetAs(this.userTableAccountIdFieldName, (string)null), expiresAt);
         }
 
         public async Task<AuthToken> Login(Dict login) {
@@ -380,27 +398,32 @@ namespace Butterfly.Auth {
     public class AuthToken {
         public readonly string id;
         public readonly string userId;
+        public readonly string username;
+        public readonly string firstName;
+        public readonly string lastName;
         public readonly string accountId;
         public readonly DateTime expiresAt;
 
-        public AuthToken(string id, string userId, string accountId, DateTime expiresAt) {
+        public AuthToken(string id, string userId, string username, string firstName, string lastName, string accountId, DateTime expiresAt) {
             this.id = id;
             this.userId = userId;
+            this.username = username;
+            this.firstName = firstName;
+            this.lastName = lastName;
             this.accountId = accountId;
             this.expiresAt = expiresAt;
         }
 
-        public static AuthToken FromDict(Dict dict, string idFieldName, string userIdFieldName, string accountIdFieldName, string expiresAtFieldName) {
+        public static AuthToken FromDict(Dict dict, string idFieldName, string userIdFieldName, string usernameFieldName, string firstNameFieldName, string lastNameFieldName, string accountIdFieldName, string expiresAtFieldName) {
             string id = dict.GetAs(idFieldName, (string)null);
             string userId = dict.GetAs(userIdFieldName, (string)null);
+            string username = dict.GetAs(usernameFieldName, (string)null);
+            string firstName = dict.GetAs(firstNameFieldName, (string)null);
+            string lastName = dict.GetAs(lastNameFieldName, (string)null);
             string accountId = dict.GetAs(accountIdFieldName, (string)null);
             DateTime expiresAt = dict.GetAs(expiresAtFieldName, DateTime.MinValue);
-            return new AuthToken(id, userId, accountId, expiresAt);
+            return new AuthToken(id, userId, username, firstName, lastName, accountId, expiresAt);
         }
     }
 
-    public class UnauthorizedException : Exception {
-        public UnauthorizedException() : base("Unauthorized") {
-        }
-    }
 }

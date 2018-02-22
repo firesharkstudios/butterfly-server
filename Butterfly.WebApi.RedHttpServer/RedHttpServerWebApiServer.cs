@@ -96,12 +96,13 @@ namespace Butterfly.WebApi.RedHttpServer {
         }
 
         public int StatusCode {
-            get {
-                return -1;
-            }
-            set {
-                throw new NotImplementedException();
-            }
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
+        }
+
+        public string StatusText {
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
         }
 
         public Task WriteAsJsonAsync(object value) {

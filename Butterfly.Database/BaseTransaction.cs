@@ -20,7 +20,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Butterfly.Database.Event;
-
+using Butterfly.Util;
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database {
@@ -165,11 +165,11 @@ namespace Butterfly.Database {
 
             for (int i = 0; i < existingIds.Count; i++) {
                 int newIndex = newIds.IndexOf(existingIds[i]);
-                int count;
+                int count = 0;
                 if (newIndex == -1) {
                     count = await this.DeleteAsync(table.Name, existingIds[i]);
                 }
-                else {
+                else if (!newRecords[newIndex].IsSame(existingRecords[i])) {
                     count = await this.UpdateAsync(table.Name, newRecords[newIndex]);
                 }
                 if (count > 0) changed = true;

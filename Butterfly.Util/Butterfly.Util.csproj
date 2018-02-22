@@ -67,6 +67,7 @@
     <Compile Include="NameValueCollectionX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringX.cs" />
+    <Compile Include="UnauthorizedException.cs" />
     <Compile Include="UriX.cs" />
   </ItemGroup>
   <ItemGroup>

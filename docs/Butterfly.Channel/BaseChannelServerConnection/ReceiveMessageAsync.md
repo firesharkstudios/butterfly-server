@@ -1,7 +1,7 @@
-# BaseChannelServerConnection.ReceiveMessage method
+# BaseChannelServerConnection.ReceiveMessageAsync method
 
 ```csharp
-public void ReceiveMessage(string text)
+public Task ReceiveMessageAsync(string text)
 ```
 
 ## See Also

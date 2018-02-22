@@ -2,7 +2,7 @@
 
 ```csharp
 public static AuthToken FromDict(Dictionary<string, object> dict, string idFieldName, string userIdFieldName, 
-    string accountIdFieldName, string expiresAtFieldName)
+    string usernameFieldName, string firstNameFieldName, string lastNameFieldName, string accountIdFieldName, string expiresAtFieldName)
 ```
 
 ## See Also

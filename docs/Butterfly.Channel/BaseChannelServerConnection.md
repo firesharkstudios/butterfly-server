@@ -16,7 +16,7 @@ public abstract class BaseChannelServerConnection : IChannelServerConnection
 | [RegisteredRoute](BaseChannelServerConnection/RegisteredRoute.md) { get; } |  |
 | [Dispose](BaseChannelServerConnection/Dispose.md)() |  |
 | [Queue](BaseChannelServerConnection/Queue.md)(…) |  |
-| [ReceiveMessage](BaseChannelServerConnection/ReceiveMessage.md)(…) |  |
+| [ReceiveMessageAsync](BaseChannelServerConnection/ReceiveMessageAsync.md)(…) |  |
 | [Start](BaseChannelServerConnection/Start.md)(…) |  |
 
 ## See Also

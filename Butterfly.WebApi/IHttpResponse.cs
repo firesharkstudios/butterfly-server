@@ -21,6 +21,8 @@ namespace Butterfly.WebApi {
 
         int StatusCode { get; set; }
 
+        string StatusText { get; set; }
+
         Task WriteAsJsonAsync(object value);
     }
 }

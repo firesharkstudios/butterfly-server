@@ -87,10 +87,11 @@ namespace Butterfly.Channel.EmbedIO {
             if (this.channelByWebSocketContext.TryGetValue(context, out EmbedIOChannel embedIOChannel)) {
                 var text = System.Text.Encoding.UTF8.GetString(rxBuffer);
                 try {
-                    embedIOChannel.ReceiveMessage(text);
+                    embedIOChannel.ReceiveMessageAsync(text).Wait();
                 }
                 catch (Exception e) {
                     logger.Trace(e);
+                    embedIOChannel.Dispose();
                     context.WebSocket.CloseAsync().Wait();
                 }
             }
