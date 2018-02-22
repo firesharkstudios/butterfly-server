@@ -321,7 +321,7 @@ namespace Butterfly.Database {
             string typeText = match.Groups["type"].Value;
 
             Type type;
-            if (typeText.Equals("VARCHAR", StringComparison.OrdinalIgnoreCase) || typeText.Equals("CHAR", StringComparison.OrdinalIgnoreCase)) {
+            if (typeText.EndsWith("CHAR", StringComparison.OrdinalIgnoreCase) || typeText.EndsWith("TEXT", StringComparison.OrdinalIgnoreCase)) {
                 type = typeof(string);
             }
             else if (typeText.Equals("TINYINT", StringComparison.OrdinalIgnoreCase)) {

@@ -138,40 +138,5 @@ namespace Butterfly.Database.SQLite {
             }
         }
 
-        public static (Type, int) ConvertPostgresType(string text) {
-            Match match = PARSE_TYPE.Match(text);
-            if (!match.Success) throw new Exception($"Could not parse SQL type '{text}'");
-
-            string typeText = match.Groups["type"].Value;
-
-            Type type;
-            if (typeText.StartsWith("CHARACTER", StringComparison.OrdinalIgnoreCase)) {
-                type = typeof(string);
-            }
-            else if (typeText.Equals("INTEGER", StringComparison.OrdinalIgnoreCase)) {
-                type = typeof(long);
-            }
-            else if (typeText.Equals("BIGINT", StringComparison.OrdinalIgnoreCase)) {
-                type = typeof(long);
-            }
-            else if (typeText.Equals("REAL", StringComparison.OrdinalIgnoreCase)) {
-                type = typeof(float);
-            }
-            else if (typeText.Equals("DOUBLE PRECISION", StringComparison.OrdinalIgnoreCase)) {
-                type = typeof(double);
-            }
-            else if (typeText.StartsWith("TIMESTAMP", StringComparison.OrdinalIgnoreCase)) {
-                type = typeof(DateTime);
-            }
-            else {
-                throw new Exception($"Unknown field type '{text}'");
-            }
-
-            string maxLengthText = match.Groups["maxLengthWithParens"].Value.Replace("(", "").Replace(")", "");
-            if (!int.TryParse(maxLengthText, out int maxLength)) maxLength = -1;
-
-            return (type, maxLength);
-        }
-
     }
 }
