@@ -85,10 +85,14 @@ namespace Butterfly.Channel {
         /// </summary>
         /// <param name="channelKey">The value to be sent to the client (will be converted to JSON)</param>
         /// <param name="value">The value to be sent to the client (will be converted to JSON)</param>
-        public void Queue(object value, string channelKey = "default") {
+        public void QueueChannelMessage(object value, string channelKey) {
             string json = JsonUtil.Serialize(value);
             var text = $"{channelKey}:{json}";
-            this.buffer.Enqueue(text);
+            this.QueueMessage(text);
+        }
+
+        public void QueueMessage(string message) {
+            this.buffer.Enqueue(message);
             this.monitor.PulseAll();
         }
 

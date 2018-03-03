@@ -23,6 +23,8 @@ namespace Butterfly.WebApi {
 
         string StatusText { get; set; }
 
+        void SendRedirect(string url);
+
         Task WriteAsJsonAsync(object value);
     }
 }

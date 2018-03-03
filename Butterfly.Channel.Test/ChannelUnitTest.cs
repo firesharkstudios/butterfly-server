@@ -80,14 +80,14 @@ namespace Butterfly.Channel.Test {
             Assert.IsNotNull(channelB);
 
             // Test if sending a message on the server is received on the client
-            channelServer.GetConnection(testAuthId, true).Queue("HelloA", channelKey: "A");
+            channelServer.GetConnection(testAuthId, true).QueueChannelMessage("HelloA", channelKey: "A");
             await Task.Delay(200);
             Assert.AreEqual(1, messageCollectorA.Count);
             Assert.AreEqual(0, messageCollectorB.Count);
             Assert.AreEqual("HelloA", messageCollectorA[0]);
 
             // Test if sending a message on the server is received on the client
-            channelServer.GetConnection(testAuthId, true).Queue("HelloB", channelKey: "B");
+            channelServer.GetConnection(testAuthId, true).QueueChannelMessage("HelloB", channelKey: "B");
             await Task.Delay(200);
             Assert.AreEqual(1, messageCollectorA.Count);
             Assert.AreEqual(1, messageCollectorB.Count);

@@ -4,6 +4,8 @@ module.exports = {
 
         let heartbeatEveryMillis = options.heartbeatEveryMillis || 3000;
         let url = options.url;
+        let onStatusChange = options.onStatusChange;
+        let onAuthenticated = options.onAuthenticated;
         let onSubscriptionsUpdated = options.onSubscriptionsUpdated;
 
         if (url.indexOf('://') == -1) {
@@ -18,7 +20,7 @@ module.exports = {
         private.setStatus = function (value) {
             if (public.status != value) {
                 public.status = value;
-                if (private.onStatusChange) private.onStatusChange(value);
+                if (onStatusChange) onStatusChange(value);
             }
         }
 
@@ -30,7 +32,9 @@ module.exports = {
                     private.webSocket = new WebSocket(url);
                     private.webSocket.onmessage = function (event) {
                         if (event.data == '$AUTHENTICATED') {
-                            private.setStatus('Connected');
+                            if (onAuthenticated) {
+                                onAuthenticated();
+                            }
                         }
                         else {
                             let pos = event.data.indexOf(':');
@@ -46,8 +50,8 @@ module.exports = {
                         }
                     };
                     private.webSocket.onopen = function () {
-                      private.sendAuthorization();
-                      private.sendSubscribe(private.subscriptions);
+                        private.sendAuthorization();
+                        private.sendSubscribe(private.subscriptions);
                     };
                     private.webSocket.onerror = function (error) {
                         private.webSocket = null;
@@ -80,9 +84,9 @@ module.exports = {
         }
 
         private.sendAuthorization = function () {
-          if (private.webSocket && private.webSocket.readyState == 1) {
-            private.webSocket.send('Authorization:' + (private.auth || ''));
-          }
+            if (private.webSocket && private.webSocket.readyState == 1) {
+                private.webSocket.send('Authorization:' + (private.auth || ''));
+            }
         }
 
         private.sendSubscribe = function (subscriptions) {
@@ -115,27 +119,24 @@ module.exports = {
 
         let public = {
             status: 'Connecting...',
-            onStatusChange: function (callback) {
-                private.onStatusChange = callback;
-            },
             start: function () {
                 private.testConnection();
             },
             authorize: function (newValue) {
-              private.auth = newValue;
-              private.sendAuthorization();
-              private.sendSubscribe(private.subscriptions);
+                private.auth = newValue;
+                private.sendAuthorization();
+                private.sendSubscribe(private.subscriptions);
             },
             subscribe: function (handler, channelKey, vars) {
-              if (!channelKey) channelKey = 'default';
-              private.removeSubscription(channelKey);
-              let subscription = {
-                  channelKey: channelKey,
-                  vars: vars
-              };
-              private.addSubscription(handler, channelKey, subscription);
-              private.sendSubscribe(subscription);
-              if (onSubscriptionsUpdated) onSubscriptionsUpdated();
+                if (!channelKey) channelKey = 'default';
+                private.removeSubscription(channelKey);
+                let subscription = {
+                    channelKey: channelKey,
+                    vars: vars
+                };
+                private.addSubscription(handler, channelKey, subscription);
+                private.sendSubscribe(subscription);
+                if (onSubscriptionsUpdated) onSubscriptionsUpdated();
             },
             unsubscribe: function (channelKey) {
                 if (!channelKey) channelKey = 'default';
@@ -152,7 +153,6 @@ module.exports = {
         return public;
     },
     ArrayDataEventHandler: function (config) {
-
         let private = this;
 
         let keyFieldNamesByName = {};
@@ -178,6 +178,12 @@ module.exports = {
                     let error = message.substring(1);
                     if (config.onChannelError) {
                         config.onChannelError(error);
+                    }
+                }
+                else if (message.startsWith('$')) {
+                    let channelMessage = message.substring(1);
+                    if (config.onChannelMessage) {
+                        config.onChannelMessage(channelMessage);
                     }
                 }
             }

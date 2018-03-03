@@ -3,6 +3,8 @@
 
     let heartbeatEveryMillis = options.heartbeatEveryMillis || 3000;
     let url = options.url;
+    let onStatusChange = options.onStatusChange;
+    let onAuthenticated = options.onAuthenticated;
     let onSubscriptionsUpdated = options.onSubscriptionsUpdated;
 
     if (url.indexOf('://') == -1) {
@@ -17,7 +19,7 @@
     private.setStatus = function (value) {
         if (public.status != value) {
             public.status = value;
-            if (private.onStatusChange) private.onStatusChange(value);
+            if (onStatusChange) onStatusChange(value);
         }
     }
 
@@ -29,7 +31,9 @@
                 private.webSocket = new WebSocket(url);
                 private.webSocket.onmessage = function (event) {
                     if (event.data == '$AUTHENTICATED') {
-                        private.setStatus('Connected');
+                        if (onAuthenticated) {
+                            onAuthenticated();
+                        }
                     }
                     else {
                         let pos = event.data.indexOf(':');
@@ -114,9 +118,6 @@
 
     let public = {
         status: 'Connecting...',
-        onStatusChange: function (callback) {
-            private.onStatusChange = callback;
-        },
         start: function () {
             private.testConnection();
         },
@@ -149,10 +150,8 @@
     };
 
     return public;
-}
-
-function ArrayDataEventHandler(config) {
-
+},
+ArrayDataEventHandler: function (config) {
     let private = this;
 
     let keyFieldNamesByName = {};
@@ -178,6 +177,99 @@ function ArrayDataEventHandler(config) {
                 let error = message.substring(1);
                 if (config.onChannelError) {
                     config.onChannelError(error);
+                }
+            }
+            else if (message.startsWith('$')) {
+                let channelMessage = message.substring(1);
+                if (config.onChannelMessage) {
+                    config.onChannelMessage(channelMessage);
+                }
+            }
+        }
+        else {
+            let dataEventTransaction = message;
+            for (let i = 0; i < dataEventTransaction.dataEvents.length; i++) {
+                let dataEvent = dataEventTransaction.dataEvents[i];
+                console.log('ArrayDataEventHandler.handle():dataEvent.type=' + dataEvent.dataEventType + ',name=', dataEvent.name + ',keyValue=' + dataEvent.keyValue);
+                if (dataEvent.dataEventType == 'InitialEnd') {
+                    if (config.onInitialEnd) config.onInitialEnd();
+                }
+                else {
+                    let array = config.arrayMapping[dataEvent.name];
+                    if (!array) {
+                        console.error('No mapping for data event \'' + dataEvent.name + '\'');
+                    }
+                    else if (dataEvent.dataEventType == 'InitialBegin') {
+                        array.splice(0, array.length);
+                        keyFieldNamesByName[dataEvent.name] = dataEvent.keyFieldNames;
+                    }
+                    else if (dataEvent.dataEventType == 'Insert' || dataEvent.dataEventType == 'Initial') {
+                        let keyValue = private.getKeyValue(dataEvent.name, dataEvent.record);
+                        let index = private.findIndex(array, keyValue);
+                        if (index >= 0) {
+                            console.error('Duplicate key \'' + keyValue + '\' in table \'' + dataEvent.name + '\'');
+                        }
+                        else {
+                            dataEvent.record['_keyValue'] = keyValue;
+                            array.push(dataEvent.record);
+                        }
+                    }
+                    else if (dataEvent.dataEventType == 'Update') {
+                        let keyValue = private.getKeyValue(dataEvent.name, dataEvent.record);
+                        let index = private.findIndex(array, keyValue);
+                        if (index == -1) {
+                            console.error('Could not find key \'' + keyValue + '\' in table \'' + dataEvent.name + '\'');
+                        }
+                        else {
+                            dataEvent.record['_keyValue'] = keyValue;
+                            array.splice(index, 1, dataEvent.record);
+                        }
+                    }
+                    else if (dataEvent.dataEventType == 'Delete') {
+                        let keyValue = private.getKeyValue(dataEvent.name, dataEvent.record);
+                        let index = private.findIndex(array, keyValue);
+                        array.splice(index, 1);
+                    }
+                }
+            }
+        }
+    }
+
+    return public;
+}
+
+function ArrayDataEventHandler(config) {
+    let private = this;
+
+    let keyFieldNamesByName = {};
+
+    private.findIndex = function (array, keyValue) {
+        return array.findIndex(x => x._keyValue == keyValue);
+    }
+
+    private.getKeyValue = function (name, record) {
+        let result = '';
+        let keyFieldNames = keyFieldNamesByName[name];
+        for (let i = 0; i < keyFieldNames.length; i++) {
+            let value = record[keyFieldNames[i]];
+            if (!result && result.length > 0) result += ';';
+            result += '' + value;
+        }
+        return result;
+    }
+
+    return function (message) {
+        if (typeof message == "string") {
+            if (message.startsWith('!')) {
+                let error = message.substring(1);
+                if (config.onChannelError) {
+                    config.onChannelError(error);
+                }
+            }
+            else if (message.startsWith('$')) {
+                let channelMessage = message.substring(1);
+                if (config.onChannelMessage) {
+                    config.onChannelMessage(channelMessage);
                 }
             }
         }

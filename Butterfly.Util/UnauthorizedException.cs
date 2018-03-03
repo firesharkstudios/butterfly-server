@@ -6,4 +6,8 @@ namespace Butterfly.Util {
         }
     }
 
+    public class PermissionDeniedException : Exception {
+        public PermissionDeniedException() : base("Permission denied") {
+        }
+    }
 }

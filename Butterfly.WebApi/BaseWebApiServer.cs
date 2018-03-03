@@ -51,7 +51,7 @@ namespace Butterfly.WebApi {
             });
         }
 
-        public static async Task<string[]> FileUploadHandlerAsync(IHttpRequest req, IHttpResponse res, string tempPath, string finalPath, int chunkDelayInMillis = 0) {
+        public static async Task<string[]> FileUploadHandlerAsync(IHttpRequest req, IHttpResponse res, string tempPath, string finalPath, Func<string, string> getFileName, int chunkDelayInMillis = 0) {
             var fileStreamByName = new Dictionary<string, FileStream>();
             var uploadFileNameByName = new Dictionary<string, string>();
 
@@ -60,9 +60,10 @@ namespace Butterfly.WebApi {
                 req.ParseAsMultipartStream(
                     onData: (name, fileName, type, disposition, buffer, bytes) => {
                         if (!fileStreamByName.TryGetValue(name, out FileStream fileStream)) {
-                            string uploadFileName = Path.Combine(tempPath, $"{Guid.NewGuid().ToString()}.{fileName}");
-                            fileStream = new FileStream(uploadFileName, FileMode.CreateNew);
-                            uploadFileNameByName[name] = uploadFileName;
+                            string uploadFileName = getFileName(fileName);
+                            string uploadFile = Path.Combine(tempPath, uploadFileName);
+                            fileStream = new FileStream(uploadFile, FileMode.CreateNew);
+                            uploadFileNameByName[name] = uploadFile;
                             fileStreamByName[name] = fileStream;
                         }
                         fileStream.Write(buffer, 0, bytes);

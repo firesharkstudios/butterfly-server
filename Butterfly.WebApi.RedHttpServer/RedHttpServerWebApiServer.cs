@@ -105,6 +105,10 @@ namespace Butterfly.WebApi.RedHttpServer {
             set => throw new NotImplementedException();
         }
 
+        public void SendRedirect(string url) {
+            throw new NotImplementedException();
+        }
+
         public Task WriteAsJsonAsync(object value) {
             this.response.SendJson(value);
             return Task.FromResult(0);
