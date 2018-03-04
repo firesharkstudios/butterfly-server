@@ -10,7 +10,9 @@ public class EmbedIOWebResponse : IHttpResponse
 | --- | --- |
 | [EmbedIOWebResponse](EmbedIOWebResponse/EmbedIOWebResponse.md)(…) |  |
 | [StatusCode](EmbedIOWebResponse/StatusCode.md) { get; set; } |  |
+| [StatusText](EmbedIOWebResponse/StatusText.md) { get; set; } |  |
 | readonly [context](EmbedIOWebResponse/context.md) |  |
+| [SendRedirect](EmbedIOWebResponse/SendRedirect.md)(…) |  |
 | [WriteAsJsonAsync](EmbedIOWebResponse/WriteAsJsonAsync.md)(…) |  |
 
 ## See Also

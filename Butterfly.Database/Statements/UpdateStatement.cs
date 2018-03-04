@@ -61,24 +61,25 @@ namespace Butterfly.Database {
             this.TableRefs = StatementTableRef.ParseTableRefs(database, this.fromClause);
         }
 
-        public (StatementEqualsRef[], StatementEqualsRef[]) GetSetAndWhereRefs(IDatabase database, Dict statementParams) {
+        public (TableIndex, StatementEqualsRef[], StatementEqualsRef[]) GetWhereIndexSetRefsAndWhereRefs(IDatabase database, Dict statementParams) {
             if (string.IsNullOrEmpty(this.setClause) && string.IsNullOrEmpty(this.whereClause)) {
                 if (this.TableRefs.Length > 1) throw new Exception("Cannot auto fill set clause and where clause with more than one table in update statement");
 
-                List<StatementEqualsRef> setRefs = statementParams.Select(x => new StatementEqualsRef(this.TableRefs[0].table.Name, x.Key, x.Key)).ToList();
-                List<StatementEqualsRef> whereRefs = new List<StatementEqualsRef>();
-                foreach (var fieldName in this.TableRefs[0].table.Indexes[0].FieldNames) {
-                    var setRef = setRefs.Find(x => x.fieldName == fieldName);
-                    if (setRef == null) throw new Exception($"Could not find primary key field '{fieldName}' building WHERE clause of UPDATE statement");
-                    whereRefs.Add(setRef);
-                    setRefs.Remove(setRef);
-                }
-                return (setRefs.ToArray(), whereRefs.ToArray());
+                var statementEqualsRefs = statementParams.Select(x => new StatementEqualsRef(this.TableRefs[0].table.Name, x.Key, x.Key));
+                var uniqueIndex = this.TableRefs[0].table.FindUniqueIndex(statementEqualsRefs.ToArray());
+                if (uniqueIndex==null) throw new Exception($"Could not find unique index building WHERE clause of UPDATE statement");
+
+                var whereRefs = statementEqualsRefs.Where(x => uniqueIndex.FieldNames.Contains(x.fieldName)).ToArray();
+                var setRefs = statementEqualsRefs.Where(x => !uniqueIndex.FieldNames.Contains(x.fieldName)).ToArray();
+
+                return (uniqueIndex, setRefs, whereRefs);
             }
             else {
                 var setRefs = BaseStatement.DetermineEqualsRefs(database, this.setClause);
                 var whereRefs = BaseStatement.DetermineEqualsRefs(database, this.whereClause);
-                return (setRefs, whereRefs);
+                var uniqueIndex = this.TableRefs[0].table.FindUniqueIndex(whereRefs);
+
+                return (uniqueIndex, setRefs, whereRefs);
             }
         }
 

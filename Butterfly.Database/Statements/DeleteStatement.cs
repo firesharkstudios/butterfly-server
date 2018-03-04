@@ -53,24 +53,21 @@ namespace Butterfly.Database {
             this.TableRefs = StatementTableRef.ParseTableRefs(database, this.fromClause);
         }
 
-        public StatementEqualsRef[] GetWhereRefs(IDatabase database, Dict statementParams) {
+        public (TableIndex, StatementEqualsRef[]) GetWhereIndexAndWhereRefs(IDatabase database, Dict statementParams) {
+            StatementEqualsRef[] equalsRefs;
             if (string.IsNullOrEmpty(this.whereClause)) {
                 if (this.TableRefs.Length > 1) throw new Exception("Cannot auto fill where clause with more than one table in DELETE statement");
-
-                List<StatementEqualsRef> equalsRefs = statementParams.Select(x => new StatementEqualsRef(this.TableRefs[0].table.Name, x.Key, x.Key)).ToList();
-                List<StatementEqualsRef> whereRefs = new List<StatementEqualsRef>();
-                foreach (var fieldName in this.TableRefs[0].table.Indexes[0].FieldNames) {
-                    var equalRef = equalsRefs.Find(x => x.fieldName == fieldName);
-                    if (equalRef == null) throw new Exception($"Could not find primary key field '{fieldName}' building WHERE clause of DELETE statement");
-                    whereRefs.Add(equalRef);
-                    equalsRefs.Remove(equalRef);
-                }
-                if (equalsRefs.Count > 0) throw new Exception($"Unused fields auto filling WHERE clause of DELETE statement ({string.Join(",", equalsRefs.Select(x => x.fieldName))})");
-                return whereRefs.ToArray();
+                equalsRefs = statementParams.Select(x => new StatementEqualsRef(this.TableRefs[0].table.Name, x.Key, x.Key)).ToArray();
             }
             else {
-                return BaseStatement.DetermineEqualsRefs(database, this.whereClause);
+                equalsRefs = BaseStatement.DetermineEqualsRefs(database, this.whereClause);
             }
+
+            var uniqueIndex = this.TableRefs[0].table.FindUniqueIndex(equalsRefs);
+            if (uniqueIndex == null) throw new Exception($"Could not find unique index building WHERE clause of DELETE statement");
+
+            if (equalsRefs.Length > uniqueIndex.FieldNames.Length) throw new Exception($"Unused fields auto filling WHERE clause of DELETE statement ({string.Join(",", equalsRefs.Select(x => x.fieldName))})");
+            return (uniqueIndex, equalsRefs);
         }
 
         public (string, Dict) GetExecutableSqlAndParams(Dict sourceParams, StatementEqualsRef[] whereRefs) {

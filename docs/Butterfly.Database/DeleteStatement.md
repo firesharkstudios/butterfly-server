@@ -12,7 +12,7 @@ public class DeleteStatement : BaseStatement
 | readonly [fromClause](DeleteStatement/fromClause.md) |  |
 | readonly [whereClause](DeleteStatement/whereClause.md) |  |
 | [GetExecutableSqlAndParams](DeleteStatement/GetExecutableSqlAndParams.md)(…) |  |
-| [GetWhereRefs](DeleteStatement/GetWhereRefs.md)(…) |  |
+| [GetWhereIndexAndWhereRefs](DeleteStatement/GetWhereIndexAndWhereRefs.md)(…) |  |
 
 ## See Also
 

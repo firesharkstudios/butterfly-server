@@ -13,7 +13,7 @@ public class UpdateStatement : BaseStatement
 | readonly [setClause](UpdateStatement/setClause.md) |  |
 | readonly [whereClause](UpdateStatement/whereClause.md) |  |
 | [GetExecutableSqlAndParams](UpdateStatement/GetExecutableSqlAndParams.md)(…) |  |
-| [GetSetAndWhereRefs](UpdateStatement/GetSetAndWhereRefs.md)(…) |  |
+| [GetWhereIndexSetRefsAndWhereRefs](UpdateStatement/GetWhereIndexSetRefsAndWhereRefs.md)(…) |  |
 
 ## See Also
 

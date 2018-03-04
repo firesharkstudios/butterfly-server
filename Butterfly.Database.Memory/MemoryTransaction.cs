@@ -114,7 +114,7 @@ namespace Butterfly.Database.Memory {
             UpdateStatement executableStatement = new UpdateStatement(this.database, executableSql);
             if (!(executableStatement.TableRefs[0].table is MemoryTable memoryTable)) throw new Exception("Table is not a MemoryTable");
 
-            (var setRefs, var whereRefs) = executableStatement.GetSetAndWhereRefs(this.database, executableParams);
+            (var whereIndex, var setRefs, var whereRefs) = executableStatement.GetWhereIndexSetRefsAndWhereRefs(this.database, executableParams);
             var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(executableParams, setRefs);
 
             string evaluatedWhereClause = MemoryDatabase.EvaluateWhereClause(executableStatement.whereClause, executableParams, executableStatement.TableRefs);

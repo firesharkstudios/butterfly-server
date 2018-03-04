@@ -1,11 +1,13 @@
-# UpdateStatement.GetSetAndWhereRefs method
+# UpdateStatement.GetWhereIndexSetRefsAndWhereRefs method
 
 ```csharp
-public ValueTuple<StatementEqualsRef[], StatementEqualsRef[]> GetSetAndWhereRefs(IDatabase database, Dictionary<string, object> statementParams)
+public ValueTuple<TableIndex, StatementEqualsRef[], StatementEqualsRef[]> GetWhereIndexSetRefsAndWhereRefs
+    (IDatabase database, Dictionary<string, object> statementParams)
 ```
 
 ## See Also
 
+* class [TableIndex](../TableIndex.md)
 * class [StatementEqualsRef](../StatementEqualsRef.md)
 * interface [IDatabase](../IDatabase.md)
 * class [UpdateStatement](../UpdateStatement.md)

@@ -1,11 +1,12 @@
-# DeleteStatement.GetWhereRefs method
+# DeleteStatement.GetWhereIndexAndWhereRefs method
 
 ```csharp
-public StatementEqualsRef[] GetWhereRefs(IDatabase database, Dictionary<string, object> statementParams)
+public ValueTuple<TableIndex, StatementEqualsRef[]> GetWhereIndexAndWhereRefs(IDatabase database, Dictionary<string, object> statementParams)
 ```
 
 ## See Also
 
+* class [TableIndex](../TableIndex.md)
 * class [StatementEqualsRef](../StatementEqualsRef.md)
 * interface [IDatabase](../IDatabase.md)
 * class [DeleteStatement](../DeleteStatement.md)

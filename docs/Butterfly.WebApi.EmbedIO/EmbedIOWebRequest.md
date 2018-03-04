@@ -14,6 +14,7 @@ public class EmbedIOWebRequest : BaseHttpRequest
 | override [QueryParams](EmbedIOWebRequest/QueryParams.md) { get; } |  |
 | override [RequestUri](EmbedIOWebRequest/RequestUri.md) { get; } |  |
 | readonly [context](EmbedIOWebRequest/context.md) |  |
+| readonly [pathPattern](EmbedIOWebRequest/pathPattern.md) |  |
 
 ## See Also
 

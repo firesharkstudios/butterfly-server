@@ -62,5 +62,13 @@ namespace Butterfly.Database {
 
         public Dictionary<string, Func<string, object>> GetDefaultValueByFieldName => this.getDefaultValueByFieldName;
 
+        internal TableIndex FindUniqueIndex(StatementEqualsRef[] setRefs) {
+            var uniqueIndexes = this.Indexes.Where(x => x.IndexType != TableIndexType.Other && x.FieldNames.Length > 0);
+            foreach (var uniqueIndex in uniqueIndexes) {
+                bool hasAllFieldNames = uniqueIndex.FieldNames.All(x => Array.Find(setRefs, y => y.fieldName == x) != null);
+                if (hasAllFieldNames) return uniqueIndex;
+            }
+            return null;
+        }
     }
 }

@@ -1,7 +1,7 @@
-# EmbedIOWebRequest constructor
+# EmbedIOWebRequest.pathPattern field
 
 ```csharp
-public EmbedIOWebRequest(string pathPattern, HttpListenerContext context)
+public readonly string pathPattern;
 ```
 
 ## See Also

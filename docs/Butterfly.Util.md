@@ -18,6 +18,8 @@
 | static class [JsonUtil](Butterfly.Util/JsonUtil.md) |  |
 | class [ListItemDisposable&lt;T&gt;](Butterfly.Util/ListItemDisposable-1.md) |  |
 | static class [NameValueCollectionX](Butterfly.Util/NameValueCollectionX.md) |  |
+| class [PermissionDeniedException](Butterfly.Util/PermissionDeniedException.md) |  |
+| static class [SafeUtil](Butterfly.Util/SafeUtil.md) |  |
 | static class [StringX](Butterfly.Util/StringX.md) |  |
 | class [UnauthorizedException](Butterfly.Util/UnauthorizedException.md) |  |
 | static class [UriX](Butterfly.Util/UriX.md) |  |

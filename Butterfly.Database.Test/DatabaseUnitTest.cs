@@ -356,12 +356,27 @@ namespace Butterfly.Database.Test {
                 Assert.AreEqual(1, dataEventTransactionCollector[0].dataEvents.Length);
                 Assert.AreEqual(DataEventType.Delete, dataEventTransactionCollector[0].dataEvents[0].dataEventType);
 
-                // Test deleting rows on an indexed field
+                // Test deleting rows on a primary key field
                 dataEventTransactionCollector.Clear();
                 int count4 = await database.DeleteAndCommitAsync("department", new {
                     id = hrDepartmentId
                 });
                 Assert.AreEqual(0, count4);
+
+                // Test updating rows on a unique index field
+                dataEventTransactionCollector.Clear();
+                int count5 = await database.UpdateAndCommitAsync("employee", new {
+                    name = "Bob in HR",
+                    department_id = -1,
+                });
+                Assert.AreEqual(1, count5);
+
+                // Test deleting rows on a unique index field
+                dataEventTransactionCollector.Clear();
+                int count6 = await database.DeleteAndCommitAsync("employee", new {
+                    name = "Bob in HR"
+                });
+                Assert.AreEqual(1, count6);
             }
         }
 

@@ -106,12 +106,20 @@ namespace Butterfly.Database {
             Dict statementParamsDict = updateStatement.ConvertParamsToDict(vars);
 
             // Determine keyValue
-            (var setRefs, var whereRefs) = updateStatement.GetSetAndWhereRefs(this.database, statementParamsDict);
-            var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, whereRefs);
-            object keyValue = BaseDatabase.GetKeyValue(updateStatement.TableRefs[0].table.Indexes[0].FieldNames, fieldValues);
+            (var whereIndex, var setRefs, var whereRefs) = updateStatement.GetWhereIndexSetRefsAndWhereRefs(this.database, statementParamsDict);
 
             // Get the executable sql and params
             (string executableSql, Dict executableParams) = updateStatement.GetExecutableSqlAndParams(statementParamsDict, setRefs, whereRefs);
+
+            Dict fieldValues;
+            if (whereIndex.IndexType == TableIndexType.Primary) {
+                fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, whereRefs);
+            }
+            else {
+                var selectValues = whereRefs.ToDictionary(x => x.fieldName, x => executableParams[x.fieldName]);
+                fieldValues = await this.database.SelectRowAsync(updateStatement.TableRefs[0].table.Name, selectValues);
+            }
+            object keyValue = BaseDatabase.GetKeyValue(updateStatement.TableRefs[0].table.Indexes[0].FieldNames, fieldValues);
 
             // Execute update
             int count = await this.DoUpdateAsync(executableSql, executableParams);
@@ -135,12 +143,20 @@ namespace Butterfly.Database {
             Dict statementParamsDict = deleteStatement.ConvertParamsToDict(vars);
 
             // Determine keyValue
-            var whereRefs = deleteStatement.GetWhereRefs(this.database, statementParamsDict);
-            var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, whereRefs);
-            object keyValue = BaseDatabase.GetKeyValue(deleteStatement.TableRefs[0].table.Indexes[0].FieldNames, fieldValues);
+            (var whereIndex, var whereRefs) = deleteStatement.GetWhereIndexAndWhereRefs(this.database, statementParamsDict);
 
             // Get the executable sql and params
             (string executableSql, Dict executableParams) = deleteStatement.GetExecutableSqlAndParams(statementParamsDict, whereRefs);
+
+            Dict fieldValues;
+            if (whereIndex.IndexType == TableIndexType.Primary) {
+                fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, whereRefs);
+            }
+            else {
+                var selectValues = whereRefs.ToDictionary(x => x.fieldName, x => executableParams[x.fieldName]);
+                fieldValues = await this.database.SelectRowAsync(deleteStatement.TableRefs[0].table.Name, selectValues);
+            }
+            object keyValue = BaseDatabase.GetKeyValue(deleteStatement.TableRefs[0].table.Indexes[0].FieldNames, fieldValues);
 
             // Execute delete
             int count = await this.DoDeleteAsync(executableSql, executableParams);

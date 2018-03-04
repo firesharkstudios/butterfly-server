@@ -15,6 +15,7 @@ public class Channel : IDisposable
 | [Attach](Channel/Attach.md)(…) |  |
 | [Dispose](Channel/Dispose.md)() |  |
 | [Queue](Channel/Queue.md)(…) |  |
+| [QueueAuthorizationRole](Channel/QueueAuthorizationRole.md)(…) |  |
 
 ## See Also
 

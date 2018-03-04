@@ -2,7 +2,7 @@
 
 ```csharp
 public static Task<string[]> FileUploadHandlerAsync(IHttpRequest req, IHttpResponse res, string tempPath, 
-    string finalPath, int chunkDelayInMillis = 0)
+    string finalPath, Func<string, string> getFileName, int chunkDelayInMillis = 0)
 ```
 
 ## See Also
