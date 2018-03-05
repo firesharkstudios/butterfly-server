@@ -65,6 +65,10 @@ namespace Butterfly.Database.Memory {
             return Task.FromResult(rows.ToArray());
         }
 
+        protected override Task<Dict[]> DoQueryRowsAsync(string storedProcedureName, Dict vars = null) {
+            throw new NotImplementedException();
+        }
+
         protected static readonly Regex SIMPLE_REPLACE = new Regex(@"(?<tableAliasWithDot>\w+\.)?(?<fieldName>\w+)\s*(?<op>=|<>|!=|>|<)\s*(?<param>\@\w+)");
         protected static readonly Regex IN_REPLACE = new Regex(@"(?<tableAliasWithDot>\w+\.)?(?<fieldName>\w+)\s+(?<op>IN|NOT\s+IN)\s+\((?<param>[^\)]+)\)", RegexOptions.IgnoreCase);
 

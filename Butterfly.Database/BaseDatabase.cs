@@ -217,14 +217,14 @@ namespace Butterfly.Database {
         }
 
         public async Task<Dict> SelectRowAsync(string statementSql, dynamic vars = null) {
-            Dict[] rows = await this.SelectRowsAsync(statementSql, vars);
+            Dict[] rows = await this.SelectRowsAsync(statementSql, vars: vars, overrideLimit: 1);
             if (rows.Length == 0) return null;
             else if (rows.Length > 1) throw new Exception("SelectRow returned more than one row");
             return rows.First();
         }
 
-        public async Task<Dict[]> SelectRowsAsync(string statementSql, dynamic vars = null) {
-            SelectStatement statement = new SelectStatement(this, statementSql);
+        public async Task<Dict[]> SelectRowsAsync(string statementSql, dynamic vars = null, int overrideLimit = -1) {
+            SelectStatement statement = new SelectStatement(this, statementSql, overrideLimit);
             return await this.SelectRowsAsync(statement, vars);
         }
 
@@ -245,6 +245,43 @@ namespace Butterfly.Database {
         }
 
         protected abstract Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams);
+
+        public async Task<T> QueryValueAsync<T>(string storedProcedureName, dynamic vars = null, T defaultValue = default(T)) {
+            Dict row = await this.QueryRowAsync(storedProcedureName, vars);
+            if (row == null || !row.TryGetValue(row.Keys.First(), out object value) || value == null) return defaultValue;
+
+            return (T)Convert.ChangeType(value, typeof(T));
+        }
+
+        public async Task<Dict> QueryRowAsync(string storedProcedureName, dynamic vars = null) {
+            Dict[] rows = await this.QueryRowsAsync(storedProcedureName, vars);
+            if (rows.Length == 0) return null;
+            else if (rows.Length > 1) throw new Exception("QueryRow returned more than one row");
+            return rows.First();
+        }
+
+        public async Task<Dict[]> QueryRowsAsync(string storedProcedureName, dynamic vars = null) {
+            Dict executableParams;
+
+            // If statementParams is null, return empty dictionary
+            if (vars == null) {
+                executableParams = new Dict();
+            }
+
+            // If statementParams is already a dictionary, return the dictionary
+            else if (vars is Dict d) {
+                executableParams = new Dict(d);
+            }
+
+            // Otherwise, convert statementParams to a dictionary
+            else {
+                executableParams = DynamicX.ToDictionary(vars);
+            }
+
+            return await this.DoQueryRowsAsync(storedProcedureName, executableParams);
+        }
+
+        protected abstract Task<Dict[]> DoQueryRowsAsync(string storedProcedureName, Dict executableParams);
 
         public async Task<T> InsertAndCommitAsync<T>(string insertStatement, dynamic vars, bool ignoreIfDuplicate = false) {
             T result;

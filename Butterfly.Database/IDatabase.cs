@@ -164,8 +164,15 @@ namespace Butterfly.Database {
         /// </summary>
         /// <param name="selectStatement"></param>
         /// <param name="vars"></param>
+        /// <param name="overrideLimit"></param>
         /// <returns></returns>
-        Task<Dict[]> SelectRowsAsync(string selectStatement, dynamic vars = null);
+        Task<Dict[]> SelectRowsAsync(string selectStatement, dynamic vars = null, int overrideLimit = -1);
+
+        Task<T> QueryValueAsync<T>(string storedProcedureName, dynamic vars = null, T defaultValue = default(T));
+
+        Task<Dict> QueryRowAsync(string storedProcedureName, dynamic vars = null);
+
+        Task<Dict[]> QueryRowsAsync(string storedProcedureName, dynamic vars = null);
 
         /// <summary>
         /// Executes an INSERT statement as a single transaction

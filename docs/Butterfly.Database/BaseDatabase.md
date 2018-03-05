@@ -23,6 +23,9 @@ public abstract class BaseDatabase : IDatabase
 | [InsertAndCommitAsync&lt;T&gt;](BaseDatabase/InsertAndCommitAsync.md)(…) |  |
 | [OnNewCommittedTransaction](BaseDatabase/OnNewCommittedTransaction.md)(…) |  (2 methods) |
 | [OnNewUncommittedTransaction](BaseDatabase/OnNewUncommittedTransaction.md)(…) |  (2 methods) |
+| [QueryRowAsync](BaseDatabase/QueryRowAsync.md)(…) |  |
+| [QueryRowsAsync](BaseDatabase/QueryRowsAsync.md)(…) |  |
+| [QueryValueAsync&lt;T&gt;](BaseDatabase/QueryValueAsync.md)(…) |  |
 | [SelectRowAsync](BaseDatabase/SelectRowAsync.md)(…) |  |
 | [SelectRowsAsync](BaseDatabase/SelectRowsAsync.md)(…) |  |
 | [SelectValueAsync&lt;T&gt;](BaseDatabase/SelectValueAsync.md)(…) |  |

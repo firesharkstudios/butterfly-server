@@ -17,6 +17,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Butterfly.Util {
     public static class DictionaryX {
@@ -68,5 +69,49 @@ namespace Butterfly.Util {
                 return true;
             }
         }
+
+        /*
+         * Examples...
+         *      {user: {name: 'Mark', email: 'mark@xyz.com'}, valid: true}.Format("Hello, {user.name}") returns "Hello, Mark"
+         */
+        public static string Format(this Dictionary<string, object> dictionary, string format, string paramOpenDelim = "{", string paramCloseDelim = "}") {
+            if (format == null) {
+                return null;
+            }
+            else {
+                StringBuilder sb = new StringBuilder();
+                int lastIndex = -1;
+                while (true) {
+                    int paramOpenIndex = format.IndexOf(paramOpenDelim, lastIndex + 1);
+                    if (paramOpenIndex >= 0) {
+                        int paramCloseIndex = format.IndexOf(paramCloseDelim, paramOpenIndex + 1);
+
+                        string expression = format.Substring(paramOpenIndex + 1, paramCloseIndex - paramOpenIndex - 1);
+                        string[] expressionParts = expression.Split('.');
+                        Dictionary<string, object> currentDictionary = dictionary;
+                        object value = null;
+                        for (int i = 0; i < expressionParts.Length; i++) {
+                            if (!currentDictionary.TryGetValue(expressionParts[i], out value)) {
+                                //logger.Error("Format():Could not resolve expression '" + expression + "'");
+                                break;
+                            }
+                            else if (i < expressionParts.Length - 1) {
+                                currentDictionary = (Dictionary<string, object>)value;
+                            }
+                        }
+
+                        sb.Append(format.Substring(lastIndex + 1, paramOpenIndex - lastIndex - 1));
+                        sb.Append(value == null ? "" : value.ToString());
+                        lastIndex = paramCloseIndex + paramCloseDelim.Length - 1;
+                    }
+                    else {
+                        sb.Append(format.Substring(lastIndex + 1, format.Length - lastIndex - 1));
+                        break;
+                    }
+                }
+                return sb.ToString();
+            }
+        }
+
     }
 }

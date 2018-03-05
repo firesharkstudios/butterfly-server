@@ -9,6 +9,7 @@ public static class DictionaryX
 | name | description |
 | --- | --- |
 | static [Deconstruct&lt;T1,T2&gt;](DictionaryX/Deconstruct.md)(…) |  |
+| static [Format](DictionaryX/Format.md)(…) |  |
 | static [GetAs&lt;T,U,V&gt;](DictionaryX/GetAs.md)(…) |  |
 | static [IsSame&lt;T,U&gt;](DictionaryX/IsSame.md)(…) |  |
 | static [UpdateFrom&lt;T,U&gt;](DictionaryX/UpdateFrom.md)(…) |  |

@@ -129,6 +129,10 @@ namespace Butterfly.Database.SQLite {
             return rows.ToArray();
         }
 
+        protected override Task<Dict[]> DoQueryRowsAsync(string storedProcedureName, Dict vars = null) {
+            throw new NotImplementedException();
+        }
+
         protected static object ConvertValue(string fieldName, object value) {
             if (value == null || value == DBNull.Value) {
                 return null;

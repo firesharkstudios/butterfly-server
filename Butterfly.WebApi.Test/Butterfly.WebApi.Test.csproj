@@ -82,15 +82,15 @@
     </ProjectReference>
     <ProjectReference Include="..\Butterfly.WebApi.EmbedIO\Butterfly.WebApi.EmbedIO.csproj">
       <Project>{b28d5022-9b47-4b0d-b607-5f3326af5677}</Project>
-      <Name>Butterfly.Web.EmbedIO</Name>
+      <Name>Butterfly.WebApi.EmbedIO</Name>
     </ProjectReference>
     <ProjectReference Include="..\Butterfly.WebApi.RedHttpServer\Butterfly.WebApi.RedHttpServer.csproj">
       <Project>{55e2d538-7067-42e3-9806-a34eaf030404}</Project>
-      <Name>Butterfly.Web.RedHttpServer</Name>
+      <Name>Butterfly.WebApi.RedHttpServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Butterfly.WebApi\Butterfly.WebApi.csproj">
       <Project>{aac77468-2570-4b46-abac-e9cf215942f1}</Project>
-      <Name>Butterfly.Web</Name>
+      <Name>Butterfly.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

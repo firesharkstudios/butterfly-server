@@ -1,0 +1,120 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+
+using NLog;
+
+using Butterfly.Util;
+
+using Dict = System.Collections.Generic.Dictionary<string, object>;
+using System.Text.RegularExpressions;
+
+namespace Butterfly.Notify {
+    public class NotifyMessage {
+
+        protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
+        public readonly string from;
+        public readonly string to;
+        public readonly string subject;
+        public readonly string bodyText;
+        public readonly string bodyHtml;
+
+        public NotifyMessage(string from, string to, string subject, string bodyText, string bodyHtml) {
+            this.from = from;
+            this.to = to;
+            this.subject = subject;
+            this.bodyText = bodyText;
+            this.bodyHtml = bodyHtml;
+        }
+
+        protected const string TEXT_SECTION_NAME = "Text";
+        protected const string HTML_SECTION_NAME = "Html";
+        protected const string SECTION_DELIM = "===";
+
+        public NotifyMessage Evaluate(dynamic vars) {
+            Dict values;
+            if (vars is Dict) {
+                values = vars as Dict;
+            }
+            else {
+                values = DynamicX.ToDictionary(vars);
+            }
+
+            string from = values.Format(this.from);
+            string to = values.Format(this.to);
+            string subject = values.Format(this.subject);
+            string bodyText = values.Format(this.bodyText);
+            string bodyHtml = values.Format(this.bodyHtml);
+            return new NotifyMessage(from, to, subject, bodyText, bodyHtml);
+        }
+
+        public static NotifyMessage ParseFile(string fileName) {
+            if (!File.Exists(fileName)) throw new Exception("Could not find file '" + fileName + "'");
+            string text = File.ReadAllText(fileName);
+            return Parse(text);
+        }
+
+        public static NotifyMessage Parse(string text) {
+            string from = null;
+            string to = null;
+            string subject = null;
+            Dictionary<string, string> sectionByName = new Dictionary<string, string>();
+
+            string[] lines = Regex.Split(text, "\r\n|\r|\n");
+            for (int i=0; i<lines.Length; i++) {
+                if (string.IsNullOrWhiteSpace(lines[i])) {
+                    int lineStart = i + 1;
+                    while (true) {
+                        int lineEnd = Array.FindIndex(lines, lineStart, line => line.StartsWith(SECTION_DELIM));
+
+                        string section;
+                        if (lineEnd == -1) {
+                            section = String.Join(Environment.NewLine, new ArraySegment<string>(lines, lineStart, lines.Length - lineStart));
+                        }
+                        else {
+                            section = String.Join(Environment.NewLine, new ArraySegment<string>(lines, lineStart, lineEnd - lineStart));
+                        }
+
+                        string sectionName;
+                        if (sectionByName.Count == 0) sectionName = TEXT_SECTION_NAME;
+                        else if (sectionByName.Count == 1) sectionName = HTML_SECTION_NAME;
+                        else {
+                            sectionName = lines[lineStart - 1].Substring(SECTION_DELIM.Length).Trim();
+                        }
+
+                        sectionByName[sectionName] = section;
+
+                        if (lineEnd == -1) break;
+                        lineStart = lineEnd + 1;
+                    }
+
+                    break;
+                }
+                else {
+                    int pos = lines[i].IndexOf(':');
+                    if (pos>0) {
+                        string name = lines[i].Substring(0, pos).Trim().ToUpper();
+                        string value = lines[i].Substring(pos + 1).Trim();
+                        switch (name) {
+                            case "FROM":
+                                from = value;
+                                break;
+                            case "TO":
+                                to = value;
+                                break;
+                            case "SUBJECT":
+                                subject = value;
+                                break;
+                            default:
+                                logger.Error("Unknown field '" + name + "'");
+                                break;
+                        }
+                    }
+                }
+            }
+
+            return new NotifyMessage(from, to, subject, sectionByName.GetAs(TEXT_SECTION_NAME, (string)null), sectionByName.GetAs(HTML_SECTION_NAME, (string)null));
+        }
+    }
+}

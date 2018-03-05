@@ -22,6 +22,9 @@ public interface IDatabase
 | [InsertAndCommitAsync&lt;T&gt;](IDatabase/InsertAndCommitAsync.md)(…) |  |
 | [OnNewCommittedTransaction](IDatabase/OnNewCommittedTransaction.md)(…) |  (2 methods) |
 | [OnNewUncommittedTransaction](IDatabase/OnNewUncommittedTransaction.md)(…) |  (2 methods) |
+| [QueryRowAsync](IDatabase/QueryRowAsync.md)(…) |  |
+| [QueryRowsAsync](IDatabase/QueryRowsAsync.md)(…) |  |
+| [QueryValueAsync&lt;T&gt;](IDatabase/QueryValueAsync.md)(…) |  |
 | [SelectRowAsync](IDatabase/SelectRowAsync.md)(…) |  |
 | [SelectRowsAsync](IDatabase/SelectRowsAsync.md)(…) |  |
 | [SelectValueAsync&lt;T&gt;](IDatabase/SelectValueAsync.md)(…) |  |

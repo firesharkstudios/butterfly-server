@@ -135,7 +135,7 @@ namespace Butterfly.Database.MySql {
                     while (reader.Read()) {
                         Dict row = new Dictionary<string, object>();
                         for (int i = 0; i < statement.FieldRefs.Length; i++) {
-                            row[statement.FieldRefs[i].fieldAlias] = ConvertValue(statement.FieldRefs[i].fieldAlias, reader[i]);
+                            row[statement.FieldRefs[i].fieldAlias] = ConvertValue(reader[i]);
                         }
                         rows.Add(row);
                     }
@@ -149,7 +149,30 @@ namespace Butterfly.Database.MySql {
             return rows.ToArray();
         }
 
-        protected static object ConvertValue(string fieldName, object value) {
+        protected override async Task<Dict[]> DoQueryRowsAsync(string storedProcedureName, Dict executableParams) {
+            MySqlParameter[] mySqlParams = executableParams.Select(keyValuePair => new MySqlParameter(keyValuePair.Key, keyValuePair.Value)).ToArray();
+
+            List<Dict> rows = new List<Dict>();
+            try {
+                using (MySqlDataReader reader = await MySqlHelper.ExecuteReaderAsync(this.ConnectionString, $"CALL {storedProcedureName}", mySqlParams)) {
+                    while (reader.Read()) {
+                        Dict row = new Dictionary<string, object>();
+                        for (int i = 0; i < reader.FieldCount; i++) {
+                            row[reader.GetName(i)] = ConvertValue(reader[i]);
+                        }
+                        rows.Add(row);
+                    }
+                }
+            }
+            catch (Exception e) {
+                logger.Error(e, $"Error executing {storedProcedureName}...");
+                throw;
+            }
+
+            return rows.ToArray();
+        }
+
+        protected static object ConvertValue(object value) {
             if (value == null || value == DBNull.Value) {
                 return null;
             }
