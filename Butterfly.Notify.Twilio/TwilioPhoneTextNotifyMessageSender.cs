@@ -8,7 +8,7 @@ using Twilio.Types;
 
 namespace Butterfly.Notify.Twilio
 {
-    public class TwilioPhoneTextNotifyMessageSender : INotifyMessageSender {
+    public class TwilioPhoneTextNotifyMessageSender : BaseNotifyMessageSender {
 
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -20,9 +20,7 @@ namespace Butterfly.Notify.Twilio
             this.twilioAuthToken = twilioAuthToken;
         }
 
-        public DateTime CanSendNextAt => throw new NotImplementedException();
-
-        public async Task SendAsync(string from, string to, string subject, string bodyText, string bodyHtml) {
+        protected override async Task DoSendAsync(string from, string to, string subject, string bodyText, string bodyHtml) {
             TwilioClient.Init(this.twilioAccountSid, this.twilioAuthToken);
 
             try {

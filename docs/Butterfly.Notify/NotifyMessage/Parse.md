@@ -1,7 +1,7 @@
-# NotifyMessage.Evaluate method
+# NotifyMessage.Parse method
 
 ```csharp
-public NotifyMessage Evaluate(object vars)
+public static NotifyMessage Parse(string text)
 ```
 
 ## See Also

@@ -11,6 +11,7 @@ public class SelectStatement : BaseStatement
 | [SelectStatement](SelectStatement/SelectStatement.md)(…) |  (2 constructors) |
 | [FieldRefs](SelectStatement/FieldRefs.md) { get; } |  |
 | readonly [fromClause](SelectStatement/fromClause.md) |  |
+| readonly [limit](SelectStatement/limit.md) |  |
 | readonly [orderByClause](SelectStatement/orderByClause.md) |  |
 | readonly [selectClause](SelectStatement/selectClause.md) |  |
 | readonly [whereClause](SelectStatement/whereClause.md) |  |

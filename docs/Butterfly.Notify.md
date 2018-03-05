@@ -4,6 +4,7 @@
 
 | public type | description |
 | --- | --- |
+| abstract class [BaseNotifyMessageSender](Butterfly.Notify/BaseNotifyMessageSender.md) |  |
 | interface [INotifyMessageSender](Butterfly.Notify/INotifyMessageSender.md) |  |
 | class [NotifyMessage](Butterfly.Notify/NotifyMessage.md) |  |
 | class [NotifyMessageManager](Butterfly.Notify/NotifyMessageManager.md) |  |

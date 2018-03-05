@@ -1,8 +1,8 @@
 # NotifyMessageManager constructor
 
 ```csharp
-public NotifyMessageManager(IDatabase database, INotifyMessageSender emailMessageSender, 
-    INotifyMessageSender phoneMessageSender, string notifyMessageTableName = "notify_message")
+public NotifyMessageManager(IDatabase database, INotifyMessageSender emailNotifyMessageSender = null, 
+    INotifyMessageSender phoneTextNotifyMessageSender = null, string notifyMessageTableName = "notify_message")
 ```
 
 ## See Also

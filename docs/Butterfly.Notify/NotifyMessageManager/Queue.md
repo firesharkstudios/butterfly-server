@@ -1,7 +1,7 @@
 # NotifyMessageManager.Queue method
 
 ```csharp
-public Task Queue(string[] contacts, int priority, NotifyMessage templateNotifyMessage, Dictionary<string, object> vars)
+public Task Queue(byte priority, NotifyMessage notifyMessage)
 ```
 
 ## See Also

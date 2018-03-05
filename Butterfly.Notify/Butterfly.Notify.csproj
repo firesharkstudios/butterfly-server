@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseNotifyMessageSender.cs" />
     <Compile Include="INotifyMessageSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NotifyMessage.cs" />

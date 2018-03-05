@@ -1,7 +1,7 @@
 # AwsSesNotifyMessageSender class
 
 ```csharp
-public class AwsSesNotifyMessageSender : INotifyMessageSender
+public class AwsSesNotifyMessageSender : BaseNotifyMessageSender
 ```
 
 ## Public Members
@@ -9,8 +9,6 @@ public class AwsSesNotifyMessageSender : INotifyMessageSender
 | name | description |
 | --- | --- |
 | [AwsSesNotifyMessageSender](AwsSesNotifyMessageSender/AwsSesNotifyMessageSender.md)(…) |  |
-| [CanSendNextAt](AwsSesNotifyMessageSender/CanSendNextAt.md) { get; } |  |
-| [SendAsync](AwsSesNotifyMessageSender/SendAsync.md)(…) |  |
 
 ## See Also
 

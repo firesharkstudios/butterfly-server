@@ -1,7 +1,7 @@
 # AwsSesNotifyMessageSender constructor
 
 ```csharp
-public AwsSesNotifyMessageSender(string regionText = "USWest2")
+public AwsSesNotifyMessageSender(int sendEveryMillis = 1000, string regionText = "USEast1")
 ```
 
 ## See Also

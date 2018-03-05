@@ -1,7 +1,7 @@
 # SelectStatement constructor (1 of 2)
 
 ```csharp
-public SelectStatement(IDatabase database, string sql)
+public SelectStatement(IDatabase database, string sql, int overrideLimit = -1)
 ```
 
 ## See Also

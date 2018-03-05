@@ -47,7 +47,7 @@ namespace Butterfly.Notify.Test {
             var notifyMessageSender = new TwilioPhoneTextNotifyMessageSender("my-sid", "my-auth-token");
             var notifyMessageManager = new NotifyMessageManager(database, phoneTextNotifyMessageSender: notifyMessageSender);
             notifyMessageManager.Start();
-            var notifyMessage = new NotifyMessage("+1 316 712 7412", "+1 316 210 5368", null, "Just testing", null);
+            var notifyMessage = new NotifyMessage("+1 316 712 7412", "+1 316 555 1212", null, "Just testing", null);
             await notifyMessageManager.Queue(0, notifyMessage);
             await Task.Delay(200000);
         }

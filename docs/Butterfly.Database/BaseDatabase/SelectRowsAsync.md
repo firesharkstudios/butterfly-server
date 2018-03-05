@@ -1,7 +1,7 @@
 # BaseDatabase.SelectRowsAsync method
 
 ```csharp
-public Task<Dictionary<string, object>[]> SelectRowsAsync(string statementSql, object vars = null)
+public Task<Dictionary<string, object>[]> SelectRowsAsync(string statementSql, object vars = null, int overrideLimit = -1)
 ```
 
 ## See Also

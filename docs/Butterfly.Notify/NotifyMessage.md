@@ -9,7 +9,8 @@ public class NotifyMessage
 | name | description |
 | --- | --- |
 | [NotifyMessage](NotifyMessage/NotifyMessage.md)(…) |  |
-| static [Load](NotifyMessage/Load.md)(…) |  |
+| static [Parse](NotifyMessage/Parse.md)(…) |  |
+| static [ParseFile](NotifyMessage/ParseFile.md)(…) |  |
 | readonly [bodyHtml](NotifyMessage/bodyHtml.md) |  |
 | readonly [bodyText](NotifyMessage/bodyText.md) |  |
 | readonly [from](NotifyMessage/from.md) |  |
