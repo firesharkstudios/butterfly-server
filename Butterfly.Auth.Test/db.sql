@@ -14,6 +14,8 @@ CREATE TABLE user (
 	email VARCHAR(255) NOT NULL,
 	salt VARCHAR(40) NOT NULL,
 	password_hash VARCHAR(90) NOT NULL,	
+	reset_code VARCHAR(6) NULL,	
+	reset_code_expires_at DATETIME NULL,	
 	created_at DATETIME NOT NULL,
 	updated_at DATETIME NOT NULL,
 	PRIMARY KEY(id),

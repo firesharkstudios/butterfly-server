@@ -44,6 +44,9 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.13\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -61,6 +64,10 @@
     <ProjectReference Include="..\Butterfly.Auth\Butterfly.Auth.csproj">
       <Project>{a7be1f28-30a9-4d1d-9fee-967fec8c4aee}</Project>
       <Name>Butterfly.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Butterfly.Database.Memory\Butterfly.Database.Memory.csproj">
+      <Project>{2dbfd7b1-18d0-46c8-b185-6a73e5f79bcd}</Project>
+      <Name>Butterfly.Database.Memory</Name>
     </ProjectReference>
     <ProjectReference Include="..\Butterfly.Database.MySql\Butterfly.Database.MySql.csproj">
       <Project>{c900a510-1661-45c5-b34d-bdb712686b39}</Project>

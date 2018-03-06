@@ -246,7 +246,9 @@ namespace Butterfly.Auth {
 
         public async Task<Dict> LookupUsername(string username, string fieldNames = "*") {
             username = this.usernameFieldValidator.Validate(username);
-            return await this.database.SelectRowAsync($"SELECT {fieldNames} FROM {this.userTableName} WHERE {this.userTableUsernameFieldName}=@username", new {
+            string sql = $"SELECT {fieldNames} FROM {this.userTableName} WHERE {this.userTableUsernameFieldName}=@username";
+            logger.Debug($"LookupUsername():sql={sql}");
+            return await this.database.SelectRowAsync(sql, new {
                 username
             });
         }
@@ -323,23 +325,12 @@ namespace Butterfly.Auth {
             if (user == null) throw new Exception("Invalid username '" + username + "'");
 
             string userId = user.GetAs(this.userTableIdFieldName, (string)null);
-            string resetCode = await this.CreateResetCode(userId, username);
+            string email = user.GetAs(this.userTableEmailFieldName, (string)null);
+            string resetCode = await this.CreateResetCode(userId);
 
-            /*
-            user["resetCode"] = resetCode;
-
-            string resetEmailTo = user.GetAs(this.userTableFirstNameFieldName, (string)null) + " " + user.GetAs(this.userTableLastNameFieldName, (string)null) + " <" + user.GetAs(this.userTableEmailFieldName, (string)null) + ">";
-            await this.helpFireContext.SendMessageManager.QueueEmail(NotifyMessagePriority.High, user, this.resetEmailMessage.From, resetEmailTo, this.resetEmailMessage.Subject, this.resetEmailMessage.BodyText);
-
-            var emailVars = new Dict {
-                { "user", user },
-                { "hostName", System.Net.Dns.GetHostName() },
-            };
-            await this.helpFireContext.SendMessageManager.QueueEmail(NotifyMessagePriority.Low, emailVars, this.notifyForgotPasswordEmailMessage.From, this.notifyForgotPasswordEmailMessage.To, this.notifyForgotPasswordEmailMessage.Subject, this.notifyForgotPasswordEmailMessage.BodyText);
-            */
             if (this.onForgotPassword != null) this.onForgotPassword(new Dict {
-                { this.userTableEmailFieldName, user.GetAs(this.userTableEmailFieldName, (string)null) },
-                { this.userTableResetCodeFieldName, user.GetAs(this.userTableResetCodeFieldName, (string)null) },
+                { this.userTableEmailFieldName, email },
+                { this.userTableResetCodeFieldName, resetCode },
             });
         }
 
@@ -371,12 +362,15 @@ namespace Butterfly.Auth {
             return await this.CreateAuthToken(userId);
         }
 
-        protected async Task<string> CreateResetCode(string userId, string username) {
+        protected async Task<string> CreateResetCode(string userId) {
             Random random = new Random();
-            var resetCode = random.Next(10 ^ this.resetCodeLength).ToString(String.Concat(Enumerable.Repeat("0", this.resetCodeLength)));
+            int resetCodeMax = (int)Math.Pow(10, this.resetCodeLength);
+            long randomResetCode = random.Next(resetCodeMax);
+            var resetCode = randomResetCode.ToString(String.Concat(Enumerable.Repeat("0", this.resetCodeLength)));
 
             DateTime expiresAt = DateTime.Now.AddMinutes(this.resetTokenDurationMinutes);
             await this.database.UpdateAndCommitAsync(this.userTableName, new Dict {
+                { this.userTableIdFieldName, userId },
                 { this.userTableResetCodeFieldName, resetCode },
                 { this.userTableResetCodeExpiresAtFieldName, expiresAt },
             });
