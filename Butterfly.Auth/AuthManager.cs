@@ -40,8 +40,8 @@ namespace Butterfly.Auth {
         protected readonly string authTokenTableUserIdFieldName;
         protected readonly string authTokenTableExpiresAtFieldName;
 
-        protected readonly Action onRegister;
-        protected readonly Action onForgotPassword;
+        protected readonly Action<Dict> onRegister;
+        protected readonly Action<Dict> onForgotPassword;
 
         protected readonly FieldValidator usernameFieldValidator;
         protected readonly FieldValidator passwordFieldValidator;
@@ -70,8 +70,8 @@ namespace Butterfly.Auth {
             string authTokenIdFieldName = "id",
             string authTokenTableUserIdFieldName = "user_id",
             string authTokenTableExpiresAtFieldName = "expires_at",
-            Action onRegister = null,
-            Action onForgotPassword = null
+            Action<Dict> onRegister = null,
+            Action<Dict> onForgotPassword = null
         ) {
             this.database = database;
 
@@ -141,8 +141,9 @@ namespace Butterfly.Auth {
                 await res.WriteAsJsonAsync(authToken);
             });
 
-            webApiServer.OnPost($"{pathPrefix}/forgot-password/{{username}}", async(req, res) => {
-                string username = req.PathParams.GetAs("username", (string)null);
+            webApiServer.OnPost($"{pathPrefix}/forgot-password", async(req, res) => {
+                Dict data = await req.ParseAsJsonAsync<Dict>();
+                string username = data.GetAs("username", (string)null);
                 await this.ForgotPassword(username);
             });
 
@@ -214,7 +215,12 @@ namespace Butterfly.Auth {
                 await this.database.UpdateAndCommitAsync(this.userTableName, user);
             }
 
-            if (this.onRegister != null) this.onRegister();
+            if (this.onRegister != null) this.onRegister(new Dict {
+                { this.userTableUsernameFieldName, username },
+                { this.userTableEmailFieldName, email },
+                { this.userTableFirstNameFieldName, firstName  },
+                { this.userTableLastNameFieldName, lastName },
+            });
 
             return await this.CreateAuthToken(userId);
         }
@@ -319,9 +325,9 @@ namespace Butterfly.Auth {
             string userId = user.GetAs(this.userTableIdFieldName, (string)null);
             string resetCode = await this.CreateResetCode(userId, username);
 
+            /*
             user["resetCode"] = resetCode;
 
-            /*
             string resetEmailTo = user.GetAs(this.userTableFirstNameFieldName, (string)null) + " " + user.GetAs(this.userTableLastNameFieldName, (string)null) + " <" + user.GetAs(this.userTableEmailFieldName, (string)null) + ">";
             await this.helpFireContext.SendMessageManager.QueueEmail(NotifyMessagePriority.High, user, this.resetEmailMessage.From, resetEmailTo, this.resetEmailMessage.Subject, this.resetEmailMessage.BodyText);
 
@@ -331,7 +337,10 @@ namespace Butterfly.Auth {
             };
             await this.helpFireContext.SendMessageManager.QueueEmail(NotifyMessagePriority.Low, emailVars, this.notifyForgotPasswordEmailMessage.From, this.notifyForgotPasswordEmailMessage.To, this.notifyForgotPasswordEmailMessage.Subject, this.notifyForgotPasswordEmailMessage.BodyText);
             */
-            if (this.onForgotPassword != null) this.onForgotPassword();
+            if (this.onForgotPassword != null) this.onForgotPassword(new Dict {
+                { this.userTableEmailFieldName, user.GetAs(this.userTableEmailFieldName, (string)null) },
+                { this.userTableResetCodeFieldName, user.GetAs(this.userTableResetCodeFieldName, (string)null) },
+            });
         }
 
         public async Task<AuthToken> ResetPassword(Dict resetPassword) {

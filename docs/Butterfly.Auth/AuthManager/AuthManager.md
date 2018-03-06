@@ -10,7 +10,8 @@ public AuthManager(IDatabase database, int authTokenDurationDays = 90, int reset
     string userTableResetCodeExpiresAtFieldName = "reset_code_expires_at", 
     string userTableAccountIdFieldName = "account_id", string authTokenTableName = "auth_token", 
     string authTokenIdFieldName = "id", string authTokenTableUserIdFieldName = "user_id", 
-    string authTokenTableExpiresAtFieldName = "expires_at", Action onRegister = null, Action onForgotPassword = null)
+    string authTokenTableExpiresAtFieldName = "expires_at", 
+    Action<Dictionary<string, object>> onRegister = null, Action<Dictionary<string, object>> onForgotPassword = null)
 ```
 
 ## See Also

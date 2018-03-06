@@ -1,14 +1,14 @@
-# AwsSesNotifyMessageSender class
+# AwsSesEmailNotifyMessageSender class
 
 ```csharp
-public class AwsSesNotifyMessageSender : BaseNotifyMessageSender
+public class AwsSesEmailNotifyMessageSender : BaseNotifyMessageSender
 ```
 
 ## Public Members
 
 | name | description |
 | --- | --- |
-| [AwsSesNotifyMessageSender](AwsSesNotifyMessageSender/AwsSesNotifyMessageSender.md)(…) |  |
+| [AwsSesEmailNotifyMessageSender](AwsSesEmailNotifyMessageSender/AwsSesEmailNotifyMessageSender.md)(…) |  |
 
 ## See Also
 

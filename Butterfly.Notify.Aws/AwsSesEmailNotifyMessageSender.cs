@@ -7,7 +7,7 @@ using Amazon.SimpleEmail.Model;
 using NLog;
 
 namespace Butterfly.Notify.Aws {
-    public class AwsSesNotifyMessageSender : BaseNotifyMessageSender {
+    public class AwsSesEmailNotifyMessageSender : BaseNotifyMessageSender {
 
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -18,7 +18,7 @@ namespace Butterfly.Notify.Aws {
         // and EUWest1. For a complete list, see http://docs.aws.amazon.com/ses/latest/DeveloperGuide/regions.html 
         protected readonly Amazon.RegionEndpoint region = Amazon.RegionEndpoint.USWest2;
 
-        public AwsSesNotifyMessageSender(int sendEveryMillis = 1000, string regionText = "USEast1") : base(sendEveryMillis) {
+        public AwsSesEmailNotifyMessageSender(int sendEveryMillis = 1000, string regionText = "USEast1") : base(sendEveryMillis) {
             this.region = Amazon.RegionEndpoint.USEast1;
             //this.region = Amazon.RegionEndpoint.GetBySystemName(regionText);
         }

@@ -16,7 +16,7 @@ namespace Butterfly.Notify {
         PhoneText,
     }
 
-    public class NotifyMessageManager {
+    public class NotifyManager {
 
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -25,7 +25,7 @@ namespace Butterfly.Notify {
         protected readonly NotifyMessageEngine emailNotifyMessageEngine;
         protected readonly NotifyMessageEngine phoneTextNotifyMessageEngine;
 
-        public NotifyMessageManager(IDatabase database, INotifyMessageSender emailNotifyMessageSender = null, INotifyMessageSender phoneTextNotifyMessageSender = null, string notifyMessageTableName = "notify_message") {
+        public NotifyManager(IDatabase database, INotifyMessageSender emailNotifyMessageSender = null, INotifyMessageSender phoneTextNotifyMessageSender = null, string notifyMessageTableName = "notify_message") {
             this.database = database;
             this.emailNotifyMessageEngine = emailNotifyMessageSender == null ? null : new NotifyMessageEngine(NotifyMessageType.Email, emailNotifyMessageSender, database, notifyMessageTableName);
             this.phoneTextNotifyMessageEngine = phoneTextNotifyMessageSender == null ? null : new NotifyMessageEngine(NotifyMessageType.PhoneText, phoneTextNotifyMessageSender, database, notifyMessageTableName);
@@ -47,7 +47,7 @@ namespace Butterfly.Notify {
         /// <param name="priority">Higher number indicates higher priority</param>
         /// <param name="notifyMessage"></param>
         /// <returns></returns>
-        public async Task Queue(byte priority, NotifyMessage notifyMessage) {
+        public async Task Queue(NotifyMessage notifyMessage, byte priority = 0) {
             NotifyMessageType notifyMessageType = this.DetectNotifyMessageType(notifyMessage.to);
             switch (notifyMessageType) {
                 case NotifyMessageType.Email:
@@ -123,7 +123,7 @@ namespace Butterfly.Notify {
                         @"SELECT *
                         FROM notify_message
                         WHERE message_type=@messageType AND sent_at IS NULL
-                        ORDER BY priority DESC, created_at", new {
+                        ORDER BY message_priority DESC, created_at", new {
                             messageType = (byte)this.notifyMessageType
                         });
                     if (message == null) {

@@ -29,11 +29,11 @@ namespace Butterfly.Notify.Test {
             database.SetInsertDefaultValue("id", tableName => Guid.NewGuid().ToString());
             database.SetInsertDefaultValue("created_at", tableName => DateTime.Now);
 
-            var notifyMessageSender = new AwsSesNotifyMessageSender();
-            var notifyMessageManager = new NotifyMessageManager(database, emailNotifyMessageSender: notifyMessageSender);
+            var notifyMessageSender = new AwsSesEmailNotifyMessageSender();
+            var notifyMessageManager = new NotifyManager(database, emailNotifyMessageSender: notifyMessageSender);
             notifyMessageManager.Start();
             var notifyMessage = new NotifyMessage("kent@fireshark.com", "kent13304@yahoo.com", "Test SES", "Just testing", null);
-            await notifyMessageManager.Queue(0, notifyMessage);
+            await notifyMessageManager.Queue(notifyMessage);
             await Task.Delay(200000);
         }
 
@@ -45,10 +45,10 @@ namespace Butterfly.Notify.Test {
             database.SetInsertDefaultValue("created_at", tableName => DateTime.Now);
 
             var notifyMessageSender = new TwilioPhoneTextNotifyMessageSender("my-sid", "my-auth-token");
-            var notifyMessageManager = new NotifyMessageManager(database, phoneTextNotifyMessageSender: notifyMessageSender);
+            var notifyMessageManager = new NotifyManager(database, phoneTextNotifyMessageSender: notifyMessageSender);
             notifyMessageManager.Start();
             var notifyMessage = new NotifyMessage("+1 316 712 7412", "+1 316 555 1212", null, "Just testing", null);
-            await notifyMessageManager.Queue(0, notifyMessage);
+            await notifyMessageManager.Queue(notifyMessage);
             await Task.Delay(200000);
         }
 
