@@ -325,13 +325,10 @@ namespace Butterfly.Auth {
             if (user == null) throw new Exception("Invalid username '" + username + "'");
 
             string userId = user.GetAs(this.userTableIdFieldName, (string)null);
-            string email = user.GetAs(this.userTableEmailFieldName, (string)null);
             string resetCode = await this.CreateResetCode(userId);
+            user[this.userTableResetCodeFieldName] = resetCode;
 
-            if (this.onForgotPassword != null) this.onForgotPassword(new Dict {
-                { this.userTableEmailFieldName, email },
-                { this.userTableResetCodeFieldName, resetCode },
-            });
+            if (this.onForgotPassword != null) this.onForgotPassword(user);
         }
 
         public async Task<AuthToken> ResetPassword(Dict resetPassword) {

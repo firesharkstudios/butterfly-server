@@ -2,11 +2,8 @@
     let private = this;
 
     let heartbeatEveryMillis = options.heartbeatEveryMillis || 3000;
-    let url = options.url;
-    let onStatusChange = options.onStatusChange;
-    let onAuthenticated = options.onAuthenticated;
-    let onSubscriptionsUpdated = options.onSubscriptionsUpdated;
 
+    let url = options.url;
     if (url.indexOf('://') == -1) {
         url = (window.location.protocol == 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host + url;
     }
@@ -19,7 +16,7 @@
     private.setStatus = function (value) {
         if (public.status != value) {
             public.status = value;
-            if (onStatusChange) onStatusChange(value);
+            if (options.onStatusChange) options.onStatusChange(value);
         }
     }
 
@@ -31,9 +28,10 @@
                 private.webSocket = new WebSocket(url);
                 private.webSocket.onmessage = function (event) {
                     if (event.data == '$AUTHENTICATED') {
-                        if (onAuthenticated) {
-                            onAuthenticated();
-                        }
+                        private.setStatus('Authenticated');
+                        //if (onAuthenticated) {
+                        //    onAuthenticated();
+                        //}
                     }
                     else {
                         let pos = event.data.indexOf(':');
@@ -66,7 +64,6 @@
             try {
                 private.webSocket.send('!');
                 console.log('testConnection():heartbeat success');
-                private.setStatus('Connected');
             }
             catch (e) {
                 private.webSocket = null;
@@ -117,7 +114,7 @@
     }
 
     let public = {
-        status: 'Connecting...',
+        status: null,
         start: function () {
             private.testConnection();
         },
@@ -135,13 +132,13 @@
             };
             private.addSubscription(handler, channelKey, subscription);
             private.sendSubscribe(subscription);
-            if (onSubscriptionsUpdated) onSubscriptionsUpdated();
+            if (options.onSubscriptionsUpdated) options.onSubscriptionsUpdated();
         },
         unsubscribe: function (channelKey) {
             if (!channelKey) channelKey = 'default';
             private.removeSubscription(channelKey);
             private.sendUnsubscribe(channelKey);
-            if (onSubscriptionsUpdated) onSubscriptionsUpdated();
+            if (options.onSubscriptionsUpdated) options.onSubscriptionsUpdated();
         },
         stop: function () {
             clearTimeout(private.heartbeatTimeout);
@@ -151,6 +148,7 @@
 
     return public;
 },
+
 ArrayDataEventHandler: function (config) {
     let private = this;
 
@@ -351,16 +349,3 @@ function getOrCreateLocalStorageItem(key, createFunc) {
     }
     return value;
 }
-
-/*
-function authorizedAjax(method, uri, authorization, value) {
-    return $.ajax(uri, {
-        method: method,
-        headers: {
-            'Authorization': authorization,
-        },
-        data: JSON.stringify(value),
-        processData: false,
-    });
-}
-*/
