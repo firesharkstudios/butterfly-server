@@ -1,7 +1,7 @@
 # Subscription.onMessage field
 
 ```csharp
-public readonly Action<string> onMessage;
+public readonly Action<string, string> onMessage;
 ```
 
 ## See Also

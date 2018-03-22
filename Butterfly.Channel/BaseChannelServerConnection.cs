@@ -83,16 +83,25 @@ namespace Butterfly.Channel {
         /// <summary>
         /// Queue an object to be sent over the channel to the client.  The queue is processed by a background thread when the Channel is started.
         /// </summary>
+        /// <param name="messageType">The value to be sent to the client (will be converted to JSON)</param>
         /// <param name="channelKey">The value to be sent to the client (will be converted to JSON)</param>
         /// <param name="value">The value to be sent to the client (will be converted to JSON)</param>
-        public void QueueChannelMessage(object value, string channelKey) {
-            string json = JsonUtil.Serialize(value);
-            var text = $"{channelKey}:{json}";
-            this.QueueMessage(text);
-        }
+        public void QueueChannelMessage(string messageType, string channelKey = null, object value = null) {
+            if (messageType.Contains(":")) throw new Exception($"Message type {messageType} may not contain a colon");
+            if (channelKey!=null && channelKey.Contains(":")) throw new Exception($"Channel key {channelKey} may not contain a colon");
 
-        public void QueueMessage(string message) {
-            this.buffer.Enqueue(message);
+            string text;
+            if (channelKey == null) {
+                text = $"{messageType}";
+            }
+            else if (value == null) {
+                text = $"{messageType}:{channelKey}";
+            }
+            else {
+                string json = JsonUtil.Serialize(value);
+                text = $"{messageType}:{channelKey}:{json}";
+            }
+            this.buffer.Enqueue(text);
             this.monitor.PulseAll();
         }
 
@@ -207,7 +216,7 @@ namespace Butterfly.Channel {
                             this.channelByKey.Add(channelKey, channel);
                         }
                         catch (Exception e) {
-                            channel.Queue($"!{e.Message}");
+                            channel.Queue("ERROR", e.Message);
                             channel.Dispose();
                             logger.Error(e);
                         }

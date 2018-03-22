@@ -33,7 +33,7 @@ namespace Butterfly.Examples {
             route.RegisterChannel(handlerAsync: async(vars, channel) => await database.CreateAndStartDynamicView(
                 sql: "chat_message",
                 listener: dataEventTransaction => {
-                    channel.Queue(dataEventTransaction);
+                    channel.Queue("DATA-EVENT-TRANSACTION", dataEventTransaction);
                 }
             ));
 

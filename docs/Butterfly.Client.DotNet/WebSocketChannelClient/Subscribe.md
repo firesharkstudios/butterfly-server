@@ -1,7 +1,7 @@
 # WebSocketChannelClient.Subscribe method
 
 ```csharp
-public void Subscribe(Action<string> onMessage, string channelKey = "default", Dictionary<string, object> vars = null)
+public void Subscribe(Action<string, string> onMessage, string channelKey = "default", Dictionary<string, object> vars = null)
 ```
 
 ## See Also

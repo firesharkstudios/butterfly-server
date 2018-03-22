@@ -47,7 +47,7 @@ namespace Butterfly.Client.DotNet {
             this.receiveBufferSize = receiveBufferSize;
         }
 
-        public void Subscribe(Action<string> onMessage, string channelKey = "default", Dict vars = null) {
+        public void Subscribe(Action<string, string> onMessage, string channelKey = "default", Dict vars = null) {
             this.subscriptionByChannelKey[channelKey] = new Subscription(vars, onMessage);
             this.sendSubscriptions = true;
         }
@@ -115,20 +115,41 @@ namespace Butterfly.Client.DotNet {
                             logger.Debug($"message={message}");
                             if (string.IsNullOrEmpty(message)) {
                             }
-                            else if (message == "$AUTHENTICATED") {
-                                // Change status to authenticated
-                            }
                             else {
-                                int pos = message.IndexOf(':');
-                                var channelKey = message.Substring(0, pos).Trim();
-                                if (this.subscriptionByChannelKey.TryGetValue(channelKey, out Subscription subscription)) {
-                                    var payload = message.Substring(pos + 1).Trim();
-                                    subscription.onMessage(payload);
+                                string messageType;
+                                string channelKey;
+                                string json;
+
+                                int pos1 = message.IndexOf(':');
+                                if (pos1 == -1) {
+                                    messageType = message;
+                                    channelKey = null;
+                                    json = null;
+                                }
+                                else {
+                                    int pos2 = message.IndexOf(':', pos1 + 1);
+                                    if (pos2 == -1) {
+                                        messageType = message.Substring(0, pos1);
+                                        channelKey = message.Substring(pos1 + 1);
+                                        json = null;
+                                    }
+                                    else {
+                                        messageType = message.Substring(0, pos1);
+                                        channelKey = message.Substring(pos1 + 1, pos2 - pos1 - 1);
+                                        json = message.Substring(pos2 + 1);
+                                    }
+                                }
+
+                                if (channelKey!=null && this.subscriptionByChannelKey.TryGetValue(channelKey, out Subscription subscription)) {
+                                    subscription.onMessage(messageType, json);
                                 }
                             }
                         }
                     }
                     catch (TaskCanceledException) {
+                    }
+                    catch (Exception e) {
+                        logger.Error(e);
                     }
                 });
 
@@ -195,9 +216,9 @@ namespace Butterfly.Client.DotNet {
 
     public class Subscription {
         public readonly Dict vars;
-        public readonly Action<string> onMessage;
+        public readonly Action<string, string> onMessage;
 
-        public Subscription(Dict vars, Action<string> onMessage) {
+        public Subscription(Dict vars, Action<string, string> onMessage) {
             this.vars = vars;
             this.onMessage = onMessage;
         }

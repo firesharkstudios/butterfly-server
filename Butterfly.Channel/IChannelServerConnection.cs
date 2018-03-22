@@ -27,6 +27,6 @@ namespace Butterfly.Channel {
         RegisteredRoute RegisteredRoute { get; }
         DateTime LastHeartbeat { get; }
         void Start(object authToken, string id);
-        void QueueChannelMessage(object value, string channelKey = "default");
+        void QueueChannelMessage(string messageType, string channelKey, object value);
     }
 }

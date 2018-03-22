@@ -26,7 +26,7 @@ namespace Butterfly.Examples {
             // Register a default channel that creates a DynamicView on the message table sending all data to the channel
             route.RegisterChannel(channelKey: "my-channel", handlerAsync: async (vars, channel) => await database.CreateAndStartDynamicView(
                 sql: "SELECT * FROM message",
-                listener: dataEventTransaction => channel.Queue(dataEventTransaction)
+                listener: dataEventTransaction => channel.Queue("DATA-EVENT-TRANSACTION", dataEventTransaction)
             ));
 
             // Listen for POST requests to /api/hello-world/message

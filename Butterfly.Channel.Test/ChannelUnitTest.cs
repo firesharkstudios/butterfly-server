@@ -64,7 +64,7 @@ namespace Butterfly.Channel.Test {
             Assert.IsNotNull(channelServer.GetConnection(testAuthId));
 
             List<string> messageCollectorA = new List<string>();
-            channelClient.Subscribe(json => {
+            channelClient.Subscribe((messageType, json) => {
                 var message = JsonUtil.Deserialize<string>(json);
                 messageCollectorA.Add(message);
             }, channelKey: "A");
@@ -72,7 +72,7 @@ namespace Butterfly.Channel.Test {
             Assert.IsNotNull(channelA);
 
             List<string> messageCollectorB = new List<string>();
-            channelClient.Subscribe(json => {
+            channelClient.Subscribe((messageType, json) => {
                 var message = JsonUtil.Deserialize<string>(json);
                 messageCollectorB.Add(message);
             }, channelKey: "B");
@@ -80,14 +80,14 @@ namespace Butterfly.Channel.Test {
             Assert.IsNotNull(channelB);
 
             // Test if sending a message on the server is received on the client
-            channelServer.GetConnection(testAuthId, true).QueueChannelMessage("HelloA", channelKey: "A");
+            channelServer.GetConnection(testAuthId, true).QueueChannelMessage("TypeA", channelA.ChannelKey, "HelloA");
             await Task.Delay(200);
             Assert.AreEqual(1, messageCollectorA.Count);
             Assert.AreEqual(0, messageCollectorB.Count);
             Assert.AreEqual("HelloA", messageCollectorA[0]);
 
             // Test if sending a message on the server is received on the client
-            channelServer.GetConnection(testAuthId, true).QueueChannelMessage("HelloB", channelKey: "B");
+            channelServer.GetConnection(testAuthId, true).QueueChannelMessage("TypeB", channelB.ChannelKey, "HelloB");
             await Task.Delay(200);
             Assert.AreEqual(1, messageCollectorA.Count);
             Assert.AreEqual(1, messageCollectorB.Count);

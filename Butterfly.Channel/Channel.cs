@@ -28,12 +28,8 @@ namespace Butterfly.Channel {
             this.disposables.Add(disposable);
         }
 
-        public void Queue(object value) {
-            this.connection.QueueChannelMessage(value, this.channelKey);
-        }
-
-        public void QueueAuthorizationRole(string authorizationRole) {
-            this.Queue($"$AUTHORIZATION-ROLE:{authorizationRole}");
+        public void Queue(string messageType, object value) {
+            this.connection.QueueChannelMessage(messageType, this.channelKey, value);
         }
 
         public void Dispose() {

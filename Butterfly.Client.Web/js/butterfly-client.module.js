@@ -28,18 +28,39 @@ module.exports = {
                     private.setStatus('Connecting...');
                     private.webSocket = new WebSocket(url);
                     private.webSocket.onmessage = function (event) {
-                        if (event.data == '$AUTHENTICATED') {
-                            private.setStatus('Authenticated');
+                        let messageType;
+                        let channelKey;
+                        let json;
+
+                        let pos1 = event.data.indexOf(':');
+                        if (pos1 == -1) {
+                            messageType = event.data;
+                            channelKey = null;
+                            json = null;
                         }
                         else {
-                            let pos = event.data.indexOf(':');
-                            let channelKey = event.data.substring(0, pos);
+                            let pos2 = event.data.indexOf(':', pos1 + 1);
+                            if (pos2 == -1) {
+                                messageType = event.data.substring(0, pos1);
+                                channelKey = event.data.substring(pos1 + 1);
+                                json = null;
+                            }
+                            else {
+                                messageType = event.data.substring(0, pos1);
+                                channelKey = event.data.substring(pos1 + 1, pos2);
+                                json = event.data.Substring(pos2 + 1);
+                            }
+                        }
+
+                        if (messageType == 'AUTHENTICATED') {
+                            private.setStatus('Authenticated');
+                        }
+                        else if (channelKey && json) {
                             let handlers = private.handlersByKey[channelKey];
                             if (handlers) {
-                                let json = event.data.substring(pos + 1);
-                                let message = JSON.parse(json);
+                                let data = JSON.parse(json);
                                 for (let i = 0; i < handlers.length; i++) {
-                                    handlers[i](message);
+                                    handlers[i](messageType, data);
                                 }
                             }
                         }
@@ -167,23 +188,9 @@ module.exports = {
             return result;
         }
 
-        return function (message) {
-            if (typeof message == "string") {
-                if (message.startsWith('!')) {
-                    let error = message.substring(1);
-                    if (config.onChannelError) {
-                        config.onChannelError(error);
-                    }
-                }
-                else if (message.startsWith('$')) {
-                    let channelMessage = message.substring(1);
-                    if (config.onChannelMessage) {
-                        config.onChannelMessage(channelMessage);
-                    }
-                }
-            }
-            else {
-                let dataEventTransaction = message;
+        return function (messageType, data) {
+            if (messageType == 'DATA-EVENT-TRANSACTION') {
+                let dataEventTransaction = data;
                 for (let i = 0; i < dataEventTransaction.dataEvents.length; i++) {
                     let dataEvent = dataEventTransaction.dataEvents[i];
                     console.log('ArrayDataEventHandler.handle():dataEvent.type=' + dataEvent.dataEventType + ',name=', dataEvent.name + ',keyValue=' + dataEvent.keyValue);
@@ -229,36 +236,10 @@ module.exports = {
                     }
                 }
             }
+            else if (config.onChannelMessage) {
+                config.onChannelMessage(messageType, data);
+            }
         }
-
-        return public;
-    },
-
-    FieldComparer: function (fieldName) {
-        return function (a, b) {
-            let valueA = a[fieldName];
-            let valueB = b[fieldName];
-            if (valueA < valueB) return -1;
-            if (valueA > valueB) return 1;
-            return 0;
-        }
-    },
-
-    // From https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
-    uuidv4: function () {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
-    },
-
-    getOrCreateLocalStorageItem: function (key, createFunc) {
-        let value = window.localStorage.getItem(key);
-        if (!value) {
-            value = createFunc();
-            window.localStorage.setItem(key, value);
-        }
-        return value;
     },
 
 }

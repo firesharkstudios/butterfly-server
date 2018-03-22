@@ -1,7 +1,7 @@
 # IChannelServerConnection.QueueChannelMessage method
 
 ```csharp
-public void QueueChannelMessage(object value, string channelKey = "default")
+public void QueueChannelMessage(string messageType, string channelKey, object value)
 ```
 
 ## See Also
