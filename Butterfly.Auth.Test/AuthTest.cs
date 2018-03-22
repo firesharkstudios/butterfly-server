@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using Butterfly.Database;
+using Butterfly.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog;
 
@@ -18,8 +19,9 @@ namespace Butterfly.Auth.Test {
 
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Auth.Test.db.sql");
             database.SetInsertDefaultValue("id", tableName => Guid.NewGuid().ToString());
-            database.SetInsertDefaultValue("created_at", tableName => DateTime.Now);
-            database.SetInsertDefaultValue("updated_at", tableName => DateTime.Now);
+            database.SetInsertDefaultValue("created_at", tableName => DateTime.Now.ToUnixTimestamp());
+            database.SetInsertDefaultValue("updated_at", tableName => DateTime.Now.ToUnixTimestamp());
+            database.AddInputPreprocessor(BaseDatabase.RemapTypeInputPreprocessor<DateTime>(dateTime => dateTime.ToUnixTimestamp()));
 
             AuthManager authManager = new AuthManager(database, onForgotPassword: user => {
                 logger.Debug($"onForgotPassword():user={user}");

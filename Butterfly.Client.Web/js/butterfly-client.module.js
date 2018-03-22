@@ -30,9 +30,6 @@ module.exports = {
                     private.webSocket.onmessage = function (event) {
                         if (event.data == '$AUTHENTICATED') {
                             private.setStatus('Authenticated');
-                            //if (onAuthenticated) {
-                            //    onAuthenticated();
-                            //}
                         }
                         else {
                             let pos = event.data.indexOf(':');

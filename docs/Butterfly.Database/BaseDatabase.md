@@ -11,6 +11,7 @@ public abstract class BaseDatabase : IDatabase
 | abstract [CanJoin](BaseDatabase/CanJoin.md) { get; } |  |
 | [ConnectionString](BaseDatabase/ConnectionString.md) { get; } |  |
 | [Tables](BaseDatabase/Tables.md) { get; } |  |
+| [AddInputPreprocessor](BaseDatabase/AddInputPreprocessor.md)(…) |  |
 | [BeginTransaction](BaseDatabase/BeginTransaction.md)() |  |
 | [BeginTransactionAsync](BaseDatabase/BeginTransactionAsync.md)() |  |
 | [CreateAndStartDynamicView](BaseDatabase/CreateAndStartDynamicView.md)(…) |  (2 methods) |
@@ -32,6 +33,7 @@ public abstract class BaseDatabase : IDatabase
 | [SetInsertDefaultValue](BaseDatabase/SetInsertDefaultValue.md)(…) |  |
 | [UpdateAndCommitAsync](BaseDatabase/UpdateAndCommitAsync.md)(…) |  |
 | static [ConvertMySqlType](BaseDatabase/ConvertMySqlType.md)(…) |  |
+| static [RemapTypeInputPreprocessor&lt;T&gt;](BaseDatabase/RemapTypeInputPreprocessor.md)(…) |  |
 
 ## See Also
 

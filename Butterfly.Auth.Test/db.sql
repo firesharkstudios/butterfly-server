@@ -1,7 +1,7 @@
 ﻿CREATE TABLE account (
 	id VARCHAR(44) NOT NULL,
-	created_at DATETIME NOT NULL,
-	updated_at DATETIME NOT NULL,
+	created_at INT NOT NULL,
+	updated_at INT NOT NULL,
 	PRIMARY KEY(id)
 );
 
@@ -15,9 +15,9 @@ CREATE TABLE user (
 	salt VARCHAR(40) NOT NULL,
 	password_hash VARCHAR(90) NOT NULL,	
 	reset_code VARCHAR(6) NULL,	
-	reset_code_expires_at DATETIME NULL,	
-	created_at DATETIME NOT NULL,
-	updated_at DATETIME NOT NULL,
+	reset_code_expires_at INT NULL,	
+	created_at INT NOT NULL,
+	updated_at INT NOT NULL,
 	PRIMARY KEY(id),
 	UNIQUE INDEX username (username)
 );
@@ -25,7 +25,7 @@ CREATE TABLE user (
 CREATE TABLE auth_token (
 	id VARCHAR(44) NOT NULL,
 	user_id VARCHAR(44) NOT NULL,
-	expires_at DATETIME NOT NULL,
-	created_at DATETIME NOT NULL,
+	expires_at INT NOT NULL,
+	created_at INT NOT NULL,
 	PRIMARY KEY(id)
 );

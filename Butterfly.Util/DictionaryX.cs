@@ -24,7 +24,11 @@ namespace Butterfly.Util {
 
         public static V GetAs<T, U, V>(this Dictionary<T, U> me, T key, V defaultValue) {
             if (me.TryGetValue(key, out U value) && value != null) {
-                if (value is JObject) {
+                if ((value is int || value is long) && typeof(V)==typeof(DateTime)) {
+                    var longValue = (long)Convert.ChangeType(value, typeof(long));
+                    return (V)(object)DateTimeX.FromUnixTimestamp(longValue);
+                }
+                else if (value is JObject) {
                     return (value as JObject).ToObject<V>();
                 }
                 else if (value is JArray) {

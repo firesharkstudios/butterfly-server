@@ -284,6 +284,8 @@ namespace Butterfly.Database {
         /// <param name="tableName">An optional table name.  If not null, the getDefaultValue lambda is only applied to the specified table. If null, the getDefaultValue lambda is applied to all tables.</param>
         void SetInsertDefaultValue(string fieldName, Func<string, object> getDefaultValue, string tableName = null);
 
+        void AddInputPreprocessor(Action<string, Dict> inputPreprocessor);
+
         /// <summary>
         /// Allows creating a set of <see cref="DynamicView"/> instances that publish a single <see cref="DataEventTransaction"/> instance with initial data and new <see cref="DataEventTransaction"/> instances when data changes.  The <see cref="DataEventTransaction"/> instances are published to the lambda passed as the <paramref name="listener"/>.
         /// </summary>

@@ -10,6 +10,7 @@ public interface IDatabase
 | --- | --- |
 | [CanJoin](IDatabase/CanJoin.md) { get; } |  |
 | [Tables](IDatabase/Tables.md) { get; } |  |
+| [AddInputPreprocessor](IDatabase/AddInputPreprocessor.md)(…) |  |
 | [BeginTransaction](IDatabase/BeginTransaction.md)() |  |
 | [BeginTransactionAsync](IDatabase/BeginTransactionAsync.md)() |  |
 | [CreateAndStartDynamicView](IDatabase/CreateAndStartDynamicView.md)(…) |  (2 methods) |

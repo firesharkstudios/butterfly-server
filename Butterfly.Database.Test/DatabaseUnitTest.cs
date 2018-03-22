@@ -24,6 +24,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Butterfly.Database.Event;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
+using System.Linq;
 
 namespace Butterfly.Database.Test {
     [TestClass]

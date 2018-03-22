@@ -8,6 +8,7 @@
 | static class [CommandLineUtil](Butterfly.Util/CommandLineUtil.md) |  |
 | static class [CompilerUtil](Butterfly.Util/CompilerUtil.md) |  |
 | static class [ConsoleUtil](Butterfly.Util/ConsoleUtil.md) |  |
+| static class [DateTimeX](Butterfly.Util/DateTimeX.md) |  |
 | class [DictionaryItemDisposable&lt;T,U&gt;](Butterfly.Util/DictionaryItemDisposable-2.md) |  |
 | static class [DictionaryX](Butterfly.Util/DictionaryX.md) |  |
 | static class [DynamicX](Butterfly.Util/DynamicX.md) |  |

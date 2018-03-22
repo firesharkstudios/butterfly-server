@@ -111,7 +111,14 @@ namespace Butterfly.Client.DotNet {
                                 logger.Error(e);
                                 break;
                             }
-                            if (!string.IsNullOrEmpty(message)) {
+
+                            logger.Debug($"message={message}");
+                            if (string.IsNullOrEmpty(message)) {
+                            }
+                            else if (message == "$AUTHENTICATED") {
+                                // Change status to authenticated
+                            }
+                            else {
                                 int pos = message.IndexOf(':');
                                 var channelKey = message.Substring(0, pos).Trim();
                                 if (this.subscriptionByChannelKey.TryGetValue(channelKey, out Subscription subscription)) {

@@ -55,6 +55,7 @@
     <Compile Include="CommandLineUtil.cs" />
     <Compile Include="CompilerUtil.cs" />
     <Compile Include="ConsoleUtil.cs" />
+    <Compile Include="DateTimeX.cs" />
     <Compile Include="DictionaryX.cs" />
     <Compile Include="DynamicX.cs" />
     <Compile Include="EnvironmentX.cs" />

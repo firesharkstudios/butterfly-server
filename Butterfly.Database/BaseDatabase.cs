@@ -349,6 +349,29 @@ namespace Butterfly.Database {
             return defaultValues;
         }
 
+        protected readonly List<Action<string, Dict>> inputPreprocessors = new List<Action<string, Dict>>();
+
+        public void AddInputPreprocessor(Action<string, Dict> inputPreprocessor) {
+            this.inputPreprocessors.Add(inputPreprocessor);
+        }
+
+        internal void PreprocessInput(string tableName, Dict input) {
+            foreach (var inputPreprocessor in this.inputPreprocessors) {
+                inputPreprocessor(tableName, input);
+            }
+        }
+
+        public static Action<string, Dict> RemapTypeInputPreprocessor<T>(Func<T, object> convert) {
+            return (tableName, input) => {
+                foreach (var pair in input.ToArray()) {
+                    if (pair.Value is T) {
+                        object newValue = convert((T)pair.Value);
+                        input[pair.Key] = newValue;
+                    }
+                }
+            };
+        }
+
         protected readonly static Regex PARSE_TYPE = new Regex(@"^(?<type>.+?)(?<maxLengthWithParens>\(\d+\))?$");
 
         public static (Type, int) ConvertMySqlType(string text) {
@@ -379,7 +402,7 @@ namespace Butterfly.Database {
             else if (typeText.Equals("DOUBLE", StringComparison.OrdinalIgnoreCase)) {
                 type = typeof(double);
             }
-            else if (typeText.Equals("DATETIME", StringComparison.OrdinalIgnoreCase)) {
+            else if (typeText.Equals("INT", StringComparison.OrdinalIgnoreCase)) {
                 type = typeof(DateTime);
             }
             else {
@@ -457,4 +480,5 @@ namespace Butterfly.Database {
         public UnableToConnectDatabaseException(string message) : base(message) {
         }
     }
+
 }

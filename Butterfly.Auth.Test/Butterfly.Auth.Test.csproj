@@ -77,6 +77,10 @@
       <Project>{2B072F9E-35B4-4033-A272-E11474C4FA4D}</Project>
       <Name>Butterfly.Database</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Butterfly.Util\Butterfly.Util.csproj">
+      <Project>{687A3FB4-8299-4F15-B74B-825FE7446823}</Project>
+      <Name>Butterfly.Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -63,6 +63,7 @@ namespace Butterfly.Database {
         public async Task<object> InsertAsync(InsertStatement insertStatement, dynamic statementParams, bool ignoreIfDuplicate = false) {
             // Convert statementParams
             Dict statementParamsDict = insertStatement.ConvertParamsToDict(statementParams);
+            this.database.PreprocessInput(insertStatement.TableRefs[0].table.Name, statementParamsDict);
             Dict defaultValuesDict = this.database.GetInsertDefaultValues(insertStatement.TableRefs[0].table);
 
             // Get the executable sql and params
@@ -104,6 +105,7 @@ namespace Butterfly.Database {
         public async Task<int> UpdateAsync(UpdateStatement updateStatement, dynamic vars) {
             // Convert statementParams
             Dict statementParamsDict = updateStatement.ConvertParamsToDict(vars);
+            this.database.PreprocessInput(updateStatement.TableRefs[0].table.Name, statementParamsDict);
 
             // Determine keyValue
             (var whereIndex, var setRefs, var whereRefs) = updateStatement.GetWhereIndexSetRefsAndWhereRefs(this.database, statementParamsDict);
