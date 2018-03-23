@@ -15,7 +15,7 @@ public abstract class BaseChannelServerConnection : IChannelServerConnection
 | [LastHeartbeat](BaseChannelServerConnection/LastHeartbeat.md) { get; } |  |
 | [RegisteredRoute](BaseChannelServerConnection/RegisteredRoute.md) { get; } |  |
 | [Dispose](BaseChannelServerConnection/Dispose.md)() |  |
-| [QueueChannelMessage](BaseChannelServerConnection/QueueChannelMessage.md)(…) |  |
+| [QueueMessage](BaseChannelServerConnection/QueueMessage.md)(…) |  |
 | [ReceiveMessageAsync](BaseChannelServerConnection/ReceiveMessageAsync.md)(…) |  |
 | [Start](BaseChannelServerConnection/Start.md)(…) |  |
 

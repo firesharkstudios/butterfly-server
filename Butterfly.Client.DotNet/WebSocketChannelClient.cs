@@ -1,17 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Net;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 using NLog;
-using System.Net;
-using System.Collections.Generic;
+
+using Butterfly.Util;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
-using System.Linq;
-using Butterfly.Util;
 
 namespace Butterfly.Client.DotNet {
 
@@ -47,7 +48,7 @@ namespace Butterfly.Client.DotNet {
             this.receiveBufferSize = receiveBufferSize;
         }
 
-        public void Subscribe(Action<string, string> onMessage, string channelKey = "default", Dict vars = null) {
+        public void Subscribe(Action<Dict> onMessage, string channelKey = "default", Dict vars = null) {
             this.subscriptionByChannelKey[channelKey] = new Subscription(vars, onMessage);
             this.sendSubscriptions = true;
         }
@@ -85,12 +86,12 @@ namespace Butterfly.Client.DotNet {
                     continue;
                 }
 
-                Task receivingTask = Task.Run(async () => {
+                Task receivingTask = Task.Run((Func<Task>)(async () => {
                     try {
-                        while (!ioCancellationTokenSource.IsCancellationRequested) {
-                            string message = null;
+                        while (!this.ioCancellationTokenSource.IsCancellationRequested) {
+                            string json = null;
                             try {
-                                ArraySegment<Byte> buffer = new ArraySegment<byte>(new Byte[this.receiveBufferSize]);
+                                ArraySegment<byte> buffer = new ArraySegment<byte>(new Byte[this.receiveBufferSize]);
                                 WebSocketReceiveResult result = null;
                                 using (var memoryStream = new MemoryStream()) {
                                     do {
@@ -102,7 +103,7 @@ namespace Butterfly.Client.DotNet {
 
                                     if (result.MessageType == WebSocketMessageType.Text) {
                                         using (var reader = new StreamReader(memoryStream, Encoding.UTF8)) {
-                                            message = reader.ReadToEnd();
+                                            json = reader.ReadToEnd();
                                         }
                                     }
                                 }
@@ -112,36 +113,14 @@ namespace Butterfly.Client.DotNet {
                                 break;
                             }
 
-                            logger.Debug($"message={message}");
-                            if (string.IsNullOrEmpty(message)) {
+                            logger.Debug($"message={json}");
+                            if (string.IsNullOrEmpty(json)) {
                             }
                             else {
-                                string messageType;
-                                string channelKey;
-                                string json;
-
-                                int pos1 = message.IndexOf(':');
-                                if (pos1 == -1) {
-                                    messageType = message;
-                                    channelKey = null;
-                                    json = null;
-                                }
-                                else {
-                                    int pos2 = message.IndexOf(':', pos1 + 1);
-                                    if (pos2 == -1) {
-                                        messageType = message.Substring(0, pos1);
-                                        channelKey = message.Substring(pos1 + 1);
-                                        json = null;
-                                    }
-                                    else {
-                                        messageType = message.Substring(0, pos1);
-                                        channelKey = message.Substring(pos1 + 1, pos2 - pos1 - 1);
-                                        json = message.Substring(pos2 + 1);
-                                    }
-                                }
-
-                                if (channelKey!=null && this.subscriptionByChannelKey.TryGetValue(channelKey, out Subscription subscription)) {
-                                    subscription.onMessage(messageType, json);
+                                var message = JsonUtil.Deserialize<Dict>(json);
+                                string channelKey = message.GetAs("channelKey", (string)null);
+                                if (channelKey != null && this.subscriptionByChannelKey.TryGetValue(channelKey, out Subscription subscription)) {
+                                    subscription.onMessage(message);
                                 }
                             }
                         }
@@ -151,7 +130,7 @@ namespace Butterfly.Client.DotNet {
                     catch (Exception e) {
                         logger.Error(e);
                     }
-                });
+                }));
 
                 Task heartbeatTask = Task.Run(async () => {
                     try {
@@ -216,9 +195,9 @@ namespace Butterfly.Client.DotNet {
 
     public class Subscription {
         public readonly Dict vars;
-        public readonly Action<string, string> onMessage;
+        public readonly Action<Dict> onMessage;
 
-        public Subscription(Dict vars, Action<string, string> onMessage) {
+        public Subscription(Dict vars, Action<Dict> onMessage) {
             this.vars = vars;
             this.onMessage = onMessage;
         }

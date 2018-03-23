@@ -27,39 +27,15 @@
                 private.setStatus('Connecting...');
                 private.webSocket = new WebSocket(url);
                 private.webSocket.onmessage = function (event) {
-                    let messageType;
-                    let channelKey;
-                    let json;
-
-                    let pos1 = event.data.indexOf(':');
-                    if (pos1 == -1) {
-                        messageType = event.data;
-                        channelKey = null;
-                        json = null;
-                    }
-                    else {
-                        let pos2 = event.data.indexOf(':', pos1 + 1);
-                        if (pos2 == -1) {
-                            messageType = event.data.substring(0, pos1);
-                            channelKey = event.data.substring(pos1 + 1);
-                            json = null;
-                        }
-                        else {
-                            messageType = event.data.substring(0, pos1);
-                            channelKey = event.data.substring(pos1 + 1, pos2);
-                            json = event.data.Substring(pos2 + 1);
-                        }
-                    }
-
-                    if (messageType == 'AUTHENTICATED') {
+                    let message = JSON.parse(event.data);
+                    if (message.messageType == 'AUTHENTICATED') {
                         private.setStatus('Authenticated');
                     }
-                    else if (channelKey && json) {
+                    else if (message.channelKey) {
                         let handlers = private.handlersByKey[channelKey];
                         if (handlers) {
-                            let data = JSON.parse(json);
                             for (let i = 0; i < handlers.length; i++) {
-                                handlers[i](messageType, data);
+                                handlers[i](message.messageType, message.data);
                             }
                         }
                     }

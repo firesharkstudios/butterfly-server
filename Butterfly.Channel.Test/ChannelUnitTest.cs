@@ -64,30 +64,30 @@ namespace Butterfly.Channel.Test {
             Assert.IsNotNull(channelServer.GetConnection(testAuthId));
 
             List<string> messageCollectorA = new List<string>();
-            channelClient.Subscribe((messageType, json) => {
-                var message = JsonUtil.Deserialize<string>(json);
-                messageCollectorA.Add(message);
+            channelClient.Subscribe(message => {
+                string data = message.GetAs("data", (string)null);
+                messageCollectorA.Add(data);
             }, channelKey: "A");
             await Task.Delay(500);
             Assert.IsNotNull(channelA);
 
             List<string> messageCollectorB = new List<string>();
-            channelClient.Subscribe((messageType, json) => {
-                var message = JsonUtil.Deserialize<string>(json);
-                messageCollectorB.Add(message);
+            channelClient.Subscribe(message => {
+                string data = message.GetAs("data", (string)null);
+                messageCollectorB.Add(data);
             }, channelKey: "B");
             await Task.Delay(500);
             Assert.IsNotNull(channelB);
 
             // Test if sending a message on the server is received on the client
-            channelServer.GetConnection(testAuthId, true).QueueChannelMessage("TypeA", channelA.ChannelKey, "HelloA");
+            channelServer.GetConnection(testAuthId, true).QueueMessage(channelKey: channelA.ChannelKey, messageType: "TypeA", data: "HelloA");
             await Task.Delay(200);
             Assert.AreEqual(1, messageCollectorA.Count);
             Assert.AreEqual(0, messageCollectorB.Count);
             Assert.AreEqual("HelloA", messageCollectorA[0]);
 
             // Test if sending a message on the server is received on the client
-            channelServer.GetConnection(testAuthId, true).QueueChannelMessage("TypeB", channelB.ChannelKey, "HelloB");
+            channelServer.GetConnection(testAuthId, true).QueueMessage(channelKey: channelB.ChannelKey, messageType: "TypeB", data: "HelloB");
             await Task.Delay(200);
             Assert.AreEqual(1, messageCollectorA.Count);
             Assert.AreEqual(1, messageCollectorB.Count);

@@ -83,24 +83,16 @@ namespace Butterfly.Channel {
         /// <summary>
         /// Queue an object to be sent over the channel to the client.  The queue is processed by a background thread when the Channel is started.
         /// </summary>
-        /// <param name="messageType">The value to be sent to the client (will be converted to JSON)</param>
         /// <param name="channelKey">The value to be sent to the client (will be converted to JSON)</param>
-        /// <param name="value">The value to be sent to the client (will be converted to JSON)</param>
-        public void QueueChannelMessage(string messageType, string channelKey = null, object value = null) {
-            if (messageType.Contains(":")) throw new Exception($"Message type {messageType} may not contain a colon");
-            if (channelKey!=null && channelKey.Contains(":")) throw new Exception($"Channel key {channelKey} may not contain a colon");
+        /// <param name="messageType">The value to be sent to the client (will be converted to JSON)</param>
+        /// <param name="data">The value to be sent to the client (will be converted to JSON)</param>
+        public void QueueMessage(string channelKey = null, string messageType = null, object data = null) {
+            Dict payload = new Dict();
+            if (!string.IsNullOrEmpty(channelKey)) payload["channelKey"] = channelKey;
+            if (!string.IsNullOrEmpty(messageType)) payload["messageType"] = messageType;
+            if (data!=null) payload["data"] = data;
 
-            string text;
-            if (channelKey == null) {
-                text = $"{messageType}";
-            }
-            else if (value == null) {
-                text = $"{messageType}:{channelKey}";
-            }
-            else {
-                string json = JsonUtil.Serialize(value);
-                text = $"{messageType}:{channelKey}:{json}";
-            }
+            string text = JsonUtil.Serialize(payload);
             this.buffer.Enqueue(text);
             this.monitor.PulseAll();
         }

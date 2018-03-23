@@ -13,7 +13,7 @@ public interface IChannelServerConnection : IDisposable
 | [Id](IChannelServerConnection/Id.md) { get; } |  |
 | [LastHeartbeat](IChannelServerConnection/LastHeartbeat.md) { get; } |  |
 | [RegisteredRoute](IChannelServerConnection/RegisteredRoute.md) { get; } |  |
-| [QueueChannelMessage](IChannelServerConnection/QueueChannelMessage.md)(…) |  |
+| [QueueMessage](IChannelServerConnection/QueueMessage.md)(…) |  |
 | [Start](IChannelServerConnection/Start.md)(…) |  |
 
 ## See Also

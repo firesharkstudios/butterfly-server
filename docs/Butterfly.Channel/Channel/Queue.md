@@ -1,7 +1,7 @@
 # Channel.Queue method
 
 ```csharp
-public void Queue(string messageType, object value)
+public void Queue(string messageType, object data)
 ```
 
 ## See Also

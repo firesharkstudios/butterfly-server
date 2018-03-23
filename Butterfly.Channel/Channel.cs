@@ -28,8 +28,8 @@ namespace Butterfly.Channel {
             this.disposables.Add(disposable);
         }
 
-        public void Queue(string messageType, object value) {
-            this.connection.QueueChannelMessage(messageType, this.channelKey, value);
+        public void Queue(string messageType, object data) {
+            this.connection.QueueMessage(channelKey: this.channelKey, messageType: messageType, data: data);
         }
 
         public void Dispose() {

@@ -1,7 +1,7 @@
 # Subscription constructor
 
 ```csharp
-public Subscription(Dictionary<string, object> vars, Action<string, string> onMessage)
+public Subscription(Dictionary<string, object> vars, Action<Dictionary<string, object>> onMessage)
 ```
 
 ## See Also

@@ -1,7 +1,7 @@
-# BaseChannelServerConnection.QueueChannelMessage method
+# BaseChannelServerConnection.QueueMessage method
 
 ```csharp
-public void QueueChannelMessage(string messageType, string channelKey = null, object value = null)
+public void QueueMessage(string channelKey = null, string messageType = null, object data = null)
 ```
 
 ## See Also
