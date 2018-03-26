@@ -27,7 +27,9 @@ namespace Butterfly.Auth {
         protected readonly string userTableIdFieldName;
         protected readonly string userTableUsernameFieldName;
         protected readonly string userTableEmailFieldName;
+        protected readonly string userTableEmailVerifiedAtFieldName;
         protected readonly string userTablePhoneFieldName;
+        protected readonly string userTablePhoneVerifiedAtFieldName;
         protected readonly string userTableSaltFieldName;
         protected readonly string userTablePasswordHashFieldName;
         protected readonly string userTableFirstNameFieldName;
@@ -41,21 +43,18 @@ namespace Butterfly.Auth {
         protected readonly string authTokenTableUserIdFieldName;
         protected readonly string authTokenTableExpiresAtFieldName;
 
-        protected readonly string emailVerifyCodeFieldName;
-        protected readonly Func<string, int, Task<string>> onEmailVerify;
-
-        protected readonly string phoneVerifyCodeFieldName;
-        protected readonly Func<string, int, Task<string>> onPhoneVerify;
+        protected readonly Func<string, int, Task> onEmailVerify;
+        protected readonly Func<string, int, Task> onPhoneVerify;
 
         protected readonly Action<Dict> onRegister;
         protected readonly Action<Dict> onForgotPassword;
 
-        protected readonly FieldValidator usernameFieldValidator;
-        protected readonly FieldValidator passwordFieldValidator;
-        protected readonly FieldValidator firstNameFieldValidator;
-        protected readonly FieldValidator lastNameFieldValidator;
-        protected readonly FieldValidator emailFieldValidator;
-        protected readonly FieldValidator phoneFieldValidator;
+        protected readonly IFieldValidator usernameFieldValidator;
+        protected readonly IFieldValidator passwordFieldValidator;
+        protected readonly IFieldValidator firstNameFieldValidator;
+        protected readonly IFieldValidator lastNameFieldValidator;
+        protected readonly IFieldValidator emailFieldValidator;
+        protected readonly IFieldValidator phoneFieldValidator;
 
         public AuthManager(
             IDatabase database, 
@@ -67,7 +66,9 @@ namespace Butterfly.Auth {
             string userTableIdFieldName = "id",
             string userTableUsernameFieldName = "username",
             string userTableEmailFieldName = "email",
+            string userTableEmailVerifiedAtFieldName = "email_verified_at",
             string userTablePhoneFieldName = "phone",
+            string userTablePhoneVerifiedAtFieldName = "phone_verified_at",
             string userTableSaltFieldName = "salt",
             string userTablePasswordHashFieldName = "password_hash",
             string userTableFirstNameFieldName = "first_name",
@@ -79,10 +80,8 @@ namespace Butterfly.Auth {
             string authTokenIdFieldName = "id",
             string authTokenTableUserIdFieldName = "user_id",
             string authTokenTableExpiresAtFieldName = "expires_at",
-            string emailVerifyCodeFieldName = "email_verify_code",
-            Func<string, int, Task<string>> onEmailVerify = null,
-            string phoneVerifyCodeFieldName = "phone_verify_code",
-            Func<string, int, Task<string>> onPhoneVerify = null,
+            Func<string, int, Task> onEmailVerify = null,
+            Func<string, int, Task> onPhoneVerify = null,
             Action<Dict> onRegister = null,
             Action<Dict> onForgotPassword = null
         ) {
@@ -98,7 +97,9 @@ namespace Butterfly.Auth {
             this.userTableIdFieldName = userTableIdFieldName;
             this.userTableUsernameFieldName = userTableUsernameFieldName;
             this.userTableEmailFieldName = userTableEmailFieldName;
+            this.userTableEmailVerifiedAtFieldName = userTableEmailVerifiedAtFieldName;
             this.userTablePhoneFieldName = userTablePhoneFieldName;
+            this.userTablePhoneVerifiedAtFieldName = userTablePhoneVerifiedAtFieldName;
             this.userTableSaltFieldName = userTableSaltFieldName;
             this.userTablePasswordHashFieldName = userTablePasswordHashFieldName;
             this.userTableFirstNameFieldName = userTableFirstNameFieldName;
@@ -112,20 +113,17 @@ namespace Butterfly.Auth {
             this.authTokenTableUserIdFieldName = authTokenTableUserIdFieldName;
             this.authTokenTableExpiresAtFieldName = authTokenTableExpiresAtFieldName;
 
-            this.emailVerifyCodeFieldName = emailVerifyCodeFieldName;
             this.onEmailVerify = onEmailVerify;
-            this.phoneVerifyCodeFieldName = phoneVerifyCodeFieldName;
             this.onPhoneVerify = onPhoneVerify;
-
             this.onRegister = onRegister;
             this.onForgotPassword = onForgotPassword;
 
-            this.usernameFieldValidator = new FieldValidator(this.userTableUsernameFieldName, @"^[_A-z0-9\-\.]{3,25}$", allowNull: false, forceLowerCase: true, includeValueInError: true);
-            this.passwordFieldValidator = new FieldValidator("password", "^.{6,255}$", allowNull: false, forceLowerCase: false, includeValueInError: false);
-            this.firstNameFieldValidator = new FieldValidator(this.userTableFirstNameFieldName, "^[^\\\'\\\"]{1,25}$", allowNull: false, forceLowerCase: false, includeValueInError: true);
-            this.lastNameFieldValidator = new FieldValidator(this.userTableLastNameFieldName, "^[^\\\'\\\"]{1,25}$", allowNull: false, forceLowerCase: false, includeValueInError: true);
-            this.emailFieldValidator = new FieldValidator(this.userTableEmailFieldName, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", allowNull: false, forceLowerCase: false, includeValueInError: true);
-            this.phoneFieldValidator = new FieldValidator(this.userTableEmailFieldName, @"^+?\d+$", allowNull: false, forceLowerCase: false, includeValueInError: true);
+            this.usernameFieldValidator = new GenericFieldValidator(this.userTableUsernameFieldName, @"^[_A-z0-9\-\.]{3,25}$", allowNull: false, forceLowerCase: true, includeValueInError: true);
+            this.passwordFieldValidator = new GenericFieldValidator("password", "^.{6,255}$", allowNull: false, forceLowerCase: false, includeValueInError: false);
+            this.firstNameFieldValidator = new GenericFieldValidator(this.userTableFirstNameFieldName, "^[^\\\'\\\"]{1,25}$", allowNull: false, forceLowerCase: false, includeValueInError: true);
+            this.lastNameFieldValidator = new GenericFieldValidator(this.userTableLastNameFieldName, "^[^\\\'\\\"]{1,25}$", allowNull: false, forceLowerCase: false, includeValueInError: true);
+            this.emailFieldValidator = new EmailFieldValidator(this.userTableEmailFieldName, allowNull: true);
+            this.phoneFieldValidator = new PhoneFieldValidator(this.userTableEmailFieldName, allowNull: false);
         }
 
         public void SetupWebApi(IWebApiServer webApiServer, string pathPrefix = "/api/auth") {
@@ -172,6 +170,40 @@ namespace Butterfly.Auth {
                 AuthToken authToken = await this.ResetPassword(resetPassword);
                 await res.WriteAsJsonAsync(authToken);
             });
+
+            webApiServer.OnPost($"{pathPrefix}/verify-email", async (req, res) => {
+                Dict data = await req.ParseAsJsonAsync<Dict>();
+                await this.Verify(data, "email", "email_verified_at", this.onEmailVerify);
+            });
+
+            webApiServer.OnPost($"{pathPrefix}/verify-phone", async (req, res) => {
+                Dict data = await req.ParseAsJsonAsync<Dict>();
+                await this.Verify(data, "phone", "phone_verified_at", this.onPhoneVerify);
+            });
+        }
+
+        public async Task Verify(Dict data, string fieldName, string verifiedAtFieldName, Func<string, int, Task> onVerify) {
+            string contact = data.GetAs("contact", (string)null);
+            if (string.IsNullOrEmpty(contact)) throw new Exception($"Must specify contact to verify {fieldName}");
+
+            int code = data.GetAs("verify_code", -1);
+            if (code == -1) throw new Exception($"Must specify code to verify {fieldName}");
+
+            string id = data.GetAs("id", (string)null);
+            if (string.IsNullOrEmpty(id)) throw new Exception($"Must specify id to verify {fieldName}");
+
+            string storedContact = await this.database.SelectValueAsync<string>($"SELECT {fieldName} FROM {this.userTableName}", new {
+                id
+            });
+            if (storedContact != contact) throw new Exception("Verified contact does not match stored contact");
+
+            await this.onEmailVerify(contact, code);
+
+            var values = new Dict {
+                { "id", id },
+                { verifiedAtFieldName, DateTime.Now }
+            };
+            await this.database.UpdateAndCommitAsync("user", values);
         }
 
         /// <summary>
@@ -212,19 +244,8 @@ namespace Butterfly.Auth {
 
             string password = this.passwordFieldValidator.Validate(registration?.GetAs("password", (string)null));
 
-            string email = registration?.GetAs(this.userTableEmailFieldName, (string)null);
-            if (this.onEmailVerify!=null) {
-                int emailVerifyCode = registration.GetAs(this.emailVerifyCodeFieldName, -1);
-                email = await this.onEmailVerify(email, emailVerifyCode);
-            }
-            email = this.emailFieldValidator.Validate(email);
-
-            string phone = registration?.GetAs(this.userTablePhoneFieldName, (string)null);
-            if (this.onPhoneVerify != null) {
-                int phoneVerifyCode = registration.GetAs(this.phoneVerifyCodeFieldName, -1);
-                phone = await this.onPhoneVerify(phone, phoneVerifyCode);
-            }
-            phone = this.phoneFieldValidator.Validate(phone);
+            string email = this.emailFieldValidator.Validate(registration?.GetAs(this.userTableEmailFieldName, (string)null));
+            string phone = this.phoneFieldValidator.Validate(registration?.GetAs(this.userTablePhoneFieldName, (string)null));
 
             string firstName = this.firstNameFieldValidator.Validate(registration?.GetAs(this.userTableFirstNameFieldName, (string)null));
             string lastName = this.lastNameFieldValidator.Validate(registration?.GetAs(this.userTableLastNameFieldName, (string)null));
@@ -314,7 +335,7 @@ namespace Butterfly.Auth {
 
                 await transaction.CommitAsync();
 
-                return new AuthToken(id, userId, null, firstName, lastName, accountId, expiresAt);
+                return new AuthToken(id, userId, null, accountId, expiresAt);
             }
         }
 
@@ -335,7 +356,7 @@ namespace Butterfly.Auth {
                 { this.authTokenTableExpiresAtFieldName, expiresAt },
             });
 
-            return new AuthToken(id, userId, user.GetAs(this.userTableUsernameFieldName, (string)null), user.GetAs(this.userTableFirstNameFieldName, (string)null), user.GetAs(this.userTableLastNameFieldName, (string)null), user.GetAs(this.userTableAccountIdFieldName, (string)null), expiresAt);
+            return new AuthToken(id, userId, user.GetAs(this.userTableUsernameFieldName, (string)null), user.GetAs(this.userTableAccountIdFieldName, (string)null), expiresAt);
         }
 
         public async Task<AuthToken> Login(Dict login) {
@@ -434,17 +455,17 @@ namespace Butterfly.Auth {
         public readonly string id;
         public readonly string userId;
         public readonly string username;
-        public readonly string firstName;
-        public readonly string lastName;
+        //public readonly string firstName;
+        //public readonly string lastName;
         public readonly string accountId;
         public readonly DateTime expiresAt;
 
-        public AuthToken(string id, string userId, string username, string firstName, string lastName, string accountId, DateTime expiresAt) {
+        public AuthToken(string id, string userId, string username, string accountId, DateTime expiresAt) {
             this.id = id;
             this.userId = userId;
             this.username = username;
-            this.firstName = firstName;
-            this.lastName = lastName;
+            //this.firstName = firstName;
+            //this.lastName = lastName;
             this.accountId = accountId;
             this.expiresAt = expiresAt;
         }
@@ -457,7 +478,7 @@ namespace Butterfly.Auth {
             string lastName = dict.GetAs(lastNameFieldName, (string)null);
             string accountId = dict.GetAs(accountIdFieldName, (string)null);
             DateTime expiresAt = dict.GetAs(expiresAtFieldName, DateTime.MinValue);
-            return new AuthToken(id, userId, username, firstName, lastName, accountId, expiresAt);
+            return new AuthToken(id, userId, username, accountId, expiresAt);
         }
     }
 

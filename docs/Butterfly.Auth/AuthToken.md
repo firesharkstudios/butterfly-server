@@ -12,9 +12,7 @@ public class AuthToken
 | static [FromDict](AuthToken/FromDict.md)(…) |  |
 | readonly [accountId](AuthToken/accountId.md) |  |
 | readonly [expiresAt](AuthToken/expiresAt.md) |  |
-| readonly [firstName](AuthToken/firstName.md) |  |
 | readonly [id](AuthToken/id.md) |  |
-| readonly [lastName](AuthToken/lastName.md) |  |
 | readonly [userId](AuthToken/userId.md) |  |
 | readonly [username](AuthToken/username.md) |  |
 

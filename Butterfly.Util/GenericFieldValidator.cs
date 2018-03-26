@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Butterfly.Database {
-    public class FieldValidator {
+namespace Butterfly.Util {
+    public class GenericFieldValidator : IFieldValidator {
         protected readonly string fieldName;
         protected readonly Regex regex;
         protected readonly bool allowNull;
         protected readonly bool forceLowerCase;
         protected readonly bool includeValueInError;
 
-        public FieldValidator(string fieldName, string regex, bool allowNull = true, bool forceLowerCase = false, bool includeValueInError = true) {
+        public GenericFieldValidator(string fieldName, string regex, bool allowNull = true, bool forceLowerCase = false, bool includeValueInError = true) {
             this.fieldName = fieldName;
             this.regex = new Regex(regex);
             this.allowNull = allowNull;

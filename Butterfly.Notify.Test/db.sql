@@ -16,13 +16,13 @@
 
 CREATE TABLE notify_verify (
 	id VARCHAR(50) NOT NULL,
-	verify_contact VARCHAR(255) NOT NULL,
+	contact VARCHAR(255) NOT NULL,
 	verify_code INT NOT NULL,
 	expires_at INT NOT NULL,
 	created_at INT NOT NULL,
 	updated_at INT NOT NULL,
 	PRIMARY KEY(id),
-	UNIQUE INDEX verify_contact (verify_contact)
+	UNIQUE INDEX contact (contact)
 );
 
 

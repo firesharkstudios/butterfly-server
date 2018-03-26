@@ -12,14 +12,18 @@
 | class [DictionaryItemDisposable&lt;T,U&gt;](Butterfly.Util/DictionaryItemDisposable-2.md) |  |
 | static class [DictionaryX](Butterfly.Util/DictionaryX.md) |  |
 | static class [DynamicX](Butterfly.Util/DynamicX.md) |  |
+| class [EmailFieldValidator](Butterfly.Util/EmailFieldValidator.md) |  |
 | static class [EnvironmentX](Butterfly.Util/EnvironmentX.md) |  |
 | static class [FileX](Butterfly.Util/FileX.md) |  |
+| class [GenericFieldValidator](Butterfly.Util/GenericFieldValidator.md) |  |
+| interface [IFieldValidator](Butterfly.Util/IFieldValidator.md) |  |
 | interface [IWebRequest](Butterfly.Util/IWebRequest.md) |  |
 | static class [IWebRequestX](Butterfly.Util/IWebRequestX.md) |  |
 | static class [JsonUtil](Butterfly.Util/JsonUtil.md) |  |
 | class [ListItemDisposable&lt;T&gt;](Butterfly.Util/ListItemDisposable-1.md) |  |
 | static class [NameValueCollectionX](Butterfly.Util/NameValueCollectionX.md) |  |
 | class [PermissionDeniedException](Butterfly.Util/PermissionDeniedException.md) |  |
+| class [PhoneFieldValidator](Butterfly.Util/PhoneFieldValidator.md) |  |
 | static class [SafeUtil](Butterfly.Util/SafeUtil.md) |  |
 | static class [StringX](Butterfly.Util/StringX.md) |  |
 | class [UnauthorizedException](Butterfly.Util/UnauthorizedException.md) |  |

@@ -1,8 +1,7 @@
 # AuthToken constructor
 
 ```csharp
-public AuthToken(string id, string userId, string username, string firstName, string lastName, 
-    string accountId, DateTime expiresAt)
+public AuthToken(string id, string userId, string username, string accountId, DateTime expiresAt)
 ```
 
 ## See Also

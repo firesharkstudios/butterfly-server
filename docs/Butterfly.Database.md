@@ -12,7 +12,6 @@
 | class [DataEventTransactionListener](Butterfly.Database/DataEventTransactionListener.md) |  |
 | class [DeleteStatement](Butterfly.Database/DeleteStatement.md) |  |
 | class [DuplicateKeyDatabaseException](Butterfly.Database/DuplicateKeyDatabaseException.md) |  |
-| class [FieldValidator](Butterfly.Database/FieldValidator.md) |  |
 | interface [IDatabase](Butterfly.Database/IDatabase.md) |  |
 | interface [IDynamicParam](Butterfly.Database/IDynamicParam.md) |  |
 | class [InsertStatement](Butterfly.Database/InsertStatement.md) |  |

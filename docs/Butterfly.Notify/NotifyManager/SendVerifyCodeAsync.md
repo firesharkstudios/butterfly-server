@@ -1,7 +1,7 @@
-# NotifyManager.CreateVerifyCodeAsync method
+# NotifyManager.SendVerifyCodeAsync method
 
 ```csharp
-public Task CreateVerifyCodeAsync(string contact)
+public Task SendVerifyCodeAsync(string contact)
 ```
 
 ## See Also

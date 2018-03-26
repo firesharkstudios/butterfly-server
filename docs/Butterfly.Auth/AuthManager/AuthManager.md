@@ -12,10 +12,7 @@ public AuthManager(IDatabase database, int authTokenDurationDays = 90, int reset
     string userTableAccountIdFieldName = "account_id", string authTokenTableName = "auth_token", 
     string authTokenIdFieldName = "id", string authTokenTableUserIdFieldName = "user_id", 
     string authTokenTableExpiresAtFieldName = "expires_at", 
-    string emailVerifyCodeFieldName = "email_verify_code", 
-    Func<string, int, Task<string>> onEmailVerify = null, 
-    string phoneVerifyCodeFieldName = "phone_verify_code", 
-    Func<string, int, Task<string>> onPhoneVerify = null, Action<Dictionary<string, object>> onRegister = null, Action<Dictionary<string, object>> onForgotPassword = null)
+    Action<Dictionary<string, object>> onRegister = null, Action<Dictionary<string, object>> onForgotPassword = null)
 ```
 
 ## See Also
