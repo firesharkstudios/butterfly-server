@@ -4,14 +4,18 @@
 public AuthManager(IDatabase database, int authTokenDurationDays = 90, int resetCodeLength = 6, 
     int resetTokenDurationMinutes = 90, string accountTableName = "account", string userTableName = "user", 
     string userTableIdFieldName = "id", string userTableUsernameFieldName = "username", 
-    string userTableEmailFieldName = "email", string userTableSaltFieldName = "salt", 
-    string userTablePasswordHashFieldName = "password_hash", string userTableFirstNameFieldName = "first_name", 
-    string userTableLastNameFieldName = "last_name", string userTableResetCodeFieldName = "reset_code", 
+    string userTableEmailFieldName = "email", string userTablePhoneFieldName = "phone", 
+    string userTableSaltFieldName = "salt", string userTablePasswordHashFieldName = "password_hash", 
+    string userTableFirstNameFieldName = "first_name", string userTableLastNameFieldName = "last_name", 
+    string userTableResetCodeFieldName = "reset_code", 
     string userTableResetCodeExpiresAtFieldName = "reset_code_expires_at", 
     string userTableAccountIdFieldName = "account_id", string authTokenTableName = "auth_token", 
     string authTokenIdFieldName = "id", string authTokenTableUserIdFieldName = "user_id", 
     string authTokenTableExpiresAtFieldName = "expires_at", 
-    Action<Dictionary<string, object>> onRegister = null, Action<Dictionary<string, object>> onForgotPassword = null)
+    string emailVerifyCodeFieldName = "email_verify_code", 
+    Func<string, int, Task<string>> onEmailVerify = null, 
+    string phoneVerifyCodeFieldName = "phone_verify_code", 
+    Func<string, int, Task<string>> onPhoneVerify = null, Action<Dictionary<string, object>> onRegister = null, Action<Dictionary<string, object>> onForgotPassword = null)
 ```
 
 ## See Also

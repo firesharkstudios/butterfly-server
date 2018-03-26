@@ -27,6 +27,7 @@ namespace Butterfly.Auth {
         protected readonly string userTableIdFieldName;
         protected readonly string userTableUsernameFieldName;
         protected readonly string userTableEmailFieldName;
+        protected readonly string userTablePhoneFieldName;
         protected readonly string userTableSaltFieldName;
         protected readonly string userTablePasswordHashFieldName;
         protected readonly string userTableFirstNameFieldName;
@@ -40,6 +41,12 @@ namespace Butterfly.Auth {
         protected readonly string authTokenTableUserIdFieldName;
         protected readonly string authTokenTableExpiresAtFieldName;
 
+        protected readonly string emailVerifyCodeFieldName;
+        protected readonly Func<string, int, Task<string>> onEmailVerify;
+
+        protected readonly string phoneVerifyCodeFieldName;
+        protected readonly Func<string, int, Task<string>> onPhoneVerify;
+
         protected readonly Action<Dict> onRegister;
         protected readonly Action<Dict> onForgotPassword;
 
@@ -48,6 +55,7 @@ namespace Butterfly.Auth {
         protected readonly FieldValidator firstNameFieldValidator;
         protected readonly FieldValidator lastNameFieldValidator;
         protected readonly FieldValidator emailFieldValidator;
+        protected readonly FieldValidator phoneFieldValidator;
 
         public AuthManager(
             IDatabase database, 
@@ -59,6 +67,7 @@ namespace Butterfly.Auth {
             string userTableIdFieldName = "id",
             string userTableUsernameFieldName = "username",
             string userTableEmailFieldName = "email",
+            string userTablePhoneFieldName = "phone",
             string userTableSaltFieldName = "salt",
             string userTablePasswordHashFieldName = "password_hash",
             string userTableFirstNameFieldName = "first_name",
@@ -70,6 +79,10 @@ namespace Butterfly.Auth {
             string authTokenIdFieldName = "id",
             string authTokenTableUserIdFieldName = "user_id",
             string authTokenTableExpiresAtFieldName = "expires_at",
+            string emailVerifyCodeFieldName = "email_verify_code",
+            Func<string, int, Task<string>> onEmailVerify = null,
+            string phoneVerifyCodeFieldName = "phone_verify_code",
+            Func<string, int, Task<string>> onPhoneVerify = null,
             Action<Dict> onRegister = null,
             Action<Dict> onForgotPassword = null
         ) {
@@ -85,6 +98,7 @@ namespace Butterfly.Auth {
             this.userTableIdFieldName = userTableIdFieldName;
             this.userTableUsernameFieldName = userTableUsernameFieldName;
             this.userTableEmailFieldName = userTableEmailFieldName;
+            this.userTablePhoneFieldName = userTablePhoneFieldName;
             this.userTableSaltFieldName = userTableSaltFieldName;
             this.userTablePasswordHashFieldName = userTablePasswordHashFieldName;
             this.userTableFirstNameFieldName = userTableFirstNameFieldName;
@@ -98,6 +112,11 @@ namespace Butterfly.Auth {
             this.authTokenTableUserIdFieldName = authTokenTableUserIdFieldName;
             this.authTokenTableExpiresAtFieldName = authTokenTableExpiresAtFieldName;
 
+            this.emailVerifyCodeFieldName = emailVerifyCodeFieldName;
+            this.onEmailVerify = onEmailVerify;
+            this.phoneVerifyCodeFieldName = phoneVerifyCodeFieldName;
+            this.onPhoneVerify = onPhoneVerify;
+
             this.onRegister = onRegister;
             this.onForgotPassword = onForgotPassword;
 
@@ -106,6 +125,7 @@ namespace Butterfly.Auth {
             this.firstNameFieldValidator = new FieldValidator(this.userTableFirstNameFieldName, "^[^\\\'\\\"]{1,25}$", allowNull: false, forceLowerCase: false, includeValueInError: true);
             this.lastNameFieldValidator = new FieldValidator(this.userTableLastNameFieldName, "^[^\\\'\\\"]{1,25}$", allowNull: false, forceLowerCase: false, includeValueInError: true);
             this.emailFieldValidator = new FieldValidator(this.userTableEmailFieldName, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", allowNull: false, forceLowerCase: false, includeValueInError: true);
+            this.phoneFieldValidator = new FieldValidator(this.userTableEmailFieldName, @"^+?\d+$", allowNull: false, forceLowerCase: false, includeValueInError: true);
         }
 
         public void SetupWebApi(IWebApiServer webApiServer, string pathPrefix = "/api/auth") {
@@ -191,7 +211,21 @@ namespace Butterfly.Auth {
             }
 
             string password = this.passwordFieldValidator.Validate(registration?.GetAs("password", (string)null));
-            string email = this.emailFieldValidator.Validate(registration?.GetAs(this.userTableEmailFieldName, (string)null));
+
+            string email = registration?.GetAs(this.userTableEmailFieldName, (string)null);
+            if (this.onEmailVerify!=null) {
+                int emailVerifyCode = registration.GetAs(this.emailVerifyCodeFieldName, -1);
+                email = await this.onEmailVerify(email, emailVerifyCode);
+            }
+            email = this.emailFieldValidator.Validate(email);
+
+            string phone = registration?.GetAs(this.userTablePhoneFieldName, (string)null);
+            if (this.onPhoneVerify != null) {
+                int phoneVerifyCode = registration.GetAs(this.phoneVerifyCodeFieldName, -1);
+                phone = await this.onPhoneVerify(phone, phoneVerifyCode);
+            }
+            phone = this.phoneFieldValidator.Validate(phone);
+
             string firstName = this.firstNameFieldValidator.Validate(registration?.GetAs(this.userTableFirstNameFieldName, (string)null));
             string lastName = this.lastNameFieldValidator.Validate(registration?.GetAs(this.userTableLastNameFieldName, (string)null));
 
@@ -204,6 +238,7 @@ namespace Butterfly.Auth {
                 { this.userTableSaltFieldName, salt },
                 { this.userTablePasswordHashFieldName, passwordHash },
                 { this.userTableEmailFieldName, email },
+                { this.userTablePhoneFieldName, phone },
                 { this.userTableFirstNameFieldName, firstName  },
                 { this.userTableLastNameFieldName, lastName },
             };

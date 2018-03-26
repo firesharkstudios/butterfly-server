@@ -28,16 +28,16 @@
                 private.webSocket = new WebSocket(url);
                 private.webSocket.onmessage = function (event) {
                     let message = JSON.parse(event.data);
-                    if (message.messageType == 'AUTHENTICATED') {
-                        private.setStatus('Authenticated');
-                    }
-                    else if (message.channelKey) {
-                        let handlers = private.handlersByKey[channelKey];
+                    if (message.channelKey) {
+                        let handlers = private.handlersByKey[message.channelKey];
                         if (handlers) {
                             for (let i = 0; i < handlers.length; i++) {
                                 handlers[i](message.messageType, message.data);
                             }
                         }
+                    }
+                    else if (message.messageType == 'AUTHENTICATED') {
+                        private.setStatus('Authenticated');
                     }
                 };
                 private.webSocket.onopen = function () {

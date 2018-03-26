@@ -12,6 +12,9 @@ CREATE TABLE user (
 	first_name VARCHAR(255) NOT NULL,
 	last_name VARCHAR(255) NOT NULL,
 	email VARCHAR(255) NOT NULL,
+	email_verified_at INT NULL,
+	phone VARCHAR(20) NULL,
+	phone_verified_at INT NULL
 	salt VARCHAR(40) NOT NULL,
 	password_hash VARCHAR(90) NOT NULL,	
 	reset_code VARCHAR(6) NULL,	

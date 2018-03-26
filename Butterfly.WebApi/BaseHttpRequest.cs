@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 using HttpMultipartParser;
 
 using Butterfly.Util;
+using NLog;
 
 namespace Butterfly.WebApi {
     public abstract class BaseHttpRequest : IHttpRequest {
+        protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         protected abstract Stream InputStream { get; }
 
         public abstract Uri RequestUri { get; }
@@ -27,6 +30,7 @@ namespace Butterfly.WebApi {
         }
 
         public void ParseAsMultipartStream(Action<string, string, string, string, byte[], int> onData, Action<string, string> onParameter = null) {
+            logger.Debug("ParseAsMultipartStream()");
             var parser = new StreamingMultipartFormDataParser(this.InputStream);
             if (onParameter != null) {
                 parser.ParameterHandler += parameter => onParameter(parameter.Name, parameter.Data);

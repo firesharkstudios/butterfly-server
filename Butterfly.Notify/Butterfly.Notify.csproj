@@ -84,6 +84,10 @@
       <Project>{687A3FB4-8299-4F15-B74B-825FE7446823}</Project>
       <Name>Butterfly.Util</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Butterfly.WebApi\Butterfly.WebApi.csproj">
+      <Project>{AAC77468-2570-4B46-ABAC-E9CF215942F1}</Project>
+      <Name>Butterfly.WebApi</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

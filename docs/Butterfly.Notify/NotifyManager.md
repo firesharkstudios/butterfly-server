@@ -9,9 +9,12 @@ public class NotifyManager
 | name | description |
 | --- | --- |
 | [NotifyManager](NotifyManager/NotifyManager.md)(…) |  |
+| [CreateVerifyCodeAsync](NotifyManager/CreateVerifyCodeAsync.md)(…) |  |
 | [Queue](NotifyManager/Queue.md)(…) |  |
+| [SetupWebApi](NotifyManager/SetupWebApi.md)(…) |  |
 | [Start](NotifyManager/Start.md)() |  |
 | [Stop](NotifyManager/Stop.md)() |  |
+| [VerifyAsync](NotifyManager/VerifyAsync.md)(…) |  |
 
 ## See Also
 

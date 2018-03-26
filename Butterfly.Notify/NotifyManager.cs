@@ -8,6 +8,8 @@ using Butterfly.Database;
 using Butterfly.Util;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
+using System.Text.RegularExpressions;
+using Butterfly.WebApi;
 
 namespace Butterfly.Notify {
 
@@ -25,10 +27,19 @@ namespace Butterfly.Notify {
         protected readonly NotifyMessageEngine emailNotifyMessageEngine;
         protected readonly NotifyMessageEngine phoneTextNotifyMessageEngine;
 
-        public NotifyManager(IDatabase database, INotifyMessageSender emailNotifyMessageSender = null, INotifyMessageSender phoneTextNotifyMessageSender = null, string notifyMessageTableName = "notify_message") {
+        protected readonly string notifyMessageTableName;
+        protected readonly string notifyVerifyTableName;
+        protected readonly int verifyCodeExpiresSeconds;
+
+        protected readonly Random random = new Random();
+
+        public NotifyManager(IDatabase database, INotifyMessageSender emailNotifyMessageSender = null, INotifyMessageSender phoneTextNotifyMessageSender = null, string notifyMessageTableName = "notify_message", string notifyVerifyTableName = "notify_verify", int verifyCodeExpiresSeconds = 3600) {
             this.database = database;
             this.emailNotifyMessageEngine = emailNotifyMessageSender == null ? null : new NotifyMessageEngine(NotifyMessageType.Email, emailNotifyMessageSender, database, notifyMessageTableName);
             this.phoneTextNotifyMessageEngine = phoneTextNotifyMessageSender == null ? null : new NotifyMessageEngine(NotifyMessageType.PhoneText, phoneTextNotifyMessageSender, database, notifyMessageTableName);
+            this.notifyMessageTableName = notifyMessageTableName;
+            this.notifyVerifyTableName = notifyVerifyTableName;
+            this.verifyCodeExpiresSeconds = verifyCodeExpiresSeconds;
         }
 
         public void Start() {
@@ -41,6 +52,98 @@ namespace Butterfly.Notify {
             this.phoneTextNotifyMessageEngine?.Stop();
         }
 
+        public void SetupWebApi(IWebApiServer webApiServer, string pathPrefix = "/api/notify") {
+            webApiServer.OnGet($"{pathPrefix}/create-verify-code", async (req, res) => {
+                Dict values = await req.ParseAsJsonAsync<Dict>();
+                string contact = values.GetAs("contact", (string)null);
+                await this.CreateVerifyCodeAsync(contact);
+            });
+
+            webApiServer.OnGet($"{pathPrefix}/verify", async (req, res) => {
+                Dict values = await req.ParseAsJsonAsync<Dict>();
+                string contact = values.GetAs("contact", (string)null);
+                int code = values.GetAs("code", -1);
+                await this.VerifyAsync(contact, code);
+            });
+        }
+
+        public async Task CreateVerifyCodeAsync(string contact) {
+            string scrubbedContact = Scrub(contact);
+            int code = this.random.Next(0, 899999) + 100000;
+            string id = await this.database.SelectValueAsync<string>($"SELECT id FROM {this.notifyVerifyTableName}", new {
+                verify_contact = scrubbedContact
+            });
+
+            DateTime expiresAt = DateTime.Now.AddSeconds(this.verifyCodeExpiresSeconds);
+            if (id == null) {
+                await this.database.InsertAndCommitAsync<string>(this.notifyVerifyTableName, new {
+                    verify_contact = scrubbedContact,
+                    verify_code = code,
+                    expires_at = expiresAt,
+                });
+            }
+            else {
+                await this.database.UpdateAndCommitAsync(this.notifyVerifyTableName, new {
+                    id,
+                    verify_code = code,
+                    expires_at = expiresAt,
+                });
+            }
+        }
+
+        public async Task VerifyAsync(string contact, int code) {
+            string scrubbedContact = Scrub(contact);
+            int verifyCode = await this.database.SelectValueAsync<int>($"SELECT verify_code FROM {this.notifyVerifyTableName}", new {
+                verify_contact = scrubbedContact
+            }, -1);
+            if (code == -1 || code!=verifyCode) throw new Exception("Invalid contact and/or verify code");
+        }
+
+        protected static string Scrub(string contact) {
+            if (contact.Contains("@")) {
+                return ScrubEmail(contact);
+            }
+            else {
+                return ScrubPhone(contact);
+            }
+        }
+
+        protected static string ScrubEmail(string email, bool stripName = false) {
+            int leftPos = email.IndexOf('<');
+            int rightPos = email.LastIndexOf('>');
+            if (leftPos > 0 && rightPos > 0 && leftPos < rightPos) {
+                string name = email.Substring(0, leftPos).Trim();
+                string address = email.Substring(leftPos + 1, rightPos - leftPos - 1).Trim().ToLower();
+                if (!address.Contains("@")) {
+                    throw new Exception("Email address must contain @");
+                }
+                else if (stripName) {
+                    return address;
+                }
+                else {
+                    return $"{name} <{address}>";
+                }
+            }
+            else if (!email.Contains("@")) {
+                throw new Exception("Email address must contain @");
+            }
+            else {
+                return email.ToLower();
+            }
+        }
+
+        protected static readonly Regex NON_PHONE_CHARS = new Regex(@"\D");
+
+        protected static string ScrubPhone(string phone) {
+            string newPhone = NON_PHONE_CHARS.Replace(phone, "");
+            if (!newPhone.StartsWith("+") && newPhone.Length==10) {
+                return $"+1{newPhone}";
+            }
+            else {
+                return newPhone;
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -48,15 +151,17 @@ namespace Butterfly.Notify {
         /// <param name="notifyMessage"></param>
         /// <returns></returns>
         public async Task Queue(NotifyMessage notifyMessage, byte priority = 0) {
-            NotifyMessageType notifyMessageType = this.DetectNotifyMessageType(notifyMessage.to);
+            string scrubbedFrom = Scrub(notifyMessage.from);
+            string scrubbedTo = Scrub(notifyMessage.to);
+            NotifyMessageType notifyMessageType = this.DetectNotifyMessageType(scrubbedTo);
             switch (notifyMessageType) {
                 case NotifyMessageType.Email:
                     if (this.emailNotifyMessageEngine == null) throw new Exception("No email message sender configured");
-                    await this.emailNotifyMessageEngine.Queue(priority, notifyMessage.from, notifyMessage.to, notifyMessage.subject, notifyMessage.bodyText, notifyMessage.bodyHtml);
+                    await this.emailNotifyMessageEngine.Queue(priority, scrubbedFrom, scrubbedTo, notifyMessage.subject, notifyMessage.bodyText, notifyMessage.bodyHtml);
                     break;
                 case NotifyMessageType.PhoneText:
                     if (this.phoneTextNotifyMessageEngine == null) throw new Exception("No phone text message sender configured");
-                    await this.phoneTextNotifyMessageEngine.Queue(priority, notifyMessage.from, notifyMessage.to, notifyMessage.subject, notifyMessage.bodyText, notifyMessage.bodyHtml);
+                    await this.phoneTextNotifyMessageEngine.Queue(priority, scrubbedFrom, scrubbedTo, notifyMessage.subject, notifyMessage.bodyText, notifyMessage.bodyHtml);
                     break;
             }
         }
@@ -121,7 +226,7 @@ namespace Butterfly.Notify {
 
                     Dict message = await this.database.SelectRowAsync(
                         @"SELECT *
-                        FROM notify_message
+                        FROM " + this.notifyMessageTableName + @"
                         WHERE message_type=@messageType AND sent_at IS NULL
                         ORDER BY message_priority DESC, created_at", new {
                             messageType = (byte)this.notifyMessageType
