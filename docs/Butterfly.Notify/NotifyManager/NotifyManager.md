@@ -4,7 +4,7 @@
 public NotifyManager(IDatabase database, INotifyMessageSender emailNotifyMessageSender = null, 
     INotifyMessageSender phoneTextNotifyMessageSender = null, string notifyMessageTableName = "notify_message", 
     string notifyVerifyTableName = "notify_verify", int verifyCodeExpiresSeconds = 3600, 
-    string verifyEmailFile = null, string verifyPhoneTextFile = null, byte verifyNotifyMessagePriority = 10)
+    string verifyEmailFile = null, string verifyPhoneTextFile = null, byte verifyNotifyMessagePriority = 10, string verifyCodeFormat = "###-###")
 ```
 
 ## See Also

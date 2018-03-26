@@ -1,8 +1,11 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Text.RegularExpressions;
 
 namespace Butterfly.Util {
     public class EmailFieldValidator : IFieldValidator {
+        protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         protected readonly string name;
         protected readonly bool allowNull;
         protected readonly bool stripName;
@@ -16,6 +19,8 @@ namespace Butterfly.Util {
         }
 
         public string Validate(string value) {
+            logger.Debug($"Validate():value={value}");
+
             if (!this.allowNull && string.IsNullOrEmpty(value)) throw new Exception($"Field {this.name} cannot be null");
 
             int leftPos = value.IndexOf('<');

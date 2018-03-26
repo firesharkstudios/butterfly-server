@@ -19,6 +19,7 @@ public class AuthManager
 | [RegisterAsync](AuthManager/RegisterAsync.md)(…) |  |
 | [ResetPassword](AuthManager/ResetPassword.md)(…) |  |
 | [SetupWebApi](AuthManager/SetupWebApi.md)(…) |  |
+| [Verify](AuthManager/Verify.md)(…) |  |
 
 ## See Also
 

@@ -79,6 +79,7 @@ namespace Butterfly.Notify {
 
             // Scrub contact
             string scrubbedContact = Validate(contact);
+            logger.Debug($"SendVerifyCodeAsync():scrubbedContact={scrubbedContact}");
 
             // Generate code and expires at
             int digits = this.verifyCodeFormat.Count(x => x=='#');
@@ -143,6 +144,7 @@ namespace Butterfly.Notify {
         }
 
         protected static string Validate(string value) {
+            logger.Debug($"Validate():value={value}");
             if (value.Contains("@")) {
                 return EMAIL_FIELD_VALIDATOR.Validate(value);
             }
@@ -158,8 +160,12 @@ namespace Butterfly.Notify {
         /// <param name="notifyMessage"></param>
         /// <returns></returns>
         public async Task Queue(NotifyMessage notifyMessage, byte priority = 0) {
+            if (string.IsNullOrEmpty(notifyMessage.from)) throw new Exception("From address cannot be blank");
             string scrubbedFrom = Validate(notifyMessage.from);
+
+            if (string.IsNullOrEmpty(notifyMessage.to)) throw new Exception("To address cannot be blank");
             string scrubbedTo = Validate(notifyMessage.to);
+
             NotifyMessageType notifyMessageType = this.DetectNotifyMessageType(scrubbedTo);
             switch (notifyMessageType) {
                 case NotifyMessageType.Email:
