@@ -1,7 +1,7 @@
 # AuthManager.CreateAnonymousUser method
 
 ```csharp
-public Task<AuthToken> CreateAnonymousUser()
+public Task<AuthToken> CreateAnonymousUser(string inviteCode)
 ```
 
 ## See Also

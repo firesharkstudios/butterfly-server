@@ -270,6 +270,7 @@ namespace Butterfly.Notify {
                         }
                         catch (Exception e) {
                             error = e.Message;
+                            logger.Error(e);
                         }
 
                         var id = message.GetAs("id", (string)null);

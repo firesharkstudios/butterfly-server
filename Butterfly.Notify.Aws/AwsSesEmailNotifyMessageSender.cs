@@ -24,6 +24,8 @@ namespace Butterfly.Notify.Aws {
         }
 
         protected override async Task DoSendAsync(string from, string to, string subject, string bodyText, string bodyHtml) {
+            logger.Debug($"DoSendAsync():from={from},to={to},subject={subject}");
+
             Destination destination = new Destination {
                 ToAddresses = (new List<string>() { to })
             };
@@ -39,6 +41,7 @@ namespace Butterfly.Notify.Aws {
             AmazonSimpleEmailServiceClient client = new AmazonSimpleEmailServiceClient(this.region);
 
             try {
+                logger.Debug($"DoSendAsync():client.SendEmailAsync()");
                 await client.SendEmailAsync(request);
             }
             catch (Exception ex) {
