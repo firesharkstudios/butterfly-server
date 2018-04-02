@@ -1,7 +1,7 @@
 # IDatabase.InsertAndCommitAsync&lt;T&gt; method
 
 ```csharp
-public Task<T> InsertAndCommitAsync<T>(string insertStatement, object vars, bool ignoreIfDuplicate = false)
+public Task<T> InsertAndCommitAsync<T>(string insertStatement, object vars = null, bool ignoreIfDuplicate = false)
 ```
 
 ## See Also

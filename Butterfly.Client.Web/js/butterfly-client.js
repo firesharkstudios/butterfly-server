@@ -10,8 +10,7 @@
     console.log('WebSocketChannelClient():url=' + url);
 
     private.auth = null;
-    private.subscriptions = [];
-    private.handlersByKey = {};
+    private.subscriptionByChannelKey = {};
 
     private.setStatus = function (value) {
         if (public.status != value) {
@@ -21,7 +20,6 @@
     }
 
     private.testConnection = function () {
-        //console.log('testConnection():firstAttempt=' + firstAttempt);
         if (!private.webSocket) {
             try {
                 private.setStatus('Connecting...');
@@ -29,20 +27,20 @@
                 private.webSocket.onmessage = function (event) {
                     let message = JSON.parse(event.data);
                     if (message.channelKey) {
-                        let handlers = private.handlersByKey[message.channelKey];
-                        if (handlers) {
-                            for (let i = 0; i < handlers.length; i++) {
-                                handlers[i](message.messageType, message.data);
+                        let subscription = private.subscriptionByChannelKey[message.channelKey];
+                        if (subscription.handlers) {
+                            for (let i = 0; i < subscription.handlers.length; i++) {
+                                subscription.handlers[i](message.messageType, message.data);
                             }
                         }
                     }
                     else if (message.messageType == 'AUTHENTICATED') {
                         private.setStatus('Authenticated');
+                        private.sendSubscriptions();
                     }
                 };
                 private.webSocket.onopen = function () {
                     private.sendAuthorization();
-                    private.sendSubscribe(private.subscriptions);
                 };
                 private.webSocket.onerror = function (error) {
                     private.webSocket = null;
@@ -57,7 +55,7 @@
             //console.log('testConnection():private.webSocket.readyState=' + private.webSocket.readyState);
             try {
                 private.webSocket.send('!');
-                console.log('testConnection():heartbeat success');
+                console.log('WebSocketChannelClient.testConnection():heartbeat success');
             }
             catch (e) {
                 private.webSocket = null;
@@ -79,17 +77,33 @@
         }
     }
 
-    private.sendSubscribe = function (subscriptions) {
-        if (private.webSocket && private.webSocket.readyState == 1) {
-            let newSubscriptions = Array.isArray(subscriptions) ? subscriptions : [subscriptions];
-            let text = 'Subscribe:' + JSON.stringify(newSubscriptions);
-            private.webSocket.send(text);
+    private.sendSubscriptions = function () {
+        if (private.webSocket && private.webSocket.readyState == 1 && public.status == 'Authenticated') {
+            let data = [];
+            for (let key in private.subscriptionByChannelKey) {
+                let subscription = private.subscriptionByChannelKey[key];
+                if (!subscription.sent) {
+                    data.push({
+                        channelKey: key,
+                        vars: subscription.vars,
+                    });
+                }
+            }
+            if (data.length > 0) {
+                let text = 'Subscribe:' + JSON.stringify(data);
+                console.log('WebSocketChannelClient.sendSubscriptions():text=' + text);
+                private.webSocket.send(text);
+                for (let key in private.subscriptionByChannelKey) {
+                    let subscription = private.subscriptionByChannelKey[key];
+                    subscription.sent = true;
+                }
+            }
         }
     }
 
-    private.addSubscription = function (handler, channelKey, subscription) {
-        private.subscriptions.push(subscription);
-        private.handlersByKey[channelKey] = Array.isArray(handler) ? handler : [handler];
+    private.addSubscription = function (channelKey, subscription) {
+        private.subscriptionByChannelKey[channelKey] = subscription;
+        private.sendSubscriptions();
     }
 
     private.sendUnsubscribe = function (channelKey) {
@@ -100,11 +114,7 @@
     }
 
     private.removeSubscription = function (channelKey) {
-        let index = private.subscriptions.findIndex(x => x.channelKey == channelKey);
-        if (index >= 0) {
-            private.subscriptions.splice(index, 1);
-            delete private.handlersByKey[channelKey];
-        }
+        delete private.subscriptionByChannelKey[channelKey];
     }
 
     let public = {
@@ -113,19 +123,25 @@
             private.testConnection();
         },
         authorize: function (newValue) {
-            private.auth = newValue;
-            private.sendAuthorization();
-            private.sendSubscribe(private.subscriptions);
+            console.log('WebSocketChannelClient.authorize()');
+            if (private.auth != newValue) {
+                private.auth = newValue;
+                for (let key in private.subscriptionByChannelKey) {
+                    let subscription = private.subscriptionByChannelKey[key];
+                    subscription.sent = false;
+                }
+                private.sendAuthorization();
+            }
         },
         subscribe: function (handler, channelKey, vars) {
+            console.log('WebSocketChannelClient.subscribe()');
             if (!channelKey) channelKey = 'default';
             private.removeSubscription(channelKey);
-            let subscription = {
-                channelKey: channelKey,
-                vars: vars
-            };
-            private.addSubscription(handler, channelKey, subscription);
-            private.sendSubscribe(subscription);
+            private.addSubscription(channelKey, {
+                vars: vars,
+                handlers: Array.isArray(handler) ? handler : [handler],
+                sent: false,
+            });
             if (options.onSubscriptionsUpdated) options.onSubscriptionsUpdated();
         },
         unsubscribe: function (channelKey) {
@@ -141,7 +157,7 @@
     };
 
     return public;
-},
+}
 
 function ArrayDataEventHandler(config) {
     let private = this;

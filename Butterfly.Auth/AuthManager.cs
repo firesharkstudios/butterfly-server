@@ -233,16 +233,13 @@ namespace Butterfly.Auth {
 
             // Handle registering an anonymous user
             string userId = registration.GetAs(this.authTokenTableUserIdFieldName, (string)null);
+            string accountId = null;
             logger.Trace($"RegisterAsync():userId={userId}");
             if (!string.IsNullOrEmpty(userId)) {
-                Dict existingUserByUserId = await this.database.SelectRowAsync(this.userTableName, userId);
-                if (existingUserByUserId == null) {
-                    userId = null;
-                }
-                else {
-                    string userName = existingUserByUserId.GetAs(this.userTableUsernameFieldName, (string)null);
-                    if (!string.IsNullOrEmpty(userName)) throw new Exception("User '" + userId + "' already registered");
-                }
+                accountId = await this.database.SelectValueAsync<string>($"SELECT account_id FROM {this.userTableName}", userId);
+            }
+            if (string.IsNullOrEmpty(accountId)) {
+                userId = null;
             }
 
             // Check if username is available
@@ -252,12 +249,6 @@ namespace Butterfly.Auth {
                 { this.userTableUsernameFieldName, username }
             });
             if (existingUserByUsername != null) throw new Exception("Username '" + username + "' is unavailable");
-
-            string accountId = registration.GetAs(this.userTableAccountIdFieldName, (string)null);
-            if (string.IsNullOrEmpty(accountId)) {
-                accountId = await this.database.InsertAndCommitAsync<string>("account", new {
-                });
-            }
 
             string password = this.passwordFieldValidator.Validate(registration?.GetAs("password", (string)null));
 
@@ -269,6 +260,10 @@ namespace Butterfly.Auth {
 
             string salt = Guid.NewGuid().ToString();
             string passwordHash = $"{salt} {password}".Hash();
+
+            if (string.IsNullOrEmpty(accountId)) {
+                accountId = await this.database.InsertAndCommitAsync<string>(this.accountTableName);
+            }
 
             Dict user = new Dict {
                 { this.userTableAccountIdFieldName, accountId },
