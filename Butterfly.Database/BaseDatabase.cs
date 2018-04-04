@@ -402,7 +402,7 @@ namespace Butterfly.Database {
             else if (typeText.Equals("DOUBLE", StringComparison.OrdinalIgnoreCase)) {
                 type = typeof(double);
             }
-            else if (typeText.Equals("INT", StringComparison.OrdinalIgnoreCase)) {
+            else if (typeText.Equals("DATETIME", StringComparison.OrdinalIgnoreCase)) {
                 type = typeof(DateTime);
             }
             else {

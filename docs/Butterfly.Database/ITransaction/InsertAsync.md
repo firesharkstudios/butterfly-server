@@ -1,7 +1,7 @@
 # ITransaction.InsertAsync&lt;T&gt; method
 
 ```csharp
-public Task<T> InsertAsync<T>(string insertStatement, object vars, bool ignoreIfDuplicate = false)
+public Task<T> InsertAsync<T>(string insertStatement, object vars = null, bool ignoreIfDuplicate = false)
 ```
 
 ## See Also

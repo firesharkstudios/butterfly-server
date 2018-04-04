@@ -27,7 +27,7 @@ namespace Butterfly.Database {
     /// Internal class used to parse SELECT statements
     /// </summary>
     public class SelectStatement : BaseStatement {
-        protected readonly static Regex STATEMENT_REGEX = new Regex(@"^SELECT\s+(.+)\s+FROM\s+(.+?)(?:\s+WHERE\s+(.+?))?(?:\s+ORDER\s+BY\s+(.+?))?(?:\s+LIMIT\s+(.+?))?$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        protected readonly static Regex STATEMENT_REGEX = new Regex(@"^SELECT\s+(.+?)\s+FROM\s+(.+?)(?:\s+WHERE\s+(.+?))?(?:\s+ORDER\s+BY\s+(.+?))?(?:\s+LIMIT\s+(.+?))?$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         public readonly string selectClause;
         public readonly string fromClause;
@@ -70,6 +70,12 @@ namespace Butterfly.Database {
             if (this.selectClause == "*" || string.IsNullOrEmpty(this.selectClause)) {
                 if (this.TableRefs.Length != 1) throw new Exception("Select statement must have exactly one table to use * to select field names");
                 this.FieldRefs = this.TableRefs[0].table.FieldDefs.Select(x => new StatementFieldRef(x.name)).ToArray();
+            }
+            else if (this.selectClause.EndsWith(".*")) {
+                string[] parts = this.selectClause.Split('.');
+                var tableRef = this.TableRefs.First(x => parts[0] == x.table.Name || parts[0] == x.tableAlias);
+                if (tableRef==null) throw new Exception("Could not find table matching {this.selectClause}");
+                this.FieldRefs = tableRef.table.FieldDefs.Select(x => new StatementFieldRef(x.name)).ToArray();
             }
             else {
                 this.FieldRefs = StatementFieldRef.ParseFieldRefs(selectClause);
@@ -173,7 +179,7 @@ namespace Butterfly.Database {
             var matches = regex.Matches(sql);
             foreach (Match match in matches) {
                 string replacement = getReplacement(match);
-                sb.Append(sql.Substring(lastIndex, match.Index));
+                sb.Append(sql.Substring(lastIndex, match.Index - lastIndex));
                 sb.Append(replacement);
                 lastIndex = match.Index + match.Length;
             }

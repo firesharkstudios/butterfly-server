@@ -259,6 +259,12 @@ namespace Butterfly.Database.Test {
             });
             Assert.AreEqual(3, someDepartments4.Length);
 
+            // Test retrieving rows on an indexed field with a three value array and repeating a parameter
+            Dict[] someDepartments5 = await database.SelectRowsAsync("SELECT * FROM department WHERE id=@id OR id=@id", new {
+                id = new object[] { salesDepartmentId, hrDepartmentId, customerServiceDepartmentId },
+            });
+            Assert.AreEqual(3, someDepartments5.Length);
+
 
             // Test retrieving rows on a negated indexed field
             Dict[] someDepartments10 = await database.SelectRowsAsync("SELECT * FROM department WHERE id!=@id", new {
@@ -318,6 +324,19 @@ namespace Butterfly.Database.Test {
                 birthday = new DateTime(1950, 01, 01)
             });
             Assert.AreEqual(0, someEmployees4.Length);
+
+            // Test join
+            Dict[] someEmployees10 = await database.SelectRowsAsync("SELECT e.id FROM employee e INNER JOIN department d ON e.department_id=d.id");
+            Assert.AreEqual(3, someEmployees10.Length);
+
+            // Test join
+            Dict[] someEmployees11 = await database.SelectRowsAsync("SELECT e.* FROM employee e INNER JOIN department d ON e.department_id=d.id");
+            Assert.AreEqual(3, someEmployees11.Length);
+            Assert.AreEqual(6, someEmployees11[0].Count);
+
+            // Test nested SELECT in WHERE clause
+            Dict[] someEmployees12 = await database.SelectRowsAsync("SELECT * FROM employee WHERE department_id IN (SELECT id from department)");
+            Assert.AreEqual(3, someEmployees12.Length);
         }
 
         protected async Task UpdateAndDeleteBasicData(IDatabase database, object hrDepartmentId) {
