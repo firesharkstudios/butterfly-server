@@ -36,6 +36,7 @@
                     }
                     else if (message.messageType == 'AUTHENTICATED') {
                         private.setStatus('Authenticated');
+                        private.markSubscriptionSent(false);
                         private.sendSubscriptions();
                     }
                 };
@@ -93,10 +94,7 @@
                 let text = 'Subscribe:' + JSON.stringify(data);
                 console.log('WebSocketChannelClient.sendSubscriptions():text=' + text);
                 private.webSocket.send(text);
-                for (let key in private.subscriptionByChannelKey) {
-                    let subscription = private.subscriptionByChannelKey[key];
-                    subscription.sent = true;
-                }
+                private.markSubscriptionSent(true);
             }
         }
     }
@@ -113,6 +111,13 @@
         }
     }
 
+    private.markSubscriptionSent = function (value) {
+        for (let key in private.subscriptionByChannelKey) {
+            let subscription = private.subscriptionByChannelKey[key];
+            subscription.sent = value;
+        }
+    }
+
     private.removeSubscription = function (channelKey) {
         delete private.subscriptionByChannelKey[channelKey];
     }
@@ -126,10 +131,7 @@
             console.log('WebSocketChannelClient.authorize()');
             if (private.auth != newValue) {
                 private.auth = newValue;
-                for (let key in private.subscriptionByChannelKey) {
-                    let subscription = private.subscriptionByChannelKey[key];
-                    subscription.sent = false;
-                }
+                private.markSubscriptionSent(false);
                 private.sendAuthorization();
             }
         },

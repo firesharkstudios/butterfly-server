@@ -157,43 +157,7 @@ namespace Butterfly.Database.Dynamic {
                     if (this.incomingDataEventTransactions.TryDequeue(out DataEventTransaction dataEventTransaction)) {
                         logger.Trace($"RunAsync():dataEventTransaction={dataEventTransaction}");
 
-                        HashSet<string> newRecordDataEventFullKeys = new HashSet<string>();
-                        List<DataEvent> newRecordDataEvents = new List<DataEvent>();
-                        foreach (var dataEvent in dataEventTransaction.dataEvents) {
-                            foreach (var dynamicView in this.dynamicViews) {
-                                logger.Trace($"RunAsync():dynamicView.name={dynamicView.Name}");
-                                // Don't send data events if DynamicView has dirty params because
-                                // the DynamicView will be requeried anyways
-                                if (!dynamicView.HasDirtyParams) {
-                                    // Fetch the preCommitImpactedRecords
-                                    Dict[] preCommitImpactedRecords = null;
-                                    if (HasImpactedRecords(TransactionState.Uncommitted, dataEvent)) {
-                                        string storageKey = GetImpactedRecordsStorageKey(dynamicView, dataEvent, TransactionState.Uncommitted);
-                                        preCommitImpactedRecords = (Dict[])dataEventTransaction.Fetch(storageKey);
-                                    }
-
-                                    // Fetch the postCommitImpactedRecords
-                                    Dict[] postCommitImpactedRecords = null;
-                                    if (HasImpactedRecords(TransactionState.Committed, dataEvent)) {
-                                        string storageKey = GetImpactedRecordsStorageKey(dynamicView, dataEvent, TransactionState.Committed);
-                                        postCommitImpactedRecords = (Dict[])dataEventTransaction.Fetch(storageKey);
-                                    }
-
-                                    // Determine the changes from each data event on each dynamic select
-                                    RecordDataEvent[] recordDataEvents = dynamicView.ProcessDataChange(dataEvent, preCommitImpactedRecords, postCommitImpactedRecords);
-                                    if (recordDataEvents != null) {
-                                        dynamicView.UpdateChildDynamicParams(recordDataEvents);
-                                        foreach (var recordDataEvent in recordDataEvents) {
-                                            string fullKey = $"{recordDataEvent.name}:{recordDataEvent.keyValue}";
-                                            if (!newRecordDataEventFullKeys.Contains(fullKey)) {
-                                                newRecordDataEventFullKeys.Add(fullKey);
-                                                newRecordDataEvents.Add(recordDataEvent);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        var newRecordDataEvents = this.dynamicViews.AsParallel().SelectMany(x => CreateDynamicViewDataEvents(dataEventTransaction, x)).ToList();
                         logger.Trace($"RunAsync():newRecordDataEvents={string.Join(",", newRecordDataEvents)}");
 
                         DataEvent[] initialDataEvents = await this.RequeryDynamicViewsAsync(true);
@@ -215,6 +179,47 @@ namespace Butterfly.Database.Dynamic {
                     await Task.Delay(100);
                 }
             }
+        }
+
+        protected DataEvent[] CreateDynamicViewDataEvents(DataEventTransaction dataEventTransaction, DynamicView dynamicView) {
+            logger.Trace($"RunAsync():dynamicView.name={dynamicView.Name}");
+            List<DataEvent> newRecordDataEvents = new List<DataEvent>();
+
+            // Don't send data events if DynamicView has dirty params because
+            // the DynamicView will be requeried anyways
+            if (!dynamicView.HasDirtyParams) {
+                HashSet<string> newRecordDataEventFullKeys = new HashSet<string>();
+                foreach (var dataEvent in dataEventTransaction.dataEvents) {
+                    // Fetch the preCommitImpactedRecords
+                    Dict[] preCommitImpactedRecords = null;
+                    if (HasImpactedRecords(TransactionState.Uncommitted, dataEvent)) {
+                        string storageKey = GetImpactedRecordsStorageKey(dynamicView, dataEvent, TransactionState.Uncommitted);
+                        preCommitImpactedRecords = (Dict[])dataEventTransaction.Fetch(storageKey);
+                    }
+
+                    // Fetch the postCommitImpactedRecords
+                    Dict[] postCommitImpactedRecords = null;
+                    if (HasImpactedRecords(TransactionState.Committed, dataEvent)) {
+                        string storageKey = GetImpactedRecordsStorageKey(dynamicView, dataEvent, TransactionState.Committed);
+                        postCommitImpactedRecords = (Dict[])dataEventTransaction.Fetch(storageKey);
+                    }
+
+                    // Determine the changes from each data event on each dynamic select
+                    RecordDataEvent[] recordDataEvents = dynamicView.ProcessDataChange(dataEvent, preCommitImpactedRecords, postCommitImpactedRecords);
+                    if (recordDataEvents != null) {
+                        dynamicView.UpdateChildDynamicParams(recordDataEvents);
+                        foreach (var recordDataEvent in recordDataEvents) {
+                            string fullKey = $"{recordDataEvent.name}:{recordDataEvent.keyValue}";
+                            if (!newRecordDataEventFullKeys.Contains(fullKey)) {
+                                newRecordDataEventFullKeys.Add(fullKey);
+                                newRecordDataEvents.Add(recordDataEvent);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return newRecordDataEvents.ToArray();
         }
 
         protected async Task SendToListenerAsync(DataEventTransaction dataEventTransaction) {
