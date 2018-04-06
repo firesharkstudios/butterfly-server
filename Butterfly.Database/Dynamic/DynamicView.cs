@@ -95,6 +95,7 @@ namespace Butterfly.Database.Dynamic {
         /// </summary>
         /// <returns></returns>
         internal async Task<DataEvent[]> GetInitialDataEventsAsync() {
+            logger.Debug($"GetInitialDataEventsAsync()");
             return await this.dynamicViewSet.Database.GetInitialDataEventsAsync(this.name, this.keyFieldNames, this.statement, this.statementParams);
         }
 

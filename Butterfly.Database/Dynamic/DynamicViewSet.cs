@@ -156,6 +156,7 @@ namespace Butterfly.Database.Dynamic {
                 try {
                     if (this.incomingDataEventTransactions.TryDequeue(out DataEventTransaction dataEventTransaction)) {
                         logger.Trace($"RunAsync():dataEventTransaction={dataEventTransaction}");
+
                         HashSet<string> newRecordDataEventFullKeys = new HashSet<string>();
                         List<DataEvent> newRecordDataEvents = new List<DataEvent>();
                         foreach (var dataEvent in dataEventTransaction.dataEvents) {
@@ -234,7 +235,7 @@ namespace Butterfly.Database.Dynamic {
         /// <param name="onlyIfDirtyParams"></param>
         /// <returns></returns>
         protected async Task<DataEvent[]> RequeryDynamicViewsAsync(bool onlyIfDirtyParams) {
-            logger.Debug($"RequeryDynamicViewsIfDirtyAsync():onlyIfDirtyParams={onlyIfDirtyParams}");
+            logger.Debug($"RequeryDynamicViewsAsync():id={this.Id},onlyIfDirtyParams={onlyIfDirtyParams}");
             List<DataEvent> dataEvents = new List<DataEvent>();
             foreach (var dynamicView in this.dynamicViews) {
                 if (!onlyIfDirtyParams || dynamicView.HasDirtyParams) {
