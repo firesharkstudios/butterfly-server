@@ -47,6 +47,9 @@ module.exports = {
                     private.webSocket.onerror = function (error) {
                         private.webSocket = null;
                     }
+                    private.webSocket.onclose = function () {
+                        private.webSocket = null;
+                    }
                 }
                 catch (e) {
                     console.log(e);

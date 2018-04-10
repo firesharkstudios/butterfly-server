@@ -58,6 +58,7 @@
     <Compile Include="DateTimeX.cs" />
     <Compile Include="DictionaryX.cs" />
     <Compile Include="DynamicX.cs" />
+    <Compile Include="NameFieldValidator.cs" />
     <Compile Include="PhoneFieldValidator.cs" />
     <Compile Include="EnvironmentX.cs" />
     <Compile Include="EmailFieldValidator.cs" />

@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 
 using Butterfly.Database.Event;
 using Butterfly.Util;
+
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Database {

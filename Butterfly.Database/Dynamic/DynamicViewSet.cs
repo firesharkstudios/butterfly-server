@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,7 +27,6 @@ using NLog;
 using Butterfly.Database.Event;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
-using System.Linq;
 
 namespace Butterfly.Database.Dynamic {
     /// <summary>
@@ -241,15 +241,13 @@ namespace Butterfly.Database.Dynamic {
         /// <returns></returns>
         protected async Task<DataEvent[]> RequeryDynamicViewsAsync(bool onlyIfDirtyParams) {
             logger.Debug($"RequeryDynamicViewsAsync():id={this.Id},onlyIfDirtyParams={onlyIfDirtyParams}");
-            List<DataEvent> dataEvents = new List<DataEvent>();
+            List<Task<DataEvent[]>> tasks = new List<Task<DataEvent[]>>();
             foreach (var dynamicView in this.dynamicViews) {
                 if (!onlyIfDirtyParams || dynamicView.HasDirtyParams) {
-                    DataEvent[] initialDataEvents = await dynamicView.GetInitialDataEventsAsync();
-                    dataEvents.AddRange(initialDataEvents);
-                    dynamicView.ResetDirtyParams();
-                    dynamicView.UpdateChildDynamicParams(initialDataEvents);
+                    tasks.Add(GetInitialDataEventsAsync(dynamicView));
                 }
             }
+            List<DataEvent> dataEvents = (await Task.WhenAll(tasks)).SelectMany(x => x).ToList();
             bool hasInitialBegin = dataEvents.Any(x => x.dataEventType==DataEventType.InitialBegin);
             if (hasInitialBegin) {
                 dataEvents.Add(new DataEvent(DataEventType.InitialEnd));
@@ -257,8 +255,15 @@ namespace Butterfly.Database.Dynamic {
             return dataEvents.ToArray();
         }
 
+        protected async Task<DataEvent[]> GetInitialDataEventsAsync(DynamicView dynamicView) {
+            DataEvent[] initialDataEvents = await dynamicView.GetInitialDataEventsAsync();
+            dynamicView.ResetDirtyParams();
+            dynamicView.UpdateChildDynamicParams(initialDataEvents);
+            return initialDataEvents;
+        }
+
         public void Dispose() {
-            logger.Debug("Dispose()");
+            logger.Debug($"Dispose():id={this.Id}");
             foreach (var disposable in this.disposables) {
                 disposable.Dispose();
             }

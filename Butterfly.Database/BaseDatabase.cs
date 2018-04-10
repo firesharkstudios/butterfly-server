@@ -151,41 +151,21 @@ namespace Butterfly.Database {
         public IDisposable OnNewCommittedTransaction(Func<DataEventTransaction, Task> listener) => new ListItemDisposable<DataEventTransactionListener>(committedTransactionListeners, new DataEventTransactionListener(listener));
 
         internal void ProcessDataEventTransaction(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
-            switch (transactionState) {
-                case TransactionState.Uncommitted:
-                    // Use ToArray() to avoid the collection being modified during the loop
-                    foreach (var listener in this.uncommittedTransactionListeners.ToArray()) {
-                        if (listener.listener != null) listener.listener(dataEventTransaction);
-                        else listener.listenerAsync(dataEventTransaction).Wait();
-                    }
-                    break;
-                case TransactionState.Committed:
-                    // Use ToArray() to avoid the collection being modified during the loop
-                    foreach (var listener in this.committedTransactionListeners.ToArray()) {
-                        if (listener.listener != null) listener.listener(dataEventTransaction);
-                        else listener.listenerAsync(dataEventTransaction).Wait();
-                    }
-                    break;
-            }
+            // Use ToArray() to avoid the collection being modified during the loop
+            DataEventTransactionListener[] listeners = transactionState == TransactionState.Uncommitted ? this.uncommittedTransactionListeners.ToArray() : this.committedTransactionListeners.ToArray();
+
+            listeners.Where(x => x.listener != null).AsParallel().ForAll(x => x.listener(dataEventTransaction));
+            Task[] tasks = listeners.Where(x => x.listenerAsync != null).Select(x => x.listenerAsync(dataEventTransaction)).ToArray();
+            Task.WaitAll(tasks.ToArray());
         }
 
         internal async Task ProcessDataEventTransactionAsync(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
-            switch (transactionState) {
-                case TransactionState.Uncommitted:
-                    // Use ToArray() to avoid the collection being modified during the loop
-                    foreach (var listener in this.uncommittedTransactionListeners.ToArray()) {
-                        if (listener.listener != null) listener.listener(dataEventTransaction);
-                        else await listener.listenerAsync(dataEventTransaction);
-                    }
-                    break;
-                case TransactionState.Committed:
-                    // Use ToArray() to avoid the collection being modified during the loop
-                    foreach (var listener in this.committedTransactionListeners.ToArray()) {
-                        if (listener.listener != null) listener.listener(dataEventTransaction);
-                        else await listener.listenerAsync(dataEventTransaction);
-                    }
-                    break;
-            }
+            // Use ToArray() to avoid the collection being modified during the loop
+            DataEventTransactionListener[] listeners = transactionState == TransactionState.Uncommitted ? this.uncommittedTransactionListeners.ToArray() : this.committedTransactionListeners.ToArray();
+
+            listeners.Where(x => x.listener != null).AsParallel().ForAll(x => x.listener(dataEventTransaction));
+            Task[] tasks = listeners.Where(x => x.listenerAsync != null).Select(x => x.listenerAsync(dataEventTransaction)).ToArray();
+            await Task.WhenAll(tasks.ToArray());
         }
 
         internal async Task<DataEventTransaction> GetInitialDataEventTransactionAsync(string statementSql, dynamic statementParams = null) {

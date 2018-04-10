@@ -52,12 +52,11 @@ namespace Butterfly.Auth {
         protected readonly Action<Dict> onRegister;
         protected readonly Action<Dict> onForgotPassword;
 
-        protected readonly Func<string, Task<(string, string)>> getAccountIdAndRoleFromInviteCode;
+        //protected readonly Func<string, Task<(string, string)>> getUserIdAndRoleFromJoinCode;
 
         protected readonly IFieldValidator usernameFieldValidator;
         protected readonly IFieldValidator passwordFieldValidator;
-        protected readonly IFieldValidator firstNameFieldValidator;
-        protected readonly IFieldValidator lastNameFieldValidator;
+        protected readonly IFieldValidator nameFieldValidator;
         protected readonly IFieldValidator emailFieldValidator;
         protected readonly IFieldValidator phoneFieldValidator;
 
@@ -90,8 +89,8 @@ namespace Butterfly.Auth {
             Func<string, int, Task> onEmailVerify = null,
             Func<string, int, Task> onPhoneVerify = null,
             Action<Dict> onRegister = null,
-            Action<Dict> onForgotPassword = null,
-            Func<string, Task<(string, string)>> getAccountIdAndRoleFromInviteCode = null
+            Action<Dict> onForgotPassword = null
+            //Func<string, Task<(string, string)>> getUserIdAndRoleFromJoinCode = null
         ) {
             this.database = database;
 
@@ -129,12 +128,11 @@ namespace Butterfly.Auth {
             this.onRegister = onRegister;
             this.onForgotPassword = onForgotPassword;
 
-            this.getAccountIdAndRoleFromInviteCode = getAccountIdAndRoleFromInviteCode;
+            //this.getUserIdAndRoleFromJoinCode = getUserIdAndRoleFromJoinCode;
 
             this.usernameFieldValidator = new GenericFieldValidator(this.userTableUsernameFieldName, @"^[_A-z0-9\-\.]{3,25}$", allowNull: false, forceLowerCase: true, includeValueInError: true);
             this.passwordFieldValidator = new GenericFieldValidator("password", "^.{6,255}$", allowNull: false, forceLowerCase: false, includeValueInError: false);
-            this.firstNameFieldValidator = new GenericFieldValidator(this.userTableFirstNameFieldName, "^[^\\\'\\\"]{1,25}$", allowNull: false, forceLowerCase: false, includeValueInError: true);
-            this.lastNameFieldValidator = new GenericFieldValidator(this.userTableLastNameFieldName, "^[^\\\'\\\"]{1,25}$", allowNull: false, forceLowerCase: false, includeValueInError: true);
+            this.nameFieldValidator = new NameFieldValidator(this.userTableLastNameFieldName, allowNull: false, maxLength: 25);
             this.emailFieldValidator = new EmailFieldValidator(this.userTableEmailFieldName, allowNull: true);
             this.phoneFieldValidator = new PhoneFieldValidator(this.userTableEmailFieldName, allowNull: false);
         }
@@ -150,25 +148,26 @@ namespace Butterfly.Auth {
 
             webApiServer.OnGet($"{pathPrefix}/check-auth-token/{{id}}", async (req, res) => {
                 string id = req.PathParams.GetAs("id", (string)null);
-                string inviteCode = req.QueryParams.GetAs("invite", (string)null);
-                logger.Debug($"/check-auth-token/{id}?invite={inviteCode}");
+                //string joinCode = req.QueryParams.GetAs("join_code", (string)null);
+                logger.Debug($"/check-auth-token/{id}"); //?join_code={joinCode}");
                 AuthToken authToken = await this.Authenticate(id);
-                if (!string.IsNullOrEmpty(inviteCode)) {
-                    if (this.getAccountIdAndRoleFromInviteCode==null) {
-                        throw new Exception("Cannot process invite code because getAccountIdFromInviteCode function is null");
+                /*
+                if (!string.IsNullOrEmpty(joinCode)) {
+                    if (this.getUserIdAndRoleFromJoinCode == null) {
+                        throw new Exception("Cannot process join code because getUserIdFromJoinCode function is null");
                     }
                     else {
-                        (string accountId, _) = await this.getAccountIdAndRoleFromInviteCode(inviteCode);
-                        if (authToken.accountId != accountId) throw new UnauthorizedException();
+                        (string userId, _) = await this.getUserIdAndRoleFromJoinCode(joinCode);
+                        if (authToken.userId != userId) throw new UnauthorizedException();
                     }
                 }
+                */
                 await res.WriteAsJsonAsync(authToken);
             });
 
             webApiServer.OnPost($"{pathPrefix}/create-anonymous", async(req, res) => {
                 Dict data = await req.ParseAsJsonAsync<Dict>();
-                string inviteCode = data == null ? null : data.GetAs("invite_code", (string)null);
-                AuthToken authToken = await this.CreateAnonymousUser(inviteCode);
+                AuthToken authToken = await this.CreateAnonymousUser();
                 await res.WriteAsJsonAsync(authToken);
             });
 
@@ -263,8 +262,8 @@ namespace Butterfly.Auth {
             string email = this.emailFieldValidator.Validate(registration?.GetAs(this.userTableEmailFieldName, (string)null));
             string phone = this.phoneFieldValidator.Validate(registration?.GetAs(this.userTablePhoneFieldName, (string)null));
 
-            string firstName = this.firstNameFieldValidator.Validate(registration?.GetAs(this.userTableFirstNameFieldName, (string)null));
-            string lastName = this.lastNameFieldValidator.Validate(registration?.GetAs(this.userTableLastNameFieldName, (string)null));
+            string firstName = this.nameFieldValidator.Validate(registration?.GetAs(this.userTableFirstNameFieldName, (string)null));
+            string lastName = this.nameFieldValidator.Validate(registration?.GetAs(this.userTableLastNameFieldName, (string)null));
 
             string salt = Guid.NewGuid().ToString();
             string passwordHash = $"{salt} {password}".Hash();
@@ -333,21 +332,11 @@ namespace Butterfly.Auth {
         /// Creates an anonymous user and returns a valid <see cref="AuthToken"/>
         /// </summary>
         /// <returns>An  <see cref="AuthToken"/> instance created</returns>
-        public async Task<AuthToken> CreateAnonymousUser(string inviteCode) {
+        public async Task<AuthToken> CreateAnonymousUser() {
             Random random = new Random();
             using (ITransaction transaction = await this.database.BeginTransactionAsync()) {
-                string accountId;
-                string role;
-                if (string.IsNullOrEmpty(inviteCode)) {
-                    accountId = await transaction.InsertAsync<string>(this.accountTableName);
-                    role = this.createAnonymousDefaultRole;
-                }
-                else if (this.getAccountIdAndRoleFromInviteCode == null) {
-                    throw new Exception("Cannot process invite code because getAccountIdFromInviteCode function is null");
-                }
-                else {
-                    (accountId, role) = await this.getAccountIdAndRoleFromInviteCode(inviteCode);
-                }
+                string accountId = await transaction.InsertAsync<string>(this.accountTableName);
+                string role = this.createAnonymousDefaultRole;
 
                 var firstName = CleverNameX.COLORS[random.Next(0, CleverNameX.COLORS.Length)];
                 var lastName = CleverNameX.ANIMALS[random.Next(0, CleverNameX.ANIMALS.Length)];

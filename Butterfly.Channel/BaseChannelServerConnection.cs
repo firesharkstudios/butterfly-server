@@ -244,6 +244,7 @@ namespace Butterfly.Channel {
         /// Implements the IDispose interface
         /// </summary>
         public void Dispose() {
+            logger.Debug($"Dispose():id={this.Id}");
             this.started = false;
 
             foreach (var channel in this.channelByKey.Values) {

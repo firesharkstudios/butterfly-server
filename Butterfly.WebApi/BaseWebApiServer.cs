@@ -57,7 +57,8 @@ namespace Butterfly.WebApi {
 
             // Parse stream
             req.ParseAsMultipartStream(
-                onData: (name, fileName, type, disposition, buffer, bytes) => {
+                onData: (name, rawFileName, type, disposition, buffer, bytes) => {
+                    string fileName = Path.GetFileName(rawFileName);
                     logger.Debug($"FileUploadHandlerAsync():onData():name={name},fileName={fileName},type={type},disposition={disposition},bytes={bytes}");
                     if (!fileStreamByName.TryGetValue(name, out FileStream fileStream)) {
                         string uploadFileName = getFileName(fileName);

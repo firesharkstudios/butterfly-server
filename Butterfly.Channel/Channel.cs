@@ -1,10 +1,12 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Channel {
     public class Channel : IDisposable {
+        protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly IChannelServerConnection connection;
         protected readonly string channelKey;
@@ -33,6 +35,7 @@ namespace Butterfly.Channel {
         }
 
         public void Dispose() {
+            logger.Debug($"Dispose():ChannelKey={this.ChannelKey}");
             foreach (var disposable in this.disposables) {
                 disposable.Dispose();
             }
