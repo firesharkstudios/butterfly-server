@@ -83,7 +83,9 @@ namespace Butterfly.Channel {
             return registeredRoute;
         }
 
-        public int ConnectionCount => this.authenticatedConnectionByAuthId.Count;
+        public ICollection<IChannelServerConnection> UnauthenticatedConnections => this.unauthenticatedConnections.Values;
+
+        public ICollection<IChannelServerConnection> AuthenticatedConnections => this.authenticatedConnectionByAuthId.Values;
 
         public IChannelServerConnection GetConnection(string authId, bool throwExceptionIfMissing = false) {
             if (!this.authenticatedConnectionByAuthId.TryGetValue(authId, out IChannelServerConnection connection) && throwExceptionIfMissing) throw new Exception($"Invalid channel id '{authId}'");

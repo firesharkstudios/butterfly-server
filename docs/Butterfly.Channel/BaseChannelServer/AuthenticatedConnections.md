@@ -1,11 +1,12 @@
-# BaseChannelServer.ConnectionCount property
+# BaseChannelServer.AuthenticatedConnections property
 
 ```csharp
-public int ConnectionCount { get; }
+public ICollection<IChannelServerConnection> AuthenticatedConnections { get; }
 ```
 
 ## See Also
 
+* interface [IChannelServerConnection](../IChannelServerConnection.md)
 * class [BaseChannelServer](../BaseChannelServer.md)
 * namespace [Butterfly.Channel](../../Butterfly.Channel.md)
 

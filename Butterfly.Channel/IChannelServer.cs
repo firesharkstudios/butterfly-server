@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
@@ -46,7 +47,9 @@ namespace Butterfly.Channel {
         /// <summary>
         /// Number of connections
         /// </summary>
-        int ConnectionCount { get; }
+        ICollection<IChannelServerConnection> UnauthenticatedConnections { get; }
+
+        ICollection<IChannelServerConnection> AuthenticatedConnections { get; }
 
         /// <summary>
         /// Retrieve a channel by id

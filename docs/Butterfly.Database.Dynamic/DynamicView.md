@@ -11,7 +11,6 @@ public class DynamicView
 | [DynamicView](DynamicView/DynamicView.md)(…) |  |
 | [Id](DynamicView/Id.md) { get; } |  |
 | [Name](DynamicView/Name.md) { get; } |  |
-| [CreateMultiValueDynamicParam](DynamicView/CreateMultiValueDynamicParam.md)(…) |  |
 
 ## See Also
 

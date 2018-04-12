@@ -60,7 +60,7 @@ namespace Butterfly.Channel.Test {
             var channelClient = new WebSocketChannelClient("ws://localhost:8080/test", $"Test {testAuthId}", heartbeatEveryMillis: 1000);
             channelClient.Start();
             await Task.Delay(500);
-            Assert.AreEqual(1, channelServer.ConnectionCount);
+            Assert.AreEqual(1, channelServer.AuthenticatedConnections.Count);
             Assert.IsNotNull(channelServer.GetConnection(testAuthId));
 
             List<string> messageCollectorA = new List<string>();
@@ -95,12 +95,12 @@ namespace Butterfly.Channel.Test {
 
             // Test if heartbeats keep the channel alive properly
             await Task.Delay(3000);
-            Assert.AreEqual(1, channelServer.ConnectionCount);
+            Assert.AreEqual(1, channelServer.AuthenticatedConnections.Count);
 
             // Test if channel is disposed if it is removed from server
             channelClient.Dispose();
             await Task.Delay(3000);
-            Assert.AreEqual(0, channelServer.ConnectionCount);
+            Assert.AreEqual(0, channelServer.AuthenticatedConnections.Count);
 
             // Test if the disposable returned by OnNewChannel() was disposed as well
             Assert.AreEqual(true, testDisposableA.disposed);

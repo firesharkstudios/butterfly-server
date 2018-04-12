@@ -9,7 +9,8 @@ public abstract class BaseChannelServer : IChannelServer
 | name | description |
 | --- | --- |
 | [BaseChannelServer](BaseChannelServer/BaseChannelServer.md)(…) |  |
-| [ConnectionCount](BaseChannelServer/ConnectionCount.md) { get; } |  |
+| [AuthenticatedConnections](BaseChannelServer/AuthenticatedConnections.md) { get; } |  |
+| [UnauthenticatedConnections](BaseChannelServer/UnauthenticatedConnections.md) { get; } |  |
 | [AddUnauthenticatedConnection](BaseChannelServer/AddUnauthenticatedConnection.md)(…) |  |
 | [Dispose](BaseChannelServer/Dispose.md)() |  |
 | [GetConnection](BaseChannelServer/GetConnection.md)(…) |  |

@@ -8,7 +8,8 @@ public interface IChannelServer : IDisposable
 
 | name | description |
 | --- | --- |
-| [ConnectionCount](IChannelServer/ConnectionCount.md) { get; } |  |
+| [AuthenticatedConnections](IChannelServer/AuthenticatedConnections.md) { get; } |  |
+| [UnauthenticatedConnections](IChannelServer/UnauthenticatedConnections.md) { get; } |  |
 | [GetConnection](IChannelServer/GetConnection.md)(…) |  |
 | [RegisterRoute](IChannelServer/RegisterRoute.md)(…) |  |
 | [Start](IChannelServer/Start.md)() |  |
