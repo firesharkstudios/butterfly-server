@@ -33,3 +33,5 @@ CREATE TABLE chat_message (
 	created_at DATETIME NOT NULL,
 	PRIMARY KEY(id)
 );
+
+-- TRUNCATE chat; TRUNCATE chat_message; TRUNCATE chat_participant; TRUNCATE user;

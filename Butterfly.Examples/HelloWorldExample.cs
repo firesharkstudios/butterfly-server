@@ -3,6 +3,7 @@
 using Butterfly.Channel;
 using Butterfly.WebApi;
 using Butterfly.Database.Dynamic;
+using System;
 
 namespace Butterfly.Examples {
     public static class HelloWorldExample {
@@ -21,7 +22,11 @@ namespace Butterfly.Examples {
             );");
 
             // Listen for websocket connections to /hello-world
-            var route = channelServer.RegisterRoute("/hello-world");
+            var route = channelServer.RegisterRoute(
+                "/hello-world",
+                getAuthToken: (authType, authValue) => "OK",
+                getConnectionId: authToken => Guid.NewGuid().ToString()
+            );
 
             // Register a default channel that creates a DynamicView on the message table sending all data to the channel
             route.RegisterChannel(channelKey: "my-channel", handlerAsync: async (vars, channel) => await database.CreateAndStartDynamicView(

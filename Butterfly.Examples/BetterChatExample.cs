@@ -4,10 +4,10 @@ using System.Reflection;
 using NLog;
 
 using Butterfly.Channel;
+using Butterfly.Database;
 using Butterfly.Util;
 using Butterfly.WebApi;
 using Butterfly.Database.Event;
-using Butterfly.Database;
 
 namespace Butterfly.Examples {
     public static class BetterChatExample {
@@ -33,50 +33,62 @@ namespace Butterfly.Examples {
             database.SetInsertDefaultValue("join_id", tableName => Guid.NewGuid().ToString().Substring(0, 8), "chat");
 
             // Listen for connections to /better-chat
-            var route = channelServer.RegisterRoute("/better-chat", getAuthTokenAsync: async (authType, authValue) => {
-                // Create a user record if missing
-                await database.InsertAndCommitAsync<string>("user", new {
-                    id = authValue,
-                    name = CleverNameX.Generate(),
-                }, ignoreIfDuplicate: true);
+            var route = channelServer.RegisterRoute(
+                "/better-chat",
+                getAuthTokenAsync: async (authType, authValue) => {
+                    // Create a user record if missing
+                    await database.InsertAndCommitAsync<string>("user", new {
+                        id = authValue,
+                        name = CleverNameX.Generate(),
+                    }, ignoreIfDuplicate: true);
 
-                return authValue;
-            });
+                    return authValue;
+                },
+                getConnectionId: authToken => Guid.NewGuid().ToString()
+            );
 
             // Register a default channel that creates all DynamicView instances needed and sends all data to the channel
             route.RegisterChannel(handlerAsync: async (vars, channel) => {
                 // Create a DynamicViewSet that sends DataEventTransactions to the channel
                 var dynamicViewSet = database.CreateDynamicViewSet(dataEventTransaction => {
-                    //var filteredDataEventTransaction = DataEventTransaction.FilterDataEvents(dataEventTransaction, dataEvent => dataEvent.name != "chat_ids");
+                    //var filteredDataEventTransaction = DataEventTransaction.FilterDataEvents(dataEventTransaction, dataEvent => dataEvent is RecordDataEvent && (dataEvent as RecordDataEvent).name != "chat_ids");
                     channel.Queue("DATA-EVENT-TRANSACTION", dataEventTransaction);
                 });
 
                 // Add a "me" DynamicView that includes the user's record
                 dynamicViewSet.CreateDynamicView(
-                    "SELECT id, name FROM user WHERE id=@userId", 
+                    @"SELECT id, name 
+                    FROM user 
+                    WHERE id=@userId", 
                     values: new {
-                        userId = channel.Connection.Id
+                        userId = channel.Connection.AuthToken
                     },
                     name: "me"
                 );
 
+                /*
                 // Build a dynamic list of chat ids for the user
                 var chatIdsDynamicView = dynamicViewSet.CreateDynamicView(
-                    "SELECT id, chat_id FROM chat_participant WHERE user_id=@userId", 
+                    @"SELECT id, chat_id 
+                    FROM chat_participant 
+                    WHERE user_id=@userId", 
                     values: new {
-                        userId = channel.Connection.Id
+                        userId = channel.Connection.AuthToken
                     }, 
                     name: "chat_ids"
                 );
-                var chatIds = chatIdsDynamicView.CreateMultiValueDynamicParam("chat_id");
+                //var chatIds = chatIdsDynamicView.CreateMultiValueDynamicParam("chat_id");
+                */
 
                 // Add a "chat" DynamicView that includes all the chats the user can see
                 dynamicViewSet.CreateDynamicView(
                     @"SELECT c.id, c.name, c.join_id, c.owner_id, u.name owner_name 
-                      FROM chat c INNER JOIN user u ON c.owner_id=u.id
-                      WHERE c.id=@chatIds",
+                    FROM chat c 
+                        INNER JOIN user u ON c.owner_id=u.id
+                        INNER JOIN chat_participant cpx ON c.id=cpx.chat_id
+                    WHERE cpx.user_id=@userId",
                     values: new {
-                        chatIds
+                        userId = channel.Connection.AuthToken
                     },
                     name: "chat",
                     keyFieldNames: new string[] { "id" }
@@ -85,10 +97,12 @@ namespace Butterfly.Examples {
                 // Add a "chat_participant" DynamicView that includes all the chat participants the user can see
                 dynamicViewSet.CreateDynamicView(
                     @"SELECT cp.id, cp.chat_id, u.id user_id, u.name 
-                      FROM chat_participant cp INNER JOIN user u ON cp.user_id=u.id
-                      WHERE cp.chat_id=@chatIds", 
+                    FROM chat_participant cp 
+                        INNER JOIN user u ON cp.user_id=u.id
+                        INNER JOIN chat_participant cpx ON cp.chat_id=cpx.chat_id
+                    WHERE cpx.user_id=@userId",
                     values: new {
-                        chatIds
+                        userId = channel.Connection.AuthToken
                     },
                     name: "chat_participant",
                     keyFieldNames: new string[] { "id" }
@@ -97,10 +111,12 @@ namespace Butterfly.Examples {
                 // Add a "chat_message" DynamicView that includes all the chat messages the user can see
                 dynamicViewSet.CreateDynamicView(
                     @"SELECT cm.id, cm.chat_id, cm.text, cm.created_at, u.id user_id, u.name 
-                      FROM chat_message cm INNER JOIN user u ON cm.user_id=u.id
-                      WHERE cm.chat_id=@chatIds",
+                    FROM chat_message cm 
+                        INNER JOIN user u ON cm.user_id=u.id
+                        INNER JOIN chat_participant cpx ON cm.chat_id=cpx.chat_id
+                    WHERE cpx.user_id=@userId",
                     values: new {
-                        chatIds
+                        userId = channel.Connection.AuthToken
                     },
                     name: "chat_message",
                     keyFieldNames: new string[] { "id" }
@@ -133,11 +149,11 @@ namespace Butterfly.Examples {
 
                 // Create records in database
                 using (var transaction = await database.BeginTransactionAsync()) {
-                    string chatId = await transaction.InsertAsync<string>("INSERT INTO chat (@@names) VALUES (@@values)", new {
+                    string chatId = await transaction.InsertAsync<string>("chat", new {
                         chat.name,
                         owner_id = auth.Parameter
                     });
-                    await transaction.InsertAsync<string>("INSERT INTO chat_participant (@@names) VALUES (@@values)", new {
+                    await transaction.InsertAsync<string>("chat_participant", new {
                         chat_id = chatId,
                         user_id = auth.Parameter,
                     });
@@ -157,7 +173,7 @@ namespace Butterfly.Examples {
 
                 // Create records in database
                 if (chatId != null) {
-                    await database.InsertAndCommitAsync<string>("INSERT INTO chat_participant (@@names) VALUES (@@values)", new {
+                    await database.InsertAndCommitAsync<string>("chat_participant", new {
                         chat_id = chatId,
                         user_id = auth.Parameter,
                     }, ignoreIfDuplicate: true);
@@ -182,10 +198,10 @@ namespace Butterfly.Examples {
                 var chatMessage = await req.ParseAsJsonAsync<dynamic>();
 
                 // Create record in database
-                await database.InsertAndCommitAsync<string>("INSERT INTO chat_message (@@names) VALUES (@@values)", new {
+                await database.InsertAndCommitAsync<string>("chat_message", new {
                     user_id = auth.Parameter,
                     chat_id = chatMessage.chatId,
-                    text = chatMessage.text
+                    chatMessage.text
                 });
             });
         }

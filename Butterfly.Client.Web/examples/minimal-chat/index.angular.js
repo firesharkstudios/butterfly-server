@@ -1,11 +1,11 @@
 ﻿angular.module('app', ['components'])
     .controller('SimpleChat', function ($scope, $locale) {
         $scope.connectionStatus = 'Connecting...';
-        $scope.myUserId = getOrCreateLocalStorageItem('userId', function () {
-            return uuidv4();
+        $scope.myUserId = butterfly.util.getOrCreateLocalStorageItem('userId', function () {
+            return Math.floor(Math.random() * 999999);
         });
-        $scope.myUserName = getOrCreateLocalStorageItem('userName', function () {
-            return generateCleverName();
+        $scope.myUserName = butterfly.util.getOrCreateLocalStorageItem('userName', function () {
+            return butterfly.clever.generateCleverName();
         });
         $scope.chatMessages = [];
 
@@ -13,10 +13,9 @@
             // Create channel to server and handle data events
             let channelClient = new WebSocketChannelClient({
                 url: '/minimal-chat',
-                auth: 'User ' + $scope.myUserId,
-            });
-            channelClient.onStatusChange(function (value) {
-                self.connectionStatus = value;
+                onStatusChange: function (value) {
+                    $scope.connectionStatus = value;
+                },
             });
             channelClient.subscribe([new ArrayDataEventHandler({
                 arrayMapping: {
@@ -25,6 +24,7 @@
             }), function () {
                 $scope.$apply();
             }]);
+            channelClient.authorize('Custom ' + $scope.myUserId);
             channelClient.start();
         };
     });
@@ -57,7 +57,7 @@ angular.module('components', [])
                     }
                 };
                 $scope.sortedChatMessages = function () {
-                    return $scope.chatMessages.sort(FieldComparer('created_at'));
+                    return $scope.chatMessages.sort(butterfly.util.FieldComparer('created_at'));
                 };
                 $scope.$watchCollection($scope.sortedChatMessages(), function () {
                     let chatMessageHistory = $($element).find('.chat-message-history');

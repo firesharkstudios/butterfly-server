@@ -27,7 +27,11 @@ namespace Butterfly.Examples {
             database.SetInsertDefaultValue("created_at", tableName => DateTime.Now);
 
             // Listen for connections to /minimal-chat
-            var route = channelServer.RegisterRoute("/minimal-chat");
+            var route = channelServer.RegisterRoute(
+                "/minimal-chat",
+                getAuthToken: (authType, authValue) => "OK",
+                getConnectionId: authToken => Guid.NewGuid().ToString()
+            );
 
             // Register a default channel that creates a DynamicView on the chat_message table sending all data to the channel
             route.RegisterChannel(handlerAsync: async(vars, channel) => await database.CreateAndStartDynamicView(

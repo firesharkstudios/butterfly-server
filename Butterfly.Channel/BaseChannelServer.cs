@@ -75,10 +75,10 @@ namespace Butterfly.Channel {
         }
 
         /// <inheritdoc/>
-        public RegisteredRoute RegisterRoute(string routePath, Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null) {
+        public RegisteredRoute RegisterRoute(string routePath, Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getConnectionId = null, Func<object, Task<string>> getConnectionIdAsync = null) {
             if (this.started) throw new Exception("Cannot call OnNewConnection() after Start()");
 
-            RegisteredRoute registeredRoute = new RegisteredRoute(routePath, getAuthToken, getAuthTokenAsync, getId, getIdAsync);
+            RegisteredRoute registeredRoute = new RegisteredRoute(routePath, getAuthToken, getAuthTokenAsync, getConnectionId, getConnectionIdAsync);
             this.registeredRouteByPath[routePath] = registeredRoute;
             return registeredRoute;
         }

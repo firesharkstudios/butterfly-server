@@ -75,11 +75,13 @@ namespace Butterfly.Database.Dynamic {
 
         public string Name => this.name;
 
+        /*
         public BaseDynamicParam CreateMultiValueDynamicParam(string fieldName) {
             BaseDynamicParam dynamicParam = new MultiValueDynamicParam(fieldName);
             this.childDynamicParams.Add(new ChildDynamicParam(dynamicParam, fieldName));
             return dynamicParam;
         }
+        */
 
         internal bool HasDirtyParams {
             get {

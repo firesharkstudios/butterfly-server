@@ -22,7 +22,7 @@ Vue.component('chat-messages-component', Vue.extend({
     },
     computed: {
         selectedChatMessages: function () {
-            return this.chatMessages.sort(FieldComparer('created_at'));
+            return this.chatMessages.sort(butterfly.util.FieldComparer('created_at'));
         },
     },
     watch: {
@@ -47,35 +47,35 @@ let app = new Vue({
     },
     watch: {
         connectionStatus: function (value) {
-            $('#notConnectedModal').modal(value != 'Connected' ? 'show' : 'hide');
+            $('#notConnectedModal').modal(value != 'Authenticated' ? 'show' : 'hide');
         }
     },
     mounted: function () {
         let self = this;
 
         // Create user id
-        self.myUserId =  getOrCreateLocalStorageItem('userId', function () {
-            return uuidv4();
+        self.myUserId = butterfly.util.getOrCreateLocalStorageItem('userId', function () {
+            return Math.floor(Math.random() * 999999);
         });
 
         // Create user name
-        self.myUserName =  getOrCreateLocalStorageItem('userName', function () {
-            return generateCleverName();
+        self.myUserName = butterfly.util.getOrCreateLocalStorageItem('userName', function () {
+            return butterfly.clever.generateCleverName();
         });
 
         // Create channel to server and handle data events
         let channelClient = new WebSocketChannelClient({
             url: '/minimal-chat',
-            auth: 'User ' + self.myUserId,
-        });
-        channelClient.onStatusChange(function (value) {
-            self.connectionStatus = value;
+            onStatusChange: function (value) {
+                self.connectionStatus = value;
+            },
         });
         channelClient.subscribe(new ArrayDataEventHandler({
             arrayMapping: {
                 chat_message: self.chatMessages,
             }
         }));
+        channelClient.authorize('Custom ' + self.myUserId);
         channelClient.start();
     }
 });

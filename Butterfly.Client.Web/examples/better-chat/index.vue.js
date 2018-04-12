@@ -12,9 +12,17 @@ Vue.component('chats-component', Vue.extend({
     },
     methods: {
         deleteChat: function (chatId) {
+            let self = this;
             bootbox.confirm("Delete this chat?", function (result) {
-                authorizedAjax('POST', '/api/better-chat/chat/delete', 'User ' + self.myUserId, {
-                    id: chatId,
+                $.ajax({
+                    method: 'POST',
+                    url: '/api/better-chat/chat/delete',
+                    headers: {
+                        Authorization: 'User ' + self.myUserId,
+                    },
+                    data: JSON.stringify({
+                        id: chatId,
+                    })
                 });
             });
         }
@@ -33,7 +41,7 @@ Vue.component('chats-component', Vue.extend({
     },
     computed: {
         sortedChats: function () {
-            return this.chats.sort(FieldComparer('name'));
+            return this.chats.sort(butterfly.util.FieldComparer('name'));
         },
     },
 }));
@@ -49,8 +57,15 @@ Vue.component('chat-participants-component', Vue.extend({
                 title: 'Update Profile: What name do you want to use?',
                 value: name,
                 callback: function (result) {
-                    authorizedAjax('POST', '/api/better-chat/profile/update', 'User ' + self.myUserId, {
-                        name: result,
+                    $.ajax({
+                        method: 'POST',
+                        url: '/api/better-chat/profile/update',
+                        headers: {
+                            Authorization: 'User ' + self.myUserId,
+                        },
+                        data: JSON.stringify({
+                            name: result,
+                        })
                     });
                 }
             });
@@ -58,7 +73,7 @@ Vue.component('chat-participants-component', Vue.extend({
     },
     computed: {
         selectedChatParticipants: function () {
-            return this.chatParticipants && this.selectedChatId ? this.chatParticipants.filter(x => x.chat_id == this.selectedChatId).sort(FieldComparer('name')) : null;
+            return this.chatParticipants && this.selectedChatId ? this.chatParticipants.filter(x => x.chat_id == this.selectedChatId).sort(butterfly.util.FieldComparer('name')) : null;
         },
     },
 }));
@@ -74,16 +89,23 @@ Vue.component('chat-messages-component', Vue.extend({
     },
     methods: {
         postMessage: function () {
-            authorizedAjax('POST', '/api/better-chat/chat/message', 'User ' + this.myUserId, {
-                chatId: this.selectedChatId,
-                text: this.formMessage,
+            $.ajax({
+                method: 'POST',
+                url: '/api/better-chat/chat/message',
+                headers: {
+                    Authorization: 'User ' + this.myUserId,
+                },
+                data: JSON.stringify({
+                    chatId: this.selectedChatId,
+                    text: this.formMessage,
+                })
             });
             this.formMessage = null;
         }
     },
     computed: {
         selectedChatMessages: function () {
-            return this.chatMessages && this.selectedChatId ? this.chatMessages.filter(x => x.chat_id == this.selectedChatId).sort(FieldComparer('created_at')) : null;
+            return this.chatMessages && this.selectedChatId ? this.chatMessages.filter(x => x.chat_id == this.selectedChatId).sort(butterfly.util.FieldComparer('created_at')) : null;
         },
     },
     watch: {
@@ -125,8 +147,15 @@ let app = new Vue({
                 title: 'Add Chat: What is the chat topic?',
                 value: '',
                 callback: function (result) {
-                    authorizedAjax('POST', '/api/better-chat/chat/create', 'User ' + self.myUserId, {
-                        name: result,
+                    $.ajax({
+                        method: 'POST',
+                        url: '/api/better-chat/chat/create',
+                        headers: {
+                            Authorization: 'User ' + self.myUserId,
+                        },
+                        data: JSON.stringify({
+                            name: result,
+                        })
                     });
                 }
             });
@@ -139,7 +168,7 @@ let app = new Vue({
             });
         },
         showConnectionModal: function (value) {
-            $('#notConnectedModal').modal(value ? 'show' : 'hide');
+            $('#notConnectedModal').modal(value != 'Authenticated' ? 'show' : 'hide');
         },
     },
     computed: {
@@ -155,7 +184,7 @@ let app = new Vue({
     },
     watch: {
         connectionStatus: function (value) {
-            $('#notConnectedModal').modal(value != 'Connected' ? 'show' : 'hide');
+            $('#notConnectedModal').modal(value != 'Authenticated' ? 'show' : 'hide');
         },
         me: function (value) {
             this.formProfileName = this.me.name;
@@ -165,17 +194,16 @@ let app = new Vue({
         let self = this;
 
         // Create user id
-        self.myUserId = getOrCreateLocalStorageItem('userId', function () {
-            return uuidv4();
+        self.myUserId = butterfly.util.getOrCreateLocalStorageItem('userId', function () {
+            return Math.floor(Math.random() * 999999);
         });
 
         // Create channel to server and handle data events
         let channelClient = new WebSocketChannelClient({
             url: '/better-chat',
-            auth: 'User ' + self.myUserId
-        });
-        channelClient.onStatusChange(function (value) {
-            self.connectionStatus = value;
+            onStatusChange: function(value) {
+                self.connectionStatus = value;
+            },
         });
         channelClient.subscribe(new ArrayDataEventHandler({
             arrayMapping: {
@@ -186,14 +214,23 @@ let app = new Vue({
                 chat_message: self.chatMessages,
             }
         }));
+        channelClient.authorize('Custom ' + self.myUserId);
         channelClient.start();
 
         // Join chat if url has a join query string parameter
         let match = /join=(.*)/.exec(window.location.href);
         if (match) {
-            authorizedAjax('POST', '/api/better-chat/chat/join', 'User ' + self.myUserId, {
-                joinId: match[1],
+            $.ajax({
+                method: 'POST',
+                url: '/api/better-chat/chat/join',
+                headers: {
+                    Authorization: 'User ' + self.myUserId,
+                },
+                data: JSON.stringify({
+                    joinId: match[1],
+                })
             });
         }
     }
 });
+
