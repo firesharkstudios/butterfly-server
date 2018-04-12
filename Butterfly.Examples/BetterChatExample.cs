@@ -7,7 +7,6 @@ using Butterfly.Channel;
 using Butterfly.Database;
 using Butterfly.Util;
 using Butterfly.WebApi;
-using Butterfly.Database.Event;
 
 namespace Butterfly.Examples {
     public static class BetterChatExample {
@@ -17,7 +16,7 @@ namespace Butterfly.Examples {
         public static void Setup(IWebApiServer webApiServer, IChannelServer channelServer) {
             logger.Debug($"Setup()");
 
-            // Setup a MySQL database (may need to execute "GRANT ALL PRIVILEGES ON *.* TO 'test'@'localhost' IDENTIFIED BY 'test!123'; CREATE DATABASE butterfly_chat;")
+            // Setup a MySQL database (may need to execute "GRANT ALL PRIVILEGES ON butterfly_better_chat.* TO 'test'@'localhost' IDENTIFIED BY 'test!123'; CREATE DATABASE butterfly_chat;")
             IDatabase database = null;
             try {
                 database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_better_chat");
@@ -51,7 +50,6 @@ namespace Butterfly.Examples {
             route.RegisterChannel(handlerAsync: async (vars, channel) => {
                 // Create a DynamicViewSet that sends DataEventTransactions to the channel
                 var dynamicViewSet = database.CreateDynamicViewSet(dataEventTransaction => {
-                    //var filteredDataEventTransaction = DataEventTransaction.FilterDataEvents(dataEventTransaction, dataEvent => dataEvent is RecordDataEvent && (dataEvent as RecordDataEvent).name != "chat_ids");
                     channel.Queue("DATA-EVENT-TRANSACTION", dataEventTransaction);
                 });
 
@@ -65,20 +63,6 @@ namespace Butterfly.Examples {
                     },
                     name: "me"
                 );
-
-                /*
-                // Build a dynamic list of chat ids for the user
-                var chatIdsDynamicView = dynamicViewSet.CreateDynamicView(
-                    @"SELECT id, chat_id 
-                    FROM chat_participant 
-                    WHERE user_id=@userId", 
-                    values: new {
-                        userId = channel.Connection.AuthToken
-                    }, 
-                    name: "chat_ids"
-                );
-                //var chatIds = chatIdsDynamicView.CreateMultiValueDynamicParam("chat_id");
-                */
 
                 // Add a "chat" DynamicView that includes all the chats the user can see
                 dynamicViewSet.CreateDynamicView(
