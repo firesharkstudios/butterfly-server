@@ -13,6 +13,7 @@ public class AuthToken
 | readonly [accountId](AuthToken/accountId.md) |  |
 | readonly [expiresAt](AuthToken/expiresAt.md) |  |
 | readonly [id](AuthToken/id.md) |  |
+| readonly [role](AuthToken/role.md) |  |
 | readonly [userId](AuthToken/userId.md) |  |
 | readonly [username](AuthToken/username.md) |  |
 

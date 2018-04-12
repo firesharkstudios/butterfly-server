@@ -14,8 +14,7 @@ public AuthManager(IDatabase database, int authTokenDurationDays = 90, int reset
     string authTokenTableName = "auth_token", string authTokenIdFieldName = "id", 
     string authTokenTableUserIdFieldName = "user_id", string authTokenTableExpiresAtFieldName = "expires_at", 
     string createAnonymousDefaultRole = "full-access", Func<string, int, Task> onEmailVerify = null, 
-    Func<string, int, Task> onPhoneVerify = null, Action<Dictionary<string, object>> onRegister = null, 
-    Action<Dictionary<string, object>> onForgotPassword = null, Func<string, Task<ValueTuple<string, string>>> getAccountIdAndRoleFromInviteCode = null)
+    Func<string, int, Task> onPhoneVerify = null, Action<Dictionary<string, object>> onRegister = null, Action<Dictionary<string, object>> onForgotPassword = null)
 ```
 
 ## See Also

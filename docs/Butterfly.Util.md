@@ -21,6 +21,7 @@
 | static class [IWebRequestX](Butterfly.Util/IWebRequestX.md) |  |
 | static class [JsonUtil](Butterfly.Util/JsonUtil.md) |  |
 | class [ListItemDisposable&lt;T&gt;](Butterfly.Util/ListItemDisposable-1.md) |  |
+| class [NameFieldValidator](Butterfly.Util/NameFieldValidator.md) |  |
 | static class [NameValueCollectionX](Butterfly.Util/NameValueCollectionX.md) |  |
 | class [PermissionDeniedException](Butterfly.Util/PermissionDeniedException.md) |  |
 | class [PhoneFieldValidator](Butterfly.Util/PhoneFieldValidator.md) |  |

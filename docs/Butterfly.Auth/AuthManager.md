@@ -11,7 +11,7 @@ public class AuthManager
 | [AuthManager](AuthManager/AuthManager.md)(…) |  |
 | [Authenticate](AuthManager/Authenticate.md)(…) |  |
 | [ConvertInputToDict](AuthManager/ConvertInputToDict.md)(…) |  |
-| [CreateAnonymousUser](AuthManager/CreateAnonymousUser.md)(…) |  |
+| [CreateAnonymousUser](AuthManager/CreateAnonymousUser.md)() |  |
 | [CreateAuthToken](AuthManager/CreateAuthToken.md)(…) |  |
 | [ForgotPassword](AuthManager/ForgotPassword.md)(…) |  |
 | [Login](AuthManager/Login.md)(…) |  |
