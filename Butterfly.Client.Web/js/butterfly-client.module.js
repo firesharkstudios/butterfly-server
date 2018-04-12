@@ -190,7 +190,7 @@ module.exports = {
                 let dataEventTransaction = data;
                 for (let i = 0; i < dataEventTransaction.dataEvents.length; i++) {
                     let dataEvent = dataEventTransaction.dataEvents[i];
-                    console.log('ArrayDataEventHandler.handle():dataEvent.type=' + dataEvent.dataEventType + ',name=', dataEvent.name + ',keyValue=' + dataEvent.keyValue);
+                    //console.log('ArrayDataEventHandler.handle():dataEvent.type=' + dataEvent.dataEventType + ',name=', dataEvent.name + ',keyValue=' + dataEvent.keyValue);
                     if (dataEvent.dataEventType == 'InitialEnd') {
                         if (config.onInitialEnd) config.onInitialEnd();
                     }
