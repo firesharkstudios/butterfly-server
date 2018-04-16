@@ -19,7 +19,8 @@ using System.Collections.Generic;
 
 namespace Butterfly.Util {
     public interface IWebRequest {
-        Uri RequestUri { get;  }
+        Uri RequestUrl { get;  }
+
         Dictionary<string, string> Headers { get; }
         
         Dictionary<string, string> PathParams { get; }

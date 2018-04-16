@@ -1,7 +1,7 @@
-# IWebRequest.RequestUri property
+# IWebRequest.RequestUrl property
 
 ```csharp
-public Uri RequestUri { get; }
+public Uri RequestUrl { get; }
 ```
 
 ## See Also

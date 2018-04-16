@@ -2,7 +2,7 @@
 
 ```csharp
 public GenericFieldValidator(string fieldName, string regex, bool allowNull = true, 
-    bool forceLowerCase = false, bool includeValueInError = true)
+    bool forceLowerCase = false, bool trim = true, bool includeValueInError = true)
 ```
 
 ## See Also

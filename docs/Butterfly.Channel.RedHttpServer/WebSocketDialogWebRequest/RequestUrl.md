@@ -1,7 +1,7 @@
-# WebSocketDialogWebRequest.RequestUri property
+# WebSocketDialogWebRequest.RequestUrl property
 
 ```csharp
-public Uri RequestUri { get; }
+public Uri RequestUrl { get; }
 ```
 
 ## See Also

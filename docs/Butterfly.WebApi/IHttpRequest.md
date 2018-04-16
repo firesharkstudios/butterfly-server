@@ -8,6 +8,9 @@ public interface IHttpRequest : IWebRequest
 
 | name | description |
 | --- | --- |
+| [UserAgent](IHttpRequest/UserAgent.md) { get; } |  |
+| [UserHostAddress](IHttpRequest/UserHostAddress.md) { get; } |  |
+| [UserHostName](IHttpRequest/UserHostName.md) { get; } |  |
 | [ParseAsJsonAsync&lt;T&gt;](IHttpRequest/ParseAsJsonAsync.md)() |  |
 | [ParseAsMultipartStream](IHttpRequest/ParseAsMultipartStream.md)(…) |  |
 

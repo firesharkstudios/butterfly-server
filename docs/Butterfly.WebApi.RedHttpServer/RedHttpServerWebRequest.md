@@ -12,7 +12,10 @@ public class RedHttpServerWebRequest : BaseHttpRequest
 | override [Headers](RedHttpServerWebRequest/Headers.md) { get; } |  |
 | override [PathParams](RedHttpServerWebRequest/PathParams.md) { get; } |  |
 | override [QueryParams](RedHttpServerWebRequest/QueryParams.md) { get; } |  |
-| override [RequestUri](RedHttpServerWebRequest/RequestUri.md) { get; } |  |
+| override [RequestUrl](RedHttpServerWebRequest/RequestUrl.md) { get; } |  |
+| override [UserAgent](RedHttpServerWebRequest/UserAgent.md) { get; } |  |
+| override [UserHostAddress](RedHttpServerWebRequest/UserHostAddress.md) { get; } |  |
+| override [UserHostName](RedHttpServerWebRequest/UserHostName.md) { get; } |  |
 | readonly [request](RedHttpServerWebRequest/request.md) |  |
 
 ## See Also

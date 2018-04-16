@@ -83,13 +83,13 @@ namespace Butterfly.Channel.RedHttpServer {
         public WebSocketDialogWebRequest(WebSocketDialog webSocketDialog) {
             this.webSocketDialog = webSocketDialog;
         }
-        public Uri RequestUri => this.webSocketDialog.UnderlyingContext.RequestUri;
+        public Uri RequestUrl => this.webSocketDialog.UnderlyingContext.RequestUri;
 
         public Dictionary<string, string> Headers => this.webSocketDialog.UnderlyingContext.Headers.ToDictionary();
 
         public Dictionary<string, string> PathParams => throw new NotImplementedException();
 
-        public Dictionary<string, string> QueryParams => this.RequestUri.ParseQuery();
+        public Dictionary<string, string> QueryParams => this.RequestUrl.ParseQuery();
 
     }
 }

@@ -12,7 +12,10 @@ public class EmbedIOWebRequest : BaseHttpRequest
 | override [Headers](EmbedIOWebRequest/Headers.md) { get; } |  |
 | override [PathParams](EmbedIOWebRequest/PathParams.md) { get; } |  |
 | override [QueryParams](EmbedIOWebRequest/QueryParams.md) { get; } |  |
-| override [RequestUri](EmbedIOWebRequest/RequestUri.md) { get; } |  |
+| override [RequestUrl](EmbedIOWebRequest/RequestUrl.md) { get; } |  |
+| override [UserAgent](EmbedIOWebRequest/UserAgent.md) { get; } |  |
+| override [UserHostAddress](EmbedIOWebRequest/UserHostAddress.md) { get; } |  |
+| override [UserHostName](EmbedIOWebRequest/UserHostName.md) { get; } |  |
 | readonly [context](EmbedIOWebRequest/context.md) |  |
 | readonly [pathPattern](EmbedIOWebRequest/pathPattern.md) |  |
 

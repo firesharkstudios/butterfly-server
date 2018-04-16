@@ -1,7 +1,7 @@
 # NameFieldValidator constructor
 
 ```csharp
-public NameFieldValidator(string name, bool allowNull = true, int maxLength = 25)
+public NameFieldValidator(string name, bool allowNull = true, bool trim = true, int maxLength = 25)
 ```
 
 ## See Also

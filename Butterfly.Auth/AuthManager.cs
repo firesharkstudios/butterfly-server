@@ -52,8 +52,6 @@ namespace Butterfly.Auth {
         protected readonly Action<Dict> onRegister;
         protected readonly Action<Dict> onForgotPassword;
 
-        //protected readonly Func<string, Task<(string, string)>> getUserIdAndRoleFromJoinCode;
-
         protected readonly IFieldValidator usernameFieldValidator;
         protected readonly IFieldValidator passwordFieldValidator;
         protected readonly IFieldValidator nameFieldValidator;
@@ -90,7 +88,6 @@ namespace Butterfly.Auth {
             Func<string, int, Task> onPhoneVerify = null,
             Action<Dict> onRegister = null,
             Action<Dict> onForgotPassword = null
-            //Func<string, Task<(string, string)>> getUserIdAndRoleFromJoinCode = null
         ) {
             this.database = database;
 
@@ -128,8 +125,6 @@ namespace Butterfly.Auth {
             this.onRegister = onRegister;
             this.onForgotPassword = onForgotPassword;
 
-            //this.getUserIdAndRoleFromJoinCode = getUserIdAndRoleFromJoinCode;
-
             this.usernameFieldValidator = new GenericFieldValidator(this.userTableUsernameFieldName, @"^[_A-z0-9\-\.]{3,25}$", allowNull: false, forceLowerCase: true, includeValueInError: true);
             this.passwordFieldValidator = new GenericFieldValidator("password", "^.{6,255}$", allowNull: false, forceLowerCase: false, includeValueInError: false);
             this.nameFieldValidator = new NameFieldValidator(this.userTableLastNameFieldName, allowNull: false, maxLength: 25);
@@ -148,20 +143,8 @@ namespace Butterfly.Auth {
 
             webApiServer.OnGet($"{pathPrefix}/check-auth-token/{{id}}", async (req, res) => {
                 string id = req.PathParams.GetAs("id", (string)null);
-                //string joinCode = req.QueryParams.GetAs("join_code", (string)null);
                 logger.Debug($"/check-auth-token/{id}"); //?join_code={joinCode}");
                 AuthToken authToken = await this.Authenticate(id);
-                /*
-                if (!string.IsNullOrEmpty(joinCode)) {
-                    if (this.getUserIdAndRoleFromJoinCode == null) {
-                        throw new Exception("Cannot process join code because getUserIdFromJoinCode function is null");
-                    }
-                    else {
-                        (string userId, _) = await this.getUserIdAndRoleFromJoinCode(joinCode);
-                        if (authToken.userId != userId) throw new UnauthorizedException();
-                    }
-                }
-                */
                 await res.WriteAsJsonAsync(authToken);
             });
 
@@ -173,7 +156,12 @@ namespace Butterfly.Auth {
 
             webApiServer.OnPost($"{pathPrefix}/register", async(req, res) => {
                 Dict registration = await req.ParseAsJsonAsync<Dict>();
-                AuthToken authToken = await this.RegisterAsync(registration);
+                AuthToken authToken = await this.RegisterAsync(registration, new Dict {
+                    { "request_host_name", req.RequestUrl.Host },
+                    { "user_agent", req.UserAgent },
+                    { "user_host_address", req.UserHostAddress },
+                    { "user_host_name", req.UserHostName },
+                });
                 await res.WriteAsJsonAsync(authToken);
             });
 
@@ -235,7 +223,7 @@ namespace Butterfly.Auth {
         /// </summary>
         /// <param name="registration"></param>
         /// <returns></returns>
-        public async Task<AuthToken> RegisterAsync(dynamic input) {
+        public async Task<AuthToken> RegisterAsync(dynamic input, Dict notifyData = null) {
             Dict registration = this.ConvertInputToDict(input);
 
             // Handle registering an anonymous user
@@ -290,12 +278,17 @@ namespace Butterfly.Auth {
                 await this.database.UpdateAndCommitAsync(this.userTableName, user);
             }
 
-            if (this.onRegister != null) this.onRegister(new Dict {
-                { this.userTableUsernameFieldName, username },
-                { this.userTableEmailFieldName, email },
-                { this.userTableFirstNameFieldName, firstName  },
-                { this.userTableLastNameFieldName, lastName },
-            });
+            if (this.onRegister != null) {
+                var registerData = new Dict {
+                    { this.userTableUsernameFieldName, username },
+                    { this.userTableEmailFieldName, email },
+                    { this.userTablePhoneFieldName, phone },
+                    { this.userTableFirstNameFieldName, firstName  },
+                    { this.userTableLastNameFieldName, lastName },
+                };
+                if (notifyData != null) registerData.UpdateFrom(notifyData);
+                this.onRegister(registerData);
+            }
 
             return await this.CreateAuthToken(userId);
         }

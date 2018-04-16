@@ -97,7 +97,13 @@ namespace Butterfly.WebApi.EmbedIO {
 
         protected override Stream InputStream => this.context.Request.InputStream;
 
-        public override Uri RequestUri => this.context.Request.Url;
+        public override Uri RequestUrl => this.context.Request.Url;
+
+        public override string UserAgent => this.context.Request.UserAgent;
+
+        public override string UserHostAddress => this.context.Request.UserHostAddress;
+
+        public override string UserHostName => this.context.Request.UserHostName;
 
         public override Dictionary<string, string> Headers => this.context.Request.Headers?.ToDictionary(forceUpperCaseKeys: true);
 
@@ -108,7 +114,7 @@ namespace Butterfly.WebApi.EmbedIO {
             }
         }
 
-        public override Dictionary<string, string> QueryParams => this.RequestUri.ParseQuery();
+        public override Dictionary<string, string> QueryParams => this.RequestUrl.ParseQuery();
 
     }
 

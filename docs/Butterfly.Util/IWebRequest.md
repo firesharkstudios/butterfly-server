@@ -11,7 +11,7 @@ public interface IWebRequest
 | [Headers](IWebRequest/Headers.md) { get; } |  |
 | [PathParams](IWebRequest/PathParams.md) { get; } |  |
 | [QueryParams](IWebRequest/QueryParams.md) { get; } |  |
-| [RequestUri](IWebRequest/RequestUri.md) { get; } |  |
+| [RequestUrl](IWebRequest/RequestUrl.md) { get; } |  |
 
 ## See Also
 

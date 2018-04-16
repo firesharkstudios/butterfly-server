@@ -21,7 +21,10 @@ namespace Butterfly.Util {
         public string Validate(string value) {
             logger.Debug($"Validate():value={value}");
 
-            if (!this.allowNull && string.IsNullOrEmpty(value)) throw new Exception($"Field {this.name} cannot be null");
+            if (string.IsNullOrEmpty(value)) {
+                if (this.allowNull) return value;
+                throw new Exception($"Field {this.name} cannot be null");
+            }
 
             int leftPos = value.IndexOf('<');
             int rightPos = value.LastIndexOf('>');
@@ -44,7 +47,7 @@ namespace Butterfly.Util {
                 throw new Exception("Email address must contain @");
             }
             else {
-                string emailAddress = value.ToLower();
+                string emailAddress = value.Trim().ToLower();
                 if (!REGEX.IsMatch(emailAddress)) throw new Exception($"Invalid email address '{emailAddress}'");
                 return emailAddress;
             }

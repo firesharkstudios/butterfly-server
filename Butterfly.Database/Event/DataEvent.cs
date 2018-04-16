@@ -65,6 +65,11 @@ namespace Butterfly.Database.Event {
         }
     }
 
+    public class InitialEndDataEvent : DataEvent {
+        public InitialEndDataEvent() : base(DataEventType.InitialEnd) {
+        }
+    }
+
     public class KeyValueDataEvent : DataEvent {
         public readonly string name;
         public readonly object keyValue;

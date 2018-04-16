@@ -8,11 +8,13 @@ namespace Butterfly.Util {
 
         protected readonly string name;
         protected readonly bool allowNull;
+        protected readonly bool trim;
         protected readonly int maxLength;
 
-        public NameFieldValidator(string name, bool allowNull = true, int maxLength = 25) {
+        public NameFieldValidator(string name, bool allowNull = true, bool trim = true, int maxLength = 25) {
             this.name = name;
             this.allowNull = allowNull;
+            this.trim = trim;
             this.maxLength = maxLength;
         }
 
@@ -23,7 +25,11 @@ namespace Butterfly.Util {
             if (!string.IsNullOrEmpty(value) && value.Length > this.maxLength) throw new Exception($"{this.name} too long");
             if (!string.IsNullOrEmpty(value) && value.Contains("\"")) throw new Exception($"{this.name} cannot contain double quotes");
 
-            return value;
+            string newValue = value;
+            if (!string.IsNullOrEmpty(newValue)) {
+                if (this.trim) newValue = value.Trim();
+            }
+            return newValue;
         }
     }
 }

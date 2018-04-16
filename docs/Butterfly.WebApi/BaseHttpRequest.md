@@ -11,7 +11,10 @@ public abstract class BaseHttpRequest : IHttpRequest
 | abstract [Headers](BaseHttpRequest/Headers.md) { get; } |  |
 | abstract [PathParams](BaseHttpRequest/PathParams.md) { get; } |  |
 | abstract [QueryParams](BaseHttpRequest/QueryParams.md) { get; } |  |
-| abstract [RequestUri](BaseHttpRequest/RequestUri.md) { get; } |  |
+| abstract [RequestUrl](BaseHttpRequest/RequestUrl.md) { get; } |  |
+| abstract [UserAgent](BaseHttpRequest/UserAgent.md) { get; } |  |
+| abstract [UserHostAddress](BaseHttpRequest/UserHostAddress.md) { get; } |  |
+| abstract [UserHostName](BaseHttpRequest/UserHostName.md) { get; } |  |
 | [ParseAsJsonAsync&lt;T&gt;](BaseHttpRequest/ParseAsJsonAsync.md)() |  |
 | [ParseAsMultipartStream](BaseHttpRequest/ParseAsMultipartStream.md)(…) |  |
 

@@ -19,9 +19,12 @@ namespace Butterfly.Util {
         public string Validate(string value) {
             logger.Debug($"Validate():value={value}");
 
-            if (!this.allowNull && string.IsNullOrEmpty(value)) throw new Exception($"Field {this.name} cannot be null");
+            if (string.IsNullOrEmpty(value)) {
+                if (this.allowNull) return value;
+                throw new Exception($"Field {this.name} cannot be null");
+            }
 
-            string newPhone = NON_PHONE_CHARS.Replace(value, "");
+            string newPhone = NON_PHONE_CHARS.Replace(value, "").Trim();
             if (!newPhone.StartsWith("+") && newPhone.Length == 10) {
                 return $"+1{newPhone}";
             }

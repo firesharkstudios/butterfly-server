@@ -12,7 +12,7 @@ public class WebSocketDialogWebRequest : IWebRequest
 | [Headers](WebSocketDialogWebRequest/Headers.md) { get; } |  |
 | [PathParams](WebSocketDialogWebRequest/PathParams.md) { get; } |  |
 | [QueryParams](WebSocketDialogWebRequest/QueryParams.md) { get; } |  |
-| [RequestUri](WebSocketDialogWebRequest/RequestUri.md) { get; } |  |
+| [RequestUrl](WebSocketDialogWebRequest/RequestUrl.md) { get; } |  |
 
 ## See Also
 

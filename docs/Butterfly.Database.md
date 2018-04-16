@@ -46,6 +46,7 @@
 | class [DataEventTransaction](Butterfly.Database.Event/DataEventTransaction.md) |  |
 | enum [DataEventType](Butterfly.Database.Event/DataEventType.md) |  |
 | class [InitialBeginDataEvent](Butterfly.Database.Event/InitialBeginDataEvent.md) |  |
+| class [InitialEndDataEvent](Butterfly.Database.Event/InitialEndDataEvent.md) |  |
 | class [KeyValueDataEvent](Butterfly.Database.Event/KeyValueDataEvent.md) |  |
 | class [RecordDataEvent](Butterfly.Database.Event/RecordDataEvent.md) |  |
 | enum [TransactionState](Butterfly.Database.Event/TransactionState.md) |  |

@@ -21,6 +21,10 @@ using Butterfly.Util;
 
 namespace Butterfly.WebApi {
     public interface IHttpRequest : IWebRequest {
+        string UserAgent { get; }
+        string UserHostAddress { get; }
+        string UserHostName { get; }
+
         Task<T> ParseAsJsonAsync<T>();
         void ParseAsMultipartStream(Action<string, string, string, string, byte[], int> onData, Action<string, string> onParameter = null);
     }

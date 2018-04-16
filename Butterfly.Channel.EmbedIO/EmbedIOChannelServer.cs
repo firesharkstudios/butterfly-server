@@ -66,7 +66,7 @@ namespace Butterfly.Channel.EmbedIO {
 
         protected override void OnClientConnected(WebSocketContext context) {
             var webRequest = new EmbedIOWebRequest(context);
-            logger.Trace($"OnClientConnected():Websocket created for path {webRequest.RequestUri.AbsolutePath}");
+            logger.Trace($"OnClientConnected():Websocket created for path {webRequest.RequestUrl.AbsolutePath}");
             var channel = new EmbedIOChannel(this.channelServer, this.registeredRoute, message => {
                 this.Send(context, message);
             });
@@ -129,12 +129,12 @@ namespace Butterfly.Channel.EmbedIO {
             this.context = context;
         }
 
-        public Uri RequestUri => context.RequestUri;
+        public Uri RequestUrl => context.RequestUri;
 
         public Dictionary<string, string> Headers => context.Headers.ToDictionary();
 
         public Dictionary<string, string> PathParams => throw new NotImplementedException();
 
-        public Dictionary<string, string> QueryParams => this.RequestUri.ParseQuery();
+        public Dictionary<string, string> QueryParams => this.RequestUrl.ParseQuery();
     }
 }

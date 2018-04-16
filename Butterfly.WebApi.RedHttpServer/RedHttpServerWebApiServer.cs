@@ -14,19 +14,16 @@
  * limitations under the License.
 */
 
-using System.Collections.Specialized;
+using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 using RedHttpServerNet45.Request;
 using RedHttpServerNet45.Response;
 
 using Butterfly.Util;
-using System;
-using System.Collections.Generic;
 
 namespace Butterfly.WebApi.RedHttpServer {
 
@@ -78,13 +75,19 @@ namespace Butterfly.WebApi.RedHttpServer {
 
         protected override Stream InputStream => this.request.GetBodyStream();
 
-        public override Uri RequestUri => this.request.UnderlyingRequest.Url;
+        public override Uri RequestUrl => this.request.UnderlyingRequest.Url;
+
+        public override string UserAgent => this.request.UnderlyingRequest.UserAgent;
+
+        public override string UserHostAddress => this.request.UnderlyingRequest.UserHostAddress;
+
+        public override string UserHostName => this.request.UnderlyingRequest.UserHostName;
 
         public override Dictionary<string, string> Headers => this.request.Headers.ToDictionary();
 
         public override Dictionary<string, string> PathParams => throw new NotImplementedException();
 
-        public override Dictionary<string, string> QueryParams => this.RequestUri.ParseQuery();
+        public override Dictionary<string, string> QueryParams => this.RequestUrl.ParseQuery();
     }
 
     public class RedHttpServerWebResponse : IHttpResponse {

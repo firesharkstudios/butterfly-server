@@ -12,7 +12,7 @@ public class EmbedIOWebRequest : IWebRequest
 | [Headers](EmbedIOWebRequest/Headers.md) { get; } |  |
 | [PathParams](EmbedIOWebRequest/PathParams.md) { get; } |  |
 | [QueryParams](EmbedIOWebRequest/QueryParams.md) { get; } |  |
-| [RequestUri](EmbedIOWebRequest/RequestUri.md) { get; } |  |
+| [RequestUrl](EmbedIOWebRequest/RequestUrl.md) { get; } |  |
 
 ## See Also
 

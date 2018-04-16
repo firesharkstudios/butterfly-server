@@ -250,7 +250,7 @@ namespace Butterfly.Database.Dynamic {
             List<DataEvent> dataEvents = (await Task.WhenAll(tasks)).SelectMany(x => x).ToList();
             bool hasInitialBegin = dataEvents.Any(x => x.dataEventType==DataEventType.InitialBegin);
             if (hasInitialBegin) {
-                dataEvents.Add(new DataEvent(DataEventType.InitialEnd));
+                dataEvents.Add(new InitialEndDataEvent());
             }
             return dataEvents.ToArray();
         }

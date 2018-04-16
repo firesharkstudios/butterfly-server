@@ -1,7 +1,7 @@
-# RedHttpServerWebRequest.RequestUri property
+# RedHttpServerWebRequest.RequestUrl property
 
 ```csharp
-public override Uri RequestUri { get; }
+public override Uri RequestUrl { get; }
 ```
 
 ## See Also
