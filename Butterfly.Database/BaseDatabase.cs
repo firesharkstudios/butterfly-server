@@ -415,15 +415,20 @@ namespace Butterfly.Database {
             return await dynamicViewSet.StartAsync();
         }
 
-        internal static object GetKeyValue(string[] fieldNames, Dict record) {
+        internal static object GetKeyValue(string[] fieldNames, Dict record, bool throwErrorIfMissingKeyField = true) {
             StringBuilder sb = new StringBuilder();
             bool isFirst = true;
             foreach (var fieldName in fieldNames) {
                 if (isFirst) isFirst = false;
                 else sb.Append(";");
 
-                if (!record.ContainsKey(fieldName)) throw new Exception($"Could not get key field '{fieldName}' to build key value");
-                sb.Append(record[fieldName]);
+                if (!record.ContainsKey(fieldName)) {
+                    if (throwErrorIfMissingKeyField) throw new Exception($"Could not get key field '{fieldName}' to build key value");
+                    return null;
+                }
+                else {
+                    sb.Append(record[fieldName]);
+                }
             }
             return sb.ToString();
         }

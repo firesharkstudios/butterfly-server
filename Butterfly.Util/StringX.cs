@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Butterfly.Util {
     public static class StringX {
@@ -13,6 +10,22 @@ namespace Butterfly.Util {
                 hashBytes = algorithm.ComputeHash(bytes);
             }
             return Convert.ToBase64String(hashBytes);
+        }
+
+        public static string Abbreviate(this string me) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < me.Length; i++) {
+                if (i == 0) {
+                    sb.Append(me[i]);
+                }
+                else if (me[i - 1] == '_' || me[i - 1] == '-') {
+                    sb.Append(me[i]);
+                }
+                else if (Char.IsLower(me[i - 1]) && Char.IsUpper(me[i])) {
+                    sb.Append(me[i]);
+                }
+            }
+            return sb.ToString();
         }
     }
 }

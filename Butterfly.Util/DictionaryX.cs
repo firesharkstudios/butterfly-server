@@ -14,17 +14,21 @@
  * limitations under the License.
 */
 
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text;
+
+using Newtonsoft.Json.Linq;
 
 namespace Butterfly.Util {
     public static class DictionaryX {
 
         public static V GetAs<T, U, V>(this Dictionary<T, U> me, T key, V defaultValue) {
             if (me.TryGetValue(key, out U value) && value != null) {
-                if ((value is int || value is long) && typeof(V)==typeof(DateTime)) {
+                if (typeof(V).IsEnum) {
+                    return (V)Enum.Parse(typeof(V), value.ToString(), true);
+                }
+                else if ((value is int || value is long) && typeof(V)==typeof(DateTime)) {
                     var longValue = (long)Convert.ChangeType(value, typeof(long));
                     return (V)(object)DateTimeX.FromUnixTimestamp(longValue);
                 }

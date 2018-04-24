@@ -25,6 +25,7 @@ using Butterfly.Database.Event;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 using System.Linq;
+using Butterfly.Util;
 
 namespace Butterfly.Database.Test {
     [TestClass]
@@ -56,8 +57,21 @@ namespace Butterfly.Database.Test {
             Assert.AreEqual("ec.id", selectStatement2.selectClause);
         }
 
+        /*
+        public enum Role {
+            None,
+            Customer,
+        }
+        */
+
         [TestMethod]
         public async Task DataMemoryDatabase() {
+            /*
+            Role role = new Dictionary<string, object> {
+                { "role", "customer" },
+            }.GetAs("role", Role.None);
+            */
+
             IDatabase database = new Butterfly.Database.Memory.MemoryDatabase();
             await this.TestDatabase(database);
         }

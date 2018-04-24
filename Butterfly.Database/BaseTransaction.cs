@@ -172,7 +172,7 @@ namespace Butterfly.Database {
 
         protected abstract Task<int> DoDeleteAsync(string executableSql, Dict executableParams);
 
-        public async Task<bool> Synchronize(string tableName, Dict[] existingRecords, Dict[] newRecords, string[] keyFieldNames = null) {
+        public async Task<bool> Synchronize(string tableName, Dict[] existingRecords, Dict[] newRecords, Func<Dict, dynamic> getDeleteKey, string[] keyFieldNames = null) {
             if (!this.database.Tables.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
 
             bool changed = false;
@@ -180,13 +180,14 @@ namespace Butterfly.Database {
             if (keyFieldNames == null) keyFieldNames = table.Indexes[0].FieldNames;
 
             List<object> existingIds = existingRecords.Select(x => BaseDatabase.GetKeyValue(keyFieldNames, x)).ToList();
-            List<object> newIds = newRecords.Select(x => BaseDatabase.GetKeyValue(keyFieldNames, x)).ToList();
+            List<object> newIds = newRecords.Select(x => BaseDatabase.GetKeyValue(keyFieldNames, x, throwErrorIfMissingKeyField: false)).ToList();
 
             for (int i = 0; i < existingIds.Count; i++) {
                 int newIndex = newIds.IndexOf(existingIds[i]);
                 int count = 0;
                 if (newIndex == -1) {
-                    count = await this.DeleteAsync(table.Name, existingIds[i]);
+                    var deleteKey = getDeleteKey(existingRecords[i]);
+                    count = await this.DeleteAsync(table.Name, deleteKey);
                 }
                 else if (!newRecords[newIndex].IsSame(existingRecords[i])) {
                     count = await this.UpdateAsync(table.Name, newRecords[newIndex]);
@@ -195,7 +196,7 @@ namespace Butterfly.Database {
             }
 
             for (int i = 0; i < newIds.Count; i++) {
-                int existingIndex = existingIds.IndexOf(newIds[i]);
+                int existingIndex = newIds[i]==null ? -1 : existingIds.IndexOf(newIds[i]);
                 if (existingIndex == -1) {
                     await this.InsertAsync<object>(table.Name, newRecords[i]);
                     changed = true;
