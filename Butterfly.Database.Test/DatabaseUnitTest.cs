@@ -340,17 +340,23 @@ namespace Butterfly.Database.Test {
             Assert.AreEqual(0, someEmployees4.Length);
 
             // Test join
-            Dict[] someEmployees10 = await database.SelectRowsAsync("SELECT e.id FROM employee e INNER JOIN department d ON e.department_id=d.id");
-            Assert.AreEqual(3, someEmployees10.Length);
+            if (database.CanJoin) {
+                Dict[] someEmployees10 = await database.SelectRowsAsync("SELECT e.id FROM employee e INNER JOIN department d ON e.department_id=d.id");
+                Assert.AreEqual(3, someEmployees10.Length);
+            }
 
             // Test join
-            Dict[] someEmployees11 = await database.SelectRowsAsync("SELECT e.* FROM employee e INNER JOIN department d ON e.department_id=d.id");
-            Assert.AreEqual(3, someEmployees11.Length);
-            Assert.AreEqual(6, someEmployees11[0].Count);
+            if (database.CanJoin) {
+                Dict[] someEmployees11 = await database.SelectRowsAsync("SELECT e.* FROM employee e INNER JOIN department d ON e.department_id=d.id");
+                Assert.AreEqual(3, someEmployees11.Length);
+                Assert.AreEqual(6, someEmployees11[0].Count);
+            }
 
             // Test nested SELECT in WHERE clause
-            Dict[] someEmployees12 = await database.SelectRowsAsync("SELECT * FROM employee WHERE department_id IN (SELECT id from department)");
-            Assert.AreEqual(3, someEmployees12.Length);
+            if (database.CanJoin) {
+                Dict[] someEmployees12 = await database.SelectRowsAsync("SELECT * FROM employee WHERE department_id IN (SELECT id from department)");
+                Assert.AreEqual(3, someEmployees12.Length);
+            }
         }
 
         protected async Task UpdateAndDeleteBasicData(IDatabase database, object hrDepartmentId) {

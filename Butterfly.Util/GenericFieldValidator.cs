@@ -33,8 +33,8 @@ namespace Butterfly.Util {
 
             string newValue = value;
             if (!string.IsNullOrEmpty(value)) {
-                if (this.forceLowerCase) newValue = value.ToLower();
-                if (this.trim) newValue = value.Trim();
+                if (this.forceLowerCase) newValue = newValue.ToLower();
+                if (this.trim) newValue = newValue.Trim();
             }
             return newValue;
         }

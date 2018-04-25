@@ -37,6 +37,7 @@ namespace Butterfly.Database {
 
         public BaseTransaction(BaseDatabase database) {
             this.database = database;
+            this.database.transactionCount++;
         }
 
         public IDatabase Database => this.database;
@@ -92,6 +93,8 @@ namespace Butterfly.Database {
             // Create data event
             this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Insert, insertStatement.TableRefs[0].table.Name, keyValue));
 
+            this.database.insertCount++;
+
             return keyValue;
         }
 
@@ -130,6 +133,8 @@ namespace Butterfly.Database {
             // Create data event
             this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Update, updateStatement.TableRefs[0].table.Name, keyValue));
 
+            this.database.updateCount++;
+
             return count;
         }
 
@@ -166,6 +171,8 @@ namespace Butterfly.Database {
 
             // Create data event
             this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Delete, deleteStatement.TableRefs[0].table.Name, keyValue));
+
+            this.database.deleteCount++;
 
             return count;
         }

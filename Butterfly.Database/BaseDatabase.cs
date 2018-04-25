@@ -43,6 +43,12 @@ namespace Butterfly.Database {
 
         protected static readonly Regex SQL_COMMENT = new Regex(@"^\-\-(.*)$", RegexOptions.Multiline);
 
+        protected int selectCount = 0;
+        internal int transactionCount = 0;
+        internal int insertCount = 0;
+        internal int updateCount = 0;
+        internal int deleteCount = 0;
+
         protected BaseDatabase(string connectionString) {
             this.ConnectionString = connectionString;
             this.LoadSchema();
@@ -214,6 +220,7 @@ namespace Butterfly.Database {
             Dict newStatementParamsDict = newStatement.ConvertParamsToDict(vars);
             newStatementParamsDict.UpdateFrom(newWhereParams);
             (string executableSql, Dict executableParams) = newStatement.GetExecutableSqlAndParams(newStatementParamsDict);
+            this.selectCount++;
             return await this.DoSelectRowsAsync(executableSql, executableParams);
         }
 
@@ -221,6 +228,7 @@ namespace Butterfly.Database {
             Dict statementParamsDict = statement.ConvertParamsToDict(vars);
             //BaseStatement.ConfirmAllParamsUsed(statement.Sql, statementParamsDict);
             (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(statementParamsDict);
+            this.selectCount++;
             return await this.DoSelectRowsAsync(executableSql, executableParams);
         }
 
