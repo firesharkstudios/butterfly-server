@@ -43,12 +43,6 @@ namespace Butterfly.Database {
 
         protected static readonly Regex SQL_COMMENT = new Regex(@"^\-\-(.*)$", RegexOptions.Multiline);
 
-        protected int selectCount = 0;
-        internal int transactionCount = 0;
-        internal int insertCount = 0;
-        internal int updateCount = 0;
-        internal int deleteCount = 0;
-
         protected BaseDatabase(string connectionString) {
             this.ConnectionString = connectionString;
             this.LoadSchema();
@@ -68,6 +62,32 @@ namespace Butterfly.Database {
         public Dictionary<string, Table> Tables => this.tableByName;
 
         public abstract bool CanJoin { get; }
+
+        public int SelectCount {
+            get;
+            internal set;
+        }
+
+        public int TransactionCount {
+            get;
+            internal set;
+        }
+
+        public int InsertCount {
+            get;
+            internal set;
+        }
+
+        public int UpdateCount {
+            get;
+            internal set;
+        }
+
+        public int DeleteCount {
+            get;
+            internal set;
+        }
+
 
         public void CreateFromResourceFile(Assembly assembly, string resourceFile) {
             //logger.Debug($"CreateFromResourceFile():resourceNames={string.Join(",", assembly.GetManifestResourceNames())}");
@@ -145,18 +165,14 @@ namespace Butterfly.Database {
 
         // Manage data event transaction listeners
         protected readonly List<DataEventTransactionListener> uncommittedTransactionListeners = new List<DataEventTransactionListener>();
-
         public IDisposable OnNewUncommittedTransaction(Action<DataEventTransaction> listener) => new ListItemDisposable<DataEventTransactionListener>(uncommittedTransactionListeners, new DataEventTransactionListener(listener));
-
         public IDisposable OnNewUncommittedTransaction(Func<DataEventTransaction, Task> listener) => new ListItemDisposable<DataEventTransactionListener>(uncommittedTransactionListeners, new DataEventTransactionListener(listener));
 
         protected readonly List<DataEventTransactionListener> committedTransactionListeners = new List<DataEventTransactionListener>();
-
         public IDisposable OnNewCommittedTransaction(Action<DataEventTransaction> listener) => new ListItemDisposable<DataEventTransactionListener>(committedTransactionListeners, new DataEventTransactionListener(listener));
-
         public IDisposable OnNewCommittedTransaction(Func<DataEventTransaction, Task> listener) => new ListItemDisposable<DataEventTransactionListener>(committedTransactionListeners, new DataEventTransactionListener(listener));
 
-        internal void ProcessDataEventTransaction(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
+        internal void PostDataEventTransaction(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
             // Use ToArray() to avoid the collection being modified during the loop
             DataEventTransactionListener[] listeners = transactionState == TransactionState.Uncommitted ? this.uncommittedTransactionListeners.ToArray() : this.committedTransactionListeners.ToArray();
 
@@ -165,7 +181,7 @@ namespace Butterfly.Database {
             Task.WaitAll(tasks.ToArray());
         }
 
-        internal async Task ProcessDataEventTransactionAsync(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
+        internal async Task PostDataEventTransactionAsync(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
             // Use ToArray() to avoid the collection being modified during the loop
             DataEventTransactionListener[] listeners = transactionState == TransactionState.Uncommitted ? this.uncommittedTransactionListeners.ToArray() : this.committedTransactionListeners.ToArray();
 
@@ -214,22 +230,21 @@ namespace Butterfly.Database {
             return await this.SelectRowsAsync(statement, vars);
         }
 
-        internal async Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic vars, string newAndCondition, Dict newWhereParams) {
+        internal Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic vars, string newAndCondition, Dict newWhereParams) {
             string overrideWhereClause = string.IsNullOrEmpty(statement.whereClause) ? newAndCondition : $"({newAndCondition}) AND ({statement.whereClause})";
             SelectStatement newStatement = new SelectStatement(statement, overrideWhereClause, true);
-            Dict newStatementParamsDict = newStatement.ConvertParamsToDict(vars);
-            newStatementParamsDict.UpdateFrom(newWhereParams);
-            (string executableSql, Dict executableParams) = newStatement.GetExecutableSqlAndParams(newStatementParamsDict);
-            this.selectCount++;
-            return await this.DoSelectRowsAsync(executableSql, executableParams);
+            Dict varsDict = newStatement.ConvertParamsToDict(vars);
+            varsDict.UpdateFrom(newWhereParams);
+            (string executableSql, Dict executableParams) = newStatement.GetExecutableSqlAndParams(varsDict);
+            this.SelectCount++;
+            return this.DoSelectRowsAsync(executableSql, executableParams);
         }
 
-        protected async Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic vars) {
-            Dict statementParamsDict = statement.ConvertParamsToDict(vars);
-            //BaseStatement.ConfirmAllParamsUsed(statement.Sql, statementParamsDict);
-            (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(statementParamsDict);
-            this.selectCount++;
-            return await this.DoSelectRowsAsync(executableSql, executableParams);
+        protected Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic vars) {
+            Dict varsDict = statement.ConvertParamsToDict(vars);
+            (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(varsDict);
+            this.SelectCount++;
+            return this.DoSelectRowsAsync(executableSql, executableParams);
         }
 
         protected abstract Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams);
@@ -248,7 +263,7 @@ namespace Butterfly.Database {
             return rows.First();
         }
 
-        public async Task<Dict[]> QueryRowsAsync(string storedProcedureName, dynamic vars = null) {
+        public Task<Dict[]> QueryRowsAsync(string storedProcedureName, dynamic vars = null) {
             Dict executableParams;
 
             // If statementParams is null, return empty dictionary
@@ -266,7 +281,7 @@ namespace Butterfly.Database {
                 executableParams = DynamicX.ToDictionary(vars);
             }
 
-            return await this.DoQueryRowsAsync(storedProcedureName, executableParams);
+            return this.DoQueryRowsAsync(storedProcedureName, executableParams);
         }
 
         protected abstract Task<Dict[]> DoQueryRowsAsync(string storedProcedureName, Dict executableParams);

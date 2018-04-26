@@ -37,7 +37,12 @@ namespace Butterfly.Channel {
         public void Dispose() {
             logger.Debug($"Dispose():ChannelKey={this.ChannelKey}");
             foreach (var disposable in this.disposables) {
-                disposable.Dispose();
+                try {
+                    disposable.Dispose();
+                }
+                catch (Exception e) {
+                    logger.Error(e);
+                }
             }
             this.disposables.Clear();
         }

@@ -114,27 +114,37 @@ namespace Butterfly.Channel {
 
                 // Check for dead unauthenticated channels
                 foreach (IChannelServerConnection channel in this.unauthenticatedConnections.Values.ToArray()) {
-                    logger.Trace($"CheckForDeadChannelsAsync():channel.Created={channel.Created},cutoffDateTime={cutoffDateTime}");
-                    if (channel.Created < cutoffDateTime) {
-                        bool removed = this.unauthenticatedConnections.TryRemove(channel, out IChannelServerConnection removedChannel);
-                        if (!removed) throw new Exception($"Could not remove unauthenticated channel");
-                        channel.Dispose();
+                    try {
+                        logger.Trace($"CheckForDeadChannelsAsync():channel.Created={channel.Created},cutoffDateTime={cutoffDateTime}");
+                        if (channel.Created < cutoffDateTime) {
+                            bool removed = this.unauthenticatedConnections.TryRemove(channel, out IChannelServerConnection removedChannel);
+                            if (!removed) logger.Error($"Could not remove unauthenticated channel {channel.Id}");
+                            channel.Dispose();
+                        }
+                        else if (oldestLastReceivedHeartbeatReceived == null || oldestLastReceivedHeartbeatReceived > channel.Created) {
+                            oldestLastReceivedHeartbeatReceived = channel.Created;
+                        }
                     }
-                    else if (oldestLastReceivedHeartbeatReceived == null || oldestLastReceivedHeartbeatReceived > channel.Created) {
-                        oldestLastReceivedHeartbeatReceived = channel.Created;
+                    catch (Exception e) {
+                        logger.Error(e);
                     }
                 }
 
                 // Check for dead authenticated channels
                 foreach ((string id, IChannelServerConnection channel) in this.authenticatedConnectionByAuthId.ToArray()) {
-                    logger.Trace($"CheckForDeadChannelsAsync():channel.LastHeartbeatReceived={channel.LastHeartbeat},cutoffDateTime={cutoffDateTime}");
-                    if (channel.LastHeartbeat < cutoffDateTime) {
-                        bool removed = this.authenticatedConnectionByAuthId.TryRemove(id, out IChannelServerConnection removedChannel);
-                        if (!removed) throw new Exception($"Could not remove channel id {id}");
-                        channel.Dispose();
+                    try {
+                        logger.Trace($"CheckForDeadChannelsAsync():channel.LastHeartbeatReceived={channel.LastHeartbeat},cutoffDateTime={cutoffDateTime}");
+                        if (channel.LastHeartbeat < cutoffDateTime) {
+                            bool removed = this.authenticatedConnectionByAuthId.TryRemove(id, out IChannelServerConnection removedChannel);
+                            if (!removed) logger.Error($"Could not remove authenticated channel {channel.Id}");
+                            channel.Dispose();
+                        }
+                        else if (oldestLastReceivedHeartbeatReceived == null || oldestLastReceivedHeartbeatReceived > channel.LastHeartbeat) {
+                            oldestLastReceivedHeartbeatReceived = channel.LastHeartbeat;
+                        }
                     }
-                    else if (oldestLastReceivedHeartbeatReceived==null || oldestLastReceivedHeartbeatReceived>channel.LastHeartbeat) {
-                        oldestLastReceivedHeartbeatReceived = channel.LastHeartbeat;
+                    catch (Exception e) {
+                        logger.Error(e);
                     }
                 }
 
@@ -142,6 +152,7 @@ namespace Butterfly.Channel {
                 logger.Trace($"CheckForDeadChannelsAsync():delayMillis={delayMillis}");
                 await Task.Delay(delayMillis);
             }
+            logger.Warn("CheckForDeadChannelsAsync() exiting");
         }
 
         public void Dispose() {

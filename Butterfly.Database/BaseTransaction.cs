@@ -28,7 +28,7 @@ namespace Butterfly.Database {
 
     /// <inheritdoc/>
     /// <summary>
-    /// Base class implementing <see cref="ITransaction"/>. New implementations will normally extend this class.
+    /// Base class implementing <see cref="ITransaction"/>.
     /// </summary>
     public abstract class BaseTransaction : ITransaction {
         protected readonly BaseDatabase database;
@@ -37,7 +37,7 @@ namespace Butterfly.Database {
 
         public BaseTransaction(BaseDatabase database) {
             this.database = database;
-            this.database.transactionCount++;
+            this.database.TransactionCount++;
         }
 
         public IDatabase Database => this.database;
@@ -62,14 +62,14 @@ namespace Butterfly.Database {
             return (T)Convert.ChangeType(result, typeof(T));
         }
 
-        public async Task<object> InsertAsync(InsertStatement insertStatement, dynamic statementParams, bool ignoreIfDuplicate = false) {
+        public async Task<object> InsertAsync(InsertStatement insertStatement, dynamic vars, bool ignoreIfDuplicate = false) {
             // Convert statementParams
-            Dict statementParamsDict = insertStatement.ConvertParamsToDict(statementParams);
-            this.database.PreprocessInput(insertStatement.TableRefs[0].table.Name, statementParamsDict);
-            Dict defaultValuesDict = this.database.GetInsertDefaultValues(insertStatement.TableRefs[0].table);
+            Dict varsDict = insertStatement.ConvertParamsToDict(vars);
+            this.database.PreprocessInput(insertStatement.TableRefs[0].table.Name, varsDict);
+            Dict varsDictWithDefaults = this.database.GetInsertDefaultValues(insertStatement.TableRefs[0].table);
 
             // Get the executable sql and params
-            (string executableSql, Dict executableParams) = insertStatement.GetExecutableSqlAndParams(statementParamsDict, defaultValuesDict);
+            (string executableSql, Dict executableParams) = insertStatement.GetExecutableSqlAndParams(varsDict, varsDictWithDefaults);
 
             // Execute insert and return getGenerateId lambda
             Func<object> getGeneratedId;
@@ -93,7 +93,7 @@ namespace Butterfly.Database {
             // Create data event
             this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Insert, insertStatement.TableRefs[0].table.Name, keyValue));
 
-            this.database.insertCount++;
+            this.database.InsertCount++;
 
             return keyValue;
         }
@@ -107,33 +107,21 @@ namespace Butterfly.Database {
         }
 
         public async Task<int> UpdateAsync(UpdateStatement updateStatement, dynamic vars) {
-            // Convert statementParams
-            Dict statementParamsDict = updateStatement.ConvertParamsToDict(vars);
-            this.database.PreprocessInput(updateStatement.TableRefs[0].table.Name, statementParamsDict);
+            Dict varsDict = updateStatement.ConvertParamsToDict(vars);
 
-            // Determine keyValue
-            (var whereIndex, var setRefs, var whereRefs) = updateStatement.GetWhereIndexSetRefsAndWhereRefs(this.database, statementParamsDict);
+            this.database.PreprocessInput(updateStatement.TableRefs[0].table.Name, varsDict);
 
-            // Get the executable sql and params
-            (string executableSql, Dict executableParams) = updateStatement.GetExecutableSqlAndParams(statementParamsDict, setRefs, whereRefs);
+            (var whereIndex, var setRefs, var whereRefs) = updateStatement.GetWhereIndexSetRefsAndWhereRefs(this.database, varsDict);
 
-            Dict fieldValues;
-            if (whereIndex.IndexType == TableIndexType.Primary) {
-                fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, whereRefs);
-            }
-            else {
-                var selectValues = whereRefs.ToDictionary(x => x.fieldName, x => executableParams[x.fieldName]);
-                fieldValues = await this.database.SelectRowAsync(updateStatement.TableRefs[0].table.Name, selectValues);
-            }
-            object keyValue = BaseDatabase.GetKeyValue(updateStatement.TableRefs[0].table.Indexes[0].FieldNames, fieldValues);
+            (string executableSql, Dict executableParams) = updateStatement.GetExecutableSqlAndParams(varsDict, setRefs, whereRefs);
 
-            // Execute update
+            object keyValue = await this.GetKeyValue(whereIndex, varsDict, executableParams, whereRefs, updateStatement.TableRefs[0].table.Indexes[0], updateStatement.TableRefs[0].table.Name);
+
             int count = await this.DoUpdateAsync(executableSql, executableParams);
 
-            // Create data event
             this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Update, updateStatement.TableRefs[0].table.Name, keyValue));
 
-            this.database.updateCount++;
+            this.database.UpdateCount++;
 
             return count;
         }
@@ -147,37 +135,37 @@ namespace Butterfly.Database {
         }
 
         public async Task<int> DeleteAsync(DeleteStatement deleteStatement, dynamic vars) {
-            // Convert statementParams
-            Dict statementParamsDict = deleteStatement.ConvertParamsToDict(vars);
+            Dict varsDict = deleteStatement.ConvertParamsToDict(vars);
 
-            // Determine keyValue
-            (var whereIndex, var whereRefs) = deleteStatement.GetWhereIndexAndWhereRefs(this.database, statementParamsDict);
+            (var whereIndex, var whereRefs) = deleteStatement.GetWhereIndexAndWhereRefs(this.database, varsDict);
 
-            // Get the executable sql and params
-            (string executableSql, Dict executableParams) = deleteStatement.GetExecutableSqlAndParams(statementParamsDict, whereRefs);
+            (string executableSql, Dict executableParams) = deleteStatement.GetExecutableSqlAndParams(varsDict, whereRefs);
 
-            Dict fieldValues;
-            if (whereIndex.IndexType == TableIndexType.Primary) {
-                fieldValues = BaseStatement.RemapStatementParamsToFieldValues(statementParamsDict, whereRefs);
-            }
-            else {
-                var selectValues = whereRefs.ToDictionary(x => x.fieldName, x => executableParams[x.fieldName]);
-                fieldValues = await this.database.SelectRowAsync(deleteStatement.TableRefs[0].table.Name, selectValues);
-            }
-            object keyValue = BaseDatabase.GetKeyValue(deleteStatement.TableRefs[0].table.Indexes[0].FieldNames, fieldValues);
+            object keyValue = await this.GetKeyValue(whereIndex, varsDict, executableParams, whereRefs, deleteStatement.TableRefs[0].table.Indexes[0], deleteStatement.TableRefs[0].table.Name);
 
-            // Execute delete
             int count = await this.DoDeleteAsync(executableSql, executableParams);
 
-            // Create data event
             this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Delete, deleteStatement.TableRefs[0].table.Name, keyValue));
 
-            this.database.deleteCount++;
+            this.database.DeleteCount++;
 
             return count;
         }
 
         protected abstract Task<int> DoDeleteAsync(string executableSql, Dict executableParams);
+
+        protected async Task<object> GetKeyValue(TableIndex whereIndex, Dict varsDict, Dict executableParams, StatementEqualsRef[] whereRefs, TableIndex primaryIndex, string tableName) {
+            Dict fieldValues;
+            if (whereIndex.IndexType == TableIndexType.Primary) {
+                fieldValues = BaseStatement.RemapStatementParamsToFieldValues(varsDict, whereRefs);
+            }
+            else {
+                // This extra select to convert from a non-primary key index to a primary key index is unfortunate
+                var selectValues = whereRefs.ToDictionary(x => x.fieldName, x => executableParams[x.fieldName]);
+                fieldValues = await this.database.SelectRowAsync($"SELECT {string.Join(",", primaryIndex.FieldNames)} FROM {tableName}", selectValues);
+            }
+            return BaseDatabase.GetKeyValue(primaryIndex.FieldNames, fieldValues);
+        }
 
         public async Task<bool> Synchronize(string tableName, Dict[] existingRecords, Dict[] newRecords, Func<Dict, dynamic> getDeleteKey, string[] keyFieldNames = null) {
             if (!this.database.Tables.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
@@ -229,11 +217,11 @@ namespace Butterfly.Database {
         public void Commit() {
             DataEventTransaction dataEventTransaction = this.dataEvents.Count > 0 ? new DataEventTransaction(DateTime.Now, this.dataEvents.ToArray()) : null;
             if (dataEventTransaction != null) {
-                this.database.ProcessDataEventTransaction(TransactionState.Uncommitted, dataEventTransaction);
+                this.database.PostDataEventTransaction(TransactionState.Uncommitted, dataEventTransaction);
             }
             this.DoCommit();
             if (dataEventTransaction != null) {
-                this.database.ProcessDataEventTransaction(TransactionState.Committed, dataEventTransaction);
+                this.database.PostDataEventTransaction(TransactionState.Committed, dataEventTransaction);
             }
         }
 
@@ -242,11 +230,11 @@ namespace Butterfly.Database {
         public async Task CommitAsync() {
             DataEventTransaction dataEventTransaction = this.dataEvents.Count > 0 ? new DataEventTransaction(DateTime.Now, this.dataEvents.ToArray()) : null;
             if (dataEventTransaction!=null) {
-                await this.database.ProcessDataEventTransactionAsync(TransactionState.Uncommitted, dataEventTransaction);
+                await this.database.PostDataEventTransactionAsync(TransactionState.Uncommitted, dataEventTransaction);
             }
             await this.DoCommitAsync();
             if (dataEventTransaction!=null) {
-                await this.database.ProcessDataEventTransactionAsync(TransactionState.Committed, dataEventTransaction);
+                await this.database.PostDataEventTransactionAsync(TransactionState.Committed, dataEventTransaction);
             }
         }
 

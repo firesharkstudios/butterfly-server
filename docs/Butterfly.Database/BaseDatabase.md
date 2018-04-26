@@ -10,7 +10,12 @@ public abstract class BaseDatabase : IDatabase
 | --- | --- |
 | abstract [CanJoin](BaseDatabase/CanJoin.md) { get; } |  |
 | [ConnectionString](BaseDatabase/ConnectionString.md) { get; } |  |
+| [DeleteCount](BaseDatabase/DeleteCount.md) { get; } |  |
+| [InsertCount](BaseDatabase/InsertCount.md) { get; } |  |
+| [SelectCount](BaseDatabase/SelectCount.md) { get; } |  |
 | [Tables](BaseDatabase/Tables.md) { get; } |  |
+| [TransactionCount](BaseDatabase/TransactionCount.md) { get; } |  |
+| [UpdateCount](BaseDatabase/UpdateCount.md) { get; } |  |
 | [AddInputPreprocessor](BaseDatabase/AddInputPreprocessor.md)(…) |  |
 | [BeginTransaction](BaseDatabase/BeginTransaction.md)() |  |
 | [BeginTransactionAsync](BaseDatabase/BeginTransactionAsync.md)() |  |

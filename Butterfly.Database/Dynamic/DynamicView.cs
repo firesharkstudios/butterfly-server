@@ -39,17 +39,17 @@ namespace Butterfly.Database.Dynamic {
 
         protected readonly DynamicViewSet dynamicViewSet;
         protected readonly SelectStatement statement;
-        protected readonly Dict statementParams;
+        protected readonly Dict varsDict;
         protected readonly string name;
         protected readonly string[] keyFieldNames;
 
         protected readonly List<ChildDynamicParam> childDynamicParams = new List<ChildDynamicParam>();
 
-        public DynamicView(DynamicViewSet dynamicQuerySet, string sql, dynamic parameters = null, string name = null, string[] keyFieldNames = null) {
+        public DynamicView(DynamicViewSet dynamicQuerySet, string sql, dynamic vars = null, string name = null, string[] keyFieldNames = null) {
             this.Id = Guid.NewGuid().ToString();
             this.dynamicViewSet = dynamicQuerySet; 
             this.statement = new SelectStatement(dynamicQuerySet.Database, sql);
-            this.statementParams = this.statement.ConvertParamsToDict(parameters);
+            this.varsDict = this.statement.ConvertParamsToDict(vars);
 
             if (string.IsNullOrEmpty(name)) {
                 if (this.statement.TableRefs.Length != 1) throw new System.Exception("Must specify name if the DynamicView contains multiple table references");
@@ -85,7 +85,7 @@ namespace Butterfly.Database.Dynamic {
 
         internal bool HasDirtyParams {
             get {
-                foreach (var statementParamValue in this.statementParams.Values.ToArray()) {
+                foreach (var statementParamValue in this.varsDict.Values.ToArray()) {
                     if (statementParamValue is BaseDynamicParam dynamicParam && dynamicParam.Dirty) return true;
                 }
                 return false;
@@ -98,7 +98,7 @@ namespace Butterfly.Database.Dynamic {
         /// <returns></returns>
         internal async Task<DataEvent[]> GetInitialDataEventsAsync() {
             logger.Debug($"GetInitialDataEventsAsync()");
-            return await this.dynamicViewSet.Database.GetInitialDataEventsAsync(this.name, this.keyFieldNames, this.statement, this.statementParams);
+            return await this.dynamicViewSet.Database.GetInitialDataEventsAsync(this.name, this.keyFieldNames, this.statement, this.varsDict);
         }
 
         internal void ResetDirtyParams() {
@@ -198,7 +198,7 @@ namespace Butterfly.Database.Dynamic {
             }
             logger.Trace($"GetImpactedRecordsAsync():newAndCondition={newAndCondition}");
 
-            return await this.dynamicViewSet.Database.SelectRowsAsync(this.statement, this.statementParams, newAndCondition.ToString(), newWhereParams);
+            return await this.dynamicViewSet.Database.SelectRowsAsync(this.statement, this.varsDict, newAndCondition.ToString(), newWhereParams);
         }
 
         internal void UpdateChildDynamicParams(DataEvent[] dataEvents) {

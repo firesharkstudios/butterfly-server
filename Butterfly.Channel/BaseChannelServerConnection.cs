@@ -248,7 +248,12 @@ namespace Butterfly.Channel {
             this.started = false;
 
             foreach (var channel in this.channelByKey.Values) {
-                channel.Dispose();
+                try {
+                    channel.Dispose();
+                }
+                catch (Exception e) {
+                    logger.Error(e);
+                }
             }
             this.channelByKey.Clear();
 

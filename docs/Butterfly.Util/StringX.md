@@ -8,6 +8,7 @@ public static class StringX
 
 | name | description |
 | --- | --- |
+| static [Abbreviate](StringX/Abbreviate.md)(…) |  |
 | static [Hash](StringX/Hash.md)(…) |  |
 
 ## See Also
