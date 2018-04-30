@@ -2,13 +2,11 @@ module.exports = {
     WebSocketChannelClient: function (options) {
         let private = this;
 
-        let heartbeatEveryMillis = options.heartbeatEveryMillis || 3000;
-
         let url = options.url;
         if (url.indexOf('://') == -1) {
             url = (window.location.protocol == 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host + url;
         }
-        console.log('WebSocketChannelClient():url=' + url);
+        console.debug('WebSocketChannelClient():url=' + url);
 
         private.auth = null;
         private.subscriptionByChannelKey = {};
@@ -23,7 +21,7 @@ module.exports = {
         private.testConnection = function () {
             if (!private.webSocket) {
                 try {
-                    private.setStatus('Connecting...');
+                    private.setStatus('Starting');
                     private.webSocket = new WebSocket(url);
                     private.webSocket.onmessage = function (event) {
                         let message = JSON.parse(event.data);
@@ -36,9 +34,12 @@ module.exports = {
                             }
                         }
                         else if (message.messageType == 'AUTHENTICATED') {
-                            private.setStatus('Authenticated');
+                            private.setStatus('Started');
                             private.markSubscriptionSent(false);
                             private.sendSubscriptions();
+                        }
+                        else if (message.messageType == 'UNAUTHENTICATED') {
+                            public.stop();
                         }
                     };
                     private.webSocket.onopen = function () {
@@ -52,15 +53,15 @@ module.exports = {
                     }
                 }
                 catch (e) {
-                    console.log(e);
+                    console.debug(e);
                     private.webSocket = null;
                 }
             }
-            else if (private.webSocket.readyState == 1) { // Open
-                //console.log('testConnection():private.webSocket.readyState=' + private.webSocket.readyState);
+            else if (private.webSocket.readyState == 1) {
+                //console.debug('testConnection():private.webSocket.readyState=' + private.webSocket.readyState);
                 try {
                     private.webSocket.send('!');
-                    console.log('WebSocketChannelClient.testConnection():heartbeat success');
+                    console.debug('WebSocketChannelClient.testConnection():heartbeat success');
                 }
                 catch (e) {
                     private.webSocket = null;
@@ -70,10 +71,11 @@ module.exports = {
                 private.webSocket = null;
             }
 
-            private.heartbeatTimeout = setTimeout(function () {
-                private.testConnection();
-            }, heartbeatEveryMillis);
-
+            if (public.status != 'Stopped') {
+                private.testConnectionTimeout = setTimeout(function () {
+                    private.testConnection();
+                }, options.testConnectionEveryMillis || 3000);
+            }
         }
 
         private.sendAuthorization = function () {
@@ -83,7 +85,7 @@ module.exports = {
         }
 
         private.sendSubscriptions = function () {
-            if (private.webSocket && private.webSocket.readyState == 1 && public.status == 'Authenticated') {
+            if (private.webSocket && private.webSocket.readyState == 1 && public.status == 'Started') {
                 let data = [];
                 for (let key in private.subscriptionByChannelKey) {
                     let subscription = private.subscriptionByChannelKey[key];
@@ -96,7 +98,7 @@ module.exports = {
                 }
                 if (data.length > 0) {
                     let text = 'Subscribe:' + JSON.stringify(data);
-                    console.log('WebSocketChannelClient.sendSubscriptions():text=' + text);
+                    console.debug('WebSocketChannelClient.sendSubscriptions():text=' + text);
                     private.webSocket.send(text);
                     private.markSubscriptionSent(true);
                 }
@@ -128,19 +130,15 @@ module.exports = {
 
         let public = {
             status: null,
-            start: function () {
+            start: function (auth) {
+                console.debug('WebSocketChannelClient.start()');
+                private.auth = auth;
+                private.markSubscriptionSent(false);
+                private.sendAuthorization();
                 private.testConnection();
             },
-            authorize: function (newValue) {
-                console.log('WebSocketChannelClient.authorize()');
-                if (private.auth != newValue) {
-                    private.auth = newValue;
-                    private.markSubscriptionSent(false);
-                    private.sendAuthorization();
-                }
-            },
             subscribe: function (handler, channelKey, vars) {
-                console.log('WebSocketChannelClient.subscribe()');
+                console.debug(`WebSocketChannelClient.subscribe():channelKey=${channelKey}`);
                 if (!channelKey) channelKey = 'default';
                 private.removeSubscription(channelKey);
                 private.addSubscription(channelKey, {
@@ -151,14 +149,26 @@ module.exports = {
                 if (options.onSubscriptionsUpdated) options.onSubscriptionsUpdated();
             },
             unsubscribe: function (channelKey) {
+                console.debug(`WebSocketChannelClient.unsubscribe():channelKey=${channelKey}`);
                 if (!channelKey) channelKey = 'default';
                 private.removeSubscription(channelKey);
                 private.sendUnsubscribe(channelKey);
                 if (options.onSubscriptionsUpdated) options.onSubscriptionsUpdated();
             },
             stop: function () {
-                clearTimeout(private.heartbeatTimeout);
-                private.setStatus('Disconnected');
+                console.debug('WebSocketChannelClient.stop()')
+                private.setStatus('Stopped');
+                private.webSocket.close();
+                private.webSocket = null;
+                clearTimeout(private.testConnectionTimeout);
+                for (let channelKey in private.subscriptionByChannelKey) {
+                    let subscription = private.subscriptionByChannelKey[channelKey];
+                    if (subscription.handlers) {
+                        for (let i = 0; i < subscription.handlers.length; i++) {
+                            subscription.handlers[i]('RESET');
+                        }
+                    }
+                }
             }
         };
 
@@ -186,11 +196,17 @@ module.exports = {
         }
 
         return function (messageType, data) {
-            if (messageType == 'DATA-EVENT-TRANSACTION') {
+            if (messageType == 'RESET') {
+                for (let arrayKey in config.arrayMapping) {
+                    let array = config.arrayMapping[arrayKey];
+                    if (array) array.splice(0, array.length);
+                }
+            }
+            else if (messageType == 'DATA-EVENT-TRANSACTION') {
                 let dataEventTransaction = data;
                 for (let i = 0; i < dataEventTransaction.dataEvents.length; i++) {
                     let dataEvent = dataEventTransaction.dataEvents[i];
-                    //console.log('ArrayDataEventHandler.handle():dataEvent.type=' + dataEvent.dataEventType + ',name=', dataEvent.name + ',keyValue=' + dataEvent.keyValue);
+                    //console.debug('ArrayDataEventHandler.handle():dataEvent.type=' + dataEvent.dataEventType + ',name=', dataEvent.name + ',keyValue=' + dataEvent.keyValue);
                     if (dataEvent.dataEventType == 'InitialEnd') {
                         if (config.onInitialEnd) config.onInitialEnd();
                     }

@@ -24,8 +24,7 @@
             }), function () {
                 $scope.$apply();
             }]);
-            channelClient.authorize('Custom ' + $scope.myUserId);
-            channelClient.start();
+            channelClient.start('Custom ' + $scope.myUserId);
         };
     });
 

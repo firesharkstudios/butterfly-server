@@ -144,9 +144,18 @@ namespace Butterfly.Channel {
                     logger.Debug($"ReceiveMessage():name={name},value={value}");
                     if (name == HttpRequestHeader.Authorization.ToString()) {
                         this.UnsubscribeAll();
-                        if (!string.IsNullOrEmpty(value)) {
-                            var authenticationHeaderValue = AuthenticationHeaderValue.Parse(value);
-                            await this.channelServer.AuthenticateAsync(authenticationHeaderValue.Scheme, authenticationHeaderValue.Parameter, this);
+                        if (string.IsNullOrEmpty(value)) {
+                            this.QueueMessage(messageType: "UNAUTHENTICATED");
+                        }
+                        else {
+                            try {
+                                var authenticationHeaderValue = AuthenticationHeaderValue.Parse(value);
+                                await this.channelServer.AuthenticateAsync(authenticationHeaderValue.Scheme, authenticationHeaderValue.Parameter, this);
+                                this.QueueMessage(messageType: "AUTHENTICATED");
+                            }
+                            catch (Exception e) {
+                                this.QueueMessage(messageType: "UNAUTHENTICATED", data: e.Message);
+                            }
                         }
                     }
                     else if (name == "Subscribe") {

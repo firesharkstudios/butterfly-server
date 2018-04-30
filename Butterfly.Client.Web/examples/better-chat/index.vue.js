@@ -214,8 +214,7 @@ let app = new Vue({
                 chat_message: self.chatMessages,
             }
         }));
-        channelClient.authorize('Custom ' + self.myUserId);
-        channelClient.start();
+        channelClient.start('Custom ' + self.myUserId);
 
         // Join chat if url has a join query string parameter
         let match = /join=(.*)/.exec(window.location.href);

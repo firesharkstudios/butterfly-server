@@ -44,7 +44,7 @@ namespace Butterfly.Auth {
         protected readonly string authTokenTableUserIdFieldName;
         protected readonly string authTokenTableExpiresAtFieldName;
 
-        protected readonly string createAnonymousDefaultRole;
+        protected readonly string defaultRole;
 
         protected readonly Func<string, int, Task> onEmailVerify;
         protected readonly Func<string, int, Task> onPhoneVerify;
@@ -83,7 +83,7 @@ namespace Butterfly.Auth {
             string authTokenIdFieldName = "id",
             string authTokenTableUserIdFieldName = "user_id",
             string authTokenTableExpiresAtFieldName = "expires_at",
-            string createAnonymousDefaultRole = "full-access",
+            string defaultRole = "full-access",
             Func<string, int, Task> onEmailVerify = null,
             Func<string, int, Task> onPhoneVerify = null,
             Action<Dict> onRegister = null,
@@ -118,7 +118,7 @@ namespace Butterfly.Auth {
             this.authTokenTableUserIdFieldName = authTokenTableUserIdFieldName;
             this.authTokenTableExpiresAtFieldName = authTokenTableExpiresAtFieldName;
 
-            this.createAnonymousDefaultRole = createAnonymousDefaultRole;
+            this.defaultRole = defaultRole;
 
             this.onEmailVerify = onEmailVerify;
             this.onPhoneVerify = onPhoneVerify;
@@ -269,6 +269,7 @@ namespace Butterfly.Auth {
                 { this.userTablePhoneFieldName, phone },
                 { this.userTableFirstNameFieldName, firstName  },
                 { this.userTableLastNameFieldName, lastName },
+                { this.userTableRoleFieldName, this.defaultRole },
             };
             if (string.IsNullOrEmpty(userId)) {
                 userId = await this.database.InsertAndCommitAsync<string>(this.userTableName, user);
@@ -329,7 +330,7 @@ namespace Butterfly.Auth {
             Random random = new Random();
             using (ITransaction transaction = await this.database.BeginTransactionAsync()) {
                 string accountId = await transaction.InsertAsync<string>(this.accountTableName);
-                string role = this.createAnonymousDefaultRole;
+                string role = this.defaultRole;
 
                 var firstName = CleverNameX.COLORS[random.Next(0, CleverNameX.COLORS.Length)];
                 var lastName = CleverNameX.ANIMALS[random.Next(0, CleverNameX.ANIMALS.Length)];

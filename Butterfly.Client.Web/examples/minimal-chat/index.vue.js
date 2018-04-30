@@ -75,7 +75,6 @@ let app = new Vue({
                 chat_message: self.chatMessages,
             }
         }));
-        channelClient.authorize('Custom ' + self.myUserId);
-        channelClient.start();
+        channelClient.start('Custom ' + self.myUserId);
     }
 });

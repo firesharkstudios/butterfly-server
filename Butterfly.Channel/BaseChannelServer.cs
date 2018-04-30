@@ -71,7 +71,6 @@ namespace Butterfly.Channel {
                 connection.Start(authToken, id);
                 this.authenticatedConnectionByAuthId[id] = connection;
             }
-            connection.QueueMessage(messageType: "AUTHENTICATED");
         }
 
         /// <inheritdoc/>
