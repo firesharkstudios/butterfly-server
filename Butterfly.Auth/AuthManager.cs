@@ -6,6 +6,7 @@ using NLog;
 
 using Butterfly.Database;
 using Butterfly.Util;
+using Butterfly.Util.Field;
 using Butterfly.WebApi;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;

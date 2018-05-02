@@ -63,12 +63,14 @@
     <Compile Include="DateTimeX.cs" />
     <Compile Include="DictionaryX.cs" />
     <Compile Include="DynamicX.cs" />
-    <Compile Include="NameFieldValidator.cs" />
-    <Compile Include="PhoneFieldValidator.cs" />
+    <Compile Include="Job\Job.cs" />
+    <Compile Include="Job\JobManager.cs" />
+    <Compile Include="Field\NameFieldValidator.cs" />
+    <Compile Include="Field\PhoneFieldValidator.cs" />
     <Compile Include="EnvironmentX.cs" />
-    <Compile Include="EmailFieldValidator.cs" />
-    <Compile Include="IFieldValidator.cs" />
-    <Compile Include="GenericFieldValidator.cs" />
+    <Compile Include="Field\EmailFieldValidator.cs" />
+    <Compile Include="Field\IFieldValidator.cs" />
+    <Compile Include="Field\GenericFieldValidator.cs" />
     <Compile Include="FileX.cs" />
     <Compile Include="IWebRequest.cs" />
     <Compile Include="IWebRequestX.cs" />
@@ -88,7 +90,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_StartDate="2000/1/1" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

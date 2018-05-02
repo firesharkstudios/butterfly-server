@@ -11,6 +11,7 @@ using Butterfly.Util;
 using Butterfly.WebApi;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
+using Butterfly.Util.Field;
 
 namespace Butterfly.Notify {
 

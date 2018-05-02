@@ -13,6 +13,6 @@
     <description>$description$</description>
     <releaseNotes>Initial release</releaseNotes>
     <copyright>$copyright$</copyright>
-    <tags>butterfly framework channel</tags>
+    <tags>butterfly framework auth</tags>
   </metadata>
 </package>
