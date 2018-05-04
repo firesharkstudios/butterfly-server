@@ -59,8 +59,13 @@ namespace Butterfly.Database {
         internal void SetDefaultValue(string fieldName, Func<string, object> getDefaultValue) {
             this.getDefaultValueByFieldName[fieldName] = getDefaultValue;
         }
-
         public Dictionary<string, Func<string, object>> GetDefaultValueByFieldName => this.getDefaultValueByFieldName;
+
+        protected readonly Dictionary<string, Func<string, object>> getOverrideValueByFieldName = new Dictionary<string, Func<string, object>>();
+        internal void SetOverrideValue(string fieldName, Func<string, object> getOverrideValue) {
+            this.getOverrideValueByFieldName[fieldName] = getOverrideValue;
+        }
+        public Dictionary<string, Func<string, object>> GetOverrideValueByFieldName => this.getOverrideValueByFieldName;
 
         internal TableIndex FindUniqueIndex(StatementEqualsRef[] setRefs) {
             var uniqueIndexes = this.Indexes.Where(x => x.IndexType != TableIndexType.Other && x.FieldNames.Length > 0);

@@ -26,8 +26,8 @@ namespace Butterfly.Notify.Test {
         public async Task SendEmailNotifyMessage() {
             IDatabase database = new Butterfly.Database.Memory.MemoryDatabase();
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Notify.Test.db.sql");
-            database.SetInsertDefaultValue("id", tableName => Guid.NewGuid().ToString());
-            database.SetInsertDefaultValue("created_at", tableName => DateTime.Now);
+            database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString());
+            database.SetDefaultValue("created_at", tableName => DateTime.Now);
 
             var notifyMessageSender = new AwsSesEmailNotifyMessageSender();
             var notifyMessageManager = new NotifyManager(database, emailNotifyMessageSender: notifyMessageSender);
@@ -41,8 +41,8 @@ namespace Butterfly.Notify.Test {
         public async Task SendPhoneTextNotifyMessage() {
             IDatabase database = new Butterfly.Database.Memory.MemoryDatabase();
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Notify.Test.db.sql");
-            database.SetInsertDefaultValue("id", tableName => Guid.NewGuid().ToString());
-            database.SetInsertDefaultValue("created_at", tableName => DateTime.Now);
+            database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString());
+            database.SetDefaultValue("created_at", tableName => DateTime.Now);
 
             var notifyMessageSender = new TwilioPhoneTextNotifyMessageSender("my-sid", "my-auth-token");
             var notifyMessageManager = new NotifyManager(database, phoneTextNotifyMessageSender: notifyMessageSender);

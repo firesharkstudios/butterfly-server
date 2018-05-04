@@ -35,7 +35,8 @@ public abstract class BaseDatabase : IDatabase
 | [SelectRowAsync](BaseDatabase/SelectRowAsync.md)(…) |  |
 | [SelectRowsAsync](BaseDatabase/SelectRowsAsync.md)(…) |  |
 | [SelectValueAsync&lt;T&gt;](BaseDatabase/SelectValueAsync.md)(…) |  |
-| [SetInsertDefaultValue](BaseDatabase/SetInsertDefaultValue.md)(…) |  |
+| [SetDefaultValue](BaseDatabase/SetDefaultValue.md)(…) |  |
+| [SetOverrideValue](BaseDatabase/SetOverrideValue.md)(…) |  |
 | [UpdateAndCommitAsync](BaseDatabase/UpdateAndCommitAsync.md)(…) |  |
 | static [ConvertMySqlType](BaseDatabase/ConvertMySqlType.md)(…) |  |
 | static [RemapTypeInputPreprocessor&lt;T&gt;](BaseDatabase/RemapTypeInputPreprocessor.md)(…) |  |

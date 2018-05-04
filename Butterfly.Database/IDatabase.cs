@@ -277,12 +277,20 @@ namespace Butterfly.Database {
         Task<ITransaction> BeginTransactionAsync();
 
         /// <summary>
-        /// Allows specifying a lambda that creates a default value for a field when executing an INSERT.  If <paramref name="tableName"/> is null, the <paramref name="getDefaultValue"/> lambda will be applied to all tables.
+        /// Allows specifying a lambda that creates a default value for a field when executing an INSERT.  If <paramref name="tableName"/> is null, the <paramref name="getValue"/> lambda will be applied to all tables.
         /// </summary>
         /// <param name="fieldName">Name of the field</param>
-        /// <param name="getDefaultValue">The lambda that returns the default value</param>
-        /// <param name="tableName">An optional table name.  If not null, the getDefaultValue lambda is only applied to the specified table. If null, the getDefaultValue lambda is applied to all tables.</param>
-        void SetInsertDefaultValue(string fieldName, Func<string, object> getDefaultValue, string tableName = null);
+        /// <param name="getValue">The lambda that returns the default value</param>
+        /// <param name="tableName">An optional table name.  If not null, the getValue lambda is only applied to the specified table. If null, the getValue lambda is applied to all tables.</param>
+        void SetDefaultValue(string fieldName, Func<string, object> getValue, string tableName = null);
+
+        /// <summary>
+        /// Allows specifying a lambda that creates an override value for a field when executing both an INSERT and UPDATE.  If <paramref name="tableName"/> is null, the <paramref name="getValue"/> lambda will be applied to all tables.
+        /// </summary>
+        /// <param name="fieldName">Name of the field</param>
+        /// <param name="getValue">The lambda that returns the default value</param>
+        /// <param name="tableName">An optional table name.  If not null, the getValue lambda is only applied to the specified table. If null, the getValue lambda is applied to all tables.</param>
+        void SetOverrideValue(string fieldName, Func<string, object> getValue, string tableName = null);
 
         void AddInputPreprocessor(Action<string, Dict> inputPreprocessor);
 

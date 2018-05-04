@@ -29,7 +29,8 @@ public interface IDatabase
 | [SelectRowAsync](IDatabase/SelectRowAsync.md)(…) |  |
 | [SelectRowsAsync](IDatabase/SelectRowsAsync.md)(…) |  |
 | [SelectValueAsync&lt;T&gt;](IDatabase/SelectValueAsync.md)(…) |  |
-| [SetInsertDefaultValue](IDatabase/SetInsertDefaultValue.md)(…) |  |
+| [SetDefaultValue](IDatabase/SetDefaultValue.md)(…) |  |
+| [SetOverrideValue](IDatabase/SetOverrideValue.md)(…) |  |
 | [UpdateAndCommitAsync](IDatabase/UpdateAndCommitAsync.md)(…) |  |
 
 ## See Also

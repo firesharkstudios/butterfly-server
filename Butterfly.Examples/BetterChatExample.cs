@@ -26,10 +26,10 @@ namespace Butterfly.Examples {
                 return;
             }
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Examples.better-chat-db.sql");
-            database.SetInsertDefaultValue("id", tableName => Guid.NewGuid().ToString());
-            database.SetInsertDefaultValue("created_at", tableName => DateTime.Now);
-            database.SetInsertDefaultValue("updated_at", tableName => DateTime.Now);
-            database.SetInsertDefaultValue("join_id", tableName => Guid.NewGuid().ToString().Substring(0, 8), "chat");
+            database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString());
+            database.SetDefaultValue("created_at", tableName => DateTime.Now);
+            database.SetDefaultValue("updated_at", tableName => DateTime.Now);
+            database.SetDefaultValue("join_id", tableName => Guid.NewGuid().ToString().Substring(0, 8), "chat");
 
             // Listen for connections to /better-chat
             var route = channelServer.RegisterRoute(

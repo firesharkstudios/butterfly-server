@@ -66,10 +66,12 @@ namespace Butterfly.Database {
             // Convert statementParams
             Dict varsDict = insertStatement.ConvertParamsToDict(vars);
             this.database.PreprocessInput(insertStatement.TableRefs[0].table.Name, varsDict);
-            Dict varsDictWithDefaults = this.database.GetInsertDefaultValues(insertStatement.TableRefs[0].table);
+            Dict varsOverrides = this.database.GetOverrideValues(insertStatement.TableRefs[0].table);
+            varsDict.UpdateFrom(varsOverrides);
+            Dict varsDefaults = this.database.GetDefaultValues(insertStatement.TableRefs[0].table);
 
             // Get the executable sql and params
-            (string executableSql, Dict executableParams) = insertStatement.GetExecutableSqlAndParams(varsDict, varsDictWithDefaults);
+            (string executableSql, Dict executableParams) = insertStatement.GetExecutableSqlAndParams(varsDict, varsDefaults);
 
             // Execute insert and return getGenerateId lambda
             Func<object> getGeneratedId;
@@ -108,11 +110,11 @@ namespace Butterfly.Database {
 
         public async Task<int> UpdateAsync(UpdateStatement updateStatement, dynamic vars) {
             Dict varsDict = updateStatement.ConvertParamsToDict(vars);
-
             this.database.PreprocessInput(updateStatement.TableRefs[0].table.Name, varsDict);
+            Dict varsOverrides = this.database.GetOverrideValues(updateStatement.TableRefs[0].table);
+            varsDict.UpdateFrom(varsOverrides);
 
             (var whereIndex, var setRefs, var whereRefs) = updateStatement.GetWhereIndexSetRefsAndWhereRefs(this.database, varsDict);
-
             (string executableSql, Dict executableParams) = updateStatement.GetExecutableSqlAndParams(varsDict, setRefs, whereRefs);
 
             object keyValue = await this.GetKeyValue(whereIndex, varsDict, executableParams, whereRefs, updateStatement.TableRefs[0].table.Indexes[0], updateStatement.TableRefs[0].table.Name);

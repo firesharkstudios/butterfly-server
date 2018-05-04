@@ -18,9 +18,9 @@ namespace Butterfly.Auth.Test {
             await TruncateData(database);
 
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Auth.Test.db.sql");
-            database.SetInsertDefaultValue("id", tableName => Guid.NewGuid().ToString());
-            database.SetInsertDefaultValue("created_at", tableName => DateTime.Now.ToUnixTimestamp());
-            database.SetInsertDefaultValue("updated_at", tableName => DateTime.Now.ToUnixTimestamp());
+            database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString());
+            database.SetDefaultValue("created_at", tableName => DateTime.Now.ToUnixTimestamp());
+            database.SetDefaultValue("updated_at", tableName => DateTime.Now.ToUnixTimestamp());
             database.AddInputPreprocessor(BaseDatabase.RemapTypeInputPreprocessor<DateTime>(dateTime => dateTime.ToUnixTimestamp()));
 
             AuthManager authManager = new AuthManager(database, onForgotPassword: user => {

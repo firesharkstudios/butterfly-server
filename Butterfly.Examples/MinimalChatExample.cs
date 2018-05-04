@@ -24,7 +24,7 @@ namespace Butterfly.Examples {
 	            created_at DATETIME NOT NULL,
 	            PRIMARY KEY (id)
             );");
-            database.SetInsertDefaultValue("created_at", tableName => DateTime.Now);
+            database.SetDefaultValue("created_at", tableName => DateTime.Now);
 
             // Listen for connections to /minimal-chat
             var route = channelServer.RegisterRoute(

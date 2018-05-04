@@ -1,7 +1,7 @@
-# BaseDatabase.SetInsertDefaultValue method
+# BaseDatabase.SetOverrideValue method
 
 ```csharp
-public void SetInsertDefaultValue(string fieldName, Func<string, object> getDefaultValue, string tableName = null)
+public void SetOverrideValue(string fieldName, Func<string, object> getValue, string tableName = null)
 ```
 
 ## See Also

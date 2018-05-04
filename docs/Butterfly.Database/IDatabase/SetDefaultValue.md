@@ -1,7 +1,7 @@
-# IDatabase.SetInsertDefaultValue method
+# IDatabase.SetDefaultValue method
 
 ```csharp
-public void SetInsertDefaultValue(string fieldName, Func<string, object> getDefaultValue, string tableName = null)
+public void SetDefaultValue(string fieldName, Func<string, object> getValue, string tableName = null)
 ```
 
 ## See Also

@@ -329,17 +329,17 @@ namespace Butterfly.Database {
 
         protected readonly Dictionary<string, Func<string, object>> getDefaultValueByFieldName = new Dictionary<string, Func<string, object>>();
 
-        public void SetInsertDefaultValue(string fieldName, Func<string, object> getDefaultValue, string tableName = null) {
+        public void SetDefaultValue(string fieldName, Func<string, object> getValue, string tableName = null) {
             if (tableName == null) {
-                this.getDefaultValueByFieldName[fieldName] = getDefaultValue;
+                this.getDefaultValueByFieldName[fieldName] = getValue;
             }
             else {
                 if (!this.Tables.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
-                table.SetDefaultValue(fieldName, getDefaultValue);
+                table.SetDefaultValue(fieldName, getValue);
             }
         }
 
-        internal Dict GetInsertDefaultValues(Table table) {
+        internal Dict GetDefaultValues(Table table) {
             Dictionary<string, object> defaultValues = new Dict();
             foreach ((string fieldName, Func<string, object> getDefaultValue) in table.GetDefaultValueByFieldName) {
                 TableFieldDef fieldDef = table.FindFieldDef(fieldName);
@@ -350,6 +350,31 @@ namespace Butterfly.Database {
                 if (fieldDef != null && !defaultValues.ContainsKey(fieldDef.name)) defaultValues[fieldDef.name] = getDefaultValue(table.Name);
             }
             return defaultValues;
+        }
+
+        protected readonly Dictionary<string, Func<string, object>> getOverrideValueByFieldName = new Dictionary<string, Func<string, object>>();
+
+        public void SetOverrideValue(string fieldName, Func<string, object> getValue, string tableName = null) {
+            if (tableName == null) {
+                this.getOverrideValueByFieldName[fieldName] = getValue;
+            }
+            else {
+                if (!this.Tables.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
+                table.SetOverrideValue(fieldName, getValue);
+            }
+        }
+
+        internal Dict GetOverrideValues(Table table) {
+            Dictionary<string, object> overrideValues = new Dict();
+            foreach ((string fieldName, Func<string, object> getValue) in table.GetOverrideValueByFieldName) {
+                TableFieldDef fieldDef = table.FindFieldDef(fieldName);
+                if (fieldDef != null && !overrideValues.ContainsKey(fieldDef.name)) overrideValues[fieldDef.name] = getValue(table.Name);
+            }
+            foreach ((string fieldName, Func<string, object> getValue) in this.getOverrideValueByFieldName) {
+                TableFieldDef fieldDef = table.FindFieldDef(fieldName);
+                if (fieldDef != null && !overrideValues.ContainsKey(fieldDef.name)) overrideValues[fieldDef.name] = getValue(table.Name);
+            }
+            return overrideValues;
         }
 
         protected readonly List<Action<string, Dict>> inputPreprocessors = new List<Action<string, Dict>>();
