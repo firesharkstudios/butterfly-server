@@ -400,6 +400,17 @@ namespace Butterfly.Database {
             };
         }
 
+        public static Action<string, Dict> CopyFieldValue(string token, string sourceFieldName) {
+            return (tableName, input) => {
+                foreach (var pair in input.ToArray()) {
+                    string stringValue = pair.Value as string;
+                    if (stringValue == token) {
+                        input[pair.Key] = input[sourceFieldName];
+                    }
+                }
+            };
+        }
+
         protected readonly static Regex PARSE_TYPE = new Regex(@"^(?<type>.+?)(?<maxLengthWithParens>\(\d+\))?$");
 
         public static (Type, int) ConvertMySqlType(string text) {

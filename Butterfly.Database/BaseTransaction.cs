@@ -110,20 +110,26 @@ namespace Butterfly.Database {
 
         public async Task<int> UpdateAsync(UpdateStatement updateStatement, dynamic vars) {
             Dict varsDict = updateStatement.ConvertParamsToDict(vars);
-            this.database.PreprocessInput(updateStatement.TableRefs[0].table.Name, varsDict);
             Dict varsOverrides = this.database.GetOverrideValues(updateStatement.TableRefs[0].table);
             varsDict.UpdateFrom(varsOverrides);
+            this.database.PreprocessInput(updateStatement.TableRefs[0].table.Name, varsDict);
 
             (var whereIndex, var setRefs, var whereRefs) = updateStatement.GetWhereIndexSetRefsAndWhereRefs(this.database, varsDict);
             (string executableSql, Dict executableParams) = updateStatement.GetExecutableSqlAndParams(varsDict, setRefs, whereRefs);
 
             object keyValue = await this.GetKeyValue(whereIndex, varsDict, executableParams, whereRefs, updateStatement.TableRefs[0].table.Indexes[0], updateStatement.TableRefs[0].table.Name);
 
-            int count = await this.DoUpdateAsync(executableSql, executableParams);
+            int count;
+            if (keyValue == null) {
+                count = 0;
+            }
+            else {
+                count = await this.DoUpdateAsync(executableSql, executableParams);
 
-            this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Update, updateStatement.TableRefs[0].table.Name, keyValue));
+                this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Update, updateStatement.TableRefs[0].table.Name, keyValue));
 
-            this.database.UpdateCount++;
+                this.database.UpdateCount++;
+            }
 
             return count;
         }
@@ -145,11 +151,17 @@ namespace Butterfly.Database {
 
             object keyValue = await this.GetKeyValue(whereIndex, varsDict, executableParams, whereRefs, deleteStatement.TableRefs[0].table.Indexes[0], deleteStatement.TableRefs[0].table.Name);
 
-            int count = await this.DoDeleteAsync(executableSql, executableParams);
+            int count;
+            if (keyValue == null) {
+                count = 0;
+            }
+            else {
+                count = await this.DoDeleteAsync(executableSql, executableParams);
 
-            this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Delete, deleteStatement.TableRefs[0].table.Name, keyValue));
+                this.dataEvents.Add(new KeyValueDataEvent(DataEventType.Delete, deleteStatement.TableRefs[0].table.Name, keyValue));
 
-            this.database.DeleteCount++;
+                this.database.DeleteCount++;
+            }
 
             return count;
         }
@@ -166,7 +178,12 @@ namespace Butterfly.Database {
                 var selectValues = whereRefs.ToDictionary(x => x.fieldName, x => executableParams[x.fieldName]);
                 fieldValues = await this.database.SelectRowAsync($"SELECT {string.Join(",", primaryIndex.FieldNames)} FROM {tableName}", selectValues);
             }
-            return BaseDatabase.GetKeyValue(primaryIndex.FieldNames, fieldValues);
+            if (fieldValues == null) {
+                return null;
+            }
+            else {
+                return BaseDatabase.GetKeyValue(primaryIndex.FieldNames, fieldValues);
+            }
         }
 
         public async Task<bool> Synchronize(string tableName, Dict[] existingRecords, Dict[] newRecords, Func<Dict, dynamic> getDeleteKey, string[] keyFieldNames = null) {

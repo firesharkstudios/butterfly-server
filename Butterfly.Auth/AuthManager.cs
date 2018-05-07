@@ -10,6 +10,7 @@ using Butterfly.Util.Field;
 using Butterfly.WebApi;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
+using System.Net;
 
 namespace Butterfly.Auth {
 
@@ -158,7 +159,7 @@ namespace Butterfly.Auth {
             webApiServer.OnPost($"{pathPrefix}/register", async(req, res) => {
                 Dict registration = await req.ParseAsJsonAsync<Dict>();
                 AuthToken authToken = await this.RegisterAsync(registration, new Dict {
-                    { "request_host_name", req.RequestUrl.Host },
+                    { "host_name", Dns.GetHostName() },
                     { "user_agent", req.UserAgent },
                     { "user_host_address", req.UserHostAddress },
                     { "user_host_name", req.UserHostName },
