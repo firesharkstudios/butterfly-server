@@ -112,6 +112,8 @@ namespace Butterfly.WebApi.RedHttpServer {
             throw new NotImplementedException();
         }
 
+        public Stream OutputStream => this.response.UnderlyingResponse.OutputStream;
+
         public Task WriteAsJsonAsync(object value) {
             this.response.SendJson(value);
             return Task.FromResult(0);

@@ -14,6 +14,7 @@
  * limitations under the License.
 */
 
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Butterfly.WebApi {
@@ -24,6 +25,8 @@ namespace Butterfly.WebApi {
         string StatusText { get; set; }
 
         void SendRedirect(string url);
+
+        Stream OutputStream { get; }
 
         Task WriteAsJsonAsync(object value);
     }

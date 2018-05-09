@@ -148,6 +148,8 @@ namespace Butterfly.WebApi.EmbedIO {
             this.context.Redirect(url);
         }
 
+        public Stream OutputStream => this.context.Response.OutputStream;
+
         public async Task WriteAsJsonAsync(object value) {
             using (StreamWriter streamWriter = new StreamWriter(this.context.Response.OutputStream)) {
                 var json = JsonUtil.Serialize(value);
