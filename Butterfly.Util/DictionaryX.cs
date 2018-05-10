@@ -25,10 +25,21 @@ namespace Butterfly.Util {
 
         public static V GetAs<T, U, V>(this Dictionary<T, U> me, T key, V defaultValue) {
             if (me.TryGetValue(key, out U value) && value != null) {
-                if (typeof(V).IsEnum) {
-                    return (V)Enum.Parse(typeof(V), value.ToString(), true);
+                Type vType = typeof(V);
+                Type nullableUnderlyingVType = Nullable.GetUnderlyingType(vType);
+                if (nullableUnderlyingVType != null) {
+                    if (value == null) {
+                        return default(V);
+                    }
+                    else {
+                        vType = nullableUnderlyingVType;
+                    }
                 }
-                else if ((value is int || value is long) && typeof(V)==typeof(DateTime)) {
+
+                if (vType.IsEnum) {
+                    return (V)Enum.Parse(vType, value.ToString(), true);
+                }
+                else if ((value is int || value is long) && vType==typeof(DateTime)) {
                     var longValue = (long)Convert.ChangeType(value, typeof(long));
                     return (V)(object)DateTimeX.FromUnixTimestamp(longValue);
                 }
@@ -39,7 +50,7 @@ namespace Butterfly.Util {
                     return (value as JArray).ToObject<V>();
                 }
                 else {
-                    return (V)Convert.ChangeType(value, typeof(V));
+                    return (V)Convert.ChangeType(value, vType);
                 }
             }
             else {

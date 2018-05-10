@@ -67,6 +67,13 @@ namespace Butterfly.Database.Test {
         [TestMethod]
         public async Task DataMemoryDatabase() {
             /*
+            int? x = new Dictionary<string, object> {
+                { "x", 1 }
+            }.GetAs("x", (int?)null);
+
+            int? x = new Dictionary<string, object> {
+            }.GetAs("x", (int?)null);
+
             Role role = new Dictionary<string, object> {
                 { "role", "customer" },
             }.GetAs("role", Role.None);
