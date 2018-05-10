@@ -8,9 +8,12 @@ public interface IHttpResponse
 
 | name | description |
 | --- | --- |
+| [OutputStream](IHttpResponse/OutputStream.md) { get; } |  |
 | [StatusCode](IHttpResponse/StatusCode.md) { get; set; } |  |
 | [StatusText](IHttpResponse/StatusText.md) { get; set; } |  |
+| [GetHeader](IHttpResponse/GetHeader.md)(…) |  |
 | [SendRedirect](IHttpResponse/SendRedirect.md)(…) |  |
+| [SetHeader](IHttpResponse/SetHeader.md)(…) |  |
 | [WriteAsJsonAsync](IHttpResponse/WriteAsJsonAsync.md)(…) |  |
 
 ## See Also

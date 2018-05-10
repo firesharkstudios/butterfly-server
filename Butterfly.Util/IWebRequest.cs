@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Butterfly.Util {
     public interface IWebRequest {
@@ -26,5 +27,6 @@ namespace Butterfly.Util {
         Dictionary<string, string> PathParams { get; }
 
         Dictionary<string, string> QueryParams { get; }
+
     }
 }

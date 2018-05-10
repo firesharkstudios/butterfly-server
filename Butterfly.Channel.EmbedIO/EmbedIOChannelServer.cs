@@ -136,5 +136,6 @@ namespace Butterfly.Channel.EmbedIO {
         public Dictionary<string, string> PathParams => throw new NotImplementedException();
 
         public Dictionary<string, string> QueryParams => this.RequestUrl.ParseQuery();
+
     }
 }

@@ -7,6 +7,7 @@ using HttpMultipartParser;
 
 using Butterfly.Util;
 using NLog;
+using System.Web;
 
 namespace Butterfly.WebApi {
     public abstract class BaseHttpRequest : IHttpRequest {
@@ -25,6 +26,13 @@ namespace Butterfly.WebApi {
         public abstract Dictionary<string, string> PathParams { get; }
 
         public abstract Dictionary<string, string> QueryParams { get; }
+
+        public async Task<Dictionary<string, string>> ParseAsUrlEncodedAsync() {
+            using (StreamReader reader = new StreamReader(this.InputStream)) {
+                string text = await reader.ReadToEndAsync();
+                return HttpUtility.ParseQueryString(text).ToDictionary();
+            }
+        }
 
         public async Task<T> ParseAsJsonAsync<T>() {
             using (StreamReader reader = new StreamReader(this.InputStream)) {

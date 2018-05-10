@@ -9,10 +9,13 @@ public class RedHttpServerWebResponse : IHttpResponse
 | name | description |
 | --- | --- |
 | [RedHttpServerWebResponse](RedHttpServerWebResponse/RedHttpServerWebResponse.md)(…) |  |
+| [OutputStream](RedHttpServerWebResponse/OutputStream.md) { get; } |  |
 | [StatusCode](RedHttpServerWebResponse/StatusCode.md) { get; set; } |  |
 | [StatusText](RedHttpServerWebResponse/StatusText.md) { get; set; } |  |
 | readonly [response](RedHttpServerWebResponse/response.md) |  |
+| [GetHeader](RedHttpServerWebResponse/GetHeader.md)(…) |  |
 | [SendRedirect](RedHttpServerWebResponse/SendRedirect.md)(…) |  |
+| [SetHeader](RedHttpServerWebResponse/SetHeader.md)(…) |  |
 | [WriteAsJsonAsync](RedHttpServerWebResponse/WriteAsJsonAsync.md)(…) |  |
 
 ## See Also

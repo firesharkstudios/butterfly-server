@@ -98,6 +98,14 @@ namespace Butterfly.WebApi.RedHttpServer {
             this.response = response;
         }
 
+        public string GetHeader(string name) {
+            throw new NotImplementedException();
+        }
+
+        public void SetHeader(string name, string value) {
+            throw new NotImplementedException();
+        }
+
         public int StatusCode {
             get => throw new NotImplementedException();
             set => throw new NotImplementedException();

@@ -126,6 +126,14 @@ namespace Butterfly.WebApi.EmbedIO {
             this.context = context;
         }
 
+        public string GetHeader(string name) {
+            return this.context.Response.Headers.Get(name);
+        }
+
+        public void SetHeader(string name, string value) {
+            this.context.Response.Headers.Set(name, value);
+        }
+
         public int StatusCode {
             get {
                 return this.context.Response.StatusCode;

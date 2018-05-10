@@ -17,6 +17,7 @@ public abstract class BaseHttpRequest : IHttpRequest
 | abstract [UserHostName](BaseHttpRequest/UserHostName.md) { get; } |  |
 | [ParseAsJsonAsync&lt;T&gt;](BaseHttpRequest/ParseAsJsonAsync.md)() |  |
 | [ParseAsMultipartStream](BaseHttpRequest/ParseAsMultipartStream.md)(…) |  |
+| [ParseAsUrlEncodedAsync](BaseHttpRequest/ParseAsUrlEncodedAsync.md)() |  |
 
 ## See Also
 

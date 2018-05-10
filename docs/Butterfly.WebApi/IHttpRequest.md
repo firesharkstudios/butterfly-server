@@ -13,6 +13,7 @@ public interface IHttpRequest : IWebRequest
 | [UserHostName](IHttpRequest/UserHostName.md) { get; } |  |
 | [ParseAsJsonAsync&lt;T&gt;](IHttpRequest/ParseAsJsonAsync.md)() |  |
 | [ParseAsMultipartStream](IHttpRequest/ParseAsMultipartStream.md)(…) |  |
+| [ParseAsUrlEncodedAsync](IHttpRequest/ParseAsUrlEncodedAsync.md)() |  |
 
 ## See Also
 

@@ -39,6 +39,7 @@ public abstract class BaseDatabase : IDatabase
 | [SetOverrideValue](BaseDatabase/SetOverrideValue.md)(…) |  |
 | [UpdateAndCommitAsync](BaseDatabase/UpdateAndCommitAsync.md)(…) |  |
 | static [ConvertMySqlType](BaseDatabase/ConvertMySqlType.md)(…) |  |
+| static [CopyFieldValue](BaseDatabase/CopyFieldValue.md)(…) |  |
 | static [RemapTypeInputPreprocessor&lt;T&gt;](BaseDatabase/RemapTypeInputPreprocessor.md)(…) |  |
 
 ## See Also

@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Butterfly.Util;
@@ -25,7 +26,9 @@ namespace Butterfly.WebApi {
         string UserHostAddress { get; }
         string UserHostName { get; }
 
+        Task<Dictionary<string, string>> ParseAsUrlEncodedAsync();
         Task<T> ParseAsJsonAsync<T>();
+
         void ParseAsMultipartStream(Action<string, string, string, string, byte[], int> onData, Action<string, string> onParameter = null);
     }
 }

@@ -19,6 +19,9 @@ using System.Threading.Tasks;
 
 namespace Butterfly.WebApi {
     public interface IHttpResponse {
+        string GetHeader(string name);
+
+        void SetHeader(string name, string value);
 
         int StatusCode { get; set; }
 
