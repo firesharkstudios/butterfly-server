@@ -95,6 +95,48 @@ $.ajax('/api/todo/insert', {
 
 After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be added to the local *todoItems* array.
 
+## More Complex Subscriptions
+
+In the *Overview* example above, we subscribed to all the data in a single *todo* table; however, the Butterfly Framework supports much more complex subscriptions...
+
+```cs
+channelRoute.RegisterChannel("todo-page", handlerAsync: async(vars, channel) => {
+  var dynamicViewSet = database.CreateDynamicViewSet(dataEventTransaction => {
+    channel.Queue("DATA-EVENT-TRANSACTION", dataEventTransaction);
+  });
+
+  string userId = channel.Connection.AuthToken;
+
+  dynamicViewSet.CreateDynamicView(
+    @"SELECT td.id, td.name, td.user_id, u.name user_name
+    FROM todo td
+      INNER JOIN user u ON td.user_id=u.id
+    WHERE u.id=@userId",
+    new {
+      userId
+    },
+    name: "todo",
+    keyFieldNames: new string[] { "id" }	
+  );
+
+  dynamicViewSet.CreateDynamicView(
+    @"SELECT id, name
+    FROM tags
+    WHERE user_id=@userId",
+    new {
+      userId
+    }
+  );
+
+  return dynamicViewSet;
+);
+```
+
+In this example, a client subscribing to *todo-page* will get a *todo* collection and a *tags* collection both filtered by user id.  
+
+Because the new *todo* collection is the result of a join, the client will receive updates if changes to either of the underlying *todo* table or *user* table would change the collection results.
+
+
 ## Getting Started
 
 1. Clone the github repository `https://github.com/fireshark/Butterfly.git`
