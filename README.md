@@ -1,36 +1,99 @@
 # Butterfly Framework ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/logo-40x40.png) 
 
-> Real-time framework for building web apps using C#
+> The Everything is Real-Time C# Backend for Single Page Applications
 
-Build real-time web apps quickly using C# on the server and your favorite client libraries ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)).  
+Create your Single Page Application in your favorite framework ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)) and use the Butterfly Framework to build your server.
 
-On the server, declare the data to automatically synchronize with clients using a familiar SELECT syntax...
+Key goals of the Butterfly Framework...
+
+- Easily define a RESTful API
+- Auto sync data with clients
+
+## Overview
+
+Let's see how the Butterly Framework would help us build a simple to-do list manager.
+
+### The Server
+
+First, let's use the *WebApiServer* to define our API...
 
 ```csharp
-// Listen for websocket connections to /hello-world
-var route = channelServer.RegisterRoute("/hello-world");
+webApiServer.OnPost($"/api/to-do/insert", async(req, res) => {
+  var todo = await req.ParseAsJsonAsync<dynamic>();
+  await database.InsertAndCommitAsync<string>("todo", todo);
+});
 
-// Register a default channel that creates a DynamicView on the message table sending all data to the channel
-route.RegisterChannel(channelKey: "my-channel", handlerAsync: async (vars, channel) => await database.CreateAndStartDynamicView(
-    sql: "SELECT * FROM chat_message",
-    listener: dataEventTransaction => channel.Queue(dataEventTransaction)
-));
+webApiServer.OnPost($"/api/to-do/update", async(req, res) => {
+  var todo = await req.ParseAsJsonAsync<dynamic>();
+  await database.UpdateAndCommitAsync<string>("todo", todo);
+});
+
+webApiServer.OnPost($"/api/to-do/delete", async(req, res) => {
+  var id = await req.ParseAsJsonAsync<string>();
+  await database.DeleteAndCommitAsync<string>("todo", id);
+});
 ```
 
-On the web client, synchronize the data received into local arrays bound to UI elements by [Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)...
+Clients would call the above API to insert, update, and delete records in the *todo* table.
+
+Next, let's use the *ChannelServer* to listen for web socket requests to */listen*...
+
+```cs
+var channelRoute = channelServer.RegisterRoute("/listen");
+```
+
+Clients would maintain an open web socket to */listen* to receive data from the server.
+
+Finally, let's allow clients to subscribe to a *todo-page* channel...
+
+```cs
+channelRoute.RegisterChannel("todo-page", handlerAsync: async(vars, channel) => {
+  return await database.CreateAndStartDynamicView(
+    sql: "todo",
+    listener: dataEventTransaction => {
+      channel.Queue("DATA-EVENT-TRANSACTION", dataEventTransaction);
+    }
+  );
+);
+```
+
+Upon first subscribing, clients will receive all the records in the *todo* table.  If any of this data changes, clients will also receive changes to this data.
+
+### The Client
+
+Now, let's see how a client might interact with this server using the Butterfly Client (`npm install butterfly-client`).
+
+First, let's create a *WebSocketChannelClient* that connects to */listen*, subscribes to the *todo-page* channel, and maps *todo* data events to the local *todoItems* array....
 
 ```js
-let chatMessages = [];
-let channelClient = new butterfly.channel.WebSocketChannelClient({
-    url: '/hello-world'
+let myUserId = '123';
+let todoItems = [];
+let channelClient = new WebSocketChannelClient({
+  url: '/listen',
 });
-channelClient.subscribe(new butterfly.data.ArrayDataEventHandler({
-    arrayMapping: {
-        chat_message: chatMessages,
-    }
-}, 'my-channel'));
-channelClient.start();
+channelClient.subscribe(new ArrayDataEventHandler({
+  arrayMapping: {
+    todo: todoItems,
+  }
+}), 'todo-page');
+channelClient.start(`Custom ${myUserId}`);
 ```
+
+Shortly after the above code runs, the *todoItems* array would have all the records from the *todo* table.
+
+Next, let's invoke a method on our API to add a new *todo* record (use whatever client HTTP library you wish)...
+
+```js
+$.ajax('/api/todo/insert', {
+  method: 'POST',
+  data: JSON.stringify({
+    name: 'My First To-Do',
+    owner: 'Spongebob',
+  }),
+});
+```
+
+After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be added to the local *todoItems* array.
 
 ## Getting Started
 
