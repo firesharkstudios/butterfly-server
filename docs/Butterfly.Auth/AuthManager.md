@@ -19,7 +19,7 @@ public class AuthManager
 | [LookupUsernameAsync](AuthManager/LookupUsernameAsync.md)(…) | Lookup user record from username |
 | [RegisterAsync](AuthManager/RegisterAsync.md)(…) | Registers a new user |
 | [ResetPasswordAsync](AuthManager/ResetPasswordAsync.md)(…) | Resets the user's password if a valid reset code is included |
-| [SetupWebApi](AuthManager/SetupWebApi.md)(…) | Call to setup a Web API with the specified *webApiServer* with the following URLs... GET /api/auth/check-username/{username} GET /api/auth/check-auth-token/{id} POST /api/auth/create-anonymous POST /api/auth/register POST /api/auth/login POST /api/auth/forgot-password POST /api/auth/reset-password POST /api/auth/verify-email POST /api/auth/verify-phone |
+| [SetupWebApi](AuthManager/SetupWebApi.md)(…) | Call to setup a Web API with the specified *webApiServer* |
 | [VerifyAsync](AuthManager/VerifyAsync.md)(…) | Call to verify a user's email or phone |
 
 ## Remarks
