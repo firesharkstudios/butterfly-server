@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 using NLog;
@@ -10,7 +11,6 @@ using Butterfly.Util.Field;
 using Butterfly.WebApi;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
-using System.Net;
 
 namespace Butterfly.Auth {
 
