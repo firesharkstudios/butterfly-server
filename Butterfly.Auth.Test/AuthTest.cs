@@ -35,7 +35,7 @@ namespace Butterfly.Auth.Test {
             });
             AuthToken authenticateAuthToken = await authManager.Authenticate(registerAuthToken.id);
 
-            await authManager.ForgotPassword("johnsmith");
+            await authManager.ForgotPasswordAsync("johnsmith");
 
             await Task.Delay(30000);
         }

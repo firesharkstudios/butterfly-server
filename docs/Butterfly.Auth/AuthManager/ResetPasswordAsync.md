@@ -1,18 +1,14 @@
-# AuthManager.CreateAuthToken method
+# AuthManager.ResetPasswordAsync method
 
-Create an auth token
+Resets the user's password if a valid reset code is included
 
 ```csharp
-public Task<AuthToken> CreateAuthToken(string userId)
+public Task<AuthToken> ResetPasswordAsync(Dictionary<string, object> resetPassword)
 ```
 
 | parameter | description |
 | --- | --- |
-| userId |  |
-
-## Return Value
-
-The AuthToken instance created
+| resetPassword |  |
 
 ## See Also
 

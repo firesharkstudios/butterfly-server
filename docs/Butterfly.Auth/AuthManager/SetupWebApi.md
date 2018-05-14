@@ -1,8 +1,15 @@
 # AuthManager.SetupWebApi method
 
+Call to setup a Web API with the specified *webApiServer* with the following URLs... GET /api/auth/check-username/{username} GET /api/auth/check-auth-token/{id} POST /api/auth/create-anonymous POST /api/auth/register POST /api/auth/login POST /api/auth/forgot-password POST /api/auth/reset-password POST /api/auth/verify-email POST /api/auth/verify-phone
+
 ```csharp
 public void SetupWebApi(IWebApiServer webApiServer, string pathPrefix = "/api/auth")
 ```
+
+| parameter | description |
+| --- | --- |
+| webApiServer |  |
+| pathPrefix | Defaults to /api/auth |
 
 ## See Also
 

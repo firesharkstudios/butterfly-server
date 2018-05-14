@@ -12,16 +12,15 @@ public class AuthManager
 | --- | --- |
 | [AuthManager](AuthManager/AuthManager.md)(…) |  |
 | [Authenticate](AuthManager/Authenticate.md)(…) | Validates the auth token id returning an [`AuthToken`](AuthToken.md) instance |
-| [ConvertInputToDict](AuthManager/ConvertInputToDict.md)(…) |  |
 | [CreateAnonymousUser](AuthManager/CreateAnonymousUser.md)() | Creates an anonymous user and returns a valid [`AuthToken`](AuthToken.md) |
-| [CreateAuthToken](AuthManager/CreateAuthToken.md)(…) | Create an auth token |
-| [ForgotPassword](AuthManager/ForgotPassword.md)(…) |  |
-| [LoginAsync](AuthManager/LoginAsync.md)(…) |  |
+| [CreateAuthTokenAsync](AuthManager/CreateAuthTokenAsync.md)(…) | Create an auth token |
+| [ForgotPasswordAsync](AuthManager/ForgotPasswordAsync.md)(…) | Creates a reset code and invokes onForgotPassword to send the reset code to the user |
+| [LoginAsync](AuthManager/LoginAsync.md)(…) | Logs in the user creating a valid [`AuthToken`](AuthToken.md) |
 | [LookupUsername](AuthManager/LookupUsername.md)(…) |  |
-| [RegisterAsync](AuthManager/RegisterAsync.md)(…) | Register a new user |
-| [ResetPassword](AuthManager/ResetPassword.md)(…) |  |
-| [SetupWebApi](AuthManager/SetupWebApi.md)(…) |  |
-| [Verify](AuthManager/Verify.md)(…) |  |
+| [RegisterAsync](AuthManager/RegisterAsync.md)(…) | Registers a new user |
+| [ResetPasswordAsync](AuthManager/ResetPasswordAsync.md)(…) | Resets the user's password if a valid reset code is included |
+| [SetupWebApi](AuthManager/SetupWebApi.md)(…) | Call to setup a Web API with the specified *webApiServer* with the following URLs... GET /api/auth/check-username/{username} GET /api/auth/check-auth-token/{id} POST /api/auth/create-anonymous POST /api/auth/register POST /api/auth/login POST /api/auth/forgot-password POST /api/auth/reset-password POST /api/auth/verify-email POST /api/auth/verify-phone |
+| [Verify](AuthManager/Verify.md)(…) | Call to verify a user's email or phone |
 
 ## Remarks
 

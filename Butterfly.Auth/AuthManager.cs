@@ -157,6 +157,20 @@ namespace Butterfly.Auth {
             this.phoneFieldValidator = new PhoneFieldValidator(this.userTableEmailFieldName, allowNull: false);
         }
 
+        /// <summary>
+        /// Call to setup a Web API with the specified <paramref name="webApiServer"/> with the following URLs...
+        ///     GET /api/auth/check-username/{username}
+        ///     GET /api/auth/check-auth-token/{id}
+        ///     POST /api/auth/create-anonymous
+        ///     POST /api/auth/register
+        ///     POST /api/auth/login
+        ///     POST /api/auth/forgot-password
+        ///     POST /api/auth/reset-password
+        ///     POST /api/auth/verify-email
+        ///     POST /api/auth/verify-phone
+        /// </summary>
+        /// <param name="webApiServer"></param>
+        /// <param name="pathPrefix">Defaults to /api/auth</param>
         public void SetupWebApi(IWebApiServer webApiServer, string pathPrefix = "/api/auth") {
             webApiServer.OnGet($"{pathPrefix}/check-username/{{username}}", async(req, res) => {
                 string username = req.PathParams.GetAs("username", (string)null);
@@ -199,12 +213,12 @@ namespace Butterfly.Auth {
             webApiServer.OnPost($"{pathPrefix}/forgot-password", async(req, res) => {
                 Dict data = await req.ParseAsJsonAsync<Dict>();
                 string username = data.GetAs("username", (string)null);
-                await this.ForgotPassword(username);
+                await this.ForgotPasswordAsync(username);
             });
 
             webApiServer.OnPost($"{pathPrefix}/reset-password", async(req, res) => {
                 Dict resetPassword = await req.ParseAsJsonAsync<Dict>();
-                AuthToken authToken = await this.ResetPassword(resetPassword);
+                AuthToken authToken = await this.ResetPasswordAsync(resetPassword);
                 await res.WriteAsJsonAsync(authToken);
             });
 
@@ -219,6 +233,14 @@ namespace Butterfly.Auth {
             });
         }
 
+        /// <summary>
+        /// Call to verify a user's email or phone
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="fieldName"></param>
+        /// <param name="verifiedAtFieldName"></param>
+        /// <param name="onVerify"></param>
+        /// <returns></returns>
         public async Task Verify(Dict data, string fieldName, string verifiedAtFieldName, Func<string, int, Task> onVerify) {
             string contact = data.GetAs("contact", (string)null);
             if (string.IsNullOrEmpty(contact)) throw new Exception($"Must specify contact to verify {fieldName}");
@@ -244,9 +266,10 @@ namespace Butterfly.Auth {
         }
 
         /// <summary>
-        /// Register a new user
+        /// Registers a new user
         /// </summary>
-        /// <param name="registration"></param>
+        /// <param name="input"></param>
+        /// <param name="notifyData"></param>
         /// <returns></returns>
         public async Task<AuthToken> RegisterAsync(dynamic input, Dict notifyData = null) {
             Dict registration = this.ConvertInputToDict(input);
@@ -316,7 +339,7 @@ namespace Butterfly.Auth {
                 this.onRegister(registerData);
             }
 
-            return await this.CreateAuthToken(userId);
+            return await this.CreateAuthTokenAsync(userId);
         }
 
         /// <summary>
@@ -383,7 +406,7 @@ namespace Butterfly.Auth {
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>The AuthToken instance created</returns>
-        public async Task<AuthToken> CreateAuthToken(string userId) {
+        public async Task<AuthToken> CreateAuthTokenAsync(string userId) {
             Dict user = await this.database.SelectRowAsync($"SELECT {this.userTableUsernameFieldName}, {this.userTableRoleFieldName}, {this.userTableAccountIdFieldName} FROM user WHERE id=@userId", new {
                 userId
             });
@@ -398,6 +421,11 @@ namespace Butterfly.Auth {
             return new AuthToken(id, userId, user.GetAs(this.userTableUsernameFieldName, (string)null), user.GetAs(this.userTableRoleFieldName, (string)null), user.GetAs(this.userTableAccountIdFieldName, (string)null), expiresAt);
         }
 
+        /// <summary>
+        /// Logs in the user creating a valid <see cref="AuthToken"/>
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         public async Task<AuthToken> LoginAsync(Dict login) {
             string username = login?.GetAs(this.userTableUsernameFieldName, (string)null);
             Dict user = await this.LookupUsername(username, string.Join(",", new string[] { this.userTableIdFieldName, this.userTableSaltFieldName, this.userTablePasswordHashFieldName }));
@@ -412,21 +440,31 @@ namespace Butterfly.Auth {
             if (newPasswordHash != passwordHash) throw new Exception("Incorrect password");
 
             string userId = user.GetAs(this.userTableIdFieldName, (string)null);
-            return await this.CreateAuthToken(userId);
+            return await this.CreateAuthTokenAsync(userId);
         }
 
-        public async Task ForgotPassword(string username) {
+        /// <summary>
+        /// Creates a reset code and invokes <see cref="AuthManager.onForgotPassword"/> to send the reset code to the user
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public async Task ForgotPasswordAsync(string username) {
             Dict user = await this.LookupUsername(username, string.Join(",", new string[] { this.userTableIdFieldName, this.userTableFirstNameFieldName, this.userTableLastNameFieldName, this.userTableEmailFieldName }));
             if (user == null) throw new Exception("Invalid username '" + username + "'");
 
             string userId = user.GetAs(this.userTableIdFieldName, (string)null);
-            string resetCode = await this.CreateResetCode(userId);
+            string resetCode = await this.CreateResetCodeAsync(userId);
             user[this.userTableResetCodeFieldName] = resetCode;
 
             if (this.onForgotPassword != null) this.onForgotPassword(user);
         }
 
-        public async Task<AuthToken> ResetPassword(Dict resetPassword) {
+        /// <summary>
+        /// Resets the user's password if a valid reset code is included
+        /// </summary>
+        /// <param name="resetPassword"></param>
+        /// <returns></returns>
+        public async Task<AuthToken> ResetPasswordAsync(Dict resetPassword) {
             string username = resetPassword.GetAs(this.userTableUsernameFieldName, (string)null);
             Dict user = await this.database.SelectRowAsync(this.userTableName, new Dict {
                 { this.userTableUsernameFieldName, username }
@@ -451,10 +489,10 @@ namespace Butterfly.Auth {
             };
             await this.database.UpdateAndCommitAsync(this.userTableName, update);
 
-            return await this.CreateAuthToken(userId);
+            return await this.CreateAuthTokenAsync(userId);
         }
 
-        protected async Task<string> CreateResetCode(string userId) {
+        protected async Task<string> CreateResetCodeAsync(string userId) {
             Random random = new Random();
             int resetCodeMax = (int)Math.Pow(10, this.resetCodeLength);
             long randomResetCode = random.Next(resetCodeMax);
@@ -470,8 +508,7 @@ namespace Butterfly.Auth {
             return resetCode;
         }
 
-
-        public Dict ConvertInputToDict(dynamic input) {
+        protected Dict ConvertInputToDict(dynamic input) {
             // If is null, return empty dictionary
             if (input == null) {
                 return new Dict();

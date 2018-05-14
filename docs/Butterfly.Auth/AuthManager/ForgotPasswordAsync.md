@@ -1,18 +1,17 @@
-# AuthManager.LoginAsync method
+# AuthManager.ForgotPasswordAsync method
 
-Logs in the user creating a valid [`AuthToken`](../AuthToken.md)
+Creates a reset code and invokes onForgotPassword to send the reset code to the user
 
 ```csharp
-public Task<AuthToken> LoginAsync(Dictionary<string, object> login)
+public Task ForgotPasswordAsync(string username)
 ```
 
 | parameter | description |
 | --- | --- |
-| login |  |
+| username |  |
 
 ## See Also
 
-* class [AuthToken](../AuthToken.md)
 * class [AuthManager](../AuthManager.md)
 * namespace [Butterfly.Auth](../../Butterfly.Auth.md)
 
