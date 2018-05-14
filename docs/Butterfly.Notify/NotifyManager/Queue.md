@@ -4,6 +4,11 @@
 public Task Queue(NotifyMessage notifyMessage, byte priority = 0)
 ```
 
+| parameter | description |
+| --- | --- |
+| priority | Higher number indicates higher priority |
+| notifyMessage |  |
+
 ## See Also
 
 * class [NotifyMessage](../NotifyMessage.md)

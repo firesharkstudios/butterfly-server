@@ -1,8 +1,14 @@
 # AuthManager.CreateAnonymousUser method
 
+Creates an anonymous user and returns a valid [`AuthToken`](../AuthToken.md)
+
 ```csharp
 public Task<AuthToken> CreateAnonymousUser()
 ```
+
+## Return Value
+
+An [`AuthToken`](../AuthToken.md) instance created
 
 ## See Also
 

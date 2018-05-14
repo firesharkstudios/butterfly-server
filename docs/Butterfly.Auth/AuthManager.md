@@ -1,5 +1,7 @@
 # AuthManager class
 
+Provides an API to register and login users, handle forgot password and reset password requests, and validate auth tokens.
+
 ```csharp
 public class AuthManager
 ```
@@ -9,17 +11,40 @@ public class AuthManager
 | name | description |
 | --- | --- |
 | [AuthManager](AuthManager/AuthManager.md)(…) |  |
-| [Authenticate](AuthManager/Authenticate.md)(…) |  |
+| [Authenticate](AuthManager/Authenticate.md)(…) | Validates the auth token id returning an [`AuthToken`](AuthToken.md) instance |
 | [ConvertInputToDict](AuthManager/ConvertInputToDict.md)(…) |  |
-| [CreateAnonymousUser](AuthManager/CreateAnonymousUser.md)() |  |
-| [CreateAuthToken](AuthManager/CreateAuthToken.md)(…) |  |
+| [CreateAnonymousUser](AuthManager/CreateAnonymousUser.md)() | Creates an anonymous user and returns a valid [`AuthToken`](AuthToken.md) |
+| [CreateAuthToken](AuthManager/CreateAuthToken.md)(…) | Create an auth token |
 | [ForgotPassword](AuthManager/ForgotPassword.md)(…) |  |
 | [LoginAsync](AuthManager/LoginAsync.md)(…) |  |
 | [LookupUsername](AuthManager/LookupUsername.md)(…) |  |
-| [RegisterAsync](AuthManager/RegisterAsync.md)(…) |  |
+| [RegisterAsync](AuthManager/RegisterAsync.md)(…) | Register a new user |
 | [ResetPassword](AuthManager/ResetPassword.md)(…) |  |
 | [SetupWebApi](AuthManager/SetupWebApi.md)(…) |  |
 | [Verify](AuthManager/Verify.md)(…) |  |
+
+## Remarks
+
+Can be initialized like this...
+
+```csharp
+var database = (initialize an IDatabase instance here)
+var notifyManager = (initialize NotifyManager here)
+var welcomeEmailNotifyMessage = (load welcome email here)
+var resetEmailNotifyMessage = (load welcome email here)
+var authManager = new AuthManager(
+    database,
+    defaultRole: "full-access",
+    onEmailVerify: notifyManager.VerifyAsync,
+    onPhoneVerify: notifyManager.VerifyAsync,
+    onRegister: user => {
+        notifyManager.Queue(welcomeEmailNotifyMessage.Evaluate(user));
+    },
+    onForgotPassword: user => {
+        notifyManager.Queue(resetEmailNotifyMessage.Evaluate(user));
+    }
+);
+```
 
 ## See Also
 

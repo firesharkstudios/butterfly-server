@@ -1,8 +1,18 @@
 # AuthManager.CreateAuthToken method
 
+Create an auth token
+
 ```csharp
 public Task<AuthToken> CreateAuthToken(string userId)
 ```
+
+| parameter | description |
+| --- | --- |
+| userId |  |
+
+## Return Value
+
+The AuthToken instance created
 
 ## See Also
 
