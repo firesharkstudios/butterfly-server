@@ -97,7 +97,7 @@ After the above code runs, the server will have a new *todo* record and a new *t
 
 ## More Complex Subscriptions
 
-In the *Overview* example above, we subscribed to all the data in a single *todo* table; however, the Butterfly Framework supports much more complex subscriptions...
+In the *Overview* example above, we subscribed to all the data in a single *todo* table; however, much more complex subscriptions are supported...
 
 ```cs
 channelRoute.RegisterChannel("todo-page", handlerAsync: async(vars, channel) => {
