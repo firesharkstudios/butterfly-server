@@ -13,7 +13,30 @@ using Butterfly.WebApi;
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Auth {
-
+    /// <summary>
+    /// Provides an API to register and login users, handle forgot password and reset password requests, and validate auth tokens. 
+    /// </summary>
+    /// <remarks>
+    /// Can be initialized like this...
+    /// <code>
+    ///     var database = (initialize an IDatabase instance here)
+    ///     var notifyManager = (initialize NotifyManager here)
+    ///     var welcomeEmailNotifyMessage = (load welcome email here)
+    ///     var resetEmailNotifyMessage = (load welcome email here)
+    ///     var authManager = new AuthManager(
+    ///         database,
+    ///         defaultRole: "full-access",
+    ///         onEmailVerify: notifyManager.VerifyAsync,
+    ///         onPhoneVerify: notifyManager.VerifyAsync,
+    ///         onRegister: user => {
+    ///             notifyManager.Queue(welcomeEmailNotifyMessage.Evaluate(user));
+    ///         },
+    ///         onForgotPassword: user => {
+    ///             notifyManager.Queue(resetEmailNotifyMessage.Evaluate(user));
+    ///         }
+    ///     );
+    /// </code>
+    /// </remarks>
     public class AuthManager {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -169,7 +192,7 @@ namespace Butterfly.Auth {
 
             webApiServer.OnPost($"{pathPrefix}/login", async(req, res) => {
                 Dict login = await req.ParseAsJsonAsync<Dict>();
-                AuthToken authToken = await this.Login(login);
+                AuthToken authToken = await this.LoginAsync(login);
                 await res.WriteAsJsonAsync(authToken);
             });
 
@@ -375,7 +398,7 @@ namespace Butterfly.Auth {
             return new AuthToken(id, userId, user.GetAs(this.userTableUsernameFieldName, (string)null), user.GetAs(this.userTableRoleFieldName, (string)null), user.GetAs(this.userTableAccountIdFieldName, (string)null), expiresAt);
         }
 
-        public async Task<AuthToken> Login(Dict login) {
+        public async Task<AuthToken> LoginAsync(Dict login) {
             string username = login?.GetAs(this.userTableUsernameFieldName, (string)null);
             Dict user = await this.LookupUsername(username, string.Join(",", new string[] { this.userTableIdFieldName, this.userTableSaltFieldName, this.userTablePasswordHashFieldName }));
             if (user == null) throw new Exception("Invalid username '" + username + "'");
@@ -467,6 +490,9 @@ namespace Butterfly.Auth {
 
     }
 
+    /// <summary>
+    /// Represents the result of a successful <see cref="AuthManager.LoginAsync(Dict)"/> or <see cref="AuthManager.RegisterAsync(dynamic, Dict)"/>
+    /// </summary>
     public class AuthToken {
         public readonly string id;
         public readonly string userId;

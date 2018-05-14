@@ -1,7 +1,7 @@
-# AuthManager.Login method
+# AuthManager.LoginAsync method
 
 ```csharp
-public Task<AuthToken> Login(Dictionary<string, object> login)
+public Task<AuthToken> LoginAsync(Dictionary<string, object> login)
 ```
 
 ## See Also

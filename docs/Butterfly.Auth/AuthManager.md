@@ -14,7 +14,7 @@ public class AuthManager
 | [CreateAnonymousUser](AuthManager/CreateAnonymousUser.md)() |  |
 | [CreateAuthToken](AuthManager/CreateAuthToken.md)(…) |  |
 | [ForgotPassword](AuthManager/ForgotPassword.md)(…) |  |
-| [Login](AuthManager/Login.md)(…) |  |
+| [LoginAsync](AuthManager/LoginAsync.md)(…) |  |
 | [LookupUsername](AuthManager/LookupUsername.md)(…) |  |
 | [RegisterAsync](AuthManager/RegisterAsync.md)(…) |  |
 | [ResetPassword](AuthManager/ResetPassword.md)(…) |  |
