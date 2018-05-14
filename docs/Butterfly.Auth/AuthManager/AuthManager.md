@@ -1,5 +1,7 @@
 # AuthManager constructor
 
+Create an instance of AuthManager
+
 ```csharp
 public AuthManager(IDatabase database, int authTokenDurationDays = 90, int resetCodeLength = 6, 
     int resetTokenDurationMinutes = 90, string accountTableName = "account", string userTableName = "user", 
@@ -16,6 +18,38 @@ public AuthManager(IDatabase database, int authTokenDurationDays = 90, int reset
     string defaultRole = "full-access", Func<string, int, Task> onEmailVerify = null, 
     Func<string, int, Task> onPhoneVerify = null, Action<Dictionary<string, object>> onRegister = null, Action<Dictionary<string, object>> onForgotPassword = null)
 ```
+
+| parameter | description |
+| --- | --- |
+| database |  |
+| authTokenDurationDays | How long new [`AuthToken`](../AuthToken.md) instances are valid for |
+| resetCodeLength | How many digits should a reset code be |
+| resetTokenDurationMinutes | How long new reset codes are valid for |
+| accountTableName | Table name of the account table (default is "account") |
+| userTableName | Table name of the user table (default is "user") |
+| userTableIdFieldName | Field name of the id field on the user table (default is "id") |
+| userTableUsernameFieldName | Field name of the username field on the user table (default is "username") |
+| userTableEmailFieldName | Field name of the email field on the user table (default is "email") |
+| userTableEmailVerifiedAtFieldName | Field name of the email verified at field on the user table (default is "email_verified_at") |
+| userTablePhoneFieldName | Field name of the phone field on the user table (default is "phone") |
+| userTablePhoneVerifiedAtFieldName | Field name of the phone verified at field on the user table (default is "phone_verified_at") |
+| userTableSaltFieldName | Field name of the salt field on the user table (default is "salt") |
+| userTablePasswordHashFieldName | Field name of the password hash field on the user table (default is "password_hash") |
+| userTableFirstNameFieldName | Field name of the first name field on the user table (default is "first_name") |
+| userTableLastNameFieldName | Field name of the last name field on the user table (default is "last_name") |
+| userTableResetCodeFieldName | Field name of the reset code field on the user table (default is "reset_code") |
+| userTableResetCodeExpiresAtFieldName | Field name of the reset code expires at field on the user table (default is "reset_code_expires_at") |
+| userTableAccountIdFieldName | Field name of the account id field on the user table (default is "account_id") |
+| userTableRoleFieldName | Field name of the role field on the user table (default is "role") |
+| authTokenTableName | Table name of the auth token table (default is "auth_token") |
+| authTokenIdFieldName | Field name of the id field on the auth token table (default is "id") |
+| authTokenTableUserIdFieldName | Field name of the user id field on the auth token table (default is "user_id") |
+| authTokenTableExpiresAtFieldName | Field name of the expires at field on the auth token table (default is "expires_at") |
+| defaultRole | Default value for the role field on a new user |
+| onEmailVerify | Callback when [`VerifyAsync`](VerifyAsync.md) is called with an email address |
+| onPhoneVerify | Callback when [`VerifyAsync`](VerifyAsync.md) is called with a phone number |
+| onRegister | Callback when [`RegisterAsync`](RegisterAsync.md) is called |
+| onForgotPassword | Callback when [`ForgotPasswordAsync`](ForgotPasswordAsync.md) is called |
 
 ## See Also
 

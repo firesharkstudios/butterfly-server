@@ -22,7 +22,7 @@ namespace Butterfly.Auth {
     ///     var database = (initialize an IDatabase instance here)
     ///     var notifyManager = (initialize NotifyManager here)
     ///     var welcomeEmailNotifyMessage = (load welcome email here)
-    ///     var resetEmailNotifyMessage = (load welcome email here)
+    ///     var resetEmailNotifyMessage = (load reset email here)
     ///     var authManager = new AuthManager(
     ///         database,
     ///         defaultRole: "full-access",
@@ -83,6 +83,38 @@ namespace Butterfly.Auth {
         protected readonly IFieldValidator emailFieldValidator;
         protected readonly IFieldValidator phoneFieldValidator;
 
+        /// <summary>
+        /// Create an instance of AuthManager
+        /// </summary>
+        /// <param name="database"></param>
+        /// <param name="authTokenDurationDays">How long new <see cref="AuthToken"/> instances are valid for</param>
+        /// <param name="resetCodeLength">How many digits should a reset code be</param>
+        /// <param name="resetTokenDurationMinutes">How long new reset codes are valid for</param>
+        /// <param name="accountTableName">Table name of the account table (default is "account")</param>
+        /// <param name="userTableName">Table name of the user table (default is "user")</param>
+        /// <param name="userTableIdFieldName">Field name of the id field on the user table (default is "id")</param>
+        /// <param name="userTableUsernameFieldName">Field name of the username field on the user table (default is "username")</param>
+        /// <param name="userTableEmailFieldName">Field name of the email field on the user table (default is "email")</param>
+        /// <param name="userTableEmailVerifiedAtFieldName">Field name of the email verified at field on the user table (default is "email_verified_at")</param>
+        /// <param name="userTablePhoneFieldName">Field name of the phone field on the user table (default is "phone")</param>
+        /// <param name="userTablePhoneVerifiedAtFieldName">Field name of the phone verified at field on the user table (default is "phone_verified_at")</param>
+        /// <param name="userTableSaltFieldName">Field name of the salt field on the user table (default is "salt")</param>
+        /// <param name="userTablePasswordHashFieldName">Field name of the password hash field on the user table (default is "password_hash")</param>
+        /// <param name="userTableFirstNameFieldName">Field name of the first name field on the user table (default is "first_name")</param>
+        /// <param name="userTableLastNameFieldName">Field name of the last name field on the user table (default is "last_name")</param>
+        /// <param name="userTableResetCodeFieldName">Field name of the reset code field on the user table (default is "reset_code")</param>
+        /// <param name="userTableResetCodeExpiresAtFieldName">Field name of the reset code expires at field on the user table (default is "reset_code_expires_at")</param>
+        /// <param name="userTableAccountIdFieldName">Field name of the account id field on the user table (default is "account_id")</param>
+        /// <param name="userTableRoleFieldName">Field name of the role field on the user table (default is "role")</param>
+        /// <param name="authTokenTableName">Table name of the auth token table (default is "auth_token")</param>
+        /// <param name="authTokenIdFieldName">Field name of the id field on the auth token table (default is "id")</param>
+        /// <param name="authTokenTableUserIdFieldName">Field name of the user id field on the auth token table (default is "user_id")</param>
+        /// <param name="authTokenTableExpiresAtFieldName">Field name of the expires at field on the auth token table (default is "expires_at")</param>
+        /// <param name="defaultRole">Default value for the role field on a new user</param>
+        /// <param name="onEmailVerify">Callback when <see cref="AuthManager.VerifyAsync(Dict, string, string, Func{string, int, Task})"/> is called with an email address</param>
+        /// <param name="onPhoneVerify">Callback when <see cref="AuthManager.VerifyAsync(Dict, string, string, Func{string, int, Task})"/> is called with a phone number</param>
+        /// <param name="onRegister">Callback when <see cref="AuthManager.RegisterAsync(dynamic, Dict)"/> is called</param>
+        /// <param name="onForgotPassword">Callback when <see cref="AuthManager.ForgotPasswordAsync(string)"/> is called</param>
         public AuthManager(
             IDatabase database,
             int authTokenDurationDays = 90,
@@ -175,7 +207,7 @@ namespace Butterfly.Auth {
             webApiServer.OnGet($"{pathPrefix}/check-username/{{username}}", async(req, res) => {
                 string username = req.PathParams.GetAs("username", (string)null);
                 logger.Debug($"/check-username/{username}");
-                Dict user = await this.LookupUsername(username, this.userTableIdFieldName);
+                Dict user = await this.LookupUsernameAsync(username, this.userTableIdFieldName);
                 bool available = user == null;
                 await res.WriteAsJsonAsync(available);
             });
@@ -183,13 +215,13 @@ namespace Butterfly.Auth {
             webApiServer.OnGet($"{pathPrefix}/check-auth-token/{{id}}", async (req, res) => {
                 string id = req.PathParams.GetAs("id", (string)null);
                 logger.Debug($"/check-auth-token/{id}"); //?join_code={joinCode}");
-                AuthToken authToken = await this.Authenticate(id);
+                AuthToken authToken = await this.AuthenticateAsync(id);
                 await res.WriteAsJsonAsync(authToken);
             });
 
             webApiServer.OnPost($"{pathPrefix}/create-anonymous", async(req, res) => {
                 Dict data = await req.ParseAsJsonAsync<Dict>();
-                AuthToken authToken = await this.CreateAnonymousUser();
+                AuthToken authToken = await this.CreateAnonymousUserAsync();
                 await res.WriteAsJsonAsync(authToken);
             });
 
@@ -224,12 +256,12 @@ namespace Butterfly.Auth {
 
             webApiServer.OnPost($"{pathPrefix}/verify-email", async (req, res) => {
                 Dict data = await req.ParseAsJsonAsync<Dict>();
-                await this.Verify(data, "email", "email_verified_at", this.onEmailVerify);
+                await this.VerifyAsync(data, "email", "email_verified_at", this.onEmailVerify);
             });
 
             webApiServer.OnPost($"{pathPrefix}/verify-phone", async (req, res) => {
                 Dict data = await req.ParseAsJsonAsync<Dict>();
-                await this.Verify(data, "phone", "phone_verified_at", this.onPhoneVerify);
+                await this.VerifyAsync(data, "phone", "phone_verified_at", this.onPhoneVerify);
             });
         }
 
@@ -241,7 +273,7 @@ namespace Butterfly.Auth {
         /// <param name="verifiedAtFieldName"></param>
         /// <param name="onVerify"></param>
         /// <returns></returns>
-        public async Task Verify(Dict data, string fieldName, string verifiedAtFieldName, Func<string, int, Task> onVerify) {
+        public async Task VerifyAsync(Dict data, string fieldName, string verifiedAtFieldName, Func<string, int, Task> onVerify) {
             string contact = data.GetAs("contact", (string)null);
             if (string.IsNullOrEmpty(contact)) throw new Exception($"Must specify contact to verify {fieldName}");
 
@@ -347,7 +379,7 @@ namespace Butterfly.Auth {
         /// </summary>
         /// <param name="authTokenId"></param>
         /// <returns>An <see cref="AuthToken"/> instance</returns>
-        public async Task<AuthToken> Authenticate(string authTokenId) {
+        public async Task<AuthToken> AuthenticateAsync(string authTokenId) {
             Dict authTokenDict = await this.database.SelectRowAsync($"SELECT at.{this.authTokenIdFieldName}, at.{this.authTokenTableUserIdFieldName}, u.{this.userTableAccountIdFieldName}, u.{this.userTableUsernameFieldName}, u.{this.userTableRoleFieldName}, at.{this.authTokenTableExpiresAtFieldName} FROM {this.authTokenTableName} at INNER JOIN {this.userTableName} u ON at.user_id=u.id WHERE at.id=@authTokenId", new {
                 authTokenId
             });
@@ -361,7 +393,13 @@ namespace Butterfly.Auth {
             return authToken;
         }
 
-        public async Task<Dict> LookupUsername(string username, string fieldNames = "*") {
+        /// <summary>
+        /// Lookup user record from username
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="fieldNames"></param>
+        /// <returns></returns>
+        public async Task<Dict> LookupUsernameAsync(string username, string fieldNames = "*") {
             username = this.usernameFieldValidator.Validate(username);
             string sql = $"SELECT {fieldNames} FROM {this.userTableName} WHERE {this.userTableUsernameFieldName}=@username";
             logger.Debug($"LookupUsername():sql={sql}");
@@ -374,7 +412,7 @@ namespace Butterfly.Auth {
         /// Creates an anonymous user and returns a valid <see cref="AuthToken"/>
         /// </summary>
         /// <returns>An  <see cref="AuthToken"/> instance created</returns>
-        public async Task<AuthToken> CreateAnonymousUser() {
+        public async Task<AuthToken> CreateAnonymousUserAsync() {
             Random random = new Random();
             using (ITransaction transaction = await this.database.BeginTransactionAsync()) {
                 string accountId = await transaction.InsertAsync<string>(this.accountTableName);
@@ -428,7 +466,7 @@ namespace Butterfly.Auth {
         /// <returns></returns>
         public async Task<AuthToken> LoginAsync(Dict login) {
             string username = login?.GetAs(this.userTableUsernameFieldName, (string)null);
-            Dict user = await this.LookupUsername(username, string.Join(",", new string[] { this.userTableIdFieldName, this.userTableSaltFieldName, this.userTablePasswordHashFieldName }));
+            Dict user = await this.LookupUsernameAsync(username, string.Join(",", new string[] { this.userTableIdFieldName, this.userTableSaltFieldName, this.userTablePasswordHashFieldName }));
             if (user == null) throw new Exception("Invalid username '" + username + "'");
 
             string passwordHash = user.GetAs(this.userTablePasswordHashFieldName, (string)null);
@@ -449,7 +487,7 @@ namespace Butterfly.Auth {
         /// <param name="username"></param>
         /// <returns></returns>
         public async Task ForgotPasswordAsync(string username) {
-            Dict user = await this.LookupUsername(username, string.Join(",", new string[] { this.userTableIdFieldName, this.userTableFirstNameFieldName, this.userTableLastNameFieldName, this.userTableEmailFieldName }));
+            Dict user = await this.LookupUsernameAsync(username, string.Join(",", new string[] { this.userTableIdFieldName, this.userTableFirstNameFieldName, this.userTableLastNameFieldName, this.userTableEmailFieldName }));
             if (user == null) throw new Exception("Invalid username '" + username + "'");
 
             string userId = user.GetAs(this.userTableIdFieldName, (string)null);

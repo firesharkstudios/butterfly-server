@@ -33,7 +33,7 @@ namespace Butterfly.Auth.Test {
                 email = "john@fireshark.com",
                 password = "test123"
             });
-            AuthToken authenticateAuthToken = await authManager.Authenticate(registerAuthToken.id);
+            AuthToken authenticateAuthToken = await authManager.AuthenticateAsync(registerAuthToken.id);
 
             await authManager.ForgotPasswordAsync("johnsmith");
 
