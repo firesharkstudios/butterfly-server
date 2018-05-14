@@ -228,7 +228,11 @@ namespace Butterfly.Auth {
         }
 
         /// <summary>
-        /// Call to setup a Web API with the specified <paramref name="webApiServer"/> with the following URLs...
+        /// Call to setup a Web API with the specified <paramref name="webApiServer"/>
+        /// </summary>
+        /// <remarks>
+        /// The following API URLs will be setup...
+        /// <code>
         ///     GET /api/auth/check-username/{username}
         ///     GET /api/auth/check-auth-token/{id}
         ///     POST /api/auth/create-anonymous
@@ -238,7 +242,8 @@ namespace Butterfly.Auth {
         ///     POST /api/auth/reset-password
         ///     POST /api/auth/verify-email
         ///     POST /api/auth/verify-phone
-        /// </summary>
+        /// </code>
+        /// </remarks>
         /// <param name="webApiServer"></param>
         /// <param name="pathPrefix">Defaults to /api/auth</param>
         public void SetupWebApi(IWebApiServer webApiServer, string pathPrefix = "/api/auth") {
