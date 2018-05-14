@@ -139,6 +139,28 @@ Because the new *todo* collection is the result of a join, the client will recei
 
 ## Getting Started
 
+You can either install the binaries from NuGet (just install the ones you need)...
+
+```
+nuget install Butterfly.Auth
+nuget install Butterfly.Channel
+nuget install Butterfly.Channel.EmbedIO
+nuget install Butterfly.Database
+nuget install Butterfly.Database.Memory
+nuget install Butterfly.Database.MySQL
+nuget install Butterfly.Notify
+nuget install Butterfly.Notify.Aws
+nuget install Butterfly.Notify.Twilio
+nuget install Butterfly.Util
+nuget install Butterfly.WebApi
+nuget install Butterfly.WebApi.EmbedIO
+```
+
+Although there are a lot of packages, all the packages are very small in size (largest is less than 45kB).
+
+
+Or you can get the source from GitHub...
+
 1. Clone the github repository `https://github.com/fireshark/Butterfly.git`
 1. Open `Butterfly.sln` in Visual Studio 2017
 1. Click the Start button (will compile the solution and run the Butterfly.Examples project)
