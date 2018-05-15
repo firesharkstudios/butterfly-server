@@ -1,10 +1,10 @@
-# Butterfly.Core ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/logo-40x40.png) 
+# Butterfly.MySQL ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/logo-40x40.png) 
 
-> The Everything is Real-Time C# Backend for Single Page Applications
+> Provides an implementation for Butterfly.Core.Database using MySQL
 
 See [Butterfly Framework](https://github.com/firesharkstudios/Butterfly) for more information.
 
-See [Butterfly.Core](https://firesharkstudios.github.io/Butterfly/Butterfly.Core) for API details.
+See [Butterfly.MySQL](https://firesharkstudios.github.io/Butterfly/Butterfly.MySQL) for API details.
 
 ## Contributing
 

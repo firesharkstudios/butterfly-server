@@ -2,6 +2,8 @@
 
 > Provides an implementation for Butterfly.Core.Notify using Twilio SMS
 
+See [Butterfly Framework](https://github.com/firesharkstudios/Butterfly) for more information.
+
 See [Butterfly.Twilio](https://firesharkstudios.github.io/Butterfly/Butterfly.Twilio) for API details.
 
 ## Contributing
