@@ -171,11 +171,11 @@ Or you can get the source from GitHub...
 
 Here are the key packages in *Butterfly.Core*...
 
-- [Butterfly.Core.Auth](https://firesharkstudios.github.io/Butterfly/Butterfly.Core.Auth) - Allows registering and logging in users, handling forgot password and reset password requests, and validating auth tokens.
-- [Butterfly.Core.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Core.Database) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
-- [Butterfly.Core.Channel](https://firesharkstudios.github.io/Butterfly/Butterfly.Core.Channel) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
-- [Butterfly.Core.Notify](https://firesharkstudios.github.io/Butterfly/Butterfly.Core.Notify) - Allows sending notifications (email/texts) to users.
-- [Butterfly.Core.WebApi](https://firesharkstudios.github.io/Butterfly/Butterfly.Core.WebApi) - Allows receiving API requests via HTTP (inspired by Express JS) by wrapping existing C# web servers.
+- [Butterfly.Core.Auth](https://firesharkstudios.github.io/Butterfly/Butterfly.Core) - Allows registering and logging in users, handling forgot password and reset password requests, and validating auth tokens.
+- [Butterfly.Core.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Core) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
+- [Butterfly.Core.Channel](https://firesharkstudios.github.io/Butterfly/Butterfly.Core) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
+- [Butterfly.Core.Notify](https://firesharkstudios.github.io/Butterfly/Butterfly.Core) - Allows sending notifications (email/texts) to users.
+- [Butterfly.Core.WebApi](https://firesharkstudios.github.io/Butterfly/Butterfly.Core) - Allows receiving API requests via HTTP (inspired by Express JS) by wrapping existing C# web servers.
 
 Here are various implementations you'll likely find useful...
 
