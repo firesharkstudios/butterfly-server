@@ -3,10 +3,10 @@ using System.Reflection;
 
 using NLog;
 
-using Butterfly.Channel;
-using Butterfly.Database;
-using Butterfly.Util;
-using Butterfly.WebApi;
+using Butterfly.Core.Channel;
+using Butterfly.Core.Database;
+using Butterfly.Core.Util;
+using Butterfly.Core.WebApi;
 
 namespace Butterfly.Examples {
     public static class BetterChatExample {

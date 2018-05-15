@@ -17,7 +17,7 @@
 using System;
 using System.Data;
 
-namespace Butterfly.Database {
+namespace Butterfly.Core.Database {
     /// <summary>
     /// Defines a field definition for a <see cref="Table"/>
     /// </summary>

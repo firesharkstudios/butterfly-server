@@ -14,7 +14,7 @@
  * limitations under the License.
 */
 
-namespace Butterfly.Database.Dynamic {
+namespace Butterfly.Core.Database.Dynamic {
     /// <summary>
     /// A <see cref="IDynamicParam"/> that may only contain a single value
     /// </summary>

@@ -4,12 +4,12 @@ using System.IO;
 
 using NLog;
 
-using Butterfly.Util;
+using Butterfly.Core.Util;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 using System.Text.RegularExpressions;
 
-namespace Butterfly.Notify {
+namespace Butterfly.Core.Notify {
     public class NotifyMessage {
 
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();

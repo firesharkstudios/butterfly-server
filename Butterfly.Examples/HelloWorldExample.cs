@@ -1,8 +1,8 @@
 ﻿using NLog;
 
-using Butterfly.Channel;
-using Butterfly.WebApi;
-using Butterfly.Database.Dynamic;
+using Butterfly.Core.Channel;
+using Butterfly.Core.WebApi;
+using Butterfly.Core.Database.Dynamic;
 using System;
 
 namespace Butterfly.Examples {
@@ -14,7 +14,7 @@ namespace Butterfly.Examples {
             logger.Debug($"Setup()");
 
             // Create a MemoryDatabase (no persistence, limited features)
-            var database = new Butterfly.Database.Memory.MemoryDatabase();
+            var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
             database.CreateFromText(@"CREATE TABLE message (
 	            id INT NOT NULL AUTO_INCREMENT,
 	            text VARCHAR(40) NOT NULL,

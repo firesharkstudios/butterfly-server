@@ -24,11 +24,11 @@ using System.Threading.Tasks;
 using Nito.AsyncEx;
 using NLog;
 
-using Butterfly.Database.Event;
+using Butterfly.Core.Database.Event;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Database.Dynamic {
+namespace Butterfly.Core.Database.Dynamic {
     /// <summary>
     /// Represents a collection of <see cref="DynamicView"/> instances.  Often a
     /// <see cref="DynamicViewSet"/> instance will represent all the data that should be 

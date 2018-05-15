@@ -22,7 +22,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Butterfly.Database;
+using Butterfly.Core.Database;
 using NLog;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;

@@ -19,12 +19,12 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 
-using Butterfly.Database.Dynamic;
-using Butterfly.Database.Event;
+using Butterfly.Core.Database.Dynamic;
+using Butterfly.Core.Database.Event;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Database {
+namespace Butterfly.Core.Database {
     /// <summary>
     /// Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; 
     /// creating dynamic views; and receiving data change events both on tables and dynamic views.

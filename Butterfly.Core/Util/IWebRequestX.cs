@@ -2,7 +2,7 @@
 using System.Net;
 using System.Net.Http.Headers;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
     public static class IWebRequestX {
         public static AuthenticationHeaderValue GetAuthenticationHeaderValue(this IWebRequest me) {
             if (me.Headers!=null && me.Headers.TryGetValue(HttpRequestHeader.Authorization.ToString().ToUpper(), out string text)) {

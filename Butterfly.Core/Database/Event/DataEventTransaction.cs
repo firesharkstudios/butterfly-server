@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Butterfly.Database.Event {
+namespace Butterfly.Core.Database.Event {
     public enum TransactionState {
         Uncommitted,
         Committed,

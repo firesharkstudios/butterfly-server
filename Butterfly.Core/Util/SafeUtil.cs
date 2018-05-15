@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
     // Based on http://kristjansson.us/?p=748
     // Removes these confusing pairs of letters/numbers...
     //   I, 1, l

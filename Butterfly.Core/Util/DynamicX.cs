@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
     public static class DynamicX {
         public static ICollection<PropertyInfo> GetProperties(dynamic values) {
             PropertyInfo[] propertyInfos = values.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);

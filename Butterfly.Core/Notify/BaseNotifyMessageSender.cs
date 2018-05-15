@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Butterfly.Notify {
+namespace Butterfly.Core.Notify {
 
     public abstract class BaseNotifyMessageSender : INotifyMessageSender {
 

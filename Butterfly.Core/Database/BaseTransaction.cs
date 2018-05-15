@@ -19,12 +19,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Butterfly.Database.Event;
-using Butterfly.Util;
+using Butterfly.Core.Database.Event;
+using Butterfly.Core.Util;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Database {
+namespace Butterfly.Core.Database {
 
     /// <inheritdoc/>
     /// <summary>

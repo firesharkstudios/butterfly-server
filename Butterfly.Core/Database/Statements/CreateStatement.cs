@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Butterfly.Database {
+namespace Butterfly.Core.Database {
     /// <summary>
     /// Internal class used to parse CREATE statements
     /// </summary>

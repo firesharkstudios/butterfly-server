@@ -23,8 +23,8 @@ using System.Threading.Tasks;
 using RedHttpServerNet45.Request;
 using RedHttpServerNet45.Response;
 
-using Butterfly.Util;
-using Butterfly.WebApi;
+using Butterfly.Core.Util;
+using Butterfly.Core.WebApi;
 
 namespace Butterfly.RedHttpServer {
 

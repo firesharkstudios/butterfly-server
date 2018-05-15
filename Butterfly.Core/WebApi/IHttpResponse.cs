@@ -17,7 +17,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Butterfly.WebApi {
+namespace Butterfly.Core.WebApi {
     public interface IHttpResponse {
         string GetHeader(string name);
 

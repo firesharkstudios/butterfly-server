@@ -14,7 +14,7 @@
  * limitations under the License.
 */
 
-namespace Butterfly.Database {
+namespace Butterfly.Core.Database {
 
     public enum TableIndexType {
         Primary,

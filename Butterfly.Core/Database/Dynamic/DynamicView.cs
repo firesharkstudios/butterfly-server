@@ -22,12 +22,12 @@ using System.Threading.Tasks;
 
 using NLog;
 
-using Butterfly.Database.Event;
-using Butterfly.Util;
+using Butterfly.Core.Database.Event;
+using Butterfly.Core.Util;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Database.Dynamic {
+namespace Butterfly.Core.Database.Dynamic {
     /// <summary>
     /// Represents a specific view (SELECT statement) that should be executed
     /// to return the initial data as a sequence of <see cref="DataEvent"/> instances

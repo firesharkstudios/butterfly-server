@@ -16,7 +16,7 @@
 
 using System.Data;
 
-namespace Butterfly.Database.Memory {
+namespace Butterfly.Core.Database.Memory {
 
     public class MemoryTable : Table {
         public MemoryTable(DataTable dataTable, TableFieldDef[] fieldDefs, TableIndex[] indexes) : base(dataTable.TableName, fieldDefs, indexes) {

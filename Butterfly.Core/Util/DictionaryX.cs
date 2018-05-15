@@ -20,7 +20,7 @@ using System.Text;
 
 using Newtonsoft.Json.Linq;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
     public static class DictionaryX {
 
         public static V GetAs<T, U, V>(this Dictionary<T, U> me, T key, V defaultValue) {

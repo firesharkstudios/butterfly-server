@@ -17,7 +17,7 @@
 using System;
 using System.Threading;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
     public static class ConsoleUtil {
         public static void WaitForCancelKey() {
             ManualResetEvent quitEvent = new ManualResetEvent(false);

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
     public class UnauthorizedException : Exception {
         public UnauthorizedException() : base("Unauthorized") {
         }

@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 using HttpMultipartParser;
 
-using Butterfly.Util;
+using Butterfly.Core.Util;
 using NLog;
 using System.Web;
 
-namespace Butterfly.WebApi {
+namespace Butterfly.Core.WebApi {
     public abstract class BaseHttpRequest : IHttpRequest {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 

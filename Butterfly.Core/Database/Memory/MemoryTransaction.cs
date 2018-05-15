@@ -22,9 +22,9 @@ using System.Threading.Tasks;
 using NLog;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
-using Butterfly.Util;
+using Butterfly.Core.Util;
 
-namespace Butterfly.Database.Memory {
+namespace Butterfly.Core.Database.Memory {
 
     /// <inheritdoc/>
     public class MemoryTransaction : BaseTransaction {

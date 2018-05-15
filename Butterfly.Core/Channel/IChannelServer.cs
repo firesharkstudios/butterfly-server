@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Channel {
+namespace Butterfly.Core.Channel {
     /// <summary>
     /// Allows clients to create new channels to the server and allows the server to push messages to connected clients.<para/>
     /// </summary>

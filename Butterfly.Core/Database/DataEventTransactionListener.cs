@@ -17,9 +17,9 @@
 using System;
 using System.Threading.Tasks;
 
-using Butterfly.Database.Event;
+using Butterfly.Core.Database.Event;
 
-namespace Butterfly.Database {
+namespace Butterfly.Core.Database {
     /// <summary>
     /// Internal class used to store references to data event transaction listeners
     /// </summary>

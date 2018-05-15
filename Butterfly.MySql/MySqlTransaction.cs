@@ -17,7 +17,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Butterfly.Database;
+using Butterfly.Core.Database;
 using MySql.Data.MySqlClient;
 using NLog;
 

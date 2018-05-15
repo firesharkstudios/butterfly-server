@@ -18,9 +18,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using Butterfly.Util;
+using Butterfly.Core.Util;
 
-namespace Butterfly.WebApi {
+namespace Butterfly.Core.WebApi {
     public interface IHttpRequest : IWebRequest {
         string UserAgent { get; }
         string UserHostAddress { get; }

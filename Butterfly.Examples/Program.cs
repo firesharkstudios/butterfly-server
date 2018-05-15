@@ -4,7 +4,7 @@ using System.IO;
 using NLog;
 using Unosquare.Labs.EmbedIO.Modules;
 
-using Butterfly.Util;
+using Butterfly.Core.Util;
 
 namespace Butterfly.Examples {
     class Program {

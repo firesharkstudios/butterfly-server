@@ -26,7 +26,7 @@ using NLog;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Database.Memory {
+namespace Butterfly.Core.Database.Memory {
 
     /// <inheritdoc/>
     public class MemoryDatabase : BaseDatabase {

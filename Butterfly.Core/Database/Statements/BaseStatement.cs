@@ -19,11 +19,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text.RegularExpressions;
 
-using Butterfly.Util;
+using Butterfly.Core.Util;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Database {
+namespace Butterfly.Core.Database {
     /// <summary>
     /// Base class for parsing SQL statements
     /// </summary>

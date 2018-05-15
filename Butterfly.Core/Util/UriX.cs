@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
     public static class UriX {
         public static Dictionary<string, string> ParseQuery(this Uri me) {
             if (!string.IsNullOrEmpty(me.Query) && me.Query.Length>0) {

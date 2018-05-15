@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
     public static class StringX {
         public static string Hash(this string me) {
             var bytes = new UTF8Encoding().GetBytes(me);

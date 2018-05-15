@@ -17,7 +17,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Butterfly.Database.Dynamic {
+namespace Butterfly.Core.Database.Dynamic {
     /// <summary>
     /// A <see cref="IDynamicParam"/> that may contain multiple values (like an array)
     /// </summary>

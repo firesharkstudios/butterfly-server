@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
     public static class DateTimeX {
 
         private static readonly DateTime EPOCH = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);

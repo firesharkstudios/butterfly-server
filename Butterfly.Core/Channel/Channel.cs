@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Channel {
+namespace Butterfly.Core.Channel {
     public class Channel : IDisposable {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 

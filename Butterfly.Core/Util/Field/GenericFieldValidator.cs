@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Butterfly.Util.Field {
+namespace Butterfly.Core.Util.Field {
     public class GenericFieldValidator : IFieldValidator {
         protected readonly string fieldName;
         protected readonly Regex regex;

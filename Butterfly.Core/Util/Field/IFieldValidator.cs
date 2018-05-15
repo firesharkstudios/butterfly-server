@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Butterfly.Util.Field {
+namespace Butterfly.Core.Util.Field {
     public interface IFieldValidator {
 
         string Validate(string value);

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
     public class DictionaryItemDisposable<T, U> : IDisposable {
 
         protected readonly Dictionary<T, U> dictionary;

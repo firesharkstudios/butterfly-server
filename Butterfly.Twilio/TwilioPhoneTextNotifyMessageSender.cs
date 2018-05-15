@@ -1,4 +1,4 @@
-﻿using Butterfly.Notify;
+﻿using Butterfly.Core.Notify;
 using NLog;
 using System;
 using System.Threading.Tasks;

@@ -139,25 +139,23 @@ Because the new *todo* collection is the result of a join, the client will recei
 
 ## Getting Started
 
-You can either install the binaries from NuGet (just install the ones you need)...
+You can either install the binaries from NuGet...
 
 ```
-nuget install Butterfly.Auth
-nuget install Butterfly.Channel
-nuget install Butterfly.Channel.EmbedIO
-nuget install Butterfly.Database
-nuget install Butterfly.Database.Memory
-nuget install Butterfly.Database.MySQL
-nuget install Butterfly.Notify
-nuget install Butterfly.Notify.Aws
-nuget install Butterfly.Notify.Twilio
-nuget install Butterfly.Util
-nuget install Butterfly.WebApi
-nuget install Butterfly.WebApi.EmbedIO
+nuget install Butterfly.Core
+
+# If you wish to use EmbedIO as a ChannelServer and WebApiServer...
+nuget install Butterfly.EmbedIO
+
+# If you wish to use MySQL as your database...
+nuget install Butterfly.MySQL
+
+# If you wish to use AWS SES to send emails...
+nuget install Butterfly.Aws
+
+# If you wish to use Twilio to send text messages...
+nuget install Butterfly.Twilio
 ```
-
-Although there are a lot of packages, all the packages are very small in size (largest is less than 45kB).
-
 
 Or you can get the source from GitHub...
 
@@ -171,26 +169,20 @@ Or you can get the source from GitHub...
 
 ## Packages
 
-There are three key packages each with alternative implementations...
+Here are the key packages in *Butterfly.Core*...
 
+- [Butterfly.Auth](https://firesharkstudios.github.io/Butterfly/Butterfly.Auth) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
 - [Butterfly.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Database) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
-
-  - [Butterfly.Database.Memory](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.Memory) - In memory implementation (no persistence, no support for joins)
-  - [Butterfly.Database.MySql](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.MySql) - Implementation for MySql
-  - [Butterfly.Database.Postgres](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.Postgres) - Implementation for Postgres
-  - [Butterfly.Database.SQLite](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.SQLite) - Implementation for SQLIte
- 
 - [Butterfly.Channel](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
-
-  - [Butterfly.Channel.EmbedIO](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel.EmbedIO) - Implementation for [EmbedIO](https://github.com/unosquare/embedio) server
-  - [Butterfly.Channel.RedHttpServer](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel.RedHttpServer) - Implementation for [RedHttpServer](https://github.com/rosenbjerg/RedHttpServer.CSharp)
-
+- [Butterfly.Notify](https://firesharkstudios.github.io/Butterfly/Butterfly.Notify) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
 - [Butterfly.WebApi](https://firesharkstudios.github.io/Butterfly/Butterfly.WebApi) - Allows receiving API requests via HTTP (inspired by Express JS) by wrapping existing C# web servers.
 
-  - [Butterfly.WebApi.EmbedIO](https://firesharkstudios.github.io/Butterfly/Butterfly.WebApi.EmbedIO) - Implementation for [EmbedIO](https://github.com/unosquare/embedio) server
-  - [Butterfly.WebApi.RedHttpServer](https://firesharkstudios.github.io/Butterfly/Butterfly.WebApi.RedHttpServer) - Implementation for [RedHttpServer](https://github.com/rosenbjerg/RedHttpServer.CSharp)
+Here are various implementations you'll likely find useful...
 
-There are no interdependencies between the packages. Use any subset of the packages you wish.
+- [Butterfly.Aws](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.MySql) - Implementation for MySql
+- [Butterfly.MySql](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.MySql) - Implementation for MySql
+- [Butterfly.EmbedIO](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel.EmbedIO) - Implementation for [EmbedIO](https://github.com/unosquare/embedio) server
+- [Butterfly.Twilio](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.MySql) - Implementation for MySql
 
 ## Contributing
 

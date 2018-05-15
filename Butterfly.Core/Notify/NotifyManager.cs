@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 using NLog;
 
-using Butterfly.Database;
-using Butterfly.Util;
-using Butterfly.WebApi;
+using Butterfly.Core.Database;
+using Butterfly.Core.Util;
+using Butterfly.Core.WebApi;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
-using Butterfly.Util.Field;
+using Butterfly.Core.Util.Field;
 
-namespace Butterfly.Notify {
+namespace Butterfly.Core.Notify {
 
     public enum NotifyMessageType {
         Email,

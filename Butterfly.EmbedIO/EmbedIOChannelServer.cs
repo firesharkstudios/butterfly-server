@@ -24,8 +24,8 @@ using Unosquare.Labs.EmbedIO.Modules;
 using Unosquare.Net;
 using Unosquare.Labs.EmbedIO;
 
-using Butterfly.Channel;
-using Butterfly.Util;
+using Butterfly.Core.Channel;
+using Butterfly.Core.Util;
 
 namespace Butterfly.EmbedIO {
 

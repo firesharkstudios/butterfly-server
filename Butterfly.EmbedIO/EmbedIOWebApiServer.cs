@@ -25,8 +25,8 @@ using Unosquare.Labs.EmbedIO;
 using Unosquare.Labs.EmbedIO.Constants;
 using NLog;
 
-using Butterfly.Util;
-using Butterfly.WebApi;
+using Butterfly.Core.Util;
+using Butterfly.Core.WebApi;
 
 namespace Butterfly.EmbedIO {
 

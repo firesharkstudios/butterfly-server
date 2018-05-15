@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
     public static class CommandLineUtil {
 
         public static Dictionary<string, string> Parse(string commandLine) {

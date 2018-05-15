@@ -19,10 +19,10 @@ using System.Threading.Tasks;
 
 using RedHttpServerNet45.Response;
 
-using Butterfly.Util;
+using Butterfly.Core.Util;
 using System.Collections.Specialized;
 using System.Collections.Generic;
-using Butterfly.Channel;
+using Butterfly.Core.Channel;
 
 namespace Butterfly.RedHttpServer {
 

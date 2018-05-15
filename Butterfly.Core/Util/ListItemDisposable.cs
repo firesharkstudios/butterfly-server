@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
     public class ListItemDisposable<T> : IDisposable {
 
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();

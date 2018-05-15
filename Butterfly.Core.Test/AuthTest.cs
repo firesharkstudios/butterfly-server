@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
-using Butterfly.Database;
-using Butterfly.Util;
+using Butterfly.Core.Database;
+using Butterfly.Core.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog;
 
-namespace Butterfly.Auth.Test {
+namespace Butterfly.Core.Auth.Test {
     [TestClass]
     public class AuthTest {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         [TestMethod]
         public async Task SimpleAuthTest() {
-            //var database = new Butterfly.Database.Memory.MemoryDatabase();
+            //var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
             var database = new Butterfly.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_auth_test");
             await TruncateData(database);
 
-            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Auth.Test.db.sql");
+            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Core.Auth.Test.db.sql");
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString());
             database.SetDefaultValue("created_at", tableName => DateTime.Now.ToUnixTimestamp());
             database.SetDefaultValue("updated_at", tableName => DateTime.Now.ToUnixTimestamp());

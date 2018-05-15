@@ -2,7 +2,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace Butterfly.Util.Field {
+namespace Butterfly.Core.Util.Field {
     public class PhoneFieldValidator : IFieldValidator {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 

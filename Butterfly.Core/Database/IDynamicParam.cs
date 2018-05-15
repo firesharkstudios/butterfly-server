@@ -14,7 +14,7 @@
  * limitations under the License.
 */
 
-namespace Butterfly.Database {
+namespace Butterfly.Core.Database {
     /// <summary>
     /// Use to implement a parameter value that can change
     /// </summary>

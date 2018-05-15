@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Butterfly.Database {
+namespace Butterfly.Core.Database {
 
     /// <summary>
     /// Represents a table in an <see cref="IDatabase"/>

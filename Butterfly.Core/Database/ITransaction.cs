@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Database {
+namespace Butterfly.Core.Database {
     /// <summary>
     /// Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing 
     /// a single <see cref="DataEventTransaction"/> on the underlying <see cref="IDatabase"/> instance

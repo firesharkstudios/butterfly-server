@@ -18,7 +18,7 @@ using System;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Database.Event {
+namespace Butterfly.Core.Database.Event {
     public enum DataEventType {
         InitialBegin,
         Initial,

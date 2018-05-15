@@ -1,10 +1,10 @@
-# Butterfly.Aws ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/logo-40x40.png) 
+# Butterfly.Core ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/logo-40x40.png) 
 
-> Provides an implementation for Butterfly.Notify using AWS SES
+> The Everything is Real-Time C# Backend for Single Page Applications
 
 See [Butterfly Framework](https://github.com/firesharkstudios/Butterfly) for an overview on the Butterfly Framework.
 
-See [Butterfly.Aws](https://firesharkstudios.github.io/Butterfly/Butterfly.Aws) for API details.
+See [Butterfly.Core](https://firesharkstudios.github.io/Butterfly/Butterfly.Core) for API details.
 
 ## Contributing
 

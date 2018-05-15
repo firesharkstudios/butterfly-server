@@ -19,7 +19,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
     public static class FileX {
         public static async Task WriteTextAsync(string filePath, string text) {
             byte[] encodedText = Encoding.Default.GetBytes(text);

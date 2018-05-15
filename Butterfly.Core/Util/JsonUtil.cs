@@ -22,7 +22,7 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
 
     public static class JsonUtil {
         private readonly static Regex SCRUB_EXTRA_COMMAS_REGEX = new Regex(@"\,\s*(?=[\}\]])");

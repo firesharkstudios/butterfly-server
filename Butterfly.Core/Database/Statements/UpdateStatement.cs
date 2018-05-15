@@ -22,7 +22,7 @@ using System.Text.RegularExpressions;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Database {
+namespace Butterfly.Core.Database {
     /// <summary>
     /// Internal class used to parse UPDATE statements
     /// </summary>

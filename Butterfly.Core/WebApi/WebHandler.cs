@@ -18,7 +18,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Butterfly.WebApi {
+namespace Butterfly.Core.WebApi {
     /// <summary>
     /// Internal class used to store references to new web handlers
     /// </summary>

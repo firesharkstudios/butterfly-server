@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 using NLog;
 
-namespace Butterfly.Util.Job {
+namespace Butterfly.Core.Util.Job {
     public class JobManager {
 
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();

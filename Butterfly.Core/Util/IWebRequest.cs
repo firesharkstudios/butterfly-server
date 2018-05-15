@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
     public interface IWebRequest {
         Uri RequestUrl { get;  }
 

@@ -2,9 +2,9 @@
 
 using NLog;
 
-using Butterfly.Channel;
-using Butterfly.Database.Dynamic;
-using Butterfly.WebApi;
+using Butterfly.Core.Channel;
+using Butterfly.Core.Database.Dynamic;
+using Butterfly.Core.WebApi;
 
 namespace Butterfly.Examples {
     public static class MinimalChatExample {
@@ -16,7 +16,7 @@ namespace Butterfly.Examples {
 
             // Create a MemoryDatabase (no persistence, limited features)
             // with a single table "chat_message"
-            var database = new Butterfly.Database.Memory.MemoryDatabase();
+            var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
             database.CreateFromText(@"CREATE TABLE chat_message (
 	            id INT NOT NULL AUTO_INCREMENT,
 	            user_name VARCHAR(40) NOT NULL,

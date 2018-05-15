@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Butterfly.Postgres")]
-[assembly: AssemblyDescription("Implementation of Butterfly.Database using Postgres")]
+[assembly: AssemblyDescription("Implementation of Butterfly.Core.Database using Postgres")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Fireshark Studios, LLC")]
 [assembly: AssemblyProduct("Butterfly Framework")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.9.1.0")]
-[assembly: AssemblyFileVersion("0.9.1.0")]
+[assembly: AssemblyVersion("0.9.1.2")]
+[assembly: AssemblyFileVersion("0.9.1.2")]

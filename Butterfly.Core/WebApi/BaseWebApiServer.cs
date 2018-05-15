@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 
 using NLog;
 
-namespace Butterfly.WebApi {
+namespace Butterfly.Core.WebApi {
 
     /// <inheritdoc/>
     /// <summary>

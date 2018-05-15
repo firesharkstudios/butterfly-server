@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Butterfly.WebApi {
+namespace Butterfly.Core.WebApi {
     /// <summary>
     /// Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.<para/>
     /// </summary>

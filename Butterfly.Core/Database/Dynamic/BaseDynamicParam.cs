@@ -16,7 +16,7 @@
 
 using NLog;
 
-namespace Butterfly.Database.Dynamic {
+namespace Butterfly.Core.Database.Dynamic {
     /// <summary>
     /// Base class for implementing dynamic params (see <see cref="IDynamicParam"/>)
     /// </summary>

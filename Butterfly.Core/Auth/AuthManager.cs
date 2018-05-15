@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 using NLog;
 
-using Butterfly.Database;
-using Butterfly.Util;
-using Butterfly.Util.Field;
-using Butterfly.WebApi;
+using Butterfly.Core.Database;
+using Butterfly.Core.Util;
+using Butterfly.Core.Util.Field;
+using Butterfly.Core.WebApi;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Auth {
+namespace Butterfly.Core.Auth {
     /// <summary>
     /// Provides an API to register and login users, handle forgot password and reset password requests, and validate auth tokens. 
     /// </summary>

@@ -16,7 +16,7 @@
 
 using System;
 
-namespace Butterfly.Util {
+namespace Butterfly.Core.Util {
     public static class CleverNameX {
         private static readonly Random random = new Random();
 

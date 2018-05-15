@@ -1,10 +1,10 @@
-# Butterfly.Channel.EmbedIO ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/logo-40x40.png) 
+# Butterfly.EmbedIO ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/logo-40x40.png) 
 
-> EmbedIO Channel implementation for the Butterfly Framework
+> Provides an implementation for Butterfly.Core.Channel and Butterfly.Core.WebApi using [EmbedIO](https://github.com/unosquare/embedio)
 
-Provides an implementation of [Butterfly.Channel](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel) using the excellent [EmbedIO](https://github.com/unosquare/embedio) web server.
+See [Butterfly Framework](https://github.com/firesharkstudios/Butterfly) for an overview on the Butterfly Framework.
 
-See [Butterfly.Channel.EmbedIO](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel.EmbedIO) for API details.
+See [Butterfly.EmbedIO](https://firesharkstudios.github.io/Butterfly/Butterfly.EmbedIO) for API details.
 
 ## Contributing
 

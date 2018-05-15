@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Channel {
+namespace Butterfly.Core.Channel {
     /// <summary>
     /// Internal class used to store references to new channel listeners
     /// </summary>

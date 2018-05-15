@@ -23,7 +23,7 @@ using Npgsql;
 using NLog;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
-using Butterfly.Database;
+using Butterfly.Core.Database;
 
 namespace Butterfly.Postgres {
 
