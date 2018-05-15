@@ -171,18 +171,18 @@ Or you can get the source from GitHub...
 
 Here are the key packages in *Butterfly.Core*...
 
-- [Butterfly.Auth](https://firesharkstudios.github.io/Butterfly/Butterfly.Auth) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
-- [Butterfly.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Database) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
-- [Butterfly.Channel](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
-- [Butterfly.Notify](https://firesharkstudios.github.io/Butterfly/Butterfly.Notify) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
-- [Butterfly.WebApi](https://firesharkstudios.github.io/Butterfly/Butterfly.WebApi) - Allows receiving API requests via HTTP (inspired by Express JS) by wrapping existing C# web servers.
+- [Butterfly.Core.Auth](https://firesharkstudios.github.io/Butterfly/Butterfly.Core.Auth) - Allows registering and logging in users, handling forgot password and reset password requests, and validating auth tokens.
+- [Butterfly.Core.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Core.Database) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
+- [Butterfly.Core.Channel](https://firesharkstudios.github.io/Butterfly/Butterfly.Core.Channel) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
+- [Butterfly.Core.Notify](https://firesharkstudios.github.io/Butterfly/Butterfly.Core.Notify) - Allows sending notifications (email/texts) to users.
+- [Butterfly.Core.WebApi](https://firesharkstudios.github.io/Butterfly/Butterfly.Core.WebApi) - Allows receiving API requests via HTTP (inspired by Express JS) by wrapping existing C# web servers.
 
 Here are various implementations you'll likely find useful...
 
-- [Butterfly.Aws](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.MySql) - Implementation for MySql
-- [Butterfly.MySql](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.MySql) - Implementation for MySql
-- [Butterfly.EmbedIO](https://firesharkstudios.github.io/Butterfly/Butterfly.Channel.EmbedIO) - Implementation for [EmbedIO](https://github.com/unosquare/embedio) server
-- [Butterfly.Twilio](https://firesharkstudios.github.io/Butterfly/Butterfly.Database.MySql) - Implementation for MySql
+- [Butterfly.Aws](https://firesharkstudios.github.io/Butterfly/Butterfly.Aws) - Implementation of *Butterfly.Core.Notify* for AWS SES
+- [Butterfly.MySql](https://firesharkstudios.github.io/Butterfly/Butterfly.MySql) - Implementation of *Butterfly.Core.Database* for MySql
+- [Butterfly.EmbedIO](https://firesharkstudios.github.io/Butterfly/Butterfly.EmbedIO) - Implementation of *Butterfly.Core.Channel* and *Butterfly.Core.WebApi* for [EmbedIO](https://github.com/unosquare/embedio) server
+- [Butterfly.Twilio](https://firesharkstudios.github.io/Butterfly/Butterfly.Twilio) - Implementation of *Butterfly.Notify* for Twilio SMS
 
 ## Contributing
 
