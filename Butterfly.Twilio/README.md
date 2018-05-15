@@ -13,5 +13,5 @@ branch. Pull requests are warmly welcome.
 
 ## Licensing
 
-The code is licensed under the Apache License 2.0.  
+The code is licensed under the Apache License 2.0. 
 
