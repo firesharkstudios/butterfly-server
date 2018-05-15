@@ -28,8 +28,8 @@ namespace Butterfly.Examples {
             Unosquare.Swan.Terminal.Settings.DisplayLoggingMessageType = Unosquare.Swan.LogMessageType.None;
 
             // Setup and start a webApiServer and channelServer using embedIOWebServer
-            using (var webApiServer = new Butterfly.WebApi.EmbedIO.EmbedIOWebApiServer(embedIOWebServer))
-            using (var channelServer = new Butterfly.Channel.EmbedIO.EmbedIOChannelServer(embedIOWebServer)) {
+            using (var webApiServer = new Butterfly.EmbedIO.EmbedIOWebApiServer(embedIOWebServer))
+            using (var channelServer = new Butterfly.EmbedIO.EmbedIOChannelServer(embedIOWebServer)) {
                 // Setup each example (should each listen on unique URL paths for both webApiServer and channelServer)
                 HelloWorldExample.Setup(webApiServer, channelServer);
                 MinimalChatExample.Setup(webApiServer, channelServer);

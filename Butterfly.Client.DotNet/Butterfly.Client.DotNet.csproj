@@ -82,16 +82,16 @@
     <Compile Include="WebSocketSharpChannelClient.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Butterfly.Util\Butterfly.Util.csproj">
-      <Project>{687A3FB4-8299-4F15-B74B-825FE7446823}</Project>
-      <Name>Butterfly.Util</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Butterfly.Core\Butterfly.Core.csproj">
+      <Project>{a7be1f28-30a9-4d1d-9fee-967fec8c4aee}</Project>
+      <Name>Butterfly.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

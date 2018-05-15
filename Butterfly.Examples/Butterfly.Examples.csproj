@@ -116,37 +116,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Butterfly.Channel.EmbedIO\Butterfly.Channel.EmbedIO.csproj">
+    <ProjectReference Include="..\Butterfly.Core\Butterfly.Core.csproj">
+      <Project>{a7be1f28-30a9-4d1d-9fee-967fec8c4aee}</Project>
+      <Name>Butterfly.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Butterfly.EmbedIO\Butterfly.EmbedIO.csproj">
       <Project>{75739181-2d6b-496b-b10f-eab98d0c63a9}</Project>
-      <Name>Butterfly.Channel.EmbedIO</Name>
+      <Name>Butterfly.EmbedIO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Butterfly.Channel\Butterfly.Channel.csproj">
-      <Project>{ea4f6fe2-51c1-4f2b-b7f4-e21efbc65d4f}</Project>
-      <Name>Butterfly.Channel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Butterfly.Database.Memory\Butterfly.Database.Memory.csproj">
-      <Project>{2dbfd7b1-18d0-46c8-b185-6a73e5f79bcd}</Project>
-      <Name>Butterfly.Database.Memory</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Butterfly.Database.MySql\Butterfly.Database.MySql.csproj">
+    <ProjectReference Include="..\Butterfly.MySql\Butterfly.MySql.csproj">
       <Project>{c900a510-1661-45c5-b34d-bdb712686b39}</Project>
-      <Name>Butterfly.Database.MySql</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Butterfly.Database\Butterfly.Database.csproj">
-      <Project>{2b072f9e-35b4-4033-a272-e11474c4fa4d}</Project>
-      <Name>Butterfly.Database</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Butterfly.Util\Butterfly.Util.csproj">
-      <Project>{687a3fb4-8299-4f15-b74b-825fe7446823}</Project>
-      <Name>Butterfly.Util</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Butterfly.WebApi.EmbedIO\Butterfly.WebApi.EmbedIO.csproj">
-      <Project>{b28d5022-9b47-4b0d-b607-5f3326af5677}</Project>
-      <Name>Butterfly.WebApi.EmbedIO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Butterfly.WebApi\Butterfly.WebApi.csproj">
-      <Project>{aac77468-2570-4b46-abac-e9cf215942f1}</Project>
-      <Name>Butterfly.WebApi</Name>
+      <Name>Butterfly.MySql</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

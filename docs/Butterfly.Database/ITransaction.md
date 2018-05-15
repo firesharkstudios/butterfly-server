@@ -1,5 +1,83 @@
 # ITransaction interface
 
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
+
+Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
+
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
+
+Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
+
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
+
+Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
+
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
+
+Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
+
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
+
+Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
+
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
+
+Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
+
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
+
+Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
+
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
+
+Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
+
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
+
+Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
+
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
+
+Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
+
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
+
+Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
+
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
+
+Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
+
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
+
+Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
+
 ```csharp
 public interface ITransaction : IDisposable
 ```
@@ -9,17 +87,17 @@ public interface ITransaction : IDisposable
 | name | description |
 | --- | --- |
 | [Database](ITransaction/Database.md) { get; } |  |
-| [Commit](ITransaction/Commit.md)() |  |
-| [CommitAsync](ITransaction/CommitAsync.md)() |  |
-| [DeleteAsync](ITransaction/DeleteAsync.md)(…) |  |
-| [InsertAsync&lt;T&gt;](ITransaction/InsertAsync.md)(…) |  |
-| [Rollback](ITransaction/Rollback.md)() |  |
+| [Commit](ITransaction/Commit.md)() | Commit the transaction |
+| [CommitAsync](ITransaction/CommitAsync.md)() | Commit the transaction |
+| [DeleteAsync](ITransaction/DeleteAsync.md)(…) | Executes a DELETE statement within this transaction |
+| [InsertAsync&lt;T&gt;](ITransaction/InsertAsync.md)(…) | Executes an INSERT statement within this transaction |
+| [Rollback](ITransaction/Rollback.md)() | Rollback the transaction (called automatically if transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md)) |
 | [Synchronize](ITransaction/Synchronize.md)(…) |  |
-| [TruncateAsync](ITransaction/TruncateAsync.md)(…) |  |
-| [UpdateAsync](ITransaction/UpdateAsync.md)(…) |  |
+| [TruncateAsync](ITransaction/TruncateAsync.md)(…) | Truncate a table (deletes all records) |
+| [UpdateAsync](ITransaction/UpdateAsync.md)(…) | Executes an UPDATE statement within this transaction |
 
 ## See Also
 
-* namespace [Butterfly.Database](../Butterfly.Database.md)
+* namespace [Butterfly.Database](../Butterfly.Core.md)
 
-<!-- DO NOT EDIT: generated by xmldocmd for Butterfly.Database.dll -->
+<!-- DO NOT EDIT: generated by xmldocmd for Butterfly.Core.dll -->

@@ -1,9 +1,0 @@
-﻿From: Jake <jake@test.com>
-Subject: Welcome to Test
-
-Hello, {first_name}.
-
--- 
-Jake
-jake@test.com
-

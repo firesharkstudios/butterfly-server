@@ -19,7 +19,7 @@ namespace Butterfly.Examples {
             // Setup a MySQL database (may need to execute "GRANT ALL PRIVILEGES ON butterfly_better_chat.* TO 'test'@'localhost' IDENTIFIED BY 'test!123'; CREATE DATABASE butterfly_chat;")
             IDatabase database = null;
             try {
-                database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_better_chat");
+                database = new Butterfly.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_better_chat");
             }
             catch (UnableToConnectDatabaseException) {
                 logger.Warn($"Unable to connect to MySQL server (modify BetterChatExample.cs to specify ConnectionString), skipping BetterChatExample");
