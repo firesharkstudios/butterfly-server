@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Butterfly.Core.Database;
@@ -39,7 +40,7 @@ namespace Butterfly.MySql {
         protected override void LoadSchema() {
             try {
                 string commandText = "show tables";
-                using (MySqlDataReader reader = MySqlHelper.ExecuteReader(this.ConnectionString, commandText)) {
+                using (MySqlDataReader reader = ExecuteReader(this.ConnectionString, commandText)) {
                     while (reader.Read()) {
                         string tableName = reader[0].ToString();
                         Table table = this.LoadTableSchema(tableName);
@@ -66,7 +67,7 @@ namespace Butterfly.MySql {
         protected TableFieldDef[] GetFieldDefs(string tableName) {
             List<TableFieldDef> fields = new List<TableFieldDef>();
             string commandText = $"DESCRIBE {tableName}";
-            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(this.ConnectionString, commandText)) {
+            using (MySqlDataReader reader = ExecuteReader(this.ConnectionString, commandText)) {
                 while (reader.Read()) {
                     string name = reader[0].ToString();
                     string typeText = reader[1].ToString();
@@ -89,7 +90,7 @@ namespace Butterfly.MySql {
             TableIndexType lastTableIndexType = TableIndexType.Other;
             string lastIndexName = null;
             List<string> lastFieldNames = new List<string>();
-            using (MySqlDataReader reader = MySqlHelper.ExecuteReader(this.ConnectionString, commandText)) {
+            using (MySqlDataReader reader = ExecuteReader(this.ConnectionString, commandText)) {
                 while (reader.Read()) {
                     bool unique = int.Parse(reader[1].ToString()) == 0;
                     string indexName = reader[2].ToString();
@@ -131,7 +132,7 @@ namespace Butterfly.MySql {
 
             List<Dict> rows = new List<Dict>();
             try {
-                using (MySqlDataReader reader = await MySqlHelper.ExecuteReaderAsync(this.ConnectionString, executableSql, mySqlParams)) {
+                using (MySqlDataReader reader = await ExecuteReaderAsync(this.ConnectionString, executableSql, mySqlParams)) {
                     while (reader.Read()) {
                         Dict row = new Dictionary<string, object>();
                         for (int i = 0; i < statement.FieldRefs.Length; i++) {
@@ -154,7 +155,7 @@ namespace Butterfly.MySql {
 
             List<Dict> rows = new List<Dict>();
             try {
-                using (MySqlDataReader reader = await MySqlHelper.ExecuteReaderAsync(this.ConnectionString, $"CALL {storedProcedureName}", mySqlParams)) {
+                using (MySqlDataReader reader = await ExecuteReaderAsync(this.ConnectionString, $"CALL {storedProcedureName}", mySqlParams)) {
                     while (reader.Read()) {
                         Dict row = new Dictionary<string, object>();
                         for (int i = 0; i < reader.FieldCount; i++) {
@@ -178,6 +179,23 @@ namespace Butterfly.MySql {
             }
             else {
                 return value;
+            }
+        }
+
+        private static MySqlDataReader ExecuteReader(string connectionString, string commandText) {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+            using (MySqlCommand command = new MySqlCommand(commandText, connection)) {
+                return command.ExecuteReader(CommandBehavior.CloseConnection);
+            }
+        }
+
+        private static async Task<MySqlDataReader> ExecuteReaderAsync(string connectionString, string commandText, MySqlParameter[] parameters) {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            await connection.OpenAsync();
+            using (MySqlCommand command = new MySqlCommand(commandText, connection)) {
+                command.Parameters.AddRange(parameters);
+                return (MySqlDataReader) await command.ExecuteReaderAsync(CommandBehavior.CloseConnection);
             }
         }
     }
