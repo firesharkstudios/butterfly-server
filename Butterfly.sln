@@ -54,6 +54,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Postgres", "Butte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.SQLite", "Butterfly.SQLite\Butterfly.SQLite.csproj", "{FF3B444F-43F1-4903-B896-755E45EFCF8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Aws.Test", "Butterfly.Aws.Test\Butterfly.Aws.Test.csproj", "{A297B8F8-4506-42F1-ACCB-452765B8AA4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.EmbedIO.Test", "Butterfly.EmbedIO.Test\Butterfly.EmbedIO.Test.csproj", "{E89D9851-D916-40F6-AEA1-7E5379C32A04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.MySql.Test", "Butterfly.MySql.Test\Butterfly.MySql.Test.csproj", "{0FE68613-E871-4201-B4DF-DAF1CD4D4692}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Twilio.Test", "Butterfly.Twilio.Test\Butterfly.Twilio.Test.csproj", "{9B1A3FC1-F1B9-4F5E-AA60-724667B54B3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,13 +116,29 @@ Global
 		{FF3B444F-43F1-4903-B896-755E45EFCF8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF3B444F-43F1-4903-B896-755E45EFCF8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF3B444F-43F1-4903-B896-755E45EFCF8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A297B8F8-4506-42F1-ACCB-452765B8AA4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A297B8F8-4506-42F1-ACCB-452765B8AA4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A297B8F8-4506-42F1-ACCB-452765B8AA4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A297B8F8-4506-42F1-ACCB-452765B8AA4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E89D9851-D916-40F6-AEA1-7E5379C32A04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E89D9851-D916-40F6-AEA1-7E5379C32A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E89D9851-D916-40F6-AEA1-7E5379C32A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E89D9851-D916-40F6-AEA1-7E5379C32A04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FE68613-E871-4201-B4DF-DAF1CD4D4692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FE68613-E871-4201-B4DF-DAF1CD4D4692}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FE68613-E871-4201-B4DF-DAF1CD4D4692}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FE68613-E871-4201-B4DF-DAF1CD4D4692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B1A3FC1-F1B9-4F5E-AA60-724667B54B3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B1A3FC1-F1B9-4F5E-AA60-724667B54B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B1A3FC1-F1B9-4F5E-AA60-724667B54B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B1A3FC1-F1B9-4F5E-AA60-724667B54B3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
-		BuildVersion_StartDate = 2000/1/1
 		BuildVersion_BuildVersioningStyle = None.None.None.Increment
+		BuildVersion_StartDate = 2000/1/1
+		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
 	EndGlobalSection
 EndGlobal

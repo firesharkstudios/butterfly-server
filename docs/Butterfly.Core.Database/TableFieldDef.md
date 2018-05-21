@@ -2,6 +2,10 @@
 
 Defines a field definition for a [`Table`](Table.md)
 
+Defines a field definition for a [`Table`](Table.md)
+
+Defines a field definition for a [`Table`](Table.md)
+
 ```csharp
 public class TableFieldDef
 ```

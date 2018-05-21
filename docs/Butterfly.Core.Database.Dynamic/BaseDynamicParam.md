@@ -2,6 +2,10 @@
 
 Base class for implementing dynamic params (see [`IDynamicParam`](../Butterfly.Core.Database/IDynamicParam.md))
 
+Base class for implementing dynamic params (see [`IDynamicParam`](../Butterfly.Core.Database/IDynamicParam.md))
+
+Base class for implementing dynamic params (see [`IDynamicParam`](../Butterfly.Core.Database/IDynamicParam.md))
+
 ```csharp
 public abstract class BaseDynamicParam : IDynamicParam
 ```

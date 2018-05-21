@@ -126,7 +126,7 @@ namespace Butterfly.Core.Database {
         /// <returns>Number of records deleted</returns>
         Task<int> DeleteAsync(string deleteStatement, dynamic vars);
 
-        Task<bool> Synchronize(string tableName, Dict[] existingRecords, Dict[] newRecords, Func<Dict, dynamic> getDeleteKey, string[] keyFieldNames = null);
+        Task<bool> SynchronizeAsync(string tableName, Dict[] existingRecords, Dict[] newRecords, Func<Dict, dynamic> getDeleteKey, string[] keyFieldNames = null);
 
         /// <summary>
         /// Truncate a table (deletes all records)

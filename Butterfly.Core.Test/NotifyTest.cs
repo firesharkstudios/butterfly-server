@@ -4,14 +4,12 @@ using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Butterfly.Util;
-using Butterfly.Database;
-using Butterfly.Notify.Aws;
-using Butterfly.Notify.Twilio;
+using Butterfly.Core.Util;
+using Butterfly.Core.Database;
 
-namespace Butterfly.Notify.Test {
+namespace Butterfly.Core.Notify.Test {
     [TestClass]
-    public class UnitTest1 {
+    public class NotifyTest {
         [TestMethod]
         public void ParseNotifyMessage() {
             var email = FileX.LoadResourceAsText(Assembly.GetExecutingAssembly(), "Butterfly.Notify.Test.email.txt");
@@ -23,13 +21,12 @@ namespace Butterfly.Notify.Test {
         }
 
         [TestMethod]
-        public async Task SendEmailNotifyMessage() {
-            IDatabase database = new Butterfly.Database.Memory.MemoryDatabase();
+        public static async Task SendEmailNotifyMessage(INotifyMessageSender notifyMessageSender) {
+            IDatabase database = new Butterfly.Core.Database.Memory.MemoryDatabase();
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Notify.Test.db.sql");
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString());
             database.SetDefaultValue("created_at", tableName => DateTime.Now);
 
-            var notifyMessageSender = new AwsSesEmailNotifyMessageSender();
             var notifyMessageManager = new NotifyManager(database, emailNotifyMessageSender: notifyMessageSender);
             notifyMessageManager.Start();
             var notifyMessage = new NotifyMessage("kent@fireshark.com", "kent13304@yahoo.com", "Test SES", "Just testing", null);
@@ -38,13 +35,12 @@ namespace Butterfly.Notify.Test {
         }
 
         [TestMethod]
-        public async Task SendPhoneTextNotifyMessage() {
-            IDatabase database = new Butterfly.Database.Memory.MemoryDatabase();
+        public static async Task SendPhoneTextNotifyMessage(INotifyMessageSender notifyMessageSender) {
+            IDatabase database = new Butterfly.Core.Database.Memory.MemoryDatabase();
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Notify.Test.db.sql");
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString());
             database.SetDefaultValue("created_at", tableName => DateTime.Now);
 
-            var notifyMessageSender = new TwilioPhoneTextNotifyMessageSender("my-sid", "my-auth-token");
             var notifyMessageManager = new NotifyManager(database, phoneTextNotifyMessageSender: notifyMessageSender);
             notifyMessageManager.Start();
             var notifyMessage = new NotifyMessage("+1 316 712 7412", "+1 316 555 1212", null, "Just testing", null);

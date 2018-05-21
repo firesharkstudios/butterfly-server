@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Butterfly.Util;
-using Butterfly.WebApi.EmbedIO;
-using System.Net;
+using Butterfly.Core.Util;
 
-namespace Butterfly.WebApi.Test {
+namespace Butterfly.Core.WebApi.Test {
     [TestClass]
     public class WebUnitTest {
+        /*
         [TestMethod]
         public async Task RedHttpServerWeb() {
             var redHttpServer = new RedHttpServerNet45.RedHttpServer(8080);
@@ -30,8 +29,9 @@ namespace Butterfly.WebApi.Test {
                 });
             }
         }
+        */
 
-        public async Task TestWeb(IWebApiServer webServer, string url, Action start) {
+        public static async Task TestWeb(IWebApiServer webServer, string url, Action start) {
             // Add routes
             webServer.OnGet("/test-get1", async (req, res) => {
                 await res.WriteAsJsonAsync("test-get-response");

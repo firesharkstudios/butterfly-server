@@ -63,7 +63,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthTest.cs" />
+    <Compile Include="ChannelUnitTest.cs" />
+    <Compile Include="DatabaseUnitTest.cs" />
+    <Compile Include="DynamicUnitTest.cs" />
+    <Compile Include="NotifyTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebApiTest.cs" />
+    <Compile Include="WebApiUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -72,6 +78,10 @@
     <EmbeddedResource Include="db.sql" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Butterfly.Client.DotNet\Butterfly.Client.DotNet.csproj">
+      <Project>{1DFF8F85-31E8-4A8B-BA4E-E054FB313E68}</Project>
+      <Name>Butterfly.Client.DotNet</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Butterfly.Core\Butterfly.Core.csproj">
       <Project>{a7be1f28-30a9-4d1d-9fee-967fec8c4aee}</Project>
       <Name>Butterfly.Core</Name>

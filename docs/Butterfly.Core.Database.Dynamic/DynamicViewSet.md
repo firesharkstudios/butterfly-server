@@ -2,6 +2,10 @@
 
 Represents a collection of [`DynamicView`](DynamicView.md) instances. Often a [`DynamicViewSet`](DynamicViewSet.md) instance will represent all the data that should be replicated to a specific client.
 
+Represents a collection of [`DynamicView`](DynamicView.md) instances. Often a [`DynamicViewSet`](DynamicViewSet.md) instance will represent all the data that should be replicated to a specific client.
+
+Represents a collection of [`DynamicView`](DynamicView.md) instances. Often a [`DynamicViewSet`](DynamicViewSet.md) instance will represent all the data that should be replicated to a specific client.
+
 ```csharp
 public class DynamicViewSet : IDisposable
 ```

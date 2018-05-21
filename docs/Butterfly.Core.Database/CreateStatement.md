@@ -2,6 +2,10 @@
 
 Internal class used to parse CREATE statements
 
+Internal class used to parse CREATE statements
+
+Internal class used to parse CREATE statements
+
 ```csharp
 public class CreateStatement : BaseStatement
 ```

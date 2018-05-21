@@ -4,13 +4,13 @@ using System.Threading.Tasks;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Butterfly.Channel.EmbedIO;
+using Butterfly.Core.Util;
 using Butterfly.Client.DotNet;
-using Butterfly.Util;
 
-namespace Butterfly.Channel.Test {
+namespace Butterfly.Core.Channel.Test {
     [TestClass]
     public class ChannelUnitTest {
+        /*
         [TestMethod]
         public async Task RedHttpServerChannel() {
             var redHttpServer = new RedHttpServerNet45.RedHttpServer(8080);
@@ -30,8 +30,9 @@ namespace Butterfly.Channel.Test {
                 });
             }
         }
+        */
 
-        public async Task TestChannel(IChannelServer channelServer, Action start) {
+        public static async Task TestChannel(IChannelServer channelServer, Action start) {
             // Listen for new channels at /test to be created
             Channel channelA = null;
             TestDisposable testDisposableA = new TestDisposable();

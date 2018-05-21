@@ -2,6 +2,10 @@
 
 Internal class representing a SQL equality reference like "table_alias.field_name=@param_name"
 
+Internal class representing a SQL equality reference like "table_alias.field_name=@param_name"
+
+Internal class representing a SQL equality reference like "table_alias.field_name=@param_name"
+
 ```csharp
 public class StatementEqualsRef
 ```

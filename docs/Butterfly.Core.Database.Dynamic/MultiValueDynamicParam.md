@@ -2,6 +2,10 @@
 
 A [`IDynamicParam`](../Butterfly.Core.Database/IDynamicParam.md) that may contain multiple values (like an array)
 
+A [`IDynamicParam`](../Butterfly.Core.Database/IDynamicParam.md) that may contain multiple values (like an array)
+
+A [`IDynamicParam`](../Butterfly.Core.Database/IDynamicParam.md) that may contain multiple values (like an array)
+
 ```csharp
 public class MultiValueDynamicParam : BaseDynamicParam
 ```

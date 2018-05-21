@@ -2,6 +2,10 @@
 
 Internal class representing a SQL field reference like "table_alias.field_name field_alias"
 
+Internal class representing a SQL field reference like "table_alias.field_name field_alias"
+
+Internal class representing a SQL field reference like "table_alias.field_name field_alias"
+
 ```csharp
 public class StatementFieldRef
 ```

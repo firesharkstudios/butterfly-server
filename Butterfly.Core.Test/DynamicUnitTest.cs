@@ -21,56 +21,58 @@ using System.Reflection;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Butterfly.Database.Dynamic;
-using Butterfly.Database.Event;
+using Butterfly.Core.Database.Dynamic;
+using Butterfly.Core.Database.Event;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Database.Test {
+namespace Butterfly.Core.Database.Test {
     [TestClass]
     public class DynamicUnitTest {
+        /*
         [TestMethod]
         public async Task DynamicMemoryDatabase() {
-            BaseDatabase database = new Butterfly.Database.Memory.MemoryDatabase();
+            BaseDatabase database = new Butterfly.Core.Database.Memory.MemoryDatabase();
             await this.TestDatabase(database);
         }
 
         [TestMethod]
         public async Task DynamicMySqlDatabase() {
-            BaseDatabase database = new Butterfly.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_test");
+            BaseDatabase database = new Butterfly.Core.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_test");
             await this.TestDatabase(database);
         }
 
         [TestMethod]
         public async Task DynamicPostgresDatabase() {
-            BaseDatabase database = new Butterfly.Database.Postgres.PostgresDatabase("Host=localhost;Username=postgres;Password=test!123;Database=butterfly_test");
+            BaseDatabase database = new Butterfly.Core.Database.Postgres.PostgresDatabase("Host=localhost;Username=postgres;Password=test!123;Database=butterfly_test");
             await this.TestDatabase(database);
         }
 
         [TestMethod]
         public async Task DynamicSQLiteDatabase() {
-            BaseDatabase database = new Butterfly.Database.SQLite.SQLiteDatabase("butterfly_test.sqlite");
+            BaseDatabase database = new Butterfly.Core.Database.SQLite.SQLiteDatabase("butterfly_test.sqlite");
             await this.TestDatabase(database);
         }
+        */
 
-        public async Task TestDatabase(BaseDatabase database) {
-            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Database.Test.db.sql");
+        public static async Task TestDatabase(BaseDatabase database) {
+            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Core.Database.Test.db.sql");
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString(), "employee");
             database.SetDefaultValue("created_at", tableName => DateTime.Now);
             database.SetDefaultValue("updated_at", tableName => DateTime.Now);
 
             await DatabaseUnitTest.TruncateData(database);
             (object salesDepartmentId, object hrDepartmentId, object customerServiceDepartmentId) = await DatabaseUnitTest.InsertBasicData(database);
-            await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT * FROM employee", "name", "Joe Sales, Jr", 5, 1, 1, 1);
-            await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT id, name FROM employee", "department_id", -1, 5, 1, 0, 1);
+            await TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT * FROM employee", "name", "Joe Sales, Jr", 5, 1, 1, 1);
+            await TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT id, name FROM employee", "department_id", -1, 5, 1, 0, 1);
             if (database.CanJoin) {
-                await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT e.id, e.name FROM employee e INNER JOIN department d ON e.department_id=d.id ORDER BY e.name", "name", "Joe Sales, Sr", 5, 1, 1, 1, new string[] { "id" });
-                await this.TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT ec.employee_id, ec.contact_type, ec.contact_data, e.name FROM employee_contact ec INNER JOIN employee e ON ec.employee_id=e.id", "name", "Joe Sales, Sr", 8, 0, 0, 0, new string[] { "employee_id", "contact_type" });
-                await this.TestMinimalSelects(database);
+                await TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT e.id, e.name FROM employee e INNER JOIN department d ON e.department_id=d.id ORDER BY e.name", "name", "Joe Sales, Sr", 5, 1, 1, 1, new string[] { "id" });
+                await TestInsertUpdateDeleteEvents(database, salesDepartmentId, "SELECT ec.employee_id, ec.contact_type, ec.contact_data, e.name FROM employee_contact ec INNER JOIN employee e ON ec.employee_id=e.id", "name", "Joe Sales, Sr", 8, 0, 0, 0, new string[] { "employee_id", "contact_type" });
+                await TestMinimalSelects(database);
             }
         }
 
-        public async Task TestInsertUpdateDeleteEvents(BaseDatabase database, object salesDepartmentId, string selectSourceSql, string updateField, object updateValue, int initialCount, int insertCount, int updateCount, int deleteCount, string[] keyFieldNames = null) {
+        public static async Task TestInsertUpdateDeleteEvents(BaseDatabase database, object salesDepartmentId, string selectSourceSql, string updateField, object updateValue, int initialCount, int insertCount, int updateCount, int deleteCount, string[] keyFieldNames = null) {
             List<DataEventTransaction> dataEventTransactionCollector = new List<DataEventTransaction>();
             using (DynamicViewSet dynamicViewSet = new DynamicViewSet(database, listener: dataEventTransaction => {
                 dataEventTransactionCollector.Add(dataEventTransaction);
@@ -140,7 +142,7 @@ namespace Butterfly.Database.Test {
             }
         }
 
-        public async Task TestMinimalSelects(BaseDatabase database) {
+        public static async Task TestMinimalSelects(BaseDatabase database) {
             await DatabaseUnitTest.TruncateData(database);
             using (DynamicViewSet dynamicViewSet = new DynamicViewSet(database, listener: dataEventTransaction => {
             })) {
