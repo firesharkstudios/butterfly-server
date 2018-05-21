@@ -55,8 +55,7 @@ namespace Butterfly.MySql {
         }
 
         protected override Task DoCommitAsync() {
-            this.DoCommit();
-            return Task.FromResult(0);
+            return this.transaction.CommitAsync();
         }
 
         protected override void DoRollback() {
