@@ -2,11 +2,11 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Butterfly.Aws;
+using Butterfly.Core.Notify.Test;
 
-namespace Butterfly.Core.Notify.Test {
+namespace Butterfly.Aws.Test {
     [TestClass]
-    public class UnitTest1 {
+    public class AwsTest {
         [TestMethod]
         public async Task SendAwsSesNotifyMessage() {
             var notifyMessageSender = new AwsSesEmailNotifyMessageSender();

@@ -7,7 +7,7 @@ using Butterfly.Core.Notify.Test;
 
 namespace Butterfly.Notify.Test {
     [TestClass]
-    public class UnitTest1 {
+    public class TwilioTest {
         [TestMethod]
         public async Task SendTwilioSmsNotifyMessage() {
             var notifyMessageSender = new TwilioPhoneTextNotifyMessageSender("my-sid", "my-auth-token");
