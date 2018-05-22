@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Butterfly.Core.Util;
 using Butterfly.Core.WebApi;
 
-namespace Butterfly.WebApi.Test {
+namespace Butterfly.Core.Test {
     [TestClass]
     public class WebApiUnitTest {
         /*

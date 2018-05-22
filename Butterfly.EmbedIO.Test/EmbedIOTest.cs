@@ -2,8 +2,7 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using Butterfly.Core.Channel.Test;
-using Butterfly.WebApi.Test;
+using Butterfly.Core.Test;
 
 namespace Butterfly.EmbedIO.Test {
     [TestClass]

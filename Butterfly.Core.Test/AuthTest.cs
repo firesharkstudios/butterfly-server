@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
+using Butterfly.Core.Auth;
 using Butterfly.Core.Database;
 using Butterfly.Core.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog;
 
-namespace Butterfly.Core.Auth.Test {
+namespace Butterfly.Core.Test {
     [TestClass]
     public class AuthTest {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();

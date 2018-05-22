@@ -15,7 +15,7 @@
 */
 
 using System.Threading.Tasks;
-
+using Butterfly.Core.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Butterfly.Core.Database.Test {

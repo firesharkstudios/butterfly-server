@@ -25,8 +25,9 @@ using Butterfly.Core.Database.Dynamic;
 using Butterfly.Core.Database.Event;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
+using Butterfly.Core.Database;
 
-namespace Butterfly.Core.Database.Test {
+namespace Butterfly.Core.Test {
     [TestClass]
     public class DynamicUnitTest {
         /*

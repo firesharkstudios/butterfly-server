@@ -6,8 +6,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Butterfly.Core.Util;
 using Butterfly.Client.DotNet;
+using Butterfly.Core.Channel;
 
-namespace Butterfly.Core.Channel.Test {
+namespace Butterfly.Core.Test {
     [TestClass]
     public class ChannelUnitTest {
         /*
@@ -34,10 +35,10 @@ namespace Butterfly.Core.Channel.Test {
 
         public static async Task TestChannel(IChannelServer channelServer, Action start) {
             // Listen for new channels at /test to be created
-            Channel channelA = null;
+            Butterfly.Core.Channel.Channel channelA = null;
             TestDisposable testDisposableA = new TestDisposable();
 
-            Channel channelB = null;
+            Butterfly.Core.Channel.Channel channelB = null;
             TestDisposable testDisposableB = new TestDisposable();
 
             // Register route

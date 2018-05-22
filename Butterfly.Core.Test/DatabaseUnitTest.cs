@@ -24,8 +24,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Butterfly.Core.Database.Event;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
+using Butterfly.Core.Database;
 
-namespace Butterfly.Core.Database.Test {
+namespace Butterfly.Core.Test {
     [TestClass]
     [DeploymentItem(@"x86\SQLite.Interop.dll", "x86")]
     public class DatabaseUnitTest {
