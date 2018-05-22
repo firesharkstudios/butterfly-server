@@ -1,17 +1,18 @@
-# Butterfly Framework ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/logo-40x40.png) 
+# Butterfly SPA Backend ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/logo-40x40.png) 
 
 > The Everything is Real-Time C# Backend for Single Page Applications
 
-Create your Single Page Application in your favorite framework ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)) and use the Butterfly Framework to build your server.
+Create your Single Page Application in your favorite framework ([Vue.js](https://vuejs.org/), [AngularJS](https://angularjs.org/), [React](https://reactjs.org/)) and use the Butterfly SPA Backend to build your server.
 
-Key goals of the Butterfly Framework...
+Key goals of the Butterfly SPA Backend...
 
 - Easily define a RESTful API
-- Auto sync data with clients
+- Easily select and modify data
+- Easily sync changes in datasets with clients
 
 ## Overview
 
-Let's see how the Butterly Framework would help us build a simple to-do list manager.
+Let's see how the Butterfly SPA Backend would help us build a simple to-do list manager.
 
 ### The Server
 
@@ -172,7 +173,7 @@ Or you can get the source from GitHub...
 Here are the key packages in *Butterfly.Core*...
 
 - [Butterfly.Core.Auth](https://firesharkstudios.github.io/Butterfly/Butterfly.Core#butterflycoreauth-namespace) - Allows registering and logging in users, handling forgot password and reset password requests, and validating auth tokens.
-- [Butterfly.Core.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Core#butterflycoredatabase-namespace) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Framework.
+- [Butterfly.Core.Database](https://firesharkstudios.github.io/Butterfly/Butterfly.Core#butterflycoredatabase-namespace) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly SPA Backend.
 - [Butterfly.Core.Channel](https://firesharkstudios.github.io/Butterfly/Butterfly.Core#butterflycorechannel-namespace) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
 - [Butterfly.Core.Notify](https://firesharkstudios.github.io/Butterfly/Butterfly.Core#butterflycorenotify-namespace) - Allows sending notifications (email/texts) to users.
 - [Butterfly.Core.WebApi](https://firesharkstudios.github.io/Butterfly/Butterfly.Core#butterflycorewebapi-namespace) - Allows receiving API requests via HTTP (inspired by Express JS) by wrapping existing C# web servers.

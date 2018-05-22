@@ -2,10 +2,6 @@
 
 Internal class used to store references to data event transaction listeners
 
-Internal class used to store references to data event transaction listeners
-
-Internal class used to store references to data event transaction listeners
-
 ```csharp
 public class DataEventTransactionListener
 ```
