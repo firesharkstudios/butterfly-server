@@ -21,11 +21,11 @@ using System.Reflection;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using Butterfly.Core.Database;
 using Butterfly.Core.Database.Dynamic;
 using Butterfly.Core.Database.Event;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
-using Butterfly.Core.Database;
 
 namespace Butterfly.Core.Test {
     [TestClass]

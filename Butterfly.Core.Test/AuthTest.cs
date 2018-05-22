@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NLog;
+
 using Butterfly.Core.Auth;
 using Butterfly.Core.Database;
 using Butterfly.Core.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NLog;
 
 namespace Butterfly.Core.Test {
     [TestClass]
