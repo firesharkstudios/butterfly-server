@@ -516,7 +516,10 @@ namespace Butterfly.Core.Auth {
                 { this.authTokenTableExpiresAtFieldName, expiresAt },
             });
 
-            return new AuthToken(id, userId, user.GetAs(this.userTableUsernameFieldName, (string)null), user.GetAs(this.userTableRoleFieldName, (string)null), user.GetAs(this.userTableAccountIdFieldName, (string)null), expiresAt);
+            string username = string.IsNullOrEmpty(this.userTableUsernameFieldName) ? null : user.GetAs(this.userTableUsernameFieldName, (string)null);
+            string role = string.IsNullOrEmpty(this.userTableRoleFieldName) ? null : user.GetAs(this.userTableRoleFieldName, (string)null);
+            string accountId = string.IsNullOrEmpty(this.userTableAccountIdFieldName) ? null : user.GetAs(this.userTableAccountIdFieldName, (string)null);
+            return new AuthToken(id, userId, username, role, accountId, expiresAt);
         }
 
         /// <summary>
