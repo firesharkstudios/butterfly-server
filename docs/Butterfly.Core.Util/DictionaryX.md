@@ -12,6 +12,7 @@ public static class DictionaryX
 | static [Format](DictionaryX/Format.md)(…) |  |
 | static [GetAs&lt;T,U,V&gt;](DictionaryX/GetAs.md)(…) |  |
 | static [IsSame&lt;T,U&gt;](DictionaryX/IsSame.md)(…) |  |
+| static [ToString&lt;T,U&gt;](DictionaryX/ToString.md)(…) |  |
 | static [UpdateFrom&lt;T,U&gt;](DictionaryX/UpdateFrom.md)(…) |  |
 
 ## See Also

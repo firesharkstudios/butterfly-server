@@ -11,6 +11,7 @@ using Butterfly.Core.Util.Field;
 using Butterfly.Core.WebApi;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
+using System.Collections.Generic;
 
 namespace Butterfly.Core.Auth {
     /// <summary>
@@ -178,7 +179,7 @@ namespace Butterfly.Core.Auth {
             string authTokenIdFieldName = "id",
             string authTokenTableUserIdFieldName = "user_id",
             string authTokenTableExpiresAtFieldName = "expires_at",
-            string defaultRole = "full-access",
+            string defaultRole = null,
             Func<string, int, Task> onEmailVerify = null,
             Func<string, int, Task> onPhoneVerify = null,
             Action<Dict> onRegister = null,
@@ -392,8 +393,10 @@ namespace Butterfly.Core.Auth {
                 { this.userTablePhoneFieldName, phone },
                 { this.userTableFirstNameFieldName, firstName  },
                 { this.userTableLastNameFieldName, lastName },
-                { this.userTableRoleFieldName, this.defaultRole },
             };
+            if (!string.IsNullOrEmpty(this.userTableRoleFieldName) && !string.IsNullOrEmpty(this.defaultRole)) {
+                user[this.userTableRoleFieldName] = this.defaultRole;
+            }
             if (string.IsNullOrEmpty(userId)) {
                 userId = await this.database.InsertAndCommitAsync<string>(this.userTableName, user);
             }
@@ -423,7 +426,14 @@ namespace Butterfly.Core.Auth {
         /// <param name="authTokenId"></param>
         /// <returns>An <see cref="AuthToken"/> instance</returns>
         public async Task<AuthToken> AuthenticateAsync(string authTokenId) {
-            Dict authTokenDict = await this.database.SelectRowAsync($"SELECT at.{this.authTokenIdFieldName}, at.{this.authTokenTableUserIdFieldName}, u.{this.userTableAccountIdFieldName}, u.{this.userTableUsernameFieldName}, u.{this.userTableRoleFieldName}, at.{this.authTokenTableExpiresAtFieldName} FROM {this.authTokenTableName} at INNER JOIN {this.userTableName} u ON at.user_id=u.id WHERE at.id=@authTokenId", new {
+            List<string> fieldList = new List<string>();
+            if (!string.IsNullOrEmpty(this.authTokenIdFieldName)) fieldList.Add($"at.{ this.authTokenIdFieldName}");
+            if (!string.IsNullOrEmpty(this.authTokenTableUserIdFieldName)) fieldList.Add($"at.{ this.authTokenTableUserIdFieldName}");
+            if (!string.IsNullOrEmpty(this.userTableAccountIdFieldName)) fieldList.Add($"u.{ this.userTableAccountIdFieldName}");
+            if (!string.IsNullOrEmpty(this.userTableUsernameFieldName)) fieldList.Add($"u.{ this.userTableUsernameFieldName}");
+            if (!string.IsNullOrEmpty(this.userTableRoleFieldName)) fieldList.Add($"u.{ this.userTableRoleFieldName}");
+            if (!string.IsNullOrEmpty(this.authTokenTableExpiresAtFieldName)) fieldList.Add($"at.{ this.authTokenTableExpiresAtFieldName}");
+            Dict authTokenDict = await this.database.SelectRowAsync($"SELECT {string.Join(",", fieldList)} FROM {this.authTokenTableName} at INNER JOIN {this.userTableName} u ON at.user_id=u.id WHERE at.id=@authTokenId", new {
                 authTokenId
             });
             logger.Debug($"Authenticate():authTokenDict={authTokenDict}");
@@ -463,12 +473,15 @@ namespace Butterfly.Core.Auth {
 
                 var firstName = CleverNameX.COLORS[random.Next(0, CleverNameX.COLORS.Length)];
                 var lastName = CleverNameX.ANIMALS[random.Next(0, CleverNameX.ANIMALS.Length)];
-                string userId = await transaction.InsertAsync<string>(this.userTableName, new Dict {
+                Dict user = new Dict {
                     { this.userTableFirstNameFieldName, firstName },
                     { this.userTableLastNameFieldName, lastName },
                     { this.userTableAccountIdFieldName, accountId },
-                    { this.userTableRoleFieldName, role }
-                });
+                };
+                if (!string.IsNullOrEmpty(this.userTableRoleFieldName) && !string.IsNullOrEmpty(role)) {
+                    user[this.userTableRoleFieldName] = role;
+                }
+                string userId = await transaction.InsertAsync<string>(this.userTableName, user);
 
                 DateTime expiresAt = DateTime.Now.AddDays(this.authTokenDurationDays);
                 string id = await transaction.InsertAsync<string>(this.authTokenTableName, new Dict {
@@ -488,7 +501,11 @@ namespace Butterfly.Core.Auth {
         /// <param name="userId"></param>
         /// <returns>The AuthToken instance created</returns>
         public async Task<AuthToken> CreateAuthTokenAsync(string userId) {
-            Dict user = await this.database.SelectRowAsync($"SELECT {this.userTableUsernameFieldName}, {this.userTableRoleFieldName}, {this.userTableAccountIdFieldName} FROM user WHERE id=@userId", new {
+            List<string> fieldNames = new List<string>();
+            if (!string.IsNullOrEmpty(this.userTableUsernameFieldName)) fieldNames.Add(this.userTableUsernameFieldName);
+            if (!string.IsNullOrEmpty(this.userTableRoleFieldName)) fieldNames.Add(this.userTableRoleFieldName);
+            if (!string.IsNullOrEmpty(this.userTableAccountIdFieldName)) fieldNames.Add(this.userTableAccountIdFieldName);
+            Dict user = await this.database.SelectRowAsync($"SELECT {string.Join(",", fieldNames)} FROM user WHERE id=@userId", new {
                 userId
             });
             if (user==null) throw new Exception("Invalid user");
@@ -629,12 +646,12 @@ namespace Butterfly.Core.Auth {
         }
 
         public static AuthToken FromDict(Dict dict, string idFieldName, string userIdFieldName, string usernameFieldName, string roleFieldName, string accountIdFieldName, string expiresAtFieldName) {
-            string id = dict.GetAs(idFieldName, (string)null);
-            string userId = dict.GetAs(userIdFieldName, (string)null);
-            string username = dict.GetAs(usernameFieldName, (string)null);
-            string role = dict.GetAs(roleFieldName, (string)null);
-            string accountId = dict.GetAs(accountIdFieldName, (string)null);
-            DateTime expiresAt = dict.GetAs(expiresAtFieldName, DateTime.MinValue);
+            string id = string.IsNullOrEmpty(idFieldName) ? null : dict.GetAs(idFieldName, (string)null);
+            string userId = string.IsNullOrEmpty(userIdFieldName) ? null : dict.GetAs(userIdFieldName, (string)null);
+            string username = string.IsNullOrEmpty(usernameFieldName) ? null : dict.GetAs(usernameFieldName, (string)null);
+            string role = string.IsNullOrEmpty(roleFieldName) ? null : dict.GetAs(roleFieldName, (string)null);
+            string accountId = string.IsNullOrEmpty(accountIdFieldName) ? null : dict.GetAs(accountIdFieldName, (string)null);
+            DateTime expiresAt = string.IsNullOrEmpty(expiresAtFieldName) ? DateTime.MaxValue : dict.GetAs(expiresAtFieldName, DateTime.MinValue);
             return new AuthToken(id, userId, username, role, accountId, expiresAt);
         }
     }
