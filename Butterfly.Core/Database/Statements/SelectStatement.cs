@@ -67,6 +67,27 @@ namespace Butterfly.Core.Database {
             // Parse the FROM clause
             this.TableRefs = StatementTableRef.ParseTableRefs(database, this.fromClause);
 
+            var rawFieldRefs = StatementFieldRef.ParseFieldRefs(selectClause);
+            List<StatementFieldRef> fieldRefs = new List<StatementFieldRef>();
+            foreach (var rawFieldRef in rawFieldRefs) {
+                if (rawFieldRef.fieldName=="*") {
+                    if (string.IsNullOrEmpty(rawFieldRef.tableAlias)) {
+                        if (this.TableRefs.Length != 1) throw new Exception("Select statement must have exactly one table to use * to select field names");
+                        fieldRefs.AddRange(this.TableRefs[0].table.FieldDefs.Select(x => new StatementFieldRef(x.name)));
+                    }
+                    else {
+                        var tableRef = this.TableRefs.First(x => rawFieldRef.tableAlias == x.table.Name || rawFieldRef.tableAlias == x.tableAlias);
+                        if (tableRef == null) throw new Exception($"Could not find table matching {this.selectClause}");
+                        fieldRefs.AddRange(tableRef.table.FieldDefs.Select(x => new StatementFieldRef(x.name)));
+                    }
+                }
+                else {
+                    fieldRefs.Add(rawFieldRef);
+                }
+            }
+            this.FieldRefs = fieldRefs.ToArray();
+
+            /*
             if (this.selectClause == "*" || string.IsNullOrEmpty(this.selectClause)) {
                 if (this.TableRefs.Length != 1) throw new Exception("Select statement must have exactly one table to use * to select field names");
                 this.FieldRefs = this.TableRefs[0].table.FieldDefs.Select(x => new StatementFieldRef(x.name)).ToArray();
@@ -80,6 +101,7 @@ namespace Butterfly.Core.Database {
             else {
                 this.FieldRefs = StatementFieldRef.ParseFieldRefs(selectClause);
             }
+            */
         }
 
         public SelectStatement(SelectStatement sourceSelectStatement, string overrideWhereClause, bool ignoreOrderBy) {

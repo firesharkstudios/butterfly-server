@@ -393,14 +393,13 @@ namespace Butterfly.Core.Database {
             return (tableName, input) => {
                 foreach (var pair in input.ToArray()) {
                     if (pair.Value is T) {
-                        object newValue = convert((T)pair.Value);
-                        input[pair.Key] = newValue;
+                        input[pair.Key] = convert((T)pair.Value);
                     }
                 }
             };
         }
 
-        public static Action<string, Dict> CopyFieldValue(string token, string sourceFieldName) {
+        public static Action<string, Dict> CopyFieldValueInputPreprocessor(string token, string sourceFieldName) {
             return (tableName, input) => {
                 foreach (var pair in input.ToArray()) {
                     string stringValue = pair.Value as string;

@@ -41,7 +41,7 @@ public abstract class BaseDatabase : IDatabase
 | [SetOverrideValue](BaseDatabase/SetOverrideValue.md)(…) | Allows specifying a lambda that creates an override value for a field when executing both an INSERT and UPDATE. If *tableName* is null, the *getValue* lambda will be applied to all tables. |
 | [UpdateAndCommitAsync](BaseDatabase/UpdateAndCommitAsync.md)(…) | Executes an UPDATE statement as a single transaction |
 | static [ConvertMySqlType](BaseDatabase/ConvertMySqlType.md)(…) |  |
-| static [CopyFieldValue](BaseDatabase/CopyFieldValue.md)(…) |  |
+| static [CopyFieldValueInputPreprocessor](BaseDatabase/CopyFieldValueInputPreprocessor.md)(…) |  |
 | static [RemapTypeInputPreprocessor&lt;T&gt;](BaseDatabase/RemapTypeInputPreprocessor.md)(…) |  |
 
 ## Remarks
