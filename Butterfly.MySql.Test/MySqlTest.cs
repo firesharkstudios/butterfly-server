@@ -15,10 +15,12 @@
 */
 
 using System.Threading.Tasks;
-using Butterfly.Core.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Butterfly.Core.Database.Test {
+using Butterfly.Core.Database;
+using Butterfly.Core.Test;
+
+namespace Butterfly.MySql.Test {
     [TestClass]
     public class MySqlDatabaseUnitTest {
         [TestMethod]

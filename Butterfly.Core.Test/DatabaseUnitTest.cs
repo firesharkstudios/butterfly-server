@@ -103,7 +103,7 @@ namespace Butterfly.Core.Test {
         */
 
         public static async Task TestDatabase(IDatabase database) {
-            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Core.Database.Test.db.sql");
+            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Core.Test.db.sql");
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString(), "employee");
             database.SetDefaultValue("created_at", tableName => DateTime.Now);
             database.SetDefaultValue("updated_at", tableName => DateTime.Now);
@@ -356,6 +356,13 @@ namespace Butterfly.Core.Test {
             // Test join
             if (database.CanJoin) {
                 Dict[] someEmployees11 = await database.SelectRowsAsync("SELECT e.* FROM employee e INNER JOIN department d ON e.department_id=d.id");
+                Assert.AreEqual(3, someEmployees11.Length);
+                Assert.AreEqual(6, someEmployees11[0].Count);
+            }
+
+            // Test join with single table wildcard
+            if (database.CanJoin) {
+                Dict[] someEmployees11 = await database.SelectRowsAsync("SELECT e.*, d.name FROM employee e INNER JOIN department d ON e.department_id=d.id");
                 Assert.AreEqual(3, someEmployees11.Length);
                 Assert.AreEqual(6, someEmployees11[0].Count);
             }

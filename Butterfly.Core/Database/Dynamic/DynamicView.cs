@@ -52,7 +52,10 @@ namespace Butterfly.Core.Database.Dynamic {
             this.varsDict = this.statement.ConvertParamsToDict(vars);
 
             if (string.IsNullOrEmpty(name)) {
-                if (this.statement.TableRefs.Length != 1) throw new System.Exception("Must specify name if the DynamicView contains multiple table references");
+                //if (this.statement.TableRefs.Length != 1) throw new System.Exception("Must specify name if the DynamicView contains multiple table references");
+                if (this.statement.TableRefs.Length > 0) {
+                    logger.Debug($"DynamicView():Using '{this.statement.TableRefs[0].table.Name}' for the name of the dynamic view even though the SQL contained tables '{string.Join(",", this.statement.TableRefs.Select(x => x.table.Name))}'");
+                }
                 this.name = this.statement.TableRefs[0].table.Name;
             }
             else {
@@ -60,7 +63,10 @@ namespace Butterfly.Core.Database.Dynamic {
             }
 
             if (keyFieldNames == null) {
-                if (this.statement.TableRefs.Length != 1) throw new System.Exception("Must specify key field names if the DynamicView contains multiple table references");
+                //if (this.statement.TableRefs.Length != 1) throw new System.Exception("Must specify key field names if the DynamicView contains multiple table references");
+                if (this.statement.TableRefs.Length > 0) {
+                    logger.Debug($"DynamicView():Using the key field names of the primary key of table '{this.statement.TableRefs[0].table.Name}' for the dynamic view name even though the SQL contained tables '{string.Join(",", this.statement.TableRefs.Select(x => x.table.Name))}'");
+                }
                 this.keyFieldNames = this.statement.TableRefs[0].table.Indexes[0].FieldNames;
             }
             else {

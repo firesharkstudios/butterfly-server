@@ -67,7 +67,7 @@ namespace Butterfly.Core.Database {
             // Parse the FROM clause
             this.TableRefs = StatementTableRef.ParseTableRefs(database, this.fromClause);
 
-            var rawFieldRefs = StatementFieldRef.ParseFieldRefs(selectClause);
+            var rawFieldRefs = StatementFieldRef.ParseFieldRefs(string.IsNullOrEmpty(selectClause) ? "*" : selectClause, true);
             List<StatementFieldRef> fieldRefs = new List<StatementFieldRef>();
             foreach (var rawFieldRef in rawFieldRefs) {
                 if (rawFieldRef.fieldName=="*") {
@@ -232,12 +232,13 @@ namespace Butterfly.Core.Database {
             this.fieldAlias = string.IsNullOrWhiteSpace(fieldAlias) ? fieldName : fieldAlias;
         }
 
+        protected readonly static Regex REGEX_WILDCARD = new Regex(@"^(\w+\.)?(\w+|\*)(\s+\w+)?");
         protected readonly static Regex REGEX = new Regex(@"^(\w+\.)?(\w+)(\s+\w+)?");
-        public static StatementFieldRef[] ParseFieldRefs(string selectClause) {
+        public static StatementFieldRef[] ParseFieldRefs(string selectClause, bool allowWildcard) {
             List<StatementFieldRef> fieldRefs = new List<StatementFieldRef>();
             string[] selectClauseParts = selectClause.Split(',').Select(x => x.Trim()).ToArray();
             foreach (var selectClausePart in selectClauseParts) {
-                Match match = REGEX.Match(selectClausePart);
+                Match match = (allowWildcard ? REGEX_WILDCARD : REGEX).Match(selectClausePart);
                 if (!match.Success) throw new Exception("Invalid field reference in SELECT clause '{selectClausePart}'");
                 string tableAlias = match.Groups[1].Value.Trim();
                 if (tableAlias.EndsWith(".")) tableAlias = tableAlias.Substring(0, tableAlias.Length - 1);
