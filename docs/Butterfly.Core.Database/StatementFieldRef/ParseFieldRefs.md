@@ -1,7 +1,7 @@
 # StatementFieldRef.ParseFieldRefs method
 
 ```csharp
-public static StatementFieldRef[] ParseFieldRefs(string selectClause)
+public static StatementFieldRef[] ParseFieldRefs(string selectClause, bool allowWildcard)
 ```
 
 ## See Also

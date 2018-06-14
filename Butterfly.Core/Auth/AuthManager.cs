@@ -122,6 +122,8 @@ namespace Butterfly.Core.Auth {
         protected readonly IFieldValidator emailFieldValidator;
         protected readonly IFieldValidator phoneFieldValidator;
 
+        protected readonly Version minSupportedVersion;
+
         /// <summary>
         /// Create an instance of AuthManager
         /// </summary>
@@ -180,6 +182,7 @@ namespace Butterfly.Core.Auth {
             string authTokenTableUserIdFieldName = "user_id",
             string authTokenTableExpiresAtFieldName = "expires_at",
             string defaultRole = null,
+            Version minSupportedVersion = null,
             Func<string, int, Task> onEmailVerify = null,
             Func<string, int, Task> onPhoneVerify = null,
             Action<Dict> onRegister = null,
@@ -215,6 +218,7 @@ namespace Butterfly.Core.Auth {
             this.authTokenTableExpiresAtFieldName = authTokenTableExpiresAtFieldName;
 
             this.defaultRole = defaultRole;
+            this.minSupportedVersion = minSupportedVersion;
 
             this.onEmailVerify = onEmailVerify;
             this.onPhoneVerify = onPhoneVerify;
@@ -258,7 +262,10 @@ namespace Butterfly.Core.Auth {
 
             webApiServer.OnGet($"{pathPrefix}/check-auth-token/{{id}}", async (req, res) => {
                 string id = req.PathParams.GetAs("id", (string)null);
-                logger.Debug($"/check-auth-token/{id}"); //?join_code={joinCode}");
+                string versionText = req.QueryParams.GetAs("v", "").Replace("v", "");
+                Version version = string.IsNullOrEmpty(versionText) ? null : Version.Parse(versionText);
+                logger.Debug($"/check-auth-token/{id}?v={version}"); //?join_code={joinCode}");
+                this.CheckVersion(version);
                 AuthToken authToken = await this.AuthenticateAsync(id);
                 await res.WriteAsJsonAsync(authToken);
             });
@@ -307,6 +314,10 @@ namespace Butterfly.Core.Auth {
                 Dict data = await req.ParseAsJsonAsync<Dict>();
                 await this.VerifyAsync(data, "phone", "phone_verified_at", this.onPhoneVerify);
             });
+        }
+
+        public void CheckVersion(Version version) {
+            if (this.minSupportedVersion != null && (version==null || version < this.minSupportedVersion)) throw new Exception($"v{version} is unsupported");
         }
 
         /// <summary>

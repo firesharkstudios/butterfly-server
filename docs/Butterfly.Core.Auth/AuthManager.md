@@ -12,6 +12,7 @@ public class AuthManager
 | --- | --- |
 | [AuthManager](AuthManager/AuthManager.md)(…) | Create an instance of AuthManager |
 | [AuthenticateAsync](AuthManager/AuthenticateAsync.md)(…) | Validates the auth token id returning an [`AuthToken`](AuthToken.md) instance |
+| [CheckVersion](AuthManager/CheckVersion.md)(…) |  |
 | [CreateAnonymousUserAsync](AuthManager/CreateAnonymousUserAsync.md)() | Creates an anonymous user and returns a valid [`AuthToken`](AuthToken.md) |
 | [CreateAuthTokenAsync](AuthManager/CreateAuthTokenAsync.md)(…) | Create an auth token |
 | [ForgotPasswordAsync](AuthManager/ForgotPasswordAsync.md)(…) | Creates a reset code and invokes onForgotPassword to send the reset code to the user |
