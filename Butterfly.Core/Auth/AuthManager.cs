@@ -12,6 +12,7 @@ using Butterfly.Core.WebApi;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Butterfly.Core.Auth {
     /// <summary>
@@ -262,7 +263,8 @@ namespace Butterfly.Core.Auth {
 
             webApiServer.OnGet($"{pathPrefix}/check-auth-token/{{id}}", async (req, res) => {
                 string id = req.PathParams.GetAs("id", (string)null);
-                string versionText = req.QueryParams.GetAs("v", "").Replace("v", "");
+                string rawVersionText = req.QueryParams.GetAs("v", "");
+                string versionText = new Regex(@"[^\d\.]+").Replace(rawVersionText, "");
                 Version version = string.IsNullOrEmpty(versionText) ? null : Version.Parse(versionText);
                 logger.Debug($"/check-auth-token/{id}?v={version}"); //?join_code={joinCode}");
                 this.CheckVersion(version);

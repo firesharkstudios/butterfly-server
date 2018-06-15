@@ -73,9 +73,7 @@ namespace Butterfly.Examples {
                     WHERE cpx.user_id=@userId",
                     values: new {
                         userId = channel.Connection.AuthToken
-                    },
-                    name: "chat",
-                    keyFieldNames: new string[] { "id" }
+                    }
                 );
 
                 // Add a "chat_participant" DynamicView that includes all the chat participants the user can see
@@ -87,9 +85,7 @@ namespace Butterfly.Examples {
                     WHERE cpx.user_id=@userId",
                     values: new {
                         userId = channel.Connection.AuthToken
-                    },
-                    name: "chat_participant",
-                    keyFieldNames: new string[] { "id" }
+                    }
                 );
 
                 // Add a "chat_message" DynamicView that includes all the chat messages the user can see
@@ -101,9 +97,7 @@ namespace Butterfly.Examples {
                     WHERE cpx.user_id=@userId",
                     values: new {
                         userId = channel.Connection.AuthToken
-                    },
-                    name: "chat_message",
-                    keyFieldNames: new string[] { "id" }
+                    }
                 );
 
                 // Start the DynamicView group (executes all the DynamicView queries and sends changes as they occur)
@@ -121,7 +115,7 @@ namespace Butterfly.Examples {
                 // Update record in database
                 await database.UpdateAndCommitAsync("UPDATE user SET name=@name WHERE id=@id", new {
                     id = auth.Parameter,
-                    name = user.name,
+                    user.name,
                 });
             });
 
@@ -152,7 +146,7 @@ namespace Butterfly.Examples {
                 var join = await req.ParseAsJsonAsync<dynamic>();
 
                 var chatId = await database.SelectValueAsync<string>("SELECT id FROM chat WHERE join_id=@joinId", new {
-                    joinId = join.joinId,
+                    join.joinId,
                 }, null);
 
                 // Create records in database
