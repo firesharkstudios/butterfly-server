@@ -155,7 +155,7 @@ namespace Butterfly.MySql {
 
             List<Dict> rows = new List<Dict>();
             try {
-                using (MySqlDataReader reader = await ExecuteReaderAsync(this.ConnectionString, $"CALL {storedProcedureName}", mySqlParams)) {
+                using (MySqlDataReader reader = await ExecuteReaderAsync(this.ConnectionString, storedProcedureName, mySqlParams, commandType: CommandType.StoredProcedure)) {
                     while (reader.Read()) {
                         Dict row = new Dictionary<string, object>();
                         for (int i = 0; i < reader.FieldCount; i++) {
@@ -190,10 +190,11 @@ namespace Butterfly.MySql {
             }
         }
 
-        private static async Task<MySqlDataReader> ExecuteReaderAsync(string connectionString, string commandText, MySqlParameter[] parameters) {
+        private static async Task<MySqlDataReader> ExecuteReaderAsync(string connectionString, string commandText, MySqlParameter[] parameters, CommandType commandType = CommandType.Text) {
             MySqlConnection connection = new MySqlConnection(connectionString);
             await connection.OpenAsync();
             using (MySqlCommand command = new MySqlCommand(commandText, connection)) {
+                command.CommandType = commandType;
                 command.Parameters.AddRange(parameters);
                 return (MySqlDataReader) await command.ExecuteReaderAsync(CommandBehavior.CloseConnection);
             }

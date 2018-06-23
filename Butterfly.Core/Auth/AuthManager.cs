@@ -116,6 +116,7 @@ namespace Butterfly.Core.Auth {
 
         protected readonly Action<Dict> onRegister;
         protected readonly Action<Dict> onForgotPassword;
+        protected readonly Action<Version> onCheckVersion;
 
         protected readonly IFieldValidator usernameFieldValidator;
         protected readonly IFieldValidator passwordFieldValidator;
@@ -123,7 +124,6 @@ namespace Butterfly.Core.Auth {
         protected readonly IFieldValidator emailFieldValidator;
         protected readonly IFieldValidator phoneFieldValidator;
 
-        protected readonly Version minSupportedVersion;
 
         /// <summary>
         /// Create an instance of AuthManager
@@ -183,11 +183,11 @@ namespace Butterfly.Core.Auth {
             string authTokenTableUserIdFieldName = "user_id",
             string authTokenTableExpiresAtFieldName = "expires_at",
             string defaultRole = null,
-            Version minSupportedVersion = null,
             Func<string, int, Task> onEmailVerify = null,
             Func<string, int, Task> onPhoneVerify = null,
             Action<Dict> onRegister = null,
-            Action<Dict> onForgotPassword = null
+            Action<Dict> onForgotPassword = null,
+            Action<Version> onCheckVersion = null
         ) {
             this.database = database;
 
@@ -219,12 +219,12 @@ namespace Butterfly.Core.Auth {
             this.authTokenTableExpiresAtFieldName = authTokenTableExpiresAtFieldName;
 
             this.defaultRole = defaultRole;
-            this.minSupportedVersion = minSupportedVersion;
 
             this.onEmailVerify = onEmailVerify;
             this.onPhoneVerify = onPhoneVerify;
             this.onRegister = onRegister;
             this.onForgotPassword = onForgotPassword;
+            this.onCheckVersion = onCheckVersion;
 
             this.usernameFieldValidator = new GenericFieldValidator(this.userTableUsernameFieldName, @"^[_A-z0-9\-\.]{3,25}$", allowNull: false, forceLowerCase: true, includeValueInError: true);
             this.passwordFieldValidator = new GenericFieldValidator("password", "^.{6,255}$", allowNull: false, forceLowerCase: false, includeValueInError: false);
@@ -232,6 +232,8 @@ namespace Butterfly.Core.Auth {
             this.emailFieldValidator = new EmailFieldValidator(this.userTableEmailFieldName, allowNull: true);
             this.phoneFieldValidator = new PhoneFieldValidator(this.userTableEmailFieldName, allowNull: false);
         }
+
+        protected readonly static Regex VERSION_CLEAN_REGEX = new Regex(@"[^\d\.]+");
 
         /// <summary>
         /// Call to setup a Web API with the specified <paramref name="webApiServer"/>
@@ -264,10 +266,10 @@ namespace Butterfly.Core.Auth {
             webApiServer.OnGet($"{pathPrefix}/check-auth-token/{{id}}", async (req, res) => {
                 string id = req.PathParams.GetAs("id", (string)null);
                 string rawVersionText = req.QueryParams.GetAs("v", "");
-                string versionText = new Regex(@"[^\d\.]+").Replace(rawVersionText, "");
+                string versionText = VERSION_CLEAN_REGEX.Replace(rawVersionText, "");
                 Version version = string.IsNullOrEmpty(versionText) ? null : Version.Parse(versionText);
                 logger.Debug($"/check-auth-token/{id}?v={version}"); //?join_code={joinCode}");
-                this.CheckVersion(version);
+                if (this.onCheckVersion != null) this.onCheckVersion(version);
                 AuthToken authToken = await this.AuthenticateAsync(id);
                 await res.WriteAsJsonAsync(authToken);
             });
@@ -318,9 +320,11 @@ namespace Butterfly.Core.Auth {
             });
         }
 
+        /*
         public void CheckVersion(Version version) {
-            if (this.minSupportedVersion != null && (version==null || version < this.minSupportedVersion)) throw new Exception($"v{version} is unsupported");
+            if (this.onCheckVersion != null && (version==null || version < this.onCheckVersion)) throw new Exception($"v{version} is unsupported");
         }
+        */
 
         /// <summary>
         /// Call to verify a user's email or phone
