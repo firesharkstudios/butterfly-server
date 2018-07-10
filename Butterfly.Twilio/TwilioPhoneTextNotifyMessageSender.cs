@@ -21,19 +21,19 @@ namespace Butterfly.Twilio
             this.twilioAuthToken = twilioAuthToken;
         }
 
-        protected override async Task DoSendAsync(string from, string to, string subject, string bodyText, string bodyHtml) {
+        protected override async Task<string> DoSendAsync(string from, string to, string subject, string bodyText, string bodyHtml) {
             TwilioClient.Init(this.twilioAccountSid, this.twilioAuthToken);
 
-            try {
+            //try {
                 MessageResource messageResource = await MessageResource.CreateAsync(
                     to: new PhoneNumber(to),
                     from: new PhoneNumber(from),
                     body: bodyText);
-                logger.Debug($"SendAsync():messageResource.Sid={messageResource.Sid}");
-            }
-            catch (Exception e) {
-                logger.Error(e);
-            }
+                return messageResource.Sid;
+            //}
+            //catch (Exception e) {
+            //    logger.Error(e);
+            //}
         }
 
         /*

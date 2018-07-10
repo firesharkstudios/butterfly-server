@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 
 using NLog;
 
 using Butterfly.Core.Util;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
-using System.Text.RegularExpressions;
 
 namespace Butterfly.Core.Notify {
     public class NotifyMessage {
@@ -19,13 +19,18 @@ namespace Butterfly.Core.Notify {
         public readonly string subject;
         public readonly string bodyText;
         public readonly string bodyHtml;
+        public readonly byte priority;
 
-        public NotifyMessage(string from, string to, string subject, string bodyText, string bodyHtml) {
+        public Dict extraData = null;
+
+        public NotifyMessage(string from, string to, string subject, string bodyText, string bodyHtml = null, byte priority = 0, Dict extraData = null) {
             this.from = from;
             this.to = to;
             this.subject = subject;
             this.bodyText = bodyText;
             this.bodyHtml = bodyHtml;
+            this.priority = 0;
+            this.extraData = null;
         }
 
         protected const string TEXT_SECTION_NAME = "Text";
@@ -46,7 +51,7 @@ namespace Butterfly.Core.Notify {
             string subject = values.Format(this.subject);
             string bodyText = values.Format(this.bodyText);
             string bodyHtml = values.Format(this.bodyHtml);
-            return new NotifyMessage(from, to, subject, bodyText, bodyHtml);
+            return new NotifyMessage(from, to, subject, bodyText, bodyHtml, this.priority);
         }
 
         public static NotifyMessage ParseFile(string fileName) {
@@ -59,6 +64,7 @@ namespace Butterfly.Core.Notify {
             string from = null;
             string to = null;
             string subject = null;
+            byte priority = 0;
             Dictionary<string, string> sectionByName = new Dictionary<string, string>();
 
             string[] lines = Regex.Split(text, "\r\n|\r|\n");
@@ -106,6 +112,9 @@ namespace Butterfly.Core.Notify {
                             case "SUBJECT":
                                 subject = value;
                                 break;
+                            case "PRIORITY":
+                                priority = byte.Parse(value);
+                                break;
                             default:
                                 logger.Error("Unknown field '" + name + "'");
                                 break;
@@ -114,7 +123,7 @@ namespace Butterfly.Core.Notify {
                 }
             }
 
-            return new NotifyMessage(from, to, subject, sectionByName.GetAs(TEXT_SECTION_NAME, (string)null), sectionByName.GetAs(HTML_SECTION_NAME, (string)null));
+            return new NotifyMessage(from, to, subject, sectionByName.GetAs(TEXT_SECTION_NAME, (string)null), sectionByName.GetAs(HTML_SECTION_NAME, (string)null), priority);
         }
     }
 }

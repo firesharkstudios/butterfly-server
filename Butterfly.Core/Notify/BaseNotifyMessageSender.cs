@@ -13,12 +13,12 @@ namespace Butterfly.Core.Notify {
             this.sendEveryMillis = sendEveryMillis;
         }
 
-        public async Task SendAsync(string from, string to, string subject, string bodyText, string bodyHtml) {
+        public Task<string> SendAsync(string from, string to, string subject, string bodyText, string bodyHtml) {
             this.lastSend = DateTime.Now;
-            await this.DoSendAsync(from, to, subject, bodyText, bodyHtml);
+            return this.DoSendAsync(from, to, subject, bodyText, bodyHtml);
         }
 
-        protected abstract Task DoSendAsync(string from, string to, string subject, string bodyText, string bodyHtml);
+        protected abstract Task<string> DoSendAsync(string from, string to, string subject, string bodyText, string bodyHtml);
 
         public DateTime CanSendNextAt {
             get {

@@ -35,7 +35,6 @@ namespace Butterfly.Core.Notify {
 
         protected readonly NotifyMessage verifyEmailNotifyMessage;
         protected readonly NotifyMessage verifyPhoneTextNotifyMessage;
-        protected readonly byte verifyNotifyMessagePriority;
         protected readonly string verifyCodeFormat;
 
         protected readonly static EmailFieldValidator EMAIL_FIELD_VALIDATOR = new EmailFieldValidator("email", false, true);
@@ -43,7 +42,7 @@ namespace Butterfly.Core.Notify {
 
         protected readonly static Random RANDOM = new Random();
 
-        public NotifyManager(IDatabase database, INotifyMessageSender emailNotifyMessageSender = null, INotifyMessageSender phoneTextNotifyMessageSender = null, string notifyMessageTableName = "notify_message", string notifyVerifyTableName = "notify_verify", int verifyCodeExpiresSeconds = 3600, string verifyEmailFile = null, string verifyPhoneTextFile = null, byte verifyNotifyMessagePriority = 10, string verifyCodeFormat = "###-###") {
+        public NotifyManager(IDatabase database, INotifyMessageSender emailNotifyMessageSender = null, INotifyMessageSender phoneTextNotifyMessageSender = null, string notifyMessageTableName = "notify_message", string notifyVerifyTableName = "notify_verify", int verifyCodeExpiresSeconds = 3600, string verifyEmailFile = null, string verifyPhoneTextFile = null, string verifyCodeFormat = "###-###") {
             this.database = database;
             this.emailNotifyMessageEngine = emailNotifyMessageSender == null ? null : new NotifyMessageEngine(NotifyMessageType.Email, emailNotifyMessageSender, database, notifyMessageTableName);
             this.phoneTextNotifyMessageEngine = phoneTextNotifyMessageSender == null ? null : new NotifyMessageEngine(NotifyMessageType.PhoneText, phoneTextNotifyMessageSender, database, notifyMessageTableName);
@@ -53,7 +52,6 @@ namespace Butterfly.Core.Notify {
 
             this.verifyEmailNotifyMessage = verifyEmailFile!=null ? NotifyMessage.ParseFile(verifyEmailFile) : null;
             this.verifyPhoneTextNotifyMessage = verifyPhoneTextFile!=null ? NotifyMessage.ParseFile(verifyPhoneTextFile) : null;
-            this.verifyNotifyMessagePriority = verifyNotifyMessagePriority;
             this.verifyCodeFormat = verifyCodeFormat;
         }
 
@@ -126,7 +124,7 @@ namespace Butterfly.Core.Notify {
                 contact = scrubbedContact,
                 code = code.ToString(this.verifyCodeFormat)
             });
-            await this.Queue(evaluatedNotifyMessage, this.verifyNotifyMessagePriority);
+            await this.Queue(evaluatedNotifyMessage);
         }
 
         public async Task<string> VerifyAsync(string contact, int code) {
@@ -160,24 +158,37 @@ namespace Butterfly.Core.Notify {
         /// <param name="priority">Higher number indicates higher priority</param>
         /// <param name="notifyMessage"></param>
         /// <returns></returns>
-        public async Task Queue(NotifyMessage notifyMessage, byte priority = 0) {
-            if (string.IsNullOrEmpty(notifyMessage.from)) throw new Exception("From address cannot be blank");
-            string scrubbedFrom = Validate(notifyMessage.from);
+        public async Task Queue(params NotifyMessage[] notifyMessages) {
+            bool emailQueued = false;
+            bool phoneTextQueued = false;
+            using (ITransaction transaction = await this.database.BeginTransactionAsync()) {
+                foreach (var notifyMessage in notifyMessages) {
+                    if (notifyMessage == null) continue;
 
-            if (string.IsNullOrEmpty(notifyMessage.to)) throw new Exception("To address cannot be blank");
-            string scrubbedTo = Validate(notifyMessage.to);
+                    if (string.IsNullOrEmpty(notifyMessage.from)) throw new Exception("From address cannot be blank");
+                    string scrubbedFrom = Validate(notifyMessage.from);
 
-            NotifyMessageType notifyMessageType = this.DetectNotifyMessageType(scrubbedTo);
-            switch (notifyMessageType) {
-                case NotifyMessageType.Email:
-                    if (this.emailNotifyMessageEngine == null) throw new Exception("No email message sender configured");
-                    await this.emailNotifyMessageEngine.Queue(priority, scrubbedFrom, scrubbedTo, notifyMessage.subject, notifyMessage.bodyText, notifyMessage.bodyHtml);
-                    break;
-                case NotifyMessageType.PhoneText:
-                    if (this.phoneTextNotifyMessageEngine == null) throw new Exception("No phone text message sender configured");
-                    await this.phoneTextNotifyMessageEngine.Queue(priority, scrubbedFrom, scrubbedTo, notifyMessage.subject, notifyMessage.bodyText, notifyMessage.bodyHtml);
-                    break;
+                    if (string.IsNullOrEmpty(notifyMessage.to)) throw new Exception("To address cannot be blank");
+                    string scrubbedTo = Validate(notifyMessage.to);
+
+                    NotifyMessageType notifyMessageType = this.DetectNotifyMessageType(scrubbedTo);
+                    switch (notifyMessageType) {
+                        case NotifyMessageType.Email:
+                            if (this.emailNotifyMessageEngine == null) throw new Exception("No email message sender configured");
+                            await this.emailNotifyMessageEngine.Queue(transaction, scrubbedFrom, scrubbedTo, notifyMessage.subject, notifyMessage.bodyText, notifyMessage.bodyHtml, notifyMessage.priority, notifyMessage.extraData);
+                            emailQueued = true;
+                            break;
+                        case NotifyMessageType.PhoneText:
+                            if (this.phoneTextNotifyMessageEngine == null) throw new Exception("No phone text message sender configured");
+                            await this.phoneTextNotifyMessageEngine.Queue(transaction, scrubbedFrom, scrubbedTo, notifyMessage.subject, notifyMessage.bodyText, notifyMessage.bodyHtml, notifyMessage.priority, notifyMessage.extraData);
+                            phoneTextQueued = true;
+                            break;
+                    }
+                }
+                await transaction.CommitAsync();
             }
+            if (emailQueued) this.emailNotifyMessageEngine.Pulse();
+            if (phoneTextQueued) this.phoneTextNotifyMessageEngine.Pulse();
         }
 
         protected NotifyMessageType DetectNotifyMessageType(string to) {
@@ -215,9 +226,10 @@ namespace Butterfly.Core.Notify {
                 this.Pulse();
             }
 
-            public async Task Queue(byte priority, string from, string to, string subject, string bodyText, string bodyHtml = null) {
+            public async Task Queue(ITransaction transaction, string from, string to, string subject, string bodyText, string bodyHtml, byte priority, Dict extraData) {
                 logger.Debug($"Queue():type={this.notifyMessageType},priority={priority},from={from},to={to},subject={subject}");
-                await this.database.InsertAndCommitAsync<string>(this.notifyMessageTableName, new {
+                string extraJson = extraData != null && extraData.Count > 0 ? JsonUtil.Serialize(extraData) : null;
+                await transaction.InsertAsync<string>(this.notifyMessageTableName, new {
                     message_type = (byte)this.notifyMessageType,
                     message_priority = priority,
                     message_from = from,
@@ -225,11 +237,11 @@ namespace Butterfly.Core.Notify {
                     message_subject = subject,
                     message_body_text = bodyText,
                     message_body_html = bodyHtml,
+                    extra_json = extraJson,
                 });
-                this.Pulse();
             }
 
-            protected void Pulse() {
+            public void Pulse() {
                 this.cancellationTokenSource?.Cancel();
             }
 
@@ -258,6 +270,7 @@ namespace Butterfly.Core.Notify {
                     }
                     else {
                         NotifyMessageType notifyMessageType = message.GetAs("type", NotifyMessageType.Email);
+                        string sentMessageId = null;
                         string error = null;
                         try {
                             string from = message.GetAs("message_from", (string)null);
@@ -267,7 +280,7 @@ namespace Butterfly.Core.Notify {
                             string bodyHtml = message.GetAs("message_body_html", (string)null);
                             logger.Debug($"Run():Sending message to {to}");
 
-                            await this.notifyMessageSender.SendAsync(from, to, subject, bodyText, bodyHtml);
+                            sentMessageId = await this.notifyMessageSender.SendAsync(from, to, subject, bodyText, bodyHtml);
                         }
                         catch (Exception e) {
                             error = e.Message;
@@ -278,6 +291,7 @@ namespace Butterfly.Core.Notify {
                         await this.database.UpdateAndCommitAsync(this.notifyMessageTableName, new {
                             id,
                             sent_at = DateTime.Now,
+                            sent_message_id = sentMessageId,
                             send_error = error,
                         });
 

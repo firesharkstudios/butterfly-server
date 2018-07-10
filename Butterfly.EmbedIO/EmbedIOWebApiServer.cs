@@ -164,11 +164,15 @@ namespace Butterfly.EmbedIO {
 
         public Stream OutputStream => this.context.Response.OutputStream;
 
-        public async Task WriteAsJsonAsync(object value) {
+        public async Task WriteAsTextAsync(string value) {
             using (StreamWriter streamWriter = new StreamWriter(this.context.Response.OutputStream)) {
-                var json = JsonUtil.Serialize(value);
-                await streamWriter.WriteAsync(json);
+                await streamWriter.WriteAsync(value);
             }
+        }
+
+        public Task WriteAsJsonAsync(object value) {
+            var json = JsonUtil.Serialize(value);
+            return this.WriteAsTextAsync(json);
         }
 
     }

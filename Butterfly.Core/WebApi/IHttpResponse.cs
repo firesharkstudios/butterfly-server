@@ -31,6 +31,8 @@ namespace Butterfly.Core.WebApi {
 
         Stream OutputStream { get; }
 
+        Task WriteAsTextAsync(string value);
+
         Task WriteAsJsonAsync(object value);
     }
 }

@@ -123,6 +123,11 @@ namespace Butterfly.RedHttpServer {
 
         public Stream OutputStream => this.response.UnderlyingResponse.OutputStream;
 
+        public Task WriteAsTextAsync(string value) {
+            this.response.SendString(value);
+            return Task.FromResult(0);
+        }
+
         public Task WriteAsJsonAsync(object value) {
             this.response.SendJson(value);
             return Task.FromResult(0);
