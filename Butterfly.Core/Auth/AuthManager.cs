@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using NLog;
@@ -11,8 +13,6 @@ using Butterfly.Core.Util.Field;
 using Butterfly.Core.WebApi;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace Butterfly.Core.Auth {
     /// <summary>
