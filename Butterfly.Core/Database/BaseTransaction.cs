@@ -34,6 +34,7 @@ namespace Butterfly.Core.Database {
         protected readonly BaseDatabase database;
 
         protected readonly List<KeyValueDataEvent> dataEvents = new List<KeyValueDataEvent>();
+        protected readonly List<Func<Task>> onCommits = new List<Func<Task>>();
 
         public BaseTransaction(BaseDatabase database) {
             this.database = database;
@@ -255,6 +256,14 @@ namespace Butterfly.Core.Database {
             if (dataEventTransaction!=null) {
                 await this.database.PostDataEventTransactionAsync(TransactionState.Committed, dataEventTransaction);
             }
+
+            foreach (var onCommit in this.onCommits) {
+                await onCommit();
+            }
+        }
+
+        public void OnCommit(Func<Task> onCommit) {
+            this.onCommits.Add(onCommit);
         }
 
         protected abstract Task DoCommitAsync();

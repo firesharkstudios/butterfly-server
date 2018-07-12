@@ -114,8 +114,8 @@ namespace Butterfly.Core.Auth {
         protected readonly Func<string, int, Task> onEmailVerify;
         protected readonly Func<string, int, Task> onPhoneVerify;
 
-        protected readonly Action<Dict> onRegister;
-        protected readonly Action<Dict> onForgotPassword;
+        protected readonly Func<Dict, Task> onRegister;
+        protected readonly Func<Dict, Task> onForgotPassword;
         protected readonly Action<Version> onCheckVersion;
 
         protected readonly IFieldValidator usernameFieldValidator;
@@ -185,8 +185,8 @@ namespace Butterfly.Core.Auth {
             string defaultRole = null,
             Func<string, int, Task> onEmailVerify = null,
             Func<string, int, Task> onPhoneVerify = null,
-            Action<Dict> onRegister = null,
-            Action<Dict> onForgotPassword = null,
+            Func<Dict, Task> onRegister = null,
+            Func<Dict, Task> onForgotPassword = null,
             Action<Version> onCheckVersion = null
         ) {
             this.database = database;

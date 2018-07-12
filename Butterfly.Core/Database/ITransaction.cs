@@ -143,6 +143,8 @@ namespace Butterfly.Core.Database {
         /// <inheritdoc cref="Commit"/>
         Task CommitAsync();
 
+        void OnCommit(Func<Task> onCommit);
+
         /// <summary>
         /// Rollback the transaction (called automatically if transaction is disposed without calling <see cref="Commit"/> or <see cref="CommitAsync"/>)
         /// </summary>

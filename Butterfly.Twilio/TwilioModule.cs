@@ -10,12 +10,12 @@ using Butterfly.Core.Database;
 using Butterfly.Core.Util;
 using Butterfly.Core.WebApi;
 
-namespace BuildHeroServer.Modules {
+namespace BuildHeroServer.DynamicViewBuilders {
 
     public static class TwilioModule {
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static void SetupWebApi(IDatabase database, AuthManager authManager, IWebApiServer webApiServer, Func<string, string, string, string[], Task<string>> handler) {
+        public static void Setup(IWebApiServer webApiServer, Func<string, string, string, string[], Task<string>> handler) {
             webApiServer.OnPost(
                 "/api/twilio/webhook",
                 async (req, res) => {

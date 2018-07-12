@@ -20,14 +20,14 @@ using MimeKit;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace BuildHeroServer.Modules {
+namespace Butterfly.Aws {
 
     public static class AwsModule {
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         static readonly Regex IN_REPLY_TO_REGEX = new Regex(@"\<([^\@]+)\@");
 
-        public static void SetupWebApi(IDatabase database, AuthManager authManager, IWebApiServer webApiServer, string topicArn, string endPoint, string bucketName, Func<string, string, string[], Task<string>> handler) {
+        public static void Setup(IWebApiServer webApiServer, string topicArn, string endPoint, string bucketName, Func<string, string, string[], Task<string>> handler) {
             if (!string.IsNullOrEmpty(endPoint)) {
                 Uri endPointUri = new Uri(endPoint);
                 //logger.Debug($"SetupWebApi():endPointUri.PathAndQuery={endPointUri.PathAndQuery}");

@@ -92,39 +92,44 @@ namespace Butterfly.Core.Notify {
             string id = await this.database.SelectValueAsync<string>($"SELECT id FROM {this.notifyVerifyTableName}", new {
                 contact = scrubbedContact
             });
-            if (id == null) {
-                await this.database.InsertAndCommitAsync<string>(this.notifyVerifyTableName, new {
-                    contact = scrubbedContact,
-                    verify_code = code,
-                    expires_at = expiresAt,
-                });
-            }
-            else {
-                await this.database.UpdateAndCommitAsync(this.notifyVerifyTableName, new {
-                    id,
-                    verify_code = code,
-                    expires_at = expiresAt,
-                });
-            }
 
-            // Send notify message
-            var notifyMessageType = DetectNotifyMessageType(scrubbedContact);
-            NotifyMessage notifyMessage = null;
-            switch (notifyMessageType) {
-                case NotifyMessageType.Email:
-                    if (this.verifyEmailNotifyMessage == null) throw new Exception("Server must be configured with verify email notify message");
-                    notifyMessage = this.verifyEmailNotifyMessage;
-                    break;
-                case NotifyMessageType.PhoneText:
-                    if (this.verifyPhoneTextNotifyMessage == null) throw new Exception("Server must be configured with verify phone text notify message");
-                    notifyMessage = this.verifyPhoneTextNotifyMessage;
-                    break;
+            using (ITransaction transaction = await this.database.BeginTransactionAsync()) {
+                if (id == null) {
+                    await transaction.InsertAsync<string>(this.notifyVerifyTableName, new {
+                        contact = scrubbedContact,
+                        verify_code = code,
+                        expires_at = expiresAt,
+                    });
+                }
+                else {
+                    await transaction.UpdateAsync(this.notifyVerifyTableName, new {
+                        id,
+                        verify_code = code,
+                        expires_at = expiresAt,
+                    });
+                }
+
+                // Send notify message
+                var notifyMessageType = DetectNotifyMessageType(scrubbedContact);
+                NotifyMessage notifyMessage = null;
+                switch (notifyMessageType) {
+                    case NotifyMessageType.Email:
+                        if (this.verifyEmailNotifyMessage == null) throw new Exception("Server must be configured with verify email notify message");
+                        notifyMessage = this.verifyEmailNotifyMessage;
+                        break;
+                    case NotifyMessageType.PhoneText:
+                        if (this.verifyPhoneTextNotifyMessage == null) throw new Exception("Server must be configured with verify phone text notify message");
+                        notifyMessage = this.verifyPhoneTextNotifyMessage;
+                        break;
+                }
+                var evaluatedNotifyMessage = notifyMessage.Evaluate(new {
+                    contact = scrubbedContact,
+                    code = code.ToString(this.verifyCodeFormat)
+                });
+                await this.Queue(transaction, evaluatedNotifyMessage);
+
+                await transaction.CommitAsync();
             }
-            var evaluatedNotifyMessage = notifyMessage.Evaluate(new {
-                contact = scrubbedContact,
-                code = code.ToString(this.verifyCodeFormat)
-            });
-            await this.Queue(evaluatedNotifyMessage);
         }
 
         public async Task<string> VerifyAsync(string contact, int code) {
@@ -158,37 +163,38 @@ namespace Butterfly.Core.Notify {
         /// <param name="priority">Higher number indicates higher priority</param>
         /// <param name="notifyMessage"></param>
         /// <returns></returns>
-        public async Task Queue(params NotifyMessage[] notifyMessages) {
+        public async Task Queue(ITransaction transaction, params NotifyMessage[] notifyMessages) {
             bool emailQueued = false;
             bool phoneTextQueued = false;
-            using (ITransaction transaction = await this.database.BeginTransactionAsync()) {
-                foreach (var notifyMessage in notifyMessages) {
-                    if (notifyMessage == null) continue;
+            foreach (var notifyMessage in notifyMessages) {
+                if (notifyMessage == null) continue;
 
-                    if (string.IsNullOrEmpty(notifyMessage.from)) throw new Exception("From address cannot be blank");
-                    string scrubbedFrom = Validate(notifyMessage.from);
+                if (string.IsNullOrEmpty(notifyMessage.from)) throw new Exception("From address cannot be blank");
+                string scrubbedFrom = Validate(notifyMessage.from);
 
-                    if (string.IsNullOrEmpty(notifyMessage.to)) throw new Exception("To address cannot be blank");
-                    string scrubbedTo = Validate(notifyMessage.to);
+                if (string.IsNullOrEmpty(notifyMessage.to)) throw new Exception("To address cannot be blank");
+                string scrubbedTo = Validate(notifyMessage.to);
 
-                    NotifyMessageType notifyMessageType = this.DetectNotifyMessageType(scrubbedTo);
-                    switch (notifyMessageType) {
-                        case NotifyMessageType.Email:
-                            if (this.emailNotifyMessageEngine == null) throw new Exception("No email message sender configured");
-                            await this.emailNotifyMessageEngine.Queue(transaction, scrubbedFrom, scrubbedTo, notifyMessage.subject, notifyMessage.bodyText, notifyMessage.bodyHtml, notifyMessage.priority, notifyMessage.extraData);
-                            emailQueued = true;
-                            break;
-                        case NotifyMessageType.PhoneText:
-                            if (this.phoneTextNotifyMessageEngine == null) throw new Exception("No phone text message sender configured");
-                            await this.phoneTextNotifyMessageEngine.Queue(transaction, scrubbedFrom, scrubbedTo, notifyMessage.subject, notifyMessage.bodyText, notifyMessage.bodyHtml, notifyMessage.priority, notifyMessage.extraData);
-                            phoneTextQueued = true;
-                            break;
-                    }
+                NotifyMessageType notifyMessageType = this.DetectNotifyMessageType(scrubbedTo);
+                switch (notifyMessageType) {
+                    case NotifyMessageType.Email:
+                        if (this.emailNotifyMessageEngine == null) throw new Exception("No email message sender configured");
+                        await this.emailNotifyMessageEngine.Queue(transaction, scrubbedFrom, scrubbedTo, notifyMessage.subject, notifyMessage.bodyText, notifyMessage.bodyHtml, notifyMessage.priority, notifyMessage.extraData);
+                        emailQueued = true;
+                        break;
+                    case NotifyMessageType.PhoneText:
+                        if (this.phoneTextNotifyMessageEngine == null) throw new Exception("No phone text message sender configured");
+                        await this.phoneTextNotifyMessageEngine.Queue(transaction, scrubbedFrom, scrubbedTo, notifyMessage.subject, notifyMessage.bodyText, notifyMessage.bodyHtml, notifyMessage.priority, notifyMessage.extraData);
+                        phoneTextQueued = true;
+                        break;
                 }
-                await transaction.CommitAsync();
             }
-            if (emailQueued) this.emailNotifyMessageEngine.Pulse();
-            if (phoneTextQueued) this.phoneTextNotifyMessageEngine.Pulse();
+
+            transaction.OnCommit(() => {
+                if (emailQueued) this.emailNotifyMessageEngine.Pulse();
+                if (phoneTextQueued) this.phoneTextNotifyMessageEngine.Pulse();
+                return Task.FromResult(0);
+            });
         }
 
         protected NotifyMessageType DetectNotifyMessageType(string to) {

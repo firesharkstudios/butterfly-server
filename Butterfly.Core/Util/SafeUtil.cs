@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Butterfly.Core.Util {
@@ -15,9 +14,8 @@ namespace Butterfly.Core.Util {
 
         public static string GetRandom(int length, string alphabet = FULL_SAFE_BASE_ALPHABET) {
             StringBuilder sb = new StringBuilder();
-            Random random = new Random();
             for (int i = 0; i < length; i++) {
-                int index = random.Next(alphabet.Length);
+                int index = RandomUtil.Next(alphabet.Length);
                 char ch = alphabet[index];
                 sb.Append(ch);
             }
