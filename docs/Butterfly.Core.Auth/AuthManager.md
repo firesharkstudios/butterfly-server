@@ -2,6 +2,8 @@
 
 Provides an API to register and login users, handle forgot password and reset password requests, and validate auth tokens.
 
+Provides an API to register and login users, handle forgot password and reset password requests, and validate auth tokens.
+
 ```csharp
 public class AuthManager
 ```
@@ -12,7 +14,6 @@ public class AuthManager
 | --- | --- |
 | [AuthManager](AuthManager/AuthManager.md)(…) | Create an instance of AuthManager |
 | [AuthenticateAsync](AuthManager/AuthenticateAsync.md)(…) | Validates the auth token id returning an [`AuthToken`](AuthToken.md) instance |
-| [CheckVersion](AuthManager/CheckVersion.md)(…) |  |
 | [CreateAnonymousUserAsync](AuthManager/CreateAnonymousUserAsync.md)() | Creates an anonymous user and returns a valid [`AuthToken`](AuthToken.md) |
 | [CreateAuthTokenAsync](AuthManager/CreateAuthTokenAsync.md)(…) | Create an auth token |
 | [ForgotPasswordAsync](AuthManager/ForgotPasswordAsync.md)(…) | Creates a reset code and invokes onForgotPassword to send the reset code to the user |
@@ -24,6 +25,67 @@ public class AuthManager
 | [VerifyAsync](AuthManager/VerifyAsync.md)(…) | Call to verify a user's email or phone |
 
 ## Remarks
+
+Can be initialized like this...
+
+```csharp
+var database = (initialize an IDatabase instance here)
+var notifyManager = (initialize NotifyManager here)
+var welcomeEmailNotifyMessage = (load welcome email here)
+var resetEmailNotifyMessage = (load reset email here)
+var authManager = new AuthManager(
+    database,
+    defaultRole: "full-access",
+    onEmailVerify: notifyManager.VerifyAsync,
+    onPhoneVerify: notifyManager.VerifyAsync,
+    onRegister: user => {
+        notifyManager.Queue(welcomeEmailNotifyMessage.Evaluate(user));
+    },
+    onForgotPassword: user => {
+        notifyManager.Queue(resetEmailNotifyMessage.Evaluate(user));
+    }
+);
+```
+
+The following database tables are recommended...
+
+```csharp
+CREATE TABLE account (
+	id VARCHAR(50) NOT NULL,
+    created_at INT NOT NULL,
+	updated_at INT NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE user(
+    id VARCHAR(50) NOT NULL,
+    account_id VARCHAR(50) NOT NULL,
+    username VARCHAR(40) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    email_verified_at INT NULL,
+    phone VARCHAR(20) NULL,
+	phone_verified_at INT NULL,
+	role VARCHAR(25) NULL,
+	salt VARCHAR(40) NOT NULL,
+    password_hash VARCHAR(90) NOT NULL,
+    reset_code VARCHAR(6) NULL,	
+	reset_code_expires_at INT NULL,	
+	created_at INT NOT NULL,
+    updated_at INT NOT NULL,
+	PRIMARY KEY(id),
+	UNIQUE INDEX username(username)
+);
+
+CREATE TABLE auth_token(
+    id VARCHAR(50) NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    expires_at INT NOT NULL,
+	created_at INT NOT NULL,
+    PRIMARY KEY(id)
+);
+```
 
 Can be initialized like this...
 

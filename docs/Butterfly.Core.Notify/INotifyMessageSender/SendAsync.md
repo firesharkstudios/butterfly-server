@@ -1,7 +1,7 @@
 # INotifyMessageSender.SendAsync method
 
 ```csharp
-public Task SendAsync(string from, string to, string subject, string bodyText, string bodyHtml)
+public Task<string> SendAsync(string from, string to, string subject, string bodyText, string bodyHtml)
 ```
 
 ## See Also

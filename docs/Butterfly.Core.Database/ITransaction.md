@@ -6,6 +6,12 @@ Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/Com
 
 If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
 
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
+
+Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
+
 ```csharp
 public interface ITransaction : IDisposable
 ```
@@ -19,6 +25,7 @@ public interface ITransaction : IDisposable
 | [CommitAsync](ITransaction/CommitAsync.md)() | Commit the transaction |
 | [DeleteAsync](ITransaction/DeleteAsync.md)(…) | Executes a DELETE statement within this transaction |
 | [InsertAsync&lt;T&gt;](ITransaction/InsertAsync.md)(…) | Executes an INSERT statement within this transaction |
+| [OnCommit](ITransaction/OnCommit.md)(…) |  |
 | [Rollback](ITransaction/Rollback.md)() | Rollback the transaction (called automatically if transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md)) |
 | [SynchronizeAsync](ITransaction/SynchronizeAsync.md)(…) |  |
 | [TruncateAsync](ITransaction/TruncateAsync.md)(…) | Truncate a table (deletes all records) |

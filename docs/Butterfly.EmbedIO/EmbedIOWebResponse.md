@@ -17,6 +17,7 @@ public class EmbedIOWebResponse : IHttpResponse
 | [SendRedirect](EmbedIOWebResponse/SendRedirect.md)(…) |  |
 | [SetHeader](EmbedIOWebResponse/SetHeader.md)(…) |  |
 | [WriteAsJsonAsync](EmbedIOWebResponse/WriteAsJsonAsync.md)(…) |  |
+| [WriteAsTextAsync](EmbedIOWebResponse/WriteAsTextAsync.md)(…) |  |
 
 ## See Also
 

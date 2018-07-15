@@ -1,7 +1,7 @@
 # NotifyManager.Queue method
 
 ```csharp
-public Task Queue(NotifyMessage notifyMessage, byte priority = 0)
+public Task Queue(ITransaction transaction, NotifyMessage[] notifyMessages)
 ```
 
 | parameter | description |
@@ -11,6 +11,7 @@ public Task Queue(NotifyMessage notifyMessage, byte priority = 0)
 
 ## See Also
 
+* interface [ITransaction](../../Butterfly.Core.Database/ITransaction.md)
 * class [NotifyMessage](../NotifyMessage.md)
 * class [NotifyManager](../NotifyManager.md)
 * namespace [Butterfly.Core.Notify](../../Butterfly.Core.md)

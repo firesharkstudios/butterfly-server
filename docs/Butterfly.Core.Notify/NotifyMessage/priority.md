@@ -1,8 +1,7 @@
-# NotifyMessage constructor
+# NotifyMessage.priority field
 
 ```csharp
-public NotifyMessage(string from, string to, string subject, string bodyText, string bodyHtml = null, 
-    byte priority = 0, Dictionary<string, object> extraData = null)
+public readonly byte priority;
 ```
 
 ## See Also

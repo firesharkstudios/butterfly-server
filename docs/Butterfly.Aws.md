@@ -1,5 +1,11 @@
 # Butterfly.Aws assembly
 
+## BuildHeroServer.Modules namespace
+
+| public type | description |
+| --- | --- |
+| static class [AwsModule](BuildHeroServer.Modules/AwsModule.md) |  |
+
 ## Butterfly.Aws namespace
 
 | public type | description |

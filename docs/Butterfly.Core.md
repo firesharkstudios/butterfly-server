@@ -108,6 +108,7 @@
 | class [ListItemDisposable&lt;T&gt;](Butterfly.Core.Util/ListItemDisposable-1.md) |  |
 | static class [NameValueCollectionX](Butterfly.Core.Util/NameValueCollectionX.md) |  |
 | class [PermissionDeniedException](Butterfly.Core.Util/PermissionDeniedException.md) |  |
+| static class [RandomUtil](Butterfly.Core.Util/RandomUtil.md) |  |
 | static class [SafeUtil](Butterfly.Core.Util/SafeUtil.md) |  |
 | static class [StringX](Butterfly.Core.Util/StringX.md) |  |
 | class [UnauthorizedException](Butterfly.Core.Util/UnauthorizedException.md) |  |

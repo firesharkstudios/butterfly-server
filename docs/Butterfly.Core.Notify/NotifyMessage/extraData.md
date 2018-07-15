@@ -1,8 +1,7 @@
-# NotifyMessage constructor
+# NotifyMessage.extraData field
 
 ```csharp
-public NotifyMessage(string from, string to, string subject, string bodyText, string bodyHtml = null, 
-    byte priority = 0, Dictionary<string, object> extraData = null)
+public Dictionary<string, object> extraData;
 ```
 
 ## See Also

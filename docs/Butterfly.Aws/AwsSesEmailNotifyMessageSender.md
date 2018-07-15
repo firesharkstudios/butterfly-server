@@ -8,7 +8,7 @@ public class AwsSesEmailNotifyMessageSender : BaseNotifyMessageSender
 
 | name | description |
 | --- | --- |
-| [AwsSesEmailNotifyMessageSender](AwsSesEmailNotifyMessageSender/AwsSesEmailNotifyMessageSender.md)(…) |  |
+| [AwsSesEmailNotifyMessageSender](AwsSesEmailNotifyMessageSender/AwsSesEmailNotifyMessageSender.md)() | The default constructor. |
 
 ## See Also
 

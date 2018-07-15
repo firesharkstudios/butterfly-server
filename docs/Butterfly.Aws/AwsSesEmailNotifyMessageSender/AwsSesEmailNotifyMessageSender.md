@@ -1,7 +1,9 @@
 # AwsSesEmailNotifyMessageSender constructor
 
+The default constructor.
+
 ```csharp
-public AwsSesEmailNotifyMessageSender(int sendEveryMillis = 1000, string regionText = "USEast1")
+public AwsSesEmailNotifyMessageSender()
 ```
 
 ## See Also

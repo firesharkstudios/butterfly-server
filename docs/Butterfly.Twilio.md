@@ -1,5 +1,11 @@
 # Butterfly.Twilio assembly
 
+## BuildHeroServer.Modules namespace
+
+| public type | description |
+| --- | --- |
+| static class [TwilioModule](BuildHeroServer.Modules/TwilioModule.md) |  |
+
 ## Butterfly.Twilio namespace
 
 | public type | description |

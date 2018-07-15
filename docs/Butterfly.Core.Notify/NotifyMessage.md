@@ -13,7 +13,9 @@ public class NotifyMessage
 | static [ParseFile](NotifyMessage/ParseFile.md)(…) |  |
 | readonly [bodyHtml](NotifyMessage/bodyHtml.md) |  |
 | readonly [bodyText](NotifyMessage/bodyText.md) |  |
+| [extraData](NotifyMessage/extraData.md) |  |
 | readonly [from](NotifyMessage/from.md) |  |
+| readonly [priority](NotifyMessage/priority.md) |  |
 | readonly [subject](NotifyMessage/subject.md) |  |
 | readonly [to](NotifyMessage/to.md) |  |
 | [Evaluate](NotifyMessage/Evaluate.md)(…) |  |

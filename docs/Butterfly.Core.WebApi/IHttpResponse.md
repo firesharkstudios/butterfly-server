@@ -15,6 +15,7 @@ public interface IHttpResponse
 | [SendRedirect](IHttpResponse/SendRedirect.md)(…) |  |
 | [SetHeader](IHttpResponse/SetHeader.md)(…) |  |
 | [WriteAsJsonAsync](IHttpResponse/WriteAsJsonAsync.md)(…) |  |
+| [WriteAsTextAsync](IHttpResponse/WriteAsTextAsync.md)(…) |  |
 
 ## See Also
 
