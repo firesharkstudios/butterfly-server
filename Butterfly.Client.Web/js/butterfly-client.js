@@ -177,20 +177,20 @@
 function VuexArrayGetters(arrayName) {
     let result = {};
     result[`${arrayName}Length`] = state => state[arrayName].length;
-    result[`${arrayName}FindIndex`] = state => callback => state.myUsers.findIndex(callback);
+    result[`${arrayName}FindIndex`] = state => callback => state[arrayName].findIndex(callback);
     return result;
 }
 
-function VueXArrayMutations(arrayName) {
+function VuexArrayMutations(arrayName) {
     let result = {};
     result[`${arrayName}Splice`] = (state, options) => {
-        if (options.item) state.myUsers.splice(options.start, options.deleteCount, options.item);
-        else state.myUsers.splice(options.start, options.deleteCount);
+        if (options.item) state[arrayName].splice(options.start, options.deleteCount, options.item);
+        else state[arrayName].splice(options.start, options.deleteCount);
     };
     return result;
 }
 
-function VueXArrayHandler(store, arrayName) {
+function VuexArrayHandler(store, arrayName) {
     return {
         get length() { return store.getters[`${arrayName}Length`] },
         findIndex(callback) { return store.getters[`${arrayName}FindIndex`](callback) },
