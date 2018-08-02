@@ -175,14 +175,36 @@ module.exports = {
         return public;
     },
 
+    VuexArrayGetters: function (arrayName) {
+        let result = {};
+        result[`${arrayName}Length`] = state => state[arrayName].length;
+        result[`${arrayName}FindIndex`] = state => callback => state.myUsers.findIndex(callback);
+        return result;
+    },
+
+    VueXArrayMutations: function (arrayName) {
+        let result = {};
+        result[`${arrayName}Splice`] = (state, options) => {
+            if (options.item) state.myUsers.splice(options.start, options.deleteCount, options.item);
+            else state.myUsers.splice(options.start, options.deleteCount);
+        };
+        return result;
+    },
+
+    VueXArrayHandler: function (store, arrayName) {
+        return {
+            get length() { return store.getters[`${arrayName}Length`] },
+            findIndex(callback) { return store.getters[`${arrayName}FindIndex`](callback) },
+            splice(start, deleteCount, item) {
+                return store.commit(`${arrayName}Splice`, { start, deleteCount, item });
+            },
+        };
+    },
+
     ArrayDataEventHandler: function (config) {
         let private = this;
 
         let keyFieldNamesByName = {};
-
-        private.findIndex = function (array, keyValue) {
-            return array.findIndex(x => x._keyValue == keyValue);
-        }
 
         private.getKeyValue = function (name, record) {
             let result = '';
@@ -221,18 +243,18 @@ module.exports = {
                         }
                         else if (dataEvent.dataEventType == 'Insert' || dataEvent.dataEventType == 'Initial') {
                             let keyValue = private.getKeyValue(dataEvent.name, dataEvent.record);
-                            let index = private.findIndex(array, keyValue);
+                            let index = array.findIndex(x => x._keyValue == keyValue);
                             if (index >= 0) {
                                 console.error('Duplicate key \'' + keyValue + '\' in table \'' + dataEvent.name + '\'');
                             }
                             else {
                                 dataEvent.record['_keyValue'] = keyValue;
-                                array.push(dataEvent.record);
+                                array.splice(array.length, 0, dataEvent.record);
                             }
                         }
                         else if (dataEvent.dataEventType == 'Update') {
                             let keyValue = private.getKeyValue(dataEvent.name, dataEvent.record);
-                            let index = private.findIndex(array, keyValue);
+                            let index = array.findIndex(x => x._keyValue == keyValue);
                             if (index == -1) {
                                 console.error('Could not find key \'' + keyValue + '\' in table \'' + dataEvent.name + '\'');
                             }
@@ -243,7 +265,7 @@ module.exports = {
                         }
                         else if (dataEvent.dataEventType == 'Delete') {
                             let keyValue = private.getKeyValue(dataEvent.name, dataEvent.record);
-                            let index = private.findIndex(array, keyValue);
+                            let index = array.findIndex(x => x._keyValue == keyValue);
                             array.splice(index, 1);
                         }
                     }
