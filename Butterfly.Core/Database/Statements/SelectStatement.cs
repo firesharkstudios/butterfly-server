@@ -20,6 +20,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
+using Butterfly.Core.Util;
+
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Core.Database {
@@ -86,22 +88,6 @@ namespace Butterfly.Core.Database {
                 }
             }
             this.FieldRefs = fieldRefs.ToArray();
-
-            /*
-            if (this.selectClause == "*" || string.IsNullOrEmpty(this.selectClause)) {
-                if (this.TableRefs.Length != 1) throw new Exception("Select statement must have exactly one table to use * to select field names");
-                this.FieldRefs = this.TableRefs[0].table.FieldDefs.Select(x => new StatementFieldRef(x.name)).ToArray();
-            }
-            else if (this.selectClause.EndsWith(".*")) {
-                string[] parts = this.selectClause.Split('.');
-                var tableRef = this.TableRefs.First(x => parts[0] == x.table.Name || parts[0] == x.tableAlias);
-                if (tableRef==null) throw new Exception("Could not find table matching {this.selectClause}");
-                this.FieldRefs = tableRef.table.FieldDefs.Select(x => new StatementFieldRef(x.name)).ToArray();
-            }
-            else {
-                this.FieldRefs = StatementFieldRef.ParseFieldRefs(selectClause);
-            }
-            */
         }
 
         public SelectStatement(SelectStatement sourceSelectStatement, string overrideWhereClause, bool ignoreOrderBy) {
@@ -236,10 +222,10 @@ namespace Butterfly.Core.Database {
         protected readonly static Regex REGEX = new Regex(@"^(\w+\.)?(\w+)(\s+\w+)?");
         public static StatementFieldRef[] ParseFieldRefs(string selectClause, bool allowWildcard) {
             List<StatementFieldRef> fieldRefs = new List<StatementFieldRef>();
-            string[] selectClauseParts = selectClause.Split(',').Select(x => x.Trim()).ToArray();
+            string[] selectClauseParts = selectClause.SmartSplit(delimiter: ',', openBracket: '(', closeBracket: ')').Select(x => x.Trim()).ToArray();
             foreach (var selectClausePart in selectClauseParts) {
                 Match match = (allowWildcard ? REGEX_WILDCARD : REGEX).Match(selectClausePart);
-                if (!match.Success) throw new Exception("Invalid field reference in SELECT clause '{selectClausePart}'");
+                if (!match.Success) throw new Exception($"Invalid field reference in SELECT clause '{selectClausePart}'");
                 string tableAlias = match.Groups[1].Value.Trim();
                 if (tableAlias.EndsWith(".")) tableAlias = tableAlias.Substring(0, tableAlias.Length - 1);
                 string fieldName = match.Groups[2].Value.Trim();

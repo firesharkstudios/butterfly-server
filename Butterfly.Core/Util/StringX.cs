@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Butterfly.Core.Util {
     public static class StringX {
@@ -26,6 +29,19 @@ namespace Butterfly.Core.Util {
                 }
             }
             return sb.ToString();
+        }
+
+        // Based on https://stackoverflow.com/questions/31919830/splitting-values-by-commas-that-are-outside-parentheses
+        static readonly Dictionary<string, Regex> SMART_SPLIT_REGEX_CHANGE = new Dictionary<string, Regex>();
+        public static string[] SmartSplit(this string me, char delimiter = ',', char openBracket = '(', char closeBracket = ')') {
+            string key = $"{delimiter}{openBracket}{closeBracket}";
+            if (!SMART_SPLIT_REGEX_CHANGE.TryGetValue(key, out Regex regex)) {
+                string regexText = @"(?:(?:\" + openBracket + @"(?>[^()]+|\" + openBracket + @"(?<number>)|\" + closeBracket + @"(?<-number>))*(?(number)(?!))\" + closeBracket + @")|[^" + delimiter + @"])+";
+                //string regexText = @"(?:(?:\((?>[^()]+|\((?<number>)|\)(?<-number>))*(?(number)(?!))\))|[^,])+";
+                regex = new Regex(regexText);
+                SMART_SPLIT_REGEX_CHANGE[key] = regex;
+            }
+            return regex.Matches(me).Cast<Match>().Select(x => x.Value).ToArray();
         }
     }
 }
