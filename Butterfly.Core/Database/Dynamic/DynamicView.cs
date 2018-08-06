@@ -169,6 +169,29 @@ namespace Butterfly.Core.Database.Dynamic {
             return recordDataEvents.ToArray();
         }
 
+        /*
+         * Given this SQL...
+         * 
+         *  SELECT e.name, d.name
+         *  FROM employee e
+         *      LEFT JOIN department d ON e.department_id=d.id
+         *  WHERE e.name LIKE 'm%'
+         *  
+         * An event on employee would be checked by running...
+         * 
+         *  SELECT e.name, d.name
+         *  FROM employee e
+         *      LEFT JOIN department d ON e.department_id=d.id
+         *  WHERE e.name LIKE 'm%' AND e.id='123'
+         *  
+         * An event on department would be checked by running...
+         * 
+         *  SELECT e.name, d.name
+         *  FROM employee e
+         *      LEFT JOIN department d ON e.department_id=d.id AND d.id='456'
+         *  WHERE e.name LIKE 'm%'
+         *  
+         */
         internal async Task<Dict[]> GetImpactedRecordsAsync(KeyValueDataEvent keyValueDataEvent) {
             StatementTableRef tableRef = this.statement.FindTableRefByTableName(keyValueDataEvent.name);
             if (tableRef == null) return null;

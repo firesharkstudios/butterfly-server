@@ -16,7 +16,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Text.RegularExpressions;
 
 using Butterfly.Core.Util;
@@ -28,12 +27,6 @@ namespace Butterfly.Core.Database {
     /// Base class for parsing SQL statements
     /// </summary>
     public abstract class BaseStatement {
-        /*
-        protected void SetSql(string sql, string defaultStatement) {
-            this.Sql = sql.Contains(" ") ? sql : defaultStatement.Replace("@@tableName", sql);
-        }
-        */
-
         protected bool IsSqlTableName {
             get {
                 return !this.Sql.Contains(" ");
