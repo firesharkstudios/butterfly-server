@@ -30,7 +30,10 @@ namespace Butterfly.Core.Notify.Test {
             var notifyMessageManager = new NotifyManager(database, emailNotifyMessageSender: notifyMessageSender);
             notifyMessageManager.Start();
             var notifyMessage = new NotifyMessage("kent@fireshark.com", "kent13304@yahoo.com", "Test SES", "Just testing", null);
-            await notifyMessageManager.Queue(notifyMessage);
+            using (ITransaction transaction = await database.BeginTransactionAsync()) {
+                await notifyMessageManager.Queue(transaction, notifyMessage);
+                await transaction.CommitAsync();
+            }
             await Task.Delay(200000);
         }
 
@@ -44,7 +47,9 @@ namespace Butterfly.Core.Notify.Test {
             var notifyMessageManager = new NotifyManager(database, phoneTextNotifyMessageSender: notifyMessageSender);
             notifyMessageManager.Start();
             var notifyMessage = new NotifyMessage("+1 316 712 7412", "+1 316 555 1212", null, "Just testing", null);
-            await notifyMessageManager.Queue(notifyMessage);
+            using (ITransaction transaction = await database.BeginTransactionAsync()) {
+                await notifyMessageManager.Queue(transaction, notifyMessage);
+            }
             await Task.Delay(200000);
         }
 

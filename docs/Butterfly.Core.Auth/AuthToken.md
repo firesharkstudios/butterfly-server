@@ -2,8 +2,6 @@
 
 Represents the result of a successful [`LoginAsync`](AuthManager/LoginAsync.md) or [`RegisterAsync`](AuthManager/RegisterAsync.md)
 
-Represents the result of a successful [`LoginAsync`](AuthManager/LoginAsync.md) or [`RegisterAsync`](AuthManager/RegisterAsync.md)
-
 ```csharp
 public class AuthToken
 ```

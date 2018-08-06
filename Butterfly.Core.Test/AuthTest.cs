@@ -28,6 +28,7 @@ namespace Butterfly.Core.Test {
 
             AuthManager authManager = new AuthManager(database, onForgotPassword: user => {
                 logger.Debug($"onForgotPassword():user={user}");
+                return Task.FromResult(0);
             });
             AuthToken registerAuthToken = await authManager.RegisterAsync(new {
                 username = "johnsmith",

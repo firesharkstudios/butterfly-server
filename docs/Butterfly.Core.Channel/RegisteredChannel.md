@@ -2,8 +2,6 @@
 
 Internal class used to store references to new channel listeners
 
-Internal class used to store references to new channel listeners
-
 ```csharp
 public class RegisteredChannel
 ```

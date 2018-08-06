@@ -2,8 +2,6 @@
 
 Represents a specific view (SELECT statement) that should be executed to return the initial data as a sequence of [`DataEvent`](../Butterfly.Core.Database.Event/DataEvent.md) instances and should publish [`DataEvent`](../Butterfly.Core.Database.Event/DataEvent.md) instances when any data in the view changes
 
-Represents a specific view (SELECT statement) that should be executed to return the initial data as a sequence of [`DataEvent`](../Butterfly.Core.Database.Event/DataEvent.md) instances and should publish [`DataEvent`](../Butterfly.Core.Database.Event/DataEvent.md) instances when any data in the view changes
-
 ```csharp
 public class DynamicView
 ```

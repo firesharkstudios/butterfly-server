@@ -6,12 +6,6 @@ Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/Com
 
 If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
 
-Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](IDatabase.md) instance when the transaction is committed.
-
-Must call [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) to have the changes committed.
-
-If the transaction is disposed without calling [`Commit`](ITransaction/Commit.md) or [`CommitAsync`](ITransaction/CommitAsync.md) the transaction is automatically rolled back.
-
 ```csharp
 public abstract class BaseTransaction : ITransaction
 ```

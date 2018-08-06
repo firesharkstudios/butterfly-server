@@ -10,6 +10,7 @@ public static class StringX
 | --- | --- |
 | static [Abbreviate](StringX/Abbreviate.md)(…) |  |
 | static [Hash](StringX/Hash.md)(…) |  |
+| static [SmartSplit](StringX/SmartSplit.md)(…) |  |
 
 ## See Also
 
