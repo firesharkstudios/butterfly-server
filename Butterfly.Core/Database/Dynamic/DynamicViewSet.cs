@@ -122,11 +122,13 @@ namespace Butterfly.Core.Database.Dynamic {
         protected async Task StoreImpactedRecordsInDataEventTransaction(TransactionState transactionState, DataEventTransaction dataEventTransaction) {
             foreach (var dynamicView in this.dynamicViews) {
                 foreach (var dataEvent in dataEventTransaction.dataEvents) {
-                    if (dataEvent is KeyValueDataEvent keyValueDataEvent && HasImpactedRecords(transactionState, keyValueDataEvent)) {
-                        Dict[] impactedRecords = await dynamicView.GetImpactedRecordsAsync(keyValueDataEvent);
-                        if (impactedRecords != null && impactedRecords.Length > 0) {
-                            string storageKey = GetImpactedRecordsStorageKey(dynamicView, dataEvent, transactionState);
-                            dataEventTransaction.Store(storageKey, impactedRecords);
+                    if (dataEvent is KeyValueDataEvent keyValueDataEvent && dynamicView.TryGetDynamicStatementFromRef(keyValueDataEvent.name, out StatementFromRef dynamicStatementFromRef)) {
+                        if (HasImpactedRecords(transactionState, keyValueDataEvent, dynamicStatementFromRef.joinType)) {
+                            Dict[] impactedRecords = await dynamicView.GetImpactedRecordsAsync(keyValueDataEvent);
+                            if (impactedRecords != null && impactedRecords.Length > 0) {
+                                string storageKey = GetImpactedRecordsStorageKey(dynamicView, dataEvent, transactionState);
+                                dataEventTransaction.Store(storageKey, impactedRecords);
+                            }
                         }
                     }
                 }
@@ -137,17 +139,19 @@ namespace Butterfly.Core.Database.Dynamic {
             return $"{dynamicView.Id} {dataEvent.id} {transactionState}";
         }
 
-        protected bool HasImpactedRecords(TransactionState transactionState, DataEvent dataEvent) {
-            return true;
-            /*
-            switch (transactionState) {
-                case TransactionState.Uncommitted:
-                    return dataEvent.dataEventType == DataEventType.Update || dataEvent.dataEventType == DataEventType.Delete;
-                case TransactionState.Committed:
-                    return dataEvent.dataEventType == DataEventType.Update || dataEvent.dataEventType == DataEventType.Insert;
+        protected bool HasImpactedRecords(TransactionState transactionState, DataEvent dataEvent, JoinType joinType) {
+            if (joinType == JoinType.Inner || joinType == JoinType.None) {
+                switch (transactionState) {
+                    case TransactionState.Uncommitted:
+                        return dataEvent.dataEventType == DataEventType.Update || dataEvent.dataEventType == DataEventType.Delete;
+                    case TransactionState.Committed:
+                        return dataEvent.dataEventType == DataEventType.Update || dataEvent.dataEventType == DataEventType.Insert;
+                }
+                return false;
             }
-            return false;
-            */
+            else {
+                return true;
+            }
         }
 
         /// <summary>
@@ -193,29 +197,31 @@ namespace Butterfly.Core.Database.Dynamic {
             if (!dynamicView.HasDirtyParams) {
                 HashSet<string> newRecordDataEventFullKeys = new HashSet<string>();
                 foreach (var dataEvent in dataEventTransaction.dataEvents) {
-                    // Fetch the preCommitImpactedRecords
-                    Dict[] preCommitImpactedRecords = null;
-                    if (HasImpactedRecords(TransactionState.Uncommitted, dataEvent)) {
-                        string storageKey = GetImpactedRecordsStorageKey(dynamicView, dataEvent, TransactionState.Uncommitted);
-                        preCommitImpactedRecords = (Dict[])dataEventTransaction.Fetch(storageKey);
-                    }
+                    if (dataEvent is KeyValueDataEvent keyValueDataEvent && dynamicView.TryGetDynamicStatementFromRef(keyValueDataEvent.name, out StatementFromRef dynamicStatementFromRef)) {
+                        // Fetch the preCommitImpactedRecords
+                        Dict[] preCommitImpactedRecords = null;
+                        if (HasImpactedRecords(TransactionState.Uncommitted, dataEvent, dynamicStatementFromRef.joinType)) {
+                            string storageKey = GetImpactedRecordsStorageKey(dynamicView, dataEvent, TransactionState.Uncommitted);
+                            preCommitImpactedRecords = (Dict[])dataEventTransaction.Fetch(storageKey);
+                        }
 
-                    // Fetch the postCommitImpactedRecords
-                    Dict[] postCommitImpactedRecords = null;
-                    if (HasImpactedRecords(TransactionState.Committed, dataEvent)) {
-                        string storageKey = GetImpactedRecordsStorageKey(dynamicView, dataEvent, TransactionState.Committed);
-                        postCommitImpactedRecords = (Dict[])dataEventTransaction.Fetch(storageKey);
-                    }
+                        // Fetch the postCommitImpactedRecords
+                        Dict[] postCommitImpactedRecords = null;
+                        if (HasImpactedRecords(TransactionState.Committed, dataEvent, dynamicStatementFromRef.joinType)) {
+                            string storageKey = GetImpactedRecordsStorageKey(dynamicView, dataEvent, TransactionState.Committed);
+                            postCommitImpactedRecords = (Dict[])dataEventTransaction.Fetch(storageKey);
+                        }
 
-                    // Determine the changes from each data event on each dynamic select
-                    RecordDataEvent[] recordDataEvents = dynamicView.ProcessDataChange(dataEvent, preCommitImpactedRecords, postCommitImpactedRecords);
-                    if (recordDataEvents != null) {
-                        dynamicView.UpdateChildDynamicParams(recordDataEvents);
-                        foreach (var recordDataEvent in recordDataEvents) {
-                            string fullKey = $"{recordDataEvent.name}:{recordDataEvent.keyValue}";
-                            if (!newRecordDataEventFullKeys.Contains(fullKey)) {
-                                newRecordDataEventFullKeys.Add(fullKey);
-                                newRecordDataEvents.Add(recordDataEvent);
+                        // Determine the changes from each data event on each dynamic select
+                        RecordDataEvent[] recordDataEvents = dynamicView.ProcessDataChange(dataEvent, preCommitImpactedRecords, postCommitImpactedRecords);
+                        if (recordDataEvents != null) {
+                            dynamicView.UpdateChildDynamicParams(recordDataEvents);
+                            foreach (var recordDataEvent in recordDataEvents) {
+                                string fullKey = $"{recordDataEvent.name}:{recordDataEvent.keyValue}";
+                                if (!newRecordDataEventFullKeys.Contains(fullKey)) {
+                                    newRecordDataEventFullKeys.Add(fullKey);
+                                    newRecordDataEvents.Add(recordDataEvent);
+                                }
                             }
                         }
                     }

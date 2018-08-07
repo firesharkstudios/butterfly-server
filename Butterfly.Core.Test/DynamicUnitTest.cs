@@ -160,7 +160,7 @@ namespace Butterfly.Core.Test {
                 await Task.Delay(50);
 
                 // Should require doing two SELECTs to handle this INSERT (before and after SELECT)
-                Assert.AreEqual(preSelectCount + 2, database.SelectCount);
+                Assert.AreEqual(preSelectCount + 1, database.SelectCount);
             }
         }
     }

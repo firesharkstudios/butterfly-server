@@ -38,7 +38,7 @@ namespace Butterfly.Core.Database.Dynamic {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly DynamicViewSet dynamicViewSet;
-        protected readonly SelectStatement statement;
+        protected readonly SelectStatement selectStatement;
         protected readonly Dict varsDict;
         protected readonly string name;
         protected readonly string[] keyFieldNames;
@@ -49,15 +49,15 @@ namespace Butterfly.Core.Database.Dynamic {
         public DynamicView(DynamicViewSet dynamicQuerySet, string sql, dynamic vars = null, string name = null, string[] keyFieldNames = null, string[] dynamicTableAliases = null) {
             this.Id = Guid.NewGuid().ToString();
             this.dynamicViewSet = dynamicQuerySet; 
-            this.statement = new SelectStatement(dynamicQuerySet.Database, sql);
-            this.varsDict = this.statement.ConvertParamsToDict(vars);
+            this.selectStatement = new SelectStatement(dynamicQuerySet.Database, sql);
+            this.varsDict = this.selectStatement.ConvertParamsToDict(vars);
 
             if (string.IsNullOrEmpty(name)) {
                 //if (this.statement.TableRefs.Length != 1) throw new System.Exception("Must specify name if the DynamicView contains multiple table references");
-                if (this.statement.StatementFromRefs.Length > 1) {
-                    logger.Debug($"DynamicView():Using '{this.statement.StatementFromRefs[0].table.Name}' for the name of the dynamic view even though the SQL contained tables '{string.Join(",", this.statement.StatementFromRefs.Select(x => x.table.Name))}'");
+                if (this.selectStatement.StatementFromRefs.Length > 1) {
+                    logger.Debug($"DynamicView():Using '{this.selectStatement.StatementFromRefs[0].table.Name}' for the name of the dynamic view even though the SQL contained tables '{string.Join(",", this.selectStatement.StatementFromRefs.Select(x => x.table.Name))}'");
                 }
-                this.name = this.statement.StatementFromRefs[0].table.Name;
+                this.name = this.selectStatement.StatementFromRefs[0].table.Name;
             }
             else {
                 this.name = name;
@@ -65,17 +65,17 @@ namespace Butterfly.Core.Database.Dynamic {
 
             if (keyFieldNames == null) {
                 //if (this.statement.TableRefs.Length != 1) throw new System.Exception("Must specify key field names if the DynamicView contains multiple table references");
-                if (this.statement.StatementFromRefs.Length > 1) {
-                    logger.Debug($"DynamicView():Using the key field names of the primary key of table '{this.statement.StatementFromRefs[0].table.Name}' for the dynamic view name even though the SQL contained tables '{string.Join(",", this.statement.StatementFromRefs.Select(x => x.table.Name))}'");
+                if (this.selectStatement.StatementFromRefs.Length > 1) {
+                    logger.Debug($"DynamicView():Using the key field names of the primary key of table '{this.selectStatement.StatementFromRefs[0].table.Name}' for the dynamic view name even though the SQL contained tables '{string.Join(",", this.selectStatement.StatementFromRefs.Select(x => x.table.Name))}'");
                 }
-                this.keyFieldNames = this.statement.StatementFromRefs[0].table.Indexes[0].FieldNames;
+                this.keyFieldNames = this.selectStatement.StatementFromRefs[0].table.Indexes[0].FieldNames;
             }
             else {
                 this.keyFieldNames = keyFieldNames;
             }
 
             if (dynamicTableAliases==null) {
-                foreach (var statementFromRef in this.statement.StatementFromRefs) {
+                foreach (var statementFromRef in this.selectStatement.StatementFromRefs) {
                     if (!this.dynamicStatementFromRefByTableName.ContainsKey(statementFromRef.table.Name)) {
                         this.dynamicStatementFromRefByTableName[statementFromRef.table.Name] = statementFromRef;
                     }
@@ -83,7 +83,7 @@ namespace Butterfly.Core.Database.Dynamic {
             }
             else {
                 foreach (var tableAlias in dynamicTableAliases) {
-                    var statementFromRef = Array.Find(this.statement.StatementFromRefs, x => x.tableAlias == tableAlias || (x.tableAlias == null && x.table.Name == tableAlias));
+                    var statementFromRef = Array.Find(this.selectStatement.StatementFromRefs, x => x.tableAlias == tableAlias || (x.tableAlias == null && x.table.Name == tableAlias));
                     if (statementFromRef == null) throw new Exception($"Dynamic table alias {tableAlias} not found");
                     if (this.dynamicStatementFromRefByTableName.ContainsKey(statementFromRef.table.Name)) throw new Exception($"Table {statementFromRef.table.Name} can only have one dynamic alias");
                     this.dynamicStatementFromRefByTableName[statementFromRef.table.Name] = statementFromRef;
@@ -97,6 +97,8 @@ namespace Butterfly.Core.Database.Dynamic {
         }
 
         public string Name => this.name;
+
+        public bool TryGetDynamicStatementFromRef(string tableName, out StatementFromRef dynamicStatementFromRef) => this.dynamicStatementFromRefByTableName.TryGetValue(tableName, out dynamicStatementFromRef);
 
         /*
         public BaseDynamicParam CreateMultiValueDynamicParam(string fieldName) {
@@ -121,7 +123,7 @@ namespace Butterfly.Core.Database.Dynamic {
         /// <returns></returns>
         internal async Task<DataEvent[]> GetInitialDataEventsAsync() {
             logger.Debug($"GetInitialDataEventsAsync()");
-            return await this.dynamicViewSet.Database.GetInitialDataEventsAsync(this.name, this.keyFieldNames, this.statement, this.varsDict);
+            return await this.dynamicViewSet.Database.GetInitialDataEventsAsync(this.name, this.keyFieldNames, this.selectStatement, this.varsDict);
         }
 
         internal void ResetDirtyParams() {
@@ -135,7 +137,7 @@ namespace Butterfly.Core.Database.Dynamic {
             logger.Trace($"ProcessDataChange():dataEvent={dataEvent},preCommitImpactedRecords.Length={preCommitImpactedRecords?.Length},postCommitImpactedRecords.Length={postCommitImpactedRecords?.Length}");
             if (!(dataEvent is KeyValueDataEvent keyValueDataEvent)) return null;
 
-            if (!this.statement.HasTableInFrom(keyValueDataEvent.name)) return null;
+            if (!this.selectStatement.HasTableInFrom(keyValueDataEvent.name)) return null;
 
             List<RecordDataEvent> recordDataEvents = new List<RecordDataEvent>();
             /*
@@ -217,10 +219,10 @@ namespace Butterfly.Core.Database.Dynamic {
             logger.Trace($"GetImpactedRecordsAsync():name={name}");
 
             StringBuilder newFromClause = new StringBuilder();
-            string newWhereClause = this.statement.whereClause;
+            string newWhereClause = this.selectStatement.whereClause;
             Dict newVarsDict = new Dict(this.varsDict);
 
-            foreach (StatementFromRef statementFromRef in this.statement.StatementFromRefs) {
+            foreach (StatementFromRef statementFromRef in this.selectStatement.StatementFromRefs) {
                 StringBuilder sb = new StringBuilder();
                 if (statementFromRef == selectedStatementFromRef) {
                     Dict primaryKeyValues = BaseDatabase.ParseKeyValue(keyValueDataEvent.keyValue, this.dynamicViewSet.Database.Tables[keyValueDataEvent.name].Indexes[0].FieldNames);
@@ -229,7 +231,7 @@ namespace Butterfly.Core.Database.Dynamic {
                         logger.Trace($"GetImpactedRecordsAsync():tableName={statementFromRef.table.Name},fieldName={fieldName}");
 
                         string prefix;
-                        if (this.statement.StatementFromRefs.Length == 1) {
+                        if (this.selectStatement.StatementFromRefs.Length == 1) {
                             prefix = "";
                         }
                         else if (!string.IsNullOrEmpty(statementFromRef.tableAlias)) {
@@ -281,7 +283,7 @@ namespace Butterfly.Core.Database.Dynamic {
                 }
             }
 
-            SelectStatement newStatement = new SelectStatement(this.dynamicViewSet.Database, this.statement.selectClause, newFromClause.ToString(), newWhereClause.ToString(), null);
+            SelectStatement newStatement = new SelectStatement(this.dynamicViewSet.Database, this.selectStatement.selectClause, newFromClause.ToString(), newWhereClause.ToString(), null);
 
             return await this.dynamicViewSet.Database.SelectRowsAsync(newStatement, newVarsDict);
         }
