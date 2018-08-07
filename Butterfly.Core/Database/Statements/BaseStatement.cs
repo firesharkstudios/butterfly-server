@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 using Butterfly.Core.Util;
@@ -38,17 +39,26 @@ namespace Butterfly.Core.Database {
             protected set;
         }
 
-        public StatementTableRef[] TableRefs {
-            get;
-            protected set;
+        private StatementFromRef[] statementFromRefs;
+        public StatementFromRef[] StatementFromRefs {
+            get {
+                return this.statementFromRefs;
+            }
+            protected set {
+                this.statementFromRefs = value;
+                foreach (var statementFromRef in value) {
+                    this.fromTableNames.Add(statementFromRef.table.Name);
+                }
+            }
         }
 
-        public StatementTableRef FindTableRefByTableAlias(string tableAlias) {
-            return Array.Find(this.TableRefs, x => x.tableAlias == tableAlias);
+        public StatementFromRef FindStatementFromRefByTableAlias(string tableAlias) {
+            return Array.Find(this.StatementFromRefs, x => x.tableAlias == tableAlias);
         }
 
-        public StatementTableRef FindTableRefByTableName(string tableName) {
-            return Array.Find(this.TableRefs, x => x.table.Name == tableName);
+        protected readonly HashSet<string> fromTableNames = new HashSet<string>();
+        public bool HasTableInFrom(string tableName) {
+            return this.fromTableNames.Contains(tableName);
         }
 
         public static void ConfirmAllParamsUsed(string sql, Dict statementParams) {
@@ -72,8 +82,8 @@ namespace Butterfly.Core.Database {
             // If statementParams is a single string, assume it is a primary key value
             else if (statementParams is string keyValue) {
                 if (!allowKeyValueAsSourceParams) throw new Exception("Statement doesn't allow passing single key value as source params");
-                if (this.TableRefs.Length != 1) throw new Exception("Statement must have exactly one table to pass single string value as where condition");
-                return BaseDatabase.ParseKeyValue(keyValue, this.TableRefs[0].table.Indexes[0].FieldNames);
+                if (this.StatementFromRefs.Length != 1) throw new Exception("Statement must have exactly one table to pass single string value as where condition");
+                return BaseDatabase.ParseKeyValue(keyValue, this.StatementFromRefs[0].table.Indexes[0].FieldNames);
             }
 
             // Otherwise, convert statementParams to a dictionary
@@ -106,43 +116,68 @@ namespace Butterfly.Core.Database {
         }
     }
 
+    public enum JoinType {
+        None,
+        Inner,
+        Left,
+        Right
+    }
+
     /// <summary>
     /// Internal class representing a SQL table reference like "table_name table_alias"
     /// </summary>
-    public class StatementTableRef {
+    public class StatementFromRef {
+        public readonly JoinType joinType;
         public readonly Table table;
         public readonly string tableAlias;
+        public readonly string joinCondition;
 
-        public StatementTableRef(Table table) : this(table, table.Name) {
+        /*
+        public StatementFromRef(Table table) : this(table, table.Name) {
         }
+        */
 
-        public StatementTableRef(Table table, string tableAlias) {
+        public StatementFromRef(JoinType joinType, Table table, string tableAlias, string joinCondition) {
+            this.joinType = joinType;
             this.table = table;
             this.tableAlias = string.IsNullOrWhiteSpace(tableAlias) ? null : tableAlias;
+            this.joinCondition = joinCondition;
         }
 
         // chat_participant cp
         protected readonly static Regex FIRST_TABLE_REGEX = new Regex(@"^(?<tableName>\w+)(?<tableAlias>\s+\w+)?");
 
         // INNER JOIN user u ON cp.user_id=U.id
-        protected readonly static Regex JOIN_REGEX = new Regex(@"\s+(INNER|LEFT|RIGHT)\s+JOIN\s+(?<tableName>\w+)(?<tableAlias>\s+\w+)?\s+ON\s+", RegexOptions.IgnoreCase);
+        protected readonly static Regex JOIN_REGEX = new Regex(@"\s+(?<joinType>INNER|LEFT|RIGHT)\s+JOIN\s+(?<tableName>\w+)(?<tableAlias>\s+\w+)?\s+ON\s+", RegexOptions.IgnoreCase);
 
-        public static StatementTableRef[] ParseTableRefs(IDatabase database, string fromClause) {
+        public static StatementFromRef[] ParseFromRefs(IDatabase database, string fromClause) {
             var match = FIRST_TABLE_REGEX.Match(fromClause);
             if (!match.Success) throw new Exception($"Invalid from clause '{fromClause}'");
 
-            List<StatementTableRef> tableRefs = new List<StatementTableRef>();
+            List<StatementFromRef> statementFromRefs = new List<StatementFromRef>();
             string firstTableName = match.Groups["tableName"].Value.Trim();
             if (!database.Tables.TryGetValue(firstTableName, out Table firstTable)) throw new Exception($"Invalid table name '{firstTableName}'");
-            tableRefs.Add(new StatementTableRef(firstTable, match.Groups["tableAlias"].Value.Trim()));
+            statementFromRefs.Add(new StatementFromRef(JoinType.None, firstTable, match.Groups["tableAlias"].Value.Trim(), null));
 
             var joinMatches = JOIN_REGEX.Matches(fromClause, match.Index + match.Length);
-            foreach (Match joinMatch in joinMatches) {
-                string joinTableName = joinMatch.Groups["tableName"].Value.Trim();
-                if (!database.Tables.TryGetValue(joinTableName, out Table joinTable)) throw new Exception($"Invalid table name '{joinTableName}'");
-                tableRefs.Add(new StatementTableRef(joinTable, joinMatch.Groups["tableAlias"].Value.Trim()));
+            for (int i=0; i<joinMatches.Count; i++) {
+                if (Enum.TryParse(joinMatches[i].Groups["joinType"].Value.Trim(), true, out JoinType joinType)) {
+                    if (joinType == JoinType.Right) throw new Exception("Right joins not supported");
+
+                    string joinTableName = joinMatches[i].Groups["tableName"].Value.Trim();
+                    if (!database.Tables.TryGetValue(joinTableName, out Table joinTable)) throw new Exception($"Invalid table name '{joinTableName}'");
+
+                    string joinTableAlias = joinMatches[i].Groups["tableAlias"].Value.Trim();
+
+                    int beginIndex = joinMatches[i].Index + joinMatches[i].Length;
+                    int endIndex = i < joinMatches.Count - 1 ? joinMatches[i + 1].Index : fromClause.Length;
+
+                    string joinCondition = fromClause.Substring(beginIndex, endIndex - beginIndex);
+
+                    statementFromRefs.Add(new StatementFromRef(joinType, joinTable, joinTableAlias, joinCondition));
+                }
             }
-            return tableRefs.ToArray();
+            return statementFromRefs.ToArray();
         }
 
         public override string ToString() {

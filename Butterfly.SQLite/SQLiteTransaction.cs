@@ -134,7 +134,7 @@ namespace Butterfly.SQLite {
         protected override async Task<Func<object>> DoInsertAsync(string executableSql, Dict executableParams, bool ignoreIfDuplicate) {
             try {
                 InsertStatement statement = new InsertStatement(this.database, executableSql);
-                bool hasAutoIncrement = statement.TableRefs[0].table.AutoIncrementFieldName != null;
+                bool hasAutoIncrement = statement.StatementFromRefs[0].table.AutoIncrementFieldName != null;
 
                 var command = new SQLiteCommand(executableSql, this.connection);
                 if (executableParams != null) {

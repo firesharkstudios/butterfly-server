@@ -64,7 +64,7 @@ namespace Butterfly.Core.Database {
             }
 
             // Parse the FROM clause
-            this.TableRefs = StatementTableRef.ParseTableRefs(database, this.fromClause);
+            this.StatementFromRefs = StatementFromRef.ParseFromRefs(database, this.fromClause);
         }
 
         public static List<string> ParseNamesClause(string namesClause) {
@@ -85,7 +85,7 @@ namespace Butterfly.Core.Database {
             string newNamesClause = string.Join(",", names);
             string newValuesClause = string.Join(",", values);
 
-            string executableSql = $"INSERT INTO {this.TableRefs[0].table.Name} ({newNamesClause}) VALUES ({newValuesClause})";
+            string executableSql = $"INSERT INTO {this.StatementFromRefs[0].table.Name} ({newNamesClause}) VALUES ({newValuesClause})";
             BaseStatement.ConfirmAllParamsUsed(executableSql, executableParams);
 
             return (executableSql, executableParams);
@@ -96,7 +96,7 @@ namespace Butterfly.Core.Database {
 
             List<StatementEqualsRef> result = new List<StatementEqualsRef>();
             for (int i = 0; i < names.Count; i++) {
-                result.Add(new StatementEqualsRef(this.TableRefs[0].table.Name, names[i], values[i].Substring(1)));
+                result.Add(new StatementEqualsRef(this.StatementFromRefs[0].table.Name, names[i], values[i].Substring(1)));
             }
             return result.ToArray();
         }

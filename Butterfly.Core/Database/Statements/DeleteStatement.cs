@@ -50,20 +50,20 @@ namespace Butterfly.Core.Database {
             }
 
             // Parse the FROM clause
-            this.TableRefs = StatementTableRef.ParseTableRefs(database, this.fromClause);
+            this.StatementFromRefs = StatementFromRef.ParseFromRefs(database, this.fromClause);
         }
 
         public (TableIndex, StatementEqualsRef[]) GetWhereIndexAndWhereRefs(IDatabase database, Dict statementParams) {
             StatementEqualsRef[] equalsRefs;
             if (string.IsNullOrEmpty(this.whereClause)) {
-                if (this.TableRefs.Length > 1) throw new Exception("Cannot auto fill where clause with more than one table in DELETE statement");
-                equalsRefs = statementParams.Select(x => new StatementEqualsRef(this.TableRefs[0].table.Name, x.Key, x.Key)).ToArray();
+                if (this.StatementFromRefs.Length > 1) throw new Exception("Cannot auto fill where clause with more than one table in DELETE statement");
+                equalsRefs = statementParams.Select(x => new StatementEqualsRef(this.StatementFromRefs[0].table.Name, x.Key, x.Key)).ToArray();
             }
             else {
                 equalsRefs = BaseStatement.DetermineEqualsRefs(database, this.whereClause);
             }
 
-            var uniqueIndex = this.TableRefs[0].table.FindUniqueIndex(equalsRefs);
+            var uniqueIndex = this.StatementFromRefs[0].table.FindUniqueIndex(equalsRefs);
             if (uniqueIndex == null) throw new Exception($"Could not find unique index building WHERE clause of DELETE statement");
 
             if (equalsRefs.Length > uniqueIndex.FieldNames.Length) throw new Exception($"Unused fields auto filling WHERE clause of DELETE statement ({string.Join(",", equalsRefs.Select(x => x.fieldName))})");

@@ -138,6 +138,8 @@ namespace Butterfly.Core.Database.Dynamic {
         }
 
         protected bool HasImpactedRecords(TransactionState transactionState, DataEvent dataEvent) {
+            return true;
+            /*
             switch (transactionState) {
                 case TransactionState.Uncommitted:
                     return dataEvent.dataEventType == DataEventType.Update || dataEvent.dataEventType == DataEventType.Delete;
@@ -145,6 +147,7 @@ namespace Butterfly.Core.Database.Dynamic {
                     return dataEvent.dataEventType == DataEventType.Update || dataEvent.dataEventType == DataEventType.Insert;
             }
             return false;
+            */
         }
 
         /// <summary>

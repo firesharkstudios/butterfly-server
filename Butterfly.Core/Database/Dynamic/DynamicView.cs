@@ -42,10 +42,11 @@ namespace Butterfly.Core.Database.Dynamic {
         protected readonly Dict varsDict;
         protected readonly string name;
         protected readonly string[] keyFieldNames;
+        protected readonly Dictionary<string, StatementFromRef> dynamicStatementFromRefByTableName = new Dictionary<string, StatementFromRef>();
 
         protected readonly List<ChildDynamicParam> childDynamicParams = new List<ChildDynamicParam>();
 
-        public DynamicView(DynamicViewSet dynamicQuerySet, string sql, dynamic vars = null, string name = null, string[] keyFieldNames = null) {
+        public DynamicView(DynamicViewSet dynamicQuerySet, string sql, dynamic vars = null, string name = null, string[] keyFieldNames = null, string[] dynamicTableAliases = null) {
             this.Id = Guid.NewGuid().ToString();
             this.dynamicViewSet = dynamicQuerySet; 
             this.statement = new SelectStatement(dynamicQuerySet.Database, sql);
@@ -53,10 +54,10 @@ namespace Butterfly.Core.Database.Dynamic {
 
             if (string.IsNullOrEmpty(name)) {
                 //if (this.statement.TableRefs.Length != 1) throw new System.Exception("Must specify name if the DynamicView contains multiple table references");
-                if (this.statement.TableRefs.Length > 1) {
-                    logger.Debug($"DynamicView():Using '{this.statement.TableRefs[0].table.Name}' for the name of the dynamic view even though the SQL contained tables '{string.Join(",", this.statement.TableRefs.Select(x => x.table.Name))}'");
+                if (this.statement.StatementFromRefs.Length > 1) {
+                    logger.Debug($"DynamicView():Using '{this.statement.StatementFromRefs[0].table.Name}' for the name of the dynamic view even though the SQL contained tables '{string.Join(",", this.statement.StatementFromRefs.Select(x => x.table.Name))}'");
                 }
-                this.name = this.statement.TableRefs[0].table.Name;
+                this.name = this.statement.StatementFromRefs[0].table.Name;
             }
             else {
                 this.name = name;
@@ -64,13 +65,29 @@ namespace Butterfly.Core.Database.Dynamic {
 
             if (keyFieldNames == null) {
                 //if (this.statement.TableRefs.Length != 1) throw new System.Exception("Must specify key field names if the DynamicView contains multiple table references");
-                if (this.statement.TableRefs.Length > 1) {
-                    logger.Debug($"DynamicView():Using the key field names of the primary key of table '{this.statement.TableRefs[0].table.Name}' for the dynamic view name even though the SQL contained tables '{string.Join(",", this.statement.TableRefs.Select(x => x.table.Name))}'");
+                if (this.statement.StatementFromRefs.Length > 1) {
+                    logger.Debug($"DynamicView():Using the key field names of the primary key of table '{this.statement.StatementFromRefs[0].table.Name}' for the dynamic view name even though the SQL contained tables '{string.Join(",", this.statement.StatementFromRefs.Select(x => x.table.Name))}'");
                 }
-                this.keyFieldNames = this.statement.TableRefs[0].table.Indexes[0].FieldNames;
+                this.keyFieldNames = this.statement.StatementFromRefs[0].table.Indexes[0].FieldNames;
             }
             else {
                 this.keyFieldNames = keyFieldNames;
+            }
+
+            if (dynamicTableAliases==null) {
+                foreach (var statementFromRef in this.statement.StatementFromRefs) {
+                    if (!this.dynamicStatementFromRefByTableName.ContainsKey(statementFromRef.table.Name)) {
+                        this.dynamicStatementFromRefByTableName[statementFromRef.table.Name] = statementFromRef;
+                    }
+                }
+            }
+            else {
+                foreach (var tableAlias in dynamicTableAliases) {
+                    var statementFromRef = Array.Find(this.statement.StatementFromRefs, x => x.tableAlias == tableAlias || (x.tableAlias == null && x.table.Name == tableAlias));
+                    if (statementFromRef == null) throw new Exception($"Dynamic table alias {tableAlias} not found");
+                    if (this.dynamicStatementFromRefByTableName.ContainsKey(statementFromRef.table.Name)) throw new Exception($"Table {statementFromRef.table.Name} can only have one dynamic alias");
+                    this.dynamicStatementFromRefByTableName[statementFromRef.table.Name] = statementFromRef;
+                }
             }
         }
 
@@ -118,10 +135,10 @@ namespace Butterfly.Core.Database.Dynamic {
             logger.Trace($"ProcessDataChange():dataEvent={dataEvent},preCommitImpactedRecords.Length={preCommitImpactedRecords?.Length},postCommitImpactedRecords.Length={postCommitImpactedRecords?.Length}");
             if (!(dataEvent is KeyValueDataEvent keyValueDataEvent)) return null;
 
-            StatementTableRef tableRef = this.statement.FindTableRefByTableName(keyValueDataEvent.name);
-            if (tableRef == null) return null;
+            if (!this.statement.HasTableInFrom(keyValueDataEvent.name)) return null;
 
             List<RecordDataEvent> recordDataEvents = new List<RecordDataEvent>();
+            /*
             switch (keyValueDataEvent.dataEventType) {
                 case DataEventType.Insert:
                     if (postCommitImpactedRecords != null) {
@@ -132,6 +149,7 @@ namespace Butterfly.Core.Database.Dynamic {
                     }
                     break;
                 case DataEventType.Update:
+                */
                     var preCommitKeyValues = preCommitImpactedRecords==null ? new object[] { } : preCommitImpactedRecords.Select(x => BaseDatabase.GetKeyValue(this.keyFieldNames, x)).ToArray();
                     var postCommitKeyValues = postCommitImpactedRecords==null ? new object[] { } : postCommitImpactedRecords.Select(x => BaseDatabase.GetKeyValue(this.keyFieldNames, x)).ToArray();
 
@@ -155,16 +173,18 @@ namespace Butterfly.Core.Database.Dynamic {
                             recordDataEvents.Add(new RecordDataEvent(DataEventType.Insert, this.name, postCommitKeyValues[i], postCommitImpactedRecords[i]));
                         }
                     }
-                    break;
-                case DataEventType.Delete:
-                    if (preCommitImpactedRecords != null) {
-                        foreach (var impactedRecord in preCommitImpactedRecords) {
-                            object keyValue = BaseDatabase.GetKeyValue(this.keyFieldNames, impactedRecord);
-                            recordDataEvents.Add(new RecordDataEvent(DataEventType.Delete, this.name, keyValue, impactedRecord));
-                        }
-                    }
-                    break;
+            /*
+            break;
+        case DataEventType.Delete:
+            if (preCommitImpactedRecords != null) {
+                foreach (var impactedRecord in preCommitImpactedRecords) {
+                    object keyValue = BaseDatabase.GetKeyValue(this.keyFieldNames, impactedRecord);
+                    recordDataEvents.Add(new RecordDataEvent(DataEventType.Delete, this.name, keyValue, impactedRecord));
+                }
             }
+            break;
+    }
+            */
             logger.Trace($"ProcessDataChange():recordDataEvents={string.Join(",", recordDataEvents)}");
             return recordDataEvents.ToArray();
         }
@@ -193,41 +213,77 @@ namespace Butterfly.Core.Database.Dynamic {
          *  
          */
         internal async Task<Dict[]> GetImpactedRecordsAsync(KeyValueDataEvent keyValueDataEvent) {
-            StatementTableRef tableRef = this.statement.FindTableRefByTableName(keyValueDataEvent.name);
-            if (tableRef == null) return null;
-            logger.Trace($"GetImpactedRecordsAsync():name={name},tableRef={tableRef}");
+            if (!this.dynamicStatementFromRefByTableName.TryGetValue(keyValueDataEvent.name, out StatementFromRef selectedStatementFromRef)) return null;
+            logger.Trace($"GetImpactedRecordsAsync():name={name}");
 
-            StringBuilder newAndCondition = new StringBuilder();
-            Dict newWhereParams = new Dict();
+            StringBuilder newFromClause = new StringBuilder();
+            string newWhereClause = this.statement.whereClause;
+            Dict newVarsDict = new Dict(this.varsDict);
 
-            Dict primaryKeyValues = BaseDatabase.ParseKeyValue(keyValueDataEvent.keyValue, this.dynamicViewSet.Database.Tables[keyValueDataEvent.name].Indexes[0].FieldNames);
-            foreach (var fieldName in this.dynamicViewSet.Database.Tables[keyValueDataEvent.name].Indexes[0].FieldNames) {
-                logger.Trace($"GetImpactedRecordsAsync():fieldName={fieldName}");
+            foreach (StatementFromRef statementFromRef in this.statement.StatementFromRefs) {
+                StringBuilder sb = new StringBuilder();
+                if (statementFromRef == selectedStatementFromRef) {
+                    Dict primaryKeyValues = BaseDatabase.ParseKeyValue(keyValueDataEvent.keyValue, this.dynamicViewSet.Database.Tables[keyValueDataEvent.name].Indexes[0].FieldNames);
 
-                string prefix;
-                if (this.statement.TableRefs.Length == 1) {
-                    prefix = "";
+                    foreach (var fieldName in this.dynamicViewSet.Database.Tables[keyValueDataEvent.name].Indexes[0].FieldNames) {
+                        logger.Trace($"GetImpactedRecordsAsync():tableName={statementFromRef.table.Name},fieldName={fieldName}");
+
+                        string prefix;
+                        if (this.statement.StatementFromRefs.Length == 1) {
+                            prefix = "";
+                        }
+                        else if (!string.IsNullOrEmpty(statementFromRef.tableAlias)) {
+                            prefix = $"{statementFromRef.tableAlias}.";
+                        }
+                        else {
+                            prefix = $"{statementFromRef.table.Name}.";
+                        }
+                        logger.Trace($"GetImpactedRecordsAsync():prefix={prefix}");
+
+                        var paramName = $"__{fieldName}";
+                        var condition = $"{prefix}{fieldName}=@{paramName}";
+                        logger.Trace($"GetImpactedRecordsAsync():condition={condition}");
+
+                        if (sb.Length > 0) sb.Append(" AND ");
+                        sb.Append(condition);
+
+                        newVarsDict[paramName] = primaryKeyValues[fieldName];
+                    }
+                    logger.Trace($"GetImpactedRecordsAsync():newAndCondition={newWhereClause}");
                 }
-                else if (!string.IsNullOrEmpty(tableRef.tableAlias)) {
-                    prefix = $"{tableRef.tableAlias}.";
+
+                // JoinType = None only happens on first table reference
+                if (statementFromRef.joinType == JoinType.None) {
+                    newFromClause.Append(statementFromRef.table.Name);
+                    if (!string.IsNullOrEmpty(statementFromRef.tableAlias)) {
+                        newFromClause.Append($" {statementFromRef.tableAlias}");
+                    }
+
+                    if (sb.Length > 0) {
+                        if (string.IsNullOrEmpty(newWhereClause)) newWhereClause = sb.ToString();
+                        else newWhereClause = $"({newWhereClause}) AND ({sb.ToString()})";
+                    }
                 }
                 else {
-                    prefix = $"{tableRef.table.Name}.";
+                    newFromClause.Append($" {statementFromRef.joinType.ToString().ToUpper()} JOIN");
+                    newFromClause.Append($" {statementFromRef.table.Name}");
+                    if (!string.IsNullOrEmpty(statementFromRef.tableAlias)) {
+                        newFromClause.Append($" {statementFromRef.tableAlias}");
+                    }
+                    newFromClause.Append($" ON");
+
+                    if (sb.Length > 0) {
+                        newFromClause.Append($" ({statementFromRef.joinCondition}) AND ({sb.ToString()})");
+                    }
+                    else {
+                        newFromClause.Append($" {statementFromRef.joinCondition}");
+                    }
                 }
-                logger.Trace($"GetImpactedRecordsAsync():prefix={prefix}");
-
-                var paramName = $"__{ fieldName}";
-                var condition = $"{prefix}{fieldName}=@{paramName}";
-                logger.Trace($"GetImpactedRecordsAsync():condition={condition}");
-
-                if (newAndCondition.Length > 0) newAndCondition.Append(" AND ");
-                newAndCondition.Append(condition);
-
-                newWhereParams[paramName] = primaryKeyValues[fieldName];
             }
-            logger.Trace($"GetImpactedRecordsAsync():newAndCondition={newAndCondition}");
 
-            return await this.dynamicViewSet.Database.SelectRowsAsync(this.statement, this.varsDict, newAndCondition.ToString(), newWhereParams);
+            SelectStatement newStatement = new SelectStatement(this.dynamicViewSet.Database, this.statement.selectClause, newFromClause.ToString(), newWhereClause.ToString(), null);
+
+            return await this.dynamicViewSet.Database.SelectRowsAsync(newStatement, newVarsDict);
         }
 
         internal void UpdateChildDynamicParams(DataEvent[] dataEvents) {

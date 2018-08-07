@@ -89,7 +89,7 @@ namespace Butterfly.Core.Database.Memory {
 
         protected override Task<Func<object>> DoInsertAsync(string executableSql, Dict executableParams, bool ignoreIfDuplicate) {
             InsertStatement executableStatement = new InsertStatement(this.database, executableSql);
-            var memoryTable = executableStatement.TableRefs[0].table as MemoryTable;
+            var memoryTable = executableStatement.StatementFromRefs[0].table as MemoryTable;
 
             var insertRefs = executableStatement.GetInsertRefs(executableParams);
             var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(executableParams, insertRefs);
@@ -112,12 +112,12 @@ namespace Butterfly.Core.Database.Memory {
 
         protected override Task<int> DoUpdateAsync(string executableSql, Dict executableParams) {
             UpdateStatement executableStatement = new UpdateStatement(this.database, executableSql);
-            if (!(executableStatement.TableRefs[0].table is MemoryTable memoryTable)) throw new Exception("Table is not a MemoryTable");
+            if (!(executableStatement.StatementFromRefs[0].table is MemoryTable memoryTable)) throw new Exception("Table is not a MemoryTable");
 
             (var whereIndex, var setRefs, var whereRefs) = executableStatement.GetWhereIndexSetRefsAndWhereRefs(this.database, executableParams);
             var fieldValues = BaseStatement.RemapStatementParamsToFieldValues(executableParams, setRefs);
 
-            string evaluatedWhereClause = MemoryDatabase.EvaluateWhereClause(executableStatement.whereClause, executableParams, executableStatement.TableRefs);
+            string evaluatedWhereClause = MemoryDatabase.EvaluateWhereClause(executableStatement.whereClause, executableParams, executableStatement.StatementFromRefs);
             var dataRows = memoryTable.DataTable.Select(evaluatedWhereClause);
             int count = 0;
             foreach (var dataRow in dataRows) {
@@ -137,9 +137,9 @@ namespace Butterfly.Core.Database.Memory {
 
         protected override Task<int> DoDeleteAsync(string executableSql, Dict executableParams) {
             DeleteStatement executableStatement = new DeleteStatement(this.database, executableSql);
-            var memoryTable = executableStatement.TableRefs[0].table as MemoryTable;
+            var memoryTable = executableStatement.StatementFromRefs[0].table as MemoryTable;
 
-            string evaluatedWhereClause = MemoryDatabase.EvaluateWhereClause(executableStatement.whereClause, executableParams, executableStatement.TableRefs);
+            string evaluatedWhereClause = MemoryDatabase.EvaluateWhereClause(executableStatement.whereClause, executableParams, executableStatement.StatementFromRefs);
             var dataRows = memoryTable.DataTable.Select(evaluatedWhereClause);
             foreach (var dataRow in dataRows) {
                 dataRow.Delete();

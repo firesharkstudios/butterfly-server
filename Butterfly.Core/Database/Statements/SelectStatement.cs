@@ -66,19 +66,33 @@ namespace Butterfly.Core.Database {
                 }
             }
 
+            this.Compile(database);
+        }
+
+        public SelectStatement(IDatabase database, string selectClause, string fromClause, string whereClause, string orderByClause, int limit = -1) {
+            this.selectClause = selectClause;
+            this.fromClause = fromClause;
+            this.whereClause = whereClause;
+            this.orderByClause = orderByClause;
+            this.limit = limit;
+
+            this.Compile(database);
+        }
+
+        protected void Compile(IDatabase database) {
             // Parse the FROM clause
-            this.TableRefs = StatementTableRef.ParseTableRefs(database, this.fromClause);
+            this.StatementFromRefs = StatementFromRef.ParseFromRefs(database, this.fromClause);
 
             var rawFieldRefs = StatementFieldRef.ParseFieldRefs(string.IsNullOrEmpty(selectClause) ? "*" : selectClause, true);
             List<StatementFieldRef> fieldRefs = new List<StatementFieldRef>();
             foreach (var rawFieldRef in rawFieldRefs) {
                 if (rawFieldRef.fieldName=="*") {
                     if (string.IsNullOrEmpty(rawFieldRef.tableAlias)) {
-                        if (this.TableRefs.Length != 1) throw new Exception("Select statement must have exactly one table to use * to select field names");
-                        fieldRefs.AddRange(this.TableRefs[0].table.FieldDefs.Select(x => new StatementFieldRef(x.name)));
+                        if (this.StatementFromRefs.Length != 1) throw new Exception("Select statement must have exactly one table to use * to select field names");
+                        fieldRefs.AddRange(this.StatementFromRefs[0].table.FieldDefs.Select(x => new StatementFieldRef(x.name)));
                     }
                     else {
-                        var tableRef = this.TableRefs.First(x => rawFieldRef.tableAlias == x.table.Name || rawFieldRef.tableAlias == x.tableAlias);
+                        var tableRef = this.StatementFromRefs.First(x => rawFieldRef.tableAlias == x.table.Name || rawFieldRef.tableAlias == x.tableAlias);
                         if (tableRef == null) throw new Exception($"Could not find table matching {this.selectClause}");
                         fieldRefs.AddRange(tableRef.table.FieldDefs.Select(x => new StatementFieldRef(x.name)));
                     }
@@ -91,7 +105,7 @@ namespace Butterfly.Core.Database {
         }
 
         public SelectStatement(SelectStatement sourceSelectStatement, string overrideWhereClause, bool ignoreOrderBy) {
-            this.TableRefs = sourceSelectStatement.TableRefs;
+            this.StatementFromRefs = sourceSelectStatement.StatementFromRefs;
 
             this.selectClause = sourceSelectStatement.selectClause;
             this.fromClause = sourceSelectStatement.fromClause;
@@ -110,7 +124,9 @@ namespace Butterfly.Core.Database {
 
         public (string, Dict) GetExecutableSqlAndParams(Dict sourceParams) {
             string newSelectClause = string.IsNullOrEmpty(this.selectClause) ? "*" : this.selectClause;
-            string newWhereClause = string.IsNullOrEmpty(this.whereClause) && sourceParams.Count > 0 ? string.Join(" AND ", sourceParams.Keys.Select(x => $"{x}=@{x}")) : this.whereClause;
+
+            Dict sourceParamsNotInFromClause = sourceParams.Where(x => !this.fromClause.Contains($"@{x.Key}")).ToDictionary(x => x.Key, x => x.Value);
+            string newWhereClause = string.IsNullOrEmpty(this.whereClause) && sourceParamsNotInFromClause.Count > 0 ? string.Join(" AND ", sourceParamsNotInFromClause.Keys.Select(x => $"{x}=@{x}")) : this.whereClause;
 
             Dict dataParams = new Dict();
             foreach (var sourceParam in sourceParams) {

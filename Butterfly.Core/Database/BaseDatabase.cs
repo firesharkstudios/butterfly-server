@@ -192,7 +192,7 @@ namespace Butterfly.Core.Database {
 
         internal async Task<DataEventTransaction> GetInitialDataEventTransactionAsync(string statementSql, dynamic statementParams = null) {
             SelectStatement statement = new SelectStatement(this, statementSql);
-            DataEvent[] initialDataEvents = await this.GetInitialDataEventsAsync(statement.TableRefs[0].table.Name, statement.TableRefs[0].table.Indexes[0].FieldNames, statement, statementParams);
+            DataEvent[] initialDataEvents = await this.GetInitialDataEventsAsync(statement.StatementFromRefs[0].table.Name, statement.StatementFromRefs[0].table.Indexes[0].FieldNames, statement, statementParams);
             return new DataEventTransaction(DateTime.Now, initialDataEvents);
         }
 
@@ -228,17 +228,7 @@ namespace Butterfly.Core.Database {
             return await this.SelectRowsAsync(statement, vars);
         }
 
-        internal Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic vars, string newAndCondition, Dict newWhereParams) {
-            string overrideWhereClause = string.IsNullOrEmpty(statement.whereClause) ? newAndCondition : $"({newAndCondition}) AND ({statement.whereClause})";
-            SelectStatement newStatement = new SelectStatement(statement, overrideWhereClause, true);
-            Dict varsDict = newStatement.ConvertParamsToDict(vars);
-            varsDict.UpdateFrom(newWhereParams);
-            (string executableSql, Dict executableParams) = newStatement.GetExecutableSqlAndParams(varsDict);
-            this.SelectCount++;
-            return this.DoSelectRowsAsync(executableSql, executableParams);
-        }
-
-        protected Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic vars) {
+        internal Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic vars) {
             Dict varsDict = statement.ConvertParamsToDict(vars);
             (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(varsDict);
             this.SelectCount++;

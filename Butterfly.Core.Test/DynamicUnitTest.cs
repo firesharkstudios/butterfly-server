@@ -57,7 +57,7 @@ namespace Butterfly.Core.Test {
         */
 
         public static async Task TestDatabase(BaseDatabase database) {
-            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Core.Database.Test.db.sql");
+            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Core.Test.db.sql");
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString(), "employee");
             database.SetDefaultValue("created_at", tableName => DateTime.Now);
             database.SetDefaultValue("updated_at", tableName => DateTime.Now);
@@ -159,8 +159,8 @@ namespace Butterfly.Core.Test {
                 });
                 await Task.Delay(50);
 
-                // Should only require doing a single SELECT to handle this INSERT
-                Assert.AreEqual(preSelectCount + 1, database.SelectCount);
+                // Should require doing two SELECTs to handle this INSERT (before and after SELECT)
+                Assert.AreEqual(preSelectCount + 2, database.SelectCount);
             }
         }
     }

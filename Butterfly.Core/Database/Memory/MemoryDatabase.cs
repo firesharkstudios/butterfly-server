@@ -49,10 +49,10 @@ namespace Butterfly.Core.Database.Memory {
 
         protected override Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams) {
             SelectStatement executableStatement = new SelectStatement(this, executableSql);
-            if (executableStatement.TableRefs.Length > 1) throw new Exception("MemoryTable does not support joins");
-            if (!(executableStatement.TableRefs[0].table is MemoryTable memoryTable)) throw new Exception("Table is not a MemoryTable");
+            if (executableStatement.StatementFromRefs.Length > 1) throw new Exception("MemoryTable does not support joins");
+            if (!(executableStatement.StatementFromRefs[0].table is MemoryTable memoryTable)) throw new Exception("Table is not a MemoryTable");
 
-            string evaluatedWhereClause = EvaluateWhereClause(executableStatement.whereClause, executableParams, executableStatement.TableRefs);
+            string evaluatedWhereClause = EvaluateWhereClause(executableStatement.whereClause, executableParams, executableStatement.StatementFromRefs);
             DataRow[] dataRows = memoryTable.DataTable.Select(evaluatedWhereClause, null, DataViewRowState.OriginalRows);
             List<Dict> rows = new List<Dict>();
             foreach (var dataRow in dataRows) {
@@ -74,7 +74,7 @@ namespace Butterfly.Core.Database.Memory {
 
         public override bool CanJoin => false;
 
-        public static string EvaluateWhereClause(string whereClause, Dict sqlParams, StatementTableRef[] tableRefs) {
+        public static string EvaluateWhereClause(string whereClause, Dict sqlParams, StatementFromRef[] tableRefs) {
             string newWhereClause = whereClause;
             newWhereClause = EvaluateWhereClauseReplace(newWhereClause, SIMPLE_REPLACE, sqlParams, tableRefs, op => {
                 if (op == "!=") return "<>";
@@ -84,7 +84,7 @@ namespace Butterfly.Core.Database.Memory {
             return newWhereClause;
         }
 
-        protected static string EvaluateWhereClauseReplace(string sql, Regex regex, Dict sqlParams, StatementTableRef[] tableRefs, Func<string, string> remapOp = null) {
+        protected static string EvaluateWhereClauseReplace(string sql, Regex regex, Dict sqlParams, StatementFromRef[] tableRefs, Func<string, string> remapOp = null) {
             StringBuilder sb = new StringBuilder();
             int lastIndex = 0;
             foreach (Match match in regex.Matches(sql)) {
@@ -97,7 +97,7 @@ namespace Butterfly.Core.Database.Memory {
 
                 // Get table ref
                 string tableAlias = match.Groups["tableAliasWithDot"].Value.Replace(".", "");
-                StatementTableRef tableRef;
+                StatementFromRef tableRef;
                 if (string.IsNullOrEmpty(tableAlias)) {
                     if (tableRefs.Length > 1) throw new Exception("SELECT statements with more than one table reference must use table aliases for all where clause fields");
                     tableRef = tableRefs[0];

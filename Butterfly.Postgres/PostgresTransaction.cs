@@ -128,8 +128,8 @@ namespace Butterfly.Postgres {
         protected override async Task<Func<object>> DoInsertAsync(string executableSql, Dict executableParams, bool ignoreIfDuplicate) {
             try {
                 InsertStatement statement = new InsertStatement(this.database, executableSql);
-                bool hasAutoIncrement = statement.TableRefs[0].table.AutoIncrementFieldName != null;
-                string newExecutableSql = hasAutoIncrement ? $"{executableSql} RETURNING {statement.TableRefs[0].table.AutoIncrementFieldName}" : executableSql; 
+                bool hasAutoIncrement = statement.StatementFromRefs[0].table.AutoIncrementFieldName != null;
+                string newExecutableSql = hasAutoIncrement ? $"{executableSql} RETURNING {statement.StatementFromRefs[0].table.AutoIncrementFieldName}" : executableSql; 
 
                 var command = new NpgsqlCommand(newExecutableSql, this.connection);
                 if (executableParams != null) {

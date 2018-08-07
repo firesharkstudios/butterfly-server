@@ -33,8 +33,8 @@ namespace Butterfly.Core.Test {
         [TestMethod]
         public void Parse() {
             IDatabase database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Core.Database.Test.db.sql");
-            var tableRefs = StatementTableRef.ParseTableRefs(database, "employee_contact ec INNER JOIN employee e ON ec.employee_id=e.id AND 1=2 left JOIN department d on e.department_id=d.id and 1=2");
+            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Core.Test.db.sql");
+            var tableRefs = StatementFromRef.ParseFromRefs(database, "employee_contact ec INNER JOIN employee e ON ec.employee_id=e.id AND 1=2 left JOIN department d on e.department_id=d.id and 1=2");
             Assert.AreEqual(3, tableRefs.Length);
             Assert.AreEqual(tableRefs[0].table.Name, "employee_contact");
             Assert.AreEqual(tableRefs[0].tableAlias, "ec");
