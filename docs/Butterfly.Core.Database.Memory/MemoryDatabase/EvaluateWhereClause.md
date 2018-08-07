@@ -1,12 +1,12 @@
 # MemoryDatabase.EvaluateWhereClause method
 
 ```csharp
-public static string EvaluateWhereClause(string whereClause, Dictionary<string, object> sqlParams, StatementTableRef[] tableRefs)
+public static string EvaluateWhereClause(string whereClause, Dictionary<string, object> sqlParams, StatementFromRef[] tableRefs)
 ```
 
 ## See Also
 
-* class [StatementTableRef](../../Butterfly.Core.Database/StatementTableRef.md)
+* class [StatementFromRef](../../Butterfly.Core.Database/StatementFromRef.md)
 * class [MemoryDatabase](../MemoryDatabase.md)
 * namespace [Butterfly.Core.Database.Memory](../../Butterfly.Core.md)
 

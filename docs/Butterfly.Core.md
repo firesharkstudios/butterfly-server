@@ -35,10 +35,11 @@
 | interface [IDynamicParam](Butterfly.Core.Database/IDynamicParam.md) | Use to implement a parameter value that can change |
 | class [InsertStatement](Butterfly.Core.Database/InsertStatement.md) | Internal class used to parse INSERT statements |
 | interface [ITransaction](Butterfly.Core.Database/ITransaction.md) | Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](Butterfly.Core.Database/IDatabase.md) instance when the transaction is committed. |
+| enum [JoinType](Butterfly.Core.Database/JoinType.md) |  |
 | class [SelectStatement](Butterfly.Core.Database/SelectStatement.md) | Internal class used to parse SELECT statements |
 | class [StatementEqualsRef](Butterfly.Core.Database/StatementEqualsRef.md) | Internal class representing a SQL equality reference like "table_alias.field_name=@param_name" |
 | class [StatementFieldRef](Butterfly.Core.Database/StatementFieldRef.md) | Internal class representing a SQL field reference like "table_alias.field_name field_alias" |
-| class [StatementTableRef](Butterfly.Core.Database/StatementTableRef.md) | Internal class representing a SQL table reference like "table_name table_alias" |
+| class [StatementFromRef](Butterfly.Core.Database/StatementFromRef.md) | Internal class representing a SQL table reference like "table_name table_alias" |
 | class [Table](Butterfly.Core.Database/Table.md) | Represents a table in an [`IDatabase`](Butterfly.Core.Database/IDatabase.md) |
 | class [TableFieldDef](Butterfly.Core.Database/TableFieldDef.md) | Defines a field definition for a [`Table`](Butterfly.Core.Database/Table.md) |
 | class [TableIndex](Butterfly.Core.Database/TableIndex.md) | Defines an index for a [`Table`](Butterfly.Core.Database/Table.md) |

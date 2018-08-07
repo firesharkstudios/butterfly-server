@@ -10,7 +10,7 @@ public class SelectStatement : BaseStatement
 
 | name | description |
 | --- | --- |
-| [SelectStatement](SelectStatement/SelectStatement.md)(…) |  (2 constructors) |
+| [SelectStatement](SelectStatement/SelectStatement.md)(…) |  (3 constructors) |
 | [FieldRefs](SelectStatement/FieldRefs.md) { get; } |  |
 | readonly [fromClause](SelectStatement/fromClause.md) |  |
 | readonly [limit](SelectStatement/limit.md) |  |

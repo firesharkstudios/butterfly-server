@@ -11,10 +11,10 @@ public abstract class BaseStatement
 | name | description |
 | --- | --- |
 | [Sql](BaseStatement/Sql.md) { get; } |  |
-| [TableRefs](BaseStatement/TableRefs.md) { get; } |  |
+| [StatementFromRefs](BaseStatement/StatementFromRefs.md) { get; } |  |
 | [ConvertParamsToDict](BaseStatement/ConvertParamsToDict.md)(…) |  |
-| [FindTableRefByTableAlias](BaseStatement/FindTableRefByTableAlias.md)(…) |  |
-| [FindTableRefByTableName](BaseStatement/FindTableRefByTableName.md)(…) |  |
+| [FindStatementFromRefByTableAlias](BaseStatement/FindStatementFromRefByTableAlias.md)(…) |  |
+| [HasTableInFrom](BaseStatement/HasTableInFrom.md)(…) |  |
 | static [ConfirmAllParamsUsed](BaseStatement/ConfirmAllParamsUsed.md)(…) |  |
 | static [RemapStatementParamsToFieldValues](BaseStatement/RemapStatementParamsToFieldValues.md)(…) |  |
 
