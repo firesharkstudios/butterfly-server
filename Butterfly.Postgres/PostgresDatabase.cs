@@ -24,6 +24,8 @@ using NLog;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 using Butterfly.Core.Database;
+using System.Collections.ObjectModel;
+using System.Data.Common;
 
 namespace Butterfly.Postgres {
 
@@ -144,10 +146,17 @@ namespace Butterfly.Postgres {
                         command.Parameters.AddWithValue(keyValuePair.Key, keyValuePair.Value);
                     }
                     using (var reader = await command.ExecuteReaderAsync()) {
+                        ReadOnlyCollection<DbColumn> columns = null;
                         while (await reader.ReadAsync()) {
+                            if (columns == null) columns = reader.GetColumnSchema();
                             Dict row = new Dictionary<string, object>();
+                            /*
                             for (int i = 0; i < statement.FieldRefs.Length; i++) {
                                 row[statement.FieldRefs[i].fieldAlias] = ConvertValue(statement.FieldRefs[i].fieldAlias, reader[i]);
+                            }
+                            */
+                            foreach (var column in columns) {
+                                row[column.ColumnName] = ConvertValue(reader[column.ColumnName]);
                             }
                             rows.Add(row);
                         }
@@ -166,7 +175,7 @@ namespace Butterfly.Postgres {
             throw new NotImplementedException();
         }
 
-        protected static object ConvertValue(string fieldName, object value) {
+        protected static object ConvertValue(object value) {
             if (value == null || value == DBNull.Value) {
                 return null;
             }

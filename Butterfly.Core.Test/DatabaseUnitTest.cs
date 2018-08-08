@@ -23,12 +23,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Butterfly.Core.Database;
 using Butterfly.Core.Database.Event;
+using Butterfly.Core.Util;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Core.Test {
     [TestClass]
-    [DeploymentItem(@"x86\SQLite.Interop.dll", "x86")]
     public class DatabaseUnitTest {
         [TestMethod]
         public void Parse() {
@@ -56,51 +56,11 @@ namespace Butterfly.Core.Test {
             Assert.AreEqual("ec.id", selectStatement2.selectClause);
         }
 
-        /*
-        public enum Role {
-            None,
-            Customer,
-        }
-        */
-
         [TestMethod]
         public async Task DataMemoryDatabase() {
-            /*
-            int? x = new Dictionary<string, object> {
-                { "x", 1 }
-            }.GetAs("x", (int?)null);
-
-            int? x = new Dictionary<string, object> {
-            }.GetAs("x", (int?)null);
-
-            Role role = new Dictionary<string, object> {
-                { "role", "customer" },
-            }.GetAs("role", Role.None);
-            */
-
             IDatabase database = new Butterfly.Core.Database.Memory.MemoryDatabase();
             await TestDatabase(database);
         }
-
-        /*
-        [TestMethod]
-        public async Task DataMySqlDatabase() {
-            IDatabase database = new Butterfly.Core.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_test");
-            await this.TestDatabase(database);
-        }
-
-        [TestMethod]
-        public async Task DataPostgresDatabase() {
-            IDatabase database = new Butterfly.Core.Database.Postgres.PostgresDatabase("Host=localhost;Username=postgres;Password=test!123;Database=butterfly_test");
-            await this.TestDatabase(database);
-        }
-
-        [TestMethod]
-        public async Task DataSQLiteDatabase() {
-            IDatabase database = new Butterfly.Core.Database.SQLite.SQLiteDatabase("butterfly_test.sqlite");
-            await this.TestDatabase(database);
-        }
-        */
 
         public static async Task TestDatabase(IDatabase database) {
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Core.Test.db.sql");
@@ -372,6 +332,16 @@ namespace Butterfly.Core.Test {
                 Dict[] someEmployees12 = await database.SelectRowsAsync("SELECT * FROM employee WHERE department_id IN (SELECT id from department)");
                 Assert.AreEqual(3, someEmployees12.Length);
             }
+
+            if (database.CanFieldAlias) {
+                // Test retrieving rows on an indexed field
+                Dict[] someDepartments6 = await database.SelectRowsAsync("SELECT IF(id IS NULL, NULL, id) new_id FROM department WHERE id=@id", new {
+                    id = salesDepartmentId,
+                });
+                Assert.AreEqual(1, someDepartments6.Length);
+                Assert.AreEqual(salesDepartmentId, someDepartments6[0].GetAs("new_id", (string)null));
+            }
+
         }
 
         protected static async Task UpdateAndDeleteBasicData(IDatabase database, object hrDepartmentId) {

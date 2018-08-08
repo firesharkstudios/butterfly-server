@@ -90,6 +90,8 @@ namespace Butterfly.Core.Database {
 
         bool CanJoin { get;  }
 
+        bool CanFieldAlias { get; }
+
         /// <summary>
         /// Dictionary of <see cref="Table"/> instances keyed by name
         /// </summary>

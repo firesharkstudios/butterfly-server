@@ -5,6 +5,42 @@
 	PRIMARY KEY(id)
 );
 
+CREATE TABLE auth_token (
+	id VARCHAR(50) NOT NULL,
+	user_id VARCHAR(50) NOT NULL,
+	expires_at INT NOT NULL,
+	created_at INT NOT NULL,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE department (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(40) NOT NULL,
+  created_at datetime NOT NULL,
+  updated_at datetime NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE employee (
+  id VARCHAR(40) NOT NULL,
+  name VARCHAR(40) NOT NULL,
+  department_id INT NOT NULL,
+  birthday datetime,
+  created_at datetime NOT NULL,
+  updated_at datetime NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY name (name)
+);
+
+CREATE TABLE employee_contact (
+  employee_id VARCHAR(40) NOT NULL,
+  contact_type VARCHAR(10) NOT NULL,
+  contact_data VARCHAR(40) NOT NULL,
+  created_at datetime NOT NULL,
+  updated_at datetime NOT NULL,
+  PRIMARY KEY (employee_id,contact_type)
+);
+
 CREATE TABLE user (
 	id VARCHAR(50) NOT NULL,
 	account_id VARCHAR(50) NOT NULL,
@@ -24,12 +60,4 @@ CREATE TABLE user (
 	updated_at INT NOT NULL,
 	PRIMARY KEY(id),
 	UNIQUE INDEX username (username)
-);
-
-CREATE TABLE auth_token (
-	id VARCHAR(50) NOT NULL,
-	user_id VARCHAR(50) NOT NULL,
-	expires_at INT NOT NULL,
-	created_at INT NOT NULL,
-	PRIMARY KEY(id)
 );

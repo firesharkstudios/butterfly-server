@@ -80,28 +80,7 @@ namespace Butterfly.Core.Database {
         }
 
         protected void Compile(IDatabase database) {
-            // Parse the FROM clause
             this.StatementFromRefs = StatementFromRef.ParseFromRefs(database, this.fromClause);
-
-            var rawFieldRefs = StatementFieldRef.ParseFieldRefs(string.IsNullOrEmpty(selectClause) ? "*" : selectClause, true);
-            List<StatementFieldRef> fieldRefs = new List<StatementFieldRef>();
-            foreach (var rawFieldRef in rawFieldRefs) {
-                if (rawFieldRef.fieldName=="*") {
-                    if (string.IsNullOrEmpty(rawFieldRef.tableAlias)) {
-                        if (this.StatementFromRefs.Length != 1) throw new Exception("Select statement must have exactly one table to use * to select field names");
-                        fieldRefs.AddRange(this.StatementFromRefs[0].table.FieldDefs.Select(x => new StatementFieldRef(x.name)));
-                    }
-                    else {
-                        var tableRef = this.StatementFromRefs.First(x => rawFieldRef.tableAlias == x.table.Name || rawFieldRef.tableAlias == x.tableAlias);
-                        if (tableRef == null) throw new Exception($"Could not find table matching {this.selectClause}");
-                        fieldRefs.AddRange(tableRef.table.FieldDefs.Select(x => new StatementFieldRef(x.name)));
-                    }
-                }
-                else {
-                    fieldRefs.Add(rawFieldRef);
-                }
-            }
-            this.FieldRefs = fieldRefs.ToArray();
         }
 
         public SelectStatement(SelectStatement sourceSelectStatement, string overrideWhereClause, bool ignoreOrderBy) {
@@ -118,8 +97,6 @@ namespace Butterfly.Core.Database {
                 sb.Append($" ORDER BY {this.orderByClause}");
             }
             this.Sql = sb.ToString();
-
-            this.FieldRefs = sourceSelectStatement.FieldRefs;
         }
 
         public (string, Dict) GetExecutableSqlAndParams(Dict sourceParams) {
@@ -210,11 +187,6 @@ namespace Butterfly.Core.Database {
             sb.Append(sql.Substring(lastIndex));
             return sb.ToString();
         }
-
-        public StatementFieldRef[] FieldRefs {
-            get;
-            protected set;
-        }
     }
 
     /// <summary>
@@ -222,7 +194,7 @@ namespace Butterfly.Core.Database {
     /// </summary>
     public class StatementFieldRef {
         public readonly string tableAlias;
-        public readonly string fieldName;
+        public readonly string fieldExpression;
         public readonly string fieldAlias;
 
         public StatementFieldRef(string fieldName) : this(null, fieldName, null) {
@@ -230,7 +202,7 @@ namespace Butterfly.Core.Database {
 
         public StatementFieldRef(string tableAlias, string fieldName, string fieldAlias) {
             this.tableAlias = string.IsNullOrWhiteSpace(tableAlias) ? null : tableAlias;
-            this.fieldName = fieldName;
+            this.fieldExpression = fieldName;
             this.fieldAlias = string.IsNullOrWhiteSpace(fieldAlias) ? fieldName : fieldAlias;
         }
 

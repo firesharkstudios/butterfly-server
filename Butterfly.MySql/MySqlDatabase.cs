@@ -16,12 +16,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
-using Butterfly.Core.Database;
+
 using MySql.Data.MySqlClient;
 using NLog;
+
+using Butterfly.Core.Database;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
@@ -36,6 +40,8 @@ namespace Butterfly.MySql {
         }
 
         public override bool CanJoin => true;
+
+        public override bool CanFieldAlias => true;
 
         protected override void LoadSchema() {
             try {
@@ -133,10 +139,17 @@ namespace Butterfly.MySql {
             List<Dict> rows = new List<Dict>();
             try {
                 using (MySqlDataReader reader = await ExecuteReaderAsync(this.ConnectionString, executableSql, mySqlParams)) {
+                    ReadOnlyCollection<DbColumn> columns = null;
                     while (reader.Read()) {
+                        if (columns==null) columns = reader.GetColumnSchema();
                         Dict row = new Dictionary<string, object>();
+                        /*
                         for (int i = 0; i < statement.FieldRefs.Length; i++) {
                             row[statement.FieldRefs[i].fieldAlias] = ConvertValue(reader[i]);
+                        }
+                        */
+                        foreach (var column in columns) {
+                            row[column.ColumnName] = ConvertValue(reader[column.ColumnName]);
                         }
                         rows.Add(row);
                     }

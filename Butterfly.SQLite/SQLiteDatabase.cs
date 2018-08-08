@@ -16,7 +16,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
+using System.Data.Common;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
@@ -111,10 +113,12 @@ namespace Butterfly.SQLite {
                         command.Parameters.AddWithValue(keyValuePair.Key, keyValuePair.Value);
                     }
                     using (var reader = await command.ExecuteReaderAsync()) {
+                        ReadOnlyCollection<DbColumn> columns = null;
                         while (await reader.ReadAsync()) {
+                            if (columns == null) columns = reader.GetColumnSchema();
                             Dict row = new Dictionary<string, object>();
-                            for (int i = 0; i < statement.FieldRefs.Length; i++) {
-                                row[statement.FieldRefs[i].fieldAlias] = ConvertValue(statement.FieldRefs[i].fieldAlias, reader[i]);
+                            foreach (var column in columns) {
+                                row[column.ColumnName] = ConvertValue(reader[column.ColumnName]);
                             }
                             rows.Add(row);
                         }
@@ -133,7 +137,7 @@ namespace Butterfly.SQLite {
             throw new NotImplementedException();
         }
 
-        protected static object ConvertValue(string fieldName, object value) {
+        protected static object ConvertValue(object value) {
             if (value == null || value == DBNull.Value) {
                 return null;
             }

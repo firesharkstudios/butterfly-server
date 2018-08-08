@@ -27,7 +27,7 @@ namespace Butterfly.Core.Database {
         protected readonly static Regex STATEMENT_REGEX = new Regex(@"CREATE\s+TABLE\s+(?<tableName>\w+)\s*\(\s*(?<createTableDefs>[\s\S]*)\s*\)", RegexOptions.IgnoreCase | RegexOptions.Multiline);
         protected readonly static Regex FIELD_REGEX = new Regex(@"^\s*(?<fieldName>\w+)\s+(?<fieldType>[\w\(\)]+)(?<not>\s*NOT)?(?<null>\s*NULL)?(?<autoIncrement>\s*AUTO_INCREMENT)?\s*[,$]", RegexOptions.IgnoreCase);
         protected readonly static Regex PRIMARY_KEY_REGEX = new Regex(@"^\s*PRIMARY\s+KEY\s*\((?<fields>[^\)]*)\)\s*(?:,|$)", RegexOptions.IgnoreCase);
-        protected readonly static Regex INDEX_REGEX = new Regex(@"^\s*(?<unique>UNIQUE\s+)?INDEX\s*(?<name>\w+)\s*\((?<fields>[^\)]*)\)\s*(?:,|$)", RegexOptions.IgnoreCase);
+        protected readonly static Regex INDEX_REGEX = new Regex(@"^\s*(?<unique>UNIQUE\s+)?(INDEX|KEY)\s*(?<name>\w+)\s*\((?<fields>[^\)]*)\)\s*(?:,|$)", RegexOptions.IgnoreCase);
 
         public CreateStatement(string sql) {
             Match match = STATEMENT_REGEX.Match(sql.Trim());

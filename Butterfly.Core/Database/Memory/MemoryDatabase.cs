@@ -16,12 +16,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
+using Butterfly.Core.Util;
 using NLog;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
@@ -52,13 +54,16 @@ namespace Butterfly.Core.Database.Memory {
             if (executableStatement.StatementFromRefs.Length > 1) throw new Exception("MemoryTable does not support joins");
             if (!(executableStatement.StatementFromRefs[0].table is MemoryTable memoryTable)) throw new Exception("Table is not a MemoryTable");
 
+            string[] fieldNames = string.IsNullOrEmpty(executableStatement.selectClause) || executableStatement.selectClause=="*" ? memoryTable.DataTable.Columns.Cast<DataColumn>().Select(x => x.ColumnName).ToArray() : executableStatement.selectClause.Split(',').Select(x => x.Trim()).ToArray();
+            if (fieldNames.Any(x => x.Contains(' '))) throw new Exception("MemoryTable does not support field aliases");
+
             string evaluatedWhereClause = EvaluateWhereClause(executableStatement.whereClause, executableParams, executableStatement.StatementFromRefs);
             DataRow[] dataRows = memoryTable.DataTable.Select(evaluatedWhereClause, null, DataViewRowState.OriginalRows);
             List<Dict> rows = new List<Dict>();
             foreach (var dataRow in dataRows) {
                 Dict row = new Dict();
-                foreach (var fieldRef in executableStatement.FieldRefs) {
-                    row[fieldRef.fieldAlias] = dataRow[fieldRef.fieldAlias, DataRowVersion.Original];
+                foreach (var fieldName in fieldNames) {
+                    row[fieldName] = dataRow[fieldName, DataRowVersion.Original];
                 }
                 rows.Add(row);
             }
@@ -73,6 +78,7 @@ namespace Butterfly.Core.Database.Memory {
         protected static readonly Regex IN_REPLACE = new Regex(@"(?<tableAliasWithDot>\w+\.)?(?<fieldName>\w+)\s+(?<op>IN|NOT\s+IN)\s+\((?<param>[^\)]+)\)", RegexOptions.IgnoreCase);
 
         public override bool CanJoin => false;
+        public override bool CanFieldAlias => false;
 
         public static string EvaluateWhereClause(string whereClause, Dict sqlParams, StatementFromRef[] tableRefs) {
             string newWhereClause = whereClause;

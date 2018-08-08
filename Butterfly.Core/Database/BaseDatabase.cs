@@ -63,6 +63,8 @@ namespace Butterfly.Core.Database {
 
         public abstract bool CanJoin { get; }
 
+        public abstract bool CanFieldAlias { get; }
+
         public int SelectCount {
             get;
             internal set;
