@@ -1,4 +1,4 @@
-export default function (options) {
+export default function(options) {
 	let _private = this;
 
 	let url = options.url;

@@ -207,45 +207,6 @@ module.exports = exports["default"];
 
 /***/ }),
 
-/***/ "./src/field-comparer.js":
-/*!*******************************!*\
-  !*** ./src/field-comparer.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _default;
-
-function _default(fieldNames) {
-  var fieldNameArray = fieldNames ? fieldNames.split(',') : null;
-  return function (a, b) {
-    if (fieldNameArray) {
-      for (var i = 0; i < fieldNameArray.length; i++) {
-        var reverse = fieldNameArray[i].startsWith('-');
-        var fieldName = reverse ? fieldNameArray[i].substring(1) : fieldNameArray[i];
-        var valueA = a[fieldName];
-        if (typeof valueA == 'string') valueA = valueA.toLowerCase();
-        var valueB = b[fieldName];
-        if (typeof valueB == 'string') valueB = valueB.toLowerCase();
-        if (valueA < valueB) return reverse ? 1 : -1;
-        if (valueA > valueB) return reverse ? -1 : 1;
-      }
-    }
-
-    return 0;
-  };
-}
-
-module.exports = exports["default"];
-
-/***/ }),
-
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -292,8 +253,6 @@ Object.defineProperty(exports, "WebSocketChannelClient", {
 
 var _arrayDataEventHandler = _interopRequireDefault(__webpack_require__(/*! ./array-data-event-handler.js */ "./src/array-data-event-handler.js"));
 
-var _fieldComparer = _interopRequireDefault(__webpack_require__(/*! ./field-comparer.js */ "./src/field-comparer.js"));
-
 var _vuexArrayGetters = _interopRequireDefault(__webpack_require__(/*! ./vuex-array-getters.js */ "./src/vuex-array-getters.js"));
 
 var _vuexArrayHandler = _interopRequireDefault(__webpack_require__(/*! ./vuex-array-handler.js */ "./src/vuex-array-handler.js"));
@@ -319,9 +278,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.VuexArrayGetters = VuexArrayGetters;
+exports.default = _default;
 
-function VuexArrayGetters(arrayName) {
+function _default(arrayName) {
   var result = {};
 
   result["".concat(arrayName, "Length")] = function (state) {
@@ -336,6 +295,8 @@ function VuexArrayGetters(arrayName) {
 
   return result;
 }
+
+module.exports = exports["default"];
 
 /***/ }),
 
@@ -352,9 +313,9 @@ function VuexArrayGetters(arrayName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.VuexArrayHandler = VuexArrayHandler;
+exports.default = _default;
 
-function VuexArrayHandler(store, arrayName) {
+function _default(store, arrayName) {
   return {
     get length() {
       return store.getters["".concat(arrayName, "Length")];
@@ -373,6 +334,8 @@ function VuexArrayHandler(store, arrayName) {
   };
 }
 
+module.exports = exports["default"];
+
 /***/ }),
 
 /***/ "./src/vuex-array-mutations.js":
@@ -388,9 +351,9 @@ function VuexArrayHandler(store, arrayName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.VuexArrayMutations = VuexArrayMutations;
+exports.default = _default;
 
-function VuexArrayMutations(arrayName) {
+function _default(arrayName) {
   var result = {};
 
   result["".concat(arrayName, "Splice")] = function (state, options) {
@@ -399,6 +362,8 @@ function VuexArrayMutations(arrayName) {
 
   return result;
 }
+
+module.exports = exports["default"];
 
 /***/ }),
 

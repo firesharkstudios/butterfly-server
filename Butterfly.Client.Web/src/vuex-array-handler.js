@@ -1,4 +1,4 @@
-export function VuexArrayHandler(store, arrayName) {
+export default function(store, arrayName) {
 	return {
 		get length() { return store.getters[`${arrayName}Length`] },
 		findIndex(callback) { return store.getters[`${arrayName}FindIndex`](callback) },
