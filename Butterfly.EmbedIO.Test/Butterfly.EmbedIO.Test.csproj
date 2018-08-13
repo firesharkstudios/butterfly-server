@@ -60,11 +60,11 @@
       <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
-    <Reference Include="Unosquare.Labs.EmbedIO, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\EmbedIO.1.13.0\lib\net46\Unosquare.Labs.EmbedIO.dll</HintPath>
+    <Reference Include="Unosquare.Labs.EmbedIO, Version=1.14.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EmbedIO.1.14.1\lib\net46\Unosquare.Labs.EmbedIO.dll</HintPath>
     </Reference>
-    <Reference Include="Unosquare.Swan.Lite, Version=0.26.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unosquare.Swan.Lite.0.26.0\lib\net452\Unosquare.Swan.Lite.dll</HintPath>
+    <Reference Include="Unosquare.Swan.Lite, Version=0.32.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unosquare.Swan.Lite.0.32.2\lib\net452\Unosquare.Swan.Lite.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

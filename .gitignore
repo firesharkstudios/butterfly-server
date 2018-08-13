@@ -263,3 +263,4 @@ __pycache__/
 # Custom
 /Butterfly.Examples/InheritTest.cs
 *.ps1
+/Archive

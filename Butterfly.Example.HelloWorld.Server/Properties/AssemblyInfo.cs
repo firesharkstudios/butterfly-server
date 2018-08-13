@@ -1,16 +1,16 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Butterfly.EmbedIO")]
-[assembly: AssemblyDescription("Implementation of Butterfly.Core.Channel and Butterfly.Core.WebApi using the EmbedIO server")]
+[assembly: AssemblyTitle("Butterfly.Example.HelloWorld.Server")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Fireshark Studios, LLC")]
-[assembly: AssemblyProduct("Butterfly Framework")]
-[assembly: AssemblyCopyright("Copyright © 2017-2018")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Butterfly.Example.HelloWorld.Server")]
+[assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("81c3a200-2e78-49e5-9d61-1e4debc2b87f")]
+[assembly: Guid("eabafdba-9e83-47b7-8f27-aeb8792d9b9d")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.9.3.40")]
-[assembly: AssemblyFileVersion("0.9.3.40")]
+[assembly: AssemblyVersion("1.0.0.10")]
+[assembly: AssemblyFileVersion("1.0.0.10")]
