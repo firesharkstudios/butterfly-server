@@ -44,7 +44,7 @@ public static void Init(IDatabase database, IWebApiServer webApiServer, IChannel
 }
 ```
 
-The above code...
+The above C# code...
 - Defines a simple API to insert and delete *todo* records
 - Listens for WebSocket connections at */ws*
 - Defines a *todos* channel that clients can subscribe (receiving both the initial *todo* records and any changes to the *todo* records)
@@ -91,7 +91,7 @@ $.ajax('/api/todo/insert', {
 });
 ```
 
-After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be added to the local *todosList* array.
+After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be sychronized from the server to the client's local *todosList* array.
 
 See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server/tree/master/Butterfly.Example.Todo.Client) for a full working client based on Vuetify and Vue.
 
