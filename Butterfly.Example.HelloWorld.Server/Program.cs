@@ -65,11 +65,8 @@ namespace Butterfly.Example.HelloWorld.Server {
         }
 
         public static void Setup(IDatabase database, IWebApiServer webApiServer, IChannelServer channelServer) {
-            logger.Debug($"Setup()");
-
             // Listen for API requests
             webApiServer.OnPost($"/api/message/insert", async (req, res) => {
-                // Parse the received message and INSERT a record into the message table
                 var text = await req.ParseAsJsonAsync<dynamic>();
                 await database.InsertAndCommitAsync<long>("message", new {
                     text
@@ -88,7 +85,6 @@ namespace Butterfly.Example.HelloWorld.Server {
                     listener: dataEventTransaction => channel.Queue(dataEventTransaction)
                 )
             );
-
         }
 
     }

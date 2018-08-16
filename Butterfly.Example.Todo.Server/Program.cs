@@ -24,17 +24,9 @@ namespace Butterfly.Example.HelloWorld.Server {
             };
 
             int port = 8000;
-            //string staticFullPath = "../../../Butterfly.Example.Todo.Client/";
 
             // Create the underlying EmbedIOWebServer (see https://github.com/unosquare/embedio)
             var embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer(port);
-            /*
-            embedIOWebServer.RegisterModule(new StaticFilesModule(staticFullPath, headers: new System.Collections.Generic.Dictionary<string, string> {
-                ["Cache-Control"] = "no-cache, no-store, must-revalidate",
-                ["Pragma"] = "no-cache",
-                ["Expires"] = "0"
-            }));
-            */
             Unosquare.Swan.Terminal.Settings.DisplayLoggingMessageType = Unosquare.Swan.LogMessageType.Info;
 
             // Create a MemoryDatabase (no persistence, limited features)
@@ -69,8 +61,6 @@ namespace Butterfly.Example.HelloWorld.Server {
         }
 
         public static void Setup(IDatabase database, IWebApiServer webApiServer, IChannelServer channelServer) {
-            logger.Debug($"Setup()");
-
             // Listen for API requests
             webApiServer.OnPost($"/api/todo/insert", async (req, res) => {
                 var todo = await req.ParseAsJsonAsync<Dict>();
