@@ -7,7 +7,7 @@ Key goals of the Butterfly Realtime Web App Server...
 - Define datasets in familiar SELECT syntax
 - Sync datasets to clients automatically over a WebSocket
 - Define a RESTlike API using an Express like syntax
-- Be client framework agnostic (use Vue, React, Angular, etc)
+- Work with any client framework (Vue, React, Angular, etc)
 
 ## Overview
 
@@ -55,23 +55,30 @@ See [Butterfly.Example.Todo.Server](https://github.com/firesharkstudios/Butterfl
 
 Now, let's see how a client might interact with this server using the Butterfly Client (`npm install butterfly-client`).
 
-First, let's create a *WebSocketChannelClient* that connects to */listen*, subscribes to the *todo-page* channel, and maps *todo* data events to the local *todoItems* array....
+First, the client should maintain an open WebSocket to the server by using the *WebSocketChannelClient* class...
 
 ```js
-let myUserId = '123';
-let todoItems = [];
 let channelClient = new WebSocketChannelClient({
-  url: '/listen',
+    url: `ws://${window.location.host}/ws`
 });
-channelClient.subscribe(new ArrayDataEventHandler({
-  arrayMapping: {
-    todo: todoItems,
-  }
-}), 'todo-page');
-channelClient.start(`Custom ${myUserId}`);
+channelClient.start('Custom My-User-Id');
 ```
 
-Shortly after the above code runs, the *todoItems* array would have all the records from the *todo* table.
+Next, the client will want to subscribe to a channel to receive data...
+
+```js
+let todosList = [];
+channelClient.subscribe(
+    new ArrayDataEventHandler({
+        arrayMapping: {
+            todo: todosList
+        }
+    }),
+    'todos'
+);
+```
+
+This subscription will cause the local *todosList* array to be synchronized with the *todo* records on the server.
 
 Next, let's invoke a method on our API to add a new *todo* record (use whatever client HTTP library you wish)...
 
@@ -80,12 +87,13 @@ $.ajax('/api/todo/insert', {
   method: 'POST',
   data: JSON.stringify({
     name: 'My First To-Do',
-    owner: 'Spongebob',
   }),
 });
 ```
 
-After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be added to the local *todoItems* array.
+After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be added to the local *todosList* array.
+
+See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server/tree/master/Butterfly.Example.Todo.Client) for a full working client based on Vuetify and Vue.
 
 ## More Complex Subscriptions
 

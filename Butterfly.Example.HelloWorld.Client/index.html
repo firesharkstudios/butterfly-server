@@ -39,7 +39,7 @@
             // When an INSERT data event is received, display the text field value in an alert box
             if (messageType == 'DATA-EVENT-TRANSACTION' && messageData.dataEvents.length>0 && messageData.dataEvents[0].dataEventType=='Insert') alert(messageData.dataEvents[0].record.text);
         }, 'my-channel');
-        channelClient.start('Custom ' + Math.floor(Math.random() * 999999));
+        channelClient.start('Custom My-User-Id');
 
         setTimeout(function () {
             // Post a "Hello World" message to the server

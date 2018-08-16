@@ -23,8 +23,6 @@ new Vue({
   data() {
     return {
       channelClient: null,
-      channelClientStatus: null,
-      channelError: null,
     }
   },
   methods: {
@@ -41,12 +39,7 @@ new Vue({
         new ArrayDataEventHandler({
           arrayMapping: options.arrayMapping,
           onInitialEnd: options.onInitialEnd,
-          onChannelMessage(messageType, data) {
-            if (messageType == 'ERROR') {
-              self.channelError = data;
-            }
-            options.onChannelMessage(messageType, data);
-          }
+          onChannelMessage: options.onChannelMessage
         }),
         options.key,
         options.vars,
@@ -63,12 +56,8 @@ new Vue({
     // Setup channel client
     let url = `ws://${window.location.host}/ws`;
     self.channelClient = new WebSocketChannelClient({
-      url,
-      onStatusChange(value) {
-        console.debug('onStatusChange():value=' + value);
-        self.channelClientStatus = value;
-      },
+      url
     });
-    self.channelClient.start('xyz');
+    self.channelClient.start('Custom My-User-Id');
   },
 })
