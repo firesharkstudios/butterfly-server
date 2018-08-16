@@ -67,7 +67,7 @@ namespace Butterfly.Core.Channel {
                 this.getIdAsync = getIdAsync;
             }
             else {
-                this.getId = authToken => authToken.ToString();
+                this.getId = authToken => Guid.NewGuid().ToString();
                 this.getIdAsync = null;
             }
         }

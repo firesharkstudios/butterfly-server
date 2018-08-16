@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "butterfly-client": "^1.1.4",
+    "reqwest": "^2.0.5",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuetify": "^1.0.0"

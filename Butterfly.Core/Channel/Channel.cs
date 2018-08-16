@@ -31,7 +31,7 @@ namespace Butterfly.Core.Channel {
         }
 
         public void Queue(object data) {
-            this.Queue(data);
+            this.Queue("DATA-EVENT-TRANSACTION", data);
         }
 
         public void Queue(string messageType, object data) {

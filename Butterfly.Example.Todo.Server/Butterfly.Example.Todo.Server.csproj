@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{56B45323-4545-4904-B367-C0477BE944E4}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Butterfly.Example.HelloWorld.Server</RootNamespace>
-    <AssemblyName>Butterfly.Example.HelloWorld.Server</AssemblyName>
+    <RootNamespace>Butterfly.Example.Todo.Server</RootNamespace>
+    <AssemblyName>Butterfly.Example.Todo.Server</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

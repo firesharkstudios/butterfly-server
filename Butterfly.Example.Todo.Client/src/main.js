@@ -6,6 +6,10 @@ import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 
+import { ArrayDataEventHandler, WebSocketChannelClient } from 'butterfly-client'
+
+import reqwest from 'reqwest'
+
 Vue.use(Vuetify)
 
 Vue.config.productionTip = false
@@ -15,5 +19,56 @@ new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  data() {
+    return {
+      channelClient: null,
+      channelClientStatus: null,
+      channelError: null,
+    }
+  },
+  methods: {
+    callApi(url, rawData) {
+      return reqwest({
+        url,
+        method: 'POST',
+        data: JSON.stringify(rawData),
+      });
+    },
+    subscribe(options) {
+      let self = this;
+      self.channelClient.subscribe(
+        new ArrayDataEventHandler({
+          arrayMapping: options.arrayMapping,
+          onInitialEnd: options.onInitialEnd,
+          onChannelMessage(messageType, data) {
+            if (messageType == 'ERROR') {
+              self.channelError = data;
+            }
+            options.onChannelMessage(messageType, data);
+          }
+        }),
+        options.key,
+        options.vars,
+      );
+    },
+    unsubscribe(key) {
+      let self = this;
+      self.channelClient.unsubscribe(key);
+    },
+  },
+  beforeMount() {
+    let self = this;
+
+    // Setup channel client
+    let url = `ws://${window.location.host}/ws`;
+    self.channelClient = new WebSocketChannelClient({
+      url,
+      onStatusChange(value) {
+        console.debug('onStatusChange():value=' + value);
+        self.channelClientStatus = value;
+      },
+    });
+    self.channelClient.start('xyz');
+  },
 })
