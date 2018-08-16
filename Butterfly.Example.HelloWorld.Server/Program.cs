@@ -44,7 +44,7 @@ namespace Butterfly.Example.HelloWorld.Server {
             using (var webApiServer = new Butterfly.EmbedIO.EmbedIOWebApiServer(embedIOWebServer))
             using (var channelServer = new Butterfly.EmbedIO.EmbedIOChannelServer(embedIOWebServer)) {
                 // Setup each example (should each listen on unique URL paths for both webApiServer and channelServer)
-                Setup(database, webApiServer, channelServer);
+                Setup.Init(database, webApiServer, channelServer);
 
                 // Start both servers
                 webApiServer.Start();
@@ -62,29 +62,6 @@ namespace Butterfly.Example.HelloWorld.Server {
                 }
                 logger.Debug("Main():Exiting...");
             }
-        }
-
-        public static void Setup(IDatabase database, IWebApiServer webApiServer, IChannelServer channelServer) {
-            // Listen for API requests
-            webApiServer.OnPost($"/api/message/insert", async (req, res) => {
-                var text = await req.ParseAsJsonAsync<dynamic>();
-                await database.InsertAndCommitAsync<long>("message", new {
-                    text
-                });
-            });
-
-            // Listen for websocket connections to /ws
-            var route = channelServer.RegisterRoute("/ws");
-
-            // Register a channel that creates a DynamicView on the message table 
-            // (sends all the initial data in the message table and sends changes to the message table)
-            route.RegisterChannel(
-                channelKey: "my-channel", 
-                handlerAsync: async (vars, channel) => await database.CreateAndStartDynamicView(
-                    "message",
-                    listener: dataEventTransaction => channel.Queue(dataEventTransaction)
-                )
-            );
         }
 
     }
