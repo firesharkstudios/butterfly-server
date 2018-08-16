@@ -30,6 +30,10 @@ namespace Butterfly.Core.Channel {
             this.disposables.Add(disposable);
         }
 
+        public void Queue(object data) {
+            this.Queue(data);
+        }
+
         public void Queue(string messageType, object data) {
             this.connection.QueueMessage(channelKey: this.channelKey, messageType: messageType, data: data);
         }

@@ -43,7 +43,7 @@
 
         setTimeout(function () {
             // Post a "Hello World" message to the server
-            $.ajax('/api/hello-world/message', {
+            $.ajax('/api/message/insert', {
                 method: 'POST',
                 data: JSON.stringify('Hello World'),
                 processData: false,

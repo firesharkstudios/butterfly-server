@@ -2,10 +2,12 @@ using System;
 using System.Threading;
 
 using NLog;
+using Unosquare.Labs.EmbedIO.Modules;
 
 using Butterfly.Core.Channel;
+using Butterfly.Core.Database;
 using Butterfly.Core.WebApi;
-using Unosquare.Labs.EmbedIO.Modules;
+using Butterfly.Core.Util;
 
 namespace Butterfly.Example.HelloWorld.Server {
     class Program {
@@ -31,11 +33,17 @@ namespace Butterfly.Example.HelloWorld.Server {
             }));
             Unosquare.Swan.Terminal.Settings.DisplayLoggingMessageType = Unosquare.Swan.LogMessageType.Info;
 
+            // Create a MemoryDatabase (no persistence, limited features)
+            var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
+            database.SetDefaultValue("id", tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}");
+            database.SetDefaultValue("created_at", tableName => DateTime.Now.ToUnixTimestamp());
+            database.SetOverrideValue("updated_at", tableName => DateTime.Now.ToUnixTimestamp());
+
             // Setup and start a webApiServer and channelServer using embedIOWebServer
             using (var webApiServer = new Butterfly.EmbedIO.EmbedIOWebApiServer(embedIOWebServer))
             using (var channelServer = new Butterfly.EmbedIO.EmbedIOChannelServer(embedIOWebServer)) {
                 // Setup each example (should each listen on unique URL paths for both webApiServer and channelServer)
-                Setup(webApiServer, channelServer);
+                Setup(database, webApiServer, channelServer);
 
                 // Start both servers
                 webApiServer.Start();
@@ -55,41 +63,35 @@ namespace Butterfly.Example.HelloWorld.Server {
             }
         }
 
-        public static void Setup(IWebApiServer webApiServer, IChannelServer channelServer) {
+        public static void Setup(IDatabase database, IWebApiServer webApiServer, IChannelServer channelServer) {
             logger.Debug($"Setup()");
 
-            // Create a MemoryDatabase (no persistence, limited features)
-            var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-            database.CreateFromText(@"CREATE TABLE message (
-	            id INT NOT NULL AUTO_INCREMENT,
-	            text VARCHAR(40) NOT NULL,
-	            PRIMARY KEY (id)
-            );");
-
-            // Listen for websocket connections to /hello-world
-            var route = channelServer.RegisterRoute(
-                "/ws",
-                getAuthToken: (authType, authValue) => "OK",
-                getConnectionId: authToken => Guid.NewGuid().ToString()
-            );
-
-            // Register a default channel that creates a DynamicView on the message table sending all data to the channel
-            route.RegisterChannel(channelKey: "my-channel", handlerAsync: async (vars, channel) => await database.CreateAndStartDynamicView(
-                sql: "SELECT * FROM message",
-                listener: dataEventTransaction => channel.Queue("DATA-EVENT-TRANSACTION", dataEventTransaction)
-            ));
-
-            // Listen for POST requests to /api/hello-world/message
-            webApiServer.OnPost($"/api/hello-world/message", async (req, res) => {
-                // Parse the received message
-                var message = await req.ParseAsJsonAsync<dynamic>();
-
-                // INSERT a record into the chat_message table (triggers any DynamicViews 
-                // with matching criteria to also publish an INSERT event)
-                await database.InsertAndCommitAsync<long>("message", new {
-                    text = message
-                });
+            // Listen for API requests
+            webApiServer.OnPost($"/api/todo/insert", async (req, res) => {
+                var todo = await req.ParseAsJsonAsync<dynamic>();
+                await database.InsertAndCommitAsync<string>("todo", todo);
             });
+            webApiServer.OnPost($"/api/todo/update", async (req, res) => {
+                var todo = await req.ParseAsJsonAsync<dynamic>();
+                await database.UpdateAndCommitAsync("todo", todo);
+            });
+            webApiServer.OnPost($"/api/todo/delete", async (req, res) => {
+                var id = await req.ParseAsJsonAsync<string>();
+                await database.DeleteAndCommitAsync("todo", id);
+            });
+
+            // Listen for websocket connections to /ws
+            var route = channelServer.RegisterRoute("/ws");
+
+            // Register a channel that creates a DynamicView on the todo table 
+            // (sends all the initial data in the todo table and sends changes to the todo table)
+            route.RegisterChannel(
+                channelKey: "my-channel", 
+                handlerAsync: async (vars, channel) => await database.CreateAndStartDynamicView(
+                    "todo",
+                    listener: dataEventTransaction => channel.Queue(dataEventTransaction)
+                )
+            ));
         }
 
     }

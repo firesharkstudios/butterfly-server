@@ -18,19 +18,19 @@ Let's see how the Butterfly Realtime Web App Server would help us build a simple
 First, let's use the *WebApiServer* to define our API...
 
 ```csharp
-webApiServer.OnPost($"/api/to-do/insert", async(req, res) => {
+webApiServer.OnPost($"/api/todo/insert", async(req, res) => {
   var todo = await req.ParseAsJsonAsync<dynamic>();
   await database.InsertAndCommitAsync<string>("todo", todo);
 });
 
-webApiServer.OnPost($"/api/to-do/update", async(req, res) => {
+webApiServer.OnPost($"/api/todo/update", async(req, res) => {
   var todo = await req.ParseAsJsonAsync<dynamic>();
-  await database.UpdateAndCommitAsync<string>("todo", todo);
+  await database.UpdateAndCommitAsync("todo", todo);
 });
 
-webApiServer.OnPost($"/api/to-do/delete", async(req, res) => {
+webApiServer.OnPost($"/api/todo/delete", async(req, res) => {
   var id = await req.ParseAsJsonAsync<string>();
-  await database.DeleteAndCommitAsync<string>("todo", id);
+  await database.DeleteAndCommitAsync("todo", id);
 });
 ```
 
