@@ -49,7 +49,7 @@ The above C# code...
 - Listens for WebSocket connections at */ws*
 - Defines a *todos* channel that clients can subscribe (receiving both the initial *todo* records and any changes to the *todo* records)
 
-See [Butterfly.Example.Todo.Server](https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server/tree/master/Butterfly.Example.Todo.Server) for the working server code.
+See [Butterfly.Example.HelloWorld.Server](https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server/tree/master/Butterfly.Example.HelloWorld.Server) for the working server code.
 
 ### The Client
 
@@ -93,7 +93,7 @@ $.ajax('/api/todo/insert', {
 
 After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be sychronized from the server to the client's local *todosList* array.
 
-See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server/tree/master/Butterfly.Example.Todo.Client) for a full working client based on Vuetify and Vue.
+See [Butterfly.Example.HelloWorld.Client](https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server/tree/master/Butterfly.Example.HelloWorld.Client) for a full working client based on Vuetify and Vue.
 
 ## More Complex Subscriptions
 
