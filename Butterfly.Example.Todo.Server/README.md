@@ -22,4 +22,4 @@ What's happening...
 1. Each client invokes API calls on the server to INSERT/DELETE records from a todo table
 4. Data changes are automatically synchronized from the server to the client modifying local javascript arrays which automatically update the UI via the magic of *Vue*
 
-See https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server/blob/master/Butterfly.Example.Todo.Server/Setup.cs for the server code that handles the API requests and pushes data changes to the clients.
+See [Setup.cs](https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server/blob/master/Butterfly.Example.Todo.Server/Setup.cs) for the server code that handles the API requests and pushes data changes to the clients.
