@@ -15,49 +15,41 @@ Let's see how the Butterfly Realtime Web App Server would help us build a simple
 
 ### The Server
 
-First, let's use the *WebApiServer* to define our API...
+Here is the key server code...
 
 ```csharp
-webApiServer.OnPost($"/api/todo/insert", async(req, res) => {
-  var todo = await req.ParseAsJsonAsync<dynamic>();
-  await database.InsertAndCommitAsync<string>("todo", todo);
-});
+public static void Init(IDatabase database, IWebApiServer webApiServer, IChannelServer channelServer) {
+    // Listen for API requests
+    webApiServer.OnPost($"/api/todo/insert", async (req, res) => {
+	var todo = await req.ParseAsJsonAsync<Dict>();
+	await database.InsertAndCommitAsync<string>("todo", todo);
+    });
+    webApiServer.OnPost($"/api/todo/delete", async (req, res) => {
+	var id = await req.ParseAsJsonAsync<string>();
+	await database.DeleteAndCommitAsync("todo", id);
+    });
 
-webApiServer.OnPost($"/api/todo/update", async(req, res) => {
-  var todo = await req.ParseAsJsonAsync<dynamic>();
-  await database.UpdateAndCommitAsync("todo", todo);
-});
+    // Listen for websocket connections to /ws
+    var route = channelServer.RegisterRoute("/ws");
 
-webApiServer.OnPost($"/api/todo/delete", async(req, res) => {
-  var id = await req.ParseAsJsonAsync<string>();
-  await database.DeleteAndCommitAsync("todo", id);
-});
+    // Register a channel that creates a DynamicView on the todo table 
+    // (sends all the initial data in the todo table and sends changes to the todo table)
+    route.RegisterChannel(
+	channelKey: "todos", 
+	handlerAsync: async (vars, channel) => await database.CreateAndStartDynamicView(
+	    "todo",
+	    listener: dataEventTransaction => channel.Queue(dataEventTransaction)
+	)
+    );
+}
 ```
 
-Clients would call the above API to insert, update, and delete records in the *todo* table.
+The above code...
+- Defines a simple API to insert and delete *todo* records
+- Listens for WebSocket connections at */ws*
+- Defines a *todos* channel that clients can subscribe (receiving both the initial *todo* records and any changes to the *todo* records)
 
-Next, let's use the *ChannelServer* to listen for web socket requests to */listen*...
-
-```cs
-var channelRoute = channelServer.RegisterRoute("/listen");
-```
-
-Clients would maintain an open web socket to */listen* to receive data from the server.
-
-Finally, let's allow clients to subscribe to a *todo-page* channel...
-
-```cs
-channelRoute.RegisterChannel("todo-page", handlerAsync: async(vars, channel) => {
-  return await database.CreateAndStartDynamicView(
-    sql: "todo",
-    listener: dataEventTransaction => {
-      channel.Queue("DATA-EVENT-TRANSACTION", dataEventTransaction);
-    }
-  );
-);
-```
-
-Upon first subscribing, clients will receive all the records in the *todo* table.  If any of this data changes, clients will also receive changes to this data.
+See [Butterfly.Example.Todo.Server](https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server/tree/master/Butterfly.Example.Todo.Server) for the working server code.
 
 ### The Client
 
