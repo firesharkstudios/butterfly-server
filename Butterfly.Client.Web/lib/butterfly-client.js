@@ -408,6 +408,7 @@ function () {
     this._auth = null;
     this._subscriptionByChannelKey = {};
     this._queuedMessages = [];
+    this._webSocketOpened = false;
   }
 
   _createClass(_class, [{
@@ -421,37 +422,44 @@ function () {
   }, {
     key: "_queue",
     value: function _queue(text) {
-      //console.debug(`_queue():text=${text}`);
+      console.debug("_queue():text=".concat(text));
+
       this._queuedMessages.push(text);
 
       this._sendQueue();
-    }
+    } // Called every 3 seconds while status!='Stopped'
+
   }, {
     key: "_sendQueue",
-    // Called every 3 seconds while status!='Stopped'
     value: function _sendQueue() {
-      //console.debug(`_sendQueue():_webSocketReady=${this._webSocketReady}`);
+      console.debug("_sendQueue()");
       if (this._sendQueueTimeout) clearTimeout(this._sendQueueTimeout);
+      if (this._status == 'Stopped' || !this._webSocketOpened) return;
+      var fail = false;
 
-      if (this._webSocketReady) {
-        do {
-          var hasMessage = this._queuedMessages.length > 0;
-          var text = hasMessage ? this._queuedMessages[0] : '!';
+      do {
+        if (this._webSocket == null) {
+          fail = true;
+          break;
+        }
 
-          try {
-            //console.debug(`_sendQueue():text=${text}`);
-            this._webSocket.send(text);
-          } catch (e) {
-            this._webSocket = null;
-          }
+        var hasMessage = this._queuedMessages && this._queuedMessages.length > 0;
+        var text = hasMessage ? this._queuedMessages[0] : '!';
 
-          if (this._webSocket && hasMessage) {
-            this._queuedMessages.shift();
-          }
-        } while (this._queuedMessages.length > 0);
-      }
+        try {
+          //console.debug(`_sendQueue():text=${text}`);
+          this._webSocket.send(text);
 
-      if (this.status != 'Stopped') {
+          if (hasMessage) this._queuedMessages.shift();
+        } catch (e) {
+          fail = true;
+          break;
+        }
+      } while (this._queuedMessages.length > 0);
+
+      if (fail) {
+        this._setupConnection();
+      } else {
         this._sendQueueTimeout = setTimeout(this._sendQueue.bind(this), this._options.sendQueueEveryMillis || 3000);
       }
     }
@@ -474,6 +482,11 @@ function () {
       } else if (message.messageType == 'UNAUTHENTICATED') {
         this.stop();
       }
+    }
+  }, {
+    key: "_scheduleSetupConnection",
+    value: function _scheduleSetupConnection() {
+      this._setupConnectionTimeout = setTimeout(this._setupConnection.bind(this), this._options.setupConnectionEveryMillis || 3000);
     } // Called every 3 seconds until webSocket!=null
 
   }, {
@@ -483,44 +496,45 @@ function () {
 
       this._setStatus('Starting');
 
-      if (!this._webSocket) {
-        if (this._sendQueueTimeout) clearTimeout(this._sendQueueTimeout);
+      this._webSocketOpened = false;
 
-        try {
-          //console.debug(`_setupConnection():new WebSocket(${this._url})`);
-          this._webSocket = new WebSocket(this._url);
-          this._webSocket.onmessage = this._onMessage.bind(this);
+      if (this._webSocket) {
+        this._webSocket.close();
 
-          this._webSocket.onopen = function () {
-            //console.debug('_webSocket.onopen()');
-            _this._queuedMessages = [];
+        this._webSocket = null;
+      }
 
-            _this._queue('Authorization:' + (_this._auth || ''));
+      if (this._sendQueueTimeout) clearTimeout(this._sendQueueTimeout);
 
-            _this._markSubscriptionsSent(false);
+      try {
+        //console.debug(`_setupConnection():new WebSocket(${this._url})`);
+        this._webSocket = new WebSocket(this._url);
+        this._webSocket.onmessage = this._onMessage.bind(this);
 
-            _this._queueSubscribe();
+        this._webSocket.onopen = function () {
+          console.debug('_webSocket.onopen()');
+          _this._webSocketOpened = true;
+          _this._queuedMessages = [];
 
-            _this._sendQueue();
-          };
+          _this._queue('Authorization:' + (_this._auth || ''));
 
-          this._webSocket.onerror = function (error) {
-            return _this._webSocket = null;
-          };
+          _this._markSubscriptionsSent(false);
 
-          this._webSocket.onclose = function () {
-            return _this._webSocket = null;
-          }; //console.debug(`_setupConnection():success`);
+          _this._queueSubscribe();
+        };
 
-        } catch (e) {
-          //console.debug(e);
-          this._webSocket = null;
-          this._setupConnectionTimeout = setTimeout(this._setupConnection.bind(this), this._options.setupConnectionEveryMillis || 3000);
-        }
+        this._webSocket.onerror = function (error) {
+          console.debug('_webSocket.onerror()');
 
-        if (this._webSocket) {
-          this._sendQueue();
-        }
+          _this._scheduleSetupConnection();
+        };
+
+        this._webSocket.onclose = function () {
+          return _this._webSocket = null;
+        }; //console.debug(`_setupConnection():success`);
+
+      } catch (e) {
+        this._scheduleSetupConnection();
       }
     }
   }, {
@@ -630,16 +644,6 @@ function () {
           }
         }
       }
-    }
-  }, {
-    key: "status",
-    get: function get() {
-      return this._status;
-    }
-  }, {
-    key: "_webSocketReady",
-    get: function get() {
-      return this._webSocket && this._webSocket.readyState == 1;
     }
   }]);
 

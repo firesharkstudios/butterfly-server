@@ -15,10 +15,7 @@ export default class {
     this._auth = null;
     this._subscriptionByChannelKey = {};
     this._queuedMessages = [];
-  }
-
-  get status() {
-    return this._status;
+    this._webSocketOpened = false;
   }
 
   _setStatus(value) {
@@ -29,36 +26,41 @@ export default class {
   }
 
   _queue(text) {
-    //console.debug(`_queue():text=${text}`);
+    console.debug(`_queue():text=${text}`);
     this._queuedMessages.push(text);
     this._sendQueue();
   }
 
-  get _webSocketReady() {
-    return this._webSocket && this._webSocket.readyState == 1;
-  }
-
   // Called every 3 seconds while status!='Stopped'
   _sendQueue() {
-    //console.debug(`_sendQueue():_webSocketReady=${this._webSocketReady}`);
+    console.debug(`_sendQueue()`);
     if (this._sendQueueTimeout) clearTimeout(this._sendQueueTimeout);
-    if (this._webSocketReady) {
-      do {
-        let hasMessage = this._queuedMessages.length > 0;
-        let text = hasMessage ? this._queuedMessages[0] : '!';
-        try {
-          //console.debug(`_sendQueue():text=${text}`);
-          this._webSocket.send(text);
-        }
-        catch (e) {
-          this._webSocket = null;
-        }
-        if (this._webSocket && hasMessage) {
-          this._queuedMessages.shift();
-        }
-      } while (this._queuedMessages.length > 0);
+    if (this._status == 'Stopped' || !this._webSocketOpened) return;
+
+    let fail = false;
+    do {
+      if (this._webSocket == null) {
+        fail = true;
+        break;
+      }
+
+      let hasMessage = this._queuedMessages && this._queuedMessages.length > 0;
+      let text = hasMessage ? this._queuedMessages[0] : '!';
+      try {
+        //console.debug(`_sendQueue():text=${text}`);
+        this._webSocket.send(text);
+        if (hasMessage) this._queuedMessages.shift();
+      }
+      catch (e) {
+        fail = true;
+        break;
+      }
+    } while (this._queuedMessages.length > 0);
+
+    if (fail) {
+      this._setupConnection();
     }
-    if (this.status != 'Stopped') {
+    else {
       this._sendQueueTimeout = setTimeout(this._sendQueue.bind(this), this._options.sendQueueEveryMillis || 3000);
     }
   }
@@ -82,35 +84,41 @@ export default class {
     }
   }
 
+  _scheduleSetupConnection() {
+    this._setupConnectionTimeout = setTimeout(this._setupConnection.bind(this), this._options.setupConnectionEveryMillis || 3000);
+  }
+
   // Called every 3 seconds until webSocket!=null
   _setupConnection() {
     this._setStatus('Starting');
-    if (!this._webSocket) {
-      if (this._sendQueueTimeout) clearTimeout(this._sendQueueTimeout);
-      try {
-        //console.debug(`_setupConnection():new WebSocket(${this._url})`);
-        this._webSocket = new WebSocket(this._url);
-        this._webSocket.onmessage = this._onMessage.bind(this);
-        this._webSocket.onopen = () => {
-          //console.debug('_webSocket.onopen()');
-          this._queuedMessages = [];
-          this._queue('Authorization:' + (this._auth || ''));
-          this._markSubscriptionsSent(false);
-          this._queueSubscribe();
-          this._sendQueue();
-        };
-        this._webSocket.onerror = error => this._webSocket = null;
-        this._webSocket.onclose = () => this._webSocket = null;
-        //console.debug(`_setupConnection():success`);
-      }
-      catch (e) {
-        //console.debug(e);
-        this._webSocket = null;
-        this._setupConnectionTimeout = setTimeout(this._setupConnection.bind(this), this._options.setupConnectionEveryMillis || 3000);
-      }
-      if (this._webSocket) {
-        this._sendQueue();
-      }
+    this._webSocketOpened = false;
+    if (this._webSocket) {
+      this._webSocket.close();
+      this._webSocket = null;
+    }
+    if (this._sendQueueTimeout) clearTimeout(this._sendQueueTimeout);
+
+    try {
+      //console.debug(`_setupConnection():new WebSocket(${this._url})`);
+      this._webSocket = new WebSocket(this._url);
+      this._webSocket.onmessage = this._onMessage.bind(this);
+      this._webSocket.onopen = () => {
+        console.debug('_webSocket.onopen()');
+        this._webSocketOpened = true;
+        this._queuedMessages = [];
+        this._queue('Authorization:' + (this._auth || ''));
+        this._markSubscriptionsSent(false);
+        this._queueSubscribe();
+      };
+      this._webSocket.onerror = error => {
+        console.debug('_webSocket.onerror()');
+        this._scheduleSetupConnection();
+      };
+      this._webSocket.onclose = () => this._webSocket = null;
+      //console.debug(`_setupConnection():success`);
+    }
+    catch (e) {
+      this._scheduleSetupConnection();
     }
   }
 
