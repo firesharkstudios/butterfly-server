@@ -176,7 +176,7 @@ Here are the key packages in *Butterfly.Core*...
 Here are various implementations you'll likely find useful...
 
 - [Butterfly.Aws](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Aws) - Implementation of *Butterfly.Core.Notify* for AWS SES
-- [Butterfly.MySql](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.MySQL) - Implementation of *Butterfly.Core.Database* for MySql
+- [Butterfly.MySql](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.MySql) - Implementation of *Butterfly.Core.Database* for MySql
 - [Butterfly.EmbedIO](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.EmbedIO) - Implementation of *Butterfly.Core.Channel* and *Butterfly.Core.WebApi* for [EmbedIO](https://github.com/unosquare/embedio) server
 - [Butterfly.Twilio](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Twilio) - Implementation of *Butterfly.Notify* for Twilio SMS
 
