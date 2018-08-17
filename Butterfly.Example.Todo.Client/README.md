@@ -1,3 +1,3 @@
-# Butterfly HelloWorld Example
+# Butterfly Todo Client Example
 
-See [Butterfly.Example.HelloWorld.Server](https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server/blob/master/Butterfly.Example.HelloWorld.Server)
+See [Butterfly.Example.Todo.Server](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Todo.Server)
