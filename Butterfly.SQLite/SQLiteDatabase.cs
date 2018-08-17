@@ -38,6 +38,8 @@ namespace Butterfly.SQLite {
 
         public override bool CanJoin => true;
 
+        public override bool CanFieldAlias => true;
+
         public SQLiteDatabase(string fileName) : base($"Data Source={fileName};Version=3;") {
             if (!File.Exists(fileName)) {
                 SQLiteConnection.CreateFile(fileName);

@@ -39,6 +39,8 @@ namespace Butterfly.Postgres {
 
         public override bool CanJoin => true;
 
+        public override bool CanFieldAlias => true;
+
         protected override void LoadSchema() {
             string commandText = "SELECT table_name FROM information_schema.tables WHERE table_schema='public'";
             using (var connection = new NpgsqlConnection(this.ConnectionString)) {
