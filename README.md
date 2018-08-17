@@ -1,8 +1,8 @@
-# Butterfly Realtime Web App Server ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/Butterfly-SPA-Server/master/img/logo-40x40.png) 
+# Butterfly Server .NET ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/logo-40x40.png) 
 
 > A Real-Time C# Server for Web Apps
 
-Key goals of the Butterfly Realtime Web App Server...
+Key goals of the Butterfly Server .NET...
 
 - Define datasets in familiar SELECT syntax
 - Sync datasets to clients automatically over a WebSocket
@@ -11,7 +11,7 @@ Key goals of the Butterfly Realtime Web App Server...
 
 ## Overview
 
-Let's see how the Butterfly Realtime Web App Server would help us build a simple to-do list manager.
+Let's see how the Butterfly Server .NET would help us build a simple to-do list manager.
 
 ### The Server
 
@@ -49,7 +49,7 @@ The above C# code...
 - Listens for WebSocket connections at */ws*
 - Defines a *todos* channel that clients can subscribe (receiving both the initial *todo* records and any changes to the *todo* records)
 
-See [Butterfly.Example.HelloWorld.Server](https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server/tree/master/Butterfly.Example.HelloWorld.Server) for the working server code.
+See [Butterfly.Example.HelloWorld.Server](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.HelloWorld.Server) for the working server code.
 
 ### The Client
 
@@ -93,7 +93,7 @@ $.ajax('/api/todo/insert', {
 
 After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be sychronized from the server to the client's local *todosList* array.
 
-See [Butterfly.Example.HelloWorld.Client](https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server/tree/master/Butterfly.Example.HelloWorld.Client) for a full working client based on Vuetify and Vue.
+See [Butterfly.Example.HelloWorld.Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.HelloWorld.Client) for a full working client based on Vuetify and Vue.
 
 ## More Complex Subscriptions
 
@@ -159,7 +159,7 @@ nuget install Butterfly.Twilio
 
 Or you can get the source from GitHub...
 
-1. Clone the github repository `https://github.com/fireshark/Butterfly.git`
+1. Clone the github repository `https://github.com/firesharkstudios/butterfly-server-dotnet.git`
 1. Open `Butterfly.sln` in Visual Studio 2017
 1. Click the Start button (will compile the solution and run the Butterfly.Examples project)
 1. Open [http://localhost:8080/](http://localhost:8080) to view the examples
@@ -171,18 +171,18 @@ Or you can get the source from GitHub...
 
 Here are the key packages in *Butterfly.Core*...
 
-- [Butterfly.Core.Auth](https://firesharkstudios.github.io/Butterfly-SPA-Server/Butterfly.Core#butterflycoreauth-namespace) - Allows registering and logging in users, handling forgot password and reset password requests, and validating auth tokens.
-- [Butterfly.Core.Database](https://firesharkstudios.github.io/Butterfly-SPA-Server/Butterfly.Core#butterflycoredatabase-namespace) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Realtime Web App Server.
-- [Butterfly.Core.Channel](https://firesharkstudios.github.io/Butterfly-SPA-Server/Butterfly.Core#butterflycorechannel-namespace) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
-- [Butterfly.Core.Notify](https://firesharkstudios.github.io/Butterfly-SPA-Server/Butterfly.Core#butterflycorenotify-namespace) - Allows sending notifications (email/texts) to users.
-- [Butterfly.Core.WebApi](https://firesharkstudios.github.io/Butterfly-SPA-Server/Butterfly.Core#butterflycorewebapi-namespace) - Allows receiving API requests via HTTP (inspired by Express JS) by wrapping existing C# web servers.
+- [Butterfly.Core.Auth](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.Core#butterflycoreauth-namespace) - Allows registering and logging in users, handling forgot password and reset password requests, and validating auth tokens.
+- [Butterfly.Core.Database](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.Core#butterflycoredatabase-namespace) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Server .NET.
+- [Butterfly.Core.Channel](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.Core#butterflycorechannel-namespace) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
+- [Butterfly.Core.Notify](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.Core#butterflycorenotify-namespace) - Allows sending notifications (email/texts) to users.
+- [Butterfly.Core.WebApi](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.Core#butterflycorewebapi-namespace) - Allows receiving API requests via HTTP (inspired by Express JS) by wrapping existing C# web servers.
 
 Here are various implementations you'll likely find useful...
 
-- [Butterfly.Aws](https://firesharkstudios.github.io/Butterfly-SPA-Server/Butterfly.Aws) - Implementation of *Butterfly.Core.Notify* for AWS SES
-- [Butterfly.MySql](https://firesharkstudios.github.io/Butterfly-SPA-Server/Butterfly.MySql) - Implementation of *Butterfly.Core.Database* for MySql
-- [Butterfly.EmbedIO](https://firesharkstudios.github.io/Butterfly-SPA-Server/Butterfly.EmbedIO) - Implementation of *Butterfly.Core.Channel* and *Butterfly.Core.WebApi* for [EmbedIO](https://github.com/unosquare/embedio) server
-- [Butterfly.Twilio](https://firesharkstudios.github.io/Butterfly-SPA-Server/Butterfly.Twilio) - Implementation of *Butterfly.Notify* for Twilio SMS
+- [Butterfly.Aws](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.Aws) - Implementation of *Butterfly.Core.Notify* for AWS SES
+- [Butterfly.MySql](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.MySql) - Implementation of *Butterfly.Core.Database* for MySql
+- [Butterfly.EmbedIO](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.EmbedIO) - Implementation of *Butterfly.Core.Channel* and *Butterfly.Core.WebApi* for [EmbedIO](https://github.com/unosquare/embedio) server
+- [Butterfly.Twilio](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.Twilio) - Implementation of *Butterfly.Notify* for Twilio SMS
 
 ## Contributing
 

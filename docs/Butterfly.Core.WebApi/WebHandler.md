@@ -2,6 +2,8 @@
 
 Internal class used to store references to new web handlers
 
+Internal class used to store references to new web handlers
+
 ```csharp
 public class WebHandler
 ```

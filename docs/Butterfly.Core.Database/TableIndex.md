@@ -2,6 +2,8 @@
 
 Defines an index for a [`Table`](Table.md)
 
+Defines an index for a [`Table`](Table.md)
+
 ```csharp
 public class TableIndex
 ```

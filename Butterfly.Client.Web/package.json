@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server.git"
+    "url": "https://github.com/firesharkstudios/butterfly-server-dotnet.git"
   },
   "keywords": [
     "webpack",
@@ -25,9 +25,9 @@
   "author": "Kent Johnson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server/issues"
+    "url": "https://github.com/firesharkstudios/butterfly-server-dotnet/issues"
   },
-  "homepage": "https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server",
+  "homepage": "https://github.com/firesharkstudios/butterfly-server-dotnet",
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.51",
     "@babel/core": "^7.0.0-beta.51",

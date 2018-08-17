@@ -7,12 +7,12 @@
     <authors>$author$</authors>
     <owners>$author$</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
-    <projectUrl>https://github.com/firesharkstudios/Butterfly</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/firesharkstudios/Butterfly/master/img/logo-40x40.png</iconUrl>
+    <projectUrl>https://github.com/firesharkstudios/butterfly-server-dotnet</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/logo-40x40.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Initial release</releaseNotes>
     <copyright>$copyright$</copyright>
-    <tags>butterfly framework channel webapi embedio</tags>
+    <tags>butterfly server channel webapi embedio</tags>
   </metadata>
 </package>
