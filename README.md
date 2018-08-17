@@ -167,18 +167,18 @@ Or you can get the source from GitHub...
 
 Here are the key packages in *Butterfly.Core*...
 
-- [Butterfly.Core.Auth](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.Core#butterflycoreauth-namespace) - Allows registering and logging in users, handling forgot password and reset password requests, and validating auth tokens.
-- [Butterfly.Core.Database](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.Core#butterflycoredatabase-namespace) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Server .NET.
-- [Butterfly.Core.Channel](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.Core#butterflycorechannel-namespace) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
-- [Butterfly.Core.Notify](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.Core#butterflycorenotify-namespace) - Allows sending notifications (email/texts) to users.
-- [Butterfly.Core.WebApi](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.Core#butterflycorewebapi-namespace) - Allows receiving API requests via HTTP (inspired by Express JS) by wrapping existing C# web servers.
+- [Butterfly.Core.Auth](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Core.Auth) - Allows registering and logging in users, handling forgot password and reset password requests, and validating auth tokens.
+- [Butterfly.Core.Channel](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Core.Channel) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
+- [Butterfly.Core.Database](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Core.Database) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Server .NET.
+- [Butterfly.Core.Notify](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Core.Notify) - Allows sending notifications (email/texts) to users.
+- [Butterfly.Core.WebApi](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Core.WebApi) - Allows receiving API requests via HTTP (inspired by Express JS) by wrapping existing C# web servers.
 
 Here are various implementations you'll likely find useful...
 
-- [Butterfly.Aws](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.Aws) - Implementation of *Butterfly.Core.Notify* for AWS SES
-- [Butterfly.MySql](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.MySql) - Implementation of *Butterfly.Core.Database* for MySql
-- [Butterfly.EmbedIO](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.EmbedIO) - Implementation of *Butterfly.Core.Channel* and *Butterfly.Core.WebApi* for [EmbedIO](https://github.com/unosquare/embedio) server
-- [Butterfly.Twilio](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.Twilio) - Implementation of *Butterfly.Notify* for Twilio SMS
+- [Butterfly.Aws](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Aws) - Implementation of *Butterfly.Core.Notify* for AWS SES
+- [Butterfly.MySql](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.MySQL) - Implementation of *Butterfly.Core.Database* for MySql
+- [Butterfly.EmbedIO](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.EmbedIO) - Implementation of *Butterfly.Core.Channel* and *Butterfly.Core.WebApi* for [EmbedIO](https://github.com/unosquare/embedio) server
+- [Butterfly.Twilio](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Twilio) - Implementation of *Butterfly.Notify* for Twilio SMS
 
 ## In the Wild
 
