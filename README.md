@@ -1,11 +1,11 @@
 # Butterfly Server .NET ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/logo-40x40.png) 
 
-> A Real-Time C# Server for Web Apps
+> The Everything is Real-Time C# Backend for Single Page Applications
 
-Key goals of the Butterfly Server .NET...
+Key goals...
 
-- Define datasets in familiar SELECT syntax
-- Sync datasets to clients automatically over a WebSocket
+- Define server datasets in familiar SELECT syntax
+- Auto sync server datasets to clients over a WebSocket
 - Define a RESTlike API using an Express like syntax
 - Work with any client framework (Vue, React, Angular, etc)
 
@@ -15,7 +15,7 @@ Let's see how the Butterfly Server .NET would help us build a simple to-do list 
 
 ### The Server
 
-Here is the key server code...
+Here is the key server code for our to-do list manager...
 
 ```csharp
 public static void Init(IDatabase database, IWebApiServer webApiServer, IChannelServer channelServer) {
@@ -47,9 +47,9 @@ public static void Init(IDatabase database, IWebApiServer webApiServer, IChannel
 The above C# code...
 - Defines a simple API to insert and delete *todo* records
 - Listens for WebSocket connections at */ws*
-- Defines a *todos* channel that clients can subscribe (receiving both the initial *todo* records and any changes to the *todo* records)
+- Allows clients to subscribe to a *todos* channel (clients receive both the initial *todo* records **and** any changes to the *todo* records)
 
-See [Butterfly.Example.HelloWorld.Server](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.HelloWorld.Server) for the working server code.
+See [Butterfly.Example.Todo.Server](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Server) for the working server code.
 
 ### The Client
 
@@ -93,7 +93,7 @@ $.ajax('/api/todo/insert', {
 
 After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be sychronized from the server to the client's local *todosList* array.
 
-See [Butterfly.Example.HelloWorld.Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.HelloWorld.Client) for a full working client based on Vuetify and Vue.
+See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Client) for a full working client based on Vuetify and Vue.
 
 ## More Complex Subscriptions
 
