@@ -97,16 +97,17 @@ See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfl
 
 ## More Complex Subscriptions
 
-In the *Overview* example above, we subscribed to all the data in a single *todo* table; however, much more complex subscriptions are supported...
+In the Todo Manager example above, we subscribed to all the data in a single *todo* table; however, much more complex subscriptions are supported...
 
 ```cs
 channelRoute.RegisterChannel("todo-page", handlerAsync: async(vars, channel) => {
-  var dynamicViewSet = database.CreateDynamicViewSet(dataEventTransaction => {
-    channel.Queue("DATA-EVENT-TRANSACTION", dataEventTransaction);
-  });
+  var dynamicViewSet = database.CreateDynamicViewSet(dataEventTransaction => channel.Queue(dataEventTransaction);
 
   string userId = channel.Connection.AuthToken;
 
+  // DynamicViews can include JOINs and will update if 
+  // any of the joined tables change the resultset
+  // (note this requires using a database like MySQL that supports JOINs)
   dynamicViewSet.CreateDynamicView(
     @"SELECT td.id, td.name, td.user_id, u.name user_name
     FROM todo td
@@ -114,14 +115,13 @@ channelRoute.RegisterChannel("todo-page", handlerAsync: async(vars, channel) => 
     WHERE u.id=@userId",
     new {
       userId
-    },
-    name: "todo",
-    keyFieldNames: new string[] { "id" }	
+    }
   );
 
+  // A channel can return multiple resultsets as well
   dynamicViewSet.CreateDynamicView(
     @"SELECT id, name
-    FROM tags
+    FROM tag
     WHERE user_id=@userId",
     new {
       userId
@@ -132,9 +132,9 @@ channelRoute.RegisterChannel("todo-page", handlerAsync: async(vars, channel) => 
 );
 ```
 
-In this example, a client subscribing to *todo-page* will get a *todo* collection and a *tags* collection both filtered by user id.  
+In this example, a client subscribing to *todo-page* will get a *todo* collection and a *tag* collection both filtered by user id.  
 
-Because the new *todo* collection is the result of a join, the client will receive updates if changes to either of the underlying *todo* table or *user* table would change the collection results.
+Because the new *todo* collection is the result of a join, the client will receive updates if changes to either of the underlying *todo* table or *user* table would change the resultset.
 
 
 ## Getting Started
@@ -161,11 +161,7 @@ Or you can get the source from GitHub...
 
 1. Clone the github repository `https://github.com/firesharkstudios/butterfly-server-dotnet.git`
 1. Open `Butterfly.sln` in Visual Studio 2017
-1. Click the Start button (will compile the solution and run the Butterfly.Examples project)
-1. Open [http://localhost:8080/](http://localhost:8080) to view the examples
-
-*Note:* The Better Chat example will only be available if `BetterChat.cs` has been configured to connect to a MySQL database.
-
+1. Run the appropriate example project
 
 ## Packages
 
