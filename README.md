@@ -14,12 +14,14 @@ Key goals...
 ### Run It Yourself
 
 1. Clone https://github.com/firesharkstudios/butterfly-server-dotnet.git
+1. In a terminal or command prompt...
+   - Change to the `Butterfly.Example.Todo.Client` directory
+   - Run `npm install`
 1. In Visual Studio 2017...
    - Open `Butterfly.sln`
    - Run `Butterfly.Example.Todo.Server`
 1. In a terminal or command prompt...
    - Change to the `Butterfly.Example.Todo.Client` directory
-   - Run `npm install`
    - Run `npm run dev`
 
 You should see http://localhost:8080/ open in a browser. Try opening a second browser instance at http://localhost:8080/. Notice that changes are automatically synchronized between the two browser instances.
