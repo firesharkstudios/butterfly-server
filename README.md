@@ -9,27 +9,26 @@ Key goals...
 - Define a RESTlike API using an Express like syntax
 - Work with any client framework (Vue, React, Angular, etc)
 
-## To-do List Manager Example
+## Todo List Example
 
-### Try It
+### Run It Yourself
 
 1. Clone https://github.com/firesharkstudios/butterfly-server-dotnet.git
-1. In a terminal or command prompt...
-   1. Cd to the `Butterfly.Example.Todo.Client` directory
-   1. Run `npm install`
-   1. Run `npm run dev`
 1. In Visual Studio 2017...
-   1. Open `Butterfly.sln`
-   2. Run `Butterfly.Example.Todo.Server`
+   - Open `Butterfly.sln`
+   - Run `Butterfly.Example.Todo.Server`
+1. In a terminal or command prompt...
+   - Change to the `Butterfly.Example.Todo.Client` directory
+   - Run `npm install`
+   - Run `npm run dev`
 1. Try it...
-   1. In a browser, open http://localhost:8080/
-   2. In another browser, open http://localhost:8080/
-   3. See how changes from either browser are automatically synchronized to both browsers
-Let's see how the Butterfly Server .NET would help us build a simple to-do list manager.
+   - In a browser, open http://localhost:8080/
+   - In another browser, open http://localhost:8080/
+   - See how changes from either browser are automatically synchronized to both browsers
 
 ### Understanding the Server
 
-Here is the key server code for our to-do list manager...
+Here is the key server code for our todo list manager...
 
 ```csharp
 public static void Init(IDatabase database, IWebApiServer webApiServer, IChannelServer channelServer) {
