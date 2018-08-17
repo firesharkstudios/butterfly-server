@@ -21,10 +21,8 @@ Key goals...
    - Change to the `Butterfly.Example.Todo.Client` directory
    - Run `npm install`
    - Run `npm run dev`
-1. Try it...
-   - In a browser, open http://localhost:8080/
-   - In another browser, open http://localhost:8080/
-   - See how changes from either browser are automatically synchronized to both browsers
+
+You should see http://localhost:8080/ open in a browser. Try opening a second browser instance at http://localhost:8080/. Notice that changes are automatically synchronized between the two browser instances.
 
 ### Understanding the Server
 
