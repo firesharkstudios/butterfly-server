@@ -116,6 +116,7 @@ namespace Butterfly.Core.Channel {
                     else {
                         using (await this.monitor.EnterAsync()) {
                             await this.monitor.WaitAsync();
+                            int a = 0;
                         }
                     }
                 }
@@ -133,10 +134,8 @@ namespace Butterfly.Core.Channel {
         protected abstract Task SendAsync(string text);
 
         public async Task ReceiveMessageAsync(string text) {
-            if (text == "!") {
-                this.Heartbeat();
-            }
-            else {
+            this.Heartbeat();
+            if (text != "!") {
                 int pos = text.IndexOf(':');
                 if (pos > 0) {
                     string name = text.Substring(0, pos).Trim();

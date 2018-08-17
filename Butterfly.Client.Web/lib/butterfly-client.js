@@ -380,104 +380,164 @@ module.exports = exports["default"];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = _default;
+exports.default = void 0;
 
-function _default(options) {
-  var _private = this;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  var url = options.url;
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  if (url.indexOf('://') == -1) {
-    url = (window.location.protocol == 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host + url;
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+/*
+ * Usage...
+ *  start() must be called with a valid authorization before calling subscribe()/unsubscribe()
+ *  subscribe()/unsubscribe() may be called any time after start()
+ */
+var _class =
+/*#__PURE__*/
+function () {
+  function _class(options) {
+    _classCallCheck(this, _class);
+
+    this._options = options;
+    var url = this._options.url;
+
+    if (url.indexOf('://') == -1) {
+      this._url = (window.location.protocol == 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host + url;
+    } else {
+      this._url = url;
+    }
+
+    console.debug('WebSocketChannelClient():url=' + url);
+    this._status = null;
+    this._auth = null;
+    this._subscriptionByChannelKey = {};
+    this._queuedMessages = [];
   }
 
-  console.debug('WebSocketChannelClient():url=' + url);
-  _private.auth = null;
-  _private.subscriptionByChannelKey = {};
-
-  _private.setStatus = function (value) {
-    if (_public.status != value) {
-      _public.status = value;
-      if (options.onStatusChange) options.onStatusChange(value);
+  _createClass(_class, [{
+    key: "_setStatus",
+    value: function _setStatus(value) {
+      if (this._status != value) {
+        this._status = value;
+        if (this._options.onStatusChange) this._options.onStatusChange(value);
+      }
     }
-  };
+  }, {
+    key: "_queue",
+    value: function _queue(text) {
+      console.debug("_queue():text=".concat(text));
 
-  _private.testConnection = function () {
-    if (!_private.webSocket) {
-      try {
-        _private.setStatus('Starting');
+      this._queuedMessages.push(text);
 
-        _private.webSocket = new WebSocket(url);
+      this._sendQueue();
+    }
+  }, {
+    key: "_sendQueue",
+    // Called every 3 seconds while status!='Stopped'
+    value: function _sendQueue() {
+      console.debug("_sendQueue():_webSocketReady=".concat(this._webSocketReady));
+      if (this._sendQueueTimeout) clearTimeout(this._sendQueueTimeout);
 
-        _private.webSocket.onmessage = function (event) {
-          var message = JSON.parse(event.data);
+      if (this._webSocketReady) {
+        do {
+          var hasMessage = this._queuedMessages.length > 0;
+          var text = hasMessage ? this._queuedMessages[0] : '!';
 
-          if (message.channelKey) {
-            var subscription = _private.subscriptionByChannelKey[message.channelKey];
+          try {
+            console.debug("_sendQueue():text=".concat(text));
 
-            if (subscription.handlers) {
-              for (var i = 0; i < subscription.handlers.length; i++) {
-                subscription.handlers[i](message.messageType, message.data);
-              }
-            }
-          } else if (message.messageType == 'AUTHENTICATED') {
-            _private.setStatus('Started');
-
-            _private.markSubscriptionSent(false);
-
-            _private.sendSubscriptions();
-          } else if (message.messageType == 'UNAUTHENTICATED') {
-            _public.stop();
+            this._webSocket.send(text);
+          } catch (e) {
+            this._webSocket = null;
           }
-        };
 
-        _private.webSocket.onopen = function () {
-          _private.sendAuthorization();
-        };
-
-        _private.webSocket.onerror = function (error) {
-          _private.webSocket = null;
-        };
-
-        _private.webSocket.onclose = function () {
-          _private.webSocket = null;
-        };
-      } catch (e) {
-        console.debug(e);
-        _private.webSocket = null;
+          if (this._webSocket && hasMessage) {
+            this._queuedMessages.shift();
+          }
+        } while (this._queuedMessages.length > 0);
       }
-    } else if (_private.webSocket.readyState == 1) {
-      //console.debug('testConnection():_private.webSocket.readyState=' + _private.webSocket.readyState);
-      try {
-        _private.webSocket.send('!');
 
-        console.debug('WebSocketChannelClient.testConnection():heartbeat success');
-      } catch (e) {
-        _private.webSocket = null;
+      if (this.status != 'Stopped') {
+        this._sendQueueTimeout = setTimeout(this._sendQueue.bind(this), this._options.sendQueueEveryMillis || 3000);
       }
-    } else {
-      _private.webSocket = null;
     }
+  }, {
+    key: "_onMessage",
+    value: function _onMessage(event) {
+      console.debug("_onMessage():event.data=".concat(event.data));
+      var message = JSON.parse(event.data);
 
-    if (_public.status != 'Stopped') {
-      _private.testConnectionTimeout = setTimeout(function () {
-        _private.testConnection();
-      }, options.testConnectionEveryMillis || 3000);
+      if (message.channelKey) {
+        var subscription = this._subscriptionByChannelKey[message.channelKey];
+
+        if (subscription.handlers) {
+          for (var i = 0; i < subscription.handlers.length; i++) {
+            subscription.handlers[i](message.messageType, message.data);
+          }
+        }
+      } else if (message.messageType == 'AUTHENTICATED') {
+        this._setStatus('Started');
+      } else if (message.messageType == 'UNAUTHENTICATED') {
+        this.stop();
+      }
+    } // Called every 3 seconds until webSocket!=null
+
+  }, {
+    key: "_setupConnection",
+    value: function _setupConnection() {
+      var _this = this;
+
+      this._setStatus('Starting');
+
+      if (!this._webSocket) {
+        if (this._sendQueueTimeout) clearTimeout(this._sendQueueTimeout);
+
+        try {
+          console.debug("_setupConnection():new WebSocket(".concat(this._url, ")"));
+          this._webSocket = new WebSocket(this._url);
+          this._webSocket.onmessage = this._onMessage.bind(this);
+
+          this._webSocket.onopen = function () {
+            console.debug('_webSocket.onopen()');
+
+            _this._sendQueue();
+          };
+
+          this._webSocket.onerror = function (error) {
+            return _this._webSocket = null;
+          };
+
+          this._webSocket.onclose = function () {
+            return _this._webSocket = null;
+          };
+
+          console.debug("_setupConnection():success");
+        } catch (e) {
+          console.debug(e);
+          this._webSocket = null;
+          this._setupConnectionTimeout = setTimeout(this._setupConnection.bind(this), this._options.setupConnectionEveryMillis || 3000);
+        }
+
+        if (this._webSocket) {
+          this._sendQueue();
+        }
+      }
     }
-  };
+  }, {
+    key: "_queueAuthorization",
+    value: function _queueAuthorization(auth) {
+      this._auth = auth;
 
-  _private.sendAuthorization = function () {
-    if (_private.webSocket && _private.webSocket.readyState == 1) {
-      _private.webSocket.send('Authorization:' + (_private.auth || ''));
+      this._queue('Authorization:' + (this._auth || ''));
     }
-  };
-
-  _private.sendSubscriptions = function () {
-    if (_private.webSocket && _private.webSocket.readyState == 1 && _public.status == 'Started') {
+  }, {
+    key: "_queueSubscribe",
+    value: function _queueSubscribe() {
       var data = [];
 
-      for (var key in _private.subscriptionByChannelKey) {
-        var subscription = _private.subscriptionByChannelKey[key];
+      for (var key in this._subscriptionByChannelKey) {
+        var subscription = this._subscriptionByChannelKey[key];
 
         if (!subscription.sent) {
           data.push({
@@ -488,89 +548,93 @@ function _default(options) {
       }
 
       if (data.length > 0) {
-        var text = 'Subscribe:' + JSON.stringify(data);
-        console.debug('WebSocketChannelClient.sendSubscriptions():text=' + text);
+        this._queue('Subscribe:' + JSON.stringify(data));
 
-        _private.webSocket.send(text);
-
-        _private.markSubscriptionSent(true);
+        this._markSubscriptionsQueued(true);
       }
     }
-  };
+  }, {
+    key: "_addSubscription",
+    value: function _addSubscription(channelKey, subscription) {
+      this._subscriptionByChannelKey[channelKey] = subscription;
 
-  _private.addSubscription = function (channelKey, subscription) {
-    _private.subscriptionByChannelKey[channelKey] = subscription;
-
-    _private.sendSubscriptions();
-  };
-
-  _private.sendUnsubscribe = function (channelKey) {
-    if (_private.webSocket && _private.webSocket.readyState == 1) {
-      var text = 'Unsubscribe:' + JSON.stringify(channelKey);
-
-      _private.webSocket.send(text);
+      this._queueSubscribe();
     }
-  };
-
-  _private.markSubscriptionSent = function (value) {
-    for (var key in _private.subscriptionByChannelKey) {
-      var subscription = _private.subscriptionByChannelKey[key];
-      subscription.sent = value;
+  }, {
+    key: "_queueUnsubscribe",
+    value: function _queueUnsubscribe(channelKey) {
+      this._queue('Unsubscribe:' + JSON.stringify(channelKey));
     }
-  };
-
-  _private.removeSubscription = function (channelKey) {
-    delete _private.subscriptionByChannelKey[channelKey];
-  };
-
-  var _public = {
-    status: null,
-    start: function start(auth) {
+  }, {
+    key: "_markSubscriptionsQueued",
+    value: function _markSubscriptionsQueued(value) {
+      for (var key in this._subscriptionByChannelKey) {
+        var subscription = this._subscriptionByChannelKey[key];
+        subscription.sent = value;
+      }
+    }
+  }, {
+    key: "_removeSubscription",
+    value: function _removeSubscription(channelKey) {
+      delete this._subscriptionByChannelKey[channelKey];
+    }
+  }, {
+    key: "start",
+    value: function start(auth) {
       console.debug('WebSocketChannelClient.start()');
-      _private.auth = auth;
+      this._queuedMessages = [];
+      this._subscriptionByChannelKey = {};
 
-      _private.markSubscriptionSent(false);
+      this._setupConnection();
 
-      _private.sendAuthorization();
-
-      _private.testConnection();
-    },
-    subscribe: function subscribe(handler, channelKey, vars) {
+      this._queueAuthorization(auth);
+    }
+  }, {
+    key: "subscribe",
+    value: function subscribe(handler, channelKey, vars) {
       console.debug("WebSocketChannelClient.subscribe():channelKey=".concat(channelKey));
       if (!channelKey) channelKey = 'default';
 
-      _private.removeSubscription(channelKey);
+      this._removeSubscription(channelKey);
 
-      _private.addSubscription(channelKey, {
+      this._addSubscription(channelKey, {
         vars: vars,
         handlers: Array.isArray(handler) ? handler : [handler],
         sent: false
       });
 
-      if (options.onSubscriptionsUpdated) options.onSubscriptionsUpdated();
-    },
-    unsubscribe: function unsubscribe(channelKey) {
+      if (this._options.onSubscriptionsUpdated) this._options.onSubscriptionsUpdated();
+    }
+  }, {
+    key: "unsubscribe",
+    value: function unsubscribe(channelKey) {
       console.debug("WebSocketChannelClient.unsubscribe():channelKey=".concat(channelKey));
       if (!channelKey) channelKey = 'default';
 
-      _private.removeSubscription(channelKey);
+      this._removeSubscription(channelKey);
 
-      _private.sendUnsubscribe(channelKey);
+      this._queueUnsubscribe(channelKey);
 
-      if (options.onSubscriptionsUpdated) options.onSubscriptionsUpdated();
-    },
-    stop: function stop() {
+      if (this._options.onSubscriptionsUpdated) this._options.onSubscriptionsUpdated();
+    }
+  }, {
+    key: "stop",
+    value: function stop() {
       console.debug('WebSocketChannelClient.stop()');
 
-      _private.setStatus('Stopped');
+      this._setStatus('Stopped');
 
-      _private.webSocket.close();
+      if (this._webSocket != null) {
+        this._webSocket.close();
 
-      _private.webSocket = null;
-      clearTimeout(_private.testConnectionTimeout);
+        this._webSocket = null;
+      }
 
-      for (var channelKey in _private.subscriptionByChannelKey) {
-        var subscription = _private.subscriptionByChannelKey[channelKey];
+      if (this._sendQueueTimeout) clearTimeout(this._sendQueueTimeout);
+      if (this._setupConnectionTimeout) clearTimeout(this._setupConnectionTimeout);
+
+      for (var channelKey in this._subscriptionByChannelKey) {
+        var subscription = this._subscriptionByChannelKey[channelKey];
 
         if (subscription.handlers) {
           for (var i = 0; i < subscription.handlers.length; i++) {
@@ -579,10 +643,22 @@ function _default(options) {
         }
       }
     }
-  };
-  return _public;
-}
+  }, {
+    key: "status",
+    get: function get() {
+      return this._status;
+    }
+  }, {
+    key: "_webSocketReady",
+    get: function get() {
+      return this._webSocket && this._webSocket.readyState == 1;
+    }
+  }]);
 
+  return _class;
+}();
+
+exports.default = _class;
 module.exports = exports["default"];
 
 /***/ })
