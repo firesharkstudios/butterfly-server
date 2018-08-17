@@ -180,6 +180,10 @@ Here are various implementations you'll likely find useful...
 - [Butterfly.EmbedIO](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.EmbedIO) - Implementation of *Butterfly.Core.Channel* and *Butterfly.Core.WebApi* for [EmbedIO](https://github.com/unosquare/embedio) server
 - [Butterfly.Twilio](https://github.com/firesharkstudios/butterfly-server-dotnet/Butterfly.Twilio) - Implementation of *Butterfly.Notify* for Twilio SMS
 
+## In the Wild
+
+[Build Hero](https://www.buildhero.io) is a collaborative tool for general contractors, subcontractors, and customers to collaborate on remodel projects.  The [my.buildhero.io](https://my.buildhero.io) site, the Android app, and the iOS app are all powered by Butterfly Server .NET.
+
 ## Contributing
 
 If you'd like to contribute, please fork the repository and use a feature
