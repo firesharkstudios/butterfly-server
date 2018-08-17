@@ -76,15 +76,20 @@
     <Compile Include="RedHttpServerWebApiServer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Butterfly.Core\Butterfly.Core.csproj">
       <Project>{a7be1f28-30a9-4d1d-9fee-967fec8c4aee}</Project>
       <Name>Butterfly.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UseGlobalSettings="False" BuildVersion_StartDate="2000/1/1" />
+    </VisualStudio>
+  </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -92,9 +97,4 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
   </Target>
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_UseGlobalSettings="False" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
-    </VisualStudio>
-  </ProjectExtensions>
 </Project>

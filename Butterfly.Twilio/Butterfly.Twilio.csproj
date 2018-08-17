@@ -62,7 +62,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="Twilio, Version=5.15.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\BuildHero\packages\Twilio.5.15.1\lib\net451\Twilio.dll</HintPath>
+      <HintPath>..\packages\Twilio.5.15.1\lib\net451\Twilio.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -84,7 +84,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_StartDate="2000/1/1" />
+      <UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
