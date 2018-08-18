@@ -10,7 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "butterfly-client": "^1.2.2",
+    "butterfly-client": "^1.2.3",
     "reqwest": "^2.0.5",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",

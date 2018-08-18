@@ -427,8 +427,7 @@ function () {
       this._queuedMessages.push(text);
 
       this._sendQueue();
-    } // Called every 3 seconds while status!='Stopped'
-
+    }
   }, {
     key: "_sendQueue",
     value: function _sendQueue() {
@@ -466,8 +465,8 @@ function () {
   }, {
     key: "_onMessage",
     value: function _onMessage(event) {
-      //console.debug(`_onMessage():event.data=${event.data}`);
       var message = JSON.parse(event.data);
+      console.debug("_onMessage():message.messageType=".concat(message.messageType));
 
       if (message.channelKey) {
         var subscription = this._subscriptionByChannelKey[message.channelKey];
@@ -487,7 +486,7 @@ function () {
     key: "_scheduleSetupConnection",
     value: function _scheduleSetupConnection() {
       this._setupConnectionTimeout = setTimeout(this._setupConnection.bind(this), this._options.setupConnectionEveryMillis || 3000);
-    } // Called every 3 seconds until webSocket!=null
+    } // Called every 3 seconds until successful
 
   }, {
     key: "_setupConnection",
@@ -507,12 +506,12 @@ function () {
       if (this._sendQueueTimeout) clearTimeout(this._sendQueueTimeout);
 
       try {
-        //console.debug(`_setupConnection():new WebSocket(${this._url})`);
+        console.debug("_setupConnection():new WebSocket(".concat(this._url, ")"));
         this._webSocket = new WebSocket(this._url);
         this._webSocket.onmessage = this._onMessage.bind(this);
 
         this._webSocket.onopen = function () {
-          console.debug('_webSocket.onopen()');
+          console.debug('_setupConnection():_webSocket.onopen()');
           _this._webSocketOpened = true;
           _this._queuedMessages = [];
 
@@ -524,15 +523,15 @@ function () {
         };
 
         this._webSocket.onerror = function (error) {
-          console.debug('_webSocket.onerror()');
+          console.debug('_setupConnection():_webSocket.onerror()');
 
           _this._scheduleSetupConnection();
         };
 
         this._webSocket.onclose = function () {
-          return _this._webSocket = null;
-        }; //console.debug(`_setupConnection():success`);
-
+          console.debug('_setupConnection():_webSocket():onclose()');
+          _this._webSocket = null;
+        };
       } catch (e) {
         this._scheduleSetupConnection();
       }

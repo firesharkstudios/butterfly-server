@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "butterfly-client": "^1.2.2"
+    "butterfly-client": "^1.2.3"
   }
 }

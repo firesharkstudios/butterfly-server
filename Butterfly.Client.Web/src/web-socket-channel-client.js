@@ -20,7 +20,7 @@ export default class {
 
   _setStatus(value) {
     if (this._status != value) {
-      this._status= value;
+      this._status = value;
       if (this._options.onStatusChange) this._options.onStatusChange(value);
     }
   }
@@ -31,7 +31,6 @@ export default class {
     this._sendQueue();
   }
 
-  // Called every 3 seconds while status!='Stopped'
   _sendQueue() {
     console.debug(`_sendQueue()`);
     if (this._sendQueueTimeout) clearTimeout(this._sendQueueTimeout);
@@ -66,8 +65,8 @@ export default class {
   }
 
   _onMessage(event) {
-    //console.debug(`_onMessage():event.data=${event.data}`);
     let message = JSON.parse(event.data);
+    console.debug(`_onMessage():message.messageType=${message.messageType}`);
     if (message.channelKey) {
       let subscription = this._subscriptionByChannelKey[message.channelKey];
       if (subscription.handlers) {
@@ -88,7 +87,7 @@ export default class {
     this._setupConnectionTimeout = setTimeout(this._setupConnection.bind(this), this._options.setupConnectionEveryMillis || 3000);
   }
 
-  // Called every 3 seconds until webSocket!=null
+  // Called every 3 seconds until successful
   _setupConnection() {
     this._setStatus('Starting');
     this._webSocketOpened = false;
@@ -99,11 +98,11 @@ export default class {
     if (this._sendQueueTimeout) clearTimeout(this._sendQueueTimeout);
 
     try {
-      //console.debug(`_setupConnection():new WebSocket(${this._url})`);
+      console.debug(`_setupConnection():new WebSocket(${this._url})`);
       this._webSocket = new WebSocket(this._url);
       this._webSocket.onmessage = this._onMessage.bind(this);
       this._webSocket.onopen = () => {
-        console.debug('_webSocket.onopen()');
+        console.debug('_setupConnection():_webSocket.onopen()');
         this._webSocketOpened = true;
         this._queuedMessages = [];
         this._queue('Authorization:' + (this._auth || ''));
@@ -111,11 +110,13 @@ export default class {
         this._queueSubscribe();
       };
       this._webSocket.onerror = error => {
-        console.debug('_webSocket.onerror()');
+        console.debug('_setupConnection():_webSocket.onerror()');
         this._scheduleSetupConnection();
       };
-      this._webSocket.onclose = () => this._webSocket = null;
-      //console.debug(`_setupConnection():success`);
+      this._webSocket.onclose = () => {
+        console.debug('_setupConnection():_webSocket():onclose()');
+        this._webSocket = null;
+      }
     }
     catch (e) {
       this._scheduleSetupConnection();
