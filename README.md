@@ -74,7 +74,7 @@ First, the client should maintain an open WebSocket to the server by using the *
 let channelClient = new WebSocketChannelClient({
     url: `ws://${window.location.host}/ws`
 });
-channelClient.start('Custom My-User-Id');
+channelClient.connect();
 ```
 
 Next, the client will want to subscribe to a channel to receive data...

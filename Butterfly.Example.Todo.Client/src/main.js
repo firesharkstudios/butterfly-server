@@ -23,7 +23,7 @@ new Vue({
   data() {
     return {
       channelClient: null,
-      status: null,
+      channelClientState: null,
     }
   },
   methods: {
@@ -58,10 +58,10 @@ new Vue({
     let url = `ws://${window.location.host}/ws`;
     self.channelClient = new WebSocketChannelClient({
       url,
-      onStatusChange(value) {
-        self.status = value;
+      onStateChange(value) {
+        self.channelClientState = value;
       }
     });
-    self.channelClient.start('Custom My-User-Id');
+    self.channelClient.connect();
   },
 })

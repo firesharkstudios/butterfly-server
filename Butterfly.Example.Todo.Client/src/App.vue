@@ -4,11 +4,13 @@
       <v-toolbar>
         <v-toolbar-title>Butterfly Server .NET Todo Example</v-toolbar-title>
         <v-spacer />
-        <v-toolbar-items class="py-3">
-          Connection: {{ $root.status }}
+        <v-toolbar-items>
         </v-toolbar-items>
       </v-toolbar>
-      <router-view/>
+      <router-view v-if="$root.channelClientState=='Connected'"/>
+      <div class="px-5 py-5 text-xs-center" v-else>
+        <v-progress-circular indeterminate color="primary"/> <span class="pl-2 title">{{ $root.channelClientState }}...</span>
+      </div>
     </v-content>
     <v-footer :fixed="true" app class="text-xs-center">
       <span>&copy; Fireshark Studios, LLC 2018</span>

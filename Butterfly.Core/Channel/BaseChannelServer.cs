@@ -24,8 +24,6 @@ using NLog;
 
 using Butterfly.Core.Util;
 
-using Dict = System.Collections.Generic.Dictionary<string, object>;
-
 namespace Butterfly.Core.Channel {
 
     /// <inheritdoc/>

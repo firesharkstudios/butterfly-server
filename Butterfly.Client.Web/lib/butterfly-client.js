@@ -388,6 +388,14 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+/*
+ * States...
+ *  Disconnected - No WebSocket, no loop running
+ *  Connecting - Create WebSocket and wait for WebSocket.onopen()
+ *  Authenticating - Send Authentication and wait for server to send AUTHENTICATED or UNAUTHENTICATED
+ *  Subscribing - Send subscriptions and transition to Connected
+ *  Connected - Send heartbeats to server
+ */
 var _class =
 /*#__PURE__*/
 function () {
@@ -401,65 +409,213 @@ function () {
       this._url = (window.location.protocol == 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host + url;
     } else {
       this._url = url;
-    } //console.debug('WebSocketChannelClient():url=' + url);
+    }
 
-
-    this._status = null;
+    this._state = 'Disconnected';
+    this._stateTimeout = null;
     this._auth = null;
     this._subscriptionByChannelKey = {};
-    this._queuedMessages = [];
-    this._webSocketOpened = false;
   }
 
   _createClass(_class, [{
-    key: "_setStatus",
-    value: function _setStatus(value) {
-      if (this._status != value) {
-        this._status = value;
-        if (this._options.onStatusChange) this._options.onStatusChange(value);
+    key: "_setState",
+    value: function _setState(value) {
+      if (this._state != value) {
+        console.debug("_setState():value=".concat(value));
+        this._state = value;
+        if (this._options.onStateChange) this._options.onStateChange(value);
+
+        this._clearStateTimeout();
       }
     }
   }, {
-    key: "_queue",
-    value: function _queue(text) {
-      console.debug("_queue():text=".concat(text));
+    key: "connect",
+    value: function connect(auth) {
+      console.debug('WebSocketChannelClient.connect()');
+      this._auth = auth;
 
-      this._queuedMessages.push(text);
+      this._setState('Connecting');
 
-      this._sendQueue();
+      this._connecting();
     }
   }, {
-    key: "_sendQueue",
-    value: function _sendQueue() {
-      console.debug("_sendQueue()");
-      if (this._sendQueueTimeout) clearTimeout(this._sendQueueTimeout);
-      if (this._status == 'Stopped' || !this._webSocketOpened) return;
-      var fail = false;
+    key: "_connecting",
+    value: function _connecting() {
+      var _this = this;
 
-      do {
-        if (this._webSocket == null) {
-          fail = true;
-          break;
-        }
+      if (this._state == 'Disconnected') return;
 
-        var hasMessage = this._queuedMessages && this._queuedMessages.length > 0;
-        var text = hasMessage ? this._queuedMessages[0] : '!';
+      this._setState('Connecting');
 
+      var connectingStartMillis = new Date().getTime();
+
+      if (this._webSocket) {
         try {
-          //console.debug(`_sendQueue():text=${text}`);
-          this._webSocket.send(text);
+          this._webSocket.close();
+        } catch (e) {}
 
-          if (hasMessage) this._queuedMessages.shift();
-        } catch (e) {
-          fail = true;
-          break;
+        this._webSocket = null;
+      }
+
+      var hasReconnected = false;
+
+      var reconnect = function reconnect(error) {
+        if (hasReconnected) return;else hasReconnected = true;
+        console.debug("_connecting():reconnect():error=".concat(error));
+        var elapsedMillis = new Date().getTime() - connectingStartMillis;
+        var reconnectEveryMillis = _this._options.reconnectEveryMillis || 3000;
+
+        if (elapsedMillis > reconnectEveryMillis) {
+          _this._connecting();
+        } else {
+          var wait = reconnectEveryMillis - elapsedMillis;
+          _this._stateTimeout = setTimeout(_this._connecting.bind(_this), wait);
         }
-      } while (this._queuedMessages.length > 0);
+      };
 
-      if (fail) {
-        this._setupConnection();
+      try {
+        console.debug("_connecting():new WebSocket(".concat(this._url, ")"));
+        this._webSocket = new WebSocket(this._url);
+        this._webSocket.onmessage = this._onMessage.bind(this);
+        this._webSocket.onopen = this._authenticating.bind(this);
+        this._webSocket.onerror = reconnect.bind(this);
+        this._webSocket.onclose = reconnect.bind(this);
+      } catch (e) {
+        reconnect(e);
+      }
+    }
+  }, {
+    key: "_authenticating",
+    value: function _authenticating() {
+      if (this._state == 'Disconnected') return;
+
+      this._setState('Authenticating');
+
+      var text = 'Authorization:' + (this._auth || '');
+
+      var success = this._sendText(text);
+
+      if (success) {
+        var authenticateEveryMillis = this._options.authenticateEveryMillis || 3000;
+        this._stateTimeout = setTimeout(this._authenticating.bind(this), authenticateEveryMillis);
+      }
+    }
+  }, {
+    key: "_subscribing",
+    value: function _subscribing() {
+      if (this._state == 'Disconnected') return;
+
+      this._setState('Subscribing'); // Build data
+
+
+      var data = [];
+
+      for (var key in this._subscriptionByChannelKey) {
+        var subscription = this._subscriptionByChannelKey[key];
+
+        if (!subscription.sent) {
+          data.push({
+            channelKey: key,
+            vars: subscription.vars
+          });
+        }
+      } // Subscribe
+
+
+      var success = true;
+
+      if (data.length > 0) {
+        success = this._sendText('Subscribe:' + JSON.stringify(data));
+      }
+
+      if (success) {
+        this._markSubscriptionsSent(true);
+
+        this._connected();
+      }
+    }
+  }, {
+    key: "_unsubscribing",
+    value: function _unsubscribing(channelKey) {
+      if (this._state == 'Disconnected') return;
+
+      this._setState('Unsubscribing');
+
+      var success = this._sendText('Unsubscribe:' + JSON.stringify(channelKey));
+
+      if (success) {
+        this._connected();
+      }
+    }
+  }, {
+    key: "_connected",
+    value: function _connected() {
+      this._setState('Connected');
+
+      var elapsedMillis = new Date().getTime() - this._lastSendTextMillis;
+
+      var heartbeatEveryMillis = this._options.heartbeatEveryMillis || 3000;
+
+      if (elapsedMillis >= heartbeatEveryMillis) {
+        this._sendText('!');
+
+        this._connected();
       } else {
-        this._sendQueueTimeout = setTimeout(this._sendQueue.bind(this), this._options.sendQueueEveryMillis || 3000);
+        var wait = Math.max(0, heartbeatEveryMillis - elapsedMillis);
+        this._stateTimeout = setTimeout(this._connected.bind(this), wait);
+      }
+    }
+  }, {
+    key: "disconnect",
+    value: function disconnect() {
+      console.debug('WebSocketChannelClient.disconnect()');
+
+      this._setState('Disconnected');
+
+      if (this._webSocket != null) {
+        try {
+          this._webSocket.close();
+        } catch (e) {}
+
+        this._webSocket = null;
+      }
+
+      this._clearStateTimeout();
+
+      for (var channelKey in this._subscriptionByChannelKey) {
+        var subscription = this._subscriptionByChannelKey[channelKey];
+
+        if (subscription.handlers) {
+          for (var i = 0; i < subscription.handlers.length; i++) {
+            subscription.handlers[i]('RESET');
+          }
+        }
+      }
+    }
+  }, {
+    key: "_clearStateTimeout",
+    value: function _clearStateTimeout() {
+      if (this._stateTimeout) {
+        clearTimeout(this._stateTimeout);
+        this._stateTimeout = null;
+      }
+    }
+  }, {
+    key: "_sendText",
+    value: function _sendText(text) {
+      console.debug("_sendText():text=".concat(text));
+
+      try {
+        this._webSocket.send(text);
+
+        this._lastSendTextMillis = new Date().getTime();
+        return true;
+      } catch (e) {
+        console.error(e);
+
+        this._connecting();
+
+        return false;
       }
     }
   }, {
@@ -477,98 +633,12 @@ function () {
           }
         }
       } else if (message.messageType == 'AUTHENTICATED') {
-        this._setStatus('Started');
+        this._markSubscriptionsSent(false);
+
+        this._subscribing();
       } else if (message.messageType == 'UNAUTHENTICATED') {
-        this.stop();
+        this.disconnect();
       }
-    }
-  }, {
-    key: "_scheduleSetupConnection",
-    value: function _scheduleSetupConnection() {
-      this._setupConnectionTimeout = setTimeout(this._setupConnection.bind(this), this._options.setupConnectionEveryMillis || 3000);
-    } // Called every 3 seconds until successful
-
-  }, {
-    key: "_setupConnection",
-    value: function _setupConnection() {
-      var _this = this;
-
-      this._setStatus('Starting');
-
-      this._webSocketOpened = false;
-
-      if (this._webSocket) {
-        this._webSocket.close();
-
-        this._webSocket = null;
-      }
-
-      if (this._sendQueueTimeout) clearTimeout(this._sendQueueTimeout);
-
-      try {
-        console.debug("_setupConnection():new WebSocket(".concat(this._url, ")"));
-        this._webSocket = new WebSocket(this._url);
-        this._webSocket.onmessage = this._onMessage.bind(this);
-
-        this._webSocket.onopen = function () {
-          console.debug('_setupConnection():_webSocket.onopen()');
-          _this._webSocketOpened = true;
-          _this._queuedMessages = [];
-
-          _this._queue('Authorization:' + (_this._auth || ''));
-
-          _this._markSubscriptionsSent(false);
-
-          _this._queueSubscribe();
-        };
-
-        this._webSocket.onerror = function (error) {
-          console.debug('_setupConnection():_webSocket.onerror()');
-
-          _this._scheduleSetupConnection();
-        };
-
-        this._webSocket.onclose = function () {
-          console.debug('_setupConnection():_webSocket():onclose()');
-          _this._webSocket = null;
-        };
-      } catch (e) {
-        this._scheduleSetupConnection();
-      }
-    }
-  }, {
-    key: "_queueSubscribe",
-    value: function _queueSubscribe() {
-      var data = [];
-
-      for (var key in this._subscriptionByChannelKey) {
-        var subscription = this._subscriptionByChannelKey[key];
-
-        if (!subscription.sent) {
-          data.push({
-            channelKey: key,
-            vars: subscription.vars
-          });
-        }
-      }
-
-      if (data.length > 0) {
-        this._queue('Subscribe:' + JSON.stringify(data));
-
-        this._markSubscriptionsSent(true);
-      }
-    }
-  }, {
-    key: "_addSubscription",
-    value: function _addSubscription(channelKey, subscription) {
-      this._subscriptionByChannelKey[channelKey] = subscription;
-
-      this._queueSubscribe();
-    }
-  }, {
-    key: "_queueUnsubscribe",
-    value: function _queueUnsubscribe(channelKey) {
-      this._queue('Unsubscribe:' + JSON.stringify(channelKey));
     }
   }, {
     key: "_markSubscriptionsSent",
@@ -577,19 +647,6 @@ function () {
         var subscription = this._subscriptionByChannelKey[key];
         subscription.sent = value;
       }
-    }
-  }, {
-    key: "_removeSubscription",
-    value: function _removeSubscription(channelKey) {
-      delete this._subscriptionByChannelKey[channelKey];
-    }
-  }, {
-    key: "start",
-    value: function start(auth) {
-      //console.debug('WebSocketChannelClient.start()');
-      this._auth = auth;
-
-      this._setupConnection();
     }
   }, {
     key: "subscribe",
@@ -605,6 +662,10 @@ function () {
         sent: false
       });
 
+      if (this._state == 'Connected') {
+        this._subscribing();
+      }
+
       if (this._options.onSubscriptionsUpdated) this._options.onSubscriptionsUpdated();
     }
   }, {
@@ -615,34 +676,19 @@ function () {
 
       this._removeSubscription(channelKey);
 
-      this._queueUnsubscribe(channelKey);
+      this._unsubscribing(channelKey);
 
       if (this._options.onSubscriptionsUpdated) this._options.onSubscriptionsUpdated();
     }
   }, {
-    key: "stop",
-    value: function stop() {
-      //console.debug('WebSocketChannelClient.stop()')
-      this._setStatus('Stopped');
-
-      if (this._webSocket != null) {
-        this._webSocket.close();
-
-        this._webSocket = null;
-      }
-
-      if (this._sendQueueTimeout) clearTimeout(this._sendQueueTimeout);
-      if (this._setupConnectionTimeout) clearTimeout(this._setupConnectionTimeout);
-
-      for (var channelKey in this._subscriptionByChannelKey) {
-        var subscription = this._subscriptionByChannelKey[channelKey];
-
-        if (subscription.handlers) {
-          for (var i = 0; i < subscription.handlers.length; i++) {
-            subscription.handlers[i]('RESET');
-          }
-        }
-      }
+    key: "_addSubscription",
+    value: function _addSubscription(channelKey, subscription) {
+      this._subscriptionByChannelKey[channelKey] = subscription;
+    }
+  }, {
+    key: "_removeSubscription",
+    value: function _removeSubscription(channelKey) {
+      delete this._subscriptionByChannelKey[channelKey];
     }
   }]);
 

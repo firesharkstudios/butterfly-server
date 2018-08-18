@@ -134,6 +134,7 @@ namespace Butterfly.Core.Channel {
         protected abstract Task SendAsync(string text);
 
         public async Task ReceiveMessageAsync(string text) {
+            logger.Debug($"ReceiveMessage():text={text}");
             this.Heartbeat();
             if (text != "!") {
                 int pos = text.IndexOf(':');
@@ -143,18 +144,13 @@ namespace Butterfly.Core.Channel {
                     logger.Debug($"ReceiveMessage():name={name},value={value}");
                     if (name == HttpRequestHeader.Authorization.ToString()) {
                         this.UnsubscribeAll();
-                        if (string.IsNullOrEmpty(value)) {
-                            this.QueueMessage(messageType: "UNAUTHENTICATED");
+                        try {
+                            var authenticationHeaderValue = string.IsNullOrWhiteSpace(value) ? null : AuthenticationHeaderValue.Parse(value);
+                            await this.channelServer.AuthenticateAsync(authenticationHeaderValue?.Scheme, authenticationHeaderValue?.Parameter, this);
+                            this.QueueMessage(messageType: "AUTHENTICATED");
                         }
-                        else {
-                            try {
-                                var authenticationHeaderValue = AuthenticationHeaderValue.Parse(value);
-                                await this.channelServer.AuthenticateAsync(authenticationHeaderValue.Scheme, authenticationHeaderValue.Parameter, this);
-                                this.QueueMessage(messageType: "AUTHENTICATED");
-                            }
-                            catch (Exception e) {
-                                this.QueueMessage(messageType: "UNAUTHENTICATED", data: e.Message);
-                            }
+                        catch (Exception e) {
+                            this.QueueMessage(messageType: "UNAUTHENTICATED", data: e.Message);
                         }
                     }
                     else if (name == "Subscribe") {

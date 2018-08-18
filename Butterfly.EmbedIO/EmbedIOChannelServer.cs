@@ -55,7 +55,7 @@ namespace Butterfly.EmbedIO {
         protected readonly BaseChannelServer channelServer;
         protected readonly RegisteredRoute registeredRoute;
         protected readonly Func<IWebRequest, IChannelServerConnection, bool> onNewChannel;
-        protected readonly ConcurrentDictionary<WebSocketContext, EmbedIOChannel> channelByWebSocketContext = new ConcurrentDictionary<WebSocketContext, EmbedIOChannel>();
+        protected readonly ConcurrentDictionary<WebSocketContext, EmbedIOChannelServerConnection> channelByWebSocketContext = new ConcurrentDictionary<WebSocketContext, EmbedIOChannelServerConnection>();
 
         public MyWebSocketsServer(BaseChannelServer channelServer, RegisteredRoute registeredRoute, Func<IWebRequest, IChannelServerConnection, bool> onNewChannel) {
             this.channelServer = channelServer;
@@ -68,9 +68,9 @@ namespace Butterfly.EmbedIO {
         protected override void OnClientConnected(WebSocketContext context) {
             var webRequest = new EmbedIOWebSocketWebRequest(context);
             logger.Trace($"OnClientConnected():Websocket created for path {webRequest.RequestUrl.AbsolutePath}");
-            var channel = new EmbedIOChannel(this.channelServer, this.registeredRoute, message => {
+            var channel = new EmbedIOChannelServerConnection(this.channelServer, this.registeredRoute, message => {
                 this.Send(context, message);
-            });
+            }, context);
             bool valid = this.onNewChannel(webRequest, channel);
             if (valid) {
                 this.channelByWebSocketContext[context] = channel;
@@ -78,36 +78,38 @@ namespace Butterfly.EmbedIO {
         }
 
         protected override void OnClientDisconnected(WebSocketContext context) {
-            this.channelByWebSocketContext.TryRemove(context, out EmbedIOChannel dummyContext);
+            this.channelByWebSocketContext.TryRemove(context, out EmbedIOChannelServerConnection dummyContext);
         }
 
         protected override void OnFrameReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult) {
         }
 
         protected override void OnMessageReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult) {
-            if (this.channelByWebSocketContext.TryGetValue(context, out EmbedIOChannel embedIOChannel)) {
-                var text = System.Text.Encoding.UTF8.GetString(rxBuffer);
+            var text = System.Text.Encoding.UTF8.GetString(rxBuffer);
+            logger.Debug($"OnMessageReceived():text={text}");
+            if (this.channelByWebSocketContext.TryGetValue(context, out EmbedIOChannelServerConnection embedIOChannel)) {
                 try {
                     embedIOChannel.ReceiveMessageAsync(text).Wait();
                 }
                 catch (Exception e) {
                     logger.Trace(e);
                     embedIOChannel.Dispose();
-                    context.WebSocket.CloseAsync().Wait();
                 }
             }
         }
 
-        protected EmbedIOChannel GetEmbedIOChannel(string channelId) {
-            return channelServer.GetConnection(channelId) as EmbedIOChannel;
+        protected EmbedIOChannelServerConnection GetEmbedIOChannel(string channelId) {
+            return channelServer.GetConnection(channelId) as EmbedIOChannelServerConnection;
         }
     }
 
-    public class EmbedIOChannel : BaseChannelServerConnection {
+    public class EmbedIOChannelServerConnection : BaseChannelServerConnection {
         protected readonly Action<string> send;
+        protected readonly WebSocketContext context;
 
-        public EmbedIOChannel(BaseChannelServer channelServer, RegisteredRoute registeredRoute, Action<string> send) : base(channelServer, registeredRoute) {
+        public EmbedIOChannelServerConnection(BaseChannelServer channelServer, RegisteredRoute registeredRoute, Action<string> send, WebSocketContext context) : base(channelServer, registeredRoute) {
             this.send = send;
+            this.context = context;
         }
 
         protected override Task SendAsync(string text) {
@@ -118,6 +120,7 @@ namespace Butterfly.EmbedIO {
 
         protected override void DoDispose() {
             //logger.Trace($"DoDispose():id={this.Id}");
+            this.context.WebSocket.CloseAsync();
         }
 
     }
