@@ -2,24 +2,28 @@
 
 > A simple Todo app built using Vue / Vuetify on the client
 
-Before running this example...
 
-1. In a terminal or command prompt, run `npm install` in Butterfly.Example.Todo.Client
+# Run this Example
 
-Run this example...
+```
+git clone https://github.com/firesharkstudios/butterfly-server-dotnet.git
 
-1. In Visual Studio, run Butterfly.Example.Todo.Server
-1. In a terminal or command prompt, run `npm run dev` in Butterfly.Example.Todo.Client
-1. In a browser, open http://localhost:8000/
-1. In a second browser, open http://localhost:8000/ again
- 
-Notice that both browser stay synchronized as you add/remove todos.
+cd butterfly-server-dotnet\Butterfly.Example.Todo.Client
+npm install
 
-What's happening...
+# Open Butterfly.sln in Visual Studio
+# Run Butterfly.Example.Todo.Server in Visual Studio
+
+npm run dev
+```
+
+You should see http://localhost:8080/ open in a browser. Try opening a second browser instance at http://localhost:8080/. Notice that changes are automatically synchronized between the two browser instances.
+
+# What's Happening
 
 1. Each client opens and maintains a WebSocket connection via the *WebSocketChannelClient* class
 2. Each client subscribes to a *todos* channel that receives an initial list of records in the *todo* table and any changes to the *todo* table
 1. Each client invokes API calls on the server to INSERT/DELETE records from a todo table
 4. Data changes are automatically synchronized from the server to the client modifying local javascript arrays which automatically update the UI via the magic of *Vue*
 
-See [Setup.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Todo.Server/Setup.cs) for the server code that handles the API requests and pushes data changes to the clients.
+See [Setup.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Todo.Server/Setup.cs) for the server code that sets up the database, handles API requests, and handles subscription requests.
