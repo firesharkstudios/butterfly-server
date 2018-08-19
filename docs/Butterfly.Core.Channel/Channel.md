@@ -14,7 +14,7 @@ public class Channel : IDisposable
 | [Vars](Channel/Vars.md) { get; } |  |
 | [Attach](Channel/Attach.md)(…) |  |
 | [Dispose](Channel/Dispose.md)() |  |
-| [Queue](Channel/Queue.md)(…) |  |
+| [Queue](Channel/Queue.md)(…) |  (2 methods) |
 
 ## See Also
 

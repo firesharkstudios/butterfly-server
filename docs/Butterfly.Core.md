@@ -14,10 +14,9 @@
 | abstract class [BaseChannelServer](Butterfly.Core.Channel/BaseChannelServer.md) | Allows clients to create new channels to the server and allows the server to push messages to connected clients. |
 | abstract class [BaseChannelServerConnection](Butterfly.Core.Channel/BaseChannelServerConnection.md) | Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc) |
 | class [Channel](Butterfly.Core.Channel/Channel.md) |  |
+| class [ChannelSubscription](Butterfly.Core.Channel/ChannelSubscription.md) | Internal class used to store references to new channel listeners |
 | interface [IChannelServer](Butterfly.Core.Channel/IChannelServer.md) | Allows clients to create new channels to the server and allows the server to push messages to connected clients. |
 | interface [IChannelServerConnection](Butterfly.Core.Channel/IChannelServerConnection.md) | Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc) |
-| class [RegisteredChannel](Butterfly.Core.Channel/RegisteredChannel.md) | Internal class used to store references to new channel listeners |
-| class [RegisteredRoute](Butterfly.Core.Channel/RegisteredRoute.md) | Internal class used to store references to new channel listeners |
 
 ## Butterfly.Core.Database namespace
 

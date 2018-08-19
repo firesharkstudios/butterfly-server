@@ -4,6 +4,16 @@ Internal interface representing a communications channel from the server to the 
 
 Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
 
+Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
+
+Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
+
+Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
+
+Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
+
+Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
+
 ```csharp
 public interface IChannelServerConnection : IDisposable
 ```
@@ -16,7 +26,6 @@ public interface IChannelServerConnection : IDisposable
 | [Created](IChannelServerConnection/Created.md) { get; } |  |
 | [Id](IChannelServerConnection/Id.md) { get; } |  |
 | [LastHeartbeat](IChannelServerConnection/LastHeartbeat.md) { get; } |  |
-| [RegisteredRoute](IChannelServerConnection/RegisteredRoute.md) { get; } |  |
 | [QueueMessage](IChannelServerConnection/QueueMessage.md)(…) |  |
 | [Start](IChannelServerConnection/Start.md)(…) |  |
 

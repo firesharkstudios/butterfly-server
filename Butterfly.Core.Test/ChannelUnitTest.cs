@@ -15,7 +15,7 @@ namespace Butterfly.Core.Test {
         [TestMethod]
         public async Task RedHttpServerChannel() {
             var redHttpServer = new RedHttpServerNet45.RedHttpServer(8080);
-            using (var channelServer = new Butterfly.Channel.RedHttpServer.RedHttpServerChannelServer(redHttpServer, mustReceiveHeartbeatMillis: 2000)) {
+            using (var channelServer = new Butterfly.Channel.RedHttpServer.RedHttpServerChannelServer(redHttpServer, mustReceiveHeartbeatMillis: 2000, path: "/test")) {
                 await this.TestChannel(channelServer, () => {
                     redHttpServer.Start();
                 });
@@ -25,7 +25,7 @@ namespace Butterfly.Core.Test {
         [TestMethod]
         public async Task EmbedIOChannel() {
             using (var webServer = new Unosquare.Labs.EmbedIO.WebServer("http://localhost:8080/", Unosquare.Labs.EmbedIO.Constants.RoutingStrategy.Regex))
-            using (var channelServer = new EmbedIOChannelServer(webServer, mustReceiveHeartbeatMillis: 2000)) {
+            using (var channelServer = new EmbedIOChannelServer(webServer, mustReceiveHeartbeatMillis: 2000, path: "/test")) {
                 await this.TestChannel(channelServer, () => {
                     webServer.RunAsync();
                 });
@@ -41,15 +41,12 @@ namespace Butterfly.Core.Test {
             Butterfly.Core.Channel.Channel channelB = null;
             TestDisposable testDisposableB = new TestDisposable();
 
-            // Register route
-            var route = channelServer.RegisterRoute("/test");
-
             // Register channel
-            route.RegisterChannel(channelKey: "A", handler: (vars, channel) => {
+            channelServer.OnSubscribe(channelKey: "A", handler: (vars, channel) => {
                 channelA = channel;
                 return testDisposableA;
             });
-            route.RegisterChannel(channelKey: "B", handler: (vars, channel) => {
+            channelServer.OnSubscribe(channelKey: "B", handler: (vars, channel) => {
                 channelB = channel;
                 return testDisposableB;
             });

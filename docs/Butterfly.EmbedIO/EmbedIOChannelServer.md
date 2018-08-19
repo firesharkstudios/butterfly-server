@@ -9,6 +9,7 @@ public class EmbedIOChannelServer : BaseChannelServer
 | name | description |
 | --- | --- |
 | [EmbedIOChannelServer](EmbedIOChannelServer/EmbedIOChannelServer.md)(…) |  |
+| readonly [path](EmbedIOChannelServer/path.md) |  |
 | readonly [webServer](EmbedIOChannelServer/webServer.md) |  |
 
 ## See Also

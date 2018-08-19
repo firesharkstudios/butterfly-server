@@ -4,6 +4,16 @@ Use to implement a parameter value that can change
 
 Use to implement a parameter value that can change
 
+Use to implement a parameter value that can change
+
+Use to implement a parameter value that can change
+
+Use to implement a parameter value that can change
+
+Use to implement a parameter value that can change
+
+Use to implement a parameter value that can change
+
 ```csharp
 public interface IDynamicParam
 ```

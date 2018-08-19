@@ -23,19 +23,19 @@ namespace Butterfly.Core.Channel {
     /// <summary>
     /// Internal class used to store references to new channel listeners
     /// </summary>
-    public class RegisteredChannel {
-        public readonly string path;
+    public class ChannelSubscription {
+        public readonly string key;
         public readonly Func<Dict, Channel, IDisposable> handle;
         public readonly Func<Dict, Channel, Task<IDisposable>> handleAsync;
 
-        public RegisteredChannel(string path, Func<Dict, Channel, IDisposable> handle) {
-            this.path = path;
+        public ChannelSubscription(string key, Func<Dict, Channel, IDisposable> handle) {
+            this.key = key;
             this.handle = handle;
             this.handleAsync = null;
         }
 
-        public RegisteredChannel(string path, Func<Dict, Channel, Task<IDisposable>> handleAsync) {
-            this.path = path;
+        public ChannelSubscription(string key, Func<Dict, Channel, Task<IDisposable>> handleAsync) {
+            this.key = key;
             this.handle = null;
             this.handleAsync = handleAsync;
         }

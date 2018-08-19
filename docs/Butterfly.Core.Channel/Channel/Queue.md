@@ -1,4 +1,17 @@
-# Channel.Queue method
+# Channel.Queue method (1 of 2)
+
+```csharp
+public void Queue(object data)
+```
+
+## See Also
+
+* class [Channel](../Channel.md)
+* namespace [Butterfly.Core.Channel](../../Butterfly.Core.md)
+
+---
+
+# Channel.Queue method (2 of 2)
 
 ```csharp
 public void Queue(string messageType, object data)

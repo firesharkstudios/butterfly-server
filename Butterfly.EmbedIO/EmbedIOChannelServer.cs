@@ -32,20 +32,20 @@ namespace Butterfly.EmbedIO {
     /// <inheritdoc/>
     public class EmbedIOChannelServer : BaseChannelServer {
         public readonly WebServer webServer;
+        public readonly string path;
 
-        public EmbedIOChannelServer(WebServer webServer, int mustReceiveHeartbeatMillis = 5000) : base(mustReceiveHeartbeatMillis) {
+        public EmbedIOChannelServer(WebServer webServer, int mustReceiveHeartbeatMillis = 5000, string path = "/ws", Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null) : base(mustReceiveHeartbeatMillis, getAuthToken, getAuthTokenAsync, getId, getIdAsync) {
             this.webServer = webServer;
+            this.path = path;
         }
 
         protected override void DoStart() {
             this.webServer.RegisterModule(new WebSocketsModule());
-            foreach ((string routePath, RegisteredRoute registeredRoute) in this.registeredRouteByPath) {
-                logger.Info($"Listening for WebSocket requests at {routePath}");
-                this.webServer.Module<WebSocketsModule>().RegisterWebSocketsServer(routePath, new MyWebSocketsServer(this, registeredRoute, (webRequest, channel) => {
-                    this.AddUnauthenticatedConnection(channel);
-                    return true;
-                }));
-            }
+            logger.Info($"Listening for WebSocket requests at {this.path}");
+            this.webServer.Module<WebSocketsModule>().RegisterWebSocketsServer(this.path, new MyWebSocketsServer(this, (webRequest, channel) => {
+                this.AddUnauthenticatedConnection(channel);
+                return true;
+            }));
         }
     }
 
@@ -53,13 +53,11 @@ namespace Butterfly.EmbedIO {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly BaseChannelServer channelServer;
-        protected readonly RegisteredRoute registeredRoute;
         protected readonly Func<IWebRequest, IChannelServerConnection, bool> onNewChannel;
         protected readonly ConcurrentDictionary<WebSocketContext, EmbedIOChannelServerConnection> channelByWebSocketContext = new ConcurrentDictionary<WebSocketContext, EmbedIOChannelServerConnection>();
 
-        public MyWebSocketsServer(BaseChannelServer channelServer, RegisteredRoute registeredRoute, Func<IWebRequest, IChannelServerConnection, bool> onNewChannel) {
+        public MyWebSocketsServer(BaseChannelServer channelServer, Func<IWebRequest, IChannelServerConnection, bool> onNewChannel) {
             this.channelServer = channelServer;
-            this.registeredRoute = registeredRoute;
             this.onNewChannel = onNewChannel;
         }
 
@@ -68,7 +66,7 @@ namespace Butterfly.EmbedIO {
         protected override void OnClientConnected(WebSocketContext context) {
             var webRequest = new EmbedIOWebSocketWebRequest(context);
             logger.Trace($"OnClientConnected():Websocket created for path {webRequest.RequestUrl.AbsolutePath}");
-            var channel = new EmbedIOChannelServerConnection(this.channelServer, this.registeredRoute, message => {
+            var channel = new EmbedIOChannelServerConnection(this.channelServer, message => {
                 this.Send(context, message);
             }, context);
             bool valid = this.onNewChannel(webRequest, channel);
@@ -107,7 +105,7 @@ namespace Butterfly.EmbedIO {
         protected readonly Action<string> send;
         protected readonly WebSocketContext context;
 
-        public EmbedIOChannelServerConnection(BaseChannelServer channelServer, RegisteredRoute registeredRoute, Action<string> send, WebSocketContext context) : base(channelServer, registeredRoute) {
+        public EmbedIOChannelServerConnection(BaseChannelServer channelServer, Action<string> send, WebSocketContext context) : base(channelServer) {
             this.send = send;
             this.context = context;
         }

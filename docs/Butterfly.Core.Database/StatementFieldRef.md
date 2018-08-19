@@ -4,6 +4,16 @@ Internal class representing a SQL field reference like "table_alias.field_name f
 
 Internal class representing a SQL field reference like "table_alias.field_name field_alias"
 
+Internal class representing a SQL field reference like "table_alias.field_name field_alias"
+
+Internal class representing a SQL field reference like "table_alias.field_name field_alias"
+
+Internal class representing a SQL field reference like "table_alias.field_name field_alias"
+
+Internal class representing a SQL field reference like "table_alias.field_name field_alias"
+
+Internal class representing a SQL field reference like "table_alias.field_name field_alias"
+
 ```csharp
 public class StatementFieldRef
 ```
@@ -14,7 +24,7 @@ public class StatementFieldRef
 | --- | --- |
 | [StatementFieldRef](StatementFieldRef/StatementFieldRef.md)(…) |  (2 constructors) |
 | readonly [fieldAlias](StatementFieldRef/fieldAlias.md) |  |
-| readonly [fieldName](StatementFieldRef/fieldName.md) |  |
+| readonly [fieldExpression](StatementFieldRef/fieldExpression.md) |  |
 | readonly [tableAlias](StatementFieldRef/tableAlias.md) |  |
 | static [ParseFieldRefs](StatementFieldRef/ParseFieldRefs.md)(…) |  |
 

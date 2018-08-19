@@ -39,7 +39,7 @@ namespace Butterfly.Core.Channel {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly BaseChannelServer channelServer;
-        protected readonly RegisteredRoute registeredRoute;
+        //protected readonly RegisteredRoute registeredRoute;
         protected readonly DateTime created;
 
         protected readonly ConcurrentQueue<string> buffer = new ConcurrentQueue<string>();
@@ -53,9 +53,8 @@ namespace Butterfly.Core.Channel {
         /// </summary>
         protected DateTime lastHeartbeat = DateTime.Now;
 
-        public BaseChannelServerConnection(BaseChannelServer channelServer, RegisteredRoute registeredRoute) {
+        public BaseChannelServerConnection(BaseChannelServer channelServer) {
             this.channelServer = channelServer;
-            this.registeredRoute = registeredRoute;
             this.created = DateTime.Now;
         }
 
@@ -65,7 +64,7 @@ namespace Butterfly.Core.Channel {
 
         public DateTime Created => this.created;
 
-        public RegisteredRoute RegisteredRoute => this.registeredRoute;
+        //public RegisteredRoute RegisteredRoute => this.registeredRoute;
 
         /// <summary>
         /// When the last heartbeat was registered
@@ -116,7 +115,6 @@ namespace Butterfly.Core.Channel {
                     else {
                         using (await this.monitor.EnterAsync()) {
                             await this.monitor.WaitAsync();
-                            int a = 0;
                         }
                     }
                 }
@@ -203,7 +201,7 @@ namespace Butterfly.Core.Channel {
 
                     logger.Debug($"SubscribeAsync():Creating new channel {channelKey}");
                     var channel = new Channel(this, channelKey, vars);
-                    if (this.registeredRoute.RegisteredChannelByKey.TryGetValue(channelKey, out RegisteredChannel registeredChannel)) {
+                    if (this.channelServer.ChannelSubscriptionByKey.TryGetValue(channelKey, out ChannelSubscription registeredChannel)) {
                         try {
                             var disposable = registeredChannel.handle != null ? registeredChannel.handle(vars, channel) : await registeredChannel.handleAsync(vars, channel);
                             if (disposable != null) {

@@ -9,6 +9,7 @@ public class MySqlDatabase : BaseDatabase
 | name | description |
 | --- | --- |
 | [MySqlDatabase](MySqlDatabase/MySqlDatabase.md)(…) |  |
+| override [CanFieldAlias](MySqlDatabase/CanFieldAlias.md) { get; } |  |
 | override [CanJoin](MySqlDatabase/CanJoin.md) { get; } |  |
 
 ## See Also

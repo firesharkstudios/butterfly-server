@@ -24,6 +24,8 @@ using NLog;
 
 using Butterfly.Core.Util;
 
+using Dict = System.Collections.Generic.Dictionary<string, object>;
+
 namespace Butterfly.Core.Channel {
 
     /// <inheritdoc/>
@@ -36,12 +38,70 @@ namespace Butterfly.Core.Channel {
         protected readonly ConcurrentDictionary<IChannelServerConnection, IChannelServerConnection> unauthenticatedConnections = new ConcurrentDictionary<IChannelServerConnection, IChannelServerConnection>();
         protected readonly ConcurrentDictionary<string, IChannelServerConnection> authenticatedConnectionByAuthId = new ConcurrentDictionary<string, IChannelServerConnection>();
 
-        protected readonly Dictionary<string, RegisteredRoute> registeredRouteByPath = new Dictionary<string, RegisteredRoute>();
+        public readonly Func<string, string, object> getAuthToken;
+        public readonly Func<string, string, Task<object>> getAuthTokenAsync;
+
+        public readonly Func<object, string> getId;
+        public readonly Func<object, Task<string>> getIdAsync;
+
+        protected readonly Dictionary<string, ChannelSubscription> channelSubscriptionByKey = new Dictionary<string, ChannelSubscription>();
 
         protected readonly int mustReceiveHeartbeatMillis;
 
-        public BaseChannelServer(int mustReceiveHeartbeatMillis = 5000) {
+        public BaseChannelServer(int mustReceiveHeartbeatMillis = 5000, Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null) {
             this.mustReceiveHeartbeatMillis = mustReceiveHeartbeatMillis;
+
+            if (getAuthToken != null && getAuthTokenAsync != null) {
+                throw new Exception("Can specify getAuthToken or getAuthTokenAsync but not both");
+            }
+            else if (getAuthToken != null) {
+                this.getAuthToken = getAuthToken;
+                this.getAuthTokenAsync = null;
+            }
+            else if (getAuthTokenAsync != null) {
+                this.getAuthToken = null;
+                this.getAuthTokenAsync = getAuthTokenAsync;
+            }
+            else {
+                this.getAuthToken = (authType, authValue) => authValue;
+                this.getAuthTokenAsync = null;
+            }
+
+            if (getId != null && getIdAsync != null) {
+                throw new Exception("Can specify getId or getIdAsync but not both");
+            }
+            else if (getId != null) {
+                this.getId = getId;
+                this.getIdAsync = null;
+            }
+            else if (getIdAsync != null) {
+                this.getId = null;
+                this.getIdAsync = getIdAsync;
+            }
+            else {
+                this.getId = authToken => Guid.NewGuid().ToString();
+                this.getIdAsync = null;
+            }
+        }
+
+        public Dictionary<string, ChannelSubscription> ChannelSubscriptionByKey => this.channelSubscriptionByKey;
+
+        public ChannelSubscription OnSubscribe(string channelKey, Func<Dict, Channel, IDisposable> handler = null, Func<Dict, Channel, Task<IDisposable>> handlerAsync = null) {
+            if (this.channelSubscriptionByKey.TryGetValue(channelKey, out ChannelSubscription channelSubscription)) throw new Exception($"Already a registered channel '{channelKey}'");
+            if (handler != null && handlerAsync != null) {
+                throw new Exception("Can only specify a handler or handlerAsync but not both");
+            }
+            else if (handler != null) {
+                channelSubscription = new ChannelSubscription(channelKey, handler);
+            }
+            else if (handlerAsync != null) {
+                channelSubscription = new ChannelSubscription(channelKey, handlerAsync);
+            }
+            else {
+                throw new Exception("Must specify a handler for new channels");
+            }
+            this.channelSubscriptionByKey[channelKey] = channelSubscription;
+            return channelSubscription;
         }
 
         public void AddUnauthenticatedConnection(IChannelServerConnection connection) {
@@ -54,10 +114,9 @@ namespace Butterfly.Core.Channel {
             logger.Debug($"AuthenticateAsync():authType={authType},authValue={authValue}");
 
             this.unauthenticatedConnections.TryRemove(connection, out IChannelServerConnection dummyChannel);
-            if (!this.registeredRouteByPath.TryGetValue(connection.RegisteredRoute.path, out RegisteredRoute registeredRoute)) throw new Exception($"Invalid path '{connection.RegisteredRoute.path}'");
 
-            object authToken = registeredRoute.getAuthToken != null ? registeredRoute.getAuthToken(authType, authValue) : await registeredRoute.getAuthTokenAsync(authType, authValue);
-            string id = registeredRoute.getId != null ? registeredRoute.getId(authToken) : await registeredRoute.getIdAsync(authToken);
+            object authToken = this.getAuthToken != null ? this.getAuthToken(authType, authValue) : await this.getAuthTokenAsync(authType, authValue);
+            string id = this.getId != null ? this.getId(authToken) : await this.getIdAsync(authToken);
             if (string.IsNullOrEmpty(id)) {
                 throw new Exception("Could not create id for connection");
             }
@@ -69,15 +128,6 @@ namespace Butterfly.Core.Channel {
                 connection.Start(authToken, id);
                 this.authenticatedConnectionByAuthId[id] = connection;
             }
-        }
-
-        /// <inheritdoc/>
-        public RegisteredRoute RegisterRoute(string routePath, Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getConnectionId = null, Func<object, Task<string>> getConnectionIdAsync = null) {
-            if (this.started) throw new Exception("Cannot call OnNewConnection() after Start()");
-
-            RegisteredRoute registeredRoute = new RegisteredRoute(routePath, getAuthToken, getAuthTokenAsync, getConnectionId, getConnectionIdAsync);
-            this.registeredRouteByPath[routePath] = registeredRoute;
-            return registeredRoute;
         }
 
         public ICollection<IChannelServerConnection> UnauthenticatedConnections => this.unauthenticatedConnections.Values;
@@ -96,7 +146,7 @@ namespace Butterfly.Core.Channel {
         /// </summary>
         public void Start() {
             if (this.started) throw new Exception("Channel Server already started");
-            if (this.registeredRouteByPath.Count() == 0) throw new Exception("Must register at least one route");
+            //if (this.registeredRouteByPath.Count() == 0) throw new Exception("Must register at least one route");
             this.started = true;
             Task backgroundTask = Task.Run(this.CheckForDeadChannelsAsync);
             this.DoStart();

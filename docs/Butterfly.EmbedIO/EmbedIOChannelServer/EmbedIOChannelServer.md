@@ -1,7 +1,9 @@
 # EmbedIOChannelServer constructor
 
 ```csharp
-public EmbedIOChannelServer(WebServer webServer, int mustReceiveHeartbeatMillis = 5000)
+public EmbedIOChannelServer(WebServer webServer, int mustReceiveHeartbeatMillis = 5000, string path = "/ws", 
+    Func<string, string, object> getAuthToken = null, 
+    Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null)
 ```
 
 ## See Also

@@ -42,7 +42,7 @@ namespace Butterfly.Example.HelloWorld.Server {
 
             // Setup and start a webApiServer and channelServer using embedIOWebServer
             using (var webApiServer = new Butterfly.EmbedIO.EmbedIOWebApiServer(embedIOWebServer))
-            using (var channelServer = new Butterfly.EmbedIO.EmbedIOChannelServer(embedIOWebServer)) {
+            using (var channelServer = new Butterfly.EmbedIO.EmbedIOChannelServer(embedIOWebServer, path: "/ws")) {
                 // Setup each example (should each listen on unique URL paths for both webApiServer and channelServer)
                 Setup.Init(database, webApiServer, channelServer);
 

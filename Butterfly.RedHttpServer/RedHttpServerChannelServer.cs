@@ -29,19 +29,19 @@ namespace Butterfly.RedHttpServer {
     /// <inheritdoc/>
     public class RedHttpServerChannelServer : BaseChannelServer {
         public readonly global::RedHttpServerNet45.RedHttpServer server;
+        public readonly string path;
 
-        public RedHttpServerChannelServer(global::RedHttpServerNet45.RedHttpServer server, int mustReceiveHeartbeatMillis = 5000) : base(mustReceiveHeartbeatMillis) {
+        public RedHttpServerChannelServer(global::RedHttpServerNet45.RedHttpServer server, int mustReceiveHeartbeatMillis = 5000, string path = "/ws", Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getConnectionId = null, Func<object, Task<string>> getConnectionIdAsync = null) : base(mustReceiveHeartbeatMillis, getAuthToken, getAuthTokenAsync, getConnectionId, getConnectionIdAsync) {
             if (EnvironmentX.IsRunningOnMono()) throw new Exception("Unfortunately, RedHttpServer does not support WebSockets on Mono");
             this.server = server;
+            this.path = path;
         }
 
         protected override void DoStart() {
-            foreach ((string routePath, RegisteredRoute registeredRoute) in this.registeredRouteByPath) {
-                logger.Info($"DoStart():Listening for WebSocket requests at {routePath}");
-                this.server.WebSocket(routePath, (req, wsd) => {
-                    this.AddUnauthenticatedConnection(new WebSocketDialogChannel(this, registeredRoute, wsd));
-                });
-            }
+            logger.Info($"DoStart():Listening for WebSocket requests at {this.path}");
+            this.server.WebSocket(this.path, (req, wsd) => {
+                this.AddUnauthenticatedConnection(new WebSocketDialogChannel(this, wsd));
+            });
         }
 
     }
@@ -50,7 +50,7 @@ namespace Butterfly.RedHttpServer {
 
         protected readonly WebSocketDialog webSocketDialog;
 
-        public WebSocketDialogChannel(BaseChannelServer channelServer, RegisteredRoute registeredRoute, WebSocketDialog webSocketDialog) : base(channelServer, registeredRoute) {
+        public WebSocketDialogChannel(BaseChannelServer channelServer, WebSocketDialog webSocketDialog) : base(channelServer) {
             this.webSocketDialog = webSocketDialog;
 
             this.webSocketDialog.OnTextReceived += (sender, eventArgs) => {
