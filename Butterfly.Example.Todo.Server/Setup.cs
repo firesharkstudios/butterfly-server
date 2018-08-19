@@ -16,7 +16,13 @@ namespace Butterfly.Example.HelloWorld.Server {
 
         public static void Init(IDatabase database, IWebApiServer webApiServer, IChannelServer channelServer) {
             // Setup database
-            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Example.Todo.Server.db.sql");
+            database.CreateFromText(@"CREATE TABLE todo (
+	            id VARCHAR(50) NOT NULL,
+	            name VARCHAR(40) NOT NULL,
+	            created_at DATETIME NOT NULL,
+	            updated_at DATETIME NOT NULL,
+	            PRIMARY KEY(id)
+            );");
             database.SetDefaultValue("id", tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}");
             database.SetDefaultValue("created_at", tableName => DateTime.Now);
             database.SetOverrideValue("updated_at", tableName => DateTime.Now);
