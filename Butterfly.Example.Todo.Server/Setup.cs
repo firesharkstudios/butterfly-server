@@ -21,12 +21,11 @@ namespace Butterfly.Example.HelloWorld.Server {
                 await database.DeleteAndCommitAsync("todo", id);
             });
 
-            // Listen for subscribe requests
+            // Listen for subscribe requests...
+            // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
+            // - The handler can push data to the client by calling channel.Queue()
             channelServer.OnSubscribe("todos", (vars, channel) => {
-                return database.CreateAndStartDynamicView(
-                    "todo",
-                    listener: dataEventTransaction => channel.Queue(dataEventTransaction)
-                );
+                return database.CreateAndStartDynamicView("todo", dataEventTransaction => channel.Queue(dataEventTransaction));
             });
         }
 

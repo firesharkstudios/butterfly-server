@@ -17,12 +17,11 @@ namespace Butterfly.Example.HelloWorld.Server {
                 });
             });
 
-            // Listen for subscribe requests
+            // Listen for subscribe requests...
+            // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
+            // - The handler can push data to the client by calling channel.Queue()
             channelServer.OnSubscribe("my-channel", (vars, channel) => {
-                return database.CreateAndStartDynamicView(
-                    "message",
-                    listener: dataEventTransaction => channel.Queue(dataEventTransaction)
-                );
+                return database.CreateAndStartDynamicView("message", dataEventTransaction => channel.Queue(dataEventTransaction));
             });
         }
 
