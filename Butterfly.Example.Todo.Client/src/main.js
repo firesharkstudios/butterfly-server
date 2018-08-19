@@ -7,7 +7,6 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 
 import { ArrayDataEventHandler, WebSocketChannelClient } from 'butterfly-client'
-
 import reqwest from 'reqwest'
 
 Vue.use(Vuetify)
@@ -53,8 +52,6 @@ new Vue({
   },
   beforeMount() {
     let self = this;
-
-    // Setup channel client
     let url = `ws://${window.location.host}/ws`;
     self.channelClient = new WebSocketChannelClient({
       url,

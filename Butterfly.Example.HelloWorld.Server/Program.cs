@@ -3,10 +3,7 @@ using System.Threading;
 
 using NLog;
 
-using Butterfly.Core.Channel;
-using Butterfly.Core.WebApi;
 using Unosquare.Labs.EmbedIO.Modules;
-using Butterfly.Core.Database;
 
 namespace Butterfly.Example.HelloWorld.Server {
     class Program {
