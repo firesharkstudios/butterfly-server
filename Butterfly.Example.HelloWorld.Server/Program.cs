@@ -34,11 +34,6 @@ namespace Butterfly.Example.HelloWorld.Server {
 
             // Create a MemoryDatabase (no persistence, limited features)
             var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-            database.CreateFromText(@"CREATE TABLE message (
-	            id INT NOT NULL AUTO_INCREMENT,
-	            text VARCHAR(40) NOT NULL,
-	            PRIMARY KEY (id)
-            );");
 
             // Setup and start a webApiServer and channelServer using embedIOWebServer
             using (var webApiServer = new Butterfly.EmbedIO.EmbedIOWebApiServer(embedIOWebServer))

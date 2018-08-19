@@ -9,6 +9,13 @@ namespace Butterfly.Example.HelloWorld.Server {
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public static void Init(IDatabase database, IWebApiServer webApiServer, IChannelServer channelServer) {
+            // Setup database
+            database.CreateFromText(@"CREATE TABLE message (
+	            id INT NOT NULL AUTO_INCREMENT,
+	            text VARCHAR(40) NOT NULL,
+	            PRIMARY KEY (id)
+            );");
+
             // Listen for API requests
             webApiServer.OnPost("/api/message/insert", async (req, res) => {
                 var text = await req.ParseAsJsonAsync<dynamic>();

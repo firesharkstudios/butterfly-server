@@ -1,7 +1,11 @@
+using System;
+using System.Reflection;
+
 using NLog;
 
 using Butterfly.Core.Channel;
 using Butterfly.Core.Database;
+using Butterfly.Core.Util;
 using Butterfly.Core.WebApi;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
@@ -11,6 +15,12 @@ namespace Butterfly.Example.HelloWorld.Server {
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public static void Init(IDatabase database, IWebApiServer webApiServer, IChannelServer channelServer) {
+            // Setup database
+            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Example.Todo.Server.db.sql");
+            database.SetDefaultValue("id", tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}");
+            database.SetDefaultValue("created_at", tableName => DateTime.Now);
+            database.SetOverrideValue("updated_at", tableName => DateTime.Now);
+
             // Listen for API requests
             webApiServer.OnPost("/api/todo/insert", async (req, res) => {
                 var todo = await req.ParseAsJsonAsync<Dict>();
