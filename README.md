@@ -2,12 +2,19 @@
 
 > The Everything is Real-Time C# Backend for Single Page Applications
 
-Key goals...
+Butterfly Server .NET provides...
 
-- Define server datasets in familiar SELECT syntax
-- Auto sync server datasets to clients over a WebSocket
-- Define a RESTlike API using an Express like syntax
-- Work with any client framework (Vue, React, Angular, etc)
+- A channel layer that allows the server to push real-time data to clients
+- A database layer that performs standard database operations **and** allows subscribing to change events
+- A web API layer that provides a simple syntax to define RESTlike APIs
+
+Each layer can have multiple implementations...
+
+- The channel layer might use WebSockets, long polling, etc
+- The database layer might use a memory database, MySQL, SQLite, etc
+- The web API layer might use EmbedIO, NancyFX, Kestrel, etc
+
+Butterfly Server .NET does **not** have any dependencies on ASP.NET.
 
 ## Todo List Example
 
@@ -39,13 +46,9 @@ public static void Init(IDatabase database, IWebApiServer webApiServer, IChannel
     database.CreateFromText(@"CREATE TABLE todo (
         id VARCHAR(50) NOT NULL,
         name VARCHAR(40) NOT NULL,
-        created_at DATETIME NOT NULL,
-        updated_at DATETIME NOT NULL,
         PRIMARY KEY(id)
     );");
     database.SetDefaultValue("id", tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}");
-    database.SetDefaultValue("created_at", tableName => DateTime.Now);
-    database.SetOverrideValue("updated_at", tableName => DateTime.Now);
 
     // Listen for API requests
     webApiServer.OnPost("/api/todo/insert", async (req, res) => {
