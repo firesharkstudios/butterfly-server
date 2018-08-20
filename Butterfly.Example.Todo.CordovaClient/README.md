@@ -1,40 +1,41 @@
-# butterfly.example.todo.cordovaclient
+# Butterfly Todo Server Example
 
-> A Vuetify project running in Cordova
+> A simple Todo app built using Cordova / Vue / Vuetify on the client
 
-## Build Setup
 
-``` bash
-# install dependencies
+# Run this Example
+
+```
+# This assumes you already have Cordova installed
+
+git clone https://github.com/firesharkstudios/butterfly-server-dotnet.git
+
+cd butterfly-server-dotnet\Butterfly.Example.Todo.CordovaClient
 npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
+# In config.xml and src/main.js, replace every instance of localhost with
+# your DHCP assigned IP address (like 192.168.1.15)
 
-# build for production with minification
 npm run build
+cordova add android
 
-# build for production and view the bundle analyzer report
-npm run build --report
+# Open Butterfly.sln in Visual Studio
+# Run Butterfly.Example.Todo.Server in Visual Studio
 
-# build for production and cordova build.
-npm run cordova-build
+# Open Android Studio
+# Click Tools, AVD Manager
+# Startup the desired Android emulator
 
-# build for production and serve the app through the browser - no hot reload.
-npm run browser
-
-# add respective platforms
-cordova platform add android
-cordova platform add ios
-
-# build for production and serve the app on an iOS device
-npm run ios
-
-# build for production and serve the app on an android device (won't serve on a virtual device)
-npm run android
-
-# build for production and serve the app on an android device (will serve on a virtual device or physical device - prefers virtual)
-npm run android-vm
+cordova run android
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+You should see http://localhost:8080/ open in a browser. Try opening a second browser instance at http://localhost:8080/. Notice that changes are automatically synchronized between the two browser instances.
+
+# What's Happening
+
+1. Each client opens and maintains a WebSocket connection via the *WebSocketChannelClient* class
+2. Each client subscribes to a *todos* channel that receives an initial list of records in the *todo* table and any changes to the *todo* table
+1. Each client invokes API calls on the server to INSERT/DELETE records from a todo table
+4. Data changes are automatically synchronized from the server to the client modifying local javascript arrays which automatically update the UI via the magic of *Vue*
+
+See [Setup.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Todo.Server/Setup.cs) for the server code that sets up the database, handles API requests, and handles subscription requests.
