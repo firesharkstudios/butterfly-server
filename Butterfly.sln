@@ -106,6 +106,27 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Butterfly.Example.Todo.Clie
 		SlnRelativePath = "Butterfly.Example.Todo.Client\"
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Butterfly.Example.Todo.CordovaClient", "Butterfly.Example.Todo.CordovaClient\", "{E579D650-391F-4AE9-9854-7D61356D5B94}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_55766"
+		Debug.AspNetCompiler.PhysicalPath = "Butterfly.Example.Todo.CordovaClient\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55766\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_55766"
+		Release.AspNetCompiler.PhysicalPath = "Butterfly.Example.Todo.CordovaClient\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55766\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "55766"
+		SlnRelativePath = "Butterfly.Example.Todo.CordovaClient\"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -182,13 +203,15 @@ Global
 		{56B45323-4545-4904-B367-C0477BE944E4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{235D822D-6F78-42FC-A92D-D5417C6C6ED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{235D822D-6F78-42FC-A92D-D5417C6C6ED5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{E579D650-391F-4AE9-9854-7D61356D5B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E579D650-391F-4AE9-9854-7D61356D5B94}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
-		BuildVersion_StartDate = 2000/1/1
 		BuildVersion_BuildVersioningStyle = None.None.None.Increment
+		BuildVersion_StartDate = 2000/1/1
+		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
 	EndGlobalSection
 EndGlobal

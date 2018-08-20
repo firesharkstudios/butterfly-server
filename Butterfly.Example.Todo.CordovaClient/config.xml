@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="1" id="io.test.vuetify" ios-CFBundleVersion="1" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>butterfly.example.todo.cordovaclient</name>
+    <description>A Vuetify project running in Cordova</description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <preference name="DisallowOverscroll" value="true" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <access origin="*" />
+    <!--
+      Replace 'localhost' with your DHCP assigned address
+      (localhost and 127.0.0.1 do not work in Android emulator)
+    -->
+    <allow-intent href="http://localhost:8000/*" />
+    <allow-intent href="ws://localhost:8000/*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <engine name="android" spec="^7.0.0" />
+</widget>
