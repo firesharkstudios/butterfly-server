@@ -1,22 +1,24 @@
-# butterfly.example.todo.electronclient
+# Butterfly Server .NET - Electron Todo Client
 
-> An electron-vue project
+> A simple Todo app built using Electron / Vue / Vuetify on the client
 
-#### Build Setup
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:9080
-npm run dev
-
-# build electron application for production
-npm run build
-
+# Run this Example
 
 ```
+# This assumes you already have Electron installed
 
----
+git clone https://github.com/firesharkstudios/butterfly-server-dotnet.git
 
-This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue)@[4c6ee7b](https://github.com/SimulatedGREG/electron-vue/tree/4c6ee7bf4f9b4aa647a22ec1c1ca29c2e59c3645) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
+cd butterfly-server-dotnet\Butterfly.Example.Todo.ElectronClient
+npm install
+
+# Open Butterfly.sln in Visual Studio
+# Run Butterfly.Example.Todo.Server in Visual Studio
+
+npm run dev
+```
+
+If multiple Electron clients are run, the todos will be automatically synchronized across all clients.
+
+See the server [here](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Server).
