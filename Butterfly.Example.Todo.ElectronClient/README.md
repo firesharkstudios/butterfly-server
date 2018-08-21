@@ -19,6 +19,10 @@ npm install
 npm run dev
 ```
 
-If multiple Electron clients are run, the todos will be automatically synchronized across all clients.
+If multiple clients are run, the *todos* will be automatically synchronized across all clients.
 
-See the server [here](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Server).
+# See Also
+
+- [Todo Server](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Server)
+- [Todo Web Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Client)
+- [Todo Cordova Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.CordovaClient)
