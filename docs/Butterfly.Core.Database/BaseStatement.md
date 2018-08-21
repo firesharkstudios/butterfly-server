@@ -2,24 +2,6 @@
 
 Base class for parsing SQL statements
 
-Base class for parsing SQL statements
-
-Base class for parsing SQL statements
-
-Base class for parsing SQL statements
-
-Base class for parsing SQL statements
-
-Base class for parsing SQL statements
-
-Base class for parsing SQL statements
-
-Base class for parsing SQL statements
-
-Base class for parsing SQL statements
-
-Base class for parsing SQL statements
-
 ```csharp
 public abstract class BaseStatement
 ```

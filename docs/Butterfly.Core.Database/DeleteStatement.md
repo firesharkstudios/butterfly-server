@@ -2,24 +2,6 @@
 
 Internal class used to parse DELETE statements
 
-Internal class used to parse DELETE statements
-
-Internal class used to parse DELETE statements
-
-Internal class used to parse DELETE statements
-
-Internal class used to parse DELETE statements
-
-Internal class used to parse DELETE statements
-
-Internal class used to parse DELETE statements
-
-Internal class used to parse DELETE statements
-
-Internal class used to parse DELETE statements
-
-Internal class used to parse DELETE statements
-
 ```csharp
 public class DeleteStatement : BaseStatement
 ```

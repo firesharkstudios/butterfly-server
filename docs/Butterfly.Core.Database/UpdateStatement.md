@@ -2,24 +2,6 @@
 
 Internal class used to parse UPDATE statements
 
-Internal class used to parse UPDATE statements
-
-Internal class used to parse UPDATE statements
-
-Internal class used to parse UPDATE statements
-
-Internal class used to parse UPDATE statements
-
-Internal class used to parse UPDATE statements
-
-Internal class used to parse UPDATE statements
-
-Internal class used to parse UPDATE statements
-
-Internal class used to parse UPDATE statements
-
-Internal class used to parse UPDATE statements
-
 ```csharp
 public class UpdateStatement : BaseStatement
 ```
