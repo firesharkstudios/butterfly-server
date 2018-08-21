@@ -42,7 +42,7 @@ namespace Butterfly.Core.Channel {
         /// <summary>
         /// Define a channel that clients can subscribe.  Can specify a <paramref name="handler"/> or a <paramref name="handlerAsync"/> (but not both) that is invoked when a client subscribes.
         /// </summary>
-        /// <param name="channelKey"></param>
+        /// <param name="channelKey">Unique identifier for the channel</param>
         /// <param name="handler">Code to run to create subscription. Must return an IDisposable instance that is disposed on unsubscribe. Can push data to client by calling <see cref="Channel.Queue(object)"/></param>
         /// <param name="handlerAsync">Async code to run to create subscription. Must return an IDisposable instance that is disposed on unsubscribe. Can push data to client by calling <see cref="Channel.Queue(object)"/></param>
         /// <returns></returns>

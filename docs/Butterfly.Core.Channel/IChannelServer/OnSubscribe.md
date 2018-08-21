@@ -9,7 +9,7 @@ public ChannelSubscription OnSubscribe(string channelKey,
 
 | parameter | description |
 | --- | --- |
-| channelKey |  |
+| channelKey | Unique identifier for the channel |
 | handler | Code to run to create subscription. Must return an IDisposable instance that is disposed on unsubscribe. Can push data to client by calling [`Queue`](../Channel/Queue.md) |
 | handlerAsync | Async code to run to create subscription. Must return an IDisposable instance that is disposed on unsubscribe. Can push data to client by calling [`Queue`](../Channel/Queue.md) |
 
