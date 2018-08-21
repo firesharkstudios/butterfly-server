@@ -127,6 +127,27 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Butterfly.Example.Todo.Cord
 		SlnRelativePath = "Butterfly.Example.Todo.CordovaClient\"
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Butterfly.Example.Todo.ElectronClient", "Butterfly.Example.Todo.ElectronClient\", "{17DB026E-6DB0-4249-A769-FC65E9A97AB3}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_54707"
+		Debug.AspNetCompiler.PhysicalPath = "Butterfly.Example.Todo.ElectronClient\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54707\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_54707"
+		Release.AspNetCompiler.PhysicalPath = "Butterfly.Example.Todo.ElectronClient\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54707\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "54707"
+		SlnRelativePath = "Butterfly.Example.Todo.ElectronClient\"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -205,13 +226,15 @@ Global
 		{235D822D-6F78-42FC-A92D-D5417C6C6ED5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{E579D650-391F-4AE9-9854-7D61356D5B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E579D650-391F-4AE9-9854-7D61356D5B94}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{17DB026E-6DB0-4249-A769-FC65E9A97AB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17DB026E-6DB0-4249-A769-FC65E9A97AB3}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_BuildVersioningStyle = None.None.None.Increment
-		BuildVersion_StartDate = 2000/1/1
 		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
+		BuildVersion_StartDate = 2000/1/1
+		BuildVersion_BuildVersioningStyle = None.None.None.Increment
 	EndGlobalSection
 EndGlobal

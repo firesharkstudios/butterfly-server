@@ -12,13 +12,8 @@
         <v-progress-circular indeterminate color="primary"/> <span class="pl-2 title">{{ $root.channelClientState }}...</span>
       </div>
     </v-content>
-    <v-footer :fixed="true" app class="text-xs-center">
-      <span>&copy; Fireshark Studios, LLC 2018</span>
-    </v-footer>
   </v-app>
 </template>
 
 <script>
-export default {
-}
 </script>

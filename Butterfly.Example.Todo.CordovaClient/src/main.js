@@ -50,7 +50,6 @@ new Vue({
     // (localhost and 127.0.0.1 do not work in Android emulator)
     callApi(url, rawData) {
       let fullUrl = `http://localhost:8000${url}`;
-      console.debug(`callApi():url=${url},fullUrl=${fullUrl}`);
       return reqwest({
         url: fullUrl,
         method: 'POST',
