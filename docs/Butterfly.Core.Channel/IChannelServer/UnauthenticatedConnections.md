@@ -1,6 +1,6 @@
 # IChannelServer.UnauthenticatedConnections property
 
-Number of connections
+Get all the unauthenticted connections
 
 ```csharp
 public ICollection<IChannelServerConnection> UnauthenticatedConnections { get; }

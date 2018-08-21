@@ -39,22 +39,32 @@ namespace Butterfly.Core.Channel {
     /// </remarks>
     public interface IChannelServer : IDisposable {
 
+        /// <summary>
+        /// Define a channel that clients can subscribe.  Can specify a <paramref name="handler"/> or a <paramref name="handlerAsync"/> (but not both) that is invoked when a client subscribes.
+        /// </summary>
+        /// <param name="channelKey"></param>
+        /// <param name="handler">Code to run to create subscription. Must return an IDisposable instance that is disposed on unsubscribe. Can push data to client by calling <see cref="Channel.Queue(object)"/></param>
+        /// <param name="handlerAsync">Async code to run to create subscription. Must return an IDisposable instance that is disposed on unsubscribe. Can push data to client by calling <see cref="Channel.Queue(object)"/></param>
+        /// <returns></returns>
         ChannelSubscription OnSubscribe(string channelKey, Func<Dict, Channel, IDisposable> handler = null, Func<Dict, Channel, Task<IDisposable>> handlerAsync = null);
 
         /// <summary>
-        /// Number of connections
+        /// Get all the unauthenticted connections
         /// </summary>
         ICollection<IChannelServerConnection> UnauthenticatedConnections { get; }
 
+        /// <summary>
+        /// Get all the authenticted connections
+        /// </summary>
         ICollection<IChannelServerConnection> AuthenticatedConnections { get; }
 
         /// <summary>
         /// Retrieve a channel by id
         /// </summary>
-        /// <param name="authId"></param>
+        /// <param name="id"></param>
         /// <param name="throwExceptionIfMissing"></param>
         /// <returns></returns>
-        IChannelServerConnection GetConnection(string authId, bool throwExceptionIfMissing = false);
+        IChannelServerConnection GetConnection(string id, bool throwExceptionIfMissing = false);
 
         /// <summary>
         /// Starts the channel server

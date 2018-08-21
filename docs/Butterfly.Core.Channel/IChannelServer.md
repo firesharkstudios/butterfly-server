@@ -10,10 +10,10 @@ public interface IChannelServer : IDisposable
 
 | name | description |
 | --- | --- |
-| [AuthenticatedConnections](IChannelServer/AuthenticatedConnections.md) { get; } |  |
-| [UnauthenticatedConnections](IChannelServer/UnauthenticatedConnections.md) { get; } | Number of connections |
+| [AuthenticatedConnections](IChannelServer/AuthenticatedConnections.md) { get; } | Get all the authenticted connections |
+| [UnauthenticatedConnections](IChannelServer/UnauthenticatedConnections.md) { get; } | Get all the unauthenticted connections |
 | [GetConnection](IChannelServer/GetConnection.md)(…) | Retrieve a channel by id |
-| [OnSubscribe](IChannelServer/OnSubscribe.md)(…) |  |
+| [OnSubscribe](IChannelServer/OnSubscribe.md)(…) | Define a channel that clients can subscribe. Can specify a *handler* or a *handlerAsync* (but not both) that is invoked when a client subscribes. |
 | [Start](IChannelServer/Start.md)() | Starts the channel server |
 
 ## Remarks

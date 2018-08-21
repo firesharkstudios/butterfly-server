@@ -11,9 +11,9 @@ public abstract class BaseChannelServer : IChannelServer
 | name | description |
 | --- | --- |
 | [BaseChannelServer](BaseChannelServer/BaseChannelServer.md)(…) |  |
-| [AuthenticatedConnections](BaseChannelServer/AuthenticatedConnections.md) { get; } |  |
+| [AuthenticatedConnections](BaseChannelServer/AuthenticatedConnections.md) { get; } | Get all the authenticted connections |
 | [ChannelSubscriptionByKey](BaseChannelServer/ChannelSubscriptionByKey.md) { get; } |  |
-| [UnauthenticatedConnections](BaseChannelServer/UnauthenticatedConnections.md) { get; } | Number of connections |
+| [UnauthenticatedConnections](BaseChannelServer/UnauthenticatedConnections.md) { get; } | Get all the unauthenticted connections |
 | readonly [getAuthToken](BaseChannelServer/getAuthToken.md) |  |
 | readonly [getAuthTokenAsync](BaseChannelServer/getAuthTokenAsync.md) |  |
 | readonly [getId](BaseChannelServer/getId.md) |  |
@@ -21,7 +21,7 @@ public abstract class BaseChannelServer : IChannelServer
 | [AddUnauthenticatedConnection](BaseChannelServer/AddUnauthenticatedConnection.md)(…) |  |
 | [Dispose](BaseChannelServer/Dispose.md)() |  |
 | [GetConnection](BaseChannelServer/GetConnection.md)(…) | Retrieve a channel by id |
-| [OnSubscribe](BaseChannelServer/OnSubscribe.md)(…) |  |
+| [OnSubscribe](BaseChannelServer/OnSubscribe.md)(…) | Define a channel that clients can subscribe. Can specify a *handler* or a *handlerAsync* (but not both) that is invoked when a client subscribes. |
 | [Start](BaseChannelServer/Start.md)() | Starts the channel server |
 
 ## Remarks

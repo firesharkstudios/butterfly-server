@@ -1,5 +1,7 @@
 # BaseChannelServer.AuthenticatedConnections property
 
+Get all the authenticted connections
+
 ```csharp
 public ICollection<IChannelServerConnection> AuthenticatedConnections { get; }
 ```

@@ -8,7 +8,7 @@ public IChannelServerConnection GetConnection(string authId, bool throwException
 
 | parameter | description |
 | --- | --- |
-| authId |  |
+| id |  |
 | throwExceptionIfMissing |  |
 
 ## See Also

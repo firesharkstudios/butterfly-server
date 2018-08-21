@@ -3,12 +3,12 @@
 Retrieve a channel by id
 
 ```csharp
-public IChannelServerConnection GetConnection(string authId, bool throwExceptionIfMissing = false)
+public IChannelServerConnection GetConnection(string id, bool throwExceptionIfMissing = false)
 ```
 
 | parameter | description |
 | --- | --- |
-| authId |  |
+| id |  |
 | throwExceptionIfMissing |  |
 
 ## See Also
