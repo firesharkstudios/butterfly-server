@@ -14,13 +14,17 @@
  * limitations under the License.
 */
 
-using NLog;
 using System;
 using System.Collections.Generic;
+
+using NLog;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Core.Channel {
+    /// <summary>
+    /// Represents a channel that clients can subscribe to
+    /// </summary>
     public class Channel : IDisposable {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 

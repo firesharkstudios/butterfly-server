@@ -1,6 +1,6 @@
 # ChannelSubscription class
 
-Internal class used to store references to new channel listeners
+Represents a subscription to a specific channel
 
 ```csharp
 public class ChannelSubscription
@@ -11,9 +11,9 @@ public class ChannelSubscription
 | name | description |
 | --- | --- |
 | [ChannelSubscription](ChannelSubscription/ChannelSubscription.md)(…) |  (2 constructors) |
+| readonly [channelKey](ChannelSubscription/channelKey.md) |  |
 | readonly [handle](ChannelSubscription/handle.md) |  |
 | readonly [handleAsync](ChannelSubscription/handleAsync.md) |  |
-| readonly [key](ChannelSubscription/key.md) |  |
 
 ## See Also
 

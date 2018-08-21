@@ -1,7 +1,7 @@
 # ChannelSubscription constructor (1 of 2)
 
 ```csharp
-public ChannelSubscription(string key, Func<Dictionary<string, object>, Channel, IDisposable> handle)
+public ChannelSubscription(string channelKey, Func<Dictionary<string, object>, Channel, IDisposable> handle)
 ```
 
 ## See Also

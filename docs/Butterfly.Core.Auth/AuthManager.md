@@ -1,6 +1,6 @@
 # AuthManager class
 
-Provides an API to register and login users, handle forgot password and reset password requests, and validate auth tokens.
+Provides an API to register users, login users, handle forgot password requests, reset password requests, and validate auth tokens.
 
 ```csharp
 public class AuthManager

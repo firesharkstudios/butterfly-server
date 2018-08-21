@@ -4,7 +4,7 @@
 
 | public type | description |
 | --- | --- |
-| class [AuthManager](Butterfly.Core.Auth/AuthManager.md) | Provides an API to register and login users, handle forgot password and reset password requests, and validate auth tokens. |
+| class [AuthManager](Butterfly.Core.Auth/AuthManager.md) | Provides an API to register users, login users, handle forgot password requests, reset password requests, and validate auth tokens. |
 | class [AuthToken](Butterfly.Core.Auth/AuthToken.md) | Represents the result of a successful [`LoginAsync`](Butterfly.Core.Auth/AuthManager/LoginAsync.md) or [`RegisterAsync`](Butterfly.Core.Auth/AuthManager/RegisterAsync.md) |
 
 ## Butterfly.Core.Channel namespace
@@ -13,8 +13,8 @@
 | --- | --- |
 | abstract class [BaseChannelServer](Butterfly.Core.Channel/BaseChannelServer.md) | Allows clients to subscribe to channels and allows the server to push data to subscribed clients. |
 | abstract class [BaseChannelServerConnection](Butterfly.Core.Channel/BaseChannelServerConnection.md) | Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc) |
-| class [Channel](Butterfly.Core.Channel/Channel.md) |  |
-| class [ChannelSubscription](Butterfly.Core.Channel/ChannelSubscription.md) | Internal class used to store references to new channel listeners |
+| class [Channel](Butterfly.Core.Channel/Channel.md) | Represents a channel that clients can subscribe to |
+| class [ChannelSubscription](Butterfly.Core.Channel/ChannelSubscription.md) | Represents a subscription to a specific channel |
 | interface [IChannelServer](Butterfly.Core.Channel/IChannelServer.md) | Allows clients to subscribe to channels and allows the server to push data to subscribed clients. |
 | interface [IChannelServerConnection](Butterfly.Core.Channel/IChannelServerConnection.md) | Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc) |
 
