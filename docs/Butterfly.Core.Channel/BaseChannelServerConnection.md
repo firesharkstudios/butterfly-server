@@ -14,6 +14,12 @@ Internal interface representing a communications channel from the server to the 
 
 Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
 
+Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
+
+Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
+
+Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
+
 ```csharp
 public abstract class BaseChannelServerConnection : IChannelServerConnection
 ```

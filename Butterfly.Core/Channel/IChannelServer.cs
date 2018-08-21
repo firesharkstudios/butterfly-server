@@ -1,4 +1,20 @@
-﻿using System;
+﻿/*
+ * Copyright 2017 Fireshark Studios, LLC
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,30 +22,19 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Core.Channel {
     /// <summary>
-    /// Allows clients to create new channels to the server and allows the server to push messages to connected clients.<para/>
+    /// Allows clients to subscribe to channels and allows the server to push data to subscribed clients.<para/>
     /// </summary>
     /// <remarks>
-    /// Initialize a channel server instance with a single route and single default channel...<para/>
+    /// Listen for subscription requests to the todos channel...<para/>
     /// <code>
     ///     var channelServer = new SomeChannelServer();
-    ///     var route = channelServer.RegisterRoute("/chat");
-    ///     route.RegisterChannel(handlerAsync: async(vars, channel) => {
-    ///         // Do stuff here to initialize the channel (send initial data, listen for specific data change events, etc)
-    ///         // and return any object that should be disposed when the channel is disposed
+    ///     // Listen for subscribe requests...
+    ///     // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
+    ///     // - The handler can push data to the client by calling channel.Queue()
+    ///     channelServer.OnSubscribe("todos", (vars, channel) => {
+    ///         return database.CreateAndStartDynamicView("todo", dataEventTransaction => channel.Queue(dataEventTransaction));
     ///     });
     ///     channelServer.Start();
-    ///     
-    /// Register a default channel that creates a DynamicView on the chat_message table sending all data to the channel
-    /// </code>
-    /// 
-    /// If a client has now created a channel at /chat?id=123, the server can now push data to the client via...<para/>
-    /// <code>
-    ///     channelServer.Queue("123", "Hello");
-    /// </code>
-    /// 
-    /// If you no longer need a channel server instance, call Dispose() on the channel server...<para/>
-    /// <code>
-    ///     channelServer.Dispose();
     /// </code>
     /// </remarks>
     public interface IChannelServer : IDisposable {

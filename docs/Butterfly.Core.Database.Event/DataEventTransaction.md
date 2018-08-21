@@ -14,6 +14,12 @@ Represents a series of [`DataEvent`](DataEvent.md) instances resulting either fr
 
 Represents a series of [`DataEvent`](DataEvent.md) instances resulting either from an initial query or from committing an [`IDatabase`](../Butterfly.Core.Database/IDatabase.md) transaction
 
+Represents a series of [`DataEvent`](DataEvent.md) instances resulting either from an initial query or from committing an [`IDatabase`](../Butterfly.Core.Database/IDatabase.md) transaction
+
+Represents a series of [`DataEvent`](DataEvent.md) instances resulting either from an initial query or from committing an [`IDatabase`](../Butterfly.Core.Database/IDatabase.md) transaction
+
+Represents a series of [`DataEvent`](DataEvent.md) instances resulting either from an initial query or from committing an [`IDatabase`](../Butterfly.Core.Database/IDatabase.md) transaction
+
 ```csharp
 public class DataEventTransaction
 ```

@@ -5,12 +5,10 @@ using System.Threading.Tasks;
 
 using NLog;
 
-using Butterfly.Core.Auth;
-using Butterfly.Core.Database;
 using Butterfly.Core.Util;
 using Butterfly.Core.WebApi;
 
-namespace BuildHeroServer.DynamicViewBuilders {
+namespace Butterfly.Twilio {
 
     public static class TwilioModule {
         static readonly Logger logger = LogManager.GetCurrentClassLogger();

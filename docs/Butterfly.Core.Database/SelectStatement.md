@@ -14,6 +14,12 @@ Internal class used to parse SELECT statements
 
 Internal class used to parse SELECT statements
 
+Internal class used to parse SELECT statements
+
+Internal class used to parse SELECT statements
+
+Internal class used to parse SELECT statements
+
 ```csharp
 public class SelectStatement : BaseStatement
 ```

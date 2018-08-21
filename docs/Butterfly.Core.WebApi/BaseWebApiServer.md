@@ -14,6 +14,12 @@ Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrappin
 
 Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.
 
+Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.
+
+Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.
+
+Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.
+
 ```csharp
 public abstract class BaseWebApiServer : IWebApiServer
 ```
@@ -30,6 +36,45 @@ public abstract class BaseWebApiServer : IWebApiServer
 | static [FileUploadHandlerAsync](BaseWebApiServer/FileUploadHandlerAsync.md)(…) |  |
 
 ## Remarks
+
+Initializing a web api server instance...
+
+```csharp
+var webApiServer = new SomeWebApiServer();
+webApiServer.OnGet("/chat-messages", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApiServer.OnPost("/login", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApiServer.Start();
+```
+
+Initializing a web api server instance...
+
+```csharp
+var webApiServer = new SomeWebApiServer();
+webApiServer.OnGet("/chat-messages", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApiServer.OnPost("/login", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApiServer.Start();
+```
+
+Initializing a web api server instance...
+
+```csharp
+var webApiServer = new SomeWebApiServer();
+webApiServer.OnGet("/chat-messages", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApiServer.OnPost("/login", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApiServer.Start();
+```
 
 Initializing a web api server instance...
 

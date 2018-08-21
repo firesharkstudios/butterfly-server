@@ -146,7 +146,6 @@ namespace Butterfly.Core.Channel {
         /// </summary>
         public void Start() {
             if (this.started) throw new Exception("Channel Server already started");
-            //if (this.registeredRouteByPath.Count() == 0) throw new Exception("Must register at least one route");
             this.started = true;
             Task backgroundTask = Task.Run(this.CheckForDeadChannelsAsync);
             this.DoStart();
