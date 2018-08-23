@@ -1,26 +1,41 @@
 using System;
 
+using Butterfly.Core.Util;
+
+using Dict = System.Collections.Generic.Dictionary<string, object>;
+
 namespace Butterfly.Example.HelloWorld.Server {
     class Program {
         static void Main(string[] args) {
-            // Create the underlying EmbedIOWebServer (see https://github.com/unosquare/embedio)
-            var embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer(8000);
-            Unosquare.Swan.Terminal.Settings.DisplayLoggingMessageType = Unosquare.Swan.LogMessageType.Info;
+            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext(port: 8000)) {
+                // Create a MemoryDatabase (no persistence, limited features)
+                var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
+                database.CreateFromText(@"CREATE TABLE todo (
+	                id VARCHAR(50) NOT NULL,
+	                name VARCHAR(40) NOT NULL,
+	                PRIMARY KEY(id)
+                );");
+                database.SetDefaultValue("id", tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}");
 
-            // Create a MemoryDatabase (no persistence, limited features)
-            var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
+                // Listen for API requests
+                embedIOContext.WebApiServer.OnPost("/api/todo/insert", async (req, res) => {
+                    var todo = await req.ParseAsJsonAsync<Dict>();
+                    await database.InsertAndCommitAsync<string>("todo", todo);
+                });
+                embedIOContext.WebApiServer.OnPost("/api/todo/delete", async (req, res) => {
+                    var id = await req.ParseAsJsonAsync<string>();
+                    await database.DeleteAndCommitAsync("todo", id);
+                });
 
-            // Setup and start a webApiServer and channelServer using embedIOWebServer
-            using (var webApiServer = new Butterfly.EmbedIO.EmbedIOWebApiServer(embedIOWebServer))
-            using (var channelServer = new Butterfly.EmbedIO.EmbedIOChannelServer(embedIOWebServer, path: "/ws")) {
-                Setup.Init(database, webApiServer, channelServer);
+                // Listen for subscribe requests...
+                // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
+                // - The handler can push data to the client by calling channel.Queue()
+                embedIOContext.ChannelServer.OnSubscribe("todos", (vars, channel) => {
+                    return database.CreateAndStartDynamicView("todo", dataEventTransaction => channel.Queue(dataEventTransaction));
+                });
 
-                webApiServer.Start();
-                channelServer.Start();
+                embedIOContext.Start();
 
-                embedIOWebServer.RunAsync();
-
-                Console.WriteLine("Open http://localhost:8000/ in a browser");
                 Console.ReadLine();
             }
         }

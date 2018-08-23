@@ -1,39 +1,35 @@
 using System;
 
-using Unosquare.Labs.EmbedIO.Modules;
-
 namespace Butterfly.Example.HelloWorld.Server {
     class Program {
         static void Main(string[] args) {
-            int port = 8080;
-            string staticFullPath = "../../../Butterfly.Example.HelloWorld.Client/";
+            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext(port: 8080, staticFullPath: "../../../Butterfly.Example.HelloWorld.Client/")) {
+                // Create a MemoryDatabase (no persistence, limited features)
+                var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
+                database.CreateFromText(@"CREATE TABLE message (
+	                id INT NOT NULL AUTO_INCREMENT,
+	                text VARCHAR(40) NOT NULL,
+	                PRIMARY KEY (id)
+                );");
 
-            // Create the underlying EmbedIOWebServer (see https://github.com/unosquare/embedio)
-            var embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer(port);
-            embedIOWebServer.RegisterModule(new StaticFilesModule(staticFullPath, headers: new System.Collections.Generic.Dictionary<string, string> {
-                ["Cache-Control"] = "no-cache, no-store, must-revalidate",
-                ["Pragma"] = "no-cache",
-                ["Expires"] = "0"
-            }));
-            Unosquare.Swan.Terminal.Settings.DisplayLoggingMessageType = Unosquare.Swan.LogMessageType.Info;
+                // Listen for API requests
+                embedIOContext.WebApiServer.OnPost("/api/message/insert", async (req, res) => {
+                    var text = await req.ParseAsJsonAsync<dynamic>();
+                    await database.InsertAndCommitAsync<long>("message", new {
+                        text
+                    });
+                });
 
-            // Create a MemoryDatabase (no persistence, limited features)
-            var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
+                // Listen for subscribe requests...
+                // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
+                // - The handler can push data to the client by calling channel.Queue()
+                embedIOContext.ChannelServer.OnSubscribe("my-channel", (vars, channel) => {
+                    return database.CreateAndStartDynamicView("message", dataEventTransaction => channel.Queue(dataEventTransaction));
+                });
 
-            // Setup and start a webApiServer and channelServer using embedIOWebServer
-            using (var webApiServer = new Butterfly.EmbedIO.EmbedIOWebApiServer(embedIOWebServer))
-            using (var channelServer = new Butterfly.EmbedIO.EmbedIOChannelServer(embedIOWebServer, path: "/ws")) {
-                // Setup each example (should each listen on unique URL paths for both webApiServer and channelServer)
-                Setup.Init(database, webApiServer, channelServer);
+                embedIOContext.Start();
 
-                // Start both servers
-                webApiServer.Start();
-                channelServer.Start();
-
-                // Start the underlying EmbedIOServer
-                embedIOWebServer.RunAsync();
-
-                Console.WriteLine($"Open http://localhost:{port}/ in a browser");
+                Console.WriteLine($"Open http://localhost:{8080}/ in a browser");
                 Console.ReadLine();
             }
         }

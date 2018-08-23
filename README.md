@@ -38,44 +38,61 @@ There is also a [Cordova Todo Client](https://github.com/firesharkstudios/butter
 
 ### Understanding the Server
 
-Here is the key server code for our todo list manager...
+Here is all 45 lines of the server code for our todo list manager...
 
 ```csharp
-public static void Init(IDatabase database, IWebApiServer webApiServer, IChannelServer channelServer) {
-    // Setup database
-    database.CreateFromText(@"CREATE TABLE todo (
-        id VARCHAR(50) NOT NULL,
-        name VARCHAR(40) NOT NULL,
-        PRIMARY KEY(id)
-    );");
-    database.SetDefaultValue("id", tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}");
+using System;
 
-    // Listen for API requests
-    webApiServer.OnPost("/api/todo/insert", async (req, res) => {
-	var todo = await req.ParseAsJsonAsync<Dict>();
-	await database.InsertAndCommitAsync<string>("todo", todo);
-    });
-    webApiServer.OnPost("/api/todo/delete", async (req, res) => {
-	var id = await req.ParseAsJsonAsync<string>();
-	await database.DeleteAndCommitAsync("todo", id);
-    });
+using Butterfly.Core.Util;
 
-    // Listen for subscribe requests...
-    // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
-    // - The handler can push data to the client by calling channel.Queue()
-    channelServer.OnSubscribe("todos", (vars, channel) => {
-        return database.CreateAndStartDynamicView("todo", dataEventTransaction => channel.Queue(dataEventTransaction));
-    });
+using Dict = System.Collections.Generic.Dictionary<string, object>;
+
+namespace Butterfly.Example.HelloWorld.Server {
+    class Program {
+        static void Main(string[] args) {
+            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext(port: 8000)) {
+                // Create a MemoryDatabase (no persistence, limited features)
+                var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
+                database.CreateFromText(@"CREATE TABLE todo (
+	                id VARCHAR(50) NOT NULL,
+	                name VARCHAR(40) NOT NULL,
+	                PRIMARY KEY(id)
+                );");
+                database.SetDefaultValue("id", tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}");
+
+                // Listen for API requests
+                embedIOContext.WebApiServer.OnPost("/api/todo/insert", async (req, res) => {
+                    var todo = await req.ParseAsJsonAsync<Dict>();
+                    await database.InsertAndCommitAsync<string>("todo", todo);
+                });
+                embedIOContext.WebApiServer.OnPost("/api/todo/delete", async (req, res) => {
+                    var id = await req.ParseAsJsonAsync<string>();
+                    await database.DeleteAndCommitAsync("todo", id);
+                });
+
+                // Listen for subscribe requests...
+                // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
+                // - The handler can push data to the client by calling channel.Queue()
+                embedIOContext.ChannelServer.OnSubscribe("todos", (vars, channel) => {
+                    return database.CreateAndStartDynamicView("SELECT * FROM todo", dataEventTransaction => channel.Queue(dataEventTransaction));
+                });
+
+                embedIOContext.Start();
+
+                Console.ReadLine();
+            }
+        }
+
+    }
 }
 ```
 
 The above C# code...
 - Defines a single *todo* table in the database
 - Defines a simple API to insert and delete *todo* records
-- Defines a subscription API to subscribe to a *todos* channel
-- Allows clients to subscribe to a *todos* channel (clients receive both the initial *todo* records **and** any changes to the *todo* records)
+- Defines a subscription API to subscribe to a *todos* channel that retrieves all *todo* records and any changes to the *todo* records
 
-See [Butterfly.Example.Todo.Server](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Server) for the working server code.
+See [Todo Server](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Server) for the working server code.
 
 ### Understanding the Client
 
