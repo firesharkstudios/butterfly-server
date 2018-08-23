@@ -210,6 +210,12 @@ Here are various implementations you'll likely find useful...
 
 [Build Hero](https://www.buildhero.io) is a collaborative tool for general contractors, subcontractors, and customers to collaborate on remodel projects.  The [my.buildhero.io](https://my.buildhero.io) site, the Android app, and the iOS app are all powered by Butterfly Server .NET.
 
+## Similar Projects
+
+- [dotNetify](https://github.com/dsuryd/dotNetify)
+- [SignalR](https://github.com/SignalR/SignalR)
+- [SignalW](https://github.com/Spreads/SignalW)
+
 ## Contributing
 
 If you'd like to contribute, please fork the repository and use a feature
