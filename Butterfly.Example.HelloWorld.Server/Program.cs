@@ -1,22 +1,10 @@
 using System;
-using System.Threading;
-
-using NLog;
 
 using Unosquare.Labs.EmbedIO.Modules;
 
 namespace Butterfly.Example.HelloWorld.Server {
     class Program {
-        static readonly Logger logger = LogManager.GetCurrentClassLogger();
-
-        static ManualResetEvent quitEvent = new ManualResetEvent(false);
-
         static void Main(string[] args) {
-            Console.CancelKeyPress += (sender, eArgs) => {
-                quitEvent.Set();
-                eArgs.Cancel = true;
-            };
-
             int port = 8080;
             string staticFullPath = "../../../Butterfly.Example.HelloWorld.Client/";
 
@@ -42,17 +30,11 @@ namespace Butterfly.Example.HelloWorld.Server {
                 webApiServer.Start();
                 channelServer.Start();
 
-                logger.Info($"Open http://localhost:{port}/ in a browser");
-
                 // Start the underlying EmbedIOServer
                 embedIOWebServer.RunAsync();
 
-                try {
-                    quitEvent.WaitOne();
-                }
-                finally {
-                }
-                logger.Debug("Main():Exiting...");
+                Console.WriteLine($"Open http://localhost:{port}/ in a browser");
+                Console.ReadLine();
             }
         }
 

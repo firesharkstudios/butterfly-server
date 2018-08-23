@@ -1,16 +1,8 @@
 using System;
-using System.Threading;
 
 namespace Butterfly.Example.HelloWorld.Server {
     class Program {
-        static ManualResetEvent quitEvent = new ManualResetEvent(false);
-
         static void Main(string[] args) {
-            Console.CancelKeyPress += (sender, eArgs) => {
-                quitEvent.Set();
-                eArgs.Cancel = true;
-            };
-
             // Create the underlying EmbedIOWebServer (see https://github.com/unosquare/embedio)
             var embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer(8000);
             Unosquare.Swan.Terminal.Settings.DisplayLoggingMessageType = Unosquare.Swan.LogMessageType.Info;
@@ -29,7 +21,7 @@ namespace Butterfly.Example.HelloWorld.Server {
                 embedIOWebServer.RunAsync();
 
                 Console.WriteLine("Open http://localhost:8000/ in a browser");
-                quitEvent.WaitOne();
+                Console.ReadLine();
             }
         }
 
