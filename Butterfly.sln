@@ -148,6 +148,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Butterfly.Example.Todo.Elec
 		SlnRelativePath = "Butterfly.Example.Todo.ElectronClient\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Example.DatabaseDemo", "Butterfly.Example.DatabaseDemo\Butterfly.Example.DatabaseDemo.csproj", "{0AD2ACDF-DE78-4CD3-8055-B4D2C0975CCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -228,13 +230,17 @@ Global
 		{E579D650-391F-4AE9-9854-7D61356D5B94}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{17DB026E-6DB0-4249-A769-FC65E9A97AB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{17DB026E-6DB0-4249-A769-FC65E9A97AB3}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AD2ACDF-DE78-4CD3-8055-B4D2C0975CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AD2ACDF-DE78-4CD3-8055-B4D2C0975CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AD2ACDF-DE78-4CD3-8055-B4D2C0975CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AD2ACDF-DE78-4CD3-8055-B4D2C0975CCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
-		BuildVersion_StartDate = 2000/1/1
 		BuildVersion_BuildVersioningStyle = None.None.None.Increment
+		BuildVersion_StartDate = 2000/1/1
+		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
 	EndGlobalSection
 EndGlobal
