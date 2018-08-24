@@ -22,10 +22,11 @@ using System.Data.Common;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Butterfly.Core.Database;
+
 using NLog;
+
+using Butterfly.Core.Database;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 

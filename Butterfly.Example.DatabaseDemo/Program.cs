@@ -9,7 +9,9 @@ using Butterfly.Core.Util;
 namespace Butterfly.Example.DatabaseDemo {
     /*
      * The database layer is perhaps the most interesting part of Butterfly Server .NET.
+     * 
      * This simple demo...
+     * 
      * 1) Creates a Memory database
      * 2) Populates the database with sample data
      * 3) Creates a DynamicQuery

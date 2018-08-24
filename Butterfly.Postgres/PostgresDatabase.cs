@@ -15,17 +15,18 @@
 */
 
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using Npgsql;
 using NLog;
 
-using Dict = System.Collections.Generic.Dictionary<string, object>;
 using Butterfly.Core.Database;
-using System.Collections.ObjectModel;
-using System.Data.Common;
+
+using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Postgres {
 
