@@ -65,6 +65,10 @@
       <Project>{a7be1f28-30a9-4d1d-9fee-967fec8c4aee}</Project>
       <Name>Butterfly.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Butterfly.MySql\Butterfly.MySql.csproj">
+      <Project>{c900a510-1661-45c5-b34d-bdb712686b39}</Project>
+      <Name>Butterfly.MySql</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
