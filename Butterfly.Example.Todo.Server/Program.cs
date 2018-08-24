@@ -34,7 +34,7 @@ namespace Butterfly.Example.HelloWorld.Server {
                 // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
                 // - The handler can push data to the client by calling channel.Queue()
                 embedIOContext.ChannelServer.OnSubscribe("todos", (vars, channel) => {
-                    return database.CreateAndStartDynamicView("todo", dataEventTransaction => channel.Queue(dataEventTransaction));
+                    return database.CreateAndStartDynamicViewAsync("todo", dataEventTransaction => channel.Queue(dataEventTransaction));
                 });
 
                 embedIOContext.Start();

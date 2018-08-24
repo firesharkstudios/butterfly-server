@@ -297,15 +297,15 @@ namespace Butterfly.Core.Database {
         /// <summary>
         /// Convenience method which creates a <see cref="DynamicViewSet"/>, adds a single <see cref="DynamicView"/> to the <see cref="DynamicViewSet"/>, and starts the <see cref="DynamicViewSet"/>.
         /// </summary>
-        /// <param name="selectStatement"></param>
+        /// <param name="sql"></param>
         /// <param name="listener"></param>
         /// <param name="values"></param>
         /// <param name="name"></param>
         /// <param name="keyFieldNames"></param>
         /// <returns></returns>
-        Task<DynamicViewSet> CreateAndStartDynamicView(string selectStatement, Action<DataEventTransaction> listener, dynamic values = null, string name = null, string[] keyFieldNames = null);
+        Task<DynamicViewSet> CreateAndStartDynamicViewAsync(string sql, Action<DataEventTransaction> listener, dynamic values = null, string name = null, string[] keyFieldNames = null);
 
-        /// <inheritdoc cref="CreateAndStartDynamicView(string, Action{DataEventTransaction}, dynamic, string, string[])"/>
-        Task<DynamicViewSet> CreateAndStartDynamicView(string selectStatement, Func<DataEventTransaction, Task> listener, dynamic values = null, string name = null, string[] keyFieldNames = null);
+        /// <inheritdoc cref="CreateAndStartDynamicViewAsync(string, Action{DataEventTransaction}, dynamic, string, string[])"/>
+        Task<DynamicViewSet> CreateAndStartDynamicViewAsync(string sql, Func<DataEventTransaction, Task> listener, dynamic values = null, string name = null, string[] keyFieldNames = null);
     }
 }

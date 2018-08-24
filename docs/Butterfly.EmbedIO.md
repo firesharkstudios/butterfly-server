@@ -6,6 +6,7 @@
 | --- | --- |
 | class [EmbedIOChannelServer](Butterfly.EmbedIO/EmbedIOChannelServer.md) |  |
 | class [EmbedIOChannelServerConnection](Butterfly.EmbedIO/EmbedIOChannelServerConnection.md) |  |
+| class [EmbedIOContext](Butterfly.EmbedIO/EmbedIOContext.md) |  |
 | class [EmbedIOHttpWebRequest](Butterfly.EmbedIO/EmbedIOHttpWebRequest.md) |  |
 | class [EmbedIOWebApiServer](Butterfly.EmbedIO/EmbedIOWebApiServer.md) |  |
 | class [EmbedIOWebResponse](Butterfly.EmbedIO/EmbedIOWebResponse.md) |  |

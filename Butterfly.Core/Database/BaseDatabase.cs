@@ -439,13 +439,13 @@ namespace Butterfly.Core.Database {
             return new DynamicViewSet(this, asyncListener);
         }
 
-        public async Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Action<DataEventTransaction> listener, dynamic values = null, string name = null, string[] keyFieldNames = null) {
+        public async Task<DynamicViewSet> CreateAndStartDynamicViewAsync(string sql, Action<DataEventTransaction> listener, dynamic values = null, string name = null, string[] keyFieldNames = null) {
             var dynamicViewSet = this.CreateDynamicViewSet(listener);
             dynamicViewSet.CreateDynamicView(sql, values, name, keyFieldNames);
             return await dynamicViewSet.StartAsync();
         }
 
-        public async Task<DynamicViewSet> CreateAndStartDynamicView(string sql, Func<DataEventTransaction, Task> asyncListener, dynamic values = null, string name = null, string[] keyFieldNames = null) {
+        public async Task<DynamicViewSet> CreateAndStartDynamicViewAsync(string sql, Func<DataEventTransaction, Task> asyncListener, dynamic values = null, string name = null, string[] keyFieldNames = null) {
             var dynamicViewSet = this.CreateDynamicViewSet(asyncListener);
             dynamicViewSet.CreateDynamicView(sql, values, name, keyFieldNames);
             return await dynamicViewSet.StartAsync();

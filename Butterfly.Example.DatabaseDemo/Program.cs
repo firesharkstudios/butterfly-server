@@ -69,7 +69,7 @@ namespace Butterfly.Example.DatabaseDemo {
             // Next, let's create a DynamicView that will echo the initial matching records
             // to the Console and will also echo any changes to the records to the Console
             logger.Info("Creating the DynamicView...");
-            var dynamicViewSet = database.CreateAndStartDynamicView(
+            var dynamicViewSet = database.CreateAndStartDynamicViewAsync(
                 "SELECT * FROM user_todo WHERE username=@username",
                 dataEventTransaction => {
                     var json = JsonUtil.Serialize(dataEventTransaction, format: true);
