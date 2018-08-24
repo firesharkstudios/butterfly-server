@@ -1,4 +1,7 @@
-﻿using System;
+﻿/* Any copyright is dedicated to the Public Domain.
+ * http://creativecommons.org/publicdomain/zero/1.0/ */
+
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
