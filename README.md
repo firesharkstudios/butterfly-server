@@ -22,13 +22,19 @@ Butterfly Server .NET does **not** have any dependencies on ASP.NET.
 
 ### Run It Yourself
 
+Run this in a terminal or command prompt...
+
 ```
 git clone https://github.com/firesharkstudios/butterfly-server-dotnet
 
 cd butterfly-server-dotnet\Butterfly.Example.Todo.Server
 dotnet run -vm
+```
 
-# In a second terminal or command prompt...
+Run this in a second terminal or command prompt...
+
+```
+cd butterfly-server-dotnet\Butterfly.Example.Todo.Client
 npm install
 npm run dev
 ```
