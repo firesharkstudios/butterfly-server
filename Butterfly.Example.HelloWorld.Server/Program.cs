@@ -1,18 +1,19 @@
 /* Any copyright is dedicated to the Public Domain.
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
-using Butterfly.Core.Util;
 using System;
 using System.IO;
+
+using Butterfly.Core.Util;
 
 namespace Butterfly.Example.HelloWorld.Server {
     class Program {
         static void Main(string[] args) {
-            const string url = "http://localhost:8000/";
+            const int port = 8080;
 
             var basePath = FileX.GetParentPathUntil(Directory.GetCurrentDirectory(), "Butterfly.Example.HelloWorld.Server");
-            var staticPath = Path.Combine(basePath, "../Butterfly.Example.HelloWorld.Client");
-            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext(url, staticPath: staticPath)) {
+            var staticPath = FileX.Resolve(Path.Combine(basePath, "../Butterfly.Example.HelloWorld.Client"));
+            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext($"http://+:{port}/", staticPath: staticPath)) {
                 // Create a MemoryDatabase (no persistence, limited features)
                 var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
                 database.CreateFromText(@"CREATE TABLE message (
@@ -38,8 +39,8 @@ namespace Butterfly.Example.HelloWorld.Server {
 
                 embedIOContext.Start();
 
-                Console.WriteLine($"Opening {url} in a browser...");
-                ProcessX.OpenBrowser(url);
+                Console.WriteLine($"Opening http://localhost:{port}/ in a browser...");
+                ProcessX.OpenBrowser($"http://localhost:{port}/");
                 Console.ReadLine();
             }
         }

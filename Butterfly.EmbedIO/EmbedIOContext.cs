@@ -10,11 +10,15 @@ using Butterfly.Core.Channel;
 using Butterfly.Core.WebApi;
 using Butterfly.Core.Util;
 
+using NLog;
+
 namespace Butterfly.EmbedIO {
     /// <summary>
     /// Convenient class to initialize an IWebApiServer and IChannelServer instance from a running EmbedIO.WebServer instance
     /// </summary>
     public class EmbedIOContext : IDisposable {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         protected readonly Unosquare.Labs.EmbedIO.WebServer embedIOWebServer;
         protected readonly IWebApiServer webApiServer;
         protected readonly IChannelServer channelServer;
@@ -22,18 +26,19 @@ namespace Butterfly.EmbedIO {
         public EmbedIOContext(string url, string staticPath = null) {
             // Binding to all local IP addresses requires adding an HTTP URL ACL rule
             // This may prompt to "allow app to modify your device"
-            if (url.Contains("+")) ProcessX.AddHttpUrlAclIfNeeded(url);
+            ProcessX.AddHttpUrlAclIfNeeded(url);
 
             // Create the underlying EmbedIOWebServer (see https://github.com/unosquare/embedio)
             this.embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer(url);
             if (!string.IsNullOrEmpty(staticPath)) {
+                logger.Debug($"EmbedIOContext():staticPath={staticPath}");
                 this.embedIOWebServer.RegisterModule(new StaticFilesModule(staticPath, headers: new System.Collections.Generic.Dictionary<string, string> {
                     ["Cache-Control"] = "no-cache, no-store, must-revalidate",
                     ["Pragma"] = "no-cache",
                     ["Expires"] = "0"
                 }));
             }
-            Unosquare.Swan.Terminal.Settings.DisplayLoggingMessageType = Unosquare.Swan.LogMessageType.Info;
+            //Unosquare.Swan.Terminal.Settings.DisplayLoggingMessageType = Unosquare.Swan.LogMessageType.Trace;
 
             // Setup and start a webApiServer and channelServer using embedIOWebServer
             this.webApiServer = new EmbedIOWebApiServer(embedIOWebServer);
