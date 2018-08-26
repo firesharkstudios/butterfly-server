@@ -5,12 +5,13 @@
 
 # Run this Example
 
-This example is available with two different clients...
+This example is available with multiple clients...
 
 - [Web Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Client)
 - [Cordova Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.CordovaClient)
+- [Electron Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.ElectronClient)
 
-Click either link above to follow the instructions specific to that client.
+Click any link above to follow the instructions specific to that client.
 
 # What's Happening
 
