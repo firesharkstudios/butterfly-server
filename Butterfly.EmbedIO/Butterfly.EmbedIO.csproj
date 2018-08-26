@@ -12,6 +12,7 @@
     <Authors>Kent Johnson</Authors>
     <Copyright>Copyright 2017-2018 Fireshark Studios, LLC</Copyright>
     <Description>Implementation of Butterfly.Core.ChannelIChannelServer and Butterfly.Core.WebApi.IWebApiServer for Embed IO</Description>
+    <Version>0.9.7</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

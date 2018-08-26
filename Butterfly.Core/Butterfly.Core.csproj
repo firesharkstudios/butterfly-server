@@ -11,6 +11,7 @@
     <Company>Fireshark Studios, LLC</Company>
     <Product>Butterfly Server .NET</Product>
     <Copyright>Copyright 2017-2018 Fireshark Studios, LLC</Copyright>
+    <Version>0.9.7</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
