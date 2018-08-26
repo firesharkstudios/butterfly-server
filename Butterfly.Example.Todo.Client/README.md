@@ -5,15 +5,20 @@
 
 # Run this Example
 
+Run this in a terminal or command prompt...
+
 ```
 git clone https://github.com/firesharkstudios/butterfly-server-dotnet
 
+cd butterfly-server-dotnet\Butterfly.Example.Todo.Server
+dotnet run -vm
+```
+
+Run this in a second terminal or command prompt...
+
+```
 cd butterfly-server-dotnet\Butterfly.Example.Todo.Client
 npm install
-
-# Open Butterfly.sln in Visual Studio
-# Run Butterfly.Example.Todo.Server in Visual Studio
-
 npm run dev
 ```
 

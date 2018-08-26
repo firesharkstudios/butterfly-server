@@ -5,11 +5,20 @@
 
 # Run this Example
 
-```
-# This assumes you already have Cordova installed
+This assumes you have [Cordova](https://cordova.apache.org/) installed.
 
+Run this in a terminal or command prompt...
+
+```
 git clone https://github.com/firesharkstudios/butterfly-server-dotnet
 
+cd butterfly-server-dotnet\Butterfly.Example.Todo.Server
+dotnet run -vm
+```
+
+Run this in a second terminal or command prompt...
+
+```
 cd butterfly-server-dotnet\Butterfly.Example.Todo.CordovaClient
 npm install
 
@@ -19,14 +28,12 @@ npm install
 npm run build
 cordova platform add android
 
-# Open Butterfly.sln in Visual Studio
-# Run Butterfly.Example.Todo.Server in Visual Studio
-
 # Open Android Studio
 # Click Tools, AVD Manager
 # Startup the desired Android emulator
 
 cordova run android
+
 ```
 
 If multiple clients are run, the *todos* will be automatically synchronized across all clients.

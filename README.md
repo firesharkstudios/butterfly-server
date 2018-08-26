@@ -57,7 +57,7 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 namespace Butterfly.Example.HelloWorld.Server {
     class Program {
         static void Main(string[] args) {
-            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext(port: 8000)) {
+            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/")) {
                 // Create a MemoryDatabase (no persistence, limited features)
                 var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
                 database.CreateFromText(@"CREATE TABLE todo (
@@ -97,7 +97,7 @@ namespace Butterfly.Example.HelloWorld.Server {
 The above C# code...
 - Defines a single *todo* table in the database
 - Defines a simple API to insert and delete *todo* records
-- Defines a subscription API to subscribe to a *todos* channel that retrieves all *todo* records and any changes to the *todo* records
+- Defines a subscription API to subscribe to a *todos* channel that retrieves all *todo* records **and** any changes to the *todo* records
 
 See [Todo Server](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Server) for the working server code.
 
@@ -207,11 +207,7 @@ nuget install Butterfly.Aws
 nuget install Butterfly.Twilio
 ```
 
-Or you can get the source from GitHub...
-
-1. Clone the github repository `https://github.com/firesharkstudios/butterfly-server-dotnet`
-1. Open `Butterfly.sln` in Visual Studio 2017
-1. Run the appropriate example project
+Or get the source from [GitHub](https://github.com/firesharkstudios/butterfly-server-dotnet).
 
 ## Packages
 
