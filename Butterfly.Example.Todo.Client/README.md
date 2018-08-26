@@ -6,7 +6,7 @@
 # Run this Example
 
 ```
-git clone https://github.com/firesharkstudios/butterfly-server-dotnet.git
+git clone https://github.com/firesharkstudios/butterfly-server-dotnet
 
 cd butterfly-server-dotnet\Butterfly.Example.Todo.Client
 npm install

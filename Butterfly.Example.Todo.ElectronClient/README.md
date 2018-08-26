@@ -8,7 +8,7 @@
 ```
 # This assumes you already have Electron installed
 
-git clone https://github.com/firesharkstudios/butterfly-server-dotnet.git
+git clone https://github.com/firesharkstudios/butterfly-server-dotnet
 
 cd butterfly-server-dotnet\Butterfly.Example.Todo.ElectronClient
 npm install

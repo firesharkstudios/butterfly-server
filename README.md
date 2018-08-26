@@ -23,14 +23,13 @@ Butterfly Server .NET does **not** have any dependencies on ASP.NET.
 ### Run It Yourself
 
 ```
-git clone https://github.com/firesharkstudios/butterfly-server-dotnet.git
+git clone https://github.com/firesharkstudios/butterfly-server-dotnet
 
-cd butterfly-server-dotnet\Butterfly.Example.Todo.Client
+cd butterfly-server-dotnet\Butterfly.Example.Todo.Server
+dotnet run -vm
+
+# In a second terminal or command prompt...
 npm install
-
-# Open Butterfly.sln in Visual Studio
-# Run Butterfly.Example.Todo.Server in Visual Studio
-
 npm run dev
 ```
 
@@ -204,7 +203,7 @@ nuget install Butterfly.Twilio
 
 Or you can get the source from GitHub...
 
-1. Clone the github repository `https://github.com/firesharkstudios/butterfly-server-dotnet.git`
+1. Clone the github repository `https://github.com/firesharkstudios/butterfly-server-dotnet`
 1. Open `Butterfly.sln` in Visual Studio 2017
 1. Run the appropriate example project
 
