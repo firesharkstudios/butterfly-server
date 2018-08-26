@@ -3,13 +3,16 @@
 
 using Butterfly.Core.Util;
 using System;
+using System.IO;
 
 namespace Butterfly.Example.HelloWorld.Server {
     class Program {
         static void Main(string[] args) {
             const string url = "http://localhost:8000/";
 
-            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext(url, staticPath: "../../../../Butterfly.Example.HelloWorld.Client/")) {
+            var basePath = FileX.GetParentPathUntil(Directory.GetCurrentDirectory(), "Butterfly.Example.HelloWorld.Server");
+            var staticPath = Path.Combine(basePath, "../Butterfly.Example.HelloWorld.Client");
+            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext(url, staticPath: staticPath)) {
                 // Create a MemoryDatabase (no persistence, limited features)
                 var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
                 database.CreateFromText(@"CREATE TABLE message (

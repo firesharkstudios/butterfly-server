@@ -2,8 +2,15 @@
 
 > A simple Hello World app built using plain HTML/JS/CSS
 
-To run this example...
+# Run This Example
 
-1. In Visual Studio, run Butterfly.Example.HelloWorld.Server
-1. In a browser, open http://localhost:8080/
+Run this in a terminal or command prompt...
 
+```
+git clone https://github.com/firesharkstudios/butterfly-server-dotnet
+
+cd butterfly-server-dotnet\Butterfly.Example.HelloWorld.Server
+dotnet run -vm
+```
+
+The server will run, open a browser instance to http://localhost:8080/, and the browser will show "Hello World" alert echoed from the server.

@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace Butterfly.Core.Util {
     public static class FileX {
-        public static string GetCurrentDirectory() {
-            var currentDirectory = Directory.GetCurrentDirectory();
-            if (currentDirectory.EndsWith(Path.PathSeparator.ToString())) {
-                return currentDirectory.Substring(0, currentDirectory.Length - 1);
+        public static string GetParentPathUntil(string path, string name) {
+            string newPath = path;
+            while (true) {
+                var directoryInfo = new DirectoryInfo(newPath);
+                if (directoryInfo.Name == name) break;
+                newPath = Path.Combine(newPath, "..");
             }
-            else {
-                return currentDirectory;
-            }
+            return newPath;
         }
 
         public static string Resolve(string path) {

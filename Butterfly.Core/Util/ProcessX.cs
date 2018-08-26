@@ -2,8 +2,12 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
+using NLog;
+
 namespace Butterfly.Core.Util {
     public static class ProcessX {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         // Per https://brockallen.com/2016/09/24/process-start-for-urls-on-net-core/
         public static void OpenBrowser(string url) {
             try {
@@ -36,7 +40,9 @@ namespace Butterfly.Core.Util {
 
         public static void AddHttpUrlAcl(string url) {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
-                ProcessStartInfo processStartInfo = new ProcessStartInfo("netsh", $"http add urlacl url={url} user=Everyone");
+                var args = $"http add urlacl url={url} user=Everyone";
+                logger.Warn($"AddHttpUrlAcl():Executing 'netsh {args}'");
+                ProcessStartInfo processStartInfo = new ProcessStartInfo("netsh", args);
                 processStartInfo.Verb = "runas";
                 processStartInfo.CreateNoWindow = true;
                 processStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
