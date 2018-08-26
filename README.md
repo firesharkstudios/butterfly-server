@@ -2,6 +2,8 @@
 
 > The Everything is Real-Time C# Backend for Single Page Applications
 
+![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/demo.apng) 
+
 Butterfly Server .NET provides...
 
 - A channel layer that allows the server to push real-time data to clients
