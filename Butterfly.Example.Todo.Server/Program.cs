@@ -16,7 +16,7 @@ namespace Butterfly.Example.HelloWorld.Server {
 
         static void Main(string[] args) {
             logger.Info("Main()");
-            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext(port: 8000)) {
+            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/")) {
                 // Create a MemoryDatabase (no persistence, limited features)
                 var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
                 database.CreateFromText(@"CREATE TABLE todo (

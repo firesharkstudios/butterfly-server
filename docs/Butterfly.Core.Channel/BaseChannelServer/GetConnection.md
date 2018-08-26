@@ -1,15 +1,8 @@
 # BaseChannelServer.GetConnection method
 
-Retrieve a channel by id
-
 ```csharp
 public IChannelServerConnection GetConnection(string authId, bool throwExceptionIfMissing = false)
 ```
-
-| parameter | description |
-| --- | --- |
-| id |  |
-| throwExceptionIfMissing |  |
 
 ## See Also
 

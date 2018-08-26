@@ -19,8 +19,8 @@ namespace Butterfly.Core.Test {
 
         [TestMethod]
         public async Task SimpleAuthTest() {
-            //var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-            var database = new Butterfly.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_auth_test");
+            var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
+            //var database = new Butterfly.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_auth_test");
             await TruncateData(database);
 
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Core.Auth.Test.db.sql");

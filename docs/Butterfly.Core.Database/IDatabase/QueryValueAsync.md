@@ -1,7 +1,8 @@
 # IDatabase.QueryValueAsync&lt;T&gt; method
 
 ```csharp
-public Task<T> QueryValueAsync<T>(string storedProcedureName, object vars = null, T defaultValue = default(T))
+public Task<T> QueryValueAsync<T>(string storedProcedureName, object vars = null, 
+    T defaultValue = default(T))
 ```
 
 ## See Also

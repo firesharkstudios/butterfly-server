@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Butterfly.Postgres</name>
+    </assembly>
+    <members>
+        <member name="T:Butterfly.Postgres.PostgresDatabase">
+            <inheritdoc/>
+        </member>
+        <member name="T:Butterfly.Postgres.PostgresTransaction">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

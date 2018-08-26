@@ -1,8 +1,8 @@
 # DeleteStatement.GetExecutableSqlAndParams method
 
 ```csharp
-public ValueTuple<string, Dictionary<string, object>> GetExecutableSqlAndParams
-    (Dictionary<string, object> sourceParams, StatementEqualsRef[] whereRefs)
+public ValueTuple<string, Dictionary<string, object>> GetExecutableSqlAndParams(
+    Dictionary<string, object> sourceParams, StatementEqualsRef[] whereRefs)
 ```
 
 ## See Also

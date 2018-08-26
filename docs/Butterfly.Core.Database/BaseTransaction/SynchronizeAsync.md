@@ -2,7 +2,8 @@
 
 ```csharp
 public Task<bool> SynchronizeAsync(string tableName, Dictionary<string, object>[] existingRecords, 
-    Dictionary<string, object>[] newRecords, Func<Dictionary<string, object>, object> getDeleteKey, string[] keyFieldNames = null)
+    Dictionary<string, object>[] newRecords, Func<Dictionary<string, object>, object> getDeleteKey, 
+    string[] keyFieldNames = null)
 ```
 
 ## See Also

@@ -1,38 +1,7 @@
 # IDatabase.UpdateAndCommitAsync method
 
-Executes an UPDATE statement as a single transaction
-
 ```csharp
 public Task<int> UpdateAndCommitAsync(string updateStatement, object vars)
-```
-
-| parameter | description |
-| --- | --- |
-| updateStatement | Either a table name or a full UPDATE statement with vars prefixed by @ (like |
-| vars | Either an anonymous type or a Dictionary. If *updateStatement* is a table name, the *vars* values will be used to build the SET clause and WHERE clause of the UPDATE statement. If *updateStatement* is a full UPDATE statement, there must be one entry for each var referenced in *updateStatement*. |
-
-## Return Value
-
-Number of records updated
-
-## Remarks
-
-Do an UPDATE using the table name and an anonymous type...
-
-```csharp
-await database.UpdateAndCommitAsync("message", new {
-    id = 123,
-    text = "Hello",
-});
-```
-
-Do an UPDATE using a full statement and a Dictionary...
-
-```csharp
-await database.UpdateAndCommitAsync("UPDATE message SET text=@t WHERE id=@id", new Dictionary<string, object> {
-    ["id"] = 123,
-    ["t"] = "Hello",
-});
 ```
 
 ## See Also

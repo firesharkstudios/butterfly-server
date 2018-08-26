@@ -2,9 +2,11 @@
 
 ```csharp
 public NotifyManager(IDatabase database, INotifyMessageSender emailNotifyMessageSender = null, 
-    INotifyMessageSender phoneTextNotifyMessageSender = null, string notifyMessageTableName = "notify_message", 
+    INotifyMessageSender phoneTextNotifyMessageSender = null, 
+    string notifyMessageTableName = "notify_message", 
     string notifyVerifyTableName = "notify_verify", int verifyCodeExpiresSeconds = 3600, 
-    string verifyEmailFile = null, string verifyPhoneTextFile = null, string verifyCodeFormat = "###-###")
+    string verifyEmailFile = null, string verifyPhoneTextFile = null, 
+    string verifyCodeFormat = "###-###")
 ```
 
 ## See Also

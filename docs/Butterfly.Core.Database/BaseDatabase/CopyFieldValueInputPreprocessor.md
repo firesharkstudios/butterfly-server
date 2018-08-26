@@ -1,7 +1,8 @@
 # BaseDatabase.CopyFieldValueInputPreprocessor method
 
 ```csharp
-public static Action<string, Dictionary<string, object>> CopyFieldValueInputPreprocessor(string token, string sourceFieldName)
+public static Action<string, Dictionary<string, object>> CopyFieldValueInputPreprocessor(
+    string token, string sourceFieldName)
 ```
 
 ## See Also

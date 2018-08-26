@@ -8,6 +8,7 @@ using Unosquare.Labs.EmbedIO.Modules;
 
 using Butterfly.Core.Channel;
 using Butterfly.Core.WebApi;
+using Butterfly.Core.Util;
 
 namespace Butterfly.EmbedIO {
     /// <summary>
@@ -18,11 +19,15 @@ namespace Butterfly.EmbedIO {
         protected readonly IWebApiServer webApiServer;
         protected readonly IChannelServer channelServer;
 
-        public EmbedIOContext(int port = 8080, string staticFullPath = null) {
+        public EmbedIOContext(string url, string staticPath = null) {
+            // Binding to all local IP addresses requires adding an HTTP URL ACL rule
+            // This may prompt to "allow app to modify your device"
+            if (url.Contains("+")) ProcessX.AddHttpUrlAclIfNeeded(url);
+
             // Create the underlying EmbedIOWebServer (see https://github.com/unosquare/embedio)
-            this.embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer(port);
-            if (!string.IsNullOrEmpty(staticFullPath)) {
-                this.embedIOWebServer.RegisterModule(new StaticFilesModule(staticFullPath, headers: new System.Collections.Generic.Dictionary<string, string> {
+            this.embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer(url);
+            if (!string.IsNullOrEmpty(staticPath)) {
+                this.embedIOWebServer.RegisterModule(new StaticFilesModule(staticPath, headers: new System.Collections.Generic.Dictionary<string, string> {
                     ["Cache-Control"] = "no-cache, no-store, must-revalidate",
                     ["Pragma"] = "no-cache",
                     ["Expires"] = "0"

@@ -1,15 +1,9 @@
 # AuthManager.LookupUsernameAsync method
 
-Lookup user record from username
-
 ```csharp
-public Task<Dictionary<string, object>> LookupUsernameAsync(string username, string fieldNames = "*")
+public Task<Dictionary<string, object>> LookupUsernameAsync(string username, 
+    string fieldNames = "*")
 ```
-
-| parameter | description |
-| --- | --- |
-| username |  |
-| fieldNames |  |
 
 ## See Also
 

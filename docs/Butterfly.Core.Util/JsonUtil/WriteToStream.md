@@ -1,7 +1,8 @@
 # JsonUtil.WriteToStream method
 
 ```csharp
-public static void WriteToStream(object obj, Stream stream, bool format = false, bool ignoreNulls = false)
+public static void WriteToStream(object obj, Stream stream, bool format = false, 
+    bool ignoreNulls = false)
 ```
 
 ## See Also

@@ -1,8 +1,8 @@
 # DynamicView constructor
 
 ```csharp
-public DynamicView(DynamicViewSet dynamicQuerySet, string sql, object vars = null, string name = null, 
-    string[] keyFieldNames = null, string[] dynamicTableAliases = null)
+public DynamicView(DynamicViewSet dynamicQuerySet, string sql, object vars = null, 
+    string name = null, string[] keyFieldNames = null, string[] dynamicTableAliases = null)
 ```
 
 ## See Also

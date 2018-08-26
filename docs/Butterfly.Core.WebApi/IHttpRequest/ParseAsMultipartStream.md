@@ -1,7 +1,8 @@
 # IHttpRequest.ParseAsMultipartStream method
 
 ```csharp
-public void ParseAsMultipartStream(Action<string, string, string, string, byte[], int> onData, Action<string, string> onParameter = null)
+public void ParseAsMultipartStream(Action<string, string, string, string, byte[], int> onData, 
+    Action<string, string> onParameter = null)
 ```
 
 ## See Also

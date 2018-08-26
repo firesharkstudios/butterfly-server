@@ -1,7 +1,8 @@
 # DataEventTransaction.FilterDataEvents method
 
 ```csharp
-public static DataEventTransaction FilterDataEvents(DataEventTransaction dataEventTransaction, Func<DataEvent, bool> dataEventFilter)
+public static DataEventTransaction FilterDataEvents(DataEventTransaction dataEventTransaction, 
+    Func<DataEvent, bool> dataEventFilter)
 ```
 
 ## See Also

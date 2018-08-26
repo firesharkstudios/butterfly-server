@@ -1,7 +1,8 @@
 # StringX.SmartSplit method
 
 ```csharp
-public static string[] SmartSplit(this string me, char delimiter = ',', char openBracket = '(', char closeBracket = ')')
+public static string[] SmartSplit(this string me, char delimiter = ',', char openBracket = '(', 
+    char closeBracket = ')')
 ```
 
 ## See Also

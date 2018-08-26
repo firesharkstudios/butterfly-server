@@ -1,7 +1,5 @@
 # BaseChannelServerConnection.Dispose method
 
-Implements the IDispose interface
-
 ```csharp
 public void Dispose()
 ```

@@ -1,8 +1,8 @@
 # BaseStatement.RemapStatementParamsToFieldValues method
 
 ```csharp
-public static Dictionary<string, object> RemapStatementParamsToFieldValues
-    (Dictionary<string, object> statementParamsDict, StatementEqualsRef[] equalsRefs)
+public static Dictionary<string, object> RemapStatementParamsToFieldValues(
+    Dictionary<string, object> statementParamsDict, StatementEqualsRef[] equalsRefs)
 ```
 
 ## See Also

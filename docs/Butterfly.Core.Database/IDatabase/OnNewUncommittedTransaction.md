@@ -1,18 +1,8 @@
 # IDatabase.OnNewUncommittedTransaction method (1 of 2)
 
-Adds a listener that is invoked when there is a new uncommitted transaction
-
 ```csharp
 public IDisposable OnNewUncommittedTransaction(Action<DataEventTransaction> listener)
 ```
-
-| parameter | description |
-| --- | --- |
-| listener | The lambda to call when there is a new uncommitted [`DataEventTransaction`](../../Butterfly.Core.Database.Event/DataEventTransaction.md) |
-
-## Return Value
-
-An IDisposable that allows removing the listener by calling Dispose()
 
 ## See Also
 
@@ -24,19 +14,9 @@ An IDisposable that allows removing the listener by calling Dispose()
 
 # IDatabase.OnNewUncommittedTransaction method (2 of 2)
 
-Adds a listener that is invoked when there is a new uncommitted transaction
-
 ```csharp
 public IDisposable OnNewUncommittedTransaction(Func<DataEventTransaction, Task> listener)
 ```
-
-| parameter | description |
-| --- | --- |
-| listener | The lambda to call when there is a new uncommitted [`DataEventTransaction`](../../Butterfly.Core.Database.Event/DataEventTransaction.md) |
-
-## Return Value
-
-An IDisposable that allows removing the listener by calling Dispose()
 
 ## See Also
 

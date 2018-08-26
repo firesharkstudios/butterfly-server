@@ -1,7 +1,5 @@
 # IWebApiServer.Start method
 
-Start the web api server
-
 ```csharp
 public void Start()
 ```

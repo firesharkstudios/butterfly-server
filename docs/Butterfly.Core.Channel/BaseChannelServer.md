@@ -1,7 +1,5 @@
 # BaseChannelServer class
 
-Allows clients to subscribe to channels and allows the server to push data to subscribed clients.
-
 ```csharp
 public abstract class BaseChannelServer : IChannelServer
 ```
@@ -11,33 +9,18 @@ public abstract class BaseChannelServer : IChannelServer
 | name | description |
 | --- | --- |
 | [BaseChannelServer](BaseChannelServer/BaseChannelServer.md)(…) |  |
-| [AuthenticatedConnections](BaseChannelServer/AuthenticatedConnections.md) { get; } | Get all the authenticted connections |
+| [AuthenticatedConnections](BaseChannelServer/AuthenticatedConnections.md) { get; } |  |
 | [ChannelSubscriptionByKey](BaseChannelServer/ChannelSubscriptionByKey.md) { get; } |  |
-| [UnauthenticatedConnections](BaseChannelServer/UnauthenticatedConnections.md) { get; } | Get all the unauthenticted connections |
+| [UnauthenticatedConnections](BaseChannelServer/UnauthenticatedConnections.md) { get; } |  |
 | readonly [getAuthToken](BaseChannelServer/getAuthToken.md) |  |
 | readonly [getAuthTokenAsync](BaseChannelServer/getAuthTokenAsync.md) |  |
 | readonly [getId](BaseChannelServer/getId.md) |  |
 | readonly [getIdAsync](BaseChannelServer/getIdAsync.md) |  |
 | [AddUnauthenticatedConnection](BaseChannelServer/AddUnauthenticatedConnection.md)(…) |  |
 | [Dispose](BaseChannelServer/Dispose.md)() |  |
-| [GetConnection](BaseChannelServer/GetConnection.md)(…) | Retrieve a channel by id |
-| [OnSubscribe](BaseChannelServer/OnSubscribe.md)(…) | Define a channel that clients can subscribe. Can specify a *handler* or a *handlerAsync* (but not both) that is invoked when a client subscribes. |
-| [Start](BaseChannelServer/Start.md)() | Starts the channel server |
-
-## Remarks
-
-Listen for subscription requests to the todos channel...
-
-```csharp
-var channelServer = new SomeChannelServer();
-// Listen for subscribe requests...
-// - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
-// - The handler can push data to the client by calling channel.Queue()
-channelServer.OnSubscribe("todos", (vars, channel) => {
-    return database.CreateAndStartDynamicView("todo", dataEventTransaction => channel.Queue(dataEventTransaction));
-});
-channelServer.Start();
-```
+| [GetConnection](BaseChannelServer/GetConnection.md)(…) |  |
+| [OnSubscribe](BaseChannelServer/OnSubscribe.md)(…) |  |
+| [Start](BaseChannelServer/Start.md)() |  |
 
 ## See Also
 

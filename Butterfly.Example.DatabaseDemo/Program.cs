@@ -12,8 +12,8 @@ namespace MyDatabaseTest {
     class Program {
         /*
          * Requires creating a MySQL database like...
-         *   CREATE DATABASE butterfly;
-         *   USE butterfly;
+         *   CREATE DATABASE butterfly_db_demo;
+         *   USE butterfly_db_demo;
          *   CREATE TABLE user (
          *     id VARCHAR(50) NOT NULL,
          *     name VARCHAR(40) NOT NULL,
@@ -27,13 +27,13 @@ namespace MyDatabaseTest {
          *     PRIMARY KEY(id),
          *     KEY user_id (user_id)
          *   );
-         *   GRANT ALL PRIVILEGES ON butterfly.* TO 'test'@'localhost' IDENTIFIED BY 'test!123';
+         *   GRANT ALL PRIVILEGES ON butterfly_db_demo.* TO 'test'@'localhost' IDENTIFIED BY 'test!123';
          */
         static void Main(string[] args) {
-            Console.WriteLine("You must create a 'butterfly' database using the commands in the comments and provide the appropriate connect string to run this demo");
+            Console.WriteLine("You must create a 'butterfly_db_demo' database using the commands in the comments and provide the appropriate connect string to run this demo");
 
             // Get a reference to a MySQL database (fix the connect string for your environment)
-            var database = new Butterfly.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly");
+            var database = new Butterfly.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_db_demo");
 
             // Create ids like u_fffa58f2-ccd6-433b-91f0-d708e7ecd205
             database.SetDefaultValue("id", tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}");

@@ -1,7 +1,8 @@
 # SafeUtil.InvalidCharacterMatch method
 
 ```csharp
-public static Match InvalidCharacterMatch(string raw, string alphabet = "abcdefghijkmnopqrstuvwxyzACDEFGHJKLMNPQRTUVWXY34679")
+public static Match InvalidCharacterMatch(string raw, 
+    string alphabet = "abcdefghijkmnopqrstuvwxyzACDEFGHJKLMNPQRTUVWXY34679")
 ```
 
 ## See Also

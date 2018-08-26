@@ -1,7 +1,8 @@
 # DictionaryX.ToString&lt;T,U&gt; method
 
 ```csharp
-public static string ToString<T, U>(this Dictionary<T, U> me, string keyValueDelim, string itemDelim)
+public static string ToString<T, U>(this Dictionary<T, U> me, string keyValueDelim, 
+    string itemDelim)
 ```
 
 ## See Also

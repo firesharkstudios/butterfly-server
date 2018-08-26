@@ -1,7 +1,8 @@
 # JsonUtil.WriteToFile method
 
 ```csharp
-public static void WriteToFile(object obj, string file, bool format = false, bool ignoreNulls = false)
+public static void WriteToFile(object obj, string file, bool format = false, 
+    bool ignoreNulls = false)
 ```
 
 ## See Also

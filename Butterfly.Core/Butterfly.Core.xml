@@ -1,0 +1,967 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Butterfly.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Butterfly.Core.Auth.AuthManager">
+            <summary>
+            Provides an API to register users, login users, handle forgot password requests, reset password requests, and validate auth tokens. 
+            </summary>
+            <remarks>
+            Can be initialized like this...
+            <code>
+                var database = (initialize an IDatabase instance here)
+                var notifyManager = (initialize NotifyManager here)
+                var welcomeEmailNotifyMessage = (load welcome email here)
+                var resetEmailNotifyMessage = (load reset email here)
+                var authManager = new AuthManager(
+                    database,
+                    defaultRole: "full-access",
+                    onEmailVerify: notifyManager.VerifyAsync,
+                    onPhoneVerify: notifyManager.VerifyAsync,
+                    onRegister: user => {
+                        notifyManager.Queue(welcomeEmailNotifyMessage.Evaluate(user));
+                    },
+                    onForgotPassword: user => {
+                        notifyManager.Queue(resetEmailNotifyMessage.Evaluate(user));
+                    }
+                );
+            </code>
+            The following database tables are recommended...
+            <code>
+            CREATE TABLE account (
+            	id VARCHAR(50) NOT NULL,
+                created_at INT NOT NULL,
+            	updated_at INT NOT NULL,
+                PRIMARY KEY(id)
+            );
+            
+            CREATE TABLE user(
+                id VARCHAR(50) NOT NULL,
+                account_id VARCHAR(50) NOT NULL,
+                username VARCHAR(40) NOT NULL,
+                first_name VARCHAR(255) NOT NULL,
+                last_name VARCHAR(255) NOT NULL,
+                email VARCHAR(255) NOT NULL,
+                email_verified_at INT NULL,
+                phone VARCHAR(20) NULL,
+            	phone_verified_at INT NULL,
+            	role VARCHAR(25) NULL,
+            	salt VARCHAR(40) NOT NULL,
+                password_hash VARCHAR(90) NOT NULL,
+                reset_code VARCHAR(6) NULL,	
+            	reset_code_expires_at INT NULL,	
+            	created_at INT NOT NULL,
+                updated_at INT NOT NULL,
+            	PRIMARY KEY(id),
+            	UNIQUE INDEX username(username)
+            );
+            
+            CREATE TABLE auth_token(
+                id VARCHAR(50) NOT NULL,
+                user_id VARCHAR(50) NOT NULL,
+                expires_at INT NOT NULL,
+            	created_at INT NOT NULL,
+                PRIMARY KEY(id)
+            );
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Butterfly.Core.Auth.AuthManager.#ctor(Butterfly.Core.Database.IDatabase,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Func{System.String,System.Int32,System.Threading.Tasks.Task},System.Func{System.String,System.Int32,System.Threading.Tasks.Task},System.Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.Tasks.Task},System.Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Threading.Tasks.Task},System.Action{System.Version})">
+            <summary>
+            Create an instance of AuthManager
+            </summary>
+            <param name="database"></param>
+            <param name="authTokenDurationDays">How long new <see cref="T:Butterfly.Core.Auth.AuthToken"/> instances are valid for</param>
+            <param name="resetCodeLength">How many digits should a reset code be</param>
+            <param name="resetTokenDurationMinutes">How long new reset codes are valid for</param>
+            <param name="accountTableName">Table name of the account table (default is "account")</param>
+            <param name="userTableName">Table name of the user table (default is "user")</param>
+            <param name="userTableIdFieldName">Field name of the id field on the user table (default is "id")</param>
+            <param name="userTableUsernameFieldName">Field name of the username field on the user table (default is "username")</param>
+            <param name="userTableEmailFieldName">Field name of the email field on the user table (default is "email")</param>
+            <param name="userTableEmailVerifiedAtFieldName">Field name of the email verified at field on the user table (default is "email_verified_at")</param>
+            <param name="userTablePhoneFieldName">Field name of the phone field on the user table (default is "phone")</param>
+            <param name="userTablePhoneVerifiedAtFieldName">Field name of the phone verified at field on the user table (default is "phone_verified_at")</param>
+            <param name="userTableSaltFieldName">Field name of the salt field on the user table (default is "salt")</param>
+            <param name="userTablePasswordHashFieldName">Field name of the password hash field on the user table (default is "password_hash")</param>
+            <param name="userTableFirstNameFieldName">Field name of the first name field on the user table (default is "first_name")</param>
+            <param name="userTableLastNameFieldName">Field name of the last name field on the user table (default is "last_name")</param>
+            <param name="userTableResetCodeFieldName">Field name of the reset code field on the user table (default is "reset_code")</param>
+            <param name="userTableResetCodeExpiresAtFieldName">Field name of the reset code expires at field on the user table (default is "reset_code_expires_at")</param>
+            <param name="userTableAccountIdFieldName">Field name of the account id field on the user table (default is "account_id")</param>
+            <param name="userTableRoleFieldName">Field name of the role field on the user table (default is "role")</param>
+            <param name="authTokenTableName">Table name of the auth token table (default is "auth_token")</param>
+            <param name="authTokenIdFieldName">Field name of the id field on the auth token table (default is "id")</param>
+            <param name="authTokenTableUserIdFieldName">Field name of the user id field on the auth token table (default is "user_id")</param>
+            <param name="authTokenTableExpiresAtFieldName">Field name of the expires at field on the auth token table (default is "expires_at")</param>
+            <param name="defaultRole">Default value for the role field on a new user</param>
+            <param name="onEmailVerify">Callback when <see cref="M:Butterfly.Core.Auth.AuthManager.VerifyAsync(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.Func{System.String,System.Int32,System.Threading.Tasks.Task})"/> is called with an email address</param>
+            <param name="onPhoneVerify">Callback when <see cref="M:Butterfly.Core.Auth.AuthManager.VerifyAsync(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.Func{System.String,System.Int32,System.Threading.Tasks.Task})"/> is called with a phone number</param>
+            <param name="onRegister">Callback when <see cref="M:Butterfly.Core.Auth.AuthManager.RegisterAsync(System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})"/> is called</param>
+            <param name="onForgotPassword">Callback when <see cref="M:Butterfly.Core.Auth.AuthManager.ForgotPasswordAsync(System.String)"/> is called</param>
+        </member>
+        <member name="M:Butterfly.Core.Auth.AuthManager.SetupWebApi(Butterfly.Core.WebApi.IWebApiServer,System.String)">
+            <summary>
+            Call to setup a Web API with the specified <paramref name="webApiServer"/>
+            </summary>
+            <remarks>
+            The following API URLs will be setup...
+            <code>
+                GET /api/auth/check-username/{username}
+                GET /api/auth/check-auth-token/{id}
+                POST /api/auth/create-anonymous
+                POST /api/auth/register
+                POST /api/auth/login
+                POST /api/auth/forgot-password
+                POST /api/auth/reset-password
+                POST /api/auth/verify-email
+                POST /api/auth/verify-phone
+            </code>
+            </remarks>
+            <param name="webApiServer"></param>
+            <param name="pathPrefix">Defaults to /api/auth</param>
+        </member>
+        <member name="M:Butterfly.Core.Auth.AuthManager.VerifyAsync(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.Func{System.String,System.Int32,System.Threading.Tasks.Task})">
+            <summary>
+            Call to verify a user's email or phone
+            </summary>
+            <param name="data"></param>
+            <param name="fieldName"></param>
+            <param name="verifiedAtFieldName"></param>
+            <param name="onVerify"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Butterfly.Core.Auth.AuthManager.RegisterAsync(System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Registers a new user
+            </summary>
+            <param name="input"></param>
+            <param name="notifyData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Butterfly.Core.Auth.AuthManager.AuthenticateAsync(System.String)">
+            <summary>
+            Validates the auth token id returning an <see cref="T:Butterfly.Core.Auth.AuthToken"/> instance
+            </summary>
+            <param name="authTokenId"></param>
+            <returns>An <see cref="T:Butterfly.Core.Auth.AuthToken"/> instance</returns>
+        </member>
+        <member name="M:Butterfly.Core.Auth.AuthManager.LookupUsernameAsync(System.String,System.String)">
+            <summary>
+            Lookup user record from username
+            </summary>
+            <param name="username"></param>
+            <param name="fieldNames"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Butterfly.Core.Auth.AuthManager.CreateAnonymousUserAsync">
+            <summary>
+            Creates an anonymous user and returns a valid <see cref="T:Butterfly.Core.Auth.AuthToken"/>
+            </summary>
+            <returns>An  <see cref="T:Butterfly.Core.Auth.AuthToken"/> instance created</returns>
+        </member>
+        <member name="M:Butterfly.Core.Auth.AuthManager.CreateAuthTokenAsync(System.String)">
+            <summary>
+            Create an auth token
+            </summary>
+            <param name="userId"></param>
+            <returns>The AuthToken instance created</returns>
+        </member>
+        <member name="M:Butterfly.Core.Auth.AuthManager.LoginAsync(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Logs in the user creating a valid <see cref="T:Butterfly.Core.Auth.AuthToken"/>
+            </summary>
+            <param name="login"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Butterfly.Core.Auth.AuthManager.ForgotPasswordAsync(System.String)">
+            <summary>
+            Creates a reset code and invokes <see cref="F:Butterfly.Core.Auth.AuthManager.onForgotPassword"/> to send the reset code to the user
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Butterfly.Core.Auth.AuthManager.ResetPasswordAsync(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Resets the user's password if a valid reset code is included
+            </summary>
+            <param name="resetPassword"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Butterfly.Core.Auth.AuthToken">
+            <summary>
+            Represents the result of a successful <see cref="M:Butterfly.Core.Auth.AuthManager.LoginAsync(System.Collections.Generic.Dictionary{System.String,System.Object})"/> or <see cref="M:Butterfly.Core.Auth.AuthManager.RegisterAsync(System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})"/>
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Channel.BaseChannelServer">
+            <inheritdoc/>
+            <summary>
+            Base class implementing <see cref="T:Butterfly.Core.Channel.IChannelServer"/>. New implementations will normally extend this class.
+            </summary>
+        </member>
+        <member name="M:Butterfly.Core.Channel.BaseChannelServer.Start">
+            <summary>
+            Starts the channel server
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Channel.BaseChannelServerConnection">
+            <inheritdoc/>
+            <summary>
+            Base class implementing <see cref="T:Butterfly.Core.Channel.IChannelServerConnection"/>. New implementations will normally extend this class.
+            </summary>
+        </member>
+        <member name="F:Butterfly.Core.Channel.BaseChannelServerConnection.lastHeartbeat">
+            <summary>
+            Stores when the datetime of the last heartbeat (set via <ref>Heartbeat</ref>)
+            </summary>
+        </member>
+        <member name="P:Butterfly.Core.Channel.BaseChannelServerConnection.LastHeartbeat">
+            <summary>
+            When the last heartbeat was registered
+            </summary>
+        </member>
+        <member name="M:Butterfly.Core.Channel.BaseChannelServerConnection.Heartbeat">
+            <summary>
+            Implementing classes should call this periodically to keep the channel alive (otherwise <ref>ChannelServer</ref> will remove the channel)
+            </summary>
+        </member>
+        <member name="M:Butterfly.Core.Channel.BaseChannelServerConnection.QueueMessage(System.String,System.String,System.Object)">
+            <summary>
+            Queue an object to be sent over the channel to the client.  The queue is processed by a background thread when the Channel is started.
+            </summary>
+            <param name="channelKey">The value to be sent to the client (will be converted to JSON)</param>
+            <param name="messageType">The value to be sent to the client (will be converted to JSON)</param>
+            <param name="data">The value to be sent to the client (will be converted to JSON)</param>
+        </member>
+        <member name="M:Butterfly.Core.Channel.BaseChannelServerConnection.SendAsync(System.String)">
+            <summary>
+            Implementing classes must override this to actually send the text to the client
+            </summary>
+        </member>
+        <member name="M:Butterfly.Core.Channel.BaseChannelServerConnection.Dispose">
+            <summary>
+            Implements the IDispose interface
+            </summary>
+        </member>
+        <member name="M:Butterfly.Core.Channel.BaseChannelServerConnection.DoDispose">
+            <summary>
+            Implementing classes may optionally override this to cleanup resources as appropriate
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Channel.Channel">
+            <summary>
+            Represents a channel that clients can subscribe to
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Channel.ChannelSubscription">
+            <summary>
+            Represents a subscription to a specific channel
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Channel.IChannelServer">
+            <summary>
+            Allows clients to subscribe to channels and allows the server to push data to subscribed clients.<para/>
+            </summary>
+            <remarks>
+            Listen for subscription requests to the todos channel...<para/>
+            <code>
+                var channelServer = new SomeChannelServer();
+                // Listen for subscribe requests...
+                // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
+                // - The handler can push data to the client by calling channel.Queue()
+                channelServer.OnSubscribe("todos", (vars, channel) => {
+                    return database.CreateAndStartDynamicView("todo", dataEventTransaction => channel.Queue(dataEventTransaction));
+                });
+                channelServer.Start();
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Butterfly.Core.Channel.IChannelServer.OnSubscribe(System.String,System.Func{System.Collections.Generic.Dictionary{System.String,System.Object},Butterfly.Core.Channel.Channel,System.IDisposable},System.Func{System.Collections.Generic.Dictionary{System.String,System.Object},Butterfly.Core.Channel.Channel,System.Threading.Tasks.Task{System.IDisposable}})">
+            <summary>
+            Define a channel that clients can subscribe.  Can specify a <paramref name="handler"/> or a <paramref name="handlerAsync"/> (but not both) that is invoked when a client subscribes.
+            </summary>
+            <param name="channelKey">Unique identifier for the channel</param>
+            <param name="handler">Code to run to create subscription. Must return an IDisposable instance that is disposed on unsubscribe. Can push data to client by calling <see cref="M:Butterfly.Core.Channel.Channel.Queue(System.Object)"/></param>
+            <param name="handlerAsync">Async code to run to create subscription. Must return an IDisposable instance that is disposed on unsubscribe. Can push data to client by calling <see cref="M:Butterfly.Core.Channel.Channel.Queue(System.Object)"/></param>
+            <returns></returns>
+        </member>
+        <member name="P:Butterfly.Core.Channel.IChannelServer.UnauthenticatedConnections">
+            <summary>
+            Get all the unauthenticted connections
+            </summary>
+        </member>
+        <member name="P:Butterfly.Core.Channel.IChannelServer.AuthenticatedConnections">
+            <summary>
+            Get all the authenticted connections
+            </summary>
+        </member>
+        <member name="M:Butterfly.Core.Channel.IChannelServer.GetConnection(System.String,System.Boolean)">
+            <summary>
+            Retrieve a channel by id
+            </summary>
+            <param name="id"></param>
+            <param name="throwExceptionIfMissing"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Butterfly.Core.Channel.IChannelServer.Start">
+            <summary>
+            Starts the channel server
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Channel.IChannelServerConnection">
+            <summary>
+            Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.BaseDatabase">
+            <inheritdoc/>
+            <summary>
+            Base class implementing <see cref="T:Butterfly.Core.Database.IDatabase"/>. New implementations will normally extend this class.
+            </summary>
+        </member>
+        <member name="P:Butterfly.Core.Database.BaseDatabase.ConnectionString">
+            <summary>
+            Gets or sets the connection string
+            </summary>
+            <value>
+            The connection string
+            </value>
+        </member>
+        <member name="T:Butterfly.Core.Database.BaseTransaction">
+            <inheritdoc/>
+            <summary>
+            Base class implementing <see cref="T:Butterfly.Core.Database.ITransaction"/>.
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.DataEventTransactionListener">
+            <summary>
+            Internal class used to store references to data event transaction listeners
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.Dynamic.BaseDynamicParam">
+            <summary>
+            Base class for implementing dynamic params (see <see cref="T:Butterfly.Core.Database.IDynamicParam"/>)
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.Dynamic.DynamicView">
+            <summary>
+            Represents a specific view (SELECT statement) that should be executed
+            to return the initial data as a sequence of <see cref="T:Butterfly.Core.Database.Event.DataEvent"/> instances
+            and should publish <see cref="T:Butterfly.Core.Database.Event.DataEvent"/> instances when any data in the
+            view changes
+            </summary>
+        </member>
+        <member name="M:Butterfly.Core.Database.Dynamic.DynamicView.GetInitialDataEventsAsync">
+            <summary>
+            Executes the select statement of the DynamicQuery and returns a sequence of DataEvents starting an InitialBegin event, then an Insert event for each row, and then an InitialEnd event.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Butterfly.Core.Database.Dynamic.DynamicViewSet">
+            <summary>
+            Represents a collection of <see cref="T:Butterfly.Core.Database.Dynamic.DynamicView"/> instances.  Often a
+            <see cref="T:Butterfly.Core.Database.Dynamic.DynamicViewSet"/> instance will represent all the data that should be 
+            replicated to a specific client.
+            </summary>
+        </member>
+        <member name="M:Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[])">
+            <summary>
+            Creates an instance of a DynamicView. Must call <see cref="M:Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync"/> to send 
+            initial <see cref="T:Butterfly.Core.Database.Event.DataEventTransaction"/> instance and listen for new <see cref="T:Butterfly.Core.Database.Event.DataEventTransaction"/>instances.
+            </summary>
+        </member>
+        <member name="M:Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync">
+            <summary>
+            Send an initial <see cref="T:Butterfly.Core.Database.Event.DataEventTransaction"/> to the registered listener and
+            sends new <see cref="T:Butterfly.Core.Database.Event.DataEventTransaction"/> instances when any data in the underlying
+            <see cref="T:Butterfly.Core.Database.Dynamic.DynamicView"/> instances changes. Stops listening <see cref="M:Butterfly.Core.Database.Dynamic.DynamicViewSet.Dispose"/> is called.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.Dynamic.DynamicViewSet.RunAsync">
+            <summary>
+            Processes queued data change transactions (runs on a background thread)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.Dynamic.DynamicViewSet.RequeryDynamicViewsAsync(System.Boolean)">
+            <summary>
+            Return the initial query results if any of the query parameters have changed or if passed force=true
+            </summary>
+            <param name="onlyIfDirtyParams"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Butterfly.Core.Database.Dynamic.MultiValueDynamicParam">
+            <summary>
+            A <see cref="T:Butterfly.Core.Database.IDynamicParam"/> that may contain multiple values (like an array)
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.Dynamic.SingleValueDynamicParam">
+            <summary>
+            A <see cref="T:Butterfly.Core.Database.IDynamicParam"/> that may only contain a single value
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.Event.DataEvent">
+            <summary>
+            Represents the initial data or a change in the data.  The <see cref="F:Butterfly.Core.Database.Event.DataEvent.dataEventType"/> indicates 
+            the type of change and the <see cref="!:name"/> indicates the table or view name.<para/>
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.Event.DataEventTransaction">
+            <summary>
+            Represents a series of <see cref="T:Butterfly.Core.Database.Event.DataEvent"/> instances resulting either
+            from an initial query or from committing an <see cref="T:Butterfly.Core.Database.IDatabase"/> transaction
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.IDatabase">
+            <summary>
+            Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; 
+            creating dynamic views; and receiving data change events both on tables and dynamic views.
+            </summary>
+            <remarks>
+            Adding records and echoing all data change events to the console...<para/>
+            <code>
+                // Create database instance (will also read the schema from the database)
+                var database = new SomeDatabase();
+                
+                // Listen for all database data events
+                var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {
+                    console.WriteLine($"Low Level DataEventTransaction={dataEventTransaction}");
+                });
+                
+                // INSERT a couple of records (this will cause a single data even transaction with
+                // two INSERT data events to be written to the console above)
+                using (var transaction = database.BeginTransaction()) {
+                    await database.InsertAndCommitAsync("employee", values: new {
+                        department_id: 1,
+                        name: "SpongeBob"
+                    });
+                    await database.InsertAndCommitAsync("employee", values: new {
+                        department_id: 1,
+                        name: "Squidward"
+                    });
+                    await database.CommitAsync();
+                );
+            </code>
+            
+            Creating a DynamicView and echoing data change events on the DynamicView to the console...<para/>
+            <code>
+                // Create database instance (will also read the schema from the database)
+                var database = new SomeDatabase();
+                
+                // Create a DynamicViewSet that print any data events to the console
+                // (this will immediately echo an INITIAL data event for each existing matching record)
+                var dynamicViewSet = database.CreateAndStartDynamicViewSet(
+                    "SELECT * FROM employee WHERE department_id=@departmentId", 
+                    new {
+                        departmentId = 1
+                    },
+                    dataEventTransaction => {
+                        Console.WriteLine(dataEventTransaction);
+                    }
+                );
+            
+                // This will cause the above DynamicViewSet to echo an INSERT data event
+                await database.InsertAndCommitAsync("employee", values: new {
+                    department_id: 1
+                    name: "Mr Crabs"
+                });
+                
+                // This will NOT cause the above DynamicViewSet to echo an INSERT data event
+                // (because the department_id doesn't match)
+                await database.InsertAndCommitAsync("employee", values: new {
+                    department_id: 2
+                    name: "Patrick Star"
+                });
+            </code>
+            </remarks>
+        </member>
+        <member name="P:Butterfly.Core.Database.IDatabase.Tables">
+            <summary>
+            Dictionary of <see cref="T:Butterfly.Core.Database.Table"/> instances keyed by name
+            </summary>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.CreateFromResourceFile(System.Reflection.Assembly,System.String)">
+            <summary>
+            Creates database tables from an embedded resource file by internally calling <see cref="M:Butterfly.Core.Database.IDatabase.CreateFromText(System.String)"/> with the contents of the embedded resource file"
+            </summary>
+            <param name="assembly"></param>
+            <param name="resourceFile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.CreateFromResourceFileAsync(System.Reflection.Assembly,System.String)">
+            <inheritDoc cref="M:Butterfly.Core.Database.IDatabase.CreateFromResourceFile(System.Reflection.Assembly,System.String)"/>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.CreateFromText(System.String)">
+            <summary>
+            Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate).<para/>
+            Lines beginning with <code>--</code> will be ignored. Each CREATE statement must include a PRIMARY KEY definition. If the table already exists, the CREATE statement is ignored.<para/>
+            Creating database tables with this method is not required (primarily done as a convenience method for unit testing)"/>.
+            </summary>
+            <param name="createStatements"></param>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)">
+            <inheritDoc cref="M:Butterfly.Core.Database.IDatabase.CreateFromText(System.String)"/>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.OnNewUncommittedTransaction(System.Action{Butterfly.Core.Database.Event.DataEventTransaction})">
+            <summary>
+            Adds a listener that is invoked when there is a new uncommitted transaction
+            </summary>
+            <param name="listener">The lambda to call when there is a new uncommitted <see cref="T:Butterfly.Core.Database.Event.DataEventTransaction"/></param>
+            <returns>An <see cref="T:System.IDisposable"/> that allows removing the listener by calling Dispose()</returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.OnNewUncommittedTransaction(System.Func{Butterfly.Core.Database.Event.DataEventTransaction,System.Threading.Tasks.Task})">
+            <inheritdoc cref="M:Butterfly.Core.Database.IDatabase.OnNewUncommittedTransaction(System.Action{Butterfly.Core.Database.Event.DataEventTransaction})"/>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.OnNewCommittedTransaction(System.Action{Butterfly.Core.Database.Event.DataEventTransaction})">
+            <summary>
+            Adds a listener that is invoked when there is a new committed transaction
+            </summary>
+            <param name="listener">The lambda to call when there is a new committed <see cref="T:Butterfly.Core.Database.Event.DataEventTransaction"/></param>
+            <returns>An <see cref="T:System.IDisposable"/> that allows removing the listener by calling Dispose()</returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.OnNewCommittedTransaction(System.Func{Butterfly.Core.Database.Event.DataEventTransaction,System.Threading.Tasks.Task})">
+            <inheritdoc cref="M:Butterfly.Core.Database.IDatabase.OnNewCommittedTransaction(System.Action{Butterfly.Core.Database.Event.DataEventTransaction})"/>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.SelectValueAsync``1(System.String,System.Object,``0)">
+            <summary>
+            Executes the SELECT statement and return the value of the first column of the first row (the SELECT statement may contain vars like @name specified in <paramref name="vars"/>).<para/>
+            <para/>
+            If a var is null then references in the WHERE clause like <code>name=@name</code> will be rewritten as <code>name IS NULL</code> and references in the WHERE clause like <code>name!=@name</code> will be rewritten as <code>name IS NOT NULL</code>.<para/>
+            <para/>
+            If a var is an array then references in the WHERE clause like <code>name=@name</code> will be rewritten as <code>1=2</code> when the array is empty, rewritten as <code>name='Bob'</code> when the array contains a single element 'Bob', and rewritten as <code>name IN ('Bob', 'Jim')</code> when the array contains elements 'Bob' and 'Jim'.<para/>
+            </summary>
+            <typeparam name="T">The return type of the single value returned</typeparam>
+            <param name="selectStatement">The SELECT statement to execute (may contain vars like @name specified in <paramref name="vars"/>)</param>
+            <param name="vars">Either an anonymous type or Dictionary with the vars used in the SELECT statement</param>
+            <param name="defaultValue">The value to return if no rows were returned or the value of the first column of the first row is null</param>
+            <returns>The value of the first column of the first row</returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.SelectRowAsync(System.String,System.Object)">
+            <summary>
+            Executes the SELECT statement and return the first row (the SELECT statement may contain vars like @name specified in <paramref name="vars"/>)
+            </summary>
+            <param name="selectStatement">The SELECT statement to execute (may contain vars like @name specified in <paramref name="vars"/>)</param>
+            <param name="vars"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)">
+            <summary>
+            Executes the SELECT statement and return the rows (the SELECT statement may contain vars like @name specified in <paramref name="vars"/>)
+            </summary>
+            <param name="selectStatement"></param>
+            <param name="vars"></param>
+            <param name="overrideLimit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.InsertAndCommitAsync``1(System.String,System.Object,System.Boolean)">
+            <summary>
+            Executes an INSERT statement as a single transaction
+            </summary>
+            <remarks>
+            Do an INSERT using the table name and an anonymous type...
+            <code>
+            await database.InsertAndCommitAsync("message", new {
+                text = "Hello",
+                owner_id = "123",
+            });
+            </code>
+            Do an INSERT using a full statement and a Dictionary...
+            <code>
+            await database.InsertAndCommitAsync("INSERT INTO message (text, owner_id) VALUES (@t, @oid)", new Dictionary&lt;string, object&gt; {
+                ["t"] = "Hello",
+                ["oid"] = "123",
+            });
+            </code>
+            </remarks>
+            <param name="insertStatement">
+                Either a table name or a full INSERT statement with vars prefixed by @ (like <code>@name</code>)
+            </param>
+            <param name="vars">
+                Either an anonymous type or a Dictionary. 
+                If <paramref name="insertStatement"/> is a table name, the <paramref name="vars"/> values will be used to build the UPDATE statement.
+                If <paramref name="insertStatement"/> is a full INSERT statement, there must be one entry for each var referenced in <paramref name="insertStatement"/>.
+            </param>
+            <param name="ignoreIfDuplicate">
+                If the INSERT attempts to duplicate the primary key then either 
+                throw an <see cref="T:Butterfly.Core.Database.DuplicateKeyDatabaseException"/> error if <paramref name="ignoreIfDuplicate"/> is true
+                or just ignore if <paramref name="ignoreIfDuplicate"/> is false
+            </param>
+            <returns>Primary key value (semi-colon delimited string if multi-field primary key)</returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.UpdateAndCommitAsync(System.String,System.Object)">
+            <summary>
+            Executes an UPDATE statement as a single transaction
+            </summary>
+            <remarks>
+            Do an UPDATE using the table name and an anonymous type...
+            <code>
+            await database.UpdateAndCommitAsync("message", new {
+                id = 123,
+                text = "Hello",
+            });
+            </code>
+            Do an UPDATE using a full statement and a Dictionary...
+            <code>
+            await database.UpdateAndCommitAsync("UPDATE message SET text=@t WHERE id=@id", new Dictionary&lt;string, object&gt; {
+                ["id"] = 123,
+                ["t"] = "Hello",
+            });
+            </code>
+            </remarks>
+            <param name="updateStatement">
+                Either a table name or a full UPDATE statement with vars prefixed by @ (like <code>@name</code>)
+            </param>
+            <param name="vars">
+                Either an anonymous type or a Dictionary. 
+                If <paramref name="updateStatement"/> is a table name, the <paramref name="vars"/> values will be used to build the SET clause and WHERE clause of the UPDATE statement.
+                If <paramref name="updateStatement"/> is a full UPDATE statement, there must be one entry for each var referenced in <paramref name="updateStatement"/>.
+            </param>
+            <returns>Number of records updated</returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.DeleteAndCommitAsync(System.String,System.Object)">
+            <summary>
+            Executes a DELETE statement as a single transaction
+            </summary>
+            <remarks>
+            Do a DELETE using the table name and an anonymous type...
+            <code>
+            await database.DeleteAndCommitAsync("message", new {
+                id = 123
+            });
+            </code>
+            Do a DELETE using a full statement and a Dictionary...
+            <code>
+            await database.DeleteAndCommitAsync("DELETE FROM message WHERE id=@id", new Dictionary&lt;string, object&gt; {
+                ["id"] = 123
+            });
+            </code>
+            </remarks>
+            <param name="deleteStatement">
+                Either a table name or a full DELETE statement with vars prefixed by @ (like <code>@name</code>)
+            </param>
+            <param name="vars">
+                Either an anonymous type or a Dictionary. 
+                If <paramref name="deleteStatement"/> is a table name, the <paramref name="vars"/> values will be used to build the WHERE clause of the DELETE statement.
+                If <paramref name="deleteStatement"/> is a full DELETE statement, there must be one entry for each var referenced in <paramref name="deleteStatement"/>.
+            </param>
+            <returns>Number of records deleted</returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.BeginTransaction">
+            <summary>
+            Creates a new <see cref="T:Butterfly.Core.Database.ITransaction"/> instance.  An <see cref="T:Butterfly.Core.Database.ITransaction"/> instance allows performing an atomic set of modifications to the database.  Must execute <see cref="M:Butterfly.Core.Database.ITransaction.CommitAsync"/> to save the transaction changes.  Disposing the transaction without committing rolls back the changes.
+            </summary>
+            <returns>An <see cref="T:Butterfly.Core.Database.ITransaction"/> instance (can then call InsertAsync(), UpdateAsync(), or DeleteAsync() on the ITransaction instance to make changes on the transaction)/></returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.BeginTransactionAsync">
+            <inheritdoc cref="M:Butterfly.Core.Database.IDatabase.BeginTransaction"/>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.SetDefaultValue(System.String,System.Func{System.String,System.Object},System.String)">
+            <summary>
+            Allows specifying a lambda that creates a default value for a field when executing an INSERT.  If <paramref name="tableName"/> is null, the <paramref name="getValue"/> lambda will be applied to all tables.
+            </summary>
+            <param name="fieldName">Name of the field</param>
+            <param name="getValue">The lambda that returns the default value</param>
+            <param name="tableName">An optional table name.  If not null, the getValue lambda is only applied to the specified table. If null, the getValue lambda is applied to all tables.</param>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.SetOverrideValue(System.String,System.Func{System.String,System.Object},System.String)">
+            <summary>
+            Allows specifying a lambda that creates an override value for a field when executing both an INSERT and UPDATE.  If <paramref name="tableName"/> is null, the <paramref name="getValue"/> lambda will be applied to all tables.
+            </summary>
+            <param name="fieldName">Name of the field</param>
+            <param name="getValue">The lambda that returns the default value</param>
+            <param name="tableName">An optional table name.  If not null, the getValue lambda is only applied to the specified table. If null, the getValue lambda is applied to all tables.</param>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.CreateDynamicViewSet(System.Action{Butterfly.Core.Database.Event.DataEventTransaction})">
+            <summary>
+            Allows creating a set of <see cref="T:Butterfly.Core.Database.Dynamic.DynamicView"/> instances that publish a single <see cref="T:Butterfly.Core.Database.Event.DataEventTransaction"/> instance with initial data and new <see cref="T:Butterfly.Core.Database.Event.DataEventTransaction"/> instances when data changes.  The <see cref="T:Butterfly.Core.Database.Event.DataEventTransaction"/> instances are published to the lambda passed as the <paramref name="listener"/>.
+            </summary>
+            <param name="listener">The lambda that should receive the <see cref="T:Butterfly.Core.Database.Event.DataEventTransaction"/> instances</param>
+            <returns>A <see cref="T:Butterfly.Core.Database.Dynamic.DynamicViewSet"/> that can be disposed to remove all database listners</returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.CreateDynamicViewSet(System.Func{Butterfly.Core.Database.Event.DataEventTransaction,System.Threading.Tasks.Task})">
+            <inheritdoc cref="M:Butterfly.Core.Database.IDatabase.CreateDynamicViewSet(System.Action{Butterfly.Core.Database.Event.DataEventTransaction})"/>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.CreateAndStartDynamicViewAsync(System.String,System.Action{Butterfly.Core.Database.Event.DataEventTransaction},System.Object,System.String,System.String[])">
+            <summary>
+            Convenience method which creates a <see cref="T:Butterfly.Core.Database.Dynamic.DynamicViewSet"/>, adds a single <see cref="T:Butterfly.Core.Database.Dynamic.DynamicView"/> to the <see cref="T:Butterfly.Core.Database.Dynamic.DynamicViewSet"/>, and starts the <see cref="T:Butterfly.Core.Database.Dynamic.DynamicViewSet"/>.
+            </summary>
+            <param name="sql"></param>
+            <param name="listener"></param>
+            <param name="values"></param>
+            <param name="name"></param>
+            <param name="keyFieldNames"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.IDatabase.CreateAndStartDynamicViewAsync(System.String,System.Func{Butterfly.Core.Database.Event.DataEventTransaction,System.Threading.Tasks.Task},System.Object,System.String,System.String[])">
+            <inheritdoc cref="M:Butterfly.Core.Database.IDatabase.CreateAndStartDynamicViewAsync(System.String,System.Action{Butterfly.Core.Database.Event.DataEventTransaction},System.Object,System.String,System.String[])"/>
+        </member>
+        <member name="T:Butterfly.Core.Database.IDynamicParam">
+            <summary>
+            Use to implement a parameter value that can change
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.ITransaction">
+            <summary>
+            Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing 
+            a single <see cref="!:DataEventTransaction"/> on the underlying <see cref="T:Butterfly.Core.Database.IDatabase"/> instance
+            when the transaction is committed.<para/>
+            
+            Must call <see cref="M:Butterfly.Core.Database.ITransaction.Commit"/> or <see cref="M:Butterfly.Core.Database.ITransaction.CommitAsync"/> to have the changes committed.<para/>
+            
+            If the transaction is disposed without calling <see cref="M:Butterfly.Core.Database.ITransaction.Commit"/> or <see cref="M:Butterfly.Core.Database.ITransaction.CommitAsync"/> the transaction is automatically rolled back.
+            </summary>
+        </member>
+        <member name="M:Butterfly.Core.Database.ITransaction.InsertAsync``1(System.String,System.Object,System.Boolean)">
+            <summary>
+            Executes an INSERT statement within this transaction
+            </summary>
+            <remarks>
+            Do an INSERT using the table name and an anonymous type...
+            <code>
+            await transaction.InsertAsync("message", new {
+                text = "Hello",
+                owner_id = "123",
+            });
+            </code>
+            Do an INSERT using a full statement and a Dictionary...
+            <code>
+            await transaction.InsertAsync("INSERT INTO message (text, owner_id) VALUES (@t, @oid)", new Dictionary&lt;string, object&gt; {
+                ["t"] = "Hello",
+                ["oid"] = "123",
+            });
+            </code>
+            </remarks>
+            <param name="insertStatement">
+                Either a table name or a full INSERT statement with vars prefixed by @ (like <code>@name</code>)
+            </param>
+            <param name="vars">
+                Either an anonymous type or a Dictionary. 
+                If <paramref name="insertStatement"/> is a table name, the <paramref name="vars"/> values will be used to build the UPDATE statement.
+                If <paramref name="insertStatement"/> is a full INSERT statement, there must be one entry for each var referenced in <paramref name="insertStatement"/>.
+            </param>
+            <param name="ignoreIfDuplicate">
+                If the INSERT attempts to duplicate the primary key then either 
+                throw an <see cref="T:Butterfly.Core.Database.DuplicateKeyDatabaseException"/> error if <paramref name="ignoreIfDuplicate"/> is true
+                or just ignore if <paramref name="ignoreIfDuplicate"/> is false
+            </param>
+            <returns>Primary key value (semi-colon delimited string if multi-field primary key)</returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.ITransaction.UpdateAsync(System.String,System.Object)">
+            <summary>
+            Executes an UPDATE statement within this transaction
+            </summary>
+            <remarks>
+            Do an UPDATE using the table name and an anonymous type...
+            <code>
+            await database.UpdateAsync("message", new {
+                id = 123,
+                text = "Hello",
+            });
+            </code>
+            Do an UPDATE using a full statement and a Dictionary...
+            <code>
+            await database.UpdateAsync("UPDATE message SET text=@t WHERE id=@id", new Dictionary&lt;string, object&gt; {
+                ["id"] = 123,
+                ["t"] = "Hello",
+            });
+            </code>
+            </remarks>
+            <param name="updateStatement">
+                Either a table name or a full UPDATE statement with vars prefixed by @ (like <code>@name</code>)
+            </param>
+            <param name="vars">
+                Either an anonymous type or a Dictionary. 
+                If <paramref name="updateStatement"/> is a table name, the <paramref name="vars"/> values will be used to build the SET clause and WHERE clause of the UPDATE statement.
+                If <paramref name="updateStatement"/> is a full UPDATE statement, there must be one entry for each var referenced in <paramref name="updateStatement"/>.
+            </param>
+            <returns>Number of records updated</returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.ITransaction.DeleteAsync(System.String,System.Object)">
+            <summary>
+            Executes a DELETE statement within this transaction
+            </summary>
+            <remarks>
+            Do a DELETE using the table name and an anonymous type...
+            <code>
+            await database.DeleteAsync("message", new {
+                id = 123
+            });
+            </code>
+            Do a DELETE using a full statement and a Dictionary...
+            <code>
+            await database.DeleteAsync("DELETE FROM message WHERE id=@id", new Dictionary&lt;string, object&gt; {
+                ["id"] = 123
+            });
+            </code>
+            </remarks>
+            <param name="deleteStatement">
+                Either a table name or a full DELETE statement with vars prefixed by @ (like <code>@name</code>)
+            </param>
+            <param name="vars">
+                Either an anonymous type or a Dictionary. 
+                If <paramref name="deleteStatement"/> is a table name, the <paramref name="vars"/> values will be used to build the WHERE clause of the DELETE statement.
+                If <paramref name="deleteStatement"/> is a full DELETE statement, there must be one entry for each var referenced in <paramref name="deleteStatement"/>.
+            </param>
+            <returns>Number of records deleted</returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.ITransaction.TruncateAsync(System.String)">
+            <summary>
+            Truncate a table (deletes all records)
+            </summary>
+            <param name="tableName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Butterfly.Core.Database.ITransaction.Commit">
+            <summary>
+            Commit the transaction
+            </summary>
+        </member>
+        <member name="M:Butterfly.Core.Database.ITransaction.CommitAsync">
+            <inheritdoc cref="M:Butterfly.Core.Database.ITransaction.Commit"/>
+        </member>
+        <member name="M:Butterfly.Core.Database.ITransaction.Rollback">
+            <summary>
+            Rollback the transaction (called automatically if transaction is disposed without calling <see cref="M:Butterfly.Core.Database.ITransaction.Commit"/> or <see cref="M:Butterfly.Core.Database.ITransaction.CommitAsync"/>)
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.Memory.MemoryDatabase">
+            <inheritdoc/>
+        </member>
+        <member name="T:Butterfly.Core.Database.Memory.MemoryTransaction">
+            <inheritdoc/>
+        </member>
+        <member name="T:Butterfly.Core.Database.BaseStatement">
+            <summary>
+            Base class for parsing SQL statements
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.StatementFromRef">
+            <summary>
+            Internal class representing a SQL table reference like "table_name table_alias"
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.StatementEqualsRef">
+            <summary>
+            Internal class representing a SQL equality reference like "table_alias.field_name=@param_name"
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.CreateStatement">
+            <summary>
+            Internal class used to parse CREATE statements
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.DeleteStatement">
+            <summary>
+            Internal class used to parse DELETE statements
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.InsertStatement">
+            <summary>
+            Internal class used to parse INSERT statements
+            </summary>
+        </member>
+        <member name="M:Butterfly.Core.Database.InsertStatement.#ctor(Butterfly.Core.Database.IDatabase,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="database"></param>
+            <param name="sql">Can be a table name or full SQL. Full SQL can use @@names and @@values tokens to retrieve values from the record parameter.</param>
+        </member>
+        <member name="T:Butterfly.Core.Database.SelectStatement">
+            <summary>
+            Internal class used to parse SELECT statements
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.StatementFieldRef">
+            <summary>
+            Internal class representing a SQL field reference like "table_alias.field_name field_alias"
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.UpdateStatement">
+            <summary>
+            Internal class used to parse UPDATE statements
+            </summary>
+        </member>
+        <member name="M:Butterfly.Core.Database.UpdateStatement.#ctor(Butterfly.Core.Database.IDatabase,System.String)">
+            <summary>
+            Must only update a single row at a time. Must have a where clause that specifies the primary key fields. Where clause can only use ANDed equal conditions (like chat_id=2 AND chat_type='X")";
+            </summary>
+            <param name="database"></param>
+            <param name="sql"></param>
+        </member>
+        <member name="T:Butterfly.Core.Database.Table">
+            <summary>
+            Represents a table in an <see cref="T:Butterfly.Core.Database.IDatabase"/>
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.TableFieldDef">
+            <summary>
+            Defines a field definition for a <see cref="T:Butterfly.Core.Database.Table"/>
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.Database.TableIndex">
+            <summary>
+            Defines an index for a <see cref="T:Butterfly.Core.Database.Table"/>
+            </summary>
+        </member>
+        <member name="M:Butterfly.Core.Notify.NotifyManager.Queue(Butterfly.Core.Database.ITransaction,Butterfly.Core.Notify.NotifyMessage[])">
+            <summary>
+            
+            </summary>
+            <param name="priority">Higher number indicates higher priority</param>
+            <param name="notifyMessage"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Butterfly.Core.WebApi.BaseWebApiServer">
+            <inheritdoc/>
+            <summary>
+            Base class implementing <see cref="T:Butterfly.Core.WebApi.IWebApiServer"/>. New implementations will normally extend this class.
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.WebApi.IWebApiServer">
+            <summary>
+            Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.<para/>
+            </summary>
+            <remarks>
+            Initializing a web api server instance...<para/>
+            <code>
+                var webApiServer = new SomeWebApiServer();
+                webApiServer.OnGet("/chat-messages", async(req, res) => {
+                    // Handle the request and return any objects as needed (will be JSON encoded)
+                });
+                webApiServer.OnPost("/login", async(req, res) => {
+                    // Handle the request and return any objects as needed (will be JSON encoded)
+                });
+                webApiServer.Start();
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Butterfly.Core.WebApi.IWebApiServer.OnGet(System.String,System.Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,System.Threading.Tasks.Task})">
+            <summary>
+            Add a listener responding to GET requests
+            </summary>
+            <param name="path"></param>
+            <param name="listener"></param>
+        </member>
+        <member name="M:Butterfly.Core.WebApi.IWebApiServer.OnPost(System.String,System.Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,System.Threading.Tasks.Task})">
+            <summary>
+            Add a listener responding to POST requests
+            </summary>
+            <param name="path"></param>
+            <param name="listener"></param>
+        </member>
+        <member name="M:Butterfly.Core.WebApi.IWebApiServer.Start">
+            <summary>
+            Start the web api server
+            </summary>
+        </member>
+        <member name="T:Butterfly.Core.WebApi.WebHandler">
+            <summary>
+            Internal class used to store references to new web handlers
+            </summary>
+        </member>
+    </members>
+</doc>

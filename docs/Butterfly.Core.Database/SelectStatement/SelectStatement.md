@@ -15,7 +15,8 @@ public SelectStatement(IDatabase database, string sql, int overrideLimit = -1)
 # SelectStatement constructor (2 of 3)
 
 ```csharp
-public SelectStatement(SelectStatement sourceSelectStatement, string overrideWhereClause, bool ignoreOrderBy)
+public SelectStatement(SelectStatement sourceSelectStatement, string overrideWhereClause, 
+    bool ignoreOrderBy)
 ```
 
 ## See Also
@@ -28,8 +29,8 @@ public SelectStatement(SelectStatement sourceSelectStatement, string overrideWhe
 # SelectStatement constructor (3 of 3)
 
 ```csharp
-public SelectStatement(IDatabase database, string selectClause, string fromClause, string whereClause, 
-    string orderByClause, int limit = -1)
+public SelectStatement(IDatabase database, string selectClause, string fromClause, 
+    string whereClause, string orderByClause, int limit = -1)
 ```
 
 ## See Also

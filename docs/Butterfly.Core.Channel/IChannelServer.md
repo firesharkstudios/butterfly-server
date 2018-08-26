@@ -1,7 +1,5 @@
 # IChannelServer interface
 
-Allows clients to subscribe to channels and allows the server to push data to subscribed clients.
-
 ```csharp
 public interface IChannelServer : IDisposable
 ```
@@ -10,26 +8,11 @@ public interface IChannelServer : IDisposable
 
 | name | description |
 | --- | --- |
-| [AuthenticatedConnections](IChannelServer/AuthenticatedConnections.md) { get; } | Get all the authenticted connections |
-| [UnauthenticatedConnections](IChannelServer/UnauthenticatedConnections.md) { get; } | Get all the unauthenticted connections |
-| [GetConnection](IChannelServer/GetConnection.md)(…) | Retrieve a channel by id |
-| [OnSubscribe](IChannelServer/OnSubscribe.md)(…) | Define a channel that clients can subscribe. Can specify a *handler* or a *handlerAsync* (but not both) that is invoked when a client subscribes. |
-| [Start](IChannelServer/Start.md)() | Starts the channel server |
-
-## Remarks
-
-Listen for subscription requests to the todos channel...
-
-```csharp
-var channelServer = new SomeChannelServer();
-// Listen for subscribe requests...
-// - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
-// - The handler can push data to the client by calling channel.Queue()
-channelServer.OnSubscribe("todos", (vars, channel) => {
-    return database.CreateAndStartDynamicView("todo", dataEventTransaction => channel.Queue(dataEventTransaction));
-});
-channelServer.Start();
-```
+| [AuthenticatedConnections](IChannelServer/AuthenticatedConnections.md) { get; } |  |
+| [UnauthenticatedConnections](IChannelServer/UnauthenticatedConnections.md) { get; } |  |
+| [GetConnection](IChannelServer/GetConnection.md)(…) |  |
+| [OnSubscribe](IChannelServer/OnSubscribe.md)(…) |  |
+| [Start](IChannelServer/Start.md)() |  |
 
 ## See Also
 

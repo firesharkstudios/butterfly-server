@@ -2,6 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -9,6 +10,20 @@ using System.Threading.Tasks;
 
 namespace Butterfly.Core.Util {
     public static class FileX {
+        public static string GetCurrentDirectory() {
+            var currentDirectory = Directory.GetCurrentDirectory();
+            if (currentDirectory.EndsWith(Path.PathSeparator.ToString())) {
+                return currentDirectory.Substring(0, currentDirectory.Length - 1);
+            }
+            else {
+                return currentDirectory;
+            }
+        }
+
+        public static string Resolve(string path) {
+            return Path.GetFullPath(new Uri(Path.Combine(path)).LocalPath);
+        }
+
         public static async Task WriteTextAsync(string filePath, string text) {
             byte[] encodedText = Encoding.Default.GetBytes(text);
 

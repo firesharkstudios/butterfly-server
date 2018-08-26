@@ -1,7 +1,5 @@
 # BaseChannelServerConnection.LastHeartbeat property
 
-When the last heartbeat was registered
-
 ```csharp
 public DateTime LastHeartbeat { get; }
 ```

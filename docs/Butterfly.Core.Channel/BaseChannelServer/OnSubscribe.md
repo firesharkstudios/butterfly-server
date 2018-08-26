@@ -1,17 +1,10 @@
 # BaseChannelServer.OnSubscribe method
 
-Define a channel that clients can subscribe. Can specify a *handler* or a *handlerAsync* (but not both) that is invoked when a client subscribes.
-
 ```csharp
 public ChannelSubscription OnSubscribe(string channelKey, 
-    Func<Dictionary<string, object>, Channel, IDisposable> handler = null, Func<Dictionary<string, object>, Channel, Task<IDisposable>> handlerAsync = null)
+    Func<Dictionary<string, object>, Channel, IDisposable> handler = null, 
+    Func<Dictionary<string, object>, Channel, Task<IDisposable>> handlerAsync = null)
 ```
-
-| parameter | description |
-| --- | --- |
-| channelKey | Unique identifier for the channel |
-| handler | Code to run to create subscription. Must return an IDisposable instance that is disposed on unsubscribe. Can push data to client by calling [`Queue`](../Channel/Queue.md) |
-| handlerAsync | Async code to run to create subscription. Must return an IDisposable instance that is disposed on unsubscribe. Can push data to client by calling [`Queue`](../Channel/Queue.md) |
 
 ## See Also
 

@@ -1,12 +1,15 @@
 /* Any copyright is dedicated to the Public Domain.
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
+using Butterfly.Core.Util;
 using System;
 
 namespace Butterfly.Example.HelloWorld.Server {
     class Program {
         static void Main(string[] args) {
-            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext(port: 8080, staticFullPath: "../../../Butterfly.Example.HelloWorld.Client/")) {
+            const string url = "http://localhost:8000/";
+
+            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext(url, staticPath: "../../../../Butterfly.Example.HelloWorld.Client/")) {
                 // Create a MemoryDatabase (no persistence, limited features)
                 var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
                 database.CreateFromText(@"CREATE TABLE message (
@@ -32,7 +35,8 @@ namespace Butterfly.Example.HelloWorld.Server {
 
                 embedIOContext.Start();
 
-                Console.WriteLine($"Open http://localhost:{8080}/ in a browser");
+                Console.WriteLine($"Opening {url} in a browser...");
+                ProcessX.OpenBrowser(url);
                 Console.ReadLine();
             }
         }

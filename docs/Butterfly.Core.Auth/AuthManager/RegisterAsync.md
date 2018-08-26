@@ -1,15 +1,8 @@
 # AuthManager.RegisterAsync method
 
-Registers a new user
-
 ```csharp
 public Task<AuthToken> RegisterAsync(object input, Dictionary<string, object> notifyData = null)
 ```
-
-| parameter | description |
-| --- | --- |
-| input |  |
-| notifyData |  |
 
 ## See Also
 

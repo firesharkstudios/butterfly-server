@@ -29,13 +29,13 @@ namespace Butterfly.Aws {
 
         static readonly Regex IN_REPLY_TO_REGEX = new Regex(@"\<([^\@]+)\@");
 
-        public static void Setup(IWebApiServer webApiServer, string topicArn, string endPoint, string bucketName, Func<string, string, string[], Task<string>> handler) {
+        public static async Task SetupAsync(IWebApiServer webApiServer, string topicArn, string endPoint, string bucketName, Func<string, string, string[], Task<string>> handler) {
             if (!string.IsNullOrEmpty(endPoint)) {
                 Uri endPointUri = new Uri(endPoint);
                 //logger.Debug($"SetupWebApi():endPointUri.PathAndQuery={endPointUri.PathAndQuery}");
 
                 using (AmazonSimpleNotificationServiceClient amazonSimpleNotificationServiceClient = new AmazonSimpleNotificationServiceClient(Amazon.RegionEndpoint.USEast1)) {
-                    SubscribeResponse subscribeResponse = amazonSimpleNotificationServiceClient.Subscribe(new SubscribeRequest {
+                    SubscribeResponse subscribeResponse = await amazonSimpleNotificationServiceClient.SubscribeAsync(new SubscribeRequest {
                         TopicArn = topicArn,
                         Protocol = endPointUri.Scheme,
                         Endpoint = endPoint

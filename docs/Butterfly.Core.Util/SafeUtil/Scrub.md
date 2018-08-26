@@ -1,7 +1,8 @@
 # SafeUtil.Scrub method
 
 ```csharp
-public static string Scrub(string raw, string alphabet = "abcdefghijkmnopqrstuvwxyzACDEFGHJKLMNPQRTUVWXY34679")
+public static string Scrub(string raw, 
+    string alphabet = "abcdefghijkmnopqrstuvwxyzACDEFGHJKLMNPQRTUVWXY34679")
 ```
 
 ## See Also

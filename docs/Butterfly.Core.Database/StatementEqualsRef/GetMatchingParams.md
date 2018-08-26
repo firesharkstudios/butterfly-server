@@ -1,7 +1,8 @@
 # StatementEqualsRef.GetMatchingParams method
 
 ```csharp
-public static Dictionary<string, object> GetMatchingParams(StatementEqualsRef[] equalsRefs, Dictionary<string, object> sourceParams)
+public static Dictionary<string, object> GetMatchingParams(StatementEqualsRef[] equalsRefs, 
+    Dictionary<string, object> sourceParams)
 ```
 
 ## See Also

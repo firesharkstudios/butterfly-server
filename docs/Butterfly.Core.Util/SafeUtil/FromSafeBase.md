@@ -1,7 +1,8 @@
 # SafeUtil.FromSafeBase method
 
 ```csharp
-public static ulong FromSafeBase(string text, string alphabet = "abcdefghijkmnopqrstuvwxyzACDEFGHJKLMNPQRTUVWXY34679")
+public static ulong FromSafeBase(string text, 
+    string alphabet = "abcdefghijkmnopqrstuvwxyzACDEFGHJKLMNPQRTUVWXY34679")
 ```
 
 ## See Also

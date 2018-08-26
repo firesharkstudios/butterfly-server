@@ -1,7 +1,8 @@
 # DynamicView.TryGetDynamicStatementFromRef method
 
 ```csharp
-public bool TryGetDynamicStatementFromRef(string tableName, out StatementFromRef dynamicStatementFromRef)
+public bool TryGetDynamicStatementFromRef(string tableName, 
+    out StatementFromRef dynamicStatementFromRef)
 ```
 
 ## See Also

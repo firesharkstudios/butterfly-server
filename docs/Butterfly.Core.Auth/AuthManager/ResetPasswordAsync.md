@@ -1,14 +1,8 @@
 # AuthManager.ResetPasswordAsync method
 
-Resets the user's password if a valid reset code is included
-
 ```csharp
 public Task<AuthToken> ResetPasswordAsync(Dictionary<string, object> resetPassword)
 ```
-
-| parameter | description |
-| --- | --- |
-| resetPassword |  |
 
 ## See Also
 

@@ -3,7 +3,8 @@
 ```csharp
 public BaseChannelServer(int mustReceiveHeartbeatMillis = 5000, 
     Func<string, string, object> getAuthToken = null, 
-    Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null)
+    Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, 
+    Func<object, Task<string>> getIdAsync = null)
 ```
 
 ## See Also

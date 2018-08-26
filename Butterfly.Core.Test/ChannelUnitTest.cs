@@ -36,7 +36,7 @@ namespace Butterfly.Core.Test {
         }
         */
 
-        public static async Task TestChannel(IChannelServer channelServer, Action start) {
+        public static async Task TestChannel(IChannelServer channelServer, string url, Action start) {
             // Listen for new channels at /test to be created
             Butterfly.Core.Channel.Channel channelA = null;
             TestDisposable testDisposableA = new TestDisposable();
@@ -59,7 +59,7 @@ namespace Butterfly.Core.Test {
             var testAuthId = "123";
 
             // Test creating a channel from the client
-            var channelClient = new WebSocketChannelClient("ws://localhost:8080/test", $"Test {testAuthId}", heartbeatEveryMillis: 1000);
+            var channelClient = new WebSocketChannelClient(url, $"Test {testAuthId}", heartbeatEveryMillis: 1000);
             channelClient.Start();
             await Task.Delay(500);
             Assert.AreEqual(1, channelServer.AuthenticatedConnections.Count);

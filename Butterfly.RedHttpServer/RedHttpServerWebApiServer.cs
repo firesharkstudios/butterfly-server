@@ -21,7 +21,7 @@ namespace Butterfly.RedHttpServer {
 
         public readonly global::RedHttpServerNet45.RedHttpServer server;
 
-        public RedHttpServerWebApiServer(global::RedHttpServerNet45.RedHttpServer server) {
+        public RedHttpServerWebApiServer(RedHttpServer server) {
             this.server = server;
         }
 

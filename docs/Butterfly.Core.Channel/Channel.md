@@ -1,7 +1,5 @@
 # Channel class
 
-Represents a channel that clients can subscribe to
-
 ```csharp
 public class Channel : IDisposable
 ```

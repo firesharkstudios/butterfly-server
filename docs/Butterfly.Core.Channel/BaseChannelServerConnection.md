@@ -1,7 +1,5 @@
 # BaseChannelServerConnection class
 
-Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
-
 ```csharp
 public abstract class BaseChannelServerConnection : IChannelServerConnection
 ```
@@ -14,9 +12,9 @@ public abstract class BaseChannelServerConnection : IChannelServerConnection
 | [AuthToken](BaseChannelServerConnection/AuthToken.md) { get; } |  |
 | [Created](BaseChannelServerConnection/Created.md) { get; } |  |
 | [Id](BaseChannelServerConnection/Id.md) { get; } |  |
-| [LastHeartbeat](BaseChannelServerConnection/LastHeartbeat.md) { get; } | When the last heartbeat was registered |
-| [Dispose](BaseChannelServerConnection/Dispose.md)() | Implements the IDispose interface |
-| [QueueMessage](BaseChannelServerConnection/QueueMessage.md)(…) | Queue an object to be sent over the channel to the client. The queue is processed by a background thread when the Channel is started. |
+| [LastHeartbeat](BaseChannelServerConnection/LastHeartbeat.md) { get; } |  |
+| [Dispose](BaseChannelServerConnection/Dispose.md)() |  |
+| [QueueMessage](BaseChannelServerConnection/QueueMessage.md)(…) |  |
 | [ReceiveMessageAsync](BaseChannelServerConnection/ReceiveMessageAsync.md)(…) |  |
 | [Start](BaseChannelServerConnection/Start.md)(…) |  |
 

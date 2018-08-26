@@ -4,11 +4,6 @@
 public Task Queue(ITransaction transaction, NotifyMessage[] notifyMessages)
 ```
 
-| parameter | description |
-| --- | --- |
-| priority | Higher number indicates higher priority |
-| notifyMessage |  |
-
 ## See Also
 
 * interface [ITransaction](../../Butterfly.Core.Database/ITransaction.md)

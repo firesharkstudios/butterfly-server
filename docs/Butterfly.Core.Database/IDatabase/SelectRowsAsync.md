@@ -1,16 +1,9 @@
 # IDatabase.SelectRowsAsync method
 
-Executes the SELECT statement and return the rows (the SELECT statement may contain vars like @name specified in *vars*)
-
 ```csharp
-public Task<Dictionary<string, object>[]> SelectRowsAsync(string selectStatement, object vars = null, int overrideLimit = -1)
+public Task<Dictionary<string, object>[]> SelectRowsAsync(string selectStatement, 
+    object vars = null, int overrideLimit = -1)
 ```
-
-| parameter | description |
-| --- | --- |
-| selectStatement |  |
-| vars |  |
-| overrideLimit |  |
 
 ## See Also
 

@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using RedHttpServerNet45.Response;
-
 using Butterfly.Core.Channel;
 using Butterfly.Core.Util;
 
@@ -18,7 +16,7 @@ namespace Butterfly.RedHttpServer {
         public readonly global::RedHttpServerNet45.RedHttpServer server;
         public readonly string path;
 
-        public RedHttpServerChannelServer(global::RedHttpServerNet45.RedHttpServer server, int mustReceiveHeartbeatMillis = 5000, string path = "/ws", Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getConnectionId = null, Func<object, Task<string>> getConnectionIdAsync = null) : base(mustReceiveHeartbeatMillis, getAuthToken, getAuthTokenAsync, getConnectionId, getConnectionIdAsync) {
+        public RedHttpServerChannelServer(RedHttpServer server, int mustReceiveHeartbeatMillis = 5000, string path = "/ws", Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getConnectionId = null, Func<object, Task<string>> getConnectionIdAsync = null) : base(mustReceiveHeartbeatMillis, getAuthToken, getAuthTokenAsync, getConnectionId, getConnectionIdAsync) {
             if (EnvironmentX.IsRunningOnMono()) throw new Exception("Unfortunately, RedHttpServer does not support WebSockets on Mono");
             this.server = server;
             this.path = path;

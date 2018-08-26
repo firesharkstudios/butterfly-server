@@ -1,8 +1,8 @@
 # UpdateStatement.GetWhereIndexSetRefsAndWhereRefs method
 
 ```csharp
-public ValueTuple<TableIndex, StatementEqualsRef[], StatementEqualsRef[]> GetWhereIndexSetRefsAndWhereRefs
-    (IDatabase database, Dictionary<string, object> statementParams)
+public ValueTuple<TableIndex, StatementEqualsRef[], StatementEqualsRef[]> 
+    GetWhereIndexSetRefsAndWhereRefs(IDatabase database, Dictionary<string, object> statementParams)
 ```
 
 ## See Also

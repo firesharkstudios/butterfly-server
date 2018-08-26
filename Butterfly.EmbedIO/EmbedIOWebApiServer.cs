@@ -6,11 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 using Unosquare.Labs.EmbedIO;
 using Unosquare.Labs.EmbedIO.Constants;
+
 using NLog;
 
 using Butterfly.Core.Util;
@@ -77,9 +79,9 @@ namespace Butterfly.EmbedIO {
     public class EmbedIOHttpWebRequest : BaseHttpRequest {
 
         public readonly string pathPattern;
-        public readonly Unosquare.Net.HttpListenerContext context;
+        public readonly HttpListenerContext context;
 
-        public EmbedIOHttpWebRequest(string pathPattern, Unosquare.Net.HttpListenerContext context) {
+        public EmbedIOHttpWebRequest(string pathPattern, HttpListenerContext context) {
             this.pathPattern = pathPattern;
             this.context = context;
         }
@@ -109,9 +111,9 @@ namespace Butterfly.EmbedIO {
 
     public class EmbedIOWebResponse : IHttpResponse {
 
-        public readonly Unosquare.Net.HttpListenerContext context;
+        public readonly HttpListenerContext context;
 
-        public EmbedIOWebResponse(Unosquare.Net.HttpListenerContext context) {
+        public EmbedIOWebResponse(HttpListenerContext context) {
             this.context = context;
         }
 

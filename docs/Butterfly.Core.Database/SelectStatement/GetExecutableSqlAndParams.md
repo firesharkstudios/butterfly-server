@@ -1,7 +1,8 @@
 # SelectStatement.GetExecutableSqlAndParams method
 
 ```csharp
-public ValueTuple<string, Dictionary<string, object>> GetExecutableSqlAndParams(Dictionary<string, object> sourceParams)
+public ValueTuple<string, Dictionary<string, object>> GetExecutableSqlAndParams(
+    Dictionary<string, object> sourceParams)
 ```
 
 ## See Also

@@ -1,7 +1,5 @@
 # BaseTransaction.Commit method
 
-Commit the transaction
-
 ```csharp
 public void Commit()
 ```

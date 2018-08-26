@@ -1,7 +1,5 @@
 # StatementFromRef class
 
-Internal class representing a SQL table reference like "table_name table_alias"
-
 ```csharp
 public class StatementFromRef
 ```

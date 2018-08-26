@@ -1,7 +1,8 @@
 # BaseStatement.ConvertParamsToDict method
 
 ```csharp
-public Dictionary<string, object> ConvertParamsToDict(object statementParams, bool allowKeyValueAsSourceParams = true)
+public Dictionary<string, object> ConvertParamsToDict(object statementParams, 
+    bool allowKeyValueAsSourceParams = true)
 ```
 
 ## See Also

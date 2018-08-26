@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 using NLog;
 using Unosquare.Labs.EmbedIO.Modules;
-using Unosquare.Net;
 using Unosquare.Labs.EmbedIO;
 
 using Butterfly.Core.Channel;
 using Butterfly.Core.Util;
+using System.Net;
+using System.Net.WebSockets;
 
 namespace Butterfly.EmbedIO {
 
@@ -51,7 +52,7 @@ namespace Butterfly.EmbedIO {
 
         public override string ServerName => "EmbedIO Channel Server";
 
-        protected override void OnClientConnected(WebSocketContext context) {
+        protected override void OnClientConnected(WebSocketContext context, IPEndPoint localEndPoint, IPEndPoint remoteEndPoint) {
             var webRequest = new EmbedIOWebSocketWebRequest(context);
             logger.Trace($"OnClientConnected():Websocket created for path {webRequest.RequestUrl.AbsolutePath}");
             var channel = new EmbedIOChannelServerConnection(this.channelServer, message => {
@@ -87,6 +88,7 @@ namespace Butterfly.EmbedIO {
         protected EmbedIOChannelServerConnection GetEmbedIOChannel(string channelId) {
             return channelServer.GetConnection(channelId) as EmbedIOChannelServerConnection;
         }
+
     }
 
     public class EmbedIOChannelServerConnection : BaseChannelServerConnection {
@@ -106,7 +108,7 @@ namespace Butterfly.EmbedIO {
 
         protected override void DoDispose() {
             //logger.Trace($"DoDispose():id={this.Id}");
-            this.context.WebSocket.CloseAsync();
+            this.context.WebSocket.Dispose();
         }
 
     }

@@ -1,7 +1,8 @@
 # SafeUtil.GetRandom method
 
 ```csharp
-public static string GetRandom(int length, string alphabet = "abcdefghijkmnopqrstuvwxyzACDEFGHJKLMNPQRTUVWXY34679")
+public static string GetRandom(int length, 
+    string alphabet = "abcdefghijkmnopqrstuvwxyzACDEFGHJKLMNPQRTUVWXY34679")
 ```
 
 ## See Also

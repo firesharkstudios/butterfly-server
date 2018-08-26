@@ -1,7 +1,8 @@
 # RecordDataEvent constructor
 
 ```csharp
-public RecordDataEvent(DataEventType dataEventType, string name, object keyValue, Dictionary<string, object> record)
+public RecordDataEvent(DataEventType dataEventType, string name, object keyValue, 
+    Dictionary<string, object> record)
 ```
 
 ## See Also

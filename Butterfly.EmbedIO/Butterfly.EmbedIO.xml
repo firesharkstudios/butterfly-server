@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Butterfly.EmbedIO</name>
+    </assembly>
+    <members>
+        <member name="T:Butterfly.EmbedIO.EmbedIOChannelServer">
+            <inheritdoc/>
+        </member>
+        <member name="T:Butterfly.EmbedIO.EmbedIOContext">
+            <summary>
+            Convenient class to initialize an IWebApiServer and IChannelServer instance from a running EmbedIO.WebServer instance
+            </summary>
+        </member>
+        <member name="T:Butterfly.EmbedIO.EmbedIOWebApiServer">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

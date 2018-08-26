@@ -8,11 +8,13 @@ public static class FileX
 
 | name | description |
 | --- | --- |
+| static [GetCurrentDirectory](FileX/GetCurrentDirectory.md)() |  |
 | static [GetReadFileStream](FileX/GetReadFileStream.md)(…) |  |
 | static [GetWriteFileStream](FileX/GetWriteFileStream.md)(…) |  |
 | static [LoadResourceAsText](FileX/LoadResourceAsText.md)(…) |  |
 | static [LoadResourceAsTextAsync](FileX/LoadResourceAsTextAsync.md)(…) |  |
 | static [ReadTextAsync](FileX/ReadTextAsync.md)(…) |  |
+| static [Resolve](FileX/Resolve.md)(…) |  |
 | static [WriteTextAsync](FileX/WriteTextAsync.md)(…) |  |
 
 ## See Also

@@ -1,8 +1,9 @@
 # AuthToken.FromDict method
 
 ```csharp
-public static AuthToken FromDict(Dictionary<string, object> dict, string idFieldName, string userIdFieldName, 
-    string usernameFieldName, string roleFieldName, string accountIdFieldName, string expiresAtFieldName)
+public static AuthToken FromDict(Dictionary<string, object> dict, string idFieldName, 
+    string userIdFieldName, string usernameFieldName, string roleFieldName, 
+    string accountIdFieldName, string expiresAtFieldName)
 ```
 
 ## See Also

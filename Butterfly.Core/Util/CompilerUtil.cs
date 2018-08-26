@@ -10,6 +10,7 @@ using Microsoft.CSharp;
 using NLog;
 
 namespace Butterfly.Core.Util {
+    /*
     public static class CompilerUtil {
 
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
@@ -35,5 +36,6 @@ namespace Butterfly.Core.Util {
                 return result.CompiledAssembly;
             }
         }
-    } 
+    }
+    */
 }

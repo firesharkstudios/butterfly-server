@@ -1,7 +1,8 @@
 # BaseDatabase.QueryRowsAsync method
 
 ```csharp
-public Task<Dictionary<string, object>[]> QueryRowsAsync(string storedProcedureName, object vars = null)
+public Task<Dictionary<string, object>[]> QueryRowsAsync(string storedProcedureName, 
+    object vars = null)
 ```
 
 ## See Also

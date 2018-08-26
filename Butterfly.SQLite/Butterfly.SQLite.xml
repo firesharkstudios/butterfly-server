@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Butterfly.SQLite</name>
+    </assembly>
+    <members>
+        <member name="T:Butterfly.SQLite.SQLiteDatabase">
+            <inheritdoc/>
+        </member>
+        <member name="T:Butterfly.SQLite.SQLiteTransaction">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

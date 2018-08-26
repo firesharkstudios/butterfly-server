@@ -1,18 +1,8 @@
 # IDatabase.CreateDynamicViewSet method (1 of 2)
 
-Allows creating a set of [`DynamicView`](../../Butterfly.Core.Database.Dynamic/DynamicView.md) instances that publish a single [`DataEventTransaction`](../../Butterfly.Core.Database.Event/DataEventTransaction.md) instance with initial data and new [`DataEventTransaction`](../../Butterfly.Core.Database.Event/DataEventTransaction.md) instances when data changes. The [`DataEventTransaction`](../../Butterfly.Core.Database.Event/DataEventTransaction.md) instances are published to the lambda passed as the *listener*.
-
 ```csharp
 public DynamicViewSet CreateDynamicViewSet(Action<DataEventTransaction> listener)
 ```
-
-| parameter | description |
-| --- | --- |
-| listener | The lambda that should receive the [`DataEventTransaction`](../../Butterfly.Core.Database.Event/DataEventTransaction.md) instances |
-
-## Return Value
-
-A [`DynamicViewSet`](../../Butterfly.Core.Database.Dynamic/DynamicViewSet.md) that can be disposed to remove all database listners
 
 ## See Also
 
@@ -25,19 +15,9 @@ A [`DynamicViewSet`](../../Butterfly.Core.Database.Dynamic/DynamicViewSet.md) th
 
 # IDatabase.CreateDynamicViewSet method (2 of 2)
 
-Allows creating a set of [`DynamicView`](../../Butterfly.Core.Database.Dynamic/DynamicView.md) instances that publish a single [`DataEventTransaction`](../../Butterfly.Core.Database.Event/DataEventTransaction.md) instance with initial data and new [`DataEventTransaction`](../../Butterfly.Core.Database.Event/DataEventTransaction.md) instances when data changes. The [`DataEventTransaction`](../../Butterfly.Core.Database.Event/DataEventTransaction.md) instances are published to the lambda passed as the *listener*.
-
 ```csharp
 public DynamicViewSet CreateDynamicViewSet(Func<DataEventTransaction, Task> listener)
 ```
-
-| parameter | description |
-| --- | --- |
-| listener | The lambda that should receive the [`DataEventTransaction`](../../Butterfly.Core.Database.Event/DataEventTransaction.md) instances |
-
-## Return Value
-
-A [`DynamicViewSet`](../../Butterfly.Core.Database.Dynamic/DynamicViewSet.md) that can be disposed to remove all database listners
 
 ## See Also
 

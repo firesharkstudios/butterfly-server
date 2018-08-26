@@ -1,7 +1,8 @@
 # BaseDatabase.RemapTypeInputPreprocessor&lt;T&gt; method
 
 ```csharp
-public static Action<string, Dictionary<string, object>> RemapTypeInputPreprocessor<T>(Func<T, object> convert)
+public static Action<string, Dictionary<string, object>> RemapTypeInputPreprocessor<T>(
+    Func<T, object> convert)
 ```
 
 ## See Also

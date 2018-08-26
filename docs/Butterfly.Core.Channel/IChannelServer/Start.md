@@ -1,7 +1,5 @@
 # IChannelServer.Start method
 
-Starts the channel server
-
 ```csharp
 public void Start()
 ```

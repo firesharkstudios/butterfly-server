@@ -1,15 +1,8 @@
 # IWebApiServer.OnGet method
 
-Add a listener responding to GET requests
-
 ```csharp
 public void OnGet(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
 ```
-
-| parameter | description |
-| --- | --- |
-| path |  |
-| listener |  |
 
 ## See Also
 
