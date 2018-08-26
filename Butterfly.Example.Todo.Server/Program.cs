@@ -2,6 +2,9 @@
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 using System;
+using System.Linq;
+
+using NLog;
 
 using Butterfly.Core.Util;
 
@@ -9,7 +12,10 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Example.HelloWorld.Server {
     class Program {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         static void Main(string[] args) {
+            logger.Info("Main()");
             using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext(port: 8000)) {
                 // Create a MemoryDatabase (no persistence, limited features)
                 var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
@@ -22,10 +28,12 @@ namespace Butterfly.Example.HelloWorld.Server {
 
                 // Listen for API requests
                 embedIOContext.WebApiServer.OnPost("/api/todo/insert", async (req, res) => {
+                    logger.Info("/api/todo/insert");
                     var todo = await req.ParseAsJsonAsync<Dict>();
                     await database.InsertAndCommitAsync<string>("todo", todo);
                 });
                 embedIOContext.WebApiServer.OnPost("/api/todo/delete", async (req, res) => {
+                    logger.Info("/api/todo/delete");
                     var id = await req.ParseAsJsonAsync<string>();
                     await database.DeleteAndCommitAsync("todo", id);
                 });
@@ -34,7 +42,13 @@ namespace Butterfly.Example.HelloWorld.Server {
                 // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
                 // - The handler can push data to the client by calling channel.Queue()
                 embedIOContext.ChannelServer.OnSubscribe("todos", (vars, channel) => {
-                    return database.CreateAndStartDynamicViewAsync("todo", dataEventTransaction => channel.Queue(dataEventTransaction));
+                    string clientName = vars?.GetAs("clientName", "");
+                    logger.Info($"OnSubscribe():todos,clientName={clientName}");
+                    return database.CreateAndStartDynamicViewAsync("todo", dataEventTransaction => {
+                        var eventTypes = string.Join(",", dataEventTransaction.dataEvents.Select(x => x.dataEventType.ToString()));
+                        logger.Info($"clientName={clientName},eventTypes={eventTypes}");
+                        channel.Queue(dataEventTransaction);
+                    });
                 });
 
                 embedIOContext.Start();

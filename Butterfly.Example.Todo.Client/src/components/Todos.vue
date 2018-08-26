@@ -42,6 +42,9 @@
           todo: self.items,
         },
         key: 'todos',
+        vars: {
+          clientName: 'WebClient'
+        }
       });
     }
   }

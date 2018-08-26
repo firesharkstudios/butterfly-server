@@ -9,10 +9,6 @@
     <preference name="DisallowOverscroll" value="true" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
-    <!--
-      Replace 'localhost' with your DHCP assigned address
-      (localhost and 127.0.0.1 do not work in Android emulator)
-    -->
     <allow-intent href="http://localhost:8000/*" />
     <allow-intent href="ws://localhost:8000/*" />
     <platform name="android">

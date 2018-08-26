@@ -111,7 +111,7 @@ namespace MyDatabaseTest {
                     name = "Updated Task #1"
                 });
 
-                // This will echo two Update data events to the Console because it impacts two records in the resultset
+                // This will echo multiple Update data events to the Console because it impacts multiple records in the resultset
                 // Yes, that's pretty cool :)
                 await database.UpdateAndCommitAsync("user", new {
                     id = spongebobId,
