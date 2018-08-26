@@ -20,4 +20,4 @@ Click any link above to follow the instructions specific to that client.
 1. Each client invokes API calls on the server to INSERT/DELETE records from a todo table
 4. Data changes are automatically synchronized from the server to the client modifying local javascript arrays which automatically update the UI via the magic of *Vue*
 
-See [Setup.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Todo.Server/Setup.cs) for the server code that sets up the database, handles API requests, and handles subscription requests.
+See [Program.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Todo.Server/Program.cs) for the server code that sets up the database, handles API requests, and handles subscription requests.
