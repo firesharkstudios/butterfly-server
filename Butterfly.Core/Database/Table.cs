@@ -19,7 +19,7 @@ namespace Butterfly.Core.Database {
 
             this.Name = name;
             this.FieldDefs = fieldDefs;
-            this.Indexes = indexes;
+            this.Indexes = indexes.OrderBy(x => x.IndexType).ToArray();
             this.AutoIncrementFieldName = this.FieldDefs.FirstOrDefault(x => x.isAutoIncrement)?.name;
         }
 
