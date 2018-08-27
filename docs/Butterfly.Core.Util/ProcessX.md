@@ -8,6 +8,9 @@ public static class ProcessX
 
 | name | description |
 | --- | --- |
+| static [AddHttpUrlAcl](ProcessX/AddHttpUrlAcl.md)(…) |  |
+| static [AddHttpUrlAclIfNeeded](ProcessX/AddHttpUrlAclIfNeeded.md)(…) |  |
+| static [HasHttpUrlAcl](ProcessX/HasHttpUrlAcl.md)(…) |  |
 | static [OpenBrowser](ProcessX/OpenBrowser.md)(…) |  |
 
 ## See Also

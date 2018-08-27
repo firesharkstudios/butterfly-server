@@ -8,7 +8,7 @@ public static class FileX
 
 | name | description |
 | --- | --- |
-| static [GetCurrentDirectory](FileX/GetCurrentDirectory.md)() |  |
+| static [GetParentPathUntil](FileX/GetParentPathUntil.md)(…) |  |
 | static [GetReadFileStream](FileX/GetReadFileStream.md)(…) |  |
 | static [GetWriteFileStream](FileX/GetWriteFileStream.md)(…) |  |
 | static [LoadResourceAsText](FileX/LoadResourceAsText.md)(…) |  |
