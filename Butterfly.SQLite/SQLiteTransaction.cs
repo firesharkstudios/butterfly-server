@@ -107,16 +107,36 @@ namespace Butterfly.SQLite {
                         sb.Append($" INTEGER");
                     }
 
-                    if (!fieldDef.allowNull) sb.Append(" NOT NULL");
                 }
+                if (!fieldDef.allowNull) sb.Append(" NOT NULL");
 
             }
 
             if (!hasAutoIncrement) {
-                sb.Append(",\r\n");
-                sb.Append($" PRIMARY KEY ({string.Join(",", statement.Indexes[0].FieldNames)})");
+                for (int i = 0; i < statement.Indexes.Length; i++) {
+                    var index = statement.Indexes[i];
+                    if (index.IndexType==TableIndexType.Primary) {
+                        sb.Append(",\r\n");
+                        sb.Append($" PRIMARY KEY ({string.Join(",", index.FieldNames)})");
+                    }
+                }
             }
+
             sb.Append(")");
+
+            for (int i = 0; i < statement.Indexes.Length; i++) {
+                var index = statement.Indexes[i];
+                switch (index.IndexType) {
+                    case TableIndexType.Unique:
+                        sb.Append($"; CREATE UNIQUE INDEX {statement.TableName}_index{i} ON {statement.TableName} ({string.Join(",", index.FieldNames)})");
+                        break;
+                    case TableIndexType.Other:
+                        sb.Append($"; CREATE INDEX {statement.TableName}_index{i} ON {statement.TableName} ({string.Join(",", index.FieldNames)})");
+                        break;
+                }
+
+            }
+
             return sb.ToString();
         }
 
@@ -135,7 +155,7 @@ namespace Butterfly.SQLite {
                 if (hasAutoIncrement) {
                     return () => {
                         string sql = @"select last_insert_rowid()";
-                        var lastInsertRowIdCommand = new SqliteCommand(sql, this.connection);
+                        var lastInsertRowIdCommand = new SqliteCommand(sql, this.connection, this.transaction);
                         return (long)lastInsertRowIdCommand.ExecuteScalar();
                     };
                 }

@@ -49,7 +49,7 @@ namespace Butterfly.SQLite {
 
         protected override async Task<Table> LoadTableSchemaAsync(string tableName) {
             TableFieldDef[] fieldDefs = await this.GetFieldDefs(tableName);
-            TableIndex[] indexes = this.GetIndexes(tableName);
+            TableIndex[] indexes = await this.GetIndexes(tableName, fieldDefs);
             return new Table(tableName, fieldDefs, indexes);
         }
 
@@ -72,16 +72,53 @@ namespace Butterfly.SQLite {
             return fields.ToArray();
         }
 
-        protected TableIndex[] GetIndexes(string tableName) {
-            string commandText = $"SELECT * FROM {tableName} WHERE 1 = 2";
+        protected async Task<TableIndex[]> GetIndexes(string tableName, TableFieldDef[] fieldDefs) {
+            List<TableIndex> tableIndexes = new List<TableIndex>();
+            string commandText = $"PRAGMA index_list({tableName});";
             using (var connection = new SqliteConnection(this.ConnectionString)) {
-                connection.OpenAsync();
+                await connection.OpenAsync();
                 var command = new SqliteCommand(commandText, connection);
-                DataTable dataTable = new DataTable();
                 using (var reader = command.ExecuteReader()) {
-                    dataTable.Load(reader);
+                    while (await reader.ReadAsync()) {
+                        string indexName = null;
+                        TableIndexType indexType = TableIndexType.Other;
+                        for (int i = 0; i < reader.FieldCount; i++) {
+                            var name = reader.GetName(i);
+                            var value = ConvertValue(reader[i])?.ToString();
+                            if (name == "name") indexName = value;
+                            else if (name == "unique" && value == "1") indexType = TableIndexType.Unique;
+                            else if (name == "origin" && value == "pk") indexType = TableIndexType.Primary;
+                        }
+                        if (!string.IsNullOrEmpty(indexName)) {
+                            var fieldNames = await GetIndexFieldNames(indexName);
+                            var tableIndex = new TableIndex(indexType, fieldNames);
+                            tableIndexes.Add(tableIndex);
+                        }
+                    }
                 }
-                return new TableIndex[] { new TableIndex(TableIndexType.Primary, dataTable.PrimaryKey.Select(x => x.ColumnName).ToArray()) };
+            }
+
+            // Not sure why auto increment fields don't have an index created in PRAGMA results
+            foreach (var autoIncrementFieldDef in fieldDefs.Where(x => x.isAutoIncrement)) {
+                tableIndexes.Add(new TableIndex(TableIndexType.Primary, new string[] { autoIncrementFieldDef.name }));
+            }
+
+            return tableIndexes.ToArray();
+        }
+
+        protected async Task<string[]> GetIndexFieldNames(string indexName) {
+            List<string> fieldNames = new List<string>();
+            string commandText = $"PRAGMA index_info({indexName});";
+            using (var connection = new SqliteConnection(this.ConnectionString)) {
+                await connection.OpenAsync();
+                var command = new SqliteCommand(commandText, connection);
+                using (var reader = command.ExecuteReader()) {
+                    while (await reader.ReadAsync()) {
+                        var fieldName = ConvertValue(reader[2])?.ToString();
+                        fieldNames.Add(fieldName);
+                    }
+                }
+                return fieldNames.ToArray();
             }
         }
 
@@ -101,20 +138,13 @@ namespace Butterfly.SQLite {
                         command.Parameters.AddWithValue(keyValuePair.Key, keyValuePair.Value);
                     }
                     using (var reader = await command.ExecuteReaderAsync()) {
-                        //ReadOnlyCollection<DbColumn> columns = null;
                         while (await reader.ReadAsync()) {
-                            //if (columns == null) columns = reader.GetGetCGetColumnSchema();
                             Dict row = new Dictionary<string, object>();
                             for (int i=0; i<reader.FieldCount; i++) {
                                 var name = reader.GetName(i);
                                 var value = ConvertValue(reader[i]);
                                 row[name] = value;
                             }
-                            /*
-                            foreach (var column in columns) {
-                                row[column.ColumnName] = ConvertValue(reader[column.ColumnName]);
-                            }
-                            */
                             rows.Add(row);
                         }
                     }

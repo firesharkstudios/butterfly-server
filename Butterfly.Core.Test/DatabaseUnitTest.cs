@@ -320,9 +320,9 @@ namespace Butterfly.Core.Test {
                 Assert.AreEqual(3, someEmployees12.Length);
             }
 
+            // Test CASE statement
             if (database.CanFieldAlias) {
-                // Test retrieving rows on an indexed field
-                Dict[] someDepartments6 = await database.SelectRowsAsync("SELECT IF(id IS NULL, NULL, id) new_id FROM department WHERE id=@id", new {
+                Dict[] someDepartments6 = await database.SelectRowsAsync("SELECT CASE(id) WHEN NULL THEN NULL ELSE id END new_id FROM department WHERE id=@id", new {
                     id = salesDepartmentId,
                 });
                 Assert.AreEqual(1, someDepartments6.Length);

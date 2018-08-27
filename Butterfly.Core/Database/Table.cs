@@ -13,6 +13,10 @@ namespace Butterfly.Core.Database {
     /// </summary>
     public class Table {
         public Table(string name, TableFieldDef[] fieldDefs, TableIndex[] indexes) {
+            if (string.IsNullOrEmpty(name)) throw new ArgumentException("Name cannot be empty");
+            if (fieldDefs==null || fieldDefs.Length==0) throw new ArgumentException($"FieldDefs cannot be empty for {name}");
+            if (indexes==null || indexes.Length==0) throw new ArgumentException($"Indexes cannot be empty for {name}");
+
             this.Name = name;
             this.FieldDefs = fieldDefs;
             this.Indexes = indexes;
