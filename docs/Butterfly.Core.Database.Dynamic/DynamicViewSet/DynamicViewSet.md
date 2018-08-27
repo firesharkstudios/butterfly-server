@@ -1,12 +1,12 @@
 # DynamicViewSet constructor (1 of 2)
 
 ```csharp
-public DynamicViewSet(BaseDatabase database, Action<DataEventTransaction> listener)
+public DynamicViewSet(IDatabase database, Action<DataEventTransaction> listener)
 ```
 
 ## See Also
 
-* class [BaseDatabase](../../Butterfly.Core.Database/BaseDatabase.md)
+* interface [IDatabase](../../Butterfly.Core.Database/IDatabase.md)
 * class [DataEventTransaction](../../Butterfly.Core.Database.Event/DataEventTransaction.md)
 * class [DynamicViewSet](../DynamicViewSet.md)
 * namespace [Butterfly.Core.Database.Dynamic](../../Butterfly.Core.md)
@@ -16,12 +16,12 @@ public DynamicViewSet(BaseDatabase database, Action<DataEventTransaction> listen
 # DynamicViewSet constructor (2 of 2)
 
 ```csharp
-public DynamicViewSet(BaseDatabase database, Func<DataEventTransaction, Task> asyncListener)
+public DynamicViewSet(IDatabase database, Func<DataEventTransaction, Task> asyncListener)
 ```
 
 ## See Also
 
-* class [BaseDatabase](../../Butterfly.Core.Database/BaseDatabase.md)
+* interface [IDatabase](../../Butterfly.Core.Database/IDatabase.md)
 * class [DataEventTransaction](../../Butterfly.Core.Database.Event/DataEventTransaction.md)
 * class [DynamicViewSet](../DynamicViewSet.md)
 * namespace [Butterfly.Core.Database.Dynamic](../../Butterfly.Core.md)

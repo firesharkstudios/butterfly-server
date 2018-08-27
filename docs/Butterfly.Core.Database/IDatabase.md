@@ -10,17 +10,17 @@ public interface IDatabase
 | --- | --- |
 | [CanFieldAlias](IDatabase/CanFieldAlias.md) { get; } |  |
 | [CanJoin](IDatabase/CanJoin.md) { get; } |  |
+| [SelectCount](IDatabase/SelectCount.md) { get; } |  |
 | [Tables](IDatabase/Tables.md) { get; } |  |
 | [AddInputPreprocessor](IDatabase/AddInputPreprocessor.md)(…) |  |
 | [BeginTransaction](IDatabase/BeginTransaction.md)() |  |
 | [BeginTransactionAsync](IDatabase/BeginTransactionAsync.md)() |  |
 | [CreateAndStartDynamicViewAsync](IDatabase/CreateAndStartDynamicViewAsync.md)(…) |  (2 methods) |
 | [CreateDynamicViewSet](IDatabase/CreateDynamicViewSet.md)(…) |  (2 methods) |
-| [CreateFromResourceFile](IDatabase/CreateFromResourceFile.md)(…) |  |
 | [CreateFromResourceFileAsync](IDatabase/CreateFromResourceFileAsync.md)(…) |  |
-| [CreateFromText](IDatabase/CreateFromText.md)(…) |  |
 | [CreateFromTextAsync](IDatabase/CreateFromTextAsync.md)(…) |  |
 | [DeleteAndCommitAsync](IDatabase/DeleteAndCommitAsync.md)(…) |  |
+| [GetInitialDataEventsAsync](IDatabase/GetInitialDataEventsAsync.md)(…) |  |
 | [InsertAndCommitAsync&lt;T&gt;](IDatabase/InsertAndCommitAsync.md)(…) |  |
 | [OnNewCommittedTransaction](IDatabase/OnNewCommittedTransaction.md)(…) |  (2 methods) |
 | [OnNewUncommittedTransaction](IDatabase/OnNewUncommittedTransaction.md)(…) |  (2 methods) |
@@ -28,7 +28,7 @@ public interface IDatabase
 | [QueryRowsAsync](IDatabase/QueryRowsAsync.md)(…) |  |
 | [QueryValueAsync&lt;T&gt;](IDatabase/QueryValueAsync.md)(…) |  |
 | [SelectRowAsync](IDatabase/SelectRowAsync.md)(…) |  |
-| [SelectRowsAsync](IDatabase/SelectRowsAsync.md)(…) |  |
+| [SelectRowsAsync](IDatabase/SelectRowsAsync.md)(…) |  (2 methods) |
 | [SelectValueAsync&lt;T&gt;](IDatabase/SelectValueAsync.md)(…) |  |
 | [SetDefaultValue](IDatabase/SetDefaultValue.md)(…) |  |
 | [SetOverrideValue](IDatabase/SetOverrideValue.md)(…) |  |

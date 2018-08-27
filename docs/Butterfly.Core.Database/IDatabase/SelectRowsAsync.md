@@ -1,4 +1,18 @@
-# IDatabase.SelectRowsAsync method
+# IDatabase.SelectRowsAsync method (1 of 2)
+
+```csharp
+public Task<Dictionary<string, object>[]> SelectRowsAsync(SelectStatement statement, object vars)
+```
+
+## See Also
+
+* class [SelectStatement](../SelectStatement.md)
+* interface [IDatabase](../IDatabase.md)
+* namespace [Butterfly.Core.Database](../../Butterfly.Core.md)
+
+---
+
+# IDatabase.SelectRowsAsync method (2 of 2)
 
 ```csharp
 public Task<Dictionary<string, object>[]> SelectRowsAsync(string selectStatement, 

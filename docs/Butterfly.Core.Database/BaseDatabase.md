@@ -22,11 +22,10 @@ public abstract class BaseDatabase : IDatabase
 | [BeginTransactionAsync](BaseDatabase/BeginTransactionAsync.md)() |  |
 | [CreateAndStartDynamicViewAsync](BaseDatabase/CreateAndStartDynamicViewAsync.md)(…) |  (2 methods) |
 | [CreateDynamicViewSet](BaseDatabase/CreateDynamicViewSet.md)(…) |  (2 methods) |
-| [CreateFromResourceFile](BaseDatabase/CreateFromResourceFile.md)(…) |  |
 | [CreateFromResourceFileAsync](BaseDatabase/CreateFromResourceFileAsync.md)(…) |  |
-| [CreateFromText](BaseDatabase/CreateFromText.md)(…) |  |
 | [CreateFromTextAsync](BaseDatabase/CreateFromTextAsync.md)(…) |  |
 | [DeleteAndCommitAsync](BaseDatabase/DeleteAndCommitAsync.md)(…) |  |
+| [GetInitialDataEventsAsync](BaseDatabase/GetInitialDataEventsAsync.md)(…) |  |
 | [InsertAndCommitAsync&lt;T&gt;](BaseDatabase/InsertAndCommitAsync.md)(…) |  |
 | [OnNewCommittedTransaction](BaseDatabase/OnNewCommittedTransaction.md)(…) |  (2 methods) |
 | [OnNewUncommittedTransaction](BaseDatabase/OnNewUncommittedTransaction.md)(…) |  (2 methods) |
@@ -34,7 +33,7 @@ public abstract class BaseDatabase : IDatabase
 | [QueryRowsAsync](BaseDatabase/QueryRowsAsync.md)(…) |  |
 | [QueryValueAsync&lt;T&gt;](BaseDatabase/QueryValueAsync.md)(…) |  |
 | [SelectRowAsync](BaseDatabase/SelectRowAsync.md)(…) |  |
-| [SelectRowsAsync](BaseDatabase/SelectRowsAsync.md)(…) |  |
+| [SelectRowsAsync](BaseDatabase/SelectRowsAsync.md)(…) |  (2 methods) |
 | [SelectValueAsync&lt;T&gt;](BaseDatabase/SelectValueAsync.md)(…) |  |
 | [SetDefaultValue](BaseDatabase/SetDefaultValue.md)(…) |  |
 | [SetOverrideValue](BaseDatabase/SetOverrideValue.md)(…) |  |
