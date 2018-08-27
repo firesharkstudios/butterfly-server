@@ -5,7 +5,7 @@
 
 # Run this Example
 
-This assumes you have [Cordova](https://cordova.apache.org/) installed.
+This assumes you have [Cordova](https://cordova.apache.org/) and [Android Studio](https://developer.android.com/studio/) installed.
 
 Run this in a terminal or command prompt...
 
