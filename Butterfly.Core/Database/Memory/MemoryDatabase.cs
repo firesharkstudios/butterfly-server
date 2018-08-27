@@ -24,10 +24,11 @@ namespace Butterfly.Core.Database.Memory {
         public MemoryDatabase() : base(null) {
         }
 
-        protected override void LoadSchema() {
+        protected override Task LoadSchemaAsync() {
+            return Task.FromResult(0);
         }
 
-        protected override Table LoadTableSchema(string tableName) {
+        protected override Task<Table> LoadTableSchemaAsync(string tableName) {
             return null;
         }
 

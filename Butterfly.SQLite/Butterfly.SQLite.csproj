@@ -19,10 +19,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>C:\Users\Kent\Documents\Visual Studio 2017\Projects\Butterfly\Butterfly.SQLite\Butterfly.SQLite.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SQLite" Version="1.0.109.1" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>

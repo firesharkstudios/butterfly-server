@@ -11,13 +11,13 @@ namespace Butterfly.MySql.Test {
     [TestClass]
     public class MySqlDatabaseUnitTest {
         [TestMethod]
-        public async Task DataMySqlDatabase() {
+        public async Task TestDatabase() {
             IDatabase database = new Butterfly.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_test");
             await DatabaseUnitTest.TestDatabase(database);
         }
 
         [TestMethod]
-        public async Task DynamicMySqlDatabase() {
+        public async Task TestDynamic() {
             BaseDatabase database = new Butterfly.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_test");
             await DynamicUnitTest.TestDatabase(database);
         }

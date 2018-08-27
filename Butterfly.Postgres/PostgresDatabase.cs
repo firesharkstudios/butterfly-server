@@ -30,7 +30,7 @@ namespace Butterfly.Postgres {
 
         public override bool CanFieldAlias => true;
 
-        protected override void LoadSchema() {
+        protected override async Task LoadSchemaAsync() {
             string commandText = "SELECT table_name FROM information_schema.tables WHERE table_schema='public'";
             using (var connection = new NpgsqlConnection(this.ConnectionString)) {
                 connection.Open();
@@ -38,27 +38,27 @@ namespace Butterfly.Postgres {
                 using (var reader = command.ExecuteReader()) {
                     while (reader.Read()) {
                         string tableName = reader[0].ToString();
-                        Table table = this.LoadTableSchema(tableName);
+                        Table table = await this.LoadTableSchemaAsync(tableName);
                         this.tableByName[table.Name] = table;
                     }
                 }
             }
         }
 
-        protected override Table LoadTableSchema(string tableName) {
-            TableFieldDef[] fieldDefs = this.GetFieldDefs(tableName);
+        protected override async Task<Table> LoadTableSchemaAsync(string tableName) {
+            TableFieldDef[] fieldDefs = await this.GetFieldDefs(tableName);
             TableIndex[] uniqueIndexes = this.GetUniqueIndexes(tableName);
             return new Table(tableName, fieldDefs, uniqueIndexes);
         }
 
-        protected TableFieldDef[] GetFieldDefs(string tableName) {
+        protected async Task<TableFieldDef[]> GetFieldDefs(string tableName) {
             List<TableFieldDef> fields = new List<TableFieldDef>();
             string commandText = $"select column_name, data_type, character_maximum_length, is_nullable, column_default from INFORMATION_SCHEMA.COLUMNS where table_name = @tableName";
             using (var connection = new NpgsqlConnection(this.ConnectionString)) {
                 connection.Open();
                 var command = new NpgsqlCommand(commandText, connection);
                 command.Parameters.AddWithValue("tableName", tableName);
-                using (var reader = command.ExecuteReader()) {
+                using (var reader = await command.ExecuteReaderAsync()) {
                     while (reader.Read()) {
                         string name = reader[0].ToString();
                         string typeText = reader[1].ToString();

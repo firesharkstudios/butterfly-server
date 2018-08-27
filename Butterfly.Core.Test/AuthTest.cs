@@ -23,7 +23,7 @@ namespace Butterfly.Core.Test {
             //var database = new Butterfly.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_auth_test");
             await TruncateData(database);
 
-            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Core.Auth.Test.db.sql");
+            await database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Core.Auth.Test.db.sql");
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString());
             database.SetDefaultValue("created_at", tableName => DateTime.Now.ToUnixTimestamp());
             database.SetDefaultValue("updated_at", tableName => DateTime.Now.ToUnixTimestamp());

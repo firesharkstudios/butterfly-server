@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Common;
-using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,45 +29,42 @@ namespace Butterfly.SQLite {
 
         public override bool CanFieldAlias => true;
 
-        public SQLiteDatabase(string fileName) : base($"Data Source={fileName};Version=3;") {
-            if (!File.Exists(fileName)) {
-                SQLiteConnection.CreateFile(fileName);
-            }
+        public SQLiteDatabase(string connectionString) : base(connectionString) {
         }
 
-        protected override void LoadSchema() {
+        protected override async Task LoadSchemaAsync() {
             string commandText = "SELECT name FROM sqlite_master WHERE type='table';";
-            using (var connection = new SQLiteConnection(this.ConnectionString)) {
+            using (var connection = new SqliteConnection(this.ConnectionString)) {
                 connection.Open();
-                var command = new SQLiteCommand(commandText, connection);
+                var command = new SqliteCommand(commandText, connection);
                 using (var reader = command.ExecuteReader()) {
                     while (reader.Read()) {
                         string tableName = reader[0].ToString();
-                        Table table = this.LoadTableSchema(tableName);
+                        Table table = await this.LoadTableSchemaAsync(tableName);
                         this.tableByName[table.Name] = table;
                     }
                 }
             }
         }
 
-        protected override Table LoadTableSchema(string tableName) {
-            TableFieldDef[] fieldDefs = this.GetFieldDefs(tableName);
+        protected override async Task<Table> LoadTableSchemaAsync(string tableName) {
+            TableFieldDef[] fieldDefs = await this.GetFieldDefs(tableName);
             TableIndex[] indexes = this.GetIndexes(tableName);
             return new Table(tableName, fieldDefs, indexes);
         }
 
-        protected TableFieldDef[] GetFieldDefs(string tableName) {
+        protected async Task<TableFieldDef[]> GetFieldDefs(string tableName) {
             List<TableFieldDef> fields = new List<TableFieldDef>();
             string commandText = $"SELECT * FROM {tableName} WHERE 1 = 2";
-            using (var connection = new SQLiteConnection(this.ConnectionString)) {
-                connection.OpenAsync();
-                var command = new SQLiteCommand(commandText, connection);
+            using (var connection = new SqliteConnection(this.ConnectionString)) {
+                await connection.OpenAsync();
+                var command = new SqliteCommand(commandText, connection);
                 DataTable dataTable = new DataTable();
                 using (var reader = command.ExecuteReader()) {
                     dataTable.Load(reader);
                 }
                 foreach (DataColumn dataColumn in dataTable.Columns) {
-                    bool isAutoIncrement = dataColumn.DataType == typeof(long) && dataTable.PrimaryKey.Length==1 && dataTable.PrimaryKey[0].ColumnName == dataColumn.ColumnName;
+                    bool isAutoIncrement = (dataColumn.DataType == typeof(long) || dataColumn.DataType == typeof(int)) && dataTable.PrimaryKey.Length==1 && dataTable.PrimaryKey[0].ColumnName == dataColumn.ColumnName;
                     TableFieldDef fieldDef = new TableFieldDef(dataColumn.ColumnName, dataColumn.DataType, dataColumn.MaxLength, dataColumn.AllowDBNull, isAutoIncrement);
                     fields.Add(fieldDef);
                 }
@@ -77,9 +74,9 @@ namespace Butterfly.SQLite {
 
         protected TableIndex[] GetIndexes(string tableName) {
             string commandText = $"SELECT * FROM {tableName} WHERE 1 = 2";
-            using (var connection = new SQLiteConnection(this.ConnectionString)) {
+            using (var connection = new SqliteConnection(this.ConnectionString)) {
                 connection.OpenAsync();
-                var command = new SQLiteCommand(commandText, connection);
+                var command = new SqliteCommand(commandText, connection);
                 DataTable dataTable = new DataTable();
                 using (var reader = command.ExecuteReader()) {
                     dataTable.Load(reader);
@@ -97,20 +94,27 @@ namespace Butterfly.SQLite {
 
             List<Dict> rows = new List<Dict>();
             try {
-                using (var connection = new SQLiteConnection(this.ConnectionString)) {
+                using (var connection = new SqliteConnection(this.ConnectionString)) {
                     await connection.OpenAsync();
-                    var command = new SQLiteCommand(executableSql, connection);
+                    var command = new SqliteCommand(executableSql, connection);
                     foreach (var keyValuePair in executableParams) {
                         command.Parameters.AddWithValue(keyValuePair.Key, keyValuePair.Value);
                     }
                     using (var reader = await command.ExecuteReaderAsync()) {
-                        ReadOnlyCollection<DbColumn> columns = null;
+                        //ReadOnlyCollection<DbColumn> columns = null;
                         while (await reader.ReadAsync()) {
-                            if (columns == null) columns = reader.GetColumnSchema();
+                            //if (columns == null) columns = reader.GetGetCGetColumnSchema();
                             Dict row = new Dictionary<string, object>();
+                            for (int i=0; i<reader.FieldCount; i++) {
+                                var name = reader.GetName(i);
+                                var value = ConvertValue(reader[i]);
+                                row[name] = value;
+                            }
+                            /*
                             foreach (var column in columns) {
                                 row[column.ColumnName] = ConvertValue(reader[column.ColumnName]);
                             }
+                            */
                             rows.Add(row);
                         }
                     }

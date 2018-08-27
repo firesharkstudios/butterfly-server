@@ -3,12 +3,14 @@
 
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 using Butterfly.Core.Util;
 
 namespace Butterfly.Example.HelloWorld.Server {
     class Program {
-        static void Main(string[] args) {
+        // Using async Task Main() requires adding <LangVersion>latest</LangVersion> to .csproj file
+        static async Task Main(string[] args) {
             const int port = 8080;
 
             var basePath = FileX.GetParentPathUntil(Directory.GetCurrentDirectory(), "Butterfly.Example.HelloWorld.Server");
@@ -16,7 +18,7 @@ namespace Butterfly.Example.HelloWorld.Server {
             using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext($"http://+:{port}/", staticPath: staticPath)) {
                 // Create a MemoryDatabase (no persistence, limited features)
                 var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-                database.CreateFromText(@"CREATE TABLE message (
+                await database.CreateFromTextAsync(@"CREATE TABLE message (
 	                id INT NOT NULL AUTO_INCREMENT,
 	                text VARCHAR(40) NOT NULL,
 	                PRIMARY KEY (id)

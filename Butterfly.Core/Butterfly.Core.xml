@@ -483,27 +483,21 @@
             Dictionary of <see cref="T:Butterfly.Core.Database.Table"/> instances keyed by name
             </summary>
         </member>
-        <member name="M:Butterfly.Core.Database.IDatabase.CreateFromResourceFile(System.Reflection.Assembly,System.String)">
+        <member name="M:Butterfly.Core.Database.IDatabase.CreateFromResourceFileAsync(System.Reflection.Assembly,System.String)">
             <summary>
-            Creates database tables from an embedded resource file by internally calling <see cref="M:Butterfly.Core.Database.IDatabase.CreateFromText(System.String)"/> with the contents of the embedded resource file"
+            Creates database tables from an embedded resource file by internally calling <see cref="!:CreateFromText(string)"/> with the contents of the embedded resource file"
             </summary>
             <param name="assembly"></param>
             <param name="resourceFile"></param>
             <returns></returns>
         </member>
-        <member name="M:Butterfly.Core.Database.IDatabase.CreateFromResourceFileAsync(System.Reflection.Assembly,System.String)">
-            <inheritDoc cref="M:Butterfly.Core.Database.IDatabase.CreateFromResourceFile(System.Reflection.Assembly,System.String)"/>
-        </member>
-        <member name="M:Butterfly.Core.Database.IDatabase.CreateFromText(System.String)">
+        <member name="M:Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)">
             <summary>
             Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate).<para/>
             Lines beginning with <code>--</code> will be ignored. Each CREATE statement must include a PRIMARY KEY definition. If the table already exists, the CREATE statement is ignored.<para/>
             Creating database tables with this method is not required (primarily done as a convenience method for unit testing)"/>.
             </summary>
             <param name="createStatements"></param>
-        </member>
-        <member name="M:Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)">
-            <inheritDoc cref="M:Butterfly.Core.Database.IDatabase.CreateFromText(System.String)"/>
         </member>
         <member name="M:Butterfly.Core.Database.IDatabase.OnNewUncommittedTransaction(System.Action{Butterfly.Core.Database.Event.DataEventTransaction})">
             <summary>

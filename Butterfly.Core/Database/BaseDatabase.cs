@@ -33,7 +33,7 @@ namespace Butterfly.Core.Database {
 
         protected BaseDatabase(string connectionString) {
             this.ConnectionString = connectionString;
-            this.LoadSchema();
+            this.LoadSchemaAsync().Wait();
         }
 
         /// <summary>
@@ -79,43 +79,10 @@ namespace Butterfly.Core.Database {
         }
 
 
-        public void CreateFromResourceFile(Assembly assembly, string resourceFile) {
-            //logger.Debug($"CreateFromResourceFile():resourceNames={string.Join(",", assembly.GetManifestResourceNames())}");
-            string sql = FileX.LoadResourceAsText(assembly, resourceFile);
-            this.CreateFromText(sql);
-        }
-
         public async Task CreateFromResourceFileAsync(Assembly assembly, string resourceFile) {
             //logger.Debug($"CreateFromResourceFileAsync():resourceNames={string.Join(",", assembly.GetManifestResourceNames())}");
             string sql = await FileX.LoadResourceAsTextAsync(assembly, resourceFile);
             await this.CreateFromTextAsync(sql);
-        }
-
-        public void CreateFromText(string createStatements) {
-            logger.Trace($"CreateFromText():createStatements={createStatements}");
-            var noCommentSql = SQL_COMMENT.Replace(createStatements, "");
-            var sqlParts = noCommentSql.Split(';').Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x));
-
-            List<string> tableSchemasToLoad = new List<string>();
-            using (var transaction = this.BeginTransaction() as BaseTransaction) {
-                foreach (var sqlPart in sqlParts) {
-                    if (!string.IsNullOrWhiteSpace(sqlPart)) {
-                        CreateStatement statement = this.CreateStatement(sqlPart);
-                        if (!this.Tables.Keys.Contains(statement.TableName)) {
-                            bool tableSchemaLoaded = transaction.Create(statement);
-                            if (!tableSchemaLoaded) {
-                                tableSchemasToLoad.Add(statement.TableName);
-                            }
-                        }
-                    }
-                }
-                transaction.Commit();
-            }
-
-            foreach (var tableName in tableSchemasToLoad) {
-                Table table = this.LoadTableSchema(tableName);
-                this.tableByName[table.Name] = table;
-            }
         }
 
         public async Task CreateFromTextAsync(string createStatements) {
@@ -140,7 +107,7 @@ namespace Butterfly.Core.Database {
             }
 
             foreach (var tableName in tableSchemasToLoad) {
-                Table table = this.LoadTableSchema(tableName);
+                Table table = await this.LoadTableSchemaAsync(tableName);
                 this.tableByName[table.Name] = table;
             }
         }
@@ -149,9 +116,9 @@ namespace Butterfly.Core.Database {
             return new CreateStatement(sql);
         }
 
-        protected abstract void LoadSchema();
+        protected abstract Task LoadSchemaAsync();
 
-        protected abstract Table LoadTableSchema(string tableName);
+        protected abstract Task<Table> LoadTableSchemaAsync(string tableName);
 
         // Manage data event transaction listeners
         protected readonly List<DataEventTransactionListener> uncommittedTransactionListeners = new List<DataEventTransactionListener>();

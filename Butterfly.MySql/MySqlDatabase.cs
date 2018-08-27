@@ -31,13 +31,13 @@ namespace Butterfly.MySql {
 
         public override bool CanFieldAlias => true;
 
-        protected override void LoadSchema() {
+        protected override async Task LoadSchemaAsync() {
             try {
                 string commandText = "show tables";
-                using (MySqlDataReader reader = ExecuteReader(this.ConnectionString, commandText)) {
+                using (MySqlDataReader reader = await ExecuteReaderAsync(this.ConnectionString, commandText)) {
                     while (reader.Read()) {
                         string tableName = reader[0].ToString();
-                        Table table = this.LoadTableSchema(tableName);
+                        Table table = await this.LoadTableSchemaAsync(tableName);
                         this.tableByName[tableName] = table;
                     }
                 }
@@ -52,16 +52,16 @@ namespace Butterfly.MySql {
             }
         }
 
-        protected override Table LoadTableSchema(string tableName) {
-            TableFieldDef[] fieldDefs = this.GetFieldDefs(tableName);
+        protected override async Task<Table> LoadTableSchemaAsync(string tableName) {
+            TableFieldDef[] fieldDefs = await this.GetFieldDefs(tableName);
             TableIndex[] uniqueIndexes = this.GetUniqueIndexes(tableName);
             return new Table(tableName, fieldDefs, uniqueIndexes);
         }
 
-        protected TableFieldDef[] GetFieldDefs(string tableName) {
+        protected async Task<TableFieldDef[]> GetFieldDefs(string tableName) {
             List<TableFieldDef> fields = new List<TableFieldDef>();
             string commandText = $"DESCRIBE {tableName}";
-            using (MySqlDataReader reader = ExecuteReader(this.ConnectionString, commandText)) {
+            using (MySqlDataReader reader = await ExecuteReaderAsync(this.ConnectionString, commandText)) {
                 while (reader.Read()) {
                     string name = reader[0].ToString();
                     string typeText = reader[1].ToString();
@@ -191,12 +191,12 @@ namespace Butterfly.MySql {
             }
         }
 
-        private static async Task<MySqlDataReader> ExecuteReaderAsync(string connectionString, string commandText, MySqlParameter[] parameters, CommandType commandType = CommandType.Text) {
+        private static async Task<MySqlDataReader> ExecuteReaderAsync(string connectionString, string commandText, MySqlParameter[] parameters = null, CommandType commandType = CommandType.Text) {
             MySqlConnection connection = new MySqlConnection(connectionString);
             await connection.OpenAsync();
             using (MySqlCommand command = new MySqlCommand(commandText, connection)) {
                 command.CommandType = commandType;
-                command.Parameters.AddRange(parameters);
+                if (parameters!=null) command.Parameters.AddRange(parameters);
                 return (MySqlDataReader) await command.ExecuteReaderAsync(CommandBehavior.CloseConnection);
             }
         }

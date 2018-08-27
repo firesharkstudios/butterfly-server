@@ -26,7 +26,7 @@ namespace Butterfly.Core.Notify.Test {
         [TestMethod]
         public static async Task SendEmailNotifyMessage(INotifyMessageSender notifyMessageSender) {
             IDatabase database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Notify.Test.db.sql");
+            await database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Notify.Test.db.sql");
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString());
             database.SetDefaultValue("created_at", tableName => DateTime.Now);
 
@@ -43,7 +43,7 @@ namespace Butterfly.Core.Notify.Test {
         [TestMethod]
         public static async Task SendPhoneTextNotifyMessage(INotifyMessageSender notifyMessageSender) {
             IDatabase database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Notify.Test.db.sql");
+            await database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Notify.Test.db.sql");
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString());
             database.SetDefaultValue("created_at", tableName => DateTime.Now);
 

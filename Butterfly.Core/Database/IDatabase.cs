@@ -93,9 +93,6 @@ namespace Butterfly.Core.Database {
         /// <param name="assembly"></param>
         /// <param name="resourceFile"></param>
         /// <returns></returns>
-        void CreateFromResourceFile(Assembly assembly, string resourceFile);
-
-        /// <inheritDoc cref="CreateFromResourceFile(Assembly, string)"/>
         Task CreateFromResourceFileAsync(Assembly assembly, string resourceFile);
 
         /// <summary>
@@ -104,9 +101,6 @@ namespace Butterfly.Core.Database {
         /// Creating database tables with this method is not required (primarily done as a convenience method for unit testing)"/>.
         /// </summary>
         /// <param name="createStatements"></param>
-        void CreateFromText(string createStatements);
-
-        /// <inheritDoc cref="CreateFromText(string)"/>
         Task CreateFromTextAsync(string createStatements);
 
         /// <summary>

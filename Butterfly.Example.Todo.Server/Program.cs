@@ -3,6 +3,7 @@
 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 using NLog;
 
@@ -14,12 +15,13 @@ namespace Butterfly.Example.HelloWorld.Server {
     class Program {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        static void Main(string[] args) {
+        // Using async Task Main() requires adding <LangVersion>latest</LangVersion> to .csproj file
+        static async Task Main(string[] args) {
             logger.Info("Main()");
             using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/")) {
                 // Create a MemoryDatabase (no persistence, limited features)
                 var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-                database.CreateFromText(@"CREATE TABLE todo (
+                await database.CreateFromTextAsync(@"CREATE TABLE todo (
 	                id VARCHAR(50) NOT NULL,
 	                name VARCHAR(40) NOT NULL,
 	                PRIMARY KEY(id)

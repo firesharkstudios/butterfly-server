@@ -12,16 +12,16 @@ namespace Butterfly.MySql.Test {
     [TestClass]
     public class SQLiteTest {
         [TestMethod]
-        public async Task DataMySqlDatabase() {
-            string fileName = Path.GetTempFileName();
-            IDatabase database = new Butterfly.SQLite.SQLiteDatabase(fileName);
+        public async Task TestDatabase() {
+            // See https://github.com/aspnet/Microsoft.Data.Sqlite/wiki/Connection-Strings
+            IDatabase database = new Butterfly.SQLite.SQLiteDatabase("Filename=./my_database.db");
             await DatabaseUnitTest.TestDatabase(database);
         }
 
         [TestMethod]
-        public async Task DynamicMySqlDatabase() {
-            string fileName = Path.GetTempFileName();
-            IDatabase database = new Butterfly.SQLite.SQLiteDatabase(fileName);
+        public async Task TestDynamic() {
+            // See https://github.com/aspnet/Microsoft.Data.Sqlite/wiki/Connection-Strings
+            IDatabase database = new Butterfly.SQLite.SQLiteDatabase("Filename=./my_database.db");
             await DynamicUnitTest.TestDatabase(database);
         }
     }

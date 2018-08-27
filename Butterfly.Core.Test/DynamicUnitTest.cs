@@ -44,7 +44,7 @@ namespace Butterfly.Core.Test {
         */
 
         public static async Task TestDatabase(IDatabase database) {
-            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Core.Test.db.sql");
+            await database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Core.Test.db.sql");
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString(), "employee");
             database.SetDefaultValue("created_at", tableName => DateTime.Now);
             database.SetDefaultValue("updated_at", tableName => DateTime.Now);

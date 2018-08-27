@@ -6,7 +6,7 @@ using System;
 using System.Text;
 using System.Threading.Tasks;
 
-using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
 using NLog;
 
 using Butterfly.Core.Database;
@@ -20,22 +20,22 @@ namespace Butterfly.SQLite {
 
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected SQLiteConnection connection;
-        protected global::System.Data.SQLite.SQLiteTransaction transaction;
+        protected SqliteConnection connection;
+        protected Microsoft.Data.Sqlite.SqliteTransaction transaction;
 
         public SQLiteTransaction(SQLiteDatabase database) : base(database) {
         }
 
         public override void Begin() {
             SQLiteDatabase sqliteDatabase = this.database as SQLiteDatabase;
-            this.connection = new SQLiteConnection(sqliteDatabase.ConnectionString);
+            this.connection = new SqliteConnection(sqliteDatabase.ConnectionString);
             this.connection.Open();
             this.transaction = this.connection.BeginTransaction();
         }
 
         public override async Task BeginAsync() {
             SQLiteDatabase sqliteDatabase = this.database as SQLiteDatabase;
-            this.connection = new SQLiteConnection(sqliteDatabase.ConnectionString);
+            this.connection = new SqliteConnection(sqliteDatabase.ConnectionString);
             await this.connection.OpenAsync();
             this.transaction = this.connection.BeginTransaction();
         }
@@ -125,7 +125,7 @@ namespace Butterfly.SQLite {
                 InsertStatement statement = new InsertStatement(this.database, executableSql);
                 bool hasAutoIncrement = statement.StatementFromRefs[0].table.AutoIncrementFieldName != null;
 
-                var command = new SQLiteCommand(executableSql, this.connection);
+                var command = new SqliteCommand(executableSql, this.connection, this.transaction);
                 if (executableParams != null) {
                     foreach (var keyValuePair in executableParams) {
                         command.Parameters.AddWithValue(keyValuePair.Key, keyValuePair.Value);
@@ -135,7 +135,7 @@ namespace Butterfly.SQLite {
                 if (hasAutoIncrement) {
                     return () => {
                         string sql = @"select last_insert_rowid()";
-                        var lastInsertRowIdCommand = new SQLiteCommand(sql, this.connection);
+                        var lastInsertRowIdCommand = new SqliteCommand(sql, this.connection);
                         return (long)lastInsertRowIdCommand.ExecuteScalar();
                     };
                 }
@@ -143,7 +143,7 @@ namespace Butterfly.SQLite {
                     return null;
                 }
             }
-            catch (SQLiteException e) {
+            catch (SqliteException e) {
                 if (e.Message.StartsWith("Duplicate entry")) {
                     throw new DuplicateKeyDatabaseException(e.Message);
                 }
@@ -167,7 +167,7 @@ namespace Butterfly.SQLite {
 
         protected int DoExecute(string executableSql, Dict executableParams = null) {
             try {
-                var command = new SQLiteCommand(executableSql, this.connection);
+                var command = new SqliteCommand(executableSql, this.connection, this.transaction);
                 if (executableParams != null) {
                     foreach (var keyValuePair in executableParams) {
                         command.Parameters.AddWithValue(keyValuePair.Key, keyValuePair.Value);
@@ -175,14 +175,14 @@ namespace Butterfly.SQLite {
                 }
                 return command.ExecuteNonQuery();
             }
-            catch (SQLiteException e) {
+            catch (SqliteException e) {
                 throw new DatabaseException(e.Message);
             }
         }
 
         protected async Task<int> DoExecuteAsync(string executableSql, Dict executableParams = null) {
             try {
-                var command = new SQLiteCommand(executableSql, this.connection);
+                var command = new SqliteCommand(executableSql, this.connection, this.transaction);
                 if (executableParams != null) {
                     foreach (var keyValuePair in executableParams) {
                         command.Parameters.AddWithValue(keyValuePair.Key, keyValuePair.Value);
@@ -190,7 +190,7 @@ namespace Butterfly.SQLite {
                 }
                 return await command.ExecuteNonQueryAsync();
             }
-            catch (SQLiteException e) {
+            catch (SqliteException e) {
                 throw new DatabaseException(e.Message);
             }
         }

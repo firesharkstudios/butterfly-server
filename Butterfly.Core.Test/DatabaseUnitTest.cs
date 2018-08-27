@@ -18,9 +18,9 @@ namespace Butterfly.Core.Test {
     [TestClass]
     public class DatabaseUnitTest {
         [TestMethod]
-        public void Parse() {
+        public async Task Parse() {
             IDatabase database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Core.Test.db.sql");
+            await database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Core.Test.db.sql");
             var tableRefs = StatementFromRef.ParseFromRefs(database, "employee_contact ec INNER JOIN employee e ON ec.employee_id=e.id AND 1=2 left JOIN department d on e.department_id=d.id and 1=2");
             Assert.AreEqual(3, tableRefs.Length);
             Assert.AreEqual(tableRefs[0].table.Name, "employee_contact");
@@ -50,7 +50,7 @@ namespace Butterfly.Core.Test {
         }
 
         public static async Task TestDatabase(IDatabase database) {
-            database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Core.Test.db.sql");
+            await database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Core.Test.db.sql");
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString(), "employee");
             database.SetDefaultValue("created_at", tableName => DateTime.Now);
             database.SetDefaultValue("updated_at", tableName => DateTime.Now);
