@@ -80,6 +80,8 @@ namespace Butterfly.Core.Database {
 
         bool CanFieldAlias { get; }
 
+        int SelectCount { get; }
+
         /// <summary>
         /// Dictionary of <see cref="Table"/> instances keyed by name
         /// </summary>
@@ -157,6 +159,8 @@ namespace Butterfly.Core.Database {
         /// <param name="overrideLimit"></param>
         /// <returns></returns>
         Task<Dict[]> SelectRowsAsync(string selectStatement, dynamic vars = null, int overrideLimit = -1);
+
+        Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic vars);
 
         Task<T> QueryValueAsync<T>(string storedProcedureName, dynamic vars = null, T defaultValue = default(T));
 
@@ -307,5 +311,8 @@ namespace Butterfly.Core.Database {
 
         /// <inheritdoc cref="CreateAndStartDynamicViewAsync(string, Action{DataEventTransaction}, dynamic, string, string[])"/>
         Task<DynamicViewSet> CreateAndStartDynamicViewAsync(string sql, Func<DataEventTransaction, Task> listener, dynamic values = null, string name = null, string[] keyFieldNames = null);
+
+        Task<DataEvent[]> GetInitialDataEventsAsync(string dataEventName, string[] keyFieldNames, SelectStatement selectStatement, dynamic statementParams = null);
+
     }
 }

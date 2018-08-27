@@ -43,7 +43,7 @@ namespace Butterfly.Core.Test {
         }
         */
 
-        public static async Task TestDatabase(BaseDatabase database) {
+        public static async Task TestDatabase(IDatabase database) {
             database.CreateFromResourceFile(Assembly.GetExecutingAssembly(), "Butterfly.Core.Test.db.sql");
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString(), "employee");
             database.SetDefaultValue("created_at", tableName => DateTime.Now);
@@ -60,7 +60,7 @@ namespace Butterfly.Core.Test {
             }
         }
 
-        public static async Task TestInsertUpdateDeleteEvents(BaseDatabase database, object salesDepartmentId, string selectSourceSql, string updateField, object updateValue, int initialCount, int insertCount, int updateCount, int deleteCount, string[] keyFieldNames = null) {
+        public static async Task TestInsertUpdateDeleteEvents(IDatabase database, object salesDepartmentId, string selectSourceSql, string updateField, object updateValue, int initialCount, int insertCount, int updateCount, int deleteCount, string[] keyFieldNames = null) {
             List<DataEventTransaction> dataEventTransactionCollector = new List<DataEventTransaction>();
             using (DynamicViewSet dynamicViewSet = new DynamicViewSet(database, listener: dataEventTransaction => {
                 dataEventTransactionCollector.Add(dataEventTransaction);
@@ -130,7 +130,7 @@ namespace Butterfly.Core.Test {
             }
         }
 
-        public static async Task TestMinimalSelects(BaseDatabase database) {
+        public static async Task TestMinimalSelects(IDatabase database) {
             await DatabaseUnitTest.TruncateData(database);
             using (DynamicViewSet dynamicViewSet = new DynamicViewSet(database, listener: dataEventTransaction => {
             })) {

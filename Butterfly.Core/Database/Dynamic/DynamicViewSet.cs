@@ -36,13 +36,13 @@ namespace Butterfly.Core.Database.Dynamic {
 
         protected readonly List<IDisposable> disposables = new List<IDisposable>();
 
-        public DynamicViewSet(BaseDatabase database, Action<DataEventTransaction> listener) {
+        public DynamicViewSet(IDatabase database, Action<DataEventTransaction> listener) {
             this.Id = Guid.NewGuid().ToString();
             this.Database = database;
             this.listener = listener;
         }
 
-        public DynamicViewSet(BaseDatabase database, Func<DataEventTransaction, Task> asyncListener) {
+        public DynamicViewSet(IDatabase database, Func<DataEventTransaction, Task> asyncListener) {
             this.Id = Guid.NewGuid().ToString();
             this.Database = database;
             this.asyncListener = asyncListener;
@@ -53,7 +53,7 @@ namespace Butterfly.Core.Database.Dynamic {
             protected set;
         }
 
-        internal BaseDatabase Database {
+        internal IDatabase Database {
             get;
             set;
         }
