@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -14,10 +14,10 @@
     <Description>Implementation of Butterfly.Core.Database for Postgres</Description>
     <PackageReleaseNotes>Changed to target .NET Standard 2.0</PackageReleaseNotes>
     <Version>1.0.1</Version>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\Kent\Documents\Visual Studio 2017\Projects\Butterfly\Butterfly.Postgres\Butterfly.Postgres.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
