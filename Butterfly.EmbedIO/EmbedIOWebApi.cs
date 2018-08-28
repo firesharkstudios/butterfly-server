@@ -21,11 +21,11 @@ using Butterfly.Core.WebApi;
 namespace Butterfly.EmbedIO {
 
     /// <inheritdoc/>
-    public class EmbedIOWebApiServer : BaseWebApiServer {
+    public class EmbedIOWebApi : BaseWebApi {
 
         public readonly Unosquare.Labs.EmbedIO.WebServer server;
 
-        public EmbedIOWebApiServer(Unosquare.Labs.EmbedIO.WebServer server) {
+        public EmbedIOWebApi(Unosquare.Labs.EmbedIO.WebServer server) {
             this.server = server;
         }
 

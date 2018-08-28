@@ -17,8 +17,8 @@ namespace Butterfly.Core.Test {
         [TestMethod]
         public async Task RedHttpServerWeb() {
             var redHttpServer = new RedHttpServerNet45.RedHttpServer(8080);
-            using (var webApiServer = new Butterfly.WebApi.RedHttpServer.RedHttpServerWebApiServer(redHttpServer)) {
-                await this.TestWeb(webApiServer, "http://localhost:8080/", () => {
+            using (var webApi = new Butterfly.WebApi.RedHttpServer.RedHttpServerWebApi(redHttpServer)) {
+                await this.TestWeb(webApi, "http://localhost:8080/", () => {
                     redHttpServer.Start();
                 });
             }
@@ -26,7 +26,7 @@ namespace Butterfly.Core.Test {
 
         */
 
-        public static async Task TestWeb(IWebApiServer webServer, string url, Action start) {
+        public static async Task TestWeb(IWebApi webServer, string url, Action start) {
             // Add routes
             webServer.OnGet("/test-get1", async (req, res) => {
                 await res.WriteAsJsonAsync("test-get-response");

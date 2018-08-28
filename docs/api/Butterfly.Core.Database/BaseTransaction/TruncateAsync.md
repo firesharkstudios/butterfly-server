@@ -1,8 +1,14 @@
 # BaseTransaction.TruncateAsync method
 
+Truncate a table (deletes all records)
+
 ```csharp
 public Task TruncateAsync(string tableName)
 ```
+
+| parameter | description |
+| --- | --- |
+| tableName |  |
 
 ## See Also
 

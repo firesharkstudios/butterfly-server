@@ -1,5 +1,7 @@
 # DynamicViewSet.StartAsync method
 
+Send an initial [`DataEventTransaction`](../../Butterfly.Core.Database.Event/DataEventTransaction.md) to the registered listener and sends new [`DataEventTransaction`](../../Butterfly.Core.Database.Event/DataEventTransaction.md) instances when any data in the underlying [`DynamicView`](../DynamicView.md) instances changes. Stops listening [`Dispose`](Dispose.md) is called.
+
 ```csharp
 public Task<DynamicViewSet> StartAsync()
 ```

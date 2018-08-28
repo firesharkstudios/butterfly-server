@@ -2,8 +2,8 @@
 
 > The Everything is Real-Time C# Backend for Single Page Applications
 
-* Easily create a RESTlike API
-* Easily create a Subscription API
+* Easily define a Web API
+* Easily define a Subscription API
 * Easily synchronize real-time data to clients
 
 [GitHub](https://github.com/firesharkstudios/butterfly-server-dotnet)

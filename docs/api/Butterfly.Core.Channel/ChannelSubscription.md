@@ -1,5 +1,7 @@
 # ChannelSubscription class
 
+Represents a subscription to a specific channel
+
 ```csharp
 public class ChannelSubscription
 ```

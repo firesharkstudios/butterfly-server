@@ -17,8 +17,8 @@ namespace Butterfly.Twilio {
     public static class TwilioModule {
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static void Setup(IWebApiServer webApiServer, Func<string, string, string, string[], Task<string>> handler) {
-            webApiServer.OnPost(
+        public static void Setup(IWebApi webApi, Func<string, string, string, string[], Task<string>> handler) {
+            webApi.OnPost(
                 "/api/twilio/webhook",
                 async (req, res) => {
                     logger.Debug($"/api/twilio/webhook");

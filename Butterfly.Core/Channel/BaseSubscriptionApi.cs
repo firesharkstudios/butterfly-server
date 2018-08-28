@@ -18,13 +18,13 @@ namespace Butterfly.Core.Channel {
 
     /// <inheritdoc/>
     /// <summary>
-    /// Base class implementing <see cref="IChannelServer"/>. New implementations will normally extend this class.
+    /// Base class implementing <see cref="ISubscriptionApi"/>. New implementations will normally extend this class.
     /// </summary>
-    public abstract class BaseChannelServer : IChannelServer {
+    public abstract class BaseSubscriptionApi : ISubscriptionApi {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected readonly ConcurrentDictionary<IChannelServerConnection, IChannelServerConnection> unauthenticatedConnections = new ConcurrentDictionary<IChannelServerConnection, IChannelServerConnection>();
-        protected readonly ConcurrentDictionary<string, IChannelServerConnection> authenticatedConnectionByAuthId = new ConcurrentDictionary<string, IChannelServerConnection>();
+        protected readonly ConcurrentDictionary<IChannelConnection, IChannelConnection> unauthenticatedConnections = new ConcurrentDictionary<IChannelConnection, IChannelConnection>();
+        protected readonly ConcurrentDictionary<string, IChannelConnection> authenticatedConnectionByAuthId = new ConcurrentDictionary<string, IChannelConnection>();
 
         public readonly Func<string, string, object> getAuthToken;
         public readonly Func<string, string, Task<object>> getAuthTokenAsync;
@@ -36,7 +36,7 @@ namespace Butterfly.Core.Channel {
 
         protected readonly int mustReceiveHeartbeatMillis;
 
-        public BaseChannelServer(int mustReceiveHeartbeatMillis = 5000, Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null) {
+        public BaseSubscriptionApi(int mustReceiveHeartbeatMillis = 5000, Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null) {
             this.mustReceiveHeartbeatMillis = mustReceiveHeartbeatMillis;
 
             if (getAuthToken != null && getAuthTokenAsync != null) {
@@ -92,16 +92,16 @@ namespace Butterfly.Core.Channel {
             return channelSubscription;
         }
 
-        public void AddUnauthenticatedConnection(IChannelServerConnection connection) {
+        public void AddUnauthenticatedConnection(IChannelConnection connection) {
             //logger.Debug($"AddUnauthenticatedChannel():channel.Path={channel.WebRequest.RequestUri.AbsolutePath}");
             this.unauthenticatedConnections[connection] = connection;
         }
 
 
-        internal async Task AuthenticateAsync(string authType, string authValue, BaseChannelServerConnection connection) {
+        internal async Task AuthenticateAsync(string authType, string authValue, BaseChannelConnection connection) {
             logger.Debug($"AuthenticateAsync():authType={authType},authValue={authValue}");
 
-            this.unauthenticatedConnections.TryRemove(connection, out IChannelServerConnection dummyChannel);
+            this.unauthenticatedConnections.TryRemove(connection, out IChannelConnection dummyChannel);
 
             object authToken = this.getAuthToken != null ? this.getAuthToken(authType, authValue) : await this.getAuthTokenAsync(authType, authValue);
             string id = this.getId != null ? this.getId(authToken) : await this.getIdAsync(authToken);
@@ -118,12 +118,12 @@ namespace Butterfly.Core.Channel {
             }
         }
 
-        public ICollection<IChannelServerConnection> UnauthenticatedConnections => this.unauthenticatedConnections.Values;
+        public ICollection<IChannelConnection> UnauthenticatedConnections => this.unauthenticatedConnections.Values;
 
-        public ICollection<IChannelServerConnection> AuthenticatedConnections => this.authenticatedConnectionByAuthId.Values;
+        public ICollection<IChannelConnection> AuthenticatedConnections => this.authenticatedConnectionByAuthId.Values;
 
-        public IChannelServerConnection GetConnection(string authId, bool throwExceptionIfMissing = false) {
-            if (!this.authenticatedConnectionByAuthId.TryGetValue(authId, out IChannelServerConnection connection) && throwExceptionIfMissing) throw new Exception($"Invalid channel id '{authId}'");
+        public IChannelConnection GetConnection(string authId, bool throwExceptionIfMissing = false) {
+            if (!this.authenticatedConnectionByAuthId.TryGetValue(authId, out IChannelConnection connection) && throwExceptionIfMissing) throw new Exception($"Invalid channel id '{authId}'");
             return connection;
         }
 
@@ -147,11 +147,11 @@ namespace Butterfly.Core.Channel {
                 DateTime? oldestLastReceivedHeartbeatReceived = null;
 
                 // Check for dead unauthenticated channels
-                foreach (IChannelServerConnection channel in this.unauthenticatedConnections.Values.ToArray()) {
+                foreach (IChannelConnection channel in this.unauthenticatedConnections.Values.ToArray()) {
                     try {
                         logger.Trace($"CheckForDeadChannelsAsync():channel.Created={channel.Created},cutoffDateTime={cutoffDateTime}");
                         if (channel.Created < cutoffDateTime) {
-                            bool removed = this.unauthenticatedConnections.TryRemove(channel, out IChannelServerConnection removedChannel);
+                            bool removed = this.unauthenticatedConnections.TryRemove(channel, out IChannelConnection removedChannel);
                             if (!removed) logger.Error($"Could not remove unauthenticated channel {channel.Id}");
                             channel.Dispose();
                         }
@@ -165,11 +165,11 @@ namespace Butterfly.Core.Channel {
                 }
 
                 // Check for dead authenticated channels
-                foreach ((string id, IChannelServerConnection channel) in this.authenticatedConnectionByAuthId.ToArray()) {
+                foreach ((string id, IChannelConnection channel) in this.authenticatedConnectionByAuthId.ToArray()) {
                     try {
                         logger.Trace($"CheckForDeadChannelsAsync():channel.LastHeartbeatReceived={channel.LastHeartbeat},cutoffDateTime={cutoffDateTime}");
                         if (channel.LastHeartbeat < cutoffDateTime) {
-                            bool removed = this.authenticatedConnectionByAuthId.TryRemove(id, out IChannelServerConnection removedChannel);
+                            bool removed = this.authenticatedConnectionByAuthId.TryRemove(id, out IChannelConnection removedChannel);
                             if (!removed) logger.Error($"Could not remove authenticated channel {channel.Id}");
                             channel.Dispose();
                         }

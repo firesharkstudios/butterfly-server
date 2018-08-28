@@ -15,9 +15,9 @@ namespace Butterfly.Core.WebApi {
 
     /// <inheritdoc/>
     /// <summary>
-    /// Base class implementing <see cref="IWebApiServer"/>. New implementations will normally extend this class.
+    /// Base class implementing <see cref="IWebApi"/>. New implementations will normally extend this class.
     /// </summary>
-    public abstract class BaseWebApiServer : IWebApiServer {
+    public abstract class BaseWebApi : IWebApi {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly List<WebHandler> webHandlers = new List<WebHandler>();

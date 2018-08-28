@@ -1,8 +1,14 @@
 # BaseDatabase.ConnectionString property
 
+Gets or sets the connection string
+
 ```csharp
 public string ConnectionString { get; }
 ```
+
+## Property Value
+
+The connection string
 
 ## See Also
 

@@ -1,13 +1,12 @@
 # Channel constructor
 
 ```csharp
-public Channel(IChannelServerConnection connection, string channelKey, 
-    Dictionary<string, object> vars)
+public Channel(IChannelConnection connection, string channelKey, Dictionary<string, object> vars)
 ```
 
 ## See Also
 
-* interface [IChannelServerConnection](../IChannelServerConnection.md)
+* interface [IChannelConnection](../IChannelConnection.md)
 * class [Channel](../Channel.md)
 * namespace [Butterfly.Core.Channel](../../Butterfly.Core.md)
 

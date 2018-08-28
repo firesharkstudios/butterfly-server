@@ -21,12 +21,12 @@ namespace Butterfly.Core.Channel {
 
     /// <inheritdoc/>
     /// <summary>
-    /// Base class implementing <see cref="IChannelServerConnection"/>. New implementations will normally extend this class.
+    /// Base class implementing <see cref="IChannelConnection"/>. New implementations will normally extend this class.
     /// </summary>
-    public abstract class BaseChannelServerConnection : IChannelServerConnection {
+    public abstract class BaseChannelConnection : IChannelConnection {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected readonly BaseChannelServer channelServer;
+        protected readonly BaseSubscriptionApi subscriptionApi;
         //protected readonly RegisteredRoute registeredRoute;
         protected readonly DateTime created;
 
@@ -41,8 +41,8 @@ namespace Butterfly.Core.Channel {
         /// </summary>
         protected DateTime lastHeartbeat = DateTime.Now;
 
-        public BaseChannelServerConnection(BaseChannelServer channelServer) {
-            this.channelServer = channelServer;
+        public BaseChannelConnection(BaseSubscriptionApi subscriptionApi) {
+            this.subscriptionApi = subscriptionApi;
             this.created = DateTime.Now;
         }
 
@@ -60,7 +60,7 @@ namespace Butterfly.Core.Channel {
         public DateTime LastHeartbeat => this.lastHeartbeat;
 
         /// <summary>
-        /// Implementing classes should call this periodically to keep the channel alive (otherwise <ref>ChannelServer</ref> will remove the channel)
+        /// Implementing classes should call this periodically to keep the channel alive (otherwise <ref>SubscriptionApi</ref> will remove the channel)
         /// </summary>
         internal void Heartbeat() {
             logger.Trace($"Heartbeat()");
@@ -132,7 +132,7 @@ namespace Butterfly.Core.Channel {
                         this.UnsubscribeAll();
                         try {
                             var authenticationHeaderValue = string.IsNullOrWhiteSpace(value) ? null : AuthenticationHeaderValue.Parse(value);
-                            await this.channelServer.AuthenticateAsync(authenticationHeaderValue?.Scheme, authenticationHeaderValue?.Parameter, this);
+                            await this.subscriptionApi.AuthenticateAsync(authenticationHeaderValue?.Scheme, authenticationHeaderValue?.Parameter, this);
                             this.QueueMessage(messageType: "AUTHENTICATED");
                         }
                         catch (Exception e) {
@@ -189,7 +189,7 @@ namespace Butterfly.Core.Channel {
 
                     logger.Debug($"SubscribeAsync():Creating new channel {channelKey}");
                     var channel = new Channel(this, channelKey, vars);
-                    if (this.channelServer.ChannelSubscriptionByKey.TryGetValue(channelKey, out ChannelSubscription registeredChannel)) {
+                    if (this.subscriptionApi.ChannelSubscriptionByKey.TryGetValue(channelKey, out ChannelSubscription registeredChannel)) {
                         try {
                             var disposable = registeredChannel.handle != null ? registeredChannel.handle(vars, channel) : await registeredChannel.handleAsync(vars, channel);
                             if (disposable != null) {

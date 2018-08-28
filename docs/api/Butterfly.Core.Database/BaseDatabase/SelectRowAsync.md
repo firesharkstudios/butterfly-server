@@ -1,8 +1,15 @@
 # BaseDatabase.SelectRowAsync method
 
+Executes the SELECT statement and return the first row (the SELECT statement may contain vars like @name specified in *vars*)
+
 ```csharp
 public Task<Dictionary<string, object>> SelectRowAsync(string statementSql, object vars = null)
 ```
+
+| parameter | description |
+| --- | --- |
+| selectStatement | The SELECT statement to execute (may contain vars like @name specified in *vars*) |
+| vars |  |
 
 ## See Also
 

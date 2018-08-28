@@ -1,5 +1,7 @@
 # Table class
 
+Represents a table in an [`IDatabase`](IDatabase.md)
+
 ```csharp
 public class Table
 ```

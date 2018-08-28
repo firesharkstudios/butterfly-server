@@ -1,12 +1,12 @@
 # Channel.Connection property
 
 ```csharp
-public IChannelServerConnection Connection { get; }
+public IChannelConnection Connection { get; }
 ```
 
 ## See Also
 
-* interface [IChannelServerConnection](../IChannelServerConnection.md)
+* interface [IChannelConnection](../IChannelConnection.md)
 * class [Channel](../Channel.md)
 * namespace [Butterfly.Core.Channel](../../Butterfly.Core.md)
 

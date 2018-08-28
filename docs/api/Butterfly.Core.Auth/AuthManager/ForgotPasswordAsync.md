@@ -1,8 +1,14 @@
 # AuthManager.ForgotPasswordAsync method
 
+Creates a reset code and invokes onForgotPassword to send the reset code to the user
+
 ```csharp
 public Task ForgotPasswordAsync(string username)
 ```
+
+| parameter | description |
+| --- | --- |
+| username |  |
 
 ## See Also
 

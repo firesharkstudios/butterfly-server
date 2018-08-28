@@ -25,7 +25,7 @@ namespace Butterfly.Example.HelloWorld.Server {
                 );");
 
                 // Listen for API requests
-                embedIOContext.WebApiServer.OnPost("/api/message/insert", async (req, res) => {
+                embedIOContext.WebApi.OnPost("/api/message/insert", async (req, res) => {
                     var text = await req.ParseAsJsonAsync<dynamic>();
                     await database.InsertAndCommitAsync<long>("message", new {
                         text
@@ -35,7 +35,7 @@ namespace Butterfly.Example.HelloWorld.Server {
                 // Listen for subscribe requests...
                 // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
                 // - The handler can push data to the client by calling channel.Queue()
-                embedIOContext.ChannelServer.OnSubscribe("my-channel", (vars, channel) => {
+                embedIOContext.SubscriptionApi.OnSubscribe("my-channel", (vars, channel) => {
                     return database.CreateAndStartDynamicViewAsync("message", dataEventTransaction => channel.Queue(dataEventTransaction));
                 });
 

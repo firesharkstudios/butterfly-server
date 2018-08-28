@@ -1,12 +1,12 @@
 # NotifyManager.SetupWebApi method
 
 ```csharp
-public void SetupWebApi(IWebApiServer webApiServer, string pathPrefix = "/api/notify")
+public void SetupWebApi(IWebApi webApi, string pathPrefix = "/api/notify")
 ```
 
 ## See Also
 
-* interface [IWebApiServer](../../Butterfly.Core.WebApi/IWebApiServer.md)
+* interface [IWebApi](../../Butterfly.Core.WebApi/IWebApi.md)
 * class [NotifyManager](../NotifyManager.md)
 * namespace [Butterfly.Core.Notify](../../Butterfly.Core.md)
 

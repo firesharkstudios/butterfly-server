@@ -12,17 +12,17 @@ namespace Butterfly.Core.WebApi {
     /// <remarks>
     /// Initializing a web api server instance...<para/>
     /// <code>
-    ///     var webApiServer = new SomeWebApiServer();
-    ///     webApiServer.OnGet("/chat-messages", async(req, res) => {
+    ///     var webApi = new SomeWebApi();
+    ///     webApi.OnGet("/chat-messages", async(req, res) => {
     ///         // Handle the request and return any objects as needed (will be JSON encoded)
     ///     });
-    ///     webApiServer.OnPost("/login", async(req, res) => {
+    ///     webApi.OnPost("/login", async(req, res) => {
     ///         // Handle the request and return any objects as needed (will be JSON encoded)
     ///     });
-    ///     webApiServer.Start();
+    ///     webApi.Start();
     /// </code>
     /// </remarks>
-    public interface IWebApiServer : IDisposable {
+    public interface IWebApi : IDisposable {
         /// <summary>
         /// Add a listener responding to GET requests
         /// </summary>

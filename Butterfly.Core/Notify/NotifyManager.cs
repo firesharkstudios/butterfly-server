@@ -68,8 +68,8 @@ namespace Butterfly.Core.Notify {
             this.phoneTextNotifyMessageEngine?.Stop();
         }
 
-        public void SetupWebApi(IWebApiServer webApiServer, string pathPrefix = "/api/notify") {
-            webApiServer.OnPost($"{pathPrefix}/send-verify-code", async (req, res) => {
+        public void SetupWebApi(IWebApi webApi, string pathPrefix = "/api/notify") {
+            webApi.OnPost($"{pathPrefix}/send-verify-code", async (req, res) => {
                 Dict values = await req.ParseAsJsonAsync<Dict>();
                 string contact = values.GetAs("contact", (string)null);
                 await this.SendVerifyCodeAsync(contact);

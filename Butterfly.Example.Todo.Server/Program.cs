@@ -29,12 +29,12 @@ namespace Butterfly.Example.HelloWorld.Server {
                 database.SetDefaultValue("id", tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}");
 
                 // Listen for API requests
-                embedIOContext.WebApiServer.OnPost("/api/todo/insert", async (req, res) => {
+                embedIOContext.WebApi.OnPost("/api/todo/insert", async (req, res) => {
                     logger.Info("/api/todo/insert");
                     var todo = await req.ParseAsJsonAsync<Dict>();
                     await database.InsertAndCommitAsync<string>("todo", todo);
                 });
-                embedIOContext.WebApiServer.OnPost("/api/todo/delete", async (req, res) => {
+                embedIOContext.WebApi.OnPost("/api/todo/delete", async (req, res) => {
                     logger.Info("/api/todo/delete");
                     var id = await req.ParseAsJsonAsync<string>();
                     await database.DeleteAndCommitAsync("todo", id);
@@ -43,7 +43,7 @@ namespace Butterfly.Example.HelloWorld.Server {
                 // Listen for subscribe requests...
                 // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
                 // - The handler can push data to the client by calling channel.Queue()
-                embedIOContext.ChannelServer.OnSubscribe("todos", (vars, channel) => {
+                embedIOContext.SubscriptionApi.OnSubscribe("todos", (vars, channel) => {
                     string clientName = vars?.GetAs("clientName", "");
                     logger.Info($"OnSubscribe():todos,clientName={clientName}");
                     return database.CreateAndStartDynamicViewAsync("todo", dataEventTransaction => {

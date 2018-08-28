@@ -1,8 +1,14 @@
 # IDatabase.BeginTransaction method
 
+Creates a new [`ITransaction`](../ITransaction.md) instance. An [`ITransaction`](../ITransaction.md) instance allows performing an atomic set of modifications to the database. Must execute [`CommitAsync`](../ITransaction/CommitAsync.md) to save the transaction changes. Disposing the transaction without committing rolls back the changes.
+
 ```csharp
 public ITransaction BeginTransaction()
 ```
+
+## Return Value
+
+An [`ITransaction`](../ITransaction.md) instance (can then call InsertAsync(), UpdateAsync(), or DeleteAsync() on the ITransaction instance to make changes on the transaction)/&gt;
 
 ## See Also
 

@@ -1,5 +1,7 @@
 # ITransaction.CommitAsync method
 
+Commit the transaction
+
 ```csharp
 public Task CommitAsync()
 ```

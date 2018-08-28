@@ -1,8 +1,14 @@
 # AuthManager.LoginAsync method
 
+Logs in the user creating a valid [`AuthToken`](../AuthToken.md)
+
 ```csharp
 public Task<AuthToken> LoginAsync(Dictionary<string, object> login)
 ```
+
+| parameter | description |
+| --- | --- |
+| login |  |
 
 ## See Also
 

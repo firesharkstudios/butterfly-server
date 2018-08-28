@@ -1,8 +1,18 @@
 # AuthManager.AuthenticateAsync method
 
+Validates the auth token id returning an [`AuthToken`](../AuthToken.md) instance
+
 ```csharp
 public Task<AuthToken> AuthenticateAsync(string authTokenId)
 ```
+
+| parameter | description |
+| --- | --- |
+| authTokenId |  |
+
+## Return Value
+
+An [`AuthToken`](../AuthToken.md) instance
 
 ## See Also
 

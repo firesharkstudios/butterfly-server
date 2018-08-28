@@ -19,11 +19,11 @@ using System.Net.WebSockets;
 namespace Butterfly.EmbedIO {
 
     /// <inheritdoc/>
-    public class EmbedIOChannelServer : BaseChannelServer {
+    public class EmbedIOSubscriptionApi : BaseSubscriptionApi {
         public readonly WebServer webServer;
         public readonly string path;
 
-        public EmbedIOChannelServer(WebServer webServer, int mustReceiveHeartbeatMillis = 5000, string path = "/ws", Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null) : base(mustReceiveHeartbeatMillis, getAuthToken, getAuthTokenAsync, getId, getIdAsync) {
+        public EmbedIOSubscriptionApi(WebServer webServer, int mustReceiveHeartbeatMillis = 5000, string path = "/ws", Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null) : base(mustReceiveHeartbeatMillis, getAuthToken, getAuthTokenAsync, getId, getIdAsync) {
             this.webServer = webServer;
             this.path = path;
         }
@@ -41,12 +41,12 @@ namespace Butterfly.EmbedIO {
     public class MyWebSocketsServer : WebSocketsServer {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected readonly BaseChannelServer channelServer;
-        protected readonly Func<IWebRequest, IChannelServerConnection, bool> onNewChannel;
-        protected readonly ConcurrentDictionary<WebSocketContext, EmbedIOChannelServerConnection> channelByWebSocketContext = new ConcurrentDictionary<WebSocketContext, EmbedIOChannelServerConnection>();
+        protected readonly BaseSubscriptionApi subscriptionApi;
+        protected readonly Func<IWebRequest, IChannelConnection, bool> onNewChannel;
+        protected readonly ConcurrentDictionary<WebSocketContext, EmbedIOSubscriptionApiConnection> channelByWebSocketContext = new ConcurrentDictionary<WebSocketContext, EmbedIOSubscriptionApiConnection>();
 
-        public MyWebSocketsServer(BaseChannelServer channelServer, Func<IWebRequest, IChannelServerConnection, bool> onNewChannel) {
-            this.channelServer = channelServer;
+        public MyWebSocketsServer(BaseSubscriptionApi subscriptionApi, Func<IWebRequest, IChannelConnection, bool> onNewChannel) {
+            this.subscriptionApi = subscriptionApi;
             this.onNewChannel = onNewChannel;
         }
 
@@ -55,7 +55,7 @@ namespace Butterfly.EmbedIO {
         protected override void OnClientConnected(WebSocketContext context, IPEndPoint localEndPoint, IPEndPoint remoteEndPoint) {
             var webRequest = new EmbedIOWebSocketWebRequest(context);
             logger.Trace($"OnClientConnected():Websocket created for path {webRequest.RequestUrl.AbsolutePath}");
-            var channel = new EmbedIOChannelServerConnection(this.channelServer, message => {
+            var channel = new EmbedIOSubscriptionApiConnection(this.subscriptionApi, message => {
                 this.Send(context, message);
             }, context);
             bool valid = this.onNewChannel(webRequest, channel);
@@ -65,7 +65,7 @@ namespace Butterfly.EmbedIO {
         }
 
         protected override void OnClientDisconnected(WebSocketContext context) {
-            this.channelByWebSocketContext.TryRemove(context, out EmbedIOChannelServerConnection dummyContext);
+            this.channelByWebSocketContext.TryRemove(context, out EmbedIOSubscriptionApiConnection dummyContext);
         }
 
         protected override void OnFrameReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult) {
@@ -74,7 +74,7 @@ namespace Butterfly.EmbedIO {
         protected override void OnMessageReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult) {
             var text = System.Text.Encoding.UTF8.GetString(rxBuffer);
             logger.Debug($"OnMessageReceived():text={text}");
-            if (this.channelByWebSocketContext.TryGetValue(context, out EmbedIOChannelServerConnection embedIOChannel)) {
+            if (this.channelByWebSocketContext.TryGetValue(context, out EmbedIOSubscriptionApiConnection embedIOChannel)) {
                 try {
                     embedIOChannel.ReceiveMessageAsync(text).Wait();
                 }
@@ -85,17 +85,17 @@ namespace Butterfly.EmbedIO {
             }
         }
 
-        protected EmbedIOChannelServerConnection GetEmbedIOChannel(string channelId) {
-            return channelServer.GetConnection(channelId) as EmbedIOChannelServerConnection;
+        protected EmbedIOSubscriptionApiConnection GetEmbedIOChannel(string channelId) {
+            return subscriptionApi.GetConnection(channelId) as EmbedIOSubscriptionApiConnection;
         }
 
     }
 
-    public class EmbedIOChannelServerConnection : BaseChannelServerConnection {
+    public class EmbedIOSubscriptionApiConnection : BaseChannelConnection {
         protected readonly Action<string> send;
         protected readonly WebSocketContext context;
 
-        public EmbedIOChannelServerConnection(BaseChannelServer channelServer, Action<string> send, WebSocketContext context) : base(channelServer) {
+        public EmbedIOSubscriptionApiConnection(BaseSubscriptionApi subscriptionApi, Action<string> send, WebSocketContext context) : base(subscriptionApi) {
             this.send = send;
             this.context = context;
         }

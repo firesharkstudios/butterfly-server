@@ -1,9 +1,18 @@
 # AuthManager.VerifyAsync method
 
+Call to verify a user's email or phone
+
 ```csharp
 public Task VerifyAsync(Dictionary<string, object> data, string fieldName, 
     string verifiedAtFieldName, Func<string, int, Task> onVerify)
 ```
+
+| parameter | description |
+| --- | --- |
+| data |  |
+| fieldName |  |
+| verifiedAtFieldName |  |
+| onVerify |  |
 
 ## See Also
 

@@ -8,7 +8,7 @@ namespace Butterfly.Core.Channel {
     /// <summary>
     /// Internal interface representing a communications channel from the server to the client (might be implemented via WebSockets, HTTP long polling, etc)
     /// </summary>
-    public interface IChannelServerConnection : IDisposable {
+    public interface IChannelConnection : IDisposable {
         object AuthToken { get; }
         string Id { get; }
         DateTime Created { get;  }

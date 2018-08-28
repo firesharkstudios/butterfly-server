@@ -1,31 +1,25 @@
 # Overview
 
-> The Everything is Real-Time C# Backend for Single Page Applications
+This animation shows an [example](#example) application with three clients automatically sychronized with Butterfly Server .NET...
 
 ![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/demo.gif) 
 
 Butterfly Server .NET provides...
 
-- A channel layer that allows the server to push real-time data to clients
-- A database layer that performs standard database operations **and** allows subscribing to change events
-- A web API layer that provides a simple syntax to define RESTlike APIs
+- Ability to define a [Web API](#creating-a-web-api)
+- Ability to define a [Subscription API](#creating-a-subscription-api) that allow pushing real-time data to clients
+- Ability to modify, retrieve, and publish data change events on a [Database](#accessing-a-database)
 
-Each layer can have multiple implementations...
-
-- The channel layer might use WebSockets, long polling, etc
-- The database layer might use a memory database, MySQL, SQLite, etc
-- The web API layer might use EmbedIO, NancyFX, Kestrel, etc
-
-Butterfly Server .NET does **not** have any dependencies on ASP.NET.
+Butterfly Server .NET targets *.NET Framework 2.0* and does **not** have any dependencies on ASP.NET.
 
 # Getting Started
 
-## Nuget
+## Install from Nuget
 
 ```
 nuget install Butterfly.Core
 
-# If you wish to use EmbedIO as a ChannelServer and WebApiServer...
+# If you wish to use EmbedIO as a SubscriptionApi and WebApi...
 nuget install Butterfly.EmbedIO
 
 # If you wish to use MySQL as your database...
@@ -41,11 +35,13 @@ nuget install Butterfly.Aws
 nuget install Butterfly.Twilio
 ```
 
-## Source Code
+## Install from Source Code
 
 Get the source from [GitHub](https://github.com/firesharkstudios/butterfly-server-dotnet).
 
 # Example
+
+You can see an animation of running this example in the [Overview](#overview) section.
 
 ## Try It
 
@@ -95,11 +91,11 @@ namespace Butterfly.Example.HelloWorld.Server {
                 database.SetDefaultValue("id", tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}");
 
                 // Listen for API requests
-                embedIOContext.WebApiServer.OnPost("/api/todo/insert", async (req, res) => {
+                embedIOContext.WebApi.OnPost("/api/todo/insert", async (req, res) => {
                     var todo = await req.ParseAsJsonAsync<Dict>();
                     await database.InsertAndCommitAsync<string>("todo", todo);
                 });
-                embedIOContext.WebApiServer.OnPost("/api/todo/delete", async (req, res) => {
+                embedIOContext.WebApi.OnPost("/api/todo/delete", async (req, res) => {
                     var id = await req.ParseAsJsonAsync<string>();
                     await database.DeleteAndCommitAsync("todo", id);
                 });
@@ -107,7 +103,7 @@ namespace Butterfly.Example.HelloWorld.Server {
                 // Listen for subscribe requests...
                 // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
                 // - The handler can push data to the client by calling channel.Queue()
-                embedIOContext.ChannelServer.OnSubscribe("todos", (vars, channel) => {
+                embedIOContext.SubscriptionApi.OnSubscribe("todos", (vars, channel) => {
                     return database.CreateAndStartDynamicView("SELECT * FROM todo", dataEventTransaction => channel.Queue(dataEventTransaction));
                 });
 
@@ -173,18 +169,18 @@ See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfl
 
 # Concepts
 
-## Creating a Web Api Server
+## Creating a Web Api
 
 ### Overview
 
-An [IChannelServer](api/Butterfly.Core.WebApi/IWebApiServer) instance allows defining a RESTlike API using the HTTP GET and POST verbs like this...
+An [IWebApi](api/Butterfly.Core.WebApi/IWebApi) instance allows defining a RESTlike API using the HTTP GET and POST verbs like this...
 
 ```cs
-webApiServer.OnPost("/api/todo/insert", async (req, res) => {
+webApi.OnPost("/api/todo/insert", async (req, res) => {
     var todo = await req.ParseAsJsonAsync<Dict>();
     await database.InsertAndCommitAsync<string>("todo", todo);
 });
-webApiServer.OnPost("/api/todo/delete", async (req, res) => {
+webApi.OnPost("/api/todo/delete", async (req, res) => {
     var id = await req.ParseAsJsonAsync<string>();
     await database.DeleteAndCommitAsync("todo", id);
 });
@@ -192,21 +188,21 @@ webApiServer.OnPost("/api/todo/delete", async (req, res) => {
 
 This is "RESTlike API" because it's not following the standard practice of using HTTP Verbs to define the action (which is often problematic with entities with a large number of actions). 
 
-To instantiate an [IChannelServer](api/Butterfly.Core.WebApi/IWebApiServer) instance, you'll need an implementation like the [EmbedIO Implementation](#using-embedio).
+To instantiate an [IWebApi](api/Butterfly.Core.WebApi/IWebApi) instance, you'll need an implementation like the [EmbedIO Implementation](#using-embedio).
 
 
 ### Defining Actions
 
 ### Uploading Files
 
-## Creating a Channel Server
+## Creating a Subscription API
 
 ### Overview
 
-An [IChannelServer](api/Butterfly.Core.Channel/IChannelServer) instance allows defining a Subscription API that can push real-time data to clients like this...
+An [ISubscriptionApi](api/Butterfly.Core.Channel/ISubscriptionApi) instance allows defining a Subscription API that can push real-time data to clients like this...
 
 ```cs
-channelServer.OnSubscribe("todos", (vars, channel) => {
+subscriptionApi.OnSubscribe("todos", (vars, channel) => {
     return database.CreateAndStartDynamicViewAsync("todo", dataEventTransaction => {
 	    channel.Queue(dataEventTransaction);
     });
@@ -215,14 +211,14 @@ channelServer.OnSubscribe("todos", (vars, channel) => {
 
 In the example above, a subscription to the *todos* channel creates a *DynamicView* instance that pushes data changes over the channel to the client. 
 
-To instantiate an [IChannelServer](api/Butterfly.Core.Channel/IChannelServer) instance, you'll need an implementation like the [EmbedIO Implementation](#using-embedio).
+To instantiate an [ISubscriptionApi](api/Butterfly.Core.Channel/ISubscriptionApi) instance, you'll need an implementation like the [EmbedIO Implementation](#using-embedio).
 
 ### Defining Subscriptions
 
 In the Todo Manager example above, we subscribed to all the data in a single *todo* table; however, much more complex subscriptions are supported...
 
 ```cs
-channelServer.OnSubscribe("todo-page", async(vars, channel) => {
+subscriptionApi.OnSubscribe("todo-page", async(vars, channel) => {
   var dynamicViewSet = database.CreateDynamicViewSet(dataEventTransaction => channel.Queue(dataEventTransaction);
 
   string userId = channel.Connection.AuthToken;
@@ -258,7 +254,7 @@ In this example, a client subscribing to *todo-page* will get a *todo* collectio
 
 Because the new *todo* collection is the result of a join, the client will receive updates if changes to either of the underlying *todo* table or *user* table would change the resultset.
 
-## Accessing Data
+## Accessing a Database
 
 ### Overview
 
@@ -310,9 +306,9 @@ You can either create the database structure by...
 
 ### Using EmbedIO
 
-[EmbedIO](https://github.com/unosquare/embedio) is a capable low footprint web server that can be used to implement both the *IWebApiServer* and *IChannelServer* interfaces. 
+[EmbedIO](https://github.com/unosquare/embedio) is a capable low footprint web server that can be used to implement both the *IWebApi* and *ISubscriptionApi* interfaces. 
 
-The *EmbedIOContext* class is a convenience class that creates IWebApiServer and IChannelServer instances from a running EmbedIO web server.
+The *EmbedIOContext* class is a convenience class that creates IWebApi and ISubscriptionApi instances from a running EmbedIO web server.
 
 In the *Package Manager Console*...
 
@@ -326,13 +322,13 @@ In your application...
 var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/");
 
 // Declare your Web API and Subscription API like...
-embedIOContext.WebApiServer.OnPost("/api/todo/insert", async (req, res) => {
+embedIOContext.WebApi.OnPost("/api/todo/insert", async (req, res) => {
    // Do something
 });
-embedIOContext.WebApiServer.OnPost("/api/todo/delete", async (req, res) => {
+embedIOContext.WebApi.OnPost("/api/todo/delete", async (req, res) => {
    // Do something
 });
-embedIOContext.ChannelServer.OnSubscribe("todos", (vars, channel) => {
+embedIOContext.SubscriptionApi.OnSubscribe("todos", (vars, channel) => {
    // Do something
 });
 
