@@ -97,7 +97,7 @@ namespace Butterfly.SQLite {
                     if (fieldDef.type == typeof(string)) {
                         sb.Append($" TEXT");
                     }
-                    else if (fieldDef.type == typeof(int) || fieldDef.type == typeof(long)) {
+                    else if (fieldDef.type==typeof(byte) || fieldDef.type == typeof(int) || fieldDef.type == typeof(long)) {
                         sb.Append($" INTEGER");
                     }
                     else if (fieldDef.type == typeof(float) || fieldDef.type == typeof(double)) {
@@ -106,7 +106,9 @@ namespace Butterfly.SQLite {
                     else if (fieldDef.type == typeof(DateTime)) {
                         sb.Append($" INTEGER");
                     }
-
+                    else {
+                        throw new Exception($"Unknown type {fieldDef.type}");
+                    }
                 }
                 if (!fieldDef.allowNull) sb.Append(" NOT NULL");
 

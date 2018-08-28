@@ -324,12 +324,6 @@ namespace Butterfly.Core.Auth {
             });
         }
 
-        /*
-        public void CheckVersion(Version version) {
-            if (this.onCheckVersion != null && (version==null || version < this.onCheckVersion)) throw new Exception($"v{version} is unsupported");
-        }
-        */
-
         /// <summary>
         /// Call to verify a user's email or phone
         /// </summary>

@@ -4,14 +4,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
-using System.Data.Common;
-using Microsoft.Data.Sqlite;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Microsoft.Data.Sqlite;
 using NLog;
 
 using Butterfly.Core.Database;
@@ -54,7 +51,38 @@ namespace Butterfly.SQLite {
         }
 
         protected async Task<TableFieldDef[]> GetFieldDefs(string tableName) {
-            List<TableFieldDef> fields = new List<TableFieldDef>();
+            List<TableFieldDef> fieldDefs = new List<TableFieldDef>();
+            string commandText = $"pragma table_info({tableName})";
+            using (var connection = new SqliteConnection(this.ConnectionString)) {
+                await connection.OpenAsync();
+                var command = new SqliteCommand(commandText, connection);
+                using (var reader = command.ExecuteReader()) {
+                    while (await reader.ReadAsync()) {
+                        var fieldName = ConvertValue(reader[1])?.ToString();
+                        var fieldType = ConvertValue(reader[2])?.ToString();
+                        Type dataType;
+                        if (fieldType=="TEXT") {
+                            dataType = typeof(string);
+                        }
+                        else if (fieldType=="INTEGER") {
+                            dataType = typeof(int);
+                        }
+                        else if (fieldType == "REAL") {
+                            dataType = typeof(float);
+                        }
+                        else {
+                            throw new Exception($"Unknown field type '{fieldType}'");
+                        }
+                        var notNull = ConvertValue(reader[3])?.ToString() == "1";
+                        var isPrimaryKey = ConvertValue(reader[5])?.ToString() == "1";
+
+                        var fieldDef = new TableFieldDef(fieldName, dataType, -1, !notNull, isPrimaryKey && dataType==typeof(int));
+                        fieldDefs.Add(fieldDef);
+                    }
+                }
+            }
+            return fieldDefs.ToArray();
+            /*
             string commandText = $"SELECT * FROM {tableName} WHERE 1 = 2";
             using (var connection = new SqliteConnection(this.ConnectionString)) {
                 await connection.OpenAsync();
@@ -70,6 +98,7 @@ namespace Butterfly.SQLite {
                 }
             }
             return fields.ToArray();
+            */
         }
 
         protected async Task<TableIndex[]> GetIndexes(string tableName, TableFieldDef[] fieldDefs) {

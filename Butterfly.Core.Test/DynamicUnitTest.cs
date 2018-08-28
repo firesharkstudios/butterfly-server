@@ -17,32 +17,6 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 namespace Butterfly.Core.Test {
     [TestClass]
     public class DynamicUnitTest {
-        /*
-        [TestMethod]
-        public async Task DynamicMemoryDatabase() {
-            BaseDatabase database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-            await this.TestDatabase(database);
-        }
-
-        [TestMethod]
-        public async Task DynamicMySqlDatabase() {
-            BaseDatabase database = new Butterfly.Core.Database.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_test");
-            await this.TestDatabase(database);
-        }
-
-        [TestMethod]
-        public async Task DynamicPostgresDatabase() {
-            BaseDatabase database = new Butterfly.Core.Database.Postgres.PostgresDatabase("Host=localhost;Username=postgres;Password=test!123;Database=butterfly_test");
-            await this.TestDatabase(database);
-        }
-
-        [TestMethod]
-        public async Task DynamicSQLiteDatabase() {
-            BaseDatabase database = new Butterfly.Core.Database.SQLite.SQLiteDatabase("butterfly_test.sqlite");
-            await this.TestDatabase(database);
-        }
-        */
-
         public static async Task TestDatabase(IDatabase database) {
             await database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Core.Test.db.sql");
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString(), "employee");
