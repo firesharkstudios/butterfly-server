@@ -150,7 +150,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.MySql.Test", "But
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlDocMarkdown", "XmlDocMarkdown\XmlDocMarkdown.csproj", "{3F576365-CC64-4968-AF6B-6289D1F02E16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.SQLite.Test", "Butterfly.SQLite.Test\Butterfly.SQLite.Test.csproj", "{2771CA6C-D3F5-4B2E-A2C0-74B556D3A047}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.SQLite.Test", "Butterfly.SQLite.Test\Butterfly.SQLite.Test.csproj", "{2771CA6C-D3F5-4B2E-A2C0-74B556D3A047}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.SqlServer", "Butterfly.SqlServer\Butterfly.SqlServer.csproj", "{6A16B33E-9938-4086-9495-3A2A1E57E73B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -240,13 +242,17 @@ Global
 		{2771CA6C-D3F5-4B2E-A2C0-74B556D3A047}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2771CA6C-D3F5-4B2E-A2C0-74B556D3A047}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2771CA6C-D3F5-4B2E-A2C0-74B556D3A047}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A16B33E-9938-4086-9495-3A2A1E57E73B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A16B33E-9938-4086-9495-3A2A1E57E73B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A16B33E-9938-4086-9495-3A2A1E57E73B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A16B33E-9938-4086-9495-3A2A1E57E73B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_BuildVersioningStyle = None.None.None.Increment
-		BuildVersion_StartDate = 2000/1/1
 		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
+		BuildVersion_StartDate = 2000/1/1
+		BuildVersion_BuildVersioningStyle = None.None.None.Increment
 	EndGlobalSection
 EndGlobal
