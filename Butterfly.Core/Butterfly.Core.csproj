@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -13,10 +13,10 @@
     <Copyright>Copyright 2017-2018 Fireshark Studios, LLC</Copyright>
     <Version>1.0.1</Version>
     <PackageReleaseNotes>Changed to target .NET Standard 2.0</PackageReleaseNotes>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\Kent\Documents\Visual Studio 2017\Projects\Butterfly\Butterfly.Core\Butterfly.Core.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
