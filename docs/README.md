@@ -19,7 +19,7 @@ Butterfly Server .NET targets *.NET Framework 2.0* and does **not** have any dep
 ```
 nuget install Butterfly.Core
 
-# If you wish to use EmbedIO as a SubscriptionApi and WebApi...
+# If you wish to use EmbedIO for the SubscriptionApi and WebApi...
 nuget install Butterfly.EmbedIO
 
 # If you wish to use MySQL as your database...
@@ -117,9 +117,9 @@ namespace Butterfly.Example.HelloWorld.Server {
 ```
 
 The above C# code...
-- Defines a single *todo* table in the database
-- Defines a simple API to insert and delete *todo* records
-- Defines a subscription API to subscribe to a *todos* channel that retrieves all *todo* records **and** any changes to the *todo* records
+- Creates a Memory [database](#accessing-a-database) with a single *todo* table
+- Defines a [Web API](#creating-a-web-api) to insert and delete *todo* records
+- Defines a [Subscription API](#creating-a-subscription-api) to subscribe to a *todos* channel that retrieves all *todo* records **and** any changes to the *todo* records
 
 See [Todo Server](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Server) for the working server code.
 
@@ -173,7 +173,7 @@ See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfl
 
 ### Overview
 
-An [IWebApi](api/Butterfly.Core.WebApi/IWebApi) instance allows defining a RESTlike API using the HTTP GET and POST verbs like this...
+[IWebApi](api/Butterfly.Core.WebApi/IWebApi) allows defining a RESTlike API using the HTTP GET and POST verbs like this...
 
 ```cs
 webApi.OnPost("/api/todo/insert", async (req, res) => {
@@ -186,12 +186,12 @@ webApi.OnPost("/api/todo/delete", async (req, res) => {
 });
 ```
 
-This is "RESTlike API" because it's not following the standard practice of using HTTP Verbs to define the action (which is often problematic with entities with a large number of actions). 
+This is "RESTlike API" because it's not following the standard practice of using HTTP Verbs to define the actions (which is often problematic with entities with a large number of actions). 
 
-To instantiate an [IWebApi](api/Butterfly.Core.WebApi/IWebApi) instance, you'll need an implementation like the [EmbedIO Implementation](#using-embedio).
-
+You need an implementation of [IWebApi](api/Butterfly.Core.WebApi/IWebApi) like [EmbedIO](#using-embedio).
 
 ### Defining Actions
+
 
 ### Uploading Files
 
@@ -199,7 +199,7 @@ To instantiate an [IWebApi](api/Butterfly.Core.WebApi/IWebApi) instance, you'll 
 
 ### Overview
 
-An [ISubscriptionApi](api/Butterfly.Core.Channel/ISubscriptionApi) instance allows defining a Subscription API that can push real-time data to clients like this...
+[ISubscriptionApi](api/Butterfly.Core.Channel/ISubscriptionApi) allows defining a Subscription API that can push real-time data to clients like this...
 
 ```cs
 subscriptionApi.OnSubscribe("todos", (vars, channel) => {
@@ -211,7 +211,7 @@ subscriptionApi.OnSubscribe("todos", (vars, channel) => {
 
 In the example above, a subscription to the *todos* channel creates a *DynamicView* instance that pushes data changes over the channel to the client. 
 
-To instantiate an [ISubscriptionApi](api/Butterfly.Core.Channel/ISubscriptionApi) instance, you'll need an implementation like the [EmbedIO Implementation](#using-embedio).
+You need an implementation of [ISubscriptionApi](api/Butterfly.Core.Channel/ISubscriptionApi) like [EmbedIO](#using-embedio).
 
 ### Defining Subscriptions
 

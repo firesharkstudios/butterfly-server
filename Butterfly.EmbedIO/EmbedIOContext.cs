@@ -50,7 +50,7 @@ namespace Butterfly.EmbedIO {
 
         public void Start() {
             // Start both servers
-            this.webApi.Start();
+            this.webApi.Compile();
             this.subscriptionApi.Start();
 
             // Start the underlying EmbedIOServer

@@ -29,7 +29,7 @@ namespace Butterfly.EmbedIO {
             this.server = server;
         }
 
-        public override void Start() {
+        public override void Compile() {
             this.server.RegisterModule(new MyWebModule(this.webHandlers));
         }
 

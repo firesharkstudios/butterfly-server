@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Butterfly.Core.WebApi {
     /// <summary>
-    /// Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.<para/>
+    /// Allows receiving API requests via HTTP (inspired by Node.js' Express)<para/>
     /// </summary>
     /// <remarks>
-    /// Initializing a web api server instance...<para/>
+    /// Example usage...<para/>
     /// <code>
     ///     var webApi = new SomeWebApi();
     ///     webApi.OnGet("/chat-messages", async(req, res) => {
@@ -19,7 +19,7 @@ namespace Butterfly.Core.WebApi {
     ///     webApi.OnPost("/login", async(req, res) => {
     ///         // Handle the request and return any objects as needed (will be JSON encoded)
     ///     });
-    ///     webApi.Start();
+    ///     webApi.Compile();
     /// </code>
     /// </remarks>
     public interface IWebApi : IDisposable {
@@ -38,8 +38,8 @@ namespace Butterfly.Core.WebApi {
         void OnPost(string path, Func<IHttpRequest, IHttpResponse, Task> listener);
 
         /// <summary>
-        /// Start the web api server
+        /// Compile the web api
         /// </summary>
-        void Start();
+        void Compile();
     }
 }

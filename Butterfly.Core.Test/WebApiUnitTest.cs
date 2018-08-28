@@ -40,7 +40,7 @@ namespace Butterfly.Core.Test {
 
                 await res.WriteAsJsonAsync("test-post-response");
             });
-            webServer.Start();
+            webServer.Compile();
 
             // Start the underlying server
             start();

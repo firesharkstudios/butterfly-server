@@ -91,7 +91,7 @@ namespace Butterfly.Core.WebApi {
             }
         }
 
-        public abstract void Start();
+        public abstract void Compile();
         public abstract void Dispose();
     }
 }
