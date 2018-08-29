@@ -161,7 +161,7 @@ See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfl
 
 ### Overview
 
-[IWebApi](api/Butterfly.Core.WebApi/IWebApi) allows defining a RESTlike API using the HTTP GET and POST verbs like this...
+[IWebApi](api/Butterfly.Core.WebApi/IWebApi) allows defining a RESTlike API using HTTP verbs like this...
 
 ```cs
 webApi.OnPost("/api/todo/insert", async (req, res) => {
@@ -267,7 +267,7 @@ The [IDatabase](api/Butterfly.Core.Database/IDatabase) instance also support tra
 
 ### Using a Memory Database
 
-The Butterfly.Core.Database.Memory database is included with Butterfly.Core.
+[Butterfly.Core.Database.MemoryDatabase](api/Butterfly.Core.Database.Memory/MemoryDatabase) database is included in [Butterfly.Core](api/Butterfly.Core.md).
 
 In your application...
 
@@ -286,6 +286,216 @@ You can either create the database structure by...
 
 - Executing CreateFromTextAsync() or CreateFromResourceAsync() in Butterfly Server .NET
 - Creating the database yourself outside of Butterfly Server .NET
+
+### Selecting Data
+
+Call *IDatabase.SelectRowsAsync()* with alternative values for the *sql* parameter and alternative values for the *vars* parameter...
+
+```cs
+var sql1 = "employee"; // SELECT statement is auto generated
+var sql2 = "SELECT * FROM employee"; // WHERE statement is auto generated 
+var sql3 = "SELECT * FROM employee WHERE id=@id"; // Specify exact SELECT statement
+
+var vars1 = "123"; // Can specify just the primary key value
+var vars2 = new { id = "123" }; // Can specify parameters using an anonymous type
+var vars3 = new Dictionary<string, object> { { "id", "123" } }; // Can specify parameters using a Dictionary
+ 
+// Any combination of sql1/sql2/sql3 and vars1/vars2/vars3 would yield identical results
+Dictionary<string, object>[] rows = await database.SelectAsync(sql1, vars1);
+```
+
+Retrieve multiple rows, a single row, or a single value...
+
+```cs
+// Retrieve multiple rows
+Dictionary<string, object>[] rows = await database.SelectRowsAsync("SELECT * FROM employee");
+
+// Retrieve a single row 
+Dictionary<string, object> row = await database.SelectRowAsync("SELECT * FROM employee", "123")
+
+// Retrieve a single value
+string name = await database.SelectValueAsync<string>("SELECT name FROM employee", "123")
+```
+
+The WHERE clause will be auto-generated or rewritten in specific scenarios...
+
+```cs
+// Executes WHERE department_id = '123'
+Dictionary<string, object>[] rows = await database.SelectRowsAsync("employee", new {
+	department_id = "123"
+});
+
+// Executes WHERE department_id IS NULL
+Dictionary<string, object>[] rows = await database.SelectRowsAsync("employee", new {
+	department_id = (string)null
+});
+
+// Executes WHERE department_id IS NOT NULL
+Dictionary<string, object>[] rows = await database.SelectRowsAsync(
+	"SELECT * employee WHERE department_id!=@did", 
+	new {
+		did = (string)null
+	}
+);
+
+// Executes WHERE department_id IN ('123', '456')
+Dictionary<string, object>[] rows = await database.SelectRowsAsync("employee", new {
+	department_id = new string[] { "123", "456"}
+});
+
+// Executes WHERE department_id NOT IN ('123', '456')
+Dictionary<string, object>[] rows = await database.SelectRowsAsync(
+	"SELECT * employee WHERE department_id!=@did", 
+	new {
+		did = new string[] { "123", "456"}
+	}
+);
+```
+### Modifying Data
+
+```cs
+// Execute a single INSERT and return the value of the primary key
+string id = database.InsertAndCommitAsync<string>("employee", new {
+	first_name = "Jim",
+	last_name = "Smith",
+	balance = 0.0f,
+});
+
+// Assuming the employee table has a unique index on the id field, 
+// this updates the balance field on the matching record
+database.UpdateAndCommitAsync<string>("employee", new {
+	id = "123",
+	balance = 0.0f,
+});
+
+// Assuming the employee table has a unique index on the id field, 
+// this deletes the matching record
+database.DeleteAndCommitAsync<string>("employee", "123");
+
+```
+### Transactions
+
+```cs
+// If either INSERT fails, neither INSERT will be saved
+using (ITransaction transaction = await database.BeginTransactionAsync()) {
+	string departmentId = transaction.InsertAsync<string>("department", new {
+		name = "Sales"
+	});
+	string employeeId = transaction.InsertAsync<string>("employee", new {
+		name = "Jim Smith",
+		department_id = departmentId,
+	});
+	await transaction.CommitAsync();
+}
+```
+### Synchronizing Data
+
+Use *ITransaction.SynchronizeAsync* to determine the right INSERT, UPDATE, and DELETE statements to synchronize two collections...
+
+```cs
+// Assumes an article_tag table with article_id and tag_name fields
+public async Task SynchronizeTag(string articleId, string[] tagNames) {
+	// First, create the existingRecords from the database
+	Dict[] existingRecords = database.SelectRowsAsync(
+		@"SELECT article_id, tag_name 
+		FROM article_tag 
+		WHERE article_id=@articleId",
+		new {
+			articleId
+		}
+	);
+
+	// Next, create the newRecords collection from the tagNames parameter
+	Dict[] newRecords = tagNames.Select(x => new Dictionary<string, object> {
+		{ "article_id", articleId },
+		{ "tag_name", x },
+	});
+
+	// Now, execute the right INSERT, UPDATE, and DELETE statements to make
+	// the newRecords collection match the existingRecords collection
+	using (ITransaction transaction = database.BeginTransactionAsync()) {
+		bool changed = await transaction.SynchronizeAsync(
+			"article_tag", 
+			existingRecords, 
+			newRecords, 
+			existingRecord => new Dictionary<string, object> {
+				article_id = existingRecord.GetAs("article_id", (string)null),
+				tag_name = existingRecord.GetAs("tag_name", (string)null),
+			},
+		);
+	}
+}
+```
+
+### Defaults, Overrides, and Preprocessors
+
+Can be defined globally or per table...
+
+```cs
+// Add an id field to all INSERTs with values like at_58b5fff4-322b-4fe8-b45d-386dac7a79f9
+// if INSERTing on an auth_token table
+database.SetDefaultValue(
+    "id", 
+    tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}"
+);
+
+// Add a created_at field to all INSERTS with the current time
+database.SetDefaultValue("created_at", tableName => DateTime.Now.ToUnixTimestamp());
+
+// Remap any DateTime values to UNIX timestamp values
+database.AddInputPreprocessor(BaseDatabase.RemapTypeInputPreprocessor<DateTime>(
+    dateTime => dateTime.ToUnixTimestamp()
+));
+
+// Remap any $NOW$ values to the current UNIX timestamp
+database.AddInputPreprocessor(BaseDatabase.RemapTypeInputPreprocessor<string>(
+    text => text=="$NOW$" ? DateTime.Now.ToUnixTimestamp().ToString() : text
+));
+
+// Remap any $UPDATE_AT$ values to be the same value as the updated_at field
+database.AddInputPreprocessor(BaseDatabase.CopyFieldValue("$UPDATED_AT$", "updated_at"));
+```
+
+### Dynamic Views
+
+Dynamic views allow receiving both the initial data and data change events when the data changes.
+
+```cs
+// Create a DynamicViewSet that simply prints all data events to the console
+using (DynamicViewSet dynamicViewSet = database.CreateDynamicViewSet(
+	dataEventTransaction => Console.WriteLine(dataEventTransaction)
+) {
+	// Create dynamic view for all employees in department
+	dynamicViewSet.CreateDynamicView("employee", new {
+		department_id = "123"
+	});
+
+	// Create dynamic view for all resources in department
+	dynamicViewSet.CreateDynamicView("resource", new {
+		department_id = "123"
+	});
+
+	// This will cause each DynamicView above to execute
+	// and all the initial data in each DynamicView to be
+	// echoed to the console in a single DataEventTransaction
+	dynamicViewSet.Start();
+
+	// This will cause a new DataEventTransaction with a single
+	// INSERT event to be echoed to the console
+	database.InsertAndCommitAsync("employee", new {
+		name = "Joe Smith",
+		department_id = "123",
+	});
+
+	// This will NOT cause a new DataEventTransaction to
+	// be printed to the console because this INSERT
+	// does not change the DynamicView results above
+	database.InsertAndCommitAsync("employee", new {
+		name = "Joe Smith",
+		department_id = "456",
+	});
+}
+```
 
 ## Implementations
 
