@@ -558,20 +558,9 @@ In your application...
 var database = new Butterfly.SQLite.SQLiteDatabase("Filename=./my_database.db");
 ```
 
-# Packages
+# API Documentation
 
-Here are the key packages in *Butterfly.Core*...
-
-- [Butterfly.Core.Auth](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Core.Auth) - Allows registering and logging in users, handling forgot password and reset password requests, and validating auth tokens.
-- [Butterfly.Core.Channel](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Core.Channel) - Allows clients to create new channels to the server and allows the server to push messages to connected clients (think WebSockets).
-- [Butterfly.Core.Database](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Core.Database) - Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; creating dynamic views; and receiving data change events both on tables and dynamic views.  This is the bread and butter of the Butterfly Server .NET.
-- [Butterfly.Core.Notify](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Core.Notify) - Allows sending notifications (email/texts) to users.
-- [Butterfly.Core.WebApi](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Core.WebApi) - Allows receiving API requests via HTTP (inspired by Express JS) by wrapping existing C# web servers.
-
-Here are various implementations you'll likely find useful...
-
-- [Butterfly.MySql](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.MySql) - Implementation of *Butterfly.Core.Database* for MySql
-- [Butterfly.EmbedIO](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.EmbedIO) - Implementation of *Butterfly.Core.Channel* and *Butterfly.Core.WebApi* for [EmbedIO](https://github.com/unosquare/embedio) server
+Click [here](https://butterflyserver.io/docfx/api/) for the API Documentation
 
 # In the Wild
 
