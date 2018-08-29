@@ -18,4 +18,4 @@ Each layer can have multiple implementations...
 
 Butterfly Server .NET does **not** have any dependencies on ASP.NET.
 
-See https://butterflyserver.io/#/ for more details.
+See https://butterflyserver.io for more details.
