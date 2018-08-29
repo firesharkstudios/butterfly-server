@@ -1,0 +1,1940 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/Kent/Documents/Visual Studio 2017/Projects/Butterfly/docfx_project",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Aws.AwsModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Aws.AwsModule.html",
+          "hash": "YQuQhLonlkN6Fz9wzLFY4w=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Aws.AwsSesEmailNotifyMessageSender.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Aws.AwsSesEmailNotifyMessageSender.html",
+          "hash": "0Hga9YykP40JLb+pMM1OuQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Aws.Test.AwsTest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Aws.Test.AwsTest.html",
+          "hash": "Jsouvs6U+wQj5lcgY3XPoA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Aws.Test.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Aws.Test.html",
+          "hash": "PQ2/9ttact3Z/9iJD0MCcQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Aws.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Aws.html",
+          "hash": "PkWPZK6QGGyx3mcEDEnD6Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Client.DotNet.Subscription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Client.DotNet.Subscription.html",
+          "hash": "CplSyO5Wak28UjrqD6S2ZA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Client.DotNet.WebSocketChannelClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Client.DotNet.WebSocketChannelClient.html",
+          "hash": "Le0bJPXnqvaY5rLm4X8dKA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Client.DotNet.WebSocketChannelClientStatus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Client.DotNet.WebSocketChannelClientStatus.html",
+          "hash": "T3nbraTIYzp6qr2zMgG8Zw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Client.DotNet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Client.DotNet.html",
+          "hash": "/8RXnGnHHtP04I0QSthPkg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Auth.AuthManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Auth.AuthManager.html",
+          "hash": "UFuJNTC++M1RxHQecPg98A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Auth.AuthToken.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Auth.AuthToken.html",
+          "hash": "25vXaZdJgOYGF90kQ87R4g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Auth.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Auth.html",
+          "hash": "lNLeA15gvtXEf+yUfek01w=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Channel.BaseChannelConnection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Channel.BaseChannelConnection.html",
+          "hash": "EN0Oyioq63POfJkXuYoxEQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Channel.BaseSubscriptionApi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Channel.BaseSubscriptionApi.html",
+          "hash": "23h3dRBtAZSYSgqImOvaPA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Channel.Channel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Channel.Channel.html",
+          "hash": "lk/aBDFTIL9eldWkZVFraw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Channel.ChannelSubscription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Channel.ChannelSubscription.html",
+          "hash": "bWmZ0DPBmLlt7HnqHKQn5Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Channel.IChannelConnection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Channel.IChannelConnection.html",
+          "hash": "qm2KYRbBTINPdApgzsXWrA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Channel.ISubscriptionApi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Channel.ISubscriptionApi.html",
+          "hash": "xlje6arR1f+a5FO0k+3gog=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Channel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Channel.html",
+          "hash": "c7pxx70EECKApDXGFqBntA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.BaseDatabase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.BaseDatabase.html",
+          "hash": "1ohEX5Q5L5G3AOvwqhVGjw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.BaseStatement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.BaseStatement.html",
+          "hash": "i/ne36Wd3B9z9H5bJ3iQcg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.BaseTransaction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.BaseTransaction.html",
+          "hash": "5UjXpUnotC7tcyurPltDdg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.CreateStatement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.CreateStatement.html",
+          "hash": "d3X7qzmozMPQZQyIEsRPQA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.DataEventTransactionListener.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.DataEventTransactionListener.html",
+          "hash": "vLxD8TkD/Ye6GYGoFPxzow=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.DatabaseException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.DatabaseException.html",
+          "hash": "zZm8kzX+MzYTcYM8qckkxQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.DeleteStatement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.DeleteStatement.html",
+          "hash": "32xwqCVCHTY6lOtW7nzflA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.DuplicateKeyDatabaseException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.DuplicateKeyDatabaseException.html",
+          "hash": "EF6+XESJh+WnGIwluprc5A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Dynamic.BaseDynamicParam.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Dynamic.BaseDynamicParam.html",
+          "hash": "tF/eOcN/Xd23NGOleVjokg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Dynamic.ChildDynamicParam.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Dynamic.ChildDynamicParam.html",
+          "hash": "xdhi6MaRZnjLAa3KCDdQ/g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Dynamic.DynamicView.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Dynamic.DynamicView.html",
+          "hash": "LdqZ7wyX6YopORGLChYJaQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Dynamic.DynamicViewSet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Dynamic.DynamicViewSet.html",
+          "hash": "HZBafVxAKvG2K1HlhvWwkQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Dynamic.MultiValueDynamicParam.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Dynamic.MultiValueDynamicParam.html",
+          "hash": "uZ5GJh5CrZOdBtZxiEstDw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.html",
+          "hash": "/2XbPayqUjaqcFWAhO0peA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Dynamic.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Dynamic.html",
+          "hash": "OSMgKzpmKFBqXzK7jpESfQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Event.DataEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Event.DataEvent.html",
+          "hash": "4Ir/cnUAtBwedNqZZ6effw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Event.DataEventTransaction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Event.DataEventTransaction.html",
+          "hash": "l4kR6huB/Oq1ONDsvHMt+A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Event.DataEventType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Event.DataEventType.html",
+          "hash": "DawLAdh3lKIqZ91ULdsLJQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Event.InitialBeginDataEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Event.InitialBeginDataEvent.html",
+          "hash": "6t+9enKkgjnxj1IBLXAmnQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Event.InitialEndDataEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Event.InitialEndDataEvent.html",
+          "hash": "oNqG29SwD4Fn+sX+1BQ67Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Event.KeyValueDataEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Event.KeyValueDataEvent.html",
+          "hash": "TjNGViydYkfy7OzY7Yyr/g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Event.RecordDataEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Event.RecordDataEvent.html",
+          "hash": "KpWi+SIn7/ZxVRwcFjcbLA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Event.TransactionState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Event.TransactionState.html",
+          "hash": "UgHNcS9E6LS4Y2FuBjbEUQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Event.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Event.html",
+          "hash": "dyPbEGMdloDFyGTYh9obBA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.IDatabase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.IDatabase.html",
+          "hash": "B21FbBa0hTeXEghiLQaPwQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.IDynamicParam.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.IDynamicParam.html",
+          "hash": "ZX1DnbN0t5U8HdKpD55mSg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.ITransaction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.ITransaction.html",
+          "hash": "rlU2sN05VYby7+LMhSmrcw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.InsertStatement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.InsertStatement.html",
+          "hash": "8BVmFLCY8AvsrLPHJ/rzTQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.JoinType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.JoinType.html",
+          "hash": "ah7UjKzV4tlju0iNRUI5YA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Memory.MemoryDatabase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Memory.MemoryDatabase.html",
+          "hash": "EiebaE57w7x+4StMlTD8Xg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Memory.MemoryTable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Memory.MemoryTable.html",
+          "hash": "0xACIgWg90CSSd/SIR29xQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Memory.MemoryTransaction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Memory.MemoryTransaction.html",
+          "hash": "NAJKSqYS7yGpH0SdhJ517Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Memory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Memory.html",
+          "hash": "CfEpr0X5jC3ZTT+tC0Ootw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.SelectStatement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.SelectStatement.html",
+          "hash": "MaSIFlAFtpkM8VGMfFri6A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.StatementEqualsRef.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.StatementEqualsRef.html",
+          "hash": "QPpY/6DygckPKFfcGErA4g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.StatementFieldRef.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.StatementFieldRef.html",
+          "hash": "Ry68dFJA3QtiMa0jeeFTdQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.StatementFromRef.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.StatementFromRef.html",
+          "hash": "MCrbQmWjZAvgpl+R4Pl43g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.Table.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.Table.html",
+          "hash": "7pQxd30V8uP6Ynu+jc0aIw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.TableFieldDef.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.TableFieldDef.html",
+          "hash": "gtLp4YIyQLbEhlJiTvCSgw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.TableIndex.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.TableIndex.html",
+          "hash": "gQF8tHhCE0CUZcoVkFigHw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.TableIndexType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.TableIndexType.html",
+          "hash": "D1jfWCAHh/Vj4G86wjDARw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.UnableToConnectDatabaseException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.UnableToConnectDatabaseException.html",
+          "hash": "Q86PhgEMctcfX142xbFoCA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.UpdateStatement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.UpdateStatement.html",
+          "hash": "4E3VZeEmalKz+EDE1KBVhg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Database.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Database.html",
+          "hash": "8rMgmjrUytrrW7Pa7Y0BNQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Notify.BaseNotifyMessageSender.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Notify.BaseNotifyMessageSender.html",
+          "hash": "lYcDpICpM91r77oqHTKmsw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Notify.INotifyMessageSender.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Notify.INotifyMessageSender.html",
+          "hash": "UZVIdq8pB4v9c1I5kftFNQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.html",
+          "hash": "tYLbm7vEVWOyhOPXmA0vDQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Notify.NotifyManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Notify.NotifyManager.html",
+          "hash": "67+IREmY4JEUdLB9YCsLNQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Notify.NotifyMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Notify.NotifyMessage.html",
+          "hash": "ItRfLMFk8gnTzpCeJoCAJA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Notify.NotifyMessageType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Notify.NotifyMessageType.html",
+          "hash": "5IfgoPM+rgoqpS9op9cXCg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Notify.Test.NotifyTest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Notify.Test.NotifyTest.html",
+          "hash": "nKHUVqbI9ZgNjzGtloa4EQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Notify.Test.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Notify.Test.html",
+          "hash": "DPpQa6PJVUC0LOMJ7DrCmQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Notify.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Notify.html",
+          "hash": "v8O/dByLINsmOLYREWqa/w=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Test.AuthTest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Test.AuthTest.html",
+          "hash": "khcBZRm9awafYARaWMu5PA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Test.ChannelUnitTest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Test.ChannelUnitTest.html",
+          "hash": "W7ElR0jeoSzZNNPZS3dGGA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Test.DatabaseUnitTest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Test.DatabaseUnitTest.html",
+          "hash": "iBt4nLnFOnBMRJ+KQma2Kg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Test.DynamicUnitTest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Test.DynamicUnitTest.html",
+          "hash": "udMecVJHBM558DzoBfSOoA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Test.TestDisposable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Test.TestDisposable.html",
+          "hash": "qn9uK+mMrNDHYHi5jnmkEw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Test.WebApiUnitTest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Test.WebApiUnitTest.html",
+          "hash": "xbjd17JW3wIismL2p7zv3g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Test.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Test.html",
+          "hash": "tbJq3WW1cFaAuW4ZeZmFIw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.CleverNameX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.CleverNameX.html",
+          "hash": "SbgJdZCHz610b9yySxJ9LQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.CommandLineUtil.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.CommandLineUtil.html",
+          "hash": "xP1OIw2NK/iDaVzcnWskIg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.ConsoleUtil.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.ConsoleUtil.html",
+          "hash": "lUNiaKZusS68OvgzZ2K1zQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.DateTimeX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.DateTimeX.html",
+          "hash": "rlTkGdsP8pjfj2MqL2SX+A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.DictionaryItemDisposable-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.DictionaryItemDisposable-2.html",
+          "hash": "p9pOQT+hrK1BNn/WwieeRg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.DictionaryX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.DictionaryX.html",
+          "hash": "1MZ7PQzIQR7WgKopNo++dw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.DynamicX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.DynamicX.html",
+          "hash": "AbAoahpbkxlvy99Y60lDLw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.EnvironmentX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.EnvironmentX.html",
+          "hash": "/l+o0V1op8VQxIzJMbk2Ow=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.Field.EmailFieldValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.Field.EmailFieldValidator.html",
+          "hash": "BcQyhE0tpmGA6ajPpJHkyw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.Field.GenericFieldValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.Field.GenericFieldValidator.html",
+          "hash": "qglEOH2zIeadT8PkPRCyag=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.Field.IFieldValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.Field.IFieldValidator.html",
+          "hash": "q13UEG41e6eql36RgOvphg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.Field.NameFieldValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.Field.NameFieldValidator.html",
+          "hash": "jz3fIS8MBTgyZ6cgHFiUcA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.Field.PhoneFieldValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.Field.PhoneFieldValidator.html",
+          "hash": "sSg5j9SgbYjIDel+IOpIwA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.Field.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.Field.html",
+          "hash": "gHpo/+/0bFpcSfDT83rFhw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.FileX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.FileX.html",
+          "hash": "LyQzoDqggT7rtNABfq2grg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.IWebRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.IWebRequest.html",
+          "hash": "grIz2WSFONeSYyeU345tlA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.IWebRequestX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.IWebRequestX.html",
+          "hash": "FMLMOBTMj/Xjgo3v+lGr7Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.Job.IJob.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.Job.IJob.html",
+          "hash": "m02c9bBv/ksHjlmASHXgdw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.Job.JobData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.Job.JobData.html",
+          "hash": "DnimEL3Lu5elEA4YUmS78g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.Job.JobManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.Job.JobManager.html",
+          "hash": "0TgAEAT3lNrrEhOH5ZyU6g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.Job.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.Job.html",
+          "hash": "nXUO3Fu5PmKlNEW2nvIfRg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.JsonUtil.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.JsonUtil.html",
+          "hash": "S3OZkKxZSlBxQzYWtXHUDQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.ListItemDisposable-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.ListItemDisposable-1.html",
+          "hash": "p06oJ/B5PGXC+LGhXHjcAg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.NameValueCollectionX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.NameValueCollectionX.html",
+          "hash": "IPpwBeUyD38/Oq31iYNEbg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.PermissionDeniedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.PermissionDeniedException.html",
+          "hash": "eSWSjkb6BPft9wn0egdW+g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.ProcessX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.ProcessX.html",
+          "hash": "9KjJ5j4G84cnzthIp3y/Lw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.RandomUtil.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.RandomUtil.html",
+          "hash": "4r264Esw7W2jfJKVAXXo1A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.SafeUtil.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.SafeUtil.html",
+          "hash": "+oW09717+0dW7OXAZjOiqA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.StringX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.StringX.html",
+          "hash": "lw5rq8Ud+zUiZE/MMQtqig=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.UnauthorizedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.UnauthorizedException.html",
+          "hash": "PSpa/XiWSYaJjElkn21aGg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.UriX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.UriX.html",
+          "hash": "fn+m0tcci4JpXJwSS3E+Ew=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.html",
+          "hash": "X3K0UudSf/ICVEJcmTeBjA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.WebApi.BaseHttpRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.WebApi.BaseHttpRequest.html",
+          "hash": "LEU6xOsiR4HzecBwgDXZLA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.WebApi.BaseWebApi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.WebApi.BaseWebApi.html",
+          "hash": "jVMD2Uenly8FcjAOCQPUPQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.WebApi.IHttpRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.WebApi.IHttpRequest.html",
+          "hash": "vZoFeHr0zEsWn3ISfzuaXQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.WebApi.IHttpResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.WebApi.IHttpResponse.html",
+          "hash": "0eWY3v0RPR5Zj8sJLQjwOw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.WebApi.IWebApi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.WebApi.IWebApi.html",
+          "hash": "isqZNlc0Fg6V0DsiDkjZXQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.WebApi.WebHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.WebApi.WebHandler.html",
+          "hash": "/vdGOIMFWpHQVJ/8BDfxGA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.WebApi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.WebApi.html",
+          "hash": "PEEkif5tNdxfWKUpj9LSIg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.EmbedIO.EmbedIOContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.EmbedIO.EmbedIOContext.html",
+          "hash": "/VJZzSe79busc9ENZfLaIg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.EmbedIO.EmbedIOHttpWebRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.EmbedIO.EmbedIOHttpWebRequest.html",
+          "hash": "fPgnC4DjTNGflubVMIx9QA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.EmbedIO.EmbedIOSubscriptionApi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.EmbedIO.EmbedIOSubscriptionApi.html",
+          "hash": "4hEUPUkEk5cZIxzigAJyfA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.html",
+          "hash": "WdLg8jm4s4XwFrtNYpYK2g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.EmbedIO.EmbedIOWebApi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.EmbedIO.EmbedIOWebApi.html",
+          "hash": "JE8EQAFxIoDMyJ3K8R4GVg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.EmbedIO.EmbedIOWebResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.EmbedIO.EmbedIOWebResponse.html",
+          "hash": "vHkleQOWXDUQooA1Kk5Wfg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.html",
+          "hash": "qciYq0nJ9sLagF7ACkFm+Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.EmbedIO.MyWebModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.EmbedIO.MyWebModule.html",
+          "hash": "1d504RD71z7PYxVo5fTw8A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.EmbedIO.MyWebSocketsServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.EmbedIO.MyWebSocketsServer.html",
+          "hash": "RGC5iVQdcyQpke0lqzDkeg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.EmbedIO.Test.EmbedIOTest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.EmbedIO.Test.EmbedIOTest.html",
+          "hash": "/YpjuMPEPhfpapaoWT7duQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.EmbedIO.Test.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.EmbedIO.Test.html",
+          "hash": "V5OMP97aUBI+3lG6R5yK+g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.EmbedIO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.EmbedIO.html",
+          "hash": "jN4Log4mnQm1l15bVv6pvA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.MySql.MySqlDatabase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.MySql.MySqlDatabase.html",
+          "hash": "Ri6sJs3TucKHNJgeWjfByw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.MySql.MySqlTransaction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.MySql.MySqlTransaction.html",
+          "hash": "SedEgXc1sqUsZMArT4Dkpw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.MySql.Test.MySqlDatabaseUnitTest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.MySql.Test.MySqlDatabaseUnitTest.html",
+          "hash": "Rz0HbO3MTVGQZsa/P8nyJQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.MySql.Test.SQLiteTest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.MySql.Test.SQLiteTest.html",
+          "hash": "4txYLuetpDXTSqN7XmH3uw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.MySql.Test.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.MySql.Test.html",
+          "hash": "mpcYop81kDBptE9gQ1Hd8A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.MySql.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.MySql.html",
+          "hash": "fhHoo2My8N4sZpQ9IiNOiQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Notify.Test.TwilioTest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Notify.Test.TwilioTest.html",
+          "hash": "FHEtKWkNPAh0CJxzoXMKbw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Notify.Test.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Notify.Test.html",
+          "hash": "iDmxcaxdzbsuR46lyTSh3g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Postgres.PostgresDatabase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Postgres.PostgresDatabase.html",
+          "hash": "C+81BZzCwfaUXkvDFYwG2Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Postgres.PostgresTransaction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Postgres.PostgresTransaction.html",
+          "hash": "QGHBCuvRqq1NCuB/RjIbrQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Postgres.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Postgres.html",
+          "hash": "fHbaqSA9GVWcMI6rAbgOZQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.RedHttpServer.RedHttpServerChannelServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.RedHttpServer.RedHttpServerChannelServer.html",
+          "hash": "/1nF80xVAjkv/Xs6SscGQw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.RedHttpServer.RedHttpServerWebApiServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.RedHttpServer.RedHttpServerWebApiServer.html",
+          "hash": "0gL/7Cms5qWkCXhayxJwoQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.RedHttpServer.RedHttpServerWebRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html",
+          "hash": "w0UpAgerK833SfTbz3tX2Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.RedHttpServer.RedHttpServerWebResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html",
+          "hash": "0ark0HNL5EXrzm3nq34ysA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.RedHttpServer.WebSocketDialogChannel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.RedHttpServer.WebSocketDialogChannel.html",
+          "hash": "qjB3jVm5T79GMn/5yWrA/w=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.html",
+          "hash": "Gzug1zeIfdWl+VvwZ95nrQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.RedHttpServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.RedHttpServer.html",
+          "hash": "kR3gdW20EvV58n0dvjVNsQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.SQLite.SQLiteDatabase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.SQLite.SQLiteDatabase.html",
+          "hash": "8UVG0TXQ6ncvTZDXP2dGCw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.SQLite.SQLiteTransaction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.SQLite.SQLiteTransaction.html",
+          "hash": "Mc/7vXrF6mp7/OnBUOwpwQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.SQLite.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.SQLite.html",
+          "hash": "hyTxjeRQ5gbVGnukB/YwDQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Twilio.TwilioModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Twilio.TwilioModule.html",
+          "hash": "k7rhIDByL4mm02SNLJ3h5g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.html",
+          "hash": "YOpjTYSaeNvJ8wG44FAwHg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Twilio.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Twilio.html",
+          "hash": "rMo3kKJsPx7kJKdpIs6bhA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "E/QqX6B1HvKemwKlYO4zBQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "U3a9ie1i/eOP2oNqZW002Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "XLQUwI7kZJjv3ragG8LhSQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "evNMNV0GEMuQwK5VT9SW0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build"
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build"
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build"
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing"
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

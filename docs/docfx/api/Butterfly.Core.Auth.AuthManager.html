@@ -1,0 +1,2041 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AuthManager
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AuthManager
+   ">
+    <meta name="generator" content="docfx 2.38.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Butterfly.Core.Auth.AuthManager">
+  
+  
+  <h1 id="Butterfly_Core_Auth_AuthManager" data-uid="Butterfly.Core.Auth.AuthManager" class="text-break">Class AuthManager
+  </h1>
+  <div class="markdown level0 summary">
+Provides an API to register users, login users, handle forgot password requests, reset password requests, and validate auth tokens. 
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">AuthManager</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Butterfly.Core.Auth.html">Butterfly.Core.Auth</a></h6>
+  <h6><strong>Assembly</strong>: Butterfly.Core.dll</h6>
+  <h5 id="Butterfly_Core_Auth_AuthManager_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AuthManager : object</code></pre>
+  </div>
+  <h5 id="Butterfly_Core_Auth_AuthManager_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks">
+Can be initialized like this...
+<pre><code>    var database = (initialize an IDatabase instance here)
+    var notifyManager = (initialize NotifyManager here)
+    var welcomeEmailNotifyMessage = (load welcome email here)
+    var resetEmailNotifyMessage = (load reset email here)
+    var authManager = new AuthManager(
+        database,
+        defaultRole: &quot;full-access&quot;,
+        onEmailVerify: notifyManager.VerifyAsync,
+        onPhoneVerify: notifyManager.VerifyAsync,
+        onRegister: user => {
+            notifyManager.Queue(welcomeEmailNotifyMessage.Evaluate(user));
+        },
+        onForgotPassword: user => {
+            notifyManager.Queue(resetEmailNotifyMessage.Evaluate(user));
+        }
+    );</code></pre>
+The following database tables are recommended...
+<pre><code>CREATE TABLE account (
+	id VARCHAR(50) NOT NULL,
+    created_at INT NOT NULL,
+	updated_at INT NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE user(
+    id VARCHAR(50) NOT NULL,
+    account_id VARCHAR(50) NOT NULL,
+    username VARCHAR(40) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    email_verified_at INT NULL,
+    phone VARCHAR(20) NULL,
+	phone_verified_at INT NULL,
+	role VARCHAR(25) NULL,
+	salt VARCHAR(40) NOT NULL,
+    password_hash VARCHAR(90) NOT NULL,
+    reset_code VARCHAR(6) NULL,	
+	reset_code_expires_at INT NULL,	
+	created_at INT NOT NULL,
+    updated_at INT NOT NULL,
+	PRIMARY KEY(id),
+	UNIQUE INDEX username(username)
+);
+
+CREATE TABLE auth_token(
+    id VARCHAR(50) NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    expires_at INT NOT NULL,
+	created_at INT NOT NULL,
+    PRIMARY KEY(id)
+);</code></pre>
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager__ctor_Butterfly_Core_Database_IDatabase_System_Int32_System_Int32_System_Int32_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_Func_System_String_System_Int32_Task__Func_System_String_System_Int32_Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Action_Version__.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.%23ctor(Butterfly.Core.Database.IDatabase%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CFunc%7BSystem.String%2CSystem.Int32%2CTask%7D%2CFunc%7BSystem.String%2CSystem.Int32%2CTask%7D%2CFunc%7BSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CTask%7D%2CFunc%7BSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CTask%7D%2CAction%7BVersion%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L164">View Source</a>
+  </span>
+  <a id="Butterfly_Core_Auth_AuthManager__ctor_" data-uid="Butterfly.Core.Auth.AuthManager.#ctor*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager__ctor_Butterfly_Core_Database_IDatabase_System_Int32_System_Int32_System_Int32_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_Func_System_String_System_Int32_Task__Func_System_String_System_Int32_Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Action_Version__" data-uid="Butterfly.Core.Auth.AuthManager.#ctor(Butterfly.Core.Database.IDatabase,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,Func{System.String,System.Int32,Task},Func{System.String,System.Int32,Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Action{Version})">AuthManager(IDatabase, Int32, Int32, Int32, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, Func&lt;String, Int32, Task&gt;, Func&lt;String, Int32, Task&gt;, Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, Task&gt;, Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, Task&gt;, Action&lt;Version&gt;)</h4>
+  <div class="markdown level1 summary">
+Create an instance of AuthManager
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AuthManager(IDatabase database, int authTokenDurationDays = 90, int resetCodeLength = 6, int resetTokenDurationMinutes = 90, string accountTableName = &quot;account&quot;, string userTableName = &quot;user&quot;, string userTableIdFieldName = &quot;id&quot;, string userTableUsernameFieldName = &quot;username&quot;, string userTableEmailFieldName = &quot;email&quot;, string userTableEmailVerifiedAtFieldName = &quot;email_verified_at&quot;, string userTablePhoneFieldName = &quot;phone&quot;, string userTablePhoneVerifiedAtFieldName = &quot;phone_verified_at&quot;, string userTableSaltFieldName = &quot;salt&quot;, string userTablePasswordHashFieldName = &quot;password_hash&quot;, string userTableFirstNameFieldName = &quot;first_name&quot;, string userTableLastNameFieldName = &quot;last_name&quot;, string userTableResetCodeFieldName = &quot;reset_code&quot;, string userTableResetCodeExpiresAtFieldName = &quot;reset_code_expires_at&quot;, string userTableAccountIdFieldName = &quot;account_id&quot;, string userTableRoleFieldName = &quot;role&quot;, string authTokenTableName = &quot;auth_token&quot;, string authTokenIdFieldName = &quot;id&quot;, string authTokenTableUserIdFieldName = &quot;user_id&quot;, string authTokenTableExpiresAtFieldName = &quot;expires_at&quot;, string defaultRole = null, Func&lt;string, int, Task&gt; onEmailVerify = null, Func&lt;string, int, Task&gt; onPhoneVerify = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, Task&gt; onRegister = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, Task&gt; onForgotPassword = null, Action&lt;Version&gt; onCheckVersion = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.IDatabase.html">IDatabase</a></td>
+        <td><span class="parametername">database</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">authTokenDurationDays</span></td>
+        <td>How long new <a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a> instances are valid for</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">resetCodeLength</span></td>
+        <td>How many digits should a reset code be</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">resetTokenDurationMinutes</span></td>
+        <td>How long new reset codes are valid for</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">accountTableName</span></td>
+        <td>Table name of the account table (default is &quot;account&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userTableName</span></td>
+        <td>Table name of the user table (default is &quot;user&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userTableIdFieldName</span></td>
+        <td>Field name of the id field on the user table (default is &quot;id&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userTableUsernameFieldName</span></td>
+        <td>Field name of the username field on the user table (default is &quot;username&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userTableEmailFieldName</span></td>
+        <td>Field name of the email field on the user table (default is &quot;email&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userTableEmailVerifiedAtFieldName</span></td>
+        <td>Field name of the email verified at field on the user table (default is &quot;email_verified_at&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userTablePhoneFieldName</span></td>
+        <td>Field name of the phone field on the user table (default is &quot;phone&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userTablePhoneVerifiedAtFieldName</span></td>
+        <td>Field name of the phone verified at field on the user table (default is &quot;phone_verified_at&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userTableSaltFieldName</span></td>
+        <td>Field name of the salt field on the user table (default is &quot;salt&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userTablePasswordHashFieldName</span></td>
+        <td>Field name of the password hash field on the user table (default is &quot;password_hash&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userTableFirstNameFieldName</span></td>
+        <td>Field name of the first name field on the user table (default is &quot;first_name&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userTableLastNameFieldName</span></td>
+        <td>Field name of the last name field on the user table (default is &quot;last_name&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userTableResetCodeFieldName</span></td>
+        <td>Field name of the reset code field on the user table (default is &quot;reset_code&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userTableResetCodeExpiresAtFieldName</span></td>
+        <td>Field name of the reset code expires at field on the user table (default is &quot;reset_code_expires_at&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userTableAccountIdFieldName</span></td>
+        <td>Field name of the account id field on the user table (default is &quot;account_id&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userTableRoleFieldName</span></td>
+        <td>Field name of the role field on the user table (default is &quot;role&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">authTokenTableName</span></td>
+        <td>Table name of the auth token table (default is &quot;auth_token&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">authTokenIdFieldName</span></td>
+        <td>Field name of the id field on the auth token table (default is &quot;id&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">authTokenTableUserIdFieldName</span></td>
+        <td>Field name of the user id field on the auth token table (default is &quot;user_id&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">authTokenTableExpiresAtFieldName</span></td>
+        <td>Field name of the expires at field on the auth token table (default is &quot;expires_at&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">defaultRole</span></td>
+        <td>Default value for the role field on a new user</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>, <span class="xref">Task</span>&gt;</td>
+        <td><span class="parametername">onEmailVerify</span></td>
+        <td>Callback when <a class="xref" href="Butterfly.Core.Auth.AuthManager.html#Butterfly_Core_Auth_AuthManager_VerifyAsync_System_Collections_Generic_Dictionary_System_String_System_Object__System_String_System_String_Func_System_String_System_Int32_Task__">VerifyAsync(System.Collections.Generic.Dictionary&lt;String, Object&gt;, String, String, Func&lt;String, Int32, Task&gt;)</a> is called with an email address</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>, <span class="xref">Task</span>&gt;</td>
+        <td><span class="parametername">onPhoneVerify</span></td>
+        <td>Callback when <a class="xref" href="Butterfly.Core.Auth.AuthManager.html#Butterfly_Core_Auth_AuthManager_VerifyAsync_System_Collections_Generic_Dictionary_System_String_System_Object__System_String_System_String_Func_System_String_System_Int32_Task__">VerifyAsync(System.Collections.Generic.Dictionary&lt;String, Object&gt;, String, String, Func&lt;String, Int32, Task&gt;)</a> is called with a phone number</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;, <span class="xref">Task</span>&gt;</td>
+        <td><span class="parametername">onRegister</span></td>
+        <td>Callback when <a class="xref" href="Butterfly.Core.Auth.AuthManager.html#Butterfly_Core_Auth_AuthManager_RegisterAsync_System_Object_System_Collections_Generic_Dictionary_System_String_System_Object__">RegisterAsync(Object, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</a> is called</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;, <span class="xref">Task</span>&gt;</td>
+        <td><span class="parametername">onForgotPassword</span></td>
+        <td>Callback when <a class="xref" href="Butterfly.Core.Auth.AuthManager.html#Butterfly_Core_Auth_AuthManager_ForgotPasswordAsync_System_String_">ForgotPasswordAsync(String)</a> is called</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<span class="xref">Version</span>&gt;</td>
+        <td><span class="parametername">onCheckVersion</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_accountTableName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.accountTableName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L93">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_accountTableName" data-uid="Butterfly.Core.Auth.AuthManager.accountTableName">accountTableName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string accountTableName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_authTokenDurationDays.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.authTokenDurationDays%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L89">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_authTokenDurationDays" data-uid="Butterfly.Core.Auth.AuthManager.authTokenDurationDays">authTokenDurationDays</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly int authTokenDurationDays</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_authTokenIdFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.authTokenIdFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L112">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_authTokenIdFieldName" data-uid="Butterfly.Core.Auth.AuthManager.authTokenIdFieldName">authTokenIdFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string authTokenIdFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_authTokenTableExpiresAtFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.authTokenTableExpiresAtFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L114">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_authTokenTableExpiresAtFieldName" data-uid="Butterfly.Core.Auth.AuthManager.authTokenTableExpiresAtFieldName">authTokenTableExpiresAtFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string authTokenTableExpiresAtFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_authTokenTableName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.authTokenTableName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L111">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_authTokenTableName" data-uid="Butterfly.Core.Auth.AuthManager.authTokenTableName">authTokenTableName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string authTokenTableName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_authTokenTableUserIdFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.authTokenTableUserIdFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L113">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_authTokenTableUserIdFieldName" data-uid="Butterfly.Core.Auth.AuthManager.authTokenTableUserIdFieldName">authTokenTableUserIdFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string authTokenTableUserIdFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_database.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.database%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L87">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_database" data-uid="Butterfly.Core.Auth.AuthManager.database">database</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly IDatabase database</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.IDatabase.html">IDatabase</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_defaultRole.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.defaultRole%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L116">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_defaultRole" data-uid="Butterfly.Core.Auth.AuthManager.defaultRole">defaultRole</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string defaultRole</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_emailFieldValidator.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.emailFieldValidator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L128">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_emailFieldValidator" data-uid="Butterfly.Core.Auth.AuthManager.emailFieldValidator">emailFieldValidator</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly IFieldValidator emailFieldValidator</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Util.Field.IFieldValidator.html">IFieldValidator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_logger.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.logger%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L85">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_logger" data-uid="Butterfly.Core.Auth.AuthManager.logger">logger</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static readonly Logger logger</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Logger</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_nameFieldValidator.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.nameFieldValidator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L127">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_nameFieldValidator" data-uid="Butterfly.Core.Auth.AuthManager.nameFieldValidator">nameFieldValidator</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly IFieldValidator nameFieldValidator</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Util.Field.IFieldValidator.html">IFieldValidator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_onCheckVersion.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.onCheckVersion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L123">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_onCheckVersion" data-uid="Butterfly.Core.Auth.AuthManager.onCheckVersion">onCheckVersion</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Action&lt;Version&gt; onCheckVersion</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<span class="xref">Version</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_onEmailVerify.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.onEmailVerify%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L118">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_onEmailVerify" data-uid="Butterfly.Core.Auth.AuthManager.onEmailVerify">onEmailVerify</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Func&lt;string, int, Task&gt; onEmailVerify</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>, <span class="xref">Task</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_onForgotPassword.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.onForgotPassword%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L122">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_onForgotPassword" data-uid="Butterfly.Core.Auth.AuthManager.onForgotPassword">onForgotPassword</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, Task&gt; onForgotPassword</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;, <span class="xref">Task</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_onPhoneVerify.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.onPhoneVerify%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L119">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_onPhoneVerify" data-uid="Butterfly.Core.Auth.AuthManager.onPhoneVerify">onPhoneVerify</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Func&lt;string, int, Task&gt; onPhoneVerify</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>, <span class="xref">Task</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_onRegister.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.onRegister%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L121">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_onRegister" data-uid="Butterfly.Core.Auth.AuthManager.onRegister">onRegister</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, Task&gt; onRegister</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;, <span class="xref">Task</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_passwordFieldValidator.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.passwordFieldValidator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L126">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_passwordFieldValidator" data-uid="Butterfly.Core.Auth.AuthManager.passwordFieldValidator">passwordFieldValidator</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly IFieldValidator passwordFieldValidator</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Util.Field.IFieldValidator.html">IFieldValidator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_phoneFieldValidator.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.phoneFieldValidator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L129">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_phoneFieldValidator" data-uid="Butterfly.Core.Auth.AuthManager.phoneFieldValidator">phoneFieldValidator</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly IFieldValidator phoneFieldValidator</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Util.Field.IFieldValidator.html">IFieldValidator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_resetCodeLength.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.resetCodeLength%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L90">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_resetCodeLength" data-uid="Butterfly.Core.Auth.AuthManager.resetCodeLength">resetCodeLength</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly int resetCodeLength</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_resetTokenDurationMinutes.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.resetTokenDurationMinutes%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L91">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_resetTokenDurationMinutes" data-uid="Butterfly.Core.Auth.AuthManager.resetTokenDurationMinutes">resetTokenDurationMinutes</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly int resetTokenDurationMinutes</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_usernameFieldValidator.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.usernameFieldValidator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L125">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_usernameFieldValidator" data-uid="Butterfly.Core.Auth.AuthManager.usernameFieldValidator">usernameFieldValidator</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly IFieldValidator usernameFieldValidator</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Util.Field.IFieldValidator.html">IFieldValidator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_userTableAccountIdFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.userTableAccountIdFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L108">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userTableAccountIdFieldName" data-uid="Butterfly.Core.Auth.AuthManager.userTableAccountIdFieldName">userTableAccountIdFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string userTableAccountIdFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_userTableEmailFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.userTableEmailFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L98">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userTableEmailFieldName" data-uid="Butterfly.Core.Auth.AuthManager.userTableEmailFieldName">userTableEmailFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string userTableEmailFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_userTableEmailVerifiedAtFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.userTableEmailVerifiedAtFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L99">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userTableEmailVerifiedAtFieldName" data-uid="Butterfly.Core.Auth.AuthManager.userTableEmailVerifiedAtFieldName">userTableEmailVerifiedAtFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string userTableEmailVerifiedAtFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_userTableFirstNameFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.userTableFirstNameFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L104">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userTableFirstNameFieldName" data-uid="Butterfly.Core.Auth.AuthManager.userTableFirstNameFieldName">userTableFirstNameFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string userTableFirstNameFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_userTableIdFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.userTableIdFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L96">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userTableIdFieldName" data-uid="Butterfly.Core.Auth.AuthManager.userTableIdFieldName">userTableIdFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string userTableIdFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_userTableLastNameFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.userTableLastNameFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L105">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userTableLastNameFieldName" data-uid="Butterfly.Core.Auth.AuthManager.userTableLastNameFieldName">userTableLastNameFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string userTableLastNameFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_userTableName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.userTableName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L95">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userTableName" data-uid="Butterfly.Core.Auth.AuthManager.userTableName">userTableName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string userTableName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_userTablePasswordHashFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.userTablePasswordHashFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L103">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userTablePasswordHashFieldName" data-uid="Butterfly.Core.Auth.AuthManager.userTablePasswordHashFieldName">userTablePasswordHashFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string userTablePasswordHashFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_userTablePhoneFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.userTablePhoneFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L100">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userTablePhoneFieldName" data-uid="Butterfly.Core.Auth.AuthManager.userTablePhoneFieldName">userTablePhoneFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string userTablePhoneFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_userTablePhoneVerifiedAtFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.userTablePhoneVerifiedAtFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L101">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userTablePhoneVerifiedAtFieldName" data-uid="Butterfly.Core.Auth.AuthManager.userTablePhoneVerifiedAtFieldName">userTablePhoneVerifiedAtFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string userTablePhoneVerifiedAtFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_userTableResetCodeExpiresAtFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.userTableResetCodeExpiresAtFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L107">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userTableResetCodeExpiresAtFieldName" data-uid="Butterfly.Core.Auth.AuthManager.userTableResetCodeExpiresAtFieldName">userTableResetCodeExpiresAtFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string userTableResetCodeExpiresAtFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_userTableResetCodeFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.userTableResetCodeFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L106">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userTableResetCodeFieldName" data-uid="Butterfly.Core.Auth.AuthManager.userTableResetCodeFieldName">userTableResetCodeFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string userTableResetCodeFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_userTableRoleFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.userTableRoleFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L109">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userTableRoleFieldName" data-uid="Butterfly.Core.Auth.AuthManager.userTableRoleFieldName">userTableRoleFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string userTableRoleFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_userTableSaltFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.userTableSaltFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L102">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userTableSaltFieldName" data-uid="Butterfly.Core.Auth.AuthManager.userTableSaltFieldName">userTableSaltFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string userTableSaltFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_userTableUsernameFieldName.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.userTableUsernameFieldName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L97">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userTableUsernameFieldName" data-uid="Butterfly.Core.Auth.AuthManager.userTableUsernameFieldName">userTableUsernameFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string userTableUsernameFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_VERSION_CLEAN_REGEX.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.VERSION_CLEAN_REGEX%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L240">View Source</a>
+  </span>
+  <h4 id="Butterfly_Core_Auth_AuthManager_VERSION_CLEAN_REGEX" data-uid="Butterfly.Core.Auth.AuthManager.VERSION_CLEAN_REGEX">VERSION_CLEAN_REGEX</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static readonly Regex VERSION_CLEAN_REGEX</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Regex</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_AuthenticateAsync_System_String_.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.AuthenticateAsync(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L443">View Source</a>
+  </span>
+  <a id="Butterfly_Core_Auth_AuthManager_AuthenticateAsync_" data-uid="Butterfly.Core.Auth.AuthManager.AuthenticateAsync*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager_AuthenticateAsync_System_String_" data-uid="Butterfly.Core.Auth.AuthManager.AuthenticateAsync(System.String)">AuthenticateAsync(String)</h4>
+  <div class="markdown level1 summary">
+Validates the auth token id returning an <a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a> instance
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;AuthToken&gt; AuthenticateAsync(string authTokenId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">authTokenId</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a>&gt;</td>
+        <td>An <a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a> instance</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_ConvertInputToDict_System_Object_.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.ConvertInputToDict(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L627">View Source</a>
+  </span>
+  <a id="Butterfly_Core_Auth_AuthManager_ConvertInputToDict_" data-uid="Butterfly.Core.Auth.AuthManager.ConvertInputToDict*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager_ConvertInputToDict_System_Object_" data-uid="Butterfly.Core.Auth.AuthManager.ConvertInputToDict(System.Object)">ConvertInputToDict(Object)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected System.Collections.Generic.Dictionary&lt;string, object&gt; ConvertInputToDict(dynamic input)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">input</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_CreateAnonymousUserAsync.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.CreateAnonymousUserAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L483">View Source</a>
+  </span>
+  <a id="Butterfly_Core_Auth_AuthManager_CreateAnonymousUserAsync_" data-uid="Butterfly.Core.Auth.AuthManager.CreateAnonymousUserAsync*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager_CreateAnonymousUserAsync" data-uid="Butterfly.Core.Auth.AuthManager.CreateAnonymousUserAsync">CreateAnonymousUserAsync()</h4>
+  <div class="markdown level1 summary">
+Creates an anonymous user and returns a valid <a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;AuthToken&gt; CreateAnonymousUserAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a>&gt;</td>
+        <td>An  <a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a> instance created</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_CreateAuthTokenAsync_System_String_.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.CreateAuthTokenAsync(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L518">View Source</a>
+  </span>
+  <a id="Butterfly_Core_Auth_AuthManager_CreateAuthTokenAsync_" data-uid="Butterfly.Core.Auth.AuthManager.CreateAuthTokenAsync*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager_CreateAuthTokenAsync_System_String_" data-uid="Butterfly.Core.Auth.AuthManager.CreateAuthTokenAsync(System.String)">CreateAuthTokenAsync(String)</h4>
+  <div class="markdown level1 summary">
+Create an auth token
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;AuthToken&gt; CreateAuthTokenAsync(string userId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userId</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a>&gt;</td>
+        <td>The AuthToken instance created</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_CreateResetCodeAsync_System_String_.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.CreateResetCodeAsync(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L611">View Source</a>
+  </span>
+  <a id="Butterfly_Core_Auth_AuthManager_CreateResetCodeAsync_" data-uid="Butterfly.Core.Auth.AuthManager.CreateResetCodeAsync*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager_CreateResetCodeAsync_System_String_" data-uid="Butterfly.Core.Auth.AuthManager.CreateResetCodeAsync(System.String)">CreateResetCodeAsync(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task&lt;string&gt; CreateResetCodeAsync(string userId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userId</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_ForgotPasswordAsync_System_String_.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.ForgotPasswordAsync(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L567">View Source</a>
+  </span>
+  <a id="Butterfly_Core_Auth_AuthManager_ForgotPasswordAsync_" data-uid="Butterfly.Core.Auth.AuthManager.ForgotPasswordAsync*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager_ForgotPasswordAsync_System_String_" data-uid="Butterfly.Core.Auth.AuthManager.ForgotPasswordAsync(System.String)">ForgotPasswordAsync(String)</h4>
+  <div class="markdown level1 summary">
+Creates a reset code and invokes <a class="xref" href="Butterfly.Core.Auth.AuthManager.html#Butterfly_Core_Auth_AuthManager_onForgotPassword">onForgotPassword</a> to send the reset code to the user
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ForgotPasswordAsync(string username)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">username</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_LoginAsync_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.LoginAsync(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L545">View Source</a>
+  </span>
+  <a id="Butterfly_Core_Auth_AuthManager_LoginAsync_" data-uid="Butterfly.Core.Auth.AuthManager.LoginAsync*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager_LoginAsync_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.Core.Auth.AuthManager.LoginAsync(System.Collections.Generic.Dictionary{System.String,System.Object})">LoginAsync(System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary">
+Logs in the user creating a valid <a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;AuthToken&gt; LoginAsync(System.Collections.Generic.Dictionary&lt;string, object&gt; login)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">login</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_LookupUsernameAsync_System_String_System_String_.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.LookupUsernameAsync(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L470">View Source</a>
+  </span>
+  <a id="Butterfly_Core_Auth_AuthManager_LookupUsernameAsync_" data-uid="Butterfly.Core.Auth.AuthManager.LookupUsernameAsync*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager_LookupUsernameAsync_System_String_System_String_" data-uid="Butterfly.Core.Auth.AuthManager.LookupUsernameAsync(System.String,System.String)">LookupUsernameAsync(String, String)</h4>
+  <div class="markdown level1 summary">
+Lookup user record from username
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;&gt; LookupUsernameAsync(string username, string fieldNames = &quot;*&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">username</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">fieldNames</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_RegisterAsync_System_Object_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.RegisterAsync(System.Object%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L365">View Source</a>
+  </span>
+  <a id="Butterfly_Core_Auth_AuthManager_RegisterAsync_" data-uid="Butterfly.Core.Auth.AuthManager.RegisterAsync*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager_RegisterAsync_System_Object_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.Core.Auth.AuthManager.RegisterAsync(System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})">RegisterAsync(Object, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary">
+Registers a new user
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;AuthToken&gt; RegisterAsync(dynamic input, System.Collections.Generic.Dictionary&lt;string, object&gt; notifyData = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">input</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">notifyData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_ResetPasswordAsync_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.ResetPasswordAsync(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L583">View Source</a>
+  </span>
+  <a id="Butterfly_Core_Auth_AuthManager_ResetPasswordAsync_" data-uid="Butterfly.Core.Auth.AuthManager.ResetPasswordAsync*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager_ResetPasswordAsync_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.Core.Auth.AuthManager.ResetPasswordAsync(System.Collections.Generic.Dictionary{System.String,System.Object})">ResetPasswordAsync(System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary">
+Resets the user&apos;s password if a valid reset code is included
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;AuthToken&gt; ResetPasswordAsync(System.Collections.Generic.Dictionary&lt;string, object&gt; resetPassword)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">resetPassword</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_SetupWebApi_Butterfly_Core_WebApi_IWebApi_System_String_.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.SetupWebApi(Butterfly.Core.WebApi.IWebApi%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L261">View Source</a>
+  </span>
+  <a id="Butterfly_Core_Auth_AuthManager_SetupWebApi_" data-uid="Butterfly.Core.Auth.AuthManager.SetupWebApi*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager_SetupWebApi_Butterfly_Core_WebApi_IWebApi_System_String_" data-uid="Butterfly.Core.Auth.AuthManager.SetupWebApi(Butterfly.Core.WebApi.IWebApi,System.String)">SetupWebApi(IWebApi, String)</h4>
+  <div class="markdown level1 summary">
+Call to setup a Web API with the specified <code data-dev-comment-type="paramref" class="paramref">webApi</code>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetupWebApi(IWebApi webApi, string pathPrefix = &quot;/api/auth&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.WebApi.IWebApi.html">IWebApi</a></td>
+        <td><span class="parametername">webApi</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pathPrefix</span></td>
+        <td>Defaults to /api/auth</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Butterfly_Core_Auth_AuthManager_SetupWebApi_Butterfly_Core_WebApi_IWebApi_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+The following API URLs will be setup...
+<pre><code>    GET /api/auth/check-username/{username}
+    GET /api/auth/check-auth-token/{id}
+    POST /api/auth/create-anonymous
+    POST /api/auth/register
+    POST /api/auth/login
+    POST /api/auth/forgot-password
+    POST /api/auth/reset-password
+    POST /api/auth/verify-email
+    POST /api/auth/verify-phone</code></pre>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager_VerifyAsync_System_Collections_Generic_Dictionary_System_String_System_Object__System_String_System_String_Func_System_String_System_Int32_Task__.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager.VerifyAsync(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.String%2CSystem.String%2CFunc%7BSystem.String%2CSystem.Int32%2CTask%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L335">View Source</a>
+  </span>
+  <a id="Butterfly_Core_Auth_AuthManager_VerifyAsync_" data-uid="Butterfly.Core.Auth.AuthManager.VerifyAsync*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager_VerifyAsync_System_Collections_Generic_Dictionary_System_String_System_Object__System_String_System_String_Func_System_String_System_Int32_Task__" data-uid="Butterfly.Core.Auth.AuthManager.VerifyAsync(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,Func{System.String,System.Int32,Task})">VerifyAsync(System.Collections.Generic.Dictionary&lt;String, Object&gt;, String, String, Func&lt;String, Int32, Task&gt;)</h4>
+  <div class="markdown level1 summary">
+Call to verify a user&apos;s email or phone
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task VerifyAsync(System.Collections.Generic.Dictionary&lt;string, object&gt; data, string fieldName, string verifiedAtFieldName, Func&lt;string, int, Task&gt; onVerify)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">fieldName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">verifiedAtFieldName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>, <span class="xref">Task</span>&gt;</td>
+        <td><span class="parametername">onVerify</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Core_Auth_AuthManager.md&amp;value=---%0Auid%3A%20Butterfly.Core.Auth.AuthManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Core/Auth/AuthManager.cs/#L84" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

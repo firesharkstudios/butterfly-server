@@ -7,6 +7,7 @@
 * Easily synchronize real-time data to clients
 
 [GitHub](https://github.com/firesharkstudios/butterfly-server-dotnet)
+[API Docs](https://butterflyserver.io/docfx/)
 [Get Started](#overview)
 
 ![color](#DBE3EE)

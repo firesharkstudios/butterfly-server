@@ -1,0 +1,850 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MySqlTransaction
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MySqlTransaction
+   ">
+    <meta name="generator" content="docfx 2.38.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Butterfly.MySql.MySqlTransaction">
+  
+  
+  <h1 id="Butterfly_MySql_MySqlTransaction" data-uid="Butterfly.MySql.MySqlTransaction" class="text-break">Class MySqlTransaction
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html">BaseTransaction</a></div>
+    <div class="level2"><span class="xref">MySqlTransaction</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Butterfly.Core.Database.ITransaction.html">ITransaction</a></div>
+    <div><span class="xref">IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_database">BaseTransaction.database</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_dataEvents">BaseTransaction.dataEvents</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_onCommits">BaseTransaction.onCommits</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_Database">BaseTransaction.Database</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_Create_Butterfly_Core_Database_CreateStatement_">BaseTransaction.Create(CreateStatement)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_CreateAsync_Butterfly_Core_Database_CreateStatement_">BaseTransaction.CreateAsync(CreateStatement)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_InsertAsync__1_System_String_System_Object_System_Boolean_">BaseTransaction.InsertAsync&lt;T&gt;(String, Object, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_InsertAsync_Butterfly_Core_Database_InsertStatement_System_Object_System_Boolean_">BaseTransaction.InsertAsync(InsertStatement, Object, Boolean)</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseTransaction.DoInsertAsync(System.String, System.Collections.Generic.Dictionary&lt;, &gt;, System.Boolean)</span>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_UpdateAsync_System_String_System_Object_">BaseTransaction.UpdateAsync(String, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_UpdateAsync_Butterfly_Core_Database_UpdateStatement_System_Object_">BaseTransaction.UpdateAsync(UpdateStatement, Object)</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseTransaction.DoUpdateAsync(System.String, System.Collections.Generic.Dictionary&lt;, &gt;)</span>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_DeleteAsync_System_String_System_Object_">BaseTransaction.DeleteAsync(String, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_DeleteAsync_Butterfly_Core_Database_DeleteStatement_System_Object_">BaseTransaction.DeleteAsync(DeleteStatement, Object)</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseTransaction.DoDeleteAsync(System.String, System.Collections.Generic.Dictionary&lt;, &gt;)</span>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseTransaction.GetKeyValue(Butterfly.Core.Database.TableIndex, System.Collections.Generic.Dictionary&lt;, &gt;, System.Collections.Generic.Dictionary&lt;, &gt;, Butterfly.Core.Database.StatementEqualsRef[], Butterfly.Core.Database.TableIndex, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary&lt;, &gt;[], System.Collections.Generic.Dictionary&lt;, &gt;[], Func&lt;, &gt;, System.String[])</span>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_TruncateAsync_System_String_">BaseTransaction.TruncateAsync(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_Commit">BaseTransaction.Commit()</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_CommitAsync">BaseTransaction.CommitAsync()</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseTransaction.OnCommit(Func&lt;&gt;)</span>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_Rollback">BaseTransaction.Rollback()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Butterfly.MySql.html">Butterfly.MySql</a></h6>
+  <h6><strong>Assembly</strong>: Butterfly.MySql.dll</h6>
+  <h5 id="Butterfly_MySql_MySqlTransaction_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MySqlTransaction : BaseTransaction, ITransaction, IDisposable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction__ctor_Butterfly_MySql_MySqlDatabase_.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.%23ctor(Butterfly.MySql.MySqlDatabase)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L26">View Source</a>
+  </span>
+  <a id="Butterfly_MySql_MySqlTransaction__ctor_" data-uid="Butterfly.MySql.MySqlTransaction.#ctor*"></a>
+  <h4 id="Butterfly_MySql_MySqlTransaction__ctor_Butterfly_MySql_MySqlDatabase_" data-uid="Butterfly.MySql.MySqlTransaction.#ctor(Butterfly.MySql.MySqlDatabase)">MySqlTransaction(MySqlDatabase)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MySqlTransaction(MySqlDatabase database)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.MySql.MySqlDatabase.html">MySqlDatabase</a></td>
+        <td><span class="parametername">database</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_connection.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.connection%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L23">View Source</a>
+  </span>
+  <h4 id="Butterfly_MySql_MySqlTransaction_connection" data-uid="Butterfly.MySql.MySqlTransaction.connection">connection</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected MySqlConnection connection</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">MySqlConnection</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_transaction.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.transaction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L24">View Source</a>
+  </span>
+  <h4 id="Butterfly_MySql_MySqlTransaction_transaction" data-uid="Butterfly.MySql.MySqlTransaction.transaction">transaction</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected MySql.Data.MySqlClient.MySqlTransaction transaction</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">MySql.Data.MySqlClient.MySqlTransaction</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_Begin.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.Begin%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L29">View Source</a>
+  </span>
+  <a id="Butterfly_MySql_MySqlTransaction_Begin_" data-uid="Butterfly.MySql.MySqlTransaction.Begin*"></a>
+  <h4 id="Butterfly_MySql_MySqlTransaction_Begin" data-uid="Butterfly.MySql.MySqlTransaction.Begin">Begin()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Begin()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_Begin">BaseTransaction.Begin()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_BeginAsync.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.BeginAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L36">View Source</a>
+  </span>
+  <a id="Butterfly_MySql_MySqlTransaction_BeginAsync_" data-uid="Butterfly.MySql.MySqlTransaction.BeginAsync*"></a>
+  <h4 id="Butterfly_MySql_MySqlTransaction_BeginAsync" data-uid="Butterfly.MySql.MySqlTransaction.BeginAsync">BeginAsync()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Task BeginAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_BeginAsync">BaseTransaction.BeginAsync()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_Dispose.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L55">View Source</a>
+  </span>
+  <a id="Butterfly_MySql_MySqlTransaction_Dispose_" data-uid="Butterfly.MySql.MySqlTransaction.Dispose*"></a>
+  <h4 id="Butterfly_MySql_MySqlTransaction_Dispose" data-uid="Butterfly.MySql.MySqlTransaction.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Dispose()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_Dispose">BaseTransaction.Dispose()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_DoCommit.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.DoCommit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L43">View Source</a>
+  </span>
+  <a id="Butterfly_MySql_MySqlTransaction_DoCommit_" data-uid="Butterfly.MySql.MySqlTransaction.DoCommit*"></a>
+  <h4 id="Butterfly_MySql_MySqlTransaction_DoCommit" data-uid="Butterfly.MySql.MySqlTransaction.DoCommit">DoCommit()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void DoCommit()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_DoCommit">BaseTransaction.DoCommit()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_DoCommitAsync.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.DoCommitAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L47">View Source</a>
+  </span>
+  <a id="Butterfly_MySql_MySqlTransaction_DoCommitAsync_" data-uid="Butterfly.MySql.MySqlTransaction.DoCommitAsync*"></a>
+  <h4 id="Butterfly_MySql_MySqlTransaction_DoCommitAsync" data-uid="Butterfly.MySql.MySqlTransaction.DoCommitAsync">DoCommitAsync()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task DoCommitAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_DoCommitAsync">BaseTransaction.DoCommitAsync()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_DoCreate_Butterfly_Core_Database_CreateStatement_.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L60">View Source</a>
+  </span>
+  <a id="Butterfly_MySql_MySqlTransaction_DoCreate_" data-uid="Butterfly.MySql.MySqlTransaction.DoCreate*"></a>
+  <h4 id="Butterfly_MySql_MySqlTransaction_DoCreate_Butterfly_Core_Database_CreateStatement_" data-uid="Butterfly.MySql.MySqlTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)">DoCreate(CreateStatement)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool DoCreate(CreateStatement statement)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.CreateStatement.html">CreateStatement</a></td>
+        <td><span class="parametername">statement</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_DoCreate_Butterfly_Core_Database_CreateStatement_">BaseTransaction.DoCreate(CreateStatement)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_DoCreateAsync_Butterfly_Core_Database_CreateStatement_.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L65">View Source</a>
+  </span>
+  <a id="Butterfly_MySql_MySqlTransaction_DoCreateAsync_" data-uid="Butterfly.MySql.MySqlTransaction.DoCreateAsync*"></a>
+  <h4 id="Butterfly_MySql_MySqlTransaction_DoCreateAsync_Butterfly_Core_Database_CreateStatement_" data-uid="Butterfly.MySql.MySqlTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)">DoCreateAsync(CreateStatement)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task&lt;bool&gt; DoCreateAsync(CreateStatement statement)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.CreateStatement.html">CreateStatement</a></td>
+        <td><span class="parametername">statement</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_DoCreateAsync_Butterfly_Core_Database_CreateStatement_">BaseTransaction.DoCreateAsync(CreateStatement)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_DoDeleteAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.DoDeleteAsync(System.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L95">View Source</a>
+  </span>
+  <a id="Butterfly_MySql_MySqlTransaction_DoDeleteAsync_" data-uid="Butterfly.MySql.MySqlTransaction.DoDeleteAsync*"></a>
+  <h4 id="Butterfly_MySql_MySqlTransaction_DoDeleteAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.MySql.MySqlTransaction.DoDeleteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">DoDeleteAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task&lt;int&gt; DoDeleteAsync(string executableSql, System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">executableSql</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">executableParams</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_DoExecute_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.DoExecute(System.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L103">View Source</a>
+  </span>
+  <a id="Butterfly_MySql_MySqlTransaction_DoExecute_" data-uid="Butterfly.MySql.MySqlTransaction.DoExecute*"></a>
+  <h4 id="Butterfly_MySql_MySqlTransaction_DoExecute_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.MySql.MySqlTransaction.DoExecute(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">DoExecute(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int DoExecute(string executableSql, System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">executableSql</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">executableParams</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_DoExecuteAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.DoExecuteAsync(System.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L118">View Source</a>
+  </span>
+  <a id="Butterfly_MySql_MySqlTransaction_DoExecuteAsync_" data-uid="Butterfly.MySql.MySqlTransaction.DoExecuteAsync*"></a>
+  <h4 id="Butterfly_MySql_MySqlTransaction_DoExecuteAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.MySql.MySqlTransaction.DoExecuteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">DoExecuteAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task&lt;int&gt; DoExecuteAsync(string executableSql, System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">executableSql</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">executableParams</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_DoInsertAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.DoInsertAsync(System.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L70">View Source</a>
+  </span>
+  <a id="Butterfly_MySql_MySqlTransaction_DoInsertAsync_" data-uid="Butterfly.MySql.MySqlTransaction.DoInsertAsync*"></a>
+  <h4 id="Butterfly_MySql_MySqlTransaction_DoInsertAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="Butterfly.MySql.MySqlTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">DoInsertAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task&lt;Func&lt;object&gt;&gt; DoInsertAsync(string executableSql, System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams, bool ignoreIfDuplicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">executableSql</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">executableParams</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">ignoreIfDuplicate</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">Func</span>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_DoRollback.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.DoRollback%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L51">View Source</a>
+  </span>
+  <a id="Butterfly_MySql_MySqlTransaction_DoRollback_" data-uid="Butterfly.MySql.MySqlTransaction.DoRollback*"></a>
+  <h4 id="Butterfly_MySql_MySqlTransaction_DoRollback" data-uid="Butterfly.MySql.MySqlTransaction.DoRollback">DoRollback()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void DoRollback()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_DoRollback">BaseTransaction.DoRollback()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_DoTruncateAsync_System_String_.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.DoTruncateAsync(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L99">View Source</a>
+  </span>
+  <a id="Butterfly_MySql_MySqlTransaction_DoTruncateAsync_" data-uid="Butterfly.MySql.MySqlTransaction.DoTruncateAsync*"></a>
+  <h4 id="Butterfly_MySql_MySqlTransaction_DoTruncateAsync_System_String_" data-uid="Butterfly.MySql.MySqlTransaction.DoTruncateAsync(System.String)">DoTruncateAsync(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task DoTruncateAsync(string tableName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">tableName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction_DoUpdateAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction.DoUpdateAsync(System.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L91">View Source</a>
+  </span>
+  <a id="Butterfly_MySql_MySqlTransaction_DoUpdateAsync_" data-uid="Butterfly.MySql.MySqlTransaction.DoUpdateAsync*"></a>
+  <h4 id="Butterfly_MySql_MySqlTransaction_DoUpdateAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.MySql.MySqlTransaction.DoUpdateAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">DoUpdateAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task&lt;int&gt; DoUpdateAsync(string executableSql, System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">executableSql</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">executableParams</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Butterfly.Core.Database.ITransaction.html">ITransaction</a>
+  </div>
+  <div>
+      <span class="xref">IDisposable</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_MySql_MySqlTransaction.md&amp;value=---%0Auid%3A%20Butterfly.MySql.MySqlTransaction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.MySql/MySqlTransaction.cs/#L19" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

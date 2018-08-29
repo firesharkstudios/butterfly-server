@@ -1,0 +1,897 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class PostgresTransaction
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class PostgresTransaction
+   ">
+    <meta name="generator" content="docfx 2.38.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Butterfly.Postgres.PostgresTransaction">
+  
+  
+  <h1 id="Butterfly_Postgres_PostgresTransaction" data-uid="Butterfly.Postgres.PostgresTransaction" class="text-break">Class PostgresTransaction
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html">BaseTransaction</a></div>
+    <div class="level2"><span class="xref">PostgresTransaction</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Butterfly.Core.Database.ITransaction.html">ITransaction</a></div>
+    <div><span class="xref">IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_database">BaseTransaction.database</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_dataEvents">BaseTransaction.dataEvents</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_onCommits">BaseTransaction.onCommits</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_Database">BaseTransaction.Database</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_Create_Butterfly_Core_Database_CreateStatement_">BaseTransaction.Create(CreateStatement)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_CreateAsync_Butterfly_Core_Database_CreateStatement_">BaseTransaction.CreateAsync(CreateStatement)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_InsertAsync__1_System_String_System_Object_System_Boolean_">BaseTransaction.InsertAsync&lt;T&gt;(String, Object, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_InsertAsync_Butterfly_Core_Database_InsertStatement_System_Object_System_Boolean_">BaseTransaction.InsertAsync(InsertStatement, Object, Boolean)</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseTransaction.DoInsertAsync(System.String, System.Collections.Generic.Dictionary&lt;, &gt;, System.Boolean)</span>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_UpdateAsync_System_String_System_Object_">BaseTransaction.UpdateAsync(String, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_UpdateAsync_Butterfly_Core_Database_UpdateStatement_System_Object_">BaseTransaction.UpdateAsync(UpdateStatement, Object)</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseTransaction.DoUpdateAsync(System.String, System.Collections.Generic.Dictionary&lt;, &gt;)</span>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_DeleteAsync_System_String_System_Object_">BaseTransaction.DeleteAsync(String, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_DeleteAsync_Butterfly_Core_Database_DeleteStatement_System_Object_">BaseTransaction.DeleteAsync(DeleteStatement, Object)</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseTransaction.DoDeleteAsync(System.String, System.Collections.Generic.Dictionary&lt;, &gt;)</span>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseTransaction.GetKeyValue(Butterfly.Core.Database.TableIndex, System.Collections.Generic.Dictionary&lt;, &gt;, System.Collections.Generic.Dictionary&lt;, &gt;, Butterfly.Core.Database.StatementEqualsRef[], Butterfly.Core.Database.TableIndex, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary&lt;, &gt;[], System.Collections.Generic.Dictionary&lt;, &gt;[], Func&lt;, &gt;, System.String[])</span>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_TruncateAsync_System_String_">BaseTransaction.TruncateAsync(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_Commit">BaseTransaction.Commit()</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_CommitAsync">BaseTransaction.CommitAsync()</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseTransaction.OnCommit(Func&lt;&gt;)</span>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_Rollback">BaseTransaction.Rollback()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Butterfly.Postgres.html">Butterfly.Postgres</a></h6>
+  <h6><strong>Assembly</strong>: Butterfly.Postgres.dll</h6>
+  <h5 id="Butterfly_Postgres_PostgresTransaction_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class PostgresTransaction : BaseTransaction, ITransaction, IDisposable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction__ctor_Butterfly_Postgres_PostgresDatabase_.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.%23ctor(Butterfly.Postgres.PostgresDatabase)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L26">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction__ctor_" data-uid="Butterfly.Postgres.PostgresTransaction.#ctor*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction__ctor_Butterfly_Postgres_PostgresDatabase_" data-uid="Butterfly.Postgres.PostgresTransaction.#ctor(Butterfly.Postgres.PostgresDatabase)">PostgresTransaction(PostgresDatabase)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PostgresTransaction(PostgresDatabase database)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Postgres.PostgresDatabase.html">PostgresDatabase</a></td>
+        <td><span class="parametername">database</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_connection.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.connection%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L23">View Source</a>
+  </span>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_connection" data-uid="Butterfly.Postgres.PostgresTransaction.connection">connection</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected NpgsqlConnection connection</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">NpgsqlConnection</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_transaction.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.transaction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L24">View Source</a>
+  </span>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_transaction" data-uid="Butterfly.Postgres.PostgresTransaction.transaction">transaction</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected NpgsqlTransaction transaction</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">NpgsqlTransaction</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_Begin.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.Begin%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L29">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction_Begin_" data-uid="Butterfly.Postgres.PostgresTransaction.Begin*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_Begin" data-uid="Butterfly.Postgres.PostgresTransaction.Begin">Begin()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Begin()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_Begin">BaseTransaction.Begin()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_BeginAsync.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.BeginAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L36">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction_BeginAsync_" data-uid="Butterfly.Postgres.PostgresTransaction.BeginAsync*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_BeginAsync" data-uid="Butterfly.Postgres.PostgresTransaction.BeginAsync">BeginAsync()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Task BeginAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_BeginAsync">BaseTransaction.BeginAsync()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_BuildCreate_Butterfly_Core_Database_CreateStatement_.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.BuildCreate(Butterfly.Core.Database.CreateStatement)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L79">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction_BuildCreate_" data-uid="Butterfly.Postgres.PostgresTransaction.BuildCreate*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_BuildCreate_Butterfly_Core_Database_CreateStatement_" data-uid="Butterfly.Postgres.PostgresTransaction.BuildCreate(Butterfly.Core.Database.CreateStatement)">BuildCreate(CreateStatement)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static string BuildCreate(CreateStatement statement)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.CreateStatement.html">CreateStatement</a></td>
+        <td><span class="parametername">statement</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_Dispose.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L55">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction_Dispose_" data-uid="Butterfly.Postgres.PostgresTransaction.Dispose*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_Dispose" data-uid="Butterfly.Postgres.PostgresTransaction.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Dispose()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_Dispose">BaseTransaction.Dispose()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_DoCommit.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.DoCommit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L43">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction_DoCommit_" data-uid="Butterfly.Postgres.PostgresTransaction.DoCommit*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_DoCommit" data-uid="Butterfly.Postgres.PostgresTransaction.DoCommit">DoCommit()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void DoCommit()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_DoCommit">BaseTransaction.DoCommit()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_DoCommitAsync.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.DoCommitAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L47">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction_DoCommitAsync_" data-uid="Butterfly.Postgres.PostgresTransaction.DoCommitAsync*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_DoCommitAsync" data-uid="Butterfly.Postgres.PostgresTransaction.DoCommitAsync">DoCommitAsync()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task DoCommitAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_DoCommitAsync">BaseTransaction.DoCommitAsync()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_DoCreate_Butterfly_Core_Database_CreateStatement_.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L60">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction_DoCreate_" data-uid="Butterfly.Postgres.PostgresTransaction.DoCreate*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_DoCreate_Butterfly_Core_Database_CreateStatement_" data-uid="Butterfly.Postgres.PostgresTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)">DoCreate(CreateStatement)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool DoCreate(CreateStatement statement)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.CreateStatement.html">CreateStatement</a></td>
+        <td><span class="parametername">statement</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_DoCreate_Butterfly_Core_Database_CreateStatement_">BaseTransaction.DoCreate(CreateStatement)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_DoCreateAsync_Butterfly_Core_Database_CreateStatement_.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L66">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction_DoCreateAsync_" data-uid="Butterfly.Postgres.PostgresTransaction.DoCreateAsync*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_DoCreateAsync_Butterfly_Core_Database_CreateStatement_" data-uid="Butterfly.Postgres.PostgresTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)">DoCreateAsync(CreateStatement)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task&lt;bool&gt; DoCreateAsync(CreateStatement statement)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.CreateStatement.html">CreateStatement</a></td>
+        <td><span class="parametername">statement</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_DoCreateAsync_Butterfly_Core_Database_CreateStatement_">BaseTransaction.DoCreateAsync(CreateStatement)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_DoDeleteAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.DoDeleteAsync(System.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L157">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction_DoDeleteAsync_" data-uid="Butterfly.Postgres.PostgresTransaction.DoDeleteAsync*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_DoDeleteAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.Postgres.PostgresTransaction.DoDeleteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">DoDeleteAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task&lt;int&gt; DoDeleteAsync(string executableSql, System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">executableSql</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">executableParams</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_DoExecute_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.DoExecute(System.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L165">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction_DoExecute_" data-uid="Butterfly.Postgres.PostgresTransaction.DoExecute*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_DoExecute_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.Postgres.PostgresTransaction.DoExecute(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">DoExecute(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int DoExecute(string executableSql, System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">executableSql</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">executableParams</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_DoExecuteAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.DoExecuteAsync(System.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L180">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction_DoExecuteAsync_" data-uid="Butterfly.Postgres.PostgresTransaction.DoExecuteAsync*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_DoExecuteAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.Postgres.PostgresTransaction.DoExecuteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">DoExecuteAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task&lt;int&gt; DoExecuteAsync(string executableSql, System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">executableSql</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">executableParams</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_DoInsertAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.DoInsertAsync(System.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L117">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction_DoInsertAsync_" data-uid="Butterfly.Postgres.PostgresTransaction.DoInsertAsync*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_DoInsertAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_" data-uid="Butterfly.Postgres.PostgresTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">DoInsertAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task&lt;Func&lt;object&gt;&gt; DoInsertAsync(string executableSql, System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams, bool ignoreIfDuplicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">executableSql</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">executableParams</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">ignoreIfDuplicate</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">Func</span>&lt;<span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_DoRollback.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.DoRollback%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L51">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction_DoRollback_" data-uid="Butterfly.Postgres.PostgresTransaction.DoRollback*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_DoRollback" data-uid="Butterfly.Postgres.PostgresTransaction.DoRollback">DoRollback()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void DoRollback()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_DoRollback">BaseTransaction.DoRollback()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_DoTruncateAsync_System_String_.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.DoTruncateAsync(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L161">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction_DoTruncateAsync_" data-uid="Butterfly.Postgres.PostgresTransaction.DoTruncateAsync*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_DoTruncateAsync_System_String_" data-uid="Butterfly.Postgres.PostgresTransaction.DoTruncateAsync(System.String)">DoTruncateAsync(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task DoTruncateAsync(string tableName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">tableName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction_DoUpdateAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction.DoUpdateAsync(System.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L153">View Source</a>
+  </span>
+  <a id="Butterfly_Postgres_PostgresTransaction_DoUpdateAsync_" data-uid="Butterfly.Postgres.PostgresTransaction.DoUpdateAsync*"></a>
+  <h4 id="Butterfly_Postgres_PostgresTransaction_DoUpdateAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.Postgres.PostgresTransaction.DoUpdateAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">DoUpdateAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task&lt;int&gt; DoUpdateAsync(string executableSql, System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">executableSql</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">executableParams</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Butterfly.Core.Database.ITransaction.html">ITransaction</a>
+  </div>
+  <div>
+      <span class="xref">IDisposable</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/firesharkstudios/Butterfly/new/master/apiSpec/new?filename=Butterfly_Postgres_PostgresTransaction.md&amp;value=---%0Auid%3A%20Butterfly.Postgres.PostgresTransaction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/firesharkstudios/Butterfly/blob/master/Butterfly.Postgres/PostgresTransaction.cs/#L19" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
