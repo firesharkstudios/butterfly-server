@@ -1,29 +1,38 @@
 ﻿using Butterfly.Core.Database;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
+
+using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.SqlServer
 {
 	public class SqlServerTransaction : BaseTransaction
 	{
+		protected SqlConnection sqlConnection;
+		private SqlServerDatabase sqlServerDatabase;
+
 		public SqlServerTransaction(SqlServerDatabase sqlServerDatabase) : base(sqlServerDatabase)
 		{
 		}
 
 		public override void Begin()
 		{
-			throw new NotImplementedException();
+			sqlServerDatabase.Begin();
 		}
 
-		public override Task BeginAsync()
+		public override async Task BeginAsync()
 		{
-			throw new NotImplementedException();
+			await sqlServerDatabase.BeginAsync();
 		}
 
 		public override void Dispose()
 		{
-			throw new NotImplementedException();
+			sqlServerDatabase.sqlConnection.Dispose();
 		}
 
 		protected override void DoCommit()
@@ -31,29 +40,49 @@ namespace Butterfly.SqlServer
 			throw new NotImplementedException();
 		}
 
-		protected override Task DoCommitAsync()
+		protected override async Task DoCommitAsync()
 		{
 			throw new NotImplementedException();
 		}
 
 		protected override bool DoCreate(CreateStatement statement)
 		{
-			throw new NotImplementedException();
+			var result = sqlServerDatabase.ExecuteCommand<int>(c =>
+			{
+				return c.ExecuteNonQuery();
+			}, statement.Sql);
+			
+			return false;
 		}
 
-		protected override Task<bool> DoCreateAsync(CreateStatement statement)
+		protected override async Task<bool> DoCreateAsync(CreateStatement statement)
 		{
-			throw new NotImplementedException();
+			var result = await sqlServerDatabase.ExecuteCommandAsync<int>(async c =>
+			{
+				return await c.ExecuteNonQueryAsync();
+			}, statement.Sql);
+			
+			return false;
 		}
 
-		protected override Task<int> DoDeleteAsync(string executableSql, Dictionary<string, object> executableParams)
+		protected override async Task<int> DoDeleteAsync(string executableSql, Dict executableParams)
 		{
-			throw new NotImplementedException();
+			var result = await sqlServerDatabase.ExecuteCommandAsync<int>(async c =>
+			{
+				return await c.ExecuteNonQueryAsync();
+			}, executableSql);
+
+			return result;
 		}
 
-		protected override Task<Func<object>> DoInsertAsync(string executableSql, Dictionary<string, object> executableParams, bool ignoreIfDuplicate)
+		protected override async Task<Func<object>> DoInsertAsync(string executableSql, Dict executableParams, bool ignoreIfDuplicate)
 		{
-			throw new NotImplementedException();
+			var result = await sqlServerDatabase.ExecuteCommandAsync<object>(async c =>
+			{
+				return await c.ExecuteScalarAsync();
+			}, executableSql, executableParams);
+
+			return () => result;
 		}
 
 		protected override void DoRollback()
@@ -61,14 +90,22 @@ namespace Butterfly.SqlServer
 			throw new NotImplementedException();
 		}
 
-		protected override Task DoTruncateAsync(string tableName)
+		protected override async Task DoTruncateAsync(string tableName)
 		{
-			throw new NotImplementedException();
+			await sqlServerDatabase.ExecuteCommandAsync<int>(async c =>
+			{
+				return await c.ExecuteNonQueryAsync();
+			}, $"TRUNCATE TABLE {tableName}");
 		}
 
-		protected override Task<int> DoUpdateAsync(string executableSql, Dictionary<string, object> executableParams)
+		protected override async Task<int> DoUpdateAsync(string executableSql, Dictionary<string, object> executableParams)
 		{
-			throw new NotImplementedException();
+			var result = await sqlServerDatabase.ExecuteCommandAsync<int>(async c =>
+			{
+				return await c.ExecuteNonQueryAsync();
+			}, executableSql);
+
+			return result;
 		}
 	}
 }
