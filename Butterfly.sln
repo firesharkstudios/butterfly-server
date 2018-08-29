@@ -191,6 +191,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "docfx_project", "docfx_proj
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "56415"
+		SlnRelativePath = "docfx_project\"
 	EndProjectSection
 EndProject
 Global
@@ -284,9 +285,7 @@ Global
 		{4D722034-2801-4C7F-91EA-19714E2D0B1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D722034-2801-4C7F-91EA-19714E2D0B1D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{934C100B-6EC4-47F0-A5EA-5AD829D93506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{934C100B-6EC4-47F0-A5EA-5AD829D93506}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{934C100B-6EC4-47F0-A5EA-5AD829D93506}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{934C100B-6EC4-47F0-A5EA-5AD829D93506}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
