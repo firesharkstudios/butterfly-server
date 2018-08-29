@@ -1,3 +1,2 @@
-- name: Api Documentation
-  href: api/
-  homepage: /
+- name: Butterfly Server .NET API Documentation
+  href: /docfx/api/

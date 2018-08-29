@@ -49,6 +49,12 @@
       }
     ],
     "dest": "../docs/docfx",
+    "globalMetadata": {
+      "_disableContribution": true,
+      "_appTitle":  "Butterfly Server .NET API Documentation",
+      "_appLogoPath": "images/logo-48x48.png",
+      "_appFaviconPath": "images/logo-48x48.png"
+    },
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
