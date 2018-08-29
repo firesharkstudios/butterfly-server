@@ -161,7 +161,7 @@ See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfl
 
 ### Overview
 
-[IWebApi](api/Butterfly.Core.WebApi/IWebApi) allows defining a RESTlike API using HTTP verbs like this...
+[IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) allows defining a RESTlike API using HTTP verbs like this...
 
 ```cs
 webApi.OnPost("/api/todo/insert", async (req, res) => {
@@ -176,19 +176,13 @@ webApi.OnPost("/api/todo/delete", async (req, res) => {
 
 This is "RESTlike API" because it's not following the standard practice of using HTTP Verbs to define the actions (which is often problematic with entities with a large number of actions). 
 
-You need an implementation of [IWebApi](api/Butterfly.Core.WebApi/IWebApi) like [EmbedIO](#using-embedio).
-
-### Defining Actions
-
-Use [OnGet](api/Butterfly.Core.WebApi/IWebApi/OnGet) to respond to HTTP GET requests.
-
-Use [OnPost](api/Butterfly.Core.WebApi/IWebApi/OnPost) to respond to HTTP POST requests.
+You need an implementation of [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) like [EmbedIO](#using-embedio).
 
 ## Creating a Subscription API
 
 ### Overview
 
-[ISubscriptionApi](api/Butterfly.Core.Channel/ISubscriptionApi) allows defining a Subscription API that can push real-time data to clients like this...
+[ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.ISubscriptionApi.html) allows defining a Subscription API that can push real-time data to clients like this...
 
 ```cs
 subscriptionApi.OnSubscribe("todos", (vars, channel) => {
@@ -200,7 +194,7 @@ subscriptionApi.OnSubscribe("todos", (vars, channel) => {
 
 In the example above, a subscription to the *todos* channel creates a *DynamicView* instance that pushes data changes over the channel to the client. 
 
-You need an implementation of [ISubscriptionApi](api/Butterfly.Core.Channel/ISubscriptionApi) like [EmbedIO](#using-embedio).
+You need an implementation of [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.ISubscriptionApi.html) like [EmbedIO](#using-embedio).
 
 ### Defining Subscriptions
 
@@ -247,7 +241,7 @@ Because the new *todo* collection is the result of a join, the client will recei
 
 ### Overview
 
-An [IDatabase](api/Butterfly.Core.Database/IDatabase) instance allows creating transactions, modifying data, retrieving data, and subscribing to data change events.
+An [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance allows creating transactions, modifying data, retrieving data, and subscribing to data change events.
 
 ```cs
 var id = await database.InsertAndCommitAsync<string>("todo", new {
@@ -262,12 +256,12 @@ await database.DeleteAndCommitAsync("todo", id);
 var name = await database.SelectValueAsync<string>("SELECT name FROM todo", id);
 ```
 
-The [IDatabase](api/Butterfly.Core.Database/IDatabase) instance also support transactions and the ability to publish data change events on tables and even complex SELECT statements.
+The [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance also support transactions and the ability to publish data change events on tables and even complex SELECT statements.
 
 
 ### Using a Memory Database
 
-[Butterfly.Core.Database.MemoryDatabase](api/Butterfly.Core.Database.Memory/MemoryDatabase) database is included in [Butterfly.Core](api/Butterfly.Core.md).
+[Butterfly.Core.Database.MemoryDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Memory.MemoryDatabase.html) database is included in [Butterfly.Core](api/Butterfly.Core.md).
 
 In your application...
 
