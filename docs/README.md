@@ -16,24 +16,12 @@ Butterfly Server .NET targets *.NET Framework 2.0* and does **not** have any dep
 
 ## Install from Nuget
 
-```
-nuget install Butterfly.Core
-
-# If you wish to use EmbedIO for the SubscriptionApi and WebApi...
-nuget install Butterfly.EmbedIO
-
-# If you wish to use MySQL as your database...
-nuget install Butterfly.MySQL
-
-# If you wish to use SQLite as your database...
-nuget install Butterfly.SQLite
-
-# If you wish to use AWS SES to send emails...
-nuget install Butterfly.Aws
-
-# If you wish to use Twilio to send text messages...
-nuget install Butterfly.Twilio
-```
+| Name | Package | Install |
+| --- | --- | --- |
+| Butterfly.Core | [![nuget](https://img.shields.io/nuget/v/Butterfly.Core.svg)](https://www.nuget.org/packages/Butterfly.Core/) | `nuget install Butterfly.Core` |
+| Butterfly.EmbedIO | [![nuget](https://img.shields.io/nuget/v/Butterfly.EmbedIO.svg)](https://www.nuget.org/packages/Butterfly.EmbedIO/) | `nuget install Butterfly.EmbedIO` |
+| Butterfly.MySQL | [![nuget](https://img.shields.io/nuget/v/Butterfly.MySQL.svg)](https://www.nuget.org/packages/Butterfly.MySQL/) | `nuget install Butterfly.MySQL` |
+| Butterfly.SQLite | [![nuget](https://img.shields.io/nuget/v/Butterfly.SQLite.svg)](https://www.nuget.org/packages/Butterfly.SQLite/) | `nuget install Butterfly.SQLite` |
 
 ## Install from Source Code
 
@@ -372,10 +360,8 @@ Here are the key packages in *Butterfly.Core*...
 
 Here are various implementations you'll likely find useful...
 
-- [Butterfly.Aws](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Aws) - Implementation of *Butterfly.Core.Notify* for AWS SES
 - [Butterfly.MySql](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.MySql) - Implementation of *Butterfly.Core.Database* for MySql
 - [Butterfly.EmbedIO](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.EmbedIO) - Implementation of *Butterfly.Core.Channel* and *Butterfly.Core.WebApi* for [EmbedIO](https://github.com/unosquare/embedio) server
-- [Butterfly.Twilio](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Twilio) - Implementation of *Butterfly.Notify* for Twilio SMS
 
 # In the Wild
 

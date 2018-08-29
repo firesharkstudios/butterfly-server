@@ -2,6 +2,8 @@
 
 Allows receiving API requests via HTTP (inspired by Node.js' Express)
 
+Allows receiving API requests via HTTP (inspired by Node.js' Express)
+
 ```csharp
 public abstract class BaseWebApi : IWebApi
 ```
@@ -18,6 +20,19 @@ public abstract class BaseWebApi : IWebApi
 | static [FileUploadHandlerAsync](BaseWebApi/FileUploadHandlerAsync.md)(…) |  |
 
 ## Remarks
+
+Example usage...
+
+```csharp
+var webApi = new SomeWebApi();
+webApi.OnGet("/chat-messages", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApi.OnPost("/login", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApi.Compile();
+```
 
 Example usage...
 

@@ -12,8 +12,8 @@
     <Authors>Kent Johnson</Authors>
     <Copyright>Copyright 2017-2018 Fireshark Studios, LLC</Copyright>
     <Description>Implementation of Butterfly.Core.Database for Postgres</Description>
-    <PackageReleaseNotes>Changed to target .NET Standard 2.0</PackageReleaseNotes>
-    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Renamed IWebApiServer to IWebApi and IChannelServer to ISubscriptionApi</PackageReleaseNotes>
+    <Version>1.0.2</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
   </PropertyGroup>
 

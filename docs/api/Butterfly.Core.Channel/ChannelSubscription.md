@@ -2,6 +2,8 @@
 
 Represents a subscription to a specific channel
 
+Represents a subscription to a specific channel
+
 ```csharp
 public class ChannelSubscription
 ```

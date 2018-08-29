@@ -2,6 +2,8 @@
 
 Allows receiving API requests via HTTP (inspired by Node.js' Express)
 
+Allows receiving API requests via HTTP (inspired by Node.js' Express)
+
 ```csharp
 public interface IWebApi : IDisposable
 ```
@@ -15,6 +17,19 @@ public interface IWebApi : IDisposable
 | [OnPost](IWebApi/OnPost.md)(…) | Add a listener responding to POST requests |
 
 ## Remarks
+
+Example usage...
+
+```csharp
+var webApi = new SomeWebApi();
+webApi.OnGet("/chat-messages", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApi.OnPost("/login", async(req, res) => {
+    // Handle the request and return any objects as needed (will be JSON encoded)
+});
+webApi.Compile();
+```
 
 Example usage...
 

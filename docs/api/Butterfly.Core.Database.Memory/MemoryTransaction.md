@@ -6,6 +6,12 @@ Must call [`Commit`](../Butterfly.Core.Database/ITransaction/Commit.md) or [`Com
 
 If the transaction is disposed without calling [`Commit`](../Butterfly.Core.Database/ITransaction/Commit.md) or [`CommitAsync`](../Butterfly.Core.Database/ITransaction/CommitAsync.md) the transaction is automatically rolled back.
 
+Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing a single !:DataEventTransaction on the underlying [`IDatabase`](../Butterfly.Core.Database/IDatabase.md) instance when the transaction is committed.
+
+Must call [`Commit`](../Butterfly.Core.Database/ITransaction/Commit.md) or [`CommitAsync`](../Butterfly.Core.Database/ITransaction/CommitAsync.md) to have the changes committed.
+
+If the transaction is disposed without calling [`Commit`](../Butterfly.Core.Database/ITransaction/Commit.md) or [`CommitAsync`](../Butterfly.Core.Database/ITransaction/CommitAsync.md) the transaction is automatically rolled back.
+
 ```csharp
 public class MemoryTransaction : BaseTransaction
 ```
