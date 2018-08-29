@@ -1,6 +1,6 @@
 # BaseWebApi class
 
-Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.
+Allows receiving API requests via HTTP (inspired by Node.js' Express)
 
 ```csharp
 public abstract class BaseWebApi : IWebApi
@@ -11,15 +11,15 @@ public abstract class BaseWebApi : IWebApi
 | name | description |
 | --- | --- |
 | [WebHandlers](BaseWebApi/WebHandlers.md) { get; } |  |
+| abstract [Compile](BaseWebApi/Compile.md)() | Compile the web api |
 | abstract [Dispose](BaseWebApi/Dispose.md)() |  |
 | [OnGet](BaseWebApi/OnGet.md)(…) | Add a listener responding to GET requests |
 | [OnPost](BaseWebApi/OnPost.md)(…) | Add a listener responding to POST requests |
-| abstract [Start](BaseWebApi/Start.md)() | Start the web api server |
 | static [FileUploadHandlerAsync](BaseWebApi/FileUploadHandlerAsync.md)(…) |  |
 
 ## Remarks
 
-Initializing a web api server instance...
+Example usage...
 
 ```csharp
 var webApi = new SomeWebApi();
@@ -29,7 +29,7 @@ webApi.OnGet("/chat-messages", async(req, res) => {
 webApi.OnPost("/login", async(req, res) => {
     // Handle the request and return any objects as needed (will be JSON encoded)
 });
-webApi.Start();
+webApi.Compile();
 ```
 
 ## See Also

@@ -192,8 +192,9 @@ You need an implementation of [IWebApi](api/Butterfly.Core.WebApi/IWebApi) like 
 
 ### Defining Actions
 
+Use [OnGet](api/Butterfly.Core.WebApi/IWebApi/OnGet) to respond to HTTP GET requests.
 
-### Uploading Files
+Use [OnPost](api/Butterfly.Core.WebApi/IWebApi/OnPost) to respond to HTTP POST requests.
 
 ## Creating a Subscription API
 
@@ -215,7 +216,7 @@ You need an implementation of [ISubscriptionApi](api/Butterfly.Core.Channel/ISub
 
 ### Defining Subscriptions
 
-In the Todo Manager example above, we subscribed to all the data in a single *todo* table; however, much more complex subscriptions are supported...
+Example of a subscription returning multiple datasets and a dataset that uses a JOIN...
 
 ```cs
 subscriptionApi.OnSubscribe("todo-page", async(vars, channel) => {
@@ -298,10 +299,6 @@ You can either create the database structure by...
 - Executing CreateFromTextAsync() or CreateFromResourceAsync() in Butterfly Server .NET
 - Creating the database yourself outside of Butterfly Server .NET
 
-### Modifying the Database
-
-### Retrieving from the Database
-
 ## Implementations
 
 ### Using EmbedIO
@@ -379,10 +376,6 @@ Here are various implementations you'll likely find useful...
 - [Butterfly.MySql](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.MySql) - Implementation of *Butterfly.Core.Database* for MySql
 - [Butterfly.EmbedIO](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.EmbedIO) - Implementation of *Butterfly.Core.Channel* and *Butterfly.Core.WebApi* for [EmbedIO](https://github.com/unosquare/embedio) server
 - [Butterfly.Twilio](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/docs/Butterfly.Twilio) - Implementation of *Butterfly.Notify* for Twilio SMS
-
-# Target Platform
-
-All Butterfly Server .NET packages target .NET Standard 2.0.
 
 # In the Wild
 

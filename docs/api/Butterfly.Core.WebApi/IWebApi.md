@@ -1,6 +1,6 @@
 # IWebApi interface
 
-Allows receiving API requests via HTTP (inspired by Node.js' Express) by wrapping existing C# web servers.
+Allows receiving API requests via HTTP (inspired by Node.js' Express)
 
 ```csharp
 public interface IWebApi : IDisposable
@@ -10,13 +10,13 @@ public interface IWebApi : IDisposable
 
 | name | description |
 | --- | --- |
+| [Compile](IWebApi/Compile.md)() | Compile the web api |
 | [OnGet](IWebApi/OnGet.md)(…) | Add a listener responding to GET requests |
 | [OnPost](IWebApi/OnPost.md)(…) | Add a listener responding to POST requests |
-| [Start](IWebApi/Start.md)() | Start the web api server |
 
 ## Remarks
 
-Initializing a web api server instance...
+Example usage...
 
 ```csharp
 var webApi = new SomeWebApi();
@@ -26,7 +26,7 @@ webApi.OnGet("/chat-messages", async(req, res) => {
 webApi.OnPost("/login", async(req, res) => {
     // Handle the request and return any objects as needed (will be JSON encoded)
 });
-webApi.Start();
+webApi.Compile();
 ```
 
 ## See Also
