@@ -8,7 +8,7 @@ Butterfly Server .NET provides...
 
 - A channel layer that allows the server to push real-time data to clients
 - A database layer that performs standard database operations **and** allows subscribing to change events
-- A web API layer that provides a simple syntax to define RESTlike APIs
+- A web API layer that provides a simple syntax to define RESTful APIs
 
 Each layer can have multiple implementations...
 

@@ -165,7 +165,7 @@ See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfl
 
 ### Overview
 
-[IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) allows defining a RESTlike API using HTTP verbs like this...
+[IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) allows defining a RESTful API using HTTP verbs like this...
 
 ```cs
 webApi.OnPost("/api/todo/insert", async (req, res) => {
@@ -177,8 +177,6 @@ webApi.OnPost("/api/todo/delete", async (req, res) => {
     await database.DeleteAndCommitAsync("todo", id);
 });
 ```
-
-This is "RESTlike API" because it's not following the standard practice of using HTTP Verbs to define the actions (which is often problematic with entities with a large number of actions). 
 
 You need an implementation of [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) like [EmbedIO](#using-embedio).
 

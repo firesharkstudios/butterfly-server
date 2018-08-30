@@ -22,6 +22,15 @@ namespace Butterfly.Core.WebApi {
 
         protected readonly List<WebHandler> webHandlers = new List<WebHandler>();
 
+        public void OnDelete(string path, Func<IHttpRequest, IHttpResponse, Task> listener) {
+            logger.Debug($"OnDelete():path={path}");
+            webHandlers.Add(new WebHandler {
+                method = HttpMethod.Delete,
+                path = path,
+                listener = listener
+            });
+        }
+
         public void OnGet(string path, Func<IHttpRequest, IHttpResponse, Task> listener) {
             logger.Debug($"OnGet():path={path}");
             webHandlers.Add(new WebHandler {
@@ -30,10 +39,20 @@ namespace Butterfly.Core.WebApi {
                 listener = listener
             });
         }
+
         public void OnPost(string path, Func<IHttpRequest, IHttpResponse, Task> listener) {
             logger.Debug($"OnPost():path={path}");
             webHandlers.Add(new WebHandler {
                 method = HttpMethod.Post,
+                path = path,
+                listener = listener
+            });
+        }
+
+        public void OnPut(string path, Func<IHttpRequest, IHttpResponse, Task> listener) {
+            logger.Debug($"OnPut():path={path}");
+            webHandlers.Add(new WebHandler {
+                method = HttpMethod.Put,
                 path = path,
                 listener = listener
             });
@@ -93,5 +112,6 @@ namespace Butterfly.Core.WebApi {
 
         public abstract void Compile();
         public abstract void Dispose();
+
     }
 }

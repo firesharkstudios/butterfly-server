@@ -43,11 +43,17 @@ namespace Butterfly.EmbedIO {
         public MyWebModule(ICollection<WebHandler> webHandlers) {
             foreach (var webHandler in webHandlers) {
                 HttpVerbs httpVerb;
-                if (webHandler.method == HttpMethod.Get) {
+                if (webHandler.method == HttpMethod.Delete) {
+                    httpVerb = HttpVerbs.Delete;
+                }
+                else if (webHandler.method == HttpMethod.Get) {
                     httpVerb = HttpVerbs.Get;
                 }
                 else if (webHandler.method == HttpMethod.Post) {
                     httpVerb = HttpVerbs.Post;
+                }
+                else if (webHandler.method == HttpMethod.Put) {
+                    httpVerb = HttpVerbs.Put;
                 }
                 else {
                     throw new System.Exception($"Unknown method '{webHandler.method}'");

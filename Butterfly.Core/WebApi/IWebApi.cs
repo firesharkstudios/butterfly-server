@@ -24,6 +24,13 @@ namespace Butterfly.Core.WebApi {
     /// </remarks>
     public interface IWebApi : IDisposable {
         /// <summary>
+        /// Add a listener responding to PATCH requests
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="listener"></param>
+        void OnDelete(string path, Func<IHttpRequest, IHttpResponse, Task> listener);
+
+        /// <summary>
         /// Add a listener responding to GET requests
         /// </summary>
         /// <param name="path"></param>
@@ -36,6 +43,13 @@ namespace Butterfly.Core.WebApi {
         /// <param name="path"></param>
         /// <param name="listener"></param>
         void OnPost(string path, Func<IHttpRequest, IHttpResponse, Task> listener);
+
+        /// <summary>
+        /// Add a listener responding to PUT requests
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="listener"></param>
+        void OnPut(string path, Func<IHttpRequest, IHttpResponse, Task> listener);
 
         /// <summary>
         /// Compile the web api
