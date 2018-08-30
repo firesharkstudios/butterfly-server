@@ -161,6 +161,49 @@ See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfl
 
 # Concepts
 
+### Working with Dictionaries
+
+Since *Dictionary<string, object>* is used so extensively, you'll likely find it useful to declare an alias with your other *using* statements...
+
+```cs
+using Dict = System.Collections.Generic.Dictionary<string, object>;
+```
+
+*Butterfly.Core.Util* contains a [GetAs](https://butterflyserver.io/docfx/api/Butterfly.Core.Util.DictionaryX.html#Butterfly_Core_Util_DictionaryX_GetAs__3_Dictionary___0___1____0___2_) extension method for *Dict* that makes it easier to convert values...
+
+Here are a few common scenarios related to database records...
+
+```cs
+// Retrieve from the todo table using the primary key value
+Dict row = await database.SelectRowAsync("todo", "123");
+
+// Retrieve as string
+var id = row.GetAs("id", "");
+
+// Retrieve as integer
+var count = row.GetAs("count", -1);
+
+// Retrieve as float
+var amount = row.GetAs("id", 0.0f);
+
+// Retrieve as DateTime instance (auto converts UNIX timestamp)
+var createdAt = row.GetAs("created_at", DateTime.MinValue);
+```
+
+Here are a couple common scenarios related to the Web API...
+
+```cs
+webApi.OnPost("/api/todo/insert", async (req, res) => {
+    var todo = await req.ParseAsJsonAsync<Dict>();
+
+    // Retrieve as array of strings
+    var tags = todo.GetAs<string[]>("tags", null);
+
+    // Retrieve as Dict
+    var options = todo.GetAs<Dict>("options", null);
+});
+```
+
 ## Creating a Web Api
 
 ### Overview
@@ -436,44 +479,6 @@ You can either create the database structure by...
 
 - Executing [CreateFromTextAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromTextAsync_System_String_) or [CreateFromResourceAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromResourceFileAsync_Assembly_System_String_) in Butterfly Server .NET (most useful for MemoryDatabase)
 - Creating the database yourself outside of Butterfly Server .NET (normally recommended)
-
-### Working with Data
-
-*Butterfly.Core.Database* uses anonymous types and *Dictionary* instances to retrieve and modify data like this example...
-
-```
-// Retrieve from the todo table using a full SELECT statement and anonymous type values
-Dictionary<string, object> row = await database.SelectRowAsync("SELECT * FROM todo WHERE id=@id", new {
-    id = "123"
-});
-```
-
-Since *Dictionary<string, object>* is used so extensively, you'll likely find it useful to declare an alias with your other *using* statements...
-
-```cs
-using Dict = System.Collections.Generic.Dictionary<string, object>;
-```
-
-*Butterfly.Core.Util* contains a [GetAs](https://butterflyserver.io/docfx/api/Butterfly.Core.Util.DictionaryX.html#Butterfly_Core_Util_DictionaryX_GetAs__3_Dictionary___0___1____0___2_) extension method making it easier to retrieve data from *Dict* instances...
-
-```cs
-// Retrieve from the todo table using the primary key value
-Dict row = await database.SelectRowAsync("todo", "123");
-
-// Retrieve a value as text
-var id = row.GetAs("id", "");
-
-// Retrieve a value as integer
-var amount = row.GetAs("count", -1);
-
-// Retrieve a value as float
-var amount = row.GetAs("id", 0.0f);
-
-// Retrieve a value as DateTime instance (auto converts UNIX timestamp)
-var amount = row.GetAs("created_at", DateTime.MinValue);
-
-```
-
 
 ### Selecting Data
 
