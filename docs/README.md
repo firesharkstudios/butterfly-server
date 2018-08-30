@@ -183,7 +183,7 @@ webApi.Compile();
 
 You need an implementation like [EmbedIO](#using-embedio) to get an instance of [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html).
 
-### Requests
+### Example Request Handling
 
 There are many ways to receive data from a client...
 
@@ -247,7 +247,7 @@ webApi.OnPost("/api/todo", async(req, res) => {
 
 See [IHttpRequest](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IHttpRequest.html) for more details.
 
-### Responses
+### Example Response Handling
 
 There are many ways to send a response to a client...
 
@@ -283,7 +283,7 @@ See [IHttpResponse](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.I
 
 ### Overview
 
-[ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.ISubscriptionApi.html) allows defining a Subscription API that can push real-time data to clients like this...
+An [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.ISubscriptionApi.html) instance allows defining a Subscription API that can push real-time data to clients like this...
 
 ```cs
 subscriptionApi.OnSubscribe("todos", (vars, channel) => {
@@ -293,11 +293,16 @@ subscriptionApi.OnSubscribe("todos", (vars, channel) => {
 });
 ```
 
-In the example above, a subscription to the *todos* channel creates a *DynamicView* instance that pushes data changes over the channel to the client. 
+Notes
+- The *vars* variable allows the client to pass values to the subscription
+- The *channel* variable allows accessing the client authentication information
+- The subscription handler must return an object implementing *IDisposable* (object will be disposed when the client unsuscribes) 
 
-You need an implementation of [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.ISubscriptionApi.html) like [EmbedIO](#using-embedio).
+A common usecase is to return a *DynamicViewSet* instance that pushes initial data and data changes to the client over the channel.
 
-### Defining Subscriptions
+You need an implementation like [EmbedIO](#using-embedio) to get an instance of [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.ISubscriptionApi.html).
+
+### Example Subscriptions
 
 Example of a subscription returning multiple datasets and a dataset that uses a JOIN...
 
