@@ -302,46 +302,110 @@ A common usecase is to return a *DynamicViewSet* instance that pushes initial da
 
 You need an implementation like [EmbedIO](#using-embedio) to get an instance of [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.ISubscriptionApi.html).
 
-### Example Subscriptions
+### Example Simple Subscription
 
-Example of a subscription returning multiple datasets and a dataset that uses a JOIN...
+The following javascript client subscribes to an *echo-messages* subscription passing in a *someName* variable and echoing the *messageType* and *message* received from the server to the console...
+
+```js
+// Javascript client
+channelClient.subscribe({
+    channel: 'echo-messages',
+    vars: {
+        someName = 'Spongebob',
+    },
+    handler(messageType, message) {
+        console.debug(`messageType=${messageType},message=${message}`);
+    })
+});
+```
+
+The above code assumes you have [Butterfly Client](#butterfly-client) installed and have initialized a *WebSocketChannelClient* instance.
+
+The following server code defines the *echo-messages* subscription that uses an instance of the *RunEvery* class to send a message to any subscribed clients every 2 seconds...
 
 ```cs
-subscriptionApi.OnSubscribe("todo-page", async(vars, channel) => {
-  var dynamicViewSet = database.CreateDynamicViewSet(dataEventTransaction => channel.Queue(dataEventTransaction);
-
-  string userId = channel.Connection.AuthToken;
-
-  // DynamicViews can include JOINs and will update if 
-  // any of the joined tables change the resultset
-  // (note this requires using a database like MySQL that supports JOINs)
-  dynamicViewSet.CreateDynamicView(
-    @"SELECT td.id, td.name, td.user_id, u.name user_name
-    FROM todo td
-      INNER JOIN user u ON td.user_id=u.id
-    WHERE u.id=@userId",
-    new {
-      userId
-    }
-  );
-
-  // A channel can return multiple resultsets as well
-  dynamicViewSet.CreateDynamicView(
-    @"SELECT id, name
-    FROM tag
-    WHERE user_id=@userId",
-    new {
-      userId
-    }
-  );
-
-  return dynamicViewSet;
+// C# server
+subscriptionApi.OnSubscribe("echo-messages", async(vars, channel) => {
+    int count = 0;
+    var someName = vars.GetAs("someName", "");
+    return Butterfly.Util.RunEvery(() => {
+        channel.Queue("Echo", $"Message #{++count} from {someName}");
+    }, 2000);
 );
 ```
 
-In this example, a client subscribing to *todo-page* will get a *todo* collection and a *tag* collection both filtered by user id.  
+Notice that the subscription handler above returns the instance of *RunEvery* which implements *IDisposable*.  The *RunEvery* instance will be disposed when the client unsubscribes (or disconnects for too long).
 
-Because the new *todo* collection is the result of a join, the client will receive updates if changes to either of the underlying *todo* table or *user* table would change the resultset.
+So, the end result of running the code above would be the following in the client javascript console...
+
+```js
+messageType=Echo,message=Message #1 from Spongebob
+messageType=Echo,message=Message #2 from Spongebob
+messageType=Echo,message=Message #3 from Spongebob
+...
+```
+
+
+### Example Dynamic Subscription
+
+The following javascript client subscribes to a *todo-page* subscription and maps the two datasets to the local *todosList* and *tagsList* arrays...
+
+```js
+let todosList = [];
+let tagsList = [];
+channelClient.subscribe({
+    channel: 'todo-page',
+    vars: {
+        userId: '123'
+    },
+    handler: new ArrayDataEventHandler({
+        arrayMapping: {
+            todo: todosList
+            tag: tagsList
+        }
+    })
+});
+```
+
+The above code assumes you have [Butterfly Client](#butterfly-client) installed and have initialized a *WebSocketChannelClient* instance.
+
+The following server code defines the *todo-page* subscription that returns a *DynamicViewSet* containing two *DynamicViews* (one for *todos* and one for *tags*)...
+
+```cs
+subscriptionApi.OnSubscribe("todo-page", async(vars, channel) => {
+    var dynamicViewSet = database.CreateDynamicViewSet(dataEventTransaction => channel.Queue(dataEventTransaction);
+
+    string userId = vars.GetAs("userId", "");
+    if (!string.IsNullOrEmpty(userId)) throw new Exception("Must specify a userId in vars");
+
+    // DynamicViews can include JOINs and will update if 
+    // any of the joined tables change the resultset
+    // (note this requires using a database like MySQL that supports JOINs)
+    dynamicViewSet.CreateDynamicView(
+        @"SELECT td.id, td.name, td.user_id, u.name user_name
+        FROM todo td
+            INNER JOIN user u ON td.user_id=u.id
+        WHERE u.id=@userId",
+        new {
+            userId
+        }
+    );
+
+    // A channel can return multiple resultsets as well
+    dynamicViewSet.CreateDynamicView(
+        @"SELECT id, name
+        FROM tag
+        WHERE user_id=@userId",
+        new {
+            userId
+        }
+    );
+
+    return dynamicViewSet;
+);
+```
+
+So, the end result of running the code above would be a local *todosList* and *tagsList* arrays that automatically stay synhcronized with the server.
 
 ## Accessing a Database
 
