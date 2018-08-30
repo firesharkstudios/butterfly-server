@@ -92,7 +92,7 @@ namespace Butterfly.Example.HelloWorld.Server {
                 // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
                 // - The handler can push data to the client by calling channel.Queue()
                 embedIOContext.SubscriptionApi.OnSubscribe("todos", (vars, channel) => {
-                    return database.CreateAndStartDynamicView("SELECT * FROM todo", dataEventTransaction => channel.Queue(dataEventTransaction));
+                    return database.CreateAndStartDynamicViewAsync("SELECT * FROM todo", dataEventTransaction => channel.Queue(dataEventTransaction));
                 });
 
                 embedIOContext.Start();
@@ -107,15 +107,19 @@ namespace Butterfly.Example.HelloWorld.Server {
 The above C# code...
 - Creates a Memory [database](#accessing-a-database) with a single *todo* table
 - Defines a [Web API](#creating-a-web-api) to insert and delete *todo* records
-- Defines a [Subscription API](#creating-a-subscription-api) to subscribe to a *todos* channel that retrieves all *todo* records **and** any changes to the *todo* records
+- Defines a [Subscription API](#creating-a-subscription-api) to subscribe to a *todos* subscription
+
+Clients are expected to...
+- Use the subscription API to subscribe to the *todos* subscription to get a list of all initial *todo* records and any changes to the *todo* records
+- Use the defined web API to insert and delete *todo* records
 
 See [Todo Server](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Server) for the working server code.
 
 ## The Client
 
-Now, let's see how a client might interact with this server using the Butterfly Client (`npm install butterfly-client`).
+Now, let's see how a client might interact with this server using the [Butterfly Client](#butterfly-client) javascript library.
 
-First, the client should maintain an open WebSocket to the server by using the *WebSocketChannelClient* class...
+First, the client should use [WebSocketChannelClient](#websocketchannelclient) to maintain an open WebSocket to the server...
 
 ```js
 let channelClient = new WebSocketChannelClient({
@@ -128,14 +132,14 @@ Next, the client will want to subscribe to a channel to receive data...
 
 ```js
 let todosList = [];
-channelClient.subscribe(
-    new ArrayDataEventHandler({
+channelClient.subscribe({
+    channel: 'todos',
+    handler: new ArrayDataEventHandler({
         arrayMapping: {
             todo: todosList
         }
-    }),
-    'todos'
-);
+    })
+});
 ```
 
 This subscription will cause the local *todosList* array to be synchronized with the *todo* records on the server.
@@ -551,6 +555,16 @@ In your application...
 ```csharp
 var database = new Butterfly.SQLite.SQLiteDatabase("Filename=./my_database.db");
 ```
+
+## Butterfly Client
+
+### Installing
+
+### WebSocketChannelClient
+
+### ArrayDataEventHandler
+
+### Vuex Bindings
 
 # API Documentation
 

@@ -35,15 +35,15 @@ new Vue({
     },
     subscribe(options) {
       let self = this;
-      self.channelClient.subscribe(
-        new ArrayDataEventHandler({
+      self.channelClient.subscribe({
+        channel: options.key,
+        vars: options.vars,
+        handler: new ArrayDataEventHandler({
           arrayMapping: options.arrayMapping,
           onInitialEnd: options.onInitialEnd,
           onChannelMessage: options.onChannelMessage
-        }),
-        options.key,
-        options.vars,
-      );
+        })
+      });
     },
     unsubscribe(key) {
       let self = this;

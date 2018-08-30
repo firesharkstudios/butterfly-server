@@ -12,8 +12,9 @@ export default class {
     this._options = options;
 
     let url = this._options.url;
-    if (url.indexOf('://') == -1) {
-      this._url = (window.location.protocol == 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host + url;
+
+    if (url.indexOf('://') === -1) {
+      this._url = (window.location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host + url;
     }
     else {
       this._url = url;
@@ -26,7 +27,7 @@ export default class {
   }
 
   _setState(value) {
-    if (this._state != value) {
+    if (this._state !== value) {
       console.debug(`_setState():value=${value}`);
       this._state = value;
       if (this._options.onStateChange) this._options.onStateChange(value);
@@ -35,7 +36,7 @@ export default class {
   }
 
   connect(auth) {
-    console.debug('WebSocketChannelClient.connect()')
+    console.debug('WebSocketChannelClient.connect()');
     this._auth = auth;
 
     this._setState('Connecting');
@@ -43,10 +44,11 @@ export default class {
   }
 
   _connecting() {
-    if (this._state == 'Disconnected') return;
+    if (this._state === 'Disconnected') return;
 
     this._setState('Connecting');
     let connectingStartMillis = new Date().getTime();
+
     if (this._webSocket) {
       try {
         this._webSocket.close();
@@ -58,16 +60,18 @@ export default class {
     let hasReconnected = false;
     let reconnect = error => {
       if (hasReconnected) return;
-      else hasReconnected = true;
+      hasReconnected = true;
 
       console.debug(`_connecting():reconnect():error=${error}`);
       let elapsedMillis = new Date().getTime() - connectingStartMillis;
       let reconnectEveryMillis = this._options.reconnectEveryMillis || 3000;
+
       if (elapsedMillis > reconnectEveryMillis) {
         this._connecting();
       }
       else {
         let wait = reconnectEveryMillis - elapsedMillis;
+
         this._stateTimeout = setTimeout(this._connecting.bind(this), wait);
       }
     };
@@ -86,26 +90,30 @@ export default class {
   }
 
   _authenticating() {
-    if (this._state == 'Disconnected') return;
+    if (this._state === 'Disconnected') return;
 
     this._setState('Authenticating');
     let text = 'Authorization:' + (this._auth || '');
     let success = this._sendText(text);
+
     if (success) {
       let authenticateEveryMillis = this._options.authenticateEveryMillis || 3000;
+
       this._stateTimeout = setTimeout(this._authenticating.bind(this), authenticateEveryMillis);
     }
   }
 
   _subscribing() {
-    if (this._state == 'Disconnected') return;
+    if (this._state === 'Disconnected') return;
 
     this._setState('Subscribing');
 
     // Build data
     let data = [];
+
     for (let key in this._subscriptionByChannelKey) {
       let subscription = this._subscriptionByChannelKey[key];
+
       if (!subscription.sent) {
         data.push({
           channelKey: key,
@@ -116,6 +124,7 @@ export default class {
 
     // Subscribe
     let success = true;
+
     if (data.length > 0) {
       success = this._sendText('Subscribe:' + JSON.stringify(data));
     }
@@ -127,10 +136,11 @@ export default class {
   }
 
   _unsubscribing(channelKey) {
-    if (this._state == 'Disconnected') return;
+    if (this._state === 'Disconnected') return;
 
     this._setState('Unsubscribing');
     let success = this._sendText('Unsubscribe:' + JSON.stringify(channelKey));
+
     if (success) {
       this._connected();
     }
@@ -141,12 +151,14 @@ export default class {
 
     let elapsedMillis = new Date().getTime() - this._lastSendTextMillis;
     let heartbeatEveryMillis = this._options.heartbeatEveryMillis || 3000;
+
     if (elapsedMillis >= heartbeatEveryMillis) {
       this._sendText('!');
       this._connected();
     }
     else {
       let wait = Math.max(0, heartbeatEveryMillis - elapsedMillis);
+
       this._stateTimeout = setTimeout(this._connected.bind(this), wait);
     }
   }
@@ -164,6 +176,7 @@ export default class {
     this._clearStateTimeout();
     for (let channelKey in this._subscriptionByChannelKey) {
       let subscription = this._subscriptionByChannelKey[channelKey];
+
       if (subscription.handlers) {
         for (let i = 0; i < subscription.handlers.length; i++) {
           subscription.handlers[i]('RESET');
@@ -171,7 +184,6 @@ export default class {
       }
     }
   }
-
 
   _clearStateTimeout() {
     if (this._stateTimeout) {
@@ -196,48 +208,52 @@ export default class {
 
   _onMessage(event) {
     let message = JSON.parse(event.data);
+
     console.debug(`_onMessage():message.messageType=${message.messageType}`);
     if (message.channelKey) {
       let subscription = this._subscriptionByChannelKey[message.channelKey];
+
       if (subscription.handlers) {
         for (let i = 0; i < subscription.handlers.length; i++) {
           subscription.handlers[i](message.messageType, message.data);
         }
       }
     }
-    else if (message.messageType == 'AUTHENTICATED') {
+    else if (message.messageType === 'AUTHENTICATED') {
       this._markSubscriptionsSent(false);
       this._subscribing();
     }
-    else if (message.messageType == 'UNAUTHENTICATED') {
+    else if (message.messageType === 'UNAUTHENTICATED') {
       this.disconnect();
     }
   }
 
   _markSubscriptionsSent(value) {
     for (let key in this._subscriptionByChannelKey) {
-      let subscription = this._subscriptionByChannelKey[key];
-      subscription.sent = value;
+      this._subscriptionByChannelKey[key].sent = value;
     }
   }
 
-  subscribe(handler, channelKey, vars) {
-    //console.debug(`WebSocketChannelClient.subscribe():channelKey=${channelKey}`);
-    if (!channelKey) channelKey = 'default';
+  subscribe(options) {
+    let channelKey = options.channel || 'default';
+    let handlers = Array.isArray(options.handler) ? options.handler : [options.handler];
+    let vars = options.vars;
+
+    // console.debug(`WebSocketChannelClient.subscribe():channelKey=${channelKey}`);
     this._removeSubscription(channelKey);
     this._addSubscription(channelKey, {
-      vars: vars,
-      handlers: Array.isArray(handler) ? handler : [handler],
-      sent: false,
+      vars,
+      handlers,
+      sent: false
     });
-    if (this._state == 'Connected') {
+    if (this._state === 'Connected') {
       this._subscribing();
     }
     if (this._options.onSubscriptionsUpdated) this._options.onSubscriptionsUpdated();
   }
 
   unsubscribe(channelKey) {
-    //console.debug(`WebSocketChannelClient.unsubscribe():channelKey=${channelKey}`);
+    // console.debug(`WebSocketChannelClient.unsubscribe():channelKey=${channelKey}`);
     if (!channelKey) channelKey = 'default';
     this._removeSubscription(channelKey);
     this._unsubscribing(channelKey);
