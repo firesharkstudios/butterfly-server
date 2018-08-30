@@ -430,44 +430,100 @@ var name = await database.SelectValueAsync<string>("SELECT name FROM todo", id);
 ```
 
 
-### Creating the Database
+### Creating the Database Structure
 
 You can either create the database structure by...
 
-- Executing CreateFromTextAsync() or CreateFromResourceAsync() in Butterfly Server .NET
-- Creating the database yourself outside of Butterfly Server .NET
+- Executing [CreateFromTextAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromTextAsync_System_String_) or [CreateFromResourceAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromResourceFileAsync_Assembly_System_String_) in Butterfly Server .NET (most useful for MemoryDatabase)
+- Creating the database yourself outside of Butterfly Server .NET (normally recommended)
+
+### Working with Data
+
+*Butterfly.Core.Database* uses anonymous types and *Dictionary* instances to retrieve and modify data like this example...
+
+```
+// Retrieve from the todo table using a full SELECT statement and anonymous type values
+Dictionary<string, object> row = await database.SelectRowAsync("SELECT * FROM todo WHERE id=@id", new {
+    id = "123"
+});
+```
+
+Since *Dictionary<string, object>* is used so extensively, you'll likely find it useful to declare an alias with your other *using* statements...
+
+```cs
+using Dict = System.Collections.Generic.Dictionary<string, object>;
+```
+
+*Butterfly.Core.Util* contains a [GetAs](https://butterflyserver.io/docfx/api/Butterfly.Core.Util.DictionaryX.html#Butterfly_Core_Util_DictionaryX_GetAs__3_Dictionary___0___1____0___2_) extension method making it easier to retrieve data from *Dict* instances...
+
+```cs
+// Retrieve from the todo table using the primary key value
+Dict row = await database.SelectRowAsync("todo", "123");
+
+// Retrieve a value as text
+var id = row.GetAs("id", "");
+
+// Retrieve a value as integer
+var amount = row.GetAs("count", -1);
+
+// Retrieve a value as float
+var amount = row.GetAs("id", 0.0f);
+
+// Retrieve a value as DateTime instance (auto converts UNIX timestamp)
+var amount = row.GetAs("created_at", DateTime.MinValue);
+
+```
+
 
 ### Selecting Data
 
-Call *IDatabase.SelectRowsAsync()* with alternative values for the *sql* parameter and alternative values for the *vars* parameter...
+There are three flavors of selecting data with different return values...
+
+| Method | Description |
+| --- | --- |
+| [SelectRowsAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectRowsAsync_System_String_System_Object_System_Int32_) | Returns an array of *Dictionary<string, object>* instances |
+| [SelectRowAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectRowAsync_System_String_System_Object_) | Returns a single *Dictionary<string, object>* instances |
+| [SelectValueAsync<T>()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectValueAsync__1_System_String_System_Object___0_) | Returns a single value |
+
+Each flavor above takes a *sql* parameter and *value* parameter.
+
+The *sql* parameter can be specified in multiple ways...
+
+| Name | Example Value |
+| --- | --- | --- |
+| Table name only | `"todo"` |
+| SELECT without WHERE | `"SELECT * FROM todo"` |
+| Full SELECT| `"SELECT * FROM todo WHERE id=@id"` |
+
+The value parameter can also be specified in multiple ways...
+
+| Name | Example Value |
+| --- | --- | --- |
+| Anonymous type | `new { id = "123" }` |
+| Dictionary | `new Dictionary<string, object> { ["id"] = "123" }` |
+| Primary Key Value | `"123"` |
+
+
+These are all valid examples...
 
 ```cs
-var sql1 = "employee"; // SELECT statement is auto generated
-var sql2 = "SELECT * FROM employee"; // WHERE statement is auto generated 
-var sql3 = "SELECT * FROM employee WHERE id=@id"; // Specify exact SELECT statement
+Dict[] allEmployees = await database.SelectAsync("employee");
 
-var vars1 = "123"; // Can specify just the primary key value
-var vars2 = new { id = "123" }; // Can specify parameters using an anonymous type
-var vars3 = new Dictionary<string, object> { { "id", "123" } }; // Can specify parameters using a Dictionary
- 
-// Any combination of sql1/sql2/sql3 and vars1/vars2/vars3 would yield identical results
-Dictionary<string, object>[] rows = await database.SelectAsync(sql1, vars1);
+Dict[] salesEmployees = await database.SelectAsync("employee", new {
+    department_id = "123"_
+});
+
+Dict[] bossEmployee = await database.SelectAsync("SELECT id, name FROM employee", new Dict {
+    { "id", bossId },
+});
+
+Dict[] me = await database.SelectAsync("SELECT id, name FROM employee WHERE id=@id", new {
+    id = "456"
+});
+
 ```
 
-Retrieve multiple rows, a single row, or a single value...
-
-```cs
-// Retrieve multiple rows
-Dictionary<string, object>[] rows = await database.SelectRowsAsync("SELECT * FROM employee");
-
-// Retrieve a single row 
-Dictionary<string, object> row = await database.SelectRowAsync("SELECT * FROM employee", "123")
-
-// Retrieve a single value
-string name = await database.SelectValueAsync<string>("SELECT name FROM employee", "123")
-```
-
-The WHERE clause will be auto-generated or rewritten in specific scenarios...
+Also, the WHERE clause will be auto-generated or rewritten when values are NULL or arrays...
 
 ```cs
 // Executes WHERE department_id = '123'
