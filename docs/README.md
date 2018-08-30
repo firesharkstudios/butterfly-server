@@ -325,7 +325,7 @@ The following server code defines the *echo-messages* subscription that uses an 
 
 ```cs
 // C# server
-subscriptionApi.OnSubscribe("echo-messages", async(vars, channel) => {
+subscriptionApi.OnSubscribe("echo-messages", (vars, channel) => {
     int count = 0;
     var someName = vars.GetAs("someName", "");
     return Butterfly.Util.RunEvery(() => {
@@ -408,13 +408,13 @@ subscriptionApi.OnSubscribe("todo-page", async(vars, channel) => {
 );
 ```
 
-So, the end result of running the code above would be a local *todosList* and *tagsList* arrays that automatically stay synhcronized with the server.
+So, the end result of running the code above would be a local *todosList* and *tagsList* arrays that automatically stay synchronized with the server.
 
 ## Accessing a Database
 
 ### Overview
 
-An [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance allows creating transactions, modifying data, retrieving data, and subscribing to data change events.
+An [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance allows modifying data, selecting data, and creating *DynamicViews*.
 
 ```cs
 var id = await database.InsertAndCommitAsync<string>("todo", new {
@@ -429,23 +429,6 @@ await database.DeleteAndCommitAsync("todo", id);
 var name = await database.SelectValueAsync<string>("SELECT name FROM todo", id);
 ```
 
-The [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance also support transactions and the ability to publish data change events on tables and even complex SELECT statements.
-
-
-### Using a Memory Database
-
-[Butterfly.Core.Database.MemoryDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Memory.MemoryDatabase.html) database is included in [Butterfly.Core](api/Butterfly.Core.md).
-
-In your application...
-
-```csharp
-var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-database.CreateFromText(@"CREATE TABLE todo (
-	id VARCHAR(50) NOT NULL,
-	name VARCHAR(40) NOT NULL,
-	PRIMARY KEY(id)
-);");
-```
 
 ### Creating the Database
 
@@ -665,6 +648,21 @@ using (DynamicViewSet dynamicViewSet = database.CreateDynamicViewSet(
 ```
 
 ## Implementations
+
+### Using a Memory Database
+
+[Butterfly.Core.Database.MemoryDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Memory.MemoryDatabase.html) database is included in [Butterfly.Core](api/Butterfly.Core.md) and doesn't require installing additional packages; however, *MemoryDatabase* has these key limitattions...
+
+- Data is NOT persisted
+- SELECT statements with JOINs are NOT supported
+
+Under the hood, the *MemoryDatabase* is using a System.Data.DataTable instance to manage the data.
+
+In your application...
+
+```csharp
+var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
+```
 
 ### Using EmbedIO
 
