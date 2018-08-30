@@ -1,0 +1,901 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DynamicViewSet
+   | Butterfly Server .NET API Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DynamicViewSet
+   | Butterfly Server .NET API Documentation ">
+    <meta name="generator" content="docfx 2.38.1.0">
+    
+    <link rel="shortcut icon" href="../images/logo-48x48.png">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo-48x48.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet">
+  
+  
+  <h1 id="Butterfly_Core_Database_Dynamic_DynamicViewSet" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet" class="text-break">Class DynamicViewSet
+  </h1>
+  <div class="markdown level0 summary">
+Represents a collection of <a class="xref" href="Butterfly.Core.Database.Dynamic.DynamicView.html">DynamicView</a> instances.  Often a
+<a class="xref" href="Butterfly.Core.Database.Dynamic.DynamicViewSet.html">DynamicViewSet</a> instance will represent all the data that should be 
+replicated to a specific client.
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">DynamicViewSet</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Butterfly.Core.Database.Dynamic.html">Butterfly.Core.Database.Dynamic</a></h6>
+  <h6><strong>Assembly</strong>: Butterfly.Core.dll</h6>
+  <h5 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DynamicViewSet : IDisposable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet__ctor_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet__ctor_Butterfly_Core_Database_IDatabase_Action_Butterfly_Core_Database_Event_DataEventTransaction__" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor(Butterfly.Core.Database.IDatabase,Action{Butterfly.Core.Database.Event.DataEventTransaction})">DynamicViewSet(IDatabase, Action&lt;DataEventTransaction&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DynamicViewSet(IDatabase database, Action&lt;DataEventTransaction&gt; listener)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.IDatabase.html">IDatabase</a></td>
+        <td><span class="parametername">database</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a>&gt;</td>
+        <td><span class="parametername">listener</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet__ctor_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet__ctor_Butterfly_Core_Database_IDatabase_Func_Butterfly_Core_Database_Event_DataEventTransaction_Task__" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor(Butterfly.Core.Database.IDatabase,Func{Butterfly.Core.Database.Event.DataEventTransaction,Task})">DynamicViewSet(IDatabase, Func&lt;DataEventTransaction, Task&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DynamicViewSet(IDatabase database, Func&lt;DataEventTransaction, Task&gt; asyncListener)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.IDatabase.html">IDatabase</a></td>
+        <td><span class="parametername">database</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a>, <span class="xref">Task</span>&gt;</td>
+        <td><span class="parametername">asyncListener</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_asyncListener" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.asyncListener">asyncListener</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Func&lt;DataEventTransaction, Task&gt; asyncListener</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a>, <span class="xref">Task</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_disposables" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.disposables">disposables</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly List&lt;IDisposable&gt; disposables</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<span class="xref">IDisposable</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_dynamicViews" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.dynamicViews">dynamicViews</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly List&lt;DynamicView&gt; dynamicViews</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Butterfly.Core.Database.Dynamic.DynamicView.html">DynamicView</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_incomingDataEventTransactions" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.incomingDataEventTransactions">incomingDataEventTransactions</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly ConcurrentQueue&lt;DataEventTransaction&gt; incomingDataEventTransactions</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ConcurrentQueue</span>&lt;<a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_isStarted" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.isStarted">isStarted</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool isStarted</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_listener" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.listener">listener</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Action&lt;DataEventTransaction&gt; listener</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_monitor" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.monitor">monitor</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly AsyncMonitor monitor</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">AsyncMonitor</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_runCancellationTokenSource" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.runCancellationTokenSource">runCancellationTokenSource</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly CancellationTokenSource runCancellationTokenSource</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">CancellationTokenSource</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet_Id_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.Id*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_Id" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.Id">Id</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Id { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet_CreateDynamicView_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_CreateDynamicView_System_String_System_Object_System_String_System_String___" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[])">CreateDynamicView(String, Object, String, String[])</h4>
+  <div class="markdown level1 summary">
+Creates an instance of a DynamicView. Must call <a class="xref" href="Butterfly.Core.Database.Dynamic.DynamicViewSet.html#Butterfly_Core_Database_Dynamic_DynamicViewSet_StartAsync">StartAsync()</a> to send 
+initial <a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a> instance and listen for new <a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a>instances.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DynamicView CreateDynamicView(string sql, dynamic values = null, string name = null, string[] keyFieldNames = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">sql</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">values</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">keyFieldNames</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Dynamic.DynamicView.html">DynamicView</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet_CreateDynamicViewDataEvents_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicViewDataEvents*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_CreateDynamicViewDataEvents_Butterfly_Core_Database_Event_DataEventTransaction_Butterfly_Core_Database_Dynamic_DynamicView_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicViewDataEvents(Butterfly.Core.Database.Event.DataEventTransaction,Butterfly.Core.Database.Dynamic.DynamicView)">CreateDynamicViewDataEvents(DataEventTransaction, DynamicView)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected DataEvent[] CreateDynamicViewDataEvents(DataEventTransaction dataEventTransaction, DynamicView dynamicView)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a></td>
+        <td><span class="parametername">dataEventTransaction</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Dynamic.DynamicView.html">DynamicView</a></td>
+        <td><span class="parametername">dynamicView</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Event.DataEvent.html">DataEvent</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet_Dispose_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.Dispose*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_Dispose" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet_GetImpactedRecordsStorageKey_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.GetImpactedRecordsStorageKey*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_GetImpactedRecordsStorageKey_Butterfly_Core_Database_Dynamic_DynamicView_Butterfly_Core_Database_Event_DataEvent_Butterfly_Core_Database_Event_TransactionState_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.GetImpactedRecordsStorageKey(Butterfly.Core.Database.Dynamic.DynamicView,Butterfly.Core.Database.Event.DataEvent,Butterfly.Core.Database.Event.TransactionState)">GetImpactedRecordsStorageKey(DynamicView, DataEvent, TransactionState)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string GetImpactedRecordsStorageKey(DynamicView dynamicView, DataEvent dataEvent, TransactionState transactionState)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Dynamic.DynamicView.html">DynamicView</a></td>
+        <td><span class="parametername">dynamicView</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Event.DataEvent.html">DataEvent</a></td>
+        <td><span class="parametername">dataEvent</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Event.TransactionState.html">TransactionState</a></td>
+        <td><span class="parametername">transactionState</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet_GetInitialDataEventsAsync_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.GetInitialDataEventsAsync*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_GetInitialDataEventsAsync_Butterfly_Core_Database_Dynamic_DynamicView_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.GetInitialDataEventsAsync(Butterfly.Core.Database.Dynamic.DynamicView)">GetInitialDataEventsAsync(DynamicView)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task&lt;DataEvent[]&gt; GetInitialDataEventsAsync(DynamicView dynamicView)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Dynamic.DynamicView.html">DynamicView</a></td>
+        <td><span class="parametername">dynamicView</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Database.Event.DataEvent.html">DataEvent</a>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet_HasImpactedRecords_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.HasImpactedRecords*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_HasImpactedRecords_Butterfly_Core_Database_Event_TransactionState_Butterfly_Core_Database_Event_DataEvent_Butterfly_Core_Database_JoinType_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.HasImpactedRecords(Butterfly.Core.Database.Event.TransactionState,Butterfly.Core.Database.Event.DataEvent,Butterfly.Core.Database.JoinType)">HasImpactedRecords(TransactionState, DataEvent, JoinType)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool HasImpactedRecords(TransactionState transactionState, DataEvent dataEvent, JoinType joinType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Event.TransactionState.html">TransactionState</a></td>
+        <td><span class="parametername">transactionState</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Event.DataEvent.html">DataEvent</a></td>
+        <td><span class="parametername">dataEvent</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.JoinType.html">JoinType</a></td>
+        <td><span class="parametername">joinType</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet_ProcessCommittedDataEventTransactionAsync_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessCommittedDataEventTransactionAsync*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_ProcessCommittedDataEventTransactionAsync_Butterfly_Core_Database_Event_DataEventTransaction_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessCommittedDataEventTransactionAsync(Butterfly.Core.Database.Event.DataEventTransaction)">ProcessCommittedDataEventTransactionAsync(DataEventTransaction)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task ProcessCommittedDataEventTransactionAsync(DataEventTransaction dataEventTransaction)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a></td>
+        <td><span class="parametername">dataEventTransaction</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet_ProcessUncommittedDataEventTransactionAsync_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessUncommittedDataEventTransactionAsync*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_ProcessUncommittedDataEventTransactionAsync_Butterfly_Core_Database_Event_DataEventTransaction_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessUncommittedDataEventTransactionAsync(Butterfly.Core.Database.Event.DataEventTransaction)">ProcessUncommittedDataEventTransactionAsync(DataEventTransaction)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task ProcessUncommittedDataEventTransactionAsync(DataEventTransaction dataEventTransaction)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a></td>
+        <td><span class="parametername">dataEventTransaction</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet_RequeryDynamicViewsAsync_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.RequeryDynamicViewsAsync*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_RequeryDynamicViewsAsync_System_Boolean_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.RequeryDynamicViewsAsync(System.Boolean)">RequeryDynamicViewsAsync(Boolean)</h4>
+  <div class="markdown level1 summary">
+Return the initial query results if any of the query parameters have changed or if passed force=true
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task&lt;DataEvent[]&gt; RequeryDynamicViewsAsync(bool onlyIfDirtyParams)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">onlyIfDirtyParams</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Database.Event.DataEvent.html">DataEvent</a>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet_RunAsync_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.RunAsync*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_RunAsync" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.RunAsync">RunAsync()</h4>
+  <div class="markdown level1 summary">
+Processes queued data change transactions (runs on a background thread)
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task RunAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet_SendToListenerAsync_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.SendToListenerAsync*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_SendToListenerAsync_Butterfly_Core_Database_Event_DataEventTransaction_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.SendToListenerAsync(Butterfly.Core.Database.Event.DataEventTransaction)">SendToListenerAsync(DataEventTransaction)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task SendToListenerAsync(DataEventTransaction dataEventTransaction)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a></td>
+        <td><span class="parametername">dataEventTransaction</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet_StartAsync_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_StartAsync" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync">StartAsync()</h4>
+  <div class="markdown level1 summary">
+Send an initial <a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a> to the registered listener and
+sends new <a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a> instances when any data in the underlying
+<a class="xref" href="Butterfly.Core.Database.Dynamic.DynamicView.html">DynamicView</a> instances changes. Stops listening <a class="xref" href="Butterfly.Core.Database.Dynamic.DynamicViewSet.html#Butterfly_Core_Database_Dynamic_DynamicViewSet_Dispose">Dispose()</a> is called.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;DynamicViewSet&gt; StartAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Database.Dynamic.DynamicViewSet.html">DynamicViewSet</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet_StoreImpactedRecordsInDataEventTransaction_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.StoreImpactedRecordsInDataEventTransaction*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_StoreImpactedRecordsInDataEventTransaction_Butterfly_Core_Database_Event_TransactionState_Butterfly_Core_Database_Event_DataEventTransaction_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.StoreImpactedRecordsInDataEventTransaction(Butterfly.Core.Database.Event.TransactionState,Butterfly.Core.Database.Event.DataEventTransaction)">StoreImpactedRecordsInDataEventTransaction(TransactionState, DataEventTransaction)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task StoreImpactedRecordsInDataEventTransaction(TransactionState transactionState, DataEventTransaction dataEventTransaction)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Event.TransactionState.html">TransactionState</a></td>
+        <td><span class="parametername">transactionState</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a></td>
+        <td><span class="parametername">dataEventTransaction</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

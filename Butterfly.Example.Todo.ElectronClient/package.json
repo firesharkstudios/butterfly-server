@@ -52,7 +52,7 @@
     }
   },
   "dependencies": {
-    "butterfly-client": "^1.2.4",
+    "butterfly-client": "^2.0.2",
     "reqwest": "^2.0.5",
     "vue": "^2.4.2",
     "vue-electron": "^1.0.6",
@@ -74,10 +74,10 @@
     "css-loader": "^0.28.4",
     "del": "^3.0.0",
     "devtron": "^1.4.0",
-    "electron": "^1.7.5",
+    "electron": "^1.8.8",
+    "electron-builder": "^19.19.1",
     "electron-debug": "^1.4.0",
     "electron-devtools-installer": "^2.2.0",
-    "electron-builder": "^19.19.1",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.30.1",
@@ -88,11 +88,11 @@
     "stylus-loader": "^3.0.1",
     "url-loader": "^0.5.9",
     "vue-html-loader": "^1.2.4",
-    "vue-loader": "^13.0.5",
+    "vue-loader": "^13.7.3",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.4.2",
     "webpack": "^3.5.2",
-    "webpack-dev-server": "^2.7.1",
+    "webpack-dev-server": "^2.11.3",
     "webpack-hot-middleware": "^2.18.2"
   }
 }

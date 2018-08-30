@@ -1,0 +1,70 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [ "**/*.csproj" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "src": ".."
+        }
+      ],
+      "dest": "api",
+      "shouldSkipMarkup": true,
+      "properties": {
+        "TargetFramework": "netstandard1.3"
+      }
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "api/**.yml",
+          "api/index.md"
+        ]
+      },
+      {
+        "files": [
+          "toc.yml",
+          "*.md"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "overwrite": [
+      {
+        "files": [
+          "apidoc/**.md"
+        ],
+        "exclude": [
+          "obj/**",
+          "_site/**"
+        ]
+      }
+    ],
+    "dest": "../docs/docfx",
+    "globalMetadata": {
+      "_disableContribution": true,
+      "_appTitle":  "Butterfly Server .NET API Documentation",
+      "_appLogoPath": "images/logo-48x48.png",
+      "_appFaviconPath": "images/logo-48x48.png"
+    },
+    "globalMetadataFiles": [],
+    "fileMetadataFiles": [],
+    "template": [
+      "default"
+    ],
+    "postProcessors": [],
+    "markdownEngineName": "markdig",
+    "noLangKeyword": false,
+    "keepFileLink": false,
+    "cleanupCacheHistory": false,
+    "disableGitFeatures": false
+  }
+}

@@ -32,13 +32,16 @@
 
         // Create a channel to the server
         let channelClient = new butterflyClient.WebSocketChannelClient({
-            url: '/ws',
+            url: '/ws'
         });
-        channelClient.subscribe(function (messageType, messageData) {
-            console.debug('messageType=' + messageType + ',messageData=' + messageData);
-            // When an INSERT data event is received, display the text field value in an alert box
-            if (messageType == 'DATA-EVENT-TRANSACTION' && messageData.dataEvents.length>0 && messageData.dataEvents[0].dataEventType=='Insert') alert(messageData.dataEvents[0].record.text);
-        }, 'my-channel');
+        channelClient.subscribe({
+            channel: 'my-channel',
+            handler: function (messageType, messageData) {
+                console.debug('messageType=' + messageType + ',messageData=' + messageData);
+                // When an INSERT data event is received, display the text field value in an alert box
+                if (messageType === 'DATA-EVENT-TRANSACTION' && messageData.dataEvents.length > 0 && messageData.dataEvents[0].dataEventType === 'Insert') alert(messageData.dataEvents[0].record.text);
+            }
+        });
         channelClient.connect();
 
         setTimeout(function () {

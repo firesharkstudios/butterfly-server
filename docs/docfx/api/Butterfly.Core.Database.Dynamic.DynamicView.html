@@ -1,0 +1,428 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DynamicView
+   | Butterfly Server .NET API Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DynamicView
+   | Butterfly Server .NET API Documentation ">
+    <meta name="generator" content="docfx 2.38.1.0">
+    
+    <link rel="shortcut icon" href="../images/logo-48x48.png">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo-48x48.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Butterfly.Core.Database.Dynamic.DynamicView">
+  
+  
+  <h1 id="Butterfly_Core_Database_Dynamic_DynamicView" data-uid="Butterfly.Core.Database.Dynamic.DynamicView" class="text-break">Class DynamicView
+  </h1>
+  <div class="markdown level0 summary">
+Represents a specific view (SELECT statement) that should be executed
+to return the initial data as a sequence of <a class="xref" href="Butterfly.Core.Database.Event.DataEvent.html">DataEvent</a> instances
+and should publish <a class="xref" href="Butterfly.Core.Database.Event.DataEvent.html">DataEvent</a> instances when any data in the
+view changes
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">DynamicView</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Butterfly.Core.Database.Dynamic.html">Butterfly.Core.Database.Dynamic</a></h6>
+  <h6><strong>Assembly</strong>: Butterfly.Core.dll</h6>
+  <h5 id="Butterfly_Core_Database_Dynamic_DynamicView_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DynamicView : object</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicView__ctor_" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.#ctor*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicView__ctor_Butterfly_Core_Database_Dynamic_DynamicViewSet_System_String_System_Object_System_String_System_String___System_String___" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.#ctor(Butterfly.Core.Database.Dynamic.DynamicViewSet,System.String,System.Object,System.String,System.String[],System.String[])">DynamicView(DynamicViewSet, String, Object, String, String[], String[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DynamicView(DynamicViewSet dynamicQuerySet, string sql, dynamic vars = null, string name = null, string[] keyFieldNames = null, string[] dynamicTableAliases = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Dynamic.DynamicViewSet.html">DynamicViewSet</a></td>
+        <td><span class="parametername">dynamicQuerySet</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">sql</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">vars</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">keyFieldNames</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">dynamicTableAliases</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicView_childDynamicParams" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.childDynamicParams">childDynamicParams</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly List&lt;ChildDynamicParam&gt; childDynamicParams</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="Butterfly.Core.Database.Dynamic.ChildDynamicParam.html">ChildDynamicParam</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicView_dynamicStatementFromRefByTableName" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.dynamicStatementFromRefByTableName">dynamicStatementFromRefByTableName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Dictionary&lt;string, StatementFromRef&gt; dynamicStatementFromRefByTableName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="Butterfly.Core.Database.StatementFromRef.html">StatementFromRef</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicView_dynamicViewSet" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.dynamicViewSet">dynamicViewSet</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly DynamicViewSet dynamicViewSet</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.Dynamic.DynamicViewSet.html">DynamicViewSet</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicView_keyFieldNames" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.keyFieldNames">keyFieldNames</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string[] keyFieldNames</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicView_name" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.name">name</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string name</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicView_selectStatement" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.selectStatement">selectStatement</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly SelectStatement selectStatement</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.SelectStatement.html">SelectStatement</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicView_varsDict" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.varsDict">varsDict</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly System.Collections.Generic.Dictionary&lt;string, object&gt; varsDict</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicView_Id_" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.Id*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicView_Id" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.Id">Id</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Id { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicView_Name_" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.Name*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicView_Name" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.Name">Name</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="Butterfly_Core_Database_Dynamic_DynamicView_TryGetDynamicStatementFromRef_" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.TryGetDynamicStatementFromRef*"></a>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicView_TryGetDynamicStatementFromRef_System_String_Butterfly_Core_Database_StatementFromRef__" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.TryGetDynamicStatementFromRef(System.String,Butterfly.Core.Database.StatementFromRef@)">TryGetDynamicStatementFromRef(String, out StatementFromRef)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetDynamicStatementFromRef(string tableName, out StatementFromRef dynamicStatementFromRef)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">tableName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.StatementFromRef.html">StatementFromRef</a></td>
+        <td><span class="parametername">dynamicStatementFromRef</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

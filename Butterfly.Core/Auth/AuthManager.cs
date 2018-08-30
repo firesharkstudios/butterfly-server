@@ -240,7 +240,7 @@ namespace Butterfly.Core.Auth {
         protected readonly static Regex VERSION_CLEAN_REGEX = new Regex(@"[^\d\.]+");
 
         /// <summary>
-        /// Call to setup a Web API with the specified <paramref name="webApiServer"/>
+        /// Call to setup a Web API with the specified <paramref name="webApi"/>
         /// </summary>
         /// <remarks>
         /// The following API URLs will be setup...
@@ -256,10 +256,10 @@ namespace Butterfly.Core.Auth {
         ///     POST /api/auth/verify-phone
         /// </code>
         /// </remarks>
-        /// <param name="webApiServer"></param>
+        /// <param name="webApi"></param>
         /// <param name="pathPrefix">Defaults to /api/auth</param>
-        public void SetupWebApi(IWebApiServer webApiServer, string pathPrefix = "/api/auth") {
-            webApiServer.OnGet($"{pathPrefix}/check-username/{{username}}", async(req, res) => {
+        public void SetupWebApi(IWebApi webApi, string pathPrefix = "/api/auth") {
+            webApi.OnGet($"{pathPrefix}/check-username/{{username}}", async(req, res) => {
                 string username = req.PathParams.GetAs("username", (string)null);
                 logger.Debug($"/check-username/{username}");
                 Dict user = await this.LookupUsernameAsync(username, this.userTableIdFieldName);
@@ -267,7 +267,7 @@ namespace Butterfly.Core.Auth {
                 await res.WriteAsJsonAsync(available);
             });
 
-            webApiServer.OnGet($"{pathPrefix}/check-auth-token/{{id}}", async (req, res) => {
+            webApi.OnGet($"{pathPrefix}/check-auth-token/{{id}}", async (req, res) => {
                 string id = req.PathParams.GetAs("id", (string)null);
                 string rawVersionText = req.QueryParams.GetAs("v", "");
                 string versionText = VERSION_CLEAN_REGEX.Replace(rawVersionText, "");
@@ -278,13 +278,13 @@ namespace Butterfly.Core.Auth {
                 await res.WriteAsJsonAsync(authToken);
             });
 
-            webApiServer.OnPost($"{pathPrefix}/create-anonymous", async(req, res) => {
+            webApi.OnPost($"{pathPrefix}/create-anonymous", async(req, res) => {
                 Dict data = await req.ParseAsJsonAsync<Dict>();
                 AuthToken authToken = await this.CreateAnonymousUserAsync();
                 await res.WriteAsJsonAsync(authToken);
             });
 
-            webApiServer.OnPost($"{pathPrefix}/register", async(req, res) => {
+            webApi.OnPost($"{pathPrefix}/register", async(req, res) => {
                 Dict registration = await req.ParseAsJsonAsync<Dict>();
                 AuthToken authToken = await this.RegisterAsync(registration, new Dict {
                     { "host_name", Dns.GetHostName() },
@@ -295,30 +295,30 @@ namespace Butterfly.Core.Auth {
                 await res.WriteAsJsonAsync(authToken);
             });
 
-            webApiServer.OnPost($"{pathPrefix}/login", async(req, res) => {
+            webApi.OnPost($"{pathPrefix}/login", async(req, res) => {
                 Dict login = await req.ParseAsJsonAsync<Dict>();
                 AuthToken authToken = await this.LoginAsync(login);
                 await res.WriteAsJsonAsync(authToken);
             });
 
-            webApiServer.OnPost($"{pathPrefix}/forgot-password", async(req, res) => {
+            webApi.OnPost($"{pathPrefix}/forgot-password", async(req, res) => {
                 Dict data = await req.ParseAsJsonAsync<Dict>();
                 string username = data.GetAs("username", (string)null);
                 await this.ForgotPasswordAsync(username);
             });
 
-            webApiServer.OnPost($"{pathPrefix}/reset-password", async(req, res) => {
+            webApi.OnPost($"{pathPrefix}/reset-password", async(req, res) => {
                 Dict resetPassword = await req.ParseAsJsonAsync<Dict>();
                 AuthToken authToken = await this.ResetPasswordAsync(resetPassword);
                 await res.WriteAsJsonAsync(authToken);
             });
 
-            webApiServer.OnPost($"{pathPrefix}/verify-email", async (req, res) => {
+            webApi.OnPost($"{pathPrefix}/verify-email", async (req, res) => {
                 Dict data = await req.ParseAsJsonAsync<Dict>();
                 await this.VerifyAsync(data, "email", "email_verified_at", this.onEmailVerify);
             });
 
-            webApiServer.OnPost($"{pathPrefix}/verify-phone", async (req, res) => {
+            webApi.OnPost($"{pathPrefix}/verify-phone", async (req, res) => {
                 Dict data = await req.ParseAsJsonAsync<Dict>();
                 await this.VerifyAsync(data, "phone", "phone_verified_at", this.onPhoneVerify);
             });

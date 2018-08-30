@@ -1,0 +1,755 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class SQLiteDatabase
+   | Butterfly Server .NET API Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class SQLiteDatabase
+   | Butterfly Server .NET API Documentation ">
+    <meta name="generator" content="docfx 2.38.1.0">
+    
+    <link rel="shortcut icon" href="../images/logo-48x48.png">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo-48x48.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Butterfly.SQLite.SQLiteDatabase">
+  
+  
+  <h1 id="Butterfly_SQLite_SQLiteDatabase" data-uid="Butterfly.SQLite.SQLiteDatabase" class="text-break">Class SQLiteDatabase
+  </h1>
+  <div class="markdown level0 summary">
+Base class implementing <a class="xref" href="Butterfly.Core.Database.IDatabase.html">IDatabase</a>. New implementations will normally extend this class.
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="Butterfly.Core.Database.BaseDatabase.html">BaseDatabase</a></div>
+    <div class="level2"><span class="xref">SQLiteDatabase</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Butterfly.Core.Database.IDatabase.html">IDatabase</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_tableByName">BaseDatabase.tableByName</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SQL_COMMENT">BaseDatabase.SQL_COMMENT</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_ConnectionString">BaseDatabase.ConnectionString</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_Tables">BaseDatabase.Tables</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SelectCount">BaseDatabase.SelectCount</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_TransactionCount">BaseDatabase.TransactionCount</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_InsertCount">BaseDatabase.InsertCount</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_UpdateCount">BaseDatabase.UpdateCount</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_DeleteCount">BaseDatabase.DeleteCount</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateFromResourceFileAsync_Assembly_System_String_">BaseDatabase.CreateFromResourceFileAsync(Assembly, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateFromTextAsync_System_String_">BaseDatabase.CreateFromTextAsync(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateStatement_System_String_">BaseDatabase.CreateStatement(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_uncommittedTransactionListeners">BaseDatabase.uncommittedTransactionListeners</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.OnNewUncommittedTransaction(Action&lt;&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.OnNewUncommittedTransaction(Func&lt;, &gt;)</span>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_committedTransactionListeners">BaseDatabase.committedTransactionListeners</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.OnNewCommittedTransaction(Action&lt;&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.OnNewCommittedTransaction(Func&lt;, &gt;)</span>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_GetInitialDataEventsAsync_System_String_System_String___Butterfly_Core_Database_SelectStatement_System_Object_">BaseDatabase.GetInitialDataEventsAsync(String, String[], SelectStatement, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SelectValueAsync__1_System_String_System_Object___0_">BaseDatabase.SelectValueAsync&lt;T&gt;(String, Object, T)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SelectRowAsync_System_String_System_Object_">BaseDatabase.SelectRowAsync(String, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SelectRowsAsync_System_String_System_Object_System_Int32_">BaseDatabase.SelectRowsAsync(String, Object, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SelectRowsAsync_Butterfly_Core_Database_SelectStatement_System_Object_">BaseDatabase.SelectRowsAsync(SelectStatement, Object)</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary&lt;, &gt;)</span>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_QueryValueAsync__1_System_String_System_Object___0_">BaseDatabase.QueryValueAsync&lt;T&gt;(String, Object, T)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_QueryRowAsync_System_String_System_Object_">BaseDatabase.QueryRowAsync(String, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_QueryRowsAsync_System_String_System_Object_">BaseDatabase.QueryRowsAsync(String, Object)</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.DoQueryRowsAsync(System.String, System.Collections.Generic.Dictionary&lt;, &gt;)</span>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_InsertAndCommitAsync__1_System_String_System_Object_System_Boolean_">BaseDatabase.InsertAndCommitAsync&lt;T&gt;(String, Object, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_UpdateAndCommitAsync_System_String_System_Object_">BaseDatabase.UpdateAndCommitAsync(String, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_DeleteAndCommitAsync_System_String_System_Object_">BaseDatabase.DeleteAndCommitAsync(String, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_BeginTransaction">BaseDatabase.BeginTransaction()</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_BeginTransactionAsync">BaseDatabase.BeginTransactionAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_getDefaultValueByFieldName">BaseDatabase.getDefaultValueByFieldName</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.SetDefaultValue(System.String, Func&lt;, &gt;, System.String)</span>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_getOverrideValueByFieldName">BaseDatabase.getOverrideValueByFieldName</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.SetOverrideValue(System.String, Func&lt;, &gt;, System.String)</span>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_inputPreprocessors">BaseDatabase.inputPreprocessors</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.AddInputPreprocessor(Action&lt;, &gt;)</span>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.RemapTypeInputPreprocessor&lt;T&gt;(Func&lt;, &gt;)</span>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CopyFieldValueInputPreprocessor_System_String_System_String_">BaseDatabase.CopyFieldValueInputPreprocessor(String, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_PARSE_TYPE">BaseDatabase.PARSE_TYPE</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_ConvertMySqlType_System_String_">BaseDatabase.ConvertMySqlType(String)</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.CreateDynamicViewSet(Action&lt;&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.CreateDynamicViewSet(Func&lt;, &gt;)</span>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.CreateAndStartDynamicViewAsync(System.String, Action&lt;&gt;, System.Object, System.String, System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.CreateAndStartDynamicViewAsync(System.String, Func&lt;, &gt;, System.Object, System.String, System.String[])</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Butterfly.SQLite.html">Butterfly.SQLite</a></h6>
+  <h6><strong>Assembly</strong>: Butterfly.SQLite.dll</h6>
+  <h5 id="Butterfly_SQLite_SQLiteDatabase_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SQLiteDatabase : BaseDatabase, IDatabase</code></pre>
+  </div>
+  <h5 id="Butterfly_SQLite_SQLiteDatabase_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks">
+Adding records and echoing all data change events to the console...<p>
+<pre><code>    // Create database instance (will also read the schema from the database)
+    var database = new SomeDatabase();
+
+    // Listen for all database data events
+    var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {
+        console.WriteLine($&quot;Low Level DataEventTransaction={dataEventTransaction}&quot;);
+    });
+
+    // INSERT a couple of records (this will cause a single data even transaction with
+    // two INSERT data events to be written to the console above)
+    using (var transaction = database.BeginTransaction()) {
+        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
+            department_id: 1,
+            name: &quot;SpongeBob&quot;
+        });
+        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
+            department_id: 1,
+            name: &quot;Squidward&quot;
+        });
+        await database.CommitAsync();
+    );</code></pre>
+
+Creating a DynamicView and echoing data change events on the DynamicView to the console...<p>
+<pre><code>    // Create database instance (will also read the schema from the database)
+    var database = new SomeDatabase();
+
+    // Create a DynamicViewSet that print any data events to the console
+    // (this will immediately echo an INITIAL data event for each existing matching record)
+    var dynamicViewSet = database.CreateAndStartDynamicViewSet(
+        &quot;SELECT * FROM employee WHERE department_id=@departmentId&quot;, 
+        new {
+            departmentId = 1
+        },
+        dataEventTransaction => {
+            Console.WriteLine(dataEventTransaction);
+        }
+    );
+
+    // This will cause the above DynamicViewSet to echo an INSERT data event
+    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
+        department_id: 1
+        name: &quot;Mr Crabs&quot;
+    });
+
+    // This will NOT cause the above DynamicViewSet to echo an INSERT data event
+    // (because the department_id doesn&apos;t match)
+    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
+        department_id: 2
+        name: &quot;Patrick Star&quot;
+    });</code></pre>
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <a id="Butterfly_SQLite_SQLiteDatabase__ctor_" data-uid="Butterfly.SQLite.SQLiteDatabase.#ctor*"></a>
+  <h4 id="Butterfly_SQLite_SQLiteDatabase__ctor_System_String_" data-uid="Butterfly.SQLite.SQLiteDatabase.#ctor(System.String)">SQLiteDatabase(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteDatabase(string connectionString)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">connectionString</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="Butterfly_SQLite_SQLiteDatabase_CanFieldAlias_" data-uid="Butterfly.SQLite.SQLiteDatabase.CanFieldAlias*"></a>
+  <h4 id="Butterfly_SQLite_SQLiteDatabase_CanFieldAlias" data-uid="Butterfly.SQLite.SQLiteDatabase.CanFieldAlias">CanFieldAlias</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanFieldAlias { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CanFieldAlias">BaseDatabase.CanFieldAlias</a></div>
+  <a id="Butterfly_SQLite_SQLiteDatabase_CanJoin_" data-uid="Butterfly.SQLite.SQLiteDatabase.CanJoin*"></a>
+  <h4 id="Butterfly_SQLite_SQLiteDatabase_CanJoin" data-uid="Butterfly.SQLite.SQLiteDatabase.CanJoin">CanJoin</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanJoin { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CanJoin">BaseDatabase.CanJoin</a></div>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="Butterfly_SQLite_SQLiteDatabase_ConvertValue_" data-uid="Butterfly.SQLite.SQLiteDatabase.ConvertValue*"></a>
+  <h4 id="Butterfly_SQLite_SQLiteDatabase_ConvertValue_System_Object_" data-uid="Butterfly.SQLite.SQLiteDatabase.ConvertValue(System.Object)">ConvertValue(Object)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static object ConvertValue(object value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_SQLite_SQLiteDatabase_CreateTransaction_" data-uid="Butterfly.SQLite.SQLiteDatabase.CreateTransaction*"></a>
+  <h4 id="Butterfly_SQLite_SQLiteDatabase_CreateTransaction" data-uid="Butterfly.SQLite.SQLiteDatabase.CreateTransaction">CreateTransaction()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override BaseTransaction CreateTransaction()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.BaseTransaction.html">BaseTransaction</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateTransaction">BaseDatabase.CreateTransaction()</a></div>
+  <a id="Butterfly_SQLite_SQLiteDatabase_DoQueryRowsAsync_" data-uid="Butterfly.SQLite.SQLiteDatabase.DoQueryRowsAsync*"></a>
+  <h4 id="Butterfly_SQLite_SQLiteDatabase_DoQueryRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.SQLite.SQLiteDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">DoQueryRowsAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;[]&gt; DoQueryRowsAsync(string storedProcedureName, System.Collections.Generic.Dictionary&lt;string, object&gt; vars = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">storedProcedureName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">vars</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_SQLite_SQLiteDatabase_DoSelectRowsAsync_" data-uid="Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync*"></a>
+  <h4 id="Butterfly_SQLite_SQLiteDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">DoSelectRowsAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;[]&gt; DoSelectRowsAsync(string executableSql, System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">executableSql</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">executableParams</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_SQLite_SQLiteDatabase_GetFieldDefs_" data-uid="Butterfly.SQLite.SQLiteDatabase.GetFieldDefs*"></a>
+  <h4 id="Butterfly_SQLite_SQLiteDatabase_GetFieldDefs_System_String_" data-uid="Butterfly.SQLite.SQLiteDatabase.GetFieldDefs(System.String)">GetFieldDefs(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task&lt;TableFieldDef[]&gt; GetFieldDefs(string tableName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">tableName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Database.TableFieldDef.html">TableFieldDef</a>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_SQLite_SQLiteDatabase_GetIndexes_" data-uid="Butterfly.SQLite.SQLiteDatabase.GetIndexes*"></a>
+  <h4 id="Butterfly_SQLite_SQLiteDatabase_GetIndexes_System_String_Butterfly_Core_Database_TableFieldDef___" data-uid="Butterfly.SQLite.SQLiteDatabase.GetIndexes(System.String,Butterfly.Core.Database.TableFieldDef[])">GetIndexes(String, TableFieldDef[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task&lt;TableIndex[]&gt; GetIndexes(string tableName, TableFieldDef[] fieldDefs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">tableName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.TableFieldDef.html">TableFieldDef</a>[]</td>
+        <td><span class="parametername">fieldDefs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Database.TableIndex.html">TableIndex</a>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_SQLite_SQLiteDatabase_GetIndexFieldNames_" data-uid="Butterfly.SQLite.SQLiteDatabase.GetIndexFieldNames*"></a>
+  <h4 id="Butterfly_SQLite_SQLiteDatabase_GetIndexFieldNames_System_String_" data-uid="Butterfly.SQLite.SQLiteDatabase.GetIndexFieldNames(System.String)">GetIndexFieldNames(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task&lt;string[]&gt; GetIndexFieldNames(string indexName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">indexName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.String</span>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_SQLite_SQLiteDatabase_LoadSchemaAsync_" data-uid="Butterfly.SQLite.SQLiteDatabase.LoadSchemaAsync*"></a>
+  <h4 id="Butterfly_SQLite_SQLiteDatabase_LoadSchemaAsync" data-uid="Butterfly.SQLite.SQLiteDatabase.LoadSchemaAsync">LoadSchemaAsync()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task LoadSchemaAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_LoadSchemaAsync">BaseDatabase.LoadSchemaAsync()</a></div>
+  <a id="Butterfly_SQLite_SQLiteDatabase_LoadTableSchemaAsync_" data-uid="Butterfly.SQLite.SQLiteDatabase.LoadTableSchemaAsync*"></a>
+  <h4 id="Butterfly_SQLite_SQLiteDatabase_LoadTableSchemaAsync_System_String_" data-uid="Butterfly.SQLite.SQLiteDatabase.LoadTableSchemaAsync(System.String)">LoadTableSchemaAsync(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task&lt;Table&gt; LoadTableSchemaAsync(string tableName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">tableName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Database.Table.html">Table</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Butterfly.Core.Database.IDatabase.html">IDatabase</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

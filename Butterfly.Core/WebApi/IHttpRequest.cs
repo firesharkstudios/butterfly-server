@@ -14,9 +14,8 @@ namespace Butterfly.Core.WebApi {
         string UserHostAddress { get; }
         string UserHostName { get; }
 
-        Task<Dictionary<string, string>> ParseAsUrlEncodedAsync();
         Task<T> ParseAsJsonAsync<T>();
-
+        Task<Dictionary<string, string>> ParseAsUrlEncodedAsync();
         void ParseAsMultipartStream(Action<string, string, string, string, byte[], int> onData, Action<string, string> onParameter = null);
     }
 }

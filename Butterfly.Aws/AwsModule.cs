@@ -29,7 +29,7 @@ namespace Butterfly.Aws {
 
         static readonly Regex IN_REPLY_TO_REGEX = new Regex(@"\<([^\@]+)\@");
 
-        public static async Task SetupAsync(IWebApiServer webApiServer, string topicArn, string endPoint, string bucketName, Func<string, string, string[], Task<string>> handler) {
+        public static async Task SetupAsync(IWebApi webApi, string topicArn, string endPoint, string bucketName, Func<string, string, string[], Task<string>> handler) {
             if (!string.IsNullOrEmpty(endPoint)) {
                 Uri endPointUri = new Uri(endPoint);
                 //logger.Debug($"SetupWebApi():endPointUri.PathAndQuery={endPointUri.PathAndQuery}");
@@ -44,7 +44,7 @@ namespace Butterfly.Aws {
 
                 AmazonS3Client amazonS3Client = new AmazonS3Client(Amazon.RegionEndpoint.USEast1);
 
-                webApiServer.OnPost(
+                webApi.OnPost(
                     endPointUri.PathAndQuery,
                     async (req, res) => {
                         logger.Debug($"{endPointUri.PathAndQuery}");

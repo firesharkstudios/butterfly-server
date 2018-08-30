@@ -18,8 +18,8 @@ namespace Butterfly.Core.Test {
         [TestMethod]
         public async Task RedHttpServerChannel() {
             var redHttpServer = new RedHttpServerNet45.RedHttpServer(8080);
-            using (var channelServer = new Butterfly.Channel.RedHttpServer.RedHttpServerChannelServer(redHttpServer, mustReceiveHeartbeatMillis: 2000, path: "/test")) {
-                await this.TestChannel(channelServer, () => {
+            using (var subscriptionApi = new Butterfly.Channel.RedHttpServer.RedHttpServerSubscriptionApi(redHttpServer, mustReceiveHeartbeatMillis: 2000, path: "/test")) {
+                await this.TestChannel(subscriptionApi, () => {
                     redHttpServer.Start();
                 });
             }
@@ -28,15 +28,15 @@ namespace Butterfly.Core.Test {
         [TestMethod]
         public async Task EmbedIOChannel() {
             using (var webServer = new Unosquare.Labs.EmbedIO.WebServer("http://localhost:8080/", Unosquare.Labs.EmbedIO.Constants.RoutingStrategy.Regex))
-            using (var channelServer = new EmbedIOChannelServer(webServer, mustReceiveHeartbeatMillis: 2000, path: "/test")) {
-                await this.TestChannel(channelServer, () => {
+            using (var subscriptionApi = new EmbedIOSubscriptionApi(webServer, mustReceiveHeartbeatMillis: 2000, path: "/test")) {
+                await this.TestChannel(subscriptionApi, () => {
                     webServer.RunAsync();
                 });
             }
         }
         */
 
-        public static async Task TestChannel(IChannelServer channelServer, string url, Action start) {
+        public static async Task TestChannel(ISubscriptionApi subscriptionApi, string url, Action start) {
             // Listen for new channels at /test to be created
             Butterfly.Core.Channel.Channel channelA = null;
             TestDisposable testDisposableA = new TestDisposable();
@@ -45,15 +45,15 @@ namespace Butterfly.Core.Test {
             TestDisposable testDisposableB = new TestDisposable();
 
             // Register channel
-            channelServer.OnSubscribe(channelKey: "A", handler: (vars, channel) => {
+            subscriptionApi.OnSubscribe(channelKey: "A", handler: (vars, channel) => {
                 channelA = channel;
                 return testDisposableA;
             });
-            channelServer.OnSubscribe(channelKey: "B", handler: (vars, channel) => {
+            subscriptionApi.OnSubscribe(channelKey: "B", handler: (vars, channel) => {
                 channelB = channel;
                 return testDisposableB;
             });
-            channelServer.Start();
+            subscriptionApi.Start();
             if (start != null) start();
 
             var testAuthId = "123";
@@ -62,8 +62,8 @@ namespace Butterfly.Core.Test {
             var channelClient = new WebSocketChannelClient(url, $"Test {testAuthId}", heartbeatEveryMillis: 1000);
             channelClient.Start();
             await Task.Delay(500);
-            Assert.AreEqual(1, channelServer.AuthenticatedConnections.Count);
-            Assert.IsNotNull(channelServer.GetConnection(testAuthId));
+            Assert.AreEqual(1, subscriptionApi.AuthenticatedConnections.Count);
+            Assert.IsNotNull(subscriptionApi.GetConnection(testAuthId));
 
             List<string> messageCollectorA = new List<string>();
             channelClient.Subscribe(message => {
@@ -82,14 +82,14 @@ namespace Butterfly.Core.Test {
             Assert.IsNotNull(channelB);
 
             // Test if sending a message on the server is received on the client
-            channelServer.GetConnection(testAuthId, true).QueueMessage(channelKey: channelA.ChannelKey, messageType: "TypeA", data: "HelloA");
+            subscriptionApi.GetConnection(testAuthId, true).QueueMessage(channelKey: channelA.ChannelKey, messageType: "TypeA", data: "HelloA");
             await Task.Delay(200);
             Assert.AreEqual(1, messageCollectorA.Count);
             Assert.AreEqual(0, messageCollectorB.Count);
             Assert.AreEqual("HelloA", messageCollectorA[0]);
 
             // Test if sending a message on the server is received on the client
-            channelServer.GetConnection(testAuthId, true).QueueMessage(channelKey: channelB.ChannelKey, messageType: "TypeB", data: "HelloB");
+            subscriptionApi.GetConnection(testAuthId, true).QueueMessage(channelKey: channelB.ChannelKey, messageType: "TypeB", data: "HelloB");
             await Task.Delay(200);
             Assert.AreEqual(1, messageCollectorA.Count);
             Assert.AreEqual(1, messageCollectorB.Count);
@@ -97,12 +97,12 @@ namespace Butterfly.Core.Test {
 
             // Test if heartbeats keep the channel alive properly
             await Task.Delay(3000);
-            Assert.AreEqual(1, channelServer.AuthenticatedConnections.Count);
+            Assert.AreEqual(1, subscriptionApi.AuthenticatedConnections.Count);
 
             // Test if channel is disposed if it is removed from server
             channelClient.Dispose();
             await Task.Delay(3000);
-            Assert.AreEqual(0, channelServer.AuthenticatedConnections.Count);
+            Assert.AreEqual(0, subscriptionApi.AuthenticatedConnections.Count);
 
             // Test if the disposable returned by OnNewChannel() was disposed as well
             Assert.AreEqual(true, testDisposableA.disposed);

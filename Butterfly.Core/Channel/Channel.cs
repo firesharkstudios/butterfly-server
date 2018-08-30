@@ -16,17 +16,17 @@ namespace Butterfly.Core.Channel {
     public class Channel : IDisposable {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected readonly IChannelServerConnection connection;
+        protected readonly IChannelConnection connection;
         protected readonly string channelKey;
         protected readonly Dict vars;
 
-        public Channel(IChannelServerConnection connection, string channelKey, Dict vars) {
+        public Channel(IChannelConnection connection, string channelKey, Dict vars) {
             this.connection = connection;
             this.channelKey = channelKey;
             this.vars = vars;
         }
 
-        public IChannelServerConnection Connection => this.connection;
+        public IChannelConnection Connection => this.connection;
 
         public string ChannelKey => this.channelKey;
 

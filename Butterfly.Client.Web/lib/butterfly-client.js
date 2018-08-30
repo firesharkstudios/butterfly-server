@@ -405,8 +405,8 @@ function () {
     this._options = options;
     var url = this._options.url;
 
-    if (url.indexOf('://') == -1) {
-      this._url = (window.location.protocol == 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host + url;
+    if (url.indexOf('://') === -1) {
+      this._url = (window.location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host + url;
     } else {
       this._url = url;
     }
@@ -420,7 +420,7 @@ function () {
   _createClass(_class, [{
     key: "_setState",
     value: function _setState(value) {
-      if (this._state != value) {
+      if (this._state !== value) {
         console.debug("_setState():value=".concat(value));
         this._state = value;
         if (this._options.onStateChange) this._options.onStateChange(value);
@@ -443,7 +443,7 @@ function () {
     value: function _connecting() {
       var _this = this;
 
-      if (this._state == 'Disconnected') return;
+      if (this._state === 'Disconnected') return;
 
       this._setState('Connecting');
 
@@ -460,7 +460,8 @@ function () {
       var hasReconnected = false;
 
       var reconnect = function reconnect(error) {
-        if (hasReconnected) return;else hasReconnected = true;
+        if (hasReconnected) return;
+        hasReconnected = true;
         console.debug("_connecting():reconnect():error=".concat(error));
         var elapsedMillis = new Date().getTime() - connectingStartMillis;
         var reconnectEveryMillis = _this._options.reconnectEveryMillis || 3000;
@@ -487,7 +488,7 @@ function () {
   }, {
     key: "_authenticating",
     value: function _authenticating() {
-      if (this._state == 'Disconnected') return;
+      if (this._state === 'Disconnected') return;
 
       this._setState('Authenticating');
 
@@ -503,7 +504,7 @@ function () {
   }, {
     key: "_subscribing",
     value: function _subscribing() {
-      if (this._state == 'Disconnected') return;
+      if (this._state === 'Disconnected') return;
 
       this._setState('Subscribing'); // Build data
 
@@ -537,7 +538,7 @@ function () {
   }, {
     key: "_unsubscribing",
     value: function _unsubscribing(channelKey) {
-      if (this._state == 'Disconnected') return;
+      if (this._state === 'Disconnected') return;
 
       this._setState('Unsubscribing');
 
@@ -632,11 +633,11 @@ function () {
             subscription.handlers[i](message.messageType, message.data);
           }
         }
-      } else if (message.messageType == 'AUTHENTICATED') {
+      } else if (message.messageType === 'AUTHENTICATED') {
         this._markSubscriptionsSent(false);
 
         this._subscribing();
-      } else if (message.messageType == 'UNAUTHENTICATED') {
+      } else if (message.messageType === 'UNAUTHENTICATED') {
         this.disconnect();
       }
     }
@@ -644,25 +645,25 @@ function () {
     key: "_markSubscriptionsSent",
     value: function _markSubscriptionsSent(value) {
       for (var key in this._subscriptionByChannelKey) {
-        var subscription = this._subscriptionByChannelKey[key];
-        subscription.sent = value;
+        this._subscriptionByChannelKey[key].sent = value;
       }
     }
   }, {
     key: "subscribe",
-    value: function subscribe(handler, channelKey, vars) {
-      //console.debug(`WebSocketChannelClient.subscribe():channelKey=${channelKey}`);
-      if (!channelKey) channelKey = 'default';
+    value: function subscribe(options) {
+      var channelKey = options.channel || 'default';
+      var handlers = Array.isArray(options.handler) ? options.handler : [options.handler];
+      var vars = options.vars; // console.debug(`WebSocketChannelClient.subscribe():channelKey=${channelKey}`);
 
       this._removeSubscription(channelKey);
 
       this._addSubscription(channelKey, {
         vars: vars,
-        handlers: Array.isArray(handler) ? handler : [handler],
+        handlers: handlers,
         sent: false
       });
 
-      if (this._state == 'Connected') {
+      if (this._state === 'Connected') {
         this._subscribing();
       }
 
@@ -671,7 +672,7 @@ function () {
   }, {
     key: "unsubscribe",
     value: function unsubscribe(channelKey) {
-      //console.debug(`WebSocketChannelClient.unsubscribe():channelKey=${channelKey}`);
+      // console.debug(`WebSocketChannelClient.unsubscribe():channelKey=${channelKey}`);
       if (!channelKey) channelKey = 'default';
 
       this._removeSubscription(channelKey);

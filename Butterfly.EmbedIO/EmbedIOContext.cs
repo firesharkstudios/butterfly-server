@@ -14,14 +14,14 @@ using NLog;
 
 namespace Butterfly.EmbedIO {
     /// <summary>
-    /// Convenient class to initialize an IWebApiServer and IChannelServer instance from a running EmbedIO.WebServer instance
+    /// Convenient class to initialize an IWebApi and ISubscriptionApi instance from a running EmbedIO.WebServer instance
     /// </summary>
     public class EmbedIOContext : IDisposable {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly Unosquare.Labs.EmbedIO.WebServer embedIOWebServer;
-        protected readonly IWebApiServer webApiServer;
-        protected readonly IChannelServer channelServer;
+        protected readonly IWebApi webApi;
+        protected readonly ISubscriptionApi subscriptionApi;
 
         public EmbedIOContext(string url, string staticPath = null) {
             // Binding to all local IP addresses requires adding an HTTP URL ACL rule
@@ -40,26 +40,26 @@ namespace Butterfly.EmbedIO {
             }
             //Unosquare.Swan.Terminal.Settings.DisplayLoggingMessageType = Unosquare.Swan.LogMessageType.Trace;
 
-            // Setup and start a webApiServer and channelServer using embedIOWebServer
-            this.webApiServer = new EmbedIOWebApiServer(embedIOWebServer);
-            this.channelServer = new EmbedIOChannelServer(embedIOWebServer, path: "/ws");
+            // Setup and start a webApi and subscriptionApi using embedIOWebServer
+            this.webApi = new EmbedIOWebApi(embedIOWebServer);
+            this.subscriptionApi = new EmbedIOSubscriptionApi(embedIOWebServer, path: "/ws");
         }
 
-        public IWebApiServer WebApiServer => this.webApiServer;
-        public IChannelServer ChannelServer => this.channelServer;
+        public IWebApi WebApi => this.webApi;
+        public ISubscriptionApi SubscriptionApi => this.subscriptionApi;
 
         public void Start() {
             // Start both servers
-            this.webApiServer.Start();
-            this.channelServer.Start();
+            this.webApi.Compile();
+            this.subscriptionApi.Start();
 
             // Start the underlying EmbedIOServer
             this.embedIOWebServer.RunAsync();
         }
 
         public void Dispose() {
-            this.webApiServer.Dispose();
-            this.channelServer.Dispose();
+            this.webApi.Dispose();
+            this.subscriptionApi.Dispose();
         }
     }
 }

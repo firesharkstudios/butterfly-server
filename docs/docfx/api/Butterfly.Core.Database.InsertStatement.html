@@ -1,0 +1,492 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class InsertStatement
+   | Butterfly Server .NET API Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class InsertStatement
+   | Butterfly Server .NET API Documentation ">
+    <meta name="generator" content="docfx 2.38.1.0">
+    
+    <link rel="shortcut icon" href="../images/logo-48x48.png">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/logo-48x48.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Butterfly.Core.Database.InsertStatement">
+  
+  
+  <h1 id="Butterfly_Core_Database_InsertStatement" data-uid="Butterfly.Core.Database.InsertStatement" class="text-break">Class InsertStatement
+  </h1>
+  <div class="markdown level0 summary">
+Internal class used to parse INSERT statements
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="Butterfly.Core.Database.BaseStatement.html">BaseStatement</a></div>
+    <div class="level2"><span class="xref">InsertStatement</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseStatement.html#Butterfly_Core_Database_BaseStatement_IsSqlTableName">BaseStatement.IsSqlTableName</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseStatement.html#Butterfly_Core_Database_BaseStatement_Sql">BaseStatement.Sql</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseStatement.html#Butterfly_Core_Database_BaseStatement_StatementFromRefs">BaseStatement.StatementFromRefs</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseStatement.html#Butterfly_Core_Database_BaseStatement_FindStatementFromRefByTableAlias_System_String_">BaseStatement.FindStatementFromRefByTableAlias(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseStatement.html#Butterfly_Core_Database_BaseStatement_fromTableNames">BaseStatement.fromTableNames</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseStatement.html#Butterfly_Core_Database_BaseStatement_HasTableInFrom_System_String_">BaseStatement.HasTableInFrom(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseStatement.html#Butterfly_Core_Database_BaseStatement_ConfirmAllParamsUsed_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__">BaseStatement.ConfirmAllParamsUsed(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseStatement.html#Butterfly_Core_Database_BaseStatement_ConvertParamsToDict_System_Object_System_Boolean_">BaseStatement.ConvertParamsToDict(Object, Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseStatement.html#Butterfly_Core_Database_BaseStatement_EQUALS_REF_REGEX">BaseStatement.EQUALS_REF_REGEX</a>
+    </div>
+    <div>
+      <a class="xref" href="Butterfly.Core.Database.BaseStatement.html#Butterfly_Core_Database_BaseStatement_RemapStatementParamsToFieldValues_System_Collections_Generic_Dictionary_System_String_System_Object__Butterfly_Core_Database_StatementEqualsRef___">BaseStatement.RemapStatementParamsToFieldValues(System.Collections.Generic.Dictionary&lt;String, Object&gt;, StatementEqualsRef[])</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Butterfly.Core.Database.html">Butterfly.Core.Database</a></h6>
+  <h6><strong>Assembly</strong>: Butterfly.Core.dll</h6>
+  <h5 id="Butterfly_Core_Database_InsertStatement_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class InsertStatement : BaseStatement</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <a id="Butterfly_Core_Database_InsertStatement__ctor_" data-uid="Butterfly.Core.Database.InsertStatement.#ctor*"></a>
+  <h4 id="Butterfly_Core_Database_InsertStatement__ctor_Butterfly_Core_Database_IDatabase_System_String_" data-uid="Butterfly.Core.Database.InsertStatement.#ctor(Butterfly.Core.Database.IDatabase,System.String)">InsertStatement(IDatabase, String)</h4>
+  <div class="markdown level1 summary">
+
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InsertStatement(IDatabase database, string sql)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.IDatabase.html">IDatabase</a></td>
+        <td><span class="parametername">database</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">sql</span></td>
+        <td>Can be a table name or full SQL. Full SQL can use @@names and @@values tokens to retrieve values from the record parameter.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <h4 id="Butterfly_Core_Database_InsertStatement_fromClause" data-uid="Butterfly.Core.Database.InsertStatement.fromClause">fromClause</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string fromClause</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_InsertStatement_namesClause" data-uid="Butterfly.Core.Database.InsertStatement.namesClause">namesClause</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string namesClause</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_InsertStatement_STATEMENT_REGEX" data-uid="Butterfly.Core.Database.InsertStatement.STATEMENT_REGEX">STATEMENT_REGEX</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static readonly Regex STATEMENT_REGEX</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Regex</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Database_InsertStatement_valuesClause" data-uid="Butterfly.Core.Database.InsertStatement.valuesClause">valuesClause</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string valuesClause</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="Butterfly_Core_Database_InsertStatement_GetExecutableSqlAndParams_" data-uid="Butterfly.Core.Database.InsertStatement.GetExecutableSqlAndParams*"></a>
+  <h4 id="Butterfly_Core_Database_InsertStatement_GetExecutableSqlAndParams_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.Core.Database.InsertStatement.GetExecutableSqlAndParams(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Object})">GetExecutableSqlAndParams(System.Collections.Generic.Dictionary&lt;String, Object&gt;, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GetExecutableSqlAndParams(System.Collections.Generic.Dictionary&lt;string, object&gt; statementParams, System.Collections.Generic.Dictionary&lt;string, object&gt; defaultValues)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">statementParams</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">defaultValues</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_InsertStatement_GetInsertRefs_" data-uid="Butterfly.Core.Database.InsertStatement.GetInsertRefs*"></a>
+  <h4 id="Butterfly_Core_Database_InsertStatement_GetInsertRefs_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.Core.Database.InsertStatement.GetInsertRefs(System.Collections.Generic.Dictionary{System.String,System.Object})">GetInsertRefs(System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StatementEqualsRef[] GetInsertRefs(System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">executableParams</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Database.StatementEqualsRef.html">StatementEqualsRef</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_InsertStatement_GetNamesAndValues_" data-uid="Butterfly.Core.Database.InsertStatement.GetNamesAndValues*"></a>
+  <h4 id="Butterfly_Core_Database_InsertStatement_GetNamesAndValues_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.Core.Database.InsertStatement.GetNamesAndValues(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Object})">GetNamesAndValues(System.Collections.Generic.Dictionary&lt;String, Object&gt;, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected GetNamesAndValues(System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams, System.Collections.Generic.Dictionary&lt;string, object&gt; defaultValues = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">executableParams</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">defaultValues</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_InsertStatement_ParseNamesClause_" data-uid="Butterfly.Core.Database.InsertStatement.ParseNamesClause*"></a>
+  <h4 id="Butterfly_Core_Database_InsertStatement_ParseNamesClause_System_String_" data-uid="Butterfly.Core.Database.InsertStatement.ParseNamesClause(System.String)">ParseNamesClause(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;string&gt; ParseNamesClause(string namesClause)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">namesClause</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_InsertStatement_ParseValuesClause_" data-uid="Butterfly.Core.Database.InsertStatement.ParseValuesClause*"></a>
+  <h4 id="Butterfly_Core_Database_InsertStatement_ParseValuesClause_System_String_" data-uid="Butterfly.Core.Database.InsertStatement.ParseValuesClause(System.String)">ParseValuesClause(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;string&gt; ParseValuesClause(string valuesClause)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">valuesClause</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
