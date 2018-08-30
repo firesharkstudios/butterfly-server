@@ -10,7 +10,11 @@ Butterfly Server .NET provides...
 - Ability to define a [Subscription API](#creating-a-subscription-api) that allow pushing real-time data to clients
 - Ability to modify, retrieve, and publish data change events on a [Database](#accessing-a-database)
 
-Butterfly Server .NET targets *.NET Framework 2.0* and does **not** depend on ASP.NET.
+Also, Butterfly Server .NET...
+
+- Targets *.NET Framework 2.0*
+- Fully supports async/await
+- Does **not** depend on ASP.NET
 
 # Getting Started
 
@@ -475,7 +479,7 @@ var name = await database.SelectValueAsync<string>("SELECT name FROM todo", id);
 
 ### Creating the Database Structure
 
-You can either create the database structure by...
+You can create the database structure by either...
 
 - Executing [CreateFromTextAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromTextAsync_System_String_) or [CreateFromResourceAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromResourceFileAsync_Assembly_System_String_) in Butterfly Server .NET (most useful for MemoryDatabase)
 - Creating the database yourself outside of Butterfly Server .NET (normally recommended)
@@ -490,7 +494,7 @@ There are three flavors of selecting data with different return values...
 | [SelectRowAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectRowAsync_System_String_System_Object_) | Returns a single *Dict* instances |
 | [SelectValueAsync<T>()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectValueAsync__1_System_String_System_Object___0_) | Returns a single value |
 
-Each flavor above takes a *sql* parameter and *values* parameter.
+Each flavor above takes a *sql* parameter and optional *values* parameter.
 
 The *sql* parameter can be specified in multiple ways...
 
@@ -533,7 +537,7 @@ Dict[] departmentEmployees1 = await database.SelectRowsAsync("employee", new Dic
 });
 
 // All three of these effectively run SELECT name FROM employee WHERE id='123'
-string name1 = await database.SelectValueAsync<string>("SELECT name FROM employee", "456");
+string name1 = await database.SelectValueAsync<string>("SELECT name FROM employee", "123");
 string name2 = await database.SelectValueAsync<string>("SELECT name FROM employee", new {
     id = "123"
 });
@@ -563,6 +567,8 @@ Dict[] rows = await database.SelectRowsAsync("SELECT * employee WHERE department
 ```
 ### Modifying Data
 
+A [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance has convenience methods that create a transaction, perform a specific action, and commit the transaction as follows...
+
 ```cs
 // Execute a single INSERT and return the value of the primary key
 string id = database.InsertAndCommitAsync<string>("employee", new {
@@ -581,9 +587,9 @@ database.UpdateAndCommitAsync<string>("employee", new {
 // Assuming the employee table has a unique index on the id field, 
 // this deletes the matching record
 database.DeleteAndCommitAsync<string>("employee", "123");
-
 ```
-### Transactions
+
+In addition, you can explicitly create and commit a transaction that performs multiple actions...
 
 ```cs
 // If either INSERT fails, neither INSERT will be saved
@@ -595,62 +601,76 @@ using (ITransaction transaction = await database.BeginTransactionAsync()) {
 		name = "Jim Smith",
 		department_id = departmentId,
 	});
+
+    // Don't forget to Commit the transaction
 	await transaction.CommitAsync();
 }
 ```
+
+Sometimes, it's useful to run code after a transaction is committed, this can be done using [OnCommit](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.ITransaction.html#Butterfly_Core_Database_ITransaction_OnCommit_Func_Task__) to register an action that will execute after the transaction is committed.
+
 ### Synchronizing Data
 
-Use *ITransaction.SynchronizeAsync* to determine the right INSERT, UPDATE, and DELETE statements to synchronize two collections...
+It's common to synchronize a set of records in the database with a new set of inputs.  
+
+The [SynchronizeAsync](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.ITransaction.html#Butterfly_Core_Database_ITransaction_SynchronizeAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object____System_Collections_Generic_Dictionary_System_String_System_Object____Func_System_Collections_Generic_Dictionary_System_String_System_Object__System_Object__System_String___) can be used to determine the right INSERT, UPDATE, and DELETE statements to synchronize two collections...
 
 ```cs
 // Assumes an article_tag table with article_id and tag_name fields
-public async Task SynchronizeTag(string articleId, string[] tagNames) {
-	// First, create the existingRecords from the database
-	Dict[] existingRecords = database.SelectRowsAsync(
-		@"SELECT article_id, tag_name 
-		FROM article_tag 
-		WHERE article_id=@articleId",
-		new {
-			articleId
-		}
-	);
+public async Task SynchronizeTags(string articleId, string[] tagNames) {
+    // First, retrieve the existing records from the database
+    Dict[] existingRecords = database.SelectRowsAsync(
+        @"SELECT article_id, tag_name 
+        FROM article_tag 
+        WHERE article_id=@articleId",
+        new {
+            articleId
+        }
+    );
 
-	// Next, create the newRecords collection from the tagNames parameter
-	Dict[] newRecords = tagNames.Select(x => new Dictionary<string, object> {
-		{ "article_id", articleId },
-		{ "tag_name", x },
-	});
+    // Next, create the new records collection from the tagNames parameter
+    Dict[] newRecords = tagNames.Select(x => new Dict {
+        { "article_id", articleId },
+        { "tag_name", x },
+    }).ToArray();
 
-	// Now, execute the right INSERT, UPDATE, and DELETE statements to make
-	// the newRecords collection match the existingRecords collection
-	using (ITransaction transaction = database.BeginTransactionAsync()) {
-		bool changed = await transaction.SynchronizeAsync(
-			"article_tag", 
-			existingRecords, 
-			newRecords, 
-			existingRecord => new Dictionary<string, object> {
-				article_id = existingRecord.GetAs("article_id", (string)null),
-				tag_name = existingRecord.GetAs("tag_name", (string)null),
-			},
-		);
-	}
+    // Now, execute SynchronizeAsync() to determine the right 
+    // INSERT, UPDATE, and DELETE statements to make the collections match
+    using (ITransaction transaction = database.BeginTransactionAsync()) {
+        await transaction.SynchronizeAsync(
+            "article_tag", 
+            existingRecords, 
+            newRecords
+        );
+    }
 }
 ```
 
 ### Defaults, Overrides, and Preprocessors
 
-Can be defined globally or per table...
+A [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance allows defining...
+
+- Default Values (applies to INSERTs)
+- Override Values (applies to INSERTs and UPDATEs)
+- Input Proprocessors
+
+Each can be defined globally or per table.
+
+Examples...
 
 ```cs
-// Add an id field to all INSERTs with values like at_58b5fff4-322b-4fe8-b45d-386dac7a79f9
+// Add an id field to any INSERT with values like at_58b5fff4-322b-4fe8-b45d-386dac7a79f9
 // if INSERTing on an auth_token table
 database.SetDefaultValue(
     "id", 
     tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}"
 );
 
-// Add a created_at field to all INSERTS with the current time
+// Add a created_at field to any INSERT with the current time
 database.SetDefaultValue("created_at", tableName => DateTime.Now.ToUnixTimestamp());
+
+// Add an updated_at field to any INSERT or UPDATE with the current time
+this.database.SetOverrideValue("updated_at", tableName => DateTime.Now.ToUnixTimestamp());
 
 // Remap any DateTime values to UNIX timestamp values
 database.AddInputPreprocessor(BaseDatabase.RemapTypeInputPreprocessor<DateTime>(
