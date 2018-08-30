@@ -88,33 +88,42 @@ namespace Butterfly.SqlServer
 		protected override async Task LoadSchemaAsync()
 		{
 			const string sql = "select * from sys.tables";
-			var result = await ExecuteCommandAsync<int>(async c =>
+			using (var sqlConnection = new SqlConnection(ConnectionString))
 			{
-				using (var reader = await c.ExecuteReaderAsync())
+				await sqlConnection.OpenAsync();
+				var result = await ExecuteCommandAsync<int>(async c =>
 				{
-					while (await reader.ReadAsync())
+					using (var reader = await c.ExecuteReaderAsync())
 					{
-						var tableName = reader[0].ToString();
-						var table = await LoadTableSchemaAsync(tableName);
-						tableByName[tableName] = table;
+						while (await reader.ReadAsync())
+						{
+							var tableName = reader[0].ToString();
+							var table = await LoadTableSchemaAsync(tableName);
+							tableByName[tableName] = table;
+						}
 					}
-				}
 
-				return tableByName.Count;
-			}, sql);
+					return tableByName.Count;
+				}, sql, sqlConn: sqlConnection);
+			}
 		}
 
 		protected override async Task<Table> LoadTableSchemaAsync(string tableName)
 		{
-			var fieldDefs = await GetFieldDefsAsync(tableName);
-			TableIndex[] indexes = null; // todo - get indexes
-			return new Table(tableName, fieldDefs, indexes);
+			using (var sqlConnection = new SqlConnection(ConnectionString))
+			{
+				await sqlConnection.OpenAsync();
+				var fieldDefs = await GetFieldDefsAsync(tableName, sqlConnection);
+				var indexes = await GetTableIndexesAsync(tableName, sqlConnection);
+				return new Table(tableName, fieldDefs, indexes);
+			}
 		}
 
-		private async Task<TableFieldDef[]> GetFieldDefsAsync(string tableName)
+		private async Task<TableFieldDef[]> GetFieldDefsAsync(string tableName, SqlConnection sqlConnection)
 		{
 			var sql = $@"select c.name,
 								st.name as 'column_type',
+								c.max_length,
 								c.is_nullable,
 								c.is_identity
 				from sys.columns c
@@ -124,7 +133,7 @@ namespace Butterfly.SqlServer
 
 			var result = await ExecuteCommandAsync<List<TableFieldDef>>(async c =>
 			{
-				List<TableFieldDef> fields = new List<TableFieldDef>();
+				var fields = new List<TableFieldDef>();
 
 				using (var reader = await c.ExecuteReaderAsync())
 				{
@@ -132,10 +141,10 @@ namespace Butterfly.SqlServer
 					{
 						var field = new TableFieldDef(
 							reader["name"].ToString(),
-							Type.GetType(reader["column_type"].ToString()), // todo - convert type
+							SqlTypeToType(reader["column_type"].ToString()),
 							int.Parse(reader["max_length"].ToString()),
-							reader["is_nullable"].ToString() == "1",
-							reader["is_identity"].ToString() == "1"
+							bool.Parse(reader["is_nullable"].ToString()),
+							bool.Parse(reader["is_identity"].ToString())
 						);
 
 						fields.Add(field);
@@ -143,7 +152,58 @@ namespace Butterfly.SqlServer
 				}
 
 				return fields;
-			}, sql);
+			}, sql, sqlConn: sqlConnection);
+
+			return result.ToArray();
+		}
+
+		private async Task<TableIndex[]> GetTableIndexesAsync(string tableName, SqlConnection sqlConnection)
+		{
+			var sql = $@"select i.name, c.name as 'column_name', i.is_unique, i.is_primary_key from sys.indexes i
+					join sys.tables t on i.object_id = t.object_id
+					join sys.index_columns ic on i.object_id = ic.object_id and i.index_id = ic.index_id
+					join sys.columns c on ic.object_id = c.object_id and ic.column_id = c.column_id
+					where t.name = '{tableName}'
+					order by i.name";
+
+			var result = await ExecuteCommandAsync<List<TableIndex>>(async c =>
+			{
+				var uniqueIndexes = new List<TableIndex>();
+				var lastIndexName = string.Empty;
+				var lastFieldNames = new List<string>();
+				var lastIndexType = TableIndexType.Other;
+
+				using (var reader = await c.ExecuteReaderAsync())
+				{
+					while (await reader.ReadAsync())
+					{
+						var indexName = reader["name"].ToString();
+						var columnName = reader["column_name"].ToString();
+						var isPrimaryKey = bool.Parse(reader["is_primary_key"].ToString());
+						var isUnique = bool.Parse(reader["is_primary_key"].ToString());
+
+						if (lastIndexName != indexName)
+						{
+							if (lastFieldNames.Count > 0)
+								uniqueIndexes.Add(new TableIndex(lastIndexType, lastFieldNames.ToArray()));
+							
+							lastIndexType = isPrimaryKey ? TableIndexType.Primary :
+															isUnique ? TableIndexType.Unique :
+															TableIndexType.Other;
+
+							lastIndexName = indexName;
+							lastFieldNames.Clear();
+						}
+
+						lastFieldNames.Add(columnName);
+					}
+
+					if (lastFieldNames.Count > 0)
+						uniqueIndexes.Add(new TableIndex(lastIndexType, lastFieldNames.ToArray()));
+				}
+
+				return uniqueIndexes;
+			}, sql, sqlConn: sqlConnection);
 
 			return result.ToArray();
 		}
@@ -163,11 +223,13 @@ namespace Butterfly.SqlServer
 			}
 		}
 
-		internal async Task<T> ExecuteCommandAsync<T>(Func<DbCommand, Task<T>> query, string executableSql, Dict executableParams = null)
+		internal async Task<T> ExecuteCommandAsync<T>(Func<DbCommand, Task<T>> query, string executableSql, Dict executableParams = null, SqlConnection sqlConn = null)
 		{
 			try
 			{
-				using (var command = new SqlCommand(executableSql, sqlConnection))
+				var connection = sqlConn ?? sqlConnection;
+
+				using (var command = new SqlCommand(executableSql, connection))
 				{
 					return await query(command);
 				}
@@ -177,6 +239,73 @@ namespace Butterfly.SqlServer
 				throw new DatabaseException(ex.Message);
 			}
 		}
-		
+
+		// https://stackoverflow.com/a/18219394/5954805
+		private Type SqlTypeToType(string type)
+		{
+			string[] tokens = type.Split(new char[] { '(', ')' }, StringSplitOptions.RemoveEmptyEntries);
+			string typeFamily = tokens[0].ToLowerInvariant();
+			string size = tokens.Length > 1 ? tokens[1] : string.Empty;
+
+			switch (typeFamily)
+			{
+				case "bigint":
+					return typeof(long);
+				case "binary":
+					return size == "1" ? typeof(byte) : typeof(byte[]);
+				case "bit":
+					return typeof(bool);
+				case "char":
+					return size == "1" ? typeof(char) : typeof(string);
+				case "datetime":
+					return typeof(DateTime);
+				case "datetime2":
+					return typeof(DateTime);
+				case "decimal":
+					return typeof(decimal);
+				case "float":
+					return typeof(double);
+				case "image":
+					return typeof(byte[]);
+				case "int":
+					return typeof(int);
+				case "money":
+					return typeof(decimal);
+				case "nchar":
+					return size == "1" ? typeof(char) : typeof(string);
+				case "ntext":
+					return typeof(string);
+				case "nvarchar":
+					return typeof(string);
+				case "real":
+					return typeof(float);
+				case "uniqueidentifier":
+					return typeof(Guid);
+				case "smalldatetime":
+					return typeof(DateTime);
+				case "smallint":
+					return typeof(short);
+				case "smallmoney":
+					return typeof(decimal);
+				case "sql_variant":
+					return typeof(object);
+				case "text":
+					return typeof(string);
+				case "time":
+					return typeof(TimeSpan);
+				case "tinyint":
+					return typeof(byte);
+				case "varbinary":
+					return typeof(byte[]);
+				case "varchar":
+					return typeof(string);
+				case "variant":
+					return typeof(string);
+				case "xml":
+					return typeof(string);
+				default:
+					throw new ArgumentException(string.Format("There is no .Net type specified for mapping T-SQL type '{0}'.", type));
+			}
+		}
 	}
 }
