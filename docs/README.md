@@ -10,7 +10,7 @@ Butterfly Server .NET provides...
 - Ability to define a [Subscription API](#creating-a-subscription-api) that allow pushing real-time data to clients
 - Ability to modify, retrieve, and publish data change events on a [Database](#accessing-a-database)
 
-Butterfly Server .NET targets *.NET Framework 2.0* and does **not** have any dependencies on ASP.NET.
+Butterfly Server .NET targets *.NET Framework 2.0* and does **not** depend on ASP.NET.
 
 # Getting Started
 
@@ -161,7 +161,7 @@ See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfl
 
 # Concepts
 
-### Working with Dictionaries
+## Working with Dictionaries
 
 Since *Dictionary<string, object>* is used so extensively, you'll likely find it useful to declare an alias with your other *using* statements...
 
@@ -196,10 +196,10 @@ Here are a couple common scenarios related to the Web API...
 webApi.OnPost("/api/todo/insert", async (req, res) => {
     var todo = await req.ParseAsJsonAsync<Dict>();
 
-    // Retrieve as array of strings
+    // Retrieve as array
     var tags = todo.GetAs<string[]>("tags", null);
 
-    // Retrieve as Dict
+    // Retrieve as dictionary
     var options = todo.GetAs<Dict>("options", null);
 });
 ```
