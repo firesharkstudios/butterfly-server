@@ -401,6 +401,9 @@ subscriptionApi.OnSubscribe("todo-page", async(vars, channel) => {
         }
     );
 
+    // Send initial datasets and send any data changes as they occur    
+    await dynamicViewSet.StartAsync();
+
     return dynamicViewSet;
 );
 ```
