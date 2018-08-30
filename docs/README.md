@@ -481,8 +481,8 @@ There are three flavors of selecting data with different return values...
 
 | Method | Description |
 | --- | --- |
-| [SelectRowsAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectRowsAsync_System_String_System_Object_System_Int32_) | Returns an array of *Dictionary<string, object>* instances |
-| [SelectRowAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectRowAsync_System_String_System_Object_) | Returns a single *Dictionary<string, object>* instances |
+| [SelectRowsAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectRowsAsync_System_String_System_Object_System_Int32_) | Returns an array of *Dict* instances |
+| [SelectRowAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectRowAsync_System_String_System_Object_) | Returns a single *Dict* instances |
 | [SelectValueAsync<T>()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectValueAsync__1_System_String_System_Object___0_) | Returns a single value |
 
 Each flavor above takes a *sql* parameter and *values* parameter.
@@ -527,12 +527,12 @@ Dict[] departmentEmployees1 = await database.SelectRowsAsync("employee", new Dic
     { "department_id", "123" }
 });
 
-// All three of these effectively run SELECT * FROM employee WHERE id='123'
-Dict me1 = await database.SelectRowAsync("SELECT id, name FROM employee", "456");
-Dict me2 = await database.SelectRowAsync("SELECT id, name FROM employee", new {
+// All three of these effectively run SELECT name FROM employee WHERE id='123'
+string name1 = await database.SelectValueAsync<string>("SELECT name FROM employee", "456");
+string name2 = await database.SelectValueAsync<string>("SELECT name FROM employee", new {
     id = "123"
 });
-Dict me3 = await database.SelectRowAsync("SELECT id, name FROM employee", new Dict {
+string name3 = await database.SelectValueAsync<string>("SELECT name FROM employee", new Dict {
     { "id", "123" },
 });
 
