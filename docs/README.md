@@ -165,7 +165,7 @@ See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfl
 
 ### Overview
 
-[IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) allows defining a RESTful API using HTTP verbs like this...
+An [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) instance allows defining an API for your application like this...
 
 ```cs
 webApi.OnPost("/api/todo/insert", async (req, res) => {
@@ -176,9 +176,108 @@ webApi.OnPost("/api/todo/delete", async (req, res) => {
     var id = await req.ParseAsJsonAsync<string>();
     await database.DeleteAndCommitAsync("todo", id);
 });
+
+// Don't forget to compile
+webApi.Compile();
 ```
 
-You need an implementation of [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) like [EmbedIO](#using-embedio).
+You need an implementation like [EmbedIO](#using-embedio) to get an instance of [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html).
+
+### Requests
+
+There are many ways to receive data from a client...
+
+```cs
+webApi.OnGet("/api/todo/{id}", (req, res) => {
+    // Opening /api/todo/123 would print id=123 below
+    Console.WriteLine($"id={req.PathParams["id"]});
+});
+
+webApi.OnGet("/api/todo", (req, res) => {
+    // Opening /api/todo?id=123 would print id=123 below
+    Console.WriteLine($"id={req.QueryParams["id"]});
+});
+
+webApi.OnPost("/api/todo", async(req, res) => {
+    // A javascript client posting JSON data with...
+    //     $.ajax('/api/todo', {
+    //         method: 'POST',
+    //         data: JSON.stringify("123"),
+    //     });
+    // would echod id=123 below
+    var data = await req.ParseAsJsonAsync<string>();
+    Console.WriteLine($"id={data});
+});
+
+webApi.OnPost("/api/todo", async(req, res) => {
+    // A javascript client posting JSON data with...
+    //     $.ajax('/api/todo', {
+    //         method: 'POST',
+    //         data: JSON.stringify({ id: "123" }),
+    //     });
+    // would echod id=123 below
+    var data = await req.ParseAsJsonAsync<Dictionary<string, string>>();
+    Console.WriteLine($"id={data["id"]});
+});
+
+webApi.OnPost("/api/todo", async(req, res) => {
+    // A javascript client posting JSON data with...
+    //     $.ajax('/api/todo', {
+    //         method: 'POST',
+    //         data: JSON.stringify(["abc", "123"]),
+    //     });
+    // would echod id=123 below
+    var data = await req.ParseAsJsonAsync<string[]>();
+    Console.WriteLine($"id={data[1]});
+});
+
+webApi.OnPost("/api/todo", async(req, res) => {
+    // A javascript client posting JSON data with...
+    //     var formData = new FormData();
+    //     formData.append("id", "123");
+    //     $.ajax('/api/todo', {
+    //         method: 'POST',
+    //         data: formData,
+    //     });
+    // would echod id=123 below
+    var data = await req.ParseAsUrlEncodedAsync();
+    Console.WriteLine($"id={data["id"]});
+});
+```
+
+See [IHttpRequest](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IHttpRequest.html) for more details.
+
+### Responses
+
+There are many ways to send a response to a client...
+
+```cs
+// Respond with plain text
+webApi.OnPost("/api/todo", async(req, res) => {
+    await res.WriteAsTextAsync("OK");
+});
+
+// Respond with JSON object
+webApi.OnPost("/api/todo", async(req, res) => {
+    await res.WriteAsJsonAsync(new {
+        result = "OK"
+    });
+});
+
+// Respond with JSON array
+webApi.OnPost("/api/todo", async(req, res) => {
+    await res.WriteAsJsonAsync(new string[] {
+        "OK"
+    });
+});
+
+// Redirect the client
+webApi.OnGet("/api/todo/{id}", (req, res) => {
+    res.SendRedirect("/api/todo/not-found");
+});
+```
+
+See [IHttpResponse](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IHttpResponse.html) for more details.
 
 ## Creating a Subscription API
 

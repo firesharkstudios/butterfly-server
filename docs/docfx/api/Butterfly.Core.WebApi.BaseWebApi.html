@@ -94,6 +94,18 @@ Base class implementing <a class="xref" href="Butterfly.Core.WebApi.IWebApi.html
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public abstract class BaseWebApi : object, IWebApi, IDisposable</code></pre>
   </div>
+  <h5 id="Butterfly_Core_WebApi_BaseWebApi_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks">
+Example usage...<p>
+<pre><code>    var webApi = new SomeWebApi();
+    webApi.OnGet(&quot;/chat-messages&quot;, async(req, res) => {
+        // Handle the request and return any objects as needed (will be JSON encoded)
+    });
+    webApi.OnPost(&quot;/login&quot;, async(req, res) => {
+        // Handle the request and return any objects as needed (will be JSON encoded)
+    });
+    webApi.Compile();</code></pre>
+</div>
   <h3 id="fields">Fields
   </h3>
   <h4 id="Butterfly_Core_WebApi_BaseWebApi_logger" data-uid="Butterfly.Core.WebApi.BaseWebApi.logger">logger</h4>
@@ -248,6 +260,36 @@ Base class implementing <a class="xref" href="Butterfly.Core.WebApi.IWebApi.html
       </tr>
     </tbody>
   </table>
+  <a id="Butterfly_Core_WebApi_BaseWebApi_OnDelete_" data-uid="Butterfly.Core.WebApi.BaseWebApi.OnDelete*"></a>
+  <h4 id="Butterfly_Core_WebApi_BaseWebApi_OnDelete_System_String_Func_Butterfly_Core_WebApi_IHttpRequest_Butterfly_Core_WebApi_IHttpResponse_Task__" data-uid="Butterfly.Core.WebApi.BaseWebApi.OnDelete(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})">OnDelete(String, Func&lt;IHttpRequest, IHttpResponse, Task&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OnDelete(string path, Func&lt;IHttpRequest, IHttpResponse, Task&gt; listener)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="Butterfly.Core.WebApi.IHttpRequest.html">IHttpRequest</a>, <a class="xref" href="Butterfly.Core.WebApi.IHttpResponse.html">IHttpResponse</a>, <span class="xref">Task</span>&gt;</td>
+        <td><span class="parametername">listener</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="Butterfly_Core_WebApi_BaseWebApi_OnGet_" data-uid="Butterfly.Core.WebApi.BaseWebApi.OnGet*"></a>
   <h4 id="Butterfly_Core_WebApi_BaseWebApi_OnGet_System_String_Func_Butterfly_Core_WebApi_IHttpRequest_Butterfly_Core_WebApi_IHttpResponse_Task__" data-uid="Butterfly.Core.WebApi.BaseWebApi.OnGet(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})">OnGet(String, Func&lt;IHttpRequest, IHttpResponse, Task&gt;)</h4>
   <div class="markdown level1 summary"></div>
@@ -285,6 +327,36 @@ Base class implementing <a class="xref" href="Butterfly.Core.WebApi.IWebApi.html
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void OnPost(string path, Func&lt;IHttpRequest, IHttpResponse, Task&gt; listener)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="Butterfly.Core.WebApi.IHttpRequest.html">IHttpRequest</a>, <a class="xref" href="Butterfly.Core.WebApi.IHttpResponse.html">IHttpResponse</a>, <span class="xref">Task</span>&gt;</td>
+        <td><span class="parametername">listener</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_WebApi_BaseWebApi_OnPut_" data-uid="Butterfly.Core.WebApi.BaseWebApi.OnPut*"></a>
+  <h4 id="Butterfly_Core_WebApi_BaseWebApi_OnPut_System_String_Func_Butterfly_Core_WebApi_IHttpRequest_Butterfly_Core_WebApi_IHttpResponse_Task__" data-uid="Butterfly.Core.WebApi.BaseWebApi.OnPut(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})">OnPut(String, Func&lt;IHttpRequest, IHttpResponse, Task&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OnPut(string path, Func&lt;IHttpRequest, IHttpResponse, Task&gt; listener)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

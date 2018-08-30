@@ -85,7 +85,9 @@
   </h3>
   <a id="Butterfly_Core_Util_IWebRequest_Headers_" data-uid="Butterfly.Core.Util.IWebRequest.Headers*"></a>
   <h4 id="Butterfly_Core_Util_IWebRequest_Headers" data-uid="Butterfly.Core.Util.IWebRequest.Headers">Headers</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Retrieves the request headers
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -108,7 +110,9 @@
   </table>
   <a id="Butterfly_Core_Util_IWebRequest_PathParams_" data-uid="Butterfly.Core.Util.IWebRequest.PathParams*"></a>
   <h4 id="Butterfly_Core_Util_IWebRequest_PathParams" data-uid="Butterfly.Core.Util.IWebRequest.PathParams">PathParams</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Retrieves the path params
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -129,9 +133,19 @@
       </tr>
     </tbody>
   </table>
+  <h5 id="Butterfly_Core_Util_IWebRequest_PathParams_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+Example...
+<pre><code>    webApi.OnGet(&quot;/todo/{id}&quot;, (req, res) => {
+        // Opening /todo/123 would echo id=123 to the console below
+        Console.Writeline($&quot;id={req.PathParams[&quot;id&quot;]}&quot;);
+    });</code></pre>
+</div>
   <a id="Butterfly_Core_Util_IWebRequest_QueryParams_" data-uid="Butterfly.Core.Util.IWebRequest.QueryParams*"></a>
   <h4 id="Butterfly_Core_Util_IWebRequest_QueryParams" data-uid="Butterfly.Core.Util.IWebRequest.QueryParams">QueryParams</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Retrieves the query string params
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -152,9 +166,19 @@
       </tr>
     </tbody>
   </table>
+  <h5 id="Butterfly_Core_Util_IWebRequest_QueryParams_remarks">Remarks</h5>
+  <div class="markdown level1 remarks">
+Example...
+<pre><code>    webApi.OnGet(&quot;/todo&quot;, (req, res) => {
+        // Opening /todo?id=123 would echo id=123 to the console below
+        Console.Writeline($&quot;id={req.QueryParams[&quot;id&quot;]}&quot;);
+    });</code></pre>
+</div>
   <a id="Butterfly_Core_Util_IWebRequest_RequestUrl_" data-uid="Butterfly.Core.Util.IWebRequest.RequestUrl*"></a>
   <h4 id="Butterfly_Core_Util_IWebRequest_RequestUrl" data-uid="Butterfly.Core.Util.IWebRequest.RequestUrl">RequestUrl</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Retrieves the URL used to make the request
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
