@@ -485,7 +485,7 @@ There are three flavors of selecting data with different return values...
 | [SelectRowAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectRowAsync_System_String_System_Object_) | Returns a single *Dictionary<string, object>* instances |
 | [SelectValueAsync<T>()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectValueAsync__1_System_String_System_Object___0_) | Returns a single value |
 
-Each flavor above takes a *sql* parameter and *value* parameter.
+Each flavor above takes a *sql* parameter and *values* parameter.
 
 The *sql* parameter can be specified in multiple ways...
 
@@ -495,7 +495,7 @@ The *sql* parameter can be specified in multiple ways...
 | SELECT without WHERE | `"SELECT * FROM todo"` |
 | Full SELECT| `"SELECT * FROM todo WHERE id=@id"` |
 
-The value parameter can also be specified in multiple ways...
+The *values* parameter can also be specified in multiple ways...
 
 | Name | Example Value |
 | --- | --- | --- |
@@ -503,59 +503,58 @@ The value parameter can also be specified in multiple ways...
 | Dictionary | `new Dictionary<string, object> { ["id"] = "123" }` |
 | Primary Key Value | `"123"` |
 
+Specific value types will also cause a WHERE clause to be rewritten as follows...
 
-These are all valid examples...
+| Original WHERE | Values | New WHERE |
+| --- | --- | --- |
+| WHERE test=@test | `new { test = (string)null }` | WHERE test IS NULL |
+| WHERE test!=@test | `new { test = (string)null }` | WHERE test IS NOT NULL |
+| WHERE test=@test | `new { test = new string[] {"123","456") }` | WHERE test IN ('123', '456') |
+| WHERE test!=@test | `new { test = new string[] {"123","456") }` | WHERE test NOT IN ('123', '456') |
 
-```cs
-Dict[] allEmployees = await database.SelectAsync("employee");
-
-Dict[] salesEmployees = await database.SelectAsync("employee", new {
-    department_id = "123"_
-});
-
-Dict[] bossEmployee = await database.SelectAsync("SELECT id, name FROM employee", new Dict {
-    { "id", bossId },
-});
-
-Dict[] me = await database.SelectAsync("SELECT id, name FROM employee WHERE id=@id", new {
-    id = "456"
-});
-
-```
-
-Also, the WHERE clause will be auto-generated or rewritten when values are NULL or arrays...
+So, these are all valid examples...
 
 ```cs
-// Executes WHERE department_id = '123'
-Dictionary<string, object>[] rows = await database.SelectRowsAsync("employee", new {
-	department_id = "123"
+// Both of these effectively run SELECT * FROM employee
+Dict[] allEmployees1 = await database.SelectRowsAsync("employee");
+Dict[] allEmployees2 = await database.SelectRowsAsync("SELECT * FROM employee");
+
+// Both of these effectively run SELECT * FROM employee WHERE department_id="123"_
+Dict[] departmentEmployees1 = await database.SelectRowsAsync("employee", new {
+    department_id = "123"
+});
+Dict[] departmentEmployees1 = await database.SelectRowsAsync("employee", new Dict {
+    { "department_id", "123" }
 });
 
-// Executes WHERE department_id IS NULL
-Dictionary<string, object>[] rows = await database.SelectRowsAsync("employee", new {
-	department_id = (string)null
+// All three of these effectively run SELECT * FROM employee WHERE id='123'
+Dict me1 = await database.SelectRowAsync("SELECT id, name FROM employee", "456");
+Dict me2 = await database.SelectRowAsync("SELECT id, name FROM employee", new {
+    id = "123"
+});
+Dict me3 = await database.SelectRowAsync("SELECT id, name FROM employee", new Dict {
+    { "id", "123" },
 });
 
-// Executes WHERE department_id IS NOT NULL
-Dictionary<string, object>[] rows = await database.SelectRowsAsync(
-	"SELECT * employee WHERE department_id!=@did", 
-	new {
-		did = (string)null
-	}
-);
-
-// Executes WHERE department_id IN ('123', '456')
-Dictionary<string, object>[] rows = await database.SelectRowsAsync("employee", new {
-	department_id = new string[] { "123", "456"}
+// Effectively runs SELECT * FROM employee WHERE department_id IS NULL
+Dict[] rows = await database.SelectRowsAsync("employee", new {
+    department_id = (string)null
 });
 
-// Executes WHERE department_id NOT IN ('123', '456')
-Dictionary<string, object>[] rows = await database.SelectRowsAsync(
-	"SELECT * employee WHERE department_id!=@did", 
-	new {
-		did = new string[] { "123", "456"}
-	}
-);
+// Effectively runs SELECT * FROM employee WHERE department_id IS NOT NULL
+Dict[] rows = await database.SelectRowsAsync("SELECT * employee WHERE department_id!=@department_id", new {
+    department_id = (string)null
+});
+
+// Effectively runs SELECT * FROM employee WHERE department_id IN ('123', '456')
+Dict[] rows = await database.SelectRowsAsync("employee", new {
+    department_id = new string[] { "123", "456"}
+});
+
+// Effectively runs SELECT * FROM employee WHERE department_id NOT IN ('123', '456')
+Dict[] rows = await database.SelectRowsAsync("SELECT * employee WHERE department_id!=@department_id", new {
+    department_id = new string[] { "123", "456"}
+});
 ```
 ### Modifying Data
 
