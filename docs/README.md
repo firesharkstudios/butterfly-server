@@ -686,7 +686,7 @@ database.AddInputPreprocessor(BaseDatabase.RemapTypeInputPreprocessor<string>(
 database.AddInputPreprocessor(BaseDatabase.CopyFieldValue("$UPDATED_AT$", "updated_at"));
 ```
 
-## Dynamic Views
+## Using Dynamic Views
 
 ### Overview
 
@@ -698,19 +698,19 @@ A [DynamicViewSet](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.
 
 Each [DynamicView](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicView.html) instance must...
 
-- Have a unique name (defaults to the first table name in the SELECT if not specified)
-- Have key field(s) that uniquely identify each row (defaults to the primary key of the first table in the SELECT if not specified) 
+- Have a unique name (defaults to the first table name in the SELECT)
+- Have key field(s) that uniquely identify each row (defaults to the primary key of the first table in the SELECT) 
 
-You can use the [Butterfly Client](#butterfly-client) libraries to consume these [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) instances to keep local javascript arrays synchronized.
+You can use the [Butterfly Client](#butterfly-client) libraries to consume these [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) instances to keep local javascript arrays synchronized with your server.
 
 Key limitations...
 
-- Only INSERTs, UPDATEs, and DELETEs executed via an [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance will trigger data change events in a [DynamicView](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicView.html) instance
+- Only INSERTs, UPDATEs, and DELETEs executed via an [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance will trigger data change events
 - SELECT statements with UNIONs are not supported
 - SELECT statements with subqueries may not be supported depending on the type of subquery
 - SELECT statements with multiple references to the same table can only trigger updates on one of the references
 
-A [DynamicView](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicView.html) will execute additional modified SELECT statements on each underlying data change event.  These SELECT statements are designed to execute quickly (always includes a primary key of an underlying table); however, this is additional overhead that should be considered on higher traffic implementations.
+A [DynamicView](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicView.html) will execute additional modified SELECT statements on each underlying data change event.  These modified SELECT statements are designed to execute quickly (always includes a primary key of an underlying table); however, this is additional overhead that should be considered on higher traffic implementations.
 
 ### Example
 
@@ -898,13 +898,63 @@ var database = new Butterfly.SQLite.SQLiteDatabase("Filename=./my_database.db");
 
 ## Butterfly Client
 
-### Installing
+### Overview
+
+Butterfly Client is a javascript library that allows...
+
+- Maintaining a connection to your server to receive subscription results
+- Mapping DataEventTransactions received on a subscription to local javascript arrays
+
+The easiest way to install Butterfly Client is with npm...
+
+```
+npm install butterfly-client
+```
+
+You can then include the Butterfly Client with a script import like...
+
+```html
+<script src="./node_modules/butterfly-client/lib/butterfly-client.js"></script>
+```
+
+Or include the classes you need with an appropriate ES6 import like...
+
+```
+import { ArrayDataEventHandler, WebSocketChannelClient } from 'butterfly-client'
+```
 
 ### WebSocketChannelClient
 
-### ArrayDataEventHandler
+The *WebSocketChannelClient* maintains a connection to your server to receive subscription messages.
 
-### Vuex Bindings
+```js
+let channelClient = new WebSocketChannelClient({
+    url: `ws://localhost:8080/ws`,
+    onStateChange(newState) {
+        console.debug(`newState=${newState}`);
+    },
+    onSubscriptionsUpdated(newSubscriptions) {
+        console.debug(`newSubscriptions=${newSubscriptions}`);
+    },
+});
+channelClient.connect('Authorization : Bearer xyz');
+
+let list1 = [];
+let list2 = [];
+channelClient.subscribe(
+    channel: 'todos',
+    handler: new ArrayDataEventHandler({
+        channel: 'my-channel',
+        vars: {
+            someInfo: 'Some Info',
+        },
+        arrayMapping: {
+            tableName1: list1,
+            tableName2: list2,
+        }
+    })
+);
+```
 
 # API Documentation
 
