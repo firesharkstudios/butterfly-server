@@ -902,8 +902,8 @@ var database = new Butterfly.SQLite.SQLiteDatabase("Filename=./my_database.db");
 
 Butterfly Client is a javascript library that allows...
 
-- Maintaining a connection to your server to receive subscription results
-- Mapping DataEventTransactions received on a subscription to local javascript arrays
+- Maintaining a connection to your server to receive subscription messages
+- Mapping subscription messages received to synchronize local javascript arrays with the server
 
 The easiest way to install Butterfly Client is with npm...
 
@@ -923,9 +923,9 @@ Or include the classes you need with an appropriate ES6 import like...
 import { ArrayDataEventHandler, WebSocketChannelClient } from 'butterfly-client'
 ```
 
-### WebSocketChannelClient
+### Example
 
-The *WebSocketChannelClient* maintains a connection to your server to receive subscription messages.
+An *WebSocketChannelClient* instance maintains a connection to your server to receive subscription messages and an *ArrayDataEventHandler* instance maps the subscription messages to local javascript arrays to keep these local javascript arrays synchronized with your server...
 
 ```js
 let channelClient = new WebSocketChannelClient({
