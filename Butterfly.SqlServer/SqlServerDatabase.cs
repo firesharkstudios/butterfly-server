@@ -208,11 +208,11 @@ namespace Butterfly.SqlServer
 			return result.ToArray();
 		}
 		
-		internal T ExecuteCommand<T>(Func<DbCommand, T> query, string executableSql, Dict executableParams = null)
+		internal T ExecuteCommand<T>(Func<DbCommand, T> query, string executableSql, Dict executableParams = null, SqlConnection sqlConn = null, SqlTransaction sqlTran = null)
 		{
 			try
 			{
-				using (var command = new SqlCommand(executableSql, sqlConnection))
+				using (var command = new SqlCommand(executableSql, sqlConnection, sqlTran))
 				{
 					return query(command);
 				}
@@ -223,13 +223,13 @@ namespace Butterfly.SqlServer
 			}
 		}
 
-		internal async Task<T> ExecuteCommandAsync<T>(Func<DbCommand, Task<T>> query, string executableSql, Dict executableParams = null, SqlConnection sqlConn = null)
+		internal async Task<T> ExecuteCommandAsync<T>(Func<DbCommand, Task<T>> query, string executableSql, Dict executableParams = null, SqlConnection sqlConn = null, SqlTransaction sqlTran = null)
 		{
 			try
 			{
 				var connection = sqlConn ?? sqlConnection;
 
-				using (var command = new SqlCommand(executableSql, connection))
+				using (var command = new SqlCommand(executableSql, connection, sqlTran))
 				{
 					return await query(command);
 				}

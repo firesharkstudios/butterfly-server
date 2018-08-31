@@ -13,11 +13,12 @@ namespace Butterfly.SqlServer
 {
 	public class SqlServerTransaction : BaseTransaction
 	{
-		protected SqlConnection sqlConnection;
+		protected SqlTransaction transaction;
 		private SqlServerDatabase sqlServerDatabase;
 
 		public SqlServerTransaction(SqlServerDatabase sqlServerDatabase) : base(sqlServerDatabase)
 		{
+			this.sqlServerDatabase = sqlServerDatabase;
 		}
 
 		public override void Begin()
@@ -28,21 +29,29 @@ namespace Butterfly.SqlServer
 		public override async Task BeginAsync()
 		{
 			await sqlServerDatabase.BeginAsync();
+			transaction = sqlServerDatabase.sqlConnection.BeginTransaction();
 		}
 
 		public override void Dispose()
 		{
 			sqlServerDatabase.sqlConnection.Dispose();
+			transaction = sqlServerDatabase.sqlConnection.BeginTransaction();
 		}
 
 		protected override void DoCommit()
 		{
-			throw new NotImplementedException();
+			transaction.Commit();
 		}
 
 		protected override async Task DoCommitAsync()
 		{
-			throw new NotImplementedException();
+			// no async commit available
+			transaction.Commit();
+		}
+
+		protected override void DoRollback()
+		{
+			transaction.Rollback();
 		}
 
 		protected override bool DoCreate(CreateStatement statement)
@@ -50,7 +59,7 @@ namespace Butterfly.SqlServer
 			var result = sqlServerDatabase.ExecuteCommand<int>(c =>
 			{
 				return c.ExecuteNonQuery();
-			}, statement.Sql);
+			}, statement.Sql, sqlTran: transaction);
 			
 			return false;
 		}
@@ -60,7 +69,7 @@ namespace Butterfly.SqlServer
 			var result = await sqlServerDatabase.ExecuteCommandAsync<int>(async c =>
 			{
 				return await c.ExecuteNonQueryAsync();
-			}, statement.Sql);
+			}, statement.Sql, sqlTran: transaction);
 			
 			return false;
 		}
@@ -70,7 +79,7 @@ namespace Butterfly.SqlServer
 			var result = await sqlServerDatabase.ExecuteCommandAsync<int>(async c =>
 			{
 				return await c.ExecuteNonQueryAsync();
-			}, executableSql);
+			}, executableSql, sqlTran: transaction);
 
 			return result;
 		}
@@ -80,14 +89,9 @@ namespace Butterfly.SqlServer
 			var result = await sqlServerDatabase.ExecuteCommandAsync<object>(async c =>
 			{
 				return await c.ExecuteScalarAsync();
-			}, executableSql, executableParams);
+			}, executableSql, executableParams, sqlTran: transaction);
 
 			return () => result;
-		}
-
-		protected override void DoRollback()
-		{
-			throw new NotImplementedException();
 		}
 
 		protected override async Task DoTruncateAsync(string tableName)
@@ -95,7 +99,7 @@ namespace Butterfly.SqlServer
 			await sqlServerDatabase.ExecuteCommandAsync<int>(async c =>
 			{
 				return await c.ExecuteNonQueryAsync();
-			}, $"TRUNCATE TABLE {tableName}");
+			}, $"TRUNCATE TABLE {tableName}", sqlTran: transaction);
 		}
 
 		protected override async Task<int> DoUpdateAsync(string executableSql, Dictionary<string, object> executableParams)
@@ -103,7 +107,7 @@ namespace Butterfly.SqlServer
 			var result = await sqlServerDatabase.ExecuteCommandAsync<int>(async c =>
 			{
 				return await c.ExecuteNonQueryAsync();
-			}, executableSql);
+			}, executableSql, sqlTran: transaction);
 
 			return result;
 		}
