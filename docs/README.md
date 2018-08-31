@@ -686,46 +686,139 @@ database.AddInputPreprocessor(BaseDatabase.RemapTypeInputPreprocessor<string>(
 database.AddInputPreprocessor(BaseDatabase.CopyFieldValue("$UPDATED_AT$", "updated_at"));
 ```
 
-### Dynamic Views
+## Dynamic Views
 
-Dynamic views allow receiving both the initial data and data change events when the data changes.
+### Overview
 
+A [DynamicViewSet](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicViewSet.html) allows...
+
+- Defining multiple [DynamicView](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicView.html) instances using a familiar SELECT syntax
+- Publishing the initial datasets as a single [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) instance
+- Publishing any changes as new [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) instances
+
+Each [DynamicView](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicView.html) instance must...
+
+- Have a unique name (defaults to the first table name in the SELECT if not specified)
+- Have key field(s) that uniquely identify each row (defaults to the primary key of the first table in the SELECT if not specified) 
+
+You can use the [Butterfly Client](#butterfly-client) libraries to consume these [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) instances to keep local javascript arrays synchronized.
+
+Key limitations...
+
+- Only INSERTs, UPDATEs, and DELETEs executed via an [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance will trigger data change events in a [DynamicView](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicView.html) instance
+- SELECT statements with UNIONs are not supported
+- SELECT statements with subqueries may not be supported depending on the type of subquery
+- SELECT statements with multiple references to the same table can only trigger updates on one of the references
+
+A [DynamicView](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicView.html) will execute additional modified SELECT statements on each underlying data change event.  These SELECT statements are designed to execute quickly (always includes a primary key of an underlying table); however, this is additional overhead that should be considered on higher traffic implementations.
+
+### Example
+
+Here is an example of creating a [DynamicViewSet](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicViewSet.html) and triggering [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) instances by starting the [DynamicViewSet](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicViewSet.html) and by executing an INSERT...
 ```cs
-// Create a DynamicViewSet that simply prints all data events to the console
-using (DynamicViewSet dynamicViewSet = database.CreateDynamicViewSet(
-	dataEventTransaction => Console.WriteLine(dataEventTransaction)
-) {
-	// Create dynamic view for all employees in department
-	dynamicViewSet.CreateDynamicView("employee", new {
-		department_id = "123"
-	});
+var dynamicViewSet = database.CreateAndStartDynamicViewAsync(
+    @"SELECT t.id, t.name todo_name, u.name user_name
+    FROM todo t 
+        INNER JOIN user u ON t.user_id=u.id
+    WHERE is_done=@isDoneFilter",
+    dataEventTransaction => {
+        var json = JsonUtil.Serialize(dataEventTransaction, format: true);
+        Console.WriteLine($"dataEventTransaction={json}");
+    },
+    new {
+        isDoneFilter = "Y"
+    }
+);
+dynamicViewSet.Start();
+```
 
-	// Create dynamic view for all resources in department
-	dynamicViewSet.CreateDynamicView("resource", new {
-		department_id = "123"
-	});
+The above code would cause a [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) like this to be echoed to the console...
 
-	// This will cause each DynamicView above to execute
-	// and all the initial data in each DynamicView to be
-	// echoed to the console in a single DataEventTransaction
-	dynamicViewSet.Start();
-
-	// This will cause a new DataEventTransaction with a single
-	// INSERT event to be echoed to the console
-	database.InsertAndCommitAsync("employee", new {
-		name = "Joe Smith",
-		department_id = "123",
-	});
-
-	// This will NOT cause a new DataEventTransaction to
-	// be printed to the console because this INSERT
-	// does not change the DynamicView results above
-	database.InsertAndCommitAsync("employee", new {
-		name = "Joe Smith",
-		department_id = "456",
-	});
+```js
+dataEventTransaction={
+  "dateTime": "2018-08-24 14:25:59",
+  "dataEvents": [
+    {
+      "name": "todo",
+      "keyFieldNames": [
+        "id"
+      ],
+      "dataEventType": "InitialBegin",
+      "id": "f916082a-7e56-4974-8bce-9c0af0792362"
+    },
+    {
+      "record": {
+        "id": "t_7dcdaf99-50ab-4bd5-ab26-271974e9cc49",
+        "todo_name": "Todo #4",
+        "user_name": "Patrick"
+      },
+      "name": "todo",
+      "keyValue": "t_7dcdaf99-50ab-4bd5-ab26-271974e9cc49",
+      "dataEventType": "Initial",
+      "id": "134afc7e-a24e-448a-b800-baed7774d6d2"
+    },
+    {
+      "record": {
+        "id": "t_0f2c7147-317b-4f70-851c-dc906db6f2c3",
+        "todo_name": "Todo #1",
+        "user_name": "Spongebob"
+      },
+      "name": "todo",
+      "keyValue": "t_0f2c7147-317b-4f70-851c-dc906db6f2c3",
+      "dataEventType": "Initial",
+      "id": "aaa6e491-5ad4-4a2b-9891-b1d402172c46"
+    },
+    {
+      "record": {
+        "id": "t_e71e3d82-2153-4b1b-8fcd-29815805307b",
+        "todo_name": "Todo #2",
+        "user_name": "Spongebob"
+      },
+      "name": "todo",
+      "keyValue": "t_e71e3d82-2153-4b1b-8fcd-29815805307b",
+      "dataEventType": "Initial",
+      "id": "efea5a4b-9a9c-4bea-bc19-d6a460f27abb"
+    },
+    {
+      "dataEventType": "InitialEnd",
+      "id": "f25b8841-b9a3-4ec6-af0a-3d34687fa767"
+    }
+  ]
 }
 ```
+
+Now, let's add a record that impacts our [DynamicViewSet](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicViewSet.html)...
+
+```cs
+await database.InsertAndCommitAsync<string>("todo", new {
+    name = "Task #5",
+    user_id = spongebobId,
+    is_done = "N",
+});
+```
+
+The above code would trigger the following [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) to be echoed to the console...
+
+```js
+dataEventTransaction={
+  "dateTime": "2018-08-24 14:25:59",
+  "dataEvents": [
+    {
+      "record": {
+        "id": "t_89378473-97ed-4e0f-9c1d-4303ef6f4d04",
+        "todo_name": "Task #5",
+        "user_name": "Spongebob"
+      },
+      "name": "todo",
+      "keyValue": "t_89378473-97ed-4e0f-9c1d-4303ef6f4d04",
+      "dataEventType": "Insert",
+      "id": "e140185e-9636-45e9-9687-a3368ad6caeb"
+    }
+  ]
+}
+```
+
+You can run a more robust example [here](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.DatabaseDemo/Program.cs).
 
 ## Implementations
 
