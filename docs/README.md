@@ -123,7 +123,7 @@ See [Todo Server](https://github.com/firesharkstudios/butterfly-server-dotnet/tr
 
 Now, let's see how a client might interact with this server using the [Butterfly Client](#butterfly-client) javascript library.
 
-First, the client should use [WebSocketChannelClient](#websocketchannelclient) to maintain an open WebSocket to the server...
+First, the client should use *WebSocketChannelClient* to maintain an open WebSocket to the server...
 
 ```js
 let channelClient = new WebSocketChannelClient({
@@ -161,7 +161,7 @@ $.ajax('/api/todo/insert', {
 
 After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be sychronized from the server to the client's local *todosList* array.
 
-See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Client) for a full working client based on Vuetify and Vue.
+See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Client) for a full working client based on [Vuetify](https://vuetifyjs.com) and [Vue.js](https://vuejs.org/).
 
 # Concepts
 
