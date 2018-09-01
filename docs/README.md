@@ -970,7 +970,44 @@ Click [here](https://butterflyserver.io/docfx/api/) for the API Documentation
 - [SignalR](https://github.com/SignalR/SignalR)
 - [SignalW](https://github.com/Spreads/SignalW)
 
-# Contributing
+# Wishlist
+
+Here is an unprioritized wish list going forward...
+
+## More Databases
+
+Add support for the following databases...
+
+- MS Sql Server
+- Postgres
+- Mongo DB
+
+## More Web Servers
+
+Add support for the following web servers...
+
+- Kestrel
+
+## More Client Bindings
+
+Add support for the following clients...
+
+- React
+- Angular
+- WinForms
+
+## More Examples
+
+Add examples that show...
+
+- How to install on *Raspberry Pi*
+- How to do authentication
+
+## Other Stuff
+
+- Add performance benchmarks
+- Add documentation for *Butterfly.Auth*
+- Add documentation for *Butterfly.Notify*
 
 If you'd like to contribute, please fork the repository and use a feature
 branch. Pull requests are warmly welcome.
