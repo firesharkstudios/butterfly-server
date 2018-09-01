@@ -1,3 +1,4 @@
+
 # Overview
 
 This animation shows an [example](#example) application with three clients automatically sychronized with Butterfly Server .NET...
@@ -15,6 +16,8 @@ Also, Butterfly Server .NET...
 - Targets *.NET Framework 2.0*
 - Fully supports async/await
 - Does **not** depend on ASP.NET
+
+An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/) can be found [here](https://medium.com/@kent_19698/build-a-real-time-chat-app-from-scratch-using-vue-js-and-c-in-5-minutes-599387bdccbb).
 
 # Getting Started
 
