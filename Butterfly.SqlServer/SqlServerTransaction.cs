@@ -24,6 +24,7 @@ namespace Butterfly.SqlServer
 		public override void Begin()
 		{
 			sqlServerDatabase.Begin();
+			transaction = sqlServerDatabase.sqlConnection.BeginTransaction();
 		}
 
 		public override async Task BeginAsync()
@@ -34,8 +35,8 @@ namespace Butterfly.SqlServer
 
 		public override void Dispose()
 		{
+			transaction.Dispose();
 			sqlServerDatabase.sqlConnection.Dispose();
-			transaction = sqlServerDatabase.sqlConnection.BeginTransaction();
 		}
 
 		protected override void DoCommit()

@@ -37,7 +37,7 @@ namespace Butterfly.SqlServer
 		{
 			return new SqlServerTransaction(this);
 		}
-
+		
 		protected override async Task<Dict[]> DoQueryRowsAsync(string storedProcedureName, Dict executableParams)
 		{
 			var result = await ExecuteCommandAsync<Dict[]>(async c =>
@@ -212,8 +212,14 @@ namespace Butterfly.SqlServer
 		{
 			try
 			{
-				using (var command = new SqlCommand(executableSql, sqlConnection, sqlTran))
+				var connection = sqlConn ?? sqlConnection;
+
+				using (var command = new SqlCommand(executableSql, connection, sqlTran))
 				{
+					if (executableParams != null)
+						foreach (var param in executableParams)
+							command.Parameters.Add(new SqlParameter(param.Key, param.Value));
+
 					return query(command);
 				}
 			}
@@ -231,6 +237,10 @@ namespace Butterfly.SqlServer
 
 				using (var command = new SqlCommand(executableSql, connection, sqlTran))
 				{
+					if (executableParams != null)
+						foreach (var param in executableParams)
+							command.Parameters.Add(new SqlParameter(param.Key, param.Value));
+
 					return await query(command);
 				}
 			}
