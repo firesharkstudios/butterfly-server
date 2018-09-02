@@ -16,6 +16,8 @@ Also, Butterfly Server .NET...
 - Targets *.NET Framework 2.0*
 - Fully supports async/await
 - Does **not** depend on ASP.NET
+- Does **not** use polling
+
 
 An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/) can be found [here](https://medium.com/@kent_19698/build-a-real-time-chat-app-from-scratch-using-vue-js-and-c-in-5-minutes-599387bdccbb).
 
