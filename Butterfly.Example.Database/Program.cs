@@ -44,9 +44,13 @@ namespace MyDatabaseTest {
 
         static async Task Run(IDatabase database) {
             // Create sample data
+            Console.WriteLine("Creating sample data...");
             string spongebobId, patrickId;
             string todo1Id, todo2Id, todo3Id, todo4Id;
             using (var transaction = await database.BeginTransactionAsync()) {
+                await transaction.TruncateAsync("user");
+                await transaction.TruncateAsync("todo");
+
                 // Create Spongebob and Patrick user records
                 spongebobId = await transaction.InsertAsync<string>("user", new {
                     name = "Spongebob",
@@ -92,37 +96,43 @@ namespace MyDatabaseTest {
             using (DynamicViewSet dynamicViewSet = await CreateDynamicViewSet(database, "N")) {
 
                 // This will echo an Insert data event to the Console because it matches the SELECT criteria
+                Console.WriteLine("Inserting Task #5...");
                 await database.InsertAndCommitAsync<string>("todo", new {
                     name = "Task #5",
                     user_id = spongebobId,
                     is_done = "N",
                 });
+                await Task.Delay(500);
 
                 // This will NOT echo an Insert data event to the Console because it does NOT match the SELECT criteria
+                Console.WriteLine("Inserting Task #6...");
                 await database.InsertAndCommitAsync<string>("todo", new {
                     name = "Task #6",
                     user_id = spongebobId,
                     is_done = "Y",
                 });
+                await Task.Delay(500);
 
                 // This will echo an Update data event to the Console because it matches the SELECT criteria
+                Console.WriteLine("Updating task name to 'Updated Task #1'...");
                 await database.UpdateAndCommitAsync("todo", new {
                     id = todo1Id,
                     name = "Updated Task #1"
                 });
+                await Task.Delay(500);
 
                 // This will echo multiple Update data events to the Console because it impacts multiple records in the resultset
                 // Yes, that's pretty cool :)
+                Console.WriteLine("Updating user name to 'Mr. Spongebob'");
                 await database.UpdateAndCommitAsync("user", new {
                     id = spongebobId,
                     name = "Mr. Spongebob"
                 });
+                await Task.Delay(500);
             }
         }
 
         static Task<DynamicViewSet> CreateDynamicViewSet(IDatabase database, string isDoneFilter) {
-            int seq = 0;
-            Console.WriteLine("Creating the DynamicView...");
             return database.CreateAndStartDynamicViewAsync(
                 @"SELECT t.id, t.name todo_name, u.name user_name
                 FROM todo t 
@@ -130,8 +140,7 @@ namespace MyDatabaseTest {
                 WHERE is_done=@isDoneFilter",
                 dataEvents => {
                     var json = JsonUtil.Serialize(dataEvents, format: true);
-                    seq++;
-                    Console.WriteLine($"#{seq}:dataEvents={json}");
+                    Console.WriteLine($"dataEvents={json}");
                 },
                 new {
                     isDoneFilter
