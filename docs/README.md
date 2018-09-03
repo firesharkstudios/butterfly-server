@@ -9,7 +9,7 @@ Butterfly Server .NET provides...
 
 - Ability to define a [Web API](#creating-a-web-api)
 - Ability to define a [Subscription API](#creating-a-subscription-api) that allow pushing real-time data to clients
-- Ability to modify, retrieve, and publish data change events on a [Database](#accessing-a-database)
+- Ability to publish data change events on a [Database](#accessing-a-database)
 
 Also, Butterfly Server .NET...
 
@@ -166,7 +166,7 @@ $.ajax('/api/todo/insert', {
 
 After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be sychronized from the server to the client's local *todosList* array.
 
-See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Client) for a full working client based on [Vuetify](https://vuetifyjs.com) and [Vue.js](https://vuejs.org/).
+See [Butterfly.Example.Todo](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo/www) for a full working client based on [Vuetify](https://vuetifyjs.com) and [Vue.js](https://vuejs.org/).
 
 # Concepts
 
