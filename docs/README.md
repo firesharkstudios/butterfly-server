@@ -719,7 +719,7 @@ dataEventTransaction={
 }
 ```
 
-You can run a more robust example [here](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.DatabaseDemo/Program.cs).
+You can run a more robust example [here](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Database/Program.cs).
 
 ## Implementations
 
