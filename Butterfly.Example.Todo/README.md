@@ -134,7 +134,7 @@ Clients are expected to...
 - Use the subscription API to subscribe to the *todos* subscription to get a list of all initial *todo* records and any changes to the *todo* records
 - Use the defined web API to insert and delete *todo* records
 
-See [Todo Example](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) for the working server code.
+See [Program.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo/Program.cs) for the working server code.
 
 # Understanding The Client
 
