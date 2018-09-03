@@ -3,11 +3,11 @@
 
 ![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/demo.gif) 
 
-Butterfly Server .NET provides...
+Butterfly Server .NET allows...
 
-- Ability to define a [Web API](#creating-a-web-api)
-- Ability to define a [Subscription API](#creating-a-subscription-api) that allow pushing real-time data to clients
-- Ability to publish data change events on a [Database](#accessing-a-database) and [Dynamic Views](#using-dynamic-views)
+- Defining a [Web API](#creating-a-web-api)
+- Defining a [Subscription API](#creating-a-subscription-api) that allow pushing real-time data to clients
+- Subscribing to data change events on [Databases](#accessing-a-database) and [Dynamic Views](#using-dynamic-views)
 
 Also, Butterfly Server .NET...
 
@@ -15,7 +15,6 @@ Also, Butterfly Server .NET...
 - Fully supports async/await
 - Does **not** depend on ASP.NET
 - Does **not** use polling
-
 
 An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/) can be found [here](https://medium.com/@kent_19698/build-a-real-time-chat-app-from-scratch-using-vue-js-and-c-in-5-minutes-599387bdccbb).
 
@@ -36,7 +35,7 @@ Get the source from [GitHub](https://github.com/firesharkstudios/butterfly-serve
 
 # Examples
 
-You can try these three examples...
+You can try these examples...
 
 - [Hello World](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.HelloWorld) - Shows *Hello World* in an alert box on the client
 - [Database](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Database) - Shows data change events on a [Dynamic View](#using-dynamic-views) in a console
