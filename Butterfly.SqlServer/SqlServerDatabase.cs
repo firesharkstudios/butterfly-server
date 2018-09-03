@@ -12,23 +12,9 @@ namespace Butterfly.SqlServer
 {
 	public class SqlServerDatabase : BaseDatabase
 	{
-		internal SqlConnection sqlConnection;
-
 		public SqlServerDatabase(string connectionString) : base(connectionString) {
 		}
-
-		internal void Begin()
-		{
-			sqlConnection = new SqlConnection(this.ConnectionString);
-			sqlConnection.Open();
-		}
-
-		internal async Task BeginAsync()
-		{
-			sqlConnection = new SqlConnection(this.ConnectionString);
-			await sqlConnection.OpenAsync();
-		}
-
+		
 		public override bool CanJoin => true;
 
 		public override bool CanFieldAlias => true;
@@ -37,7 +23,7 @@ namespace Butterfly.SqlServer
 		{
 			return new SqlServerTransaction(this);
 		}
-		
+
 		protected override async Task<Dict[]> DoQueryRowsAsync(string storedProcedureName, Dict executableParams)
 		{
 			var result = await ExecuteCommandAsync<Dict[]>(async c =>
@@ -88,38 +74,30 @@ namespace Butterfly.SqlServer
 		protected override async Task LoadSchemaAsync()
 		{
 			const string sql = "select * from sys.tables";
-			using (var sqlConnection = new SqlConnection(ConnectionString))
+			var result = await ExecuteCommandAsync<int>(async c =>
 			{
-				await sqlConnection.OpenAsync();
-				var result = await ExecuteCommandAsync<int>(async c =>
+				using (var reader = await c.ExecuteReaderAsync())
 				{
-					using (var reader = await c.ExecuteReaderAsync())
+					while (await reader.ReadAsync())
 					{
-						while (await reader.ReadAsync())
-						{
-							var tableName = reader[0].ToString();
-							var table = await LoadTableSchemaAsync(tableName);
-							tableByName[tableName] = table;
-						}
+						var tableName = reader[0].ToString();
+						var table = await LoadTableSchemaAsync(tableName);
+						tableByName[tableName] = table;
 					}
+				}
 
-					return tableByName.Count;
-				}, sql, sqlConn: sqlConnection);
-			}
+				return tableByName.Count;
+			}, sql);
 		}
 
 		protected override async Task<Table> LoadTableSchemaAsync(string tableName)
 		{
-			using (var sqlConnection = new SqlConnection(ConnectionString))
-			{
-				await sqlConnection.OpenAsync();
-				var fieldDefs = await GetFieldDefsAsync(tableName, sqlConnection);
-				var indexes = await GetTableIndexesAsync(tableName, sqlConnection);
-				return new Table(tableName, fieldDefs, indexes);
-			}
+			var fieldDefs = await GetFieldDefsAsync(tableName);
+			var indexes = await GetTableIndexesAsync(tableName);
+			return new Table(tableName, fieldDefs, indexes);
 		}
 
-		private async Task<TableFieldDef[]> GetFieldDefsAsync(string tableName, SqlConnection sqlConnection)
+		private async Task<TableFieldDef[]> GetFieldDefsAsync(string tableName)
 		{
 			var sql = $@"select c.name,
 								st.name as 'column_type',
@@ -152,12 +130,12 @@ namespace Butterfly.SqlServer
 				}
 
 				return fields;
-			}, sql, sqlConn: sqlConnection);
+			}, sql);
 
 			return result.ToArray();
 		}
 
-		private async Task<TableIndex[]> GetTableIndexesAsync(string tableName, SqlConnection sqlConnection)
+		private async Task<TableIndex[]> GetTableIndexesAsync(string tableName)
 		{
 			var sql = $@"select i.name, c.name as 'column_name', i.is_unique, i.is_primary_key from sys.indexes i
 					join sys.tables t on i.object_id = t.object_id
@@ -203,19 +181,20 @@ namespace Butterfly.SqlServer
 				}
 
 				return uniqueIndexes;
-			}, sql, sqlConn: sqlConnection);
+			}, sql);
 
 			return result.ToArray();
 		}
 		
-		internal T ExecuteCommand<T>(Func<DbCommand, T> query, string executableSql, Dict executableParams = null, SqlConnection sqlConn = null, SqlTransaction sqlTran = null)
+		private T ExecuteCommand<T>(Func<DbCommand, T> query, string executableSql, Dict executableParams = null)
 		{
 			try
 			{
-				var connection = sqlConn ?? sqlConnection;
-
-				using (var command = new SqlCommand(executableSql, connection, sqlTran))
+				using (var connection = new SqlConnection(ConnectionString))
+				using (var command = new SqlCommand(executableSql, connection))
 				{
+					connection.Open();
+
 					if (executableParams != null)
 						foreach (var param in executableParams)
 							command.Parameters.Add(new SqlParameter(param.Key, param.Value));
@@ -229,14 +208,15 @@ namespace Butterfly.SqlServer
 			}
 		}
 
-		internal async Task<T> ExecuteCommandAsync<T>(Func<DbCommand, Task<T>> query, string executableSql, Dict executableParams = null, SqlConnection sqlConn = null, SqlTransaction sqlTran = null)
+		private async Task<T> ExecuteCommandAsync<T>(Func<DbCommand, Task<T>> query, string executableSql, Dict executableParams = null)
 		{
 			try
 			{
-				var connection = sqlConn ?? sqlConnection;
-
-				using (var command = new SqlCommand(executableSql, connection, sqlTran))
+				using (var connection = new SqlConnection(ConnectionString))
+				using (var command = new SqlCommand(executableSql, connection))
 				{
+					await connection.OpenAsync();
+
 					if (executableParams != null)
 						foreach (var param in executableParams)
 							command.Parameters.Add(new SqlParameter(param.Key, param.Value));

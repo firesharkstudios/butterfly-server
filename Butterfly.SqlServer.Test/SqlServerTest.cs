@@ -1,6 +1,7 @@
 using Butterfly.Core.Database;
 using Butterfly.Core.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Butterfly.SqlServer.Test
@@ -14,7 +15,7 @@ namespace Butterfly.SqlServer.Test
 		public async Task TestDatabase()
 		{
 			IDatabase database = new SqlServerDatabase(connectionString);
-			await DatabaseUnitTest.TestDatabase(database);
+			await DatabaseUnitTest.TestDatabase(database, Assembly.GetExecutingAssembly(), "Butterfly.SqlServer.Test.db.sql");
 		}
 	}
 }
