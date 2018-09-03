@@ -861,6 +861,57 @@ channelClient.subscribe(
 
 Click [here](https://butterflyserver.io/docfx/api/) for the API Documentation
 
+# Running on Raspberry Pi
+
+These steps worked to get Butterfly Server .NET running on a *Raspberry Pi 3 B+*...
+
+```
+# Install dotnet (per https://www.hanselman.com/blog/BuildingRunningAndTestingNETCoreAndASPNETCore21InDockerOnARaspberryPiARM32.aspx)...
+
+sudo apt-get -y update
+sudo apt-get -y install libunwind8 gettext
+wget https://dotnetcli.blob.core.windows.net/dotnet/Sdk/2.1.300-rc1-008673/dotnet-sdk-2.1.300-rc1-008673-linux-arm.tar.gz
+sudo mkdir /opt/dotnet
+sudo tar -xvf dotnet-sdk-2.1.300-rc1-008673-linux-arm.tar.gz -C /opt/dotnet/
+sudo ln -s /opt/dotnet/dotnet /usr/local/bin
+dotnet --info
+
+# Install node (per https://linux.tips/tutorials/how-to-install-latest-version-of-node-js-on-raspberry-pi-3)...
+
+sudo -i
+curl -L https://git.io/n-install | bash
+. /root/.bashrc
+exit
+
+# Create server...
+
+sudo mkdir -p /opt/chat
+cd /opt/chat
+sudo dotnet new console
+sudo dotnet add package Butterfly.Core
+sudo dotnet add package Butterfly.EmbedIO
+
+# Copy and paste Program.cs from https://medium.com/@kent_19698/build-a-real-time-chat-app-from-scratch-using-vue-js-and-c-in-5-minutes-599387bdccbb
+# Edit Program.cs to replace "../../../www" with args[0]
+
+# Create www site...
+
+sudo -i
+mkdir www
+cd www
+npm init
+npm install vue reqwest butterfly-client
+exit
+
+# Copy and paste index.html from https://medium.com/@kent_19698/build-a-real-time-chat-app-from-scratch-using-vue-js-and-c-in-5-minutes-599387bdccbb
+
+# Run it...
+
+sudo dotnet run /opt/chat/www
+
+# Open http://<raspberry-pi-ip-address>:8000 from any machine on same network
+```
+
 # In the Wild
 
 [Build Hero](https://www.buildhero.io) is a collaborative tool for general contractors, subcontractors, and customers to collaborate on remodel projects.  The [my.buildhero.io](https://my.buildhero.io) site, the Android app, and the iOS app are all powered by Butterfly Server .NET.
