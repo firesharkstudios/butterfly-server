@@ -21,10 +21,6 @@ namespace Butterfly.Core.WebApi {
 
         public abstract Uri RequestUrl { get; }
 
-        public abstract string UserAgent { get; }
-        public abstract string UserHostAddress { get; }
-        public abstract string UserHostName { get; }
-
         public abstract Dictionary<string, string> Headers { get; }
 
         public abstract Dictionary<string, string> PathParams { get; }

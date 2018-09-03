@@ -4,19 +4,22 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+
+using Red;
 
 using Butterfly.Core.Channel;
 using Butterfly.Core.Util;
 
-namespace Butterfly.RedHttpServer {
+namespace Butterfly.RHttpServer {
 
     /// <inheritdoc/>
     public class RedHttpServerSubscriptionApi : BaseSubscriptionApi {
         public readonly RedHttpServer server;
         public readonly string path;
 
-        public RedHttpServerSubscriptionApi(RedHttpServer server, int mustReceiveHeartbeatMillis = 5000, string path = "/ws", Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getConnectionId = null, Func<object, Task<string>> getConnectionIdAsync = null) : base(mustReceiveHeartbeatMillis, getAuthToken, getAuthTokenAsync, getConnectionId, getConnectionIdAsync) {
+        public RedHttpServerSubscriptionApi(RedHttpServer server, int mustReceiveHeartbeatMillis = 5000, string path = "/ws", Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null) : base(mustReceiveHeartbeatMillis, getAuthToken, getAuthTokenAsync, getId, getIdAsync) {
             if (EnvironmentX.IsRunningOnMono()) throw new Exception("Unfortunately, RedHttpServer does not support WebSockets on Mono");
             this.server = server;
             this.path = path;
@@ -25,17 +28,18 @@ namespace Butterfly.RedHttpServer {
         protected override void DoStart() {
             logger.Info($"DoStart():Listening for WebSocket requests at {this.path}");
             this.server.WebSocket(this.path, (req, wsd) => {
-                this.AddUnauthenticatedConnection(new WebSocketDialogChannel(this, wsd));
+                this.AddUnauthenticatedConnection(new WebSocketDialogChannelConnection(this, wsd));
+                return Task.FromResult(0);
             });
         }
 
     }
 
-    public class WebSocketDialogChannel : BaseChannelServerConnection {
+    public class WebSocketDialogChannelConnection : BaseChannelConnection {
 
         protected readonly WebSocketDialog webSocketDialog;
 
-        public WebSocketDialogChannel(BaseChannelServer channelServer, WebSocketDialog webSocketDialog) : base(channelServer) {
+        public WebSocketDialogChannelConnection(BaseSubscriptionApi subscriptionApi, WebSocketDialog webSocketDialog) : base(subscriptionApi) {
             this.webSocketDialog = webSocketDialog;
 
             this.webSocketDialog.OnTextReceived += (sender, eventArgs) => {
@@ -69,9 +73,10 @@ namespace Butterfly.RedHttpServer {
         public WebSocketDialogWebRequest(WebSocketDialog webSocketDialog) {
             this.webSocketDialog = webSocketDialog;
         }
-        public Uri RequestUrl => this.webSocketDialog.UnderlyingContext.RequestUri;
 
-        public Dictionary<string, string> Headers => this.webSocketDialog.UnderlyingContext.Headers.ToDictionary();
+        public Uri RequestUrl => this.webSocketDialog.UnderlyingRequest.ToUri();
+
+        public Dictionary<string, string> Headers => this.webSocketDialog.UnderlyingRequest.Headers.ToDictionary(x => x.Key, x => x.Value.ToString());
 
         public Dictionary<string, string> PathParams => throw new NotImplementedException();
 

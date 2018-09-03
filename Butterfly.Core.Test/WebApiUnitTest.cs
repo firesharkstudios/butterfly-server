@@ -13,19 +13,6 @@ using Butterfly.Core.WebApi;
 namespace Butterfly.Core.Test {
     [TestClass]
     public class WebApiUnitTest {
-        /*
-        [TestMethod]
-        public async Task RedHttpServerWeb() {
-            var redHttpServer = new RedHttpServerNet45.RedHttpServer(8080);
-            using (var webApi = new Butterfly.WebApi.RedHttpServer.RedHttpServerWebApi(redHttpServer)) {
-                await this.TestWeb(webApi, "http://localhost:8080/", () => {
-                    redHttpServer.Start();
-                });
-            }
-        }
-
-        */
-
         public static async Task TestWeb(IWebApi webServer, string url, Action start) {
             // Add routes
             webServer.OnGet("/test-get1", async (req, res) => {

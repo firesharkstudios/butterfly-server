@@ -5,30 +5,33 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-using RedHttpServerNet45.Request;
-using RedHttpServerNet45.Response;
+using Red;
 
 using Butterfly.Core.Util;
 using Butterfly.Core.WebApi;
+using System.Text.RegularExpressions;
 
-namespace Butterfly.RedHttpServer {
+namespace Butterfly.RHttpServer {
 
     /// <inheritdoc/>
-    public class RedHttpServerWebApiServer : BaseWebApiServer {
+    public class RedHttpServerWebApi : BaseWebApi {
 
-        public readonly global::RedHttpServerNet45.RedHttpServer server;
+        public readonly RedHttpServer server;
 
-        public RedHttpServerWebApiServer(RedHttpServer server) {
+        public RedHttpServerWebApi(RedHttpServer server) {
             this.server = server;
         }
 
-        public override void Start() {
+
+        public override void Compile() {
             foreach (var webHandler in this.webHandlers) {
                 if (webHandler.method == HttpMethod.Get) {
-                    this.server.Get(webHandler.path, async (req, res) => {
+                    string newPath = Regex.Replace(webHandler.path, "{([^/]+?)}", m => $":{m.Groups[1].Value}");
+                    this.server.Get(newPath, async (req, res) => {
                         try {
                             await webHandler.listener(new RedHttpServerWebRequest(req), new RedHttpServerWebResponse(res));
                         }
@@ -56,34 +59,28 @@ namespace Butterfly.RedHttpServer {
 
     public class RedHttpServerWebRequest : BaseHttpRequest {
 
-        public readonly RRequest request;
+        public readonly Request request;
 
-        public RedHttpServerWebRequest(RRequest request) {
+        public RedHttpServerWebRequest(Request request) {
             this.request = request;
         }
 
-        protected override Stream InputStream => this.request.GetBodyStream();
+        protected override Stream InputStream => this.request.BodyStream;
 
-        public override Uri RequestUrl => this.request.UnderlyingRequest.Url;
+        public override Uri RequestUrl => this.request.UnderlyingRequest.ToUri();
 
-        public override string UserAgent => this.request.UnderlyingRequest.UserAgent;
+        public override Dictionary<string, string> Headers => this.request.Headers.ToDictionary(x => x.Key, x => x.Value.ToString());
 
-        public override string UserHostAddress => this.request.UnderlyingRequest.UserHostAddress;
-
-        public override string UserHostName => this.request.UnderlyingRequest.UserHostName;
-
-        public override Dictionary<string, string> Headers => this.request.Headers.ToDictionary();
-
-        public override Dictionary<string, string> PathParams => throw new NotImplementedException();
+        public override Dictionary<string, string> PathParams => this.request.Parameters.Values;
 
         public override Dictionary<string, string> QueryParams => this.RequestUrl.ParseQuery();
     }
 
     public class RedHttpServerWebResponse : IHttpResponse {
 
-        public readonly RResponse response;
+        public readonly Response response;
 
-        public RedHttpServerWebResponse(RResponse response) {
+        public RedHttpServerWebResponse(Response response) {
             this.response = response;
         }
 
@@ -109,16 +106,14 @@ namespace Butterfly.RedHttpServer {
             throw new NotImplementedException();
         }
 
-        public Stream OutputStream => this.response.UnderlyingResponse.OutputStream;
+        public Stream OutputStream => this.response.UnderlyingResponse.Body;
 
         public Task WriteAsTextAsync(string value) {
-            this.response.SendString(value);
-            return Task.FromResult(0);
+            return this.response.SendString(value);
         }
 
         public Task WriteAsJsonAsync(object value) {
-            this.response.SendJson(value);
-            return Task.FromResult(0);
+            return this.response.SendJson(value);
         }
 
     }
