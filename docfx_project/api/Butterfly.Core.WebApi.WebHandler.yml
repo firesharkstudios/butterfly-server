@@ -1,0 +1,294 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.WebApi.WebHandler
+  commentId: T:Butterfly.Core.WebApi.WebHandler
+  id: WebHandler
+  parent: Butterfly.Core.WebApi
+  children:
+  - Butterfly.Core.WebApi.WebHandler.listener
+  - Butterfly.Core.WebApi.WebHandler.method
+  - Butterfly.Core.WebApi.WebHandler.path
+  langs:
+  - csharp
+  - vb
+  name: WebHandler
+  nameWithType: WebHandler
+  fullName: Butterfly.Core.WebApi.WebHandler
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/WebHandler.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: WebHandler
+    path: ../Butterfly.Core/WebApi/WebHandler.cs
+    startLine: 12
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  summary: "\nInternal class used to store references to new web handlers\n"
+  example: []
+  syntax:
+    content: 'public class WebHandler : object'
+    content.vb: >-
+      Public Class WebHandler
+
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.WebApi.WebHandler.method
+  commentId: F:Butterfly.Core.WebApi.WebHandler.method
+  id: method
+  parent: Butterfly.Core.WebApi.WebHandler
+  langs:
+  - csharp
+  - vb
+  name: method
+  nameWithType: WebHandler.method
+  fullName: Butterfly.Core.WebApi.WebHandler.method
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/WebHandler.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: method
+    path: ../Butterfly.Core/WebApi/WebHandler.cs
+    startLine: 13
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  syntax:
+    content: public HttpMethod method
+    return:
+      type: HttpMethod
+    content.vb: Public method As HttpMethod
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.WebApi.WebHandler.path
+  commentId: F:Butterfly.Core.WebApi.WebHandler.path
+  id: path
+  parent: Butterfly.Core.WebApi.WebHandler
+  langs:
+  - csharp
+  - vb
+  name: path
+  nameWithType: WebHandler.path
+  fullName: Butterfly.Core.WebApi.WebHandler.path
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/WebHandler.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: path
+    path: ../Butterfly.Core/WebApi/WebHandler.cs
+    startLine: 14
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  syntax:
+    content: public string path
+    return:
+      type: System.String
+    content.vb: Public path As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.WebApi.WebHandler.listener
+  commentId: F:Butterfly.Core.WebApi.WebHandler.listener
+  id: listener
+  parent: Butterfly.Core.WebApi.WebHandler
+  langs:
+  - csharp
+  - vb
+  name: listener
+  nameWithType: WebHandler.listener
+  fullName: Butterfly.Core.WebApi.WebHandler.listener
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/WebHandler.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: listener
+    path: ../Butterfly.Core/WebApi/WebHandler.cs
+    startLine: 15
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  syntax:
+    content: public Func<IHttpRequest, IHttpResponse, Task> listener
+    return:
+      type: Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}
+    content.vb: Public listener As Func(Of IHttpRequest, IHttpResponse, Task)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.Core.WebApi
+  commentId: N:Butterfly.Core.WebApi
+  name: Butterfly.Core.WebApi
+  nameWithType: Butterfly.Core.WebApi
+  fullName: Butterfly.Core.WebApi
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: HttpMethod
+  commentId: '!:HttpMethod'
+  isExternal: true
+  name: HttpMethod
+  nameWithType: HttpMethod
+  fullName: HttpMethod
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}
+  commentId: '!:Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}'
+  definition: Func`3
+  name: Func<IHttpRequest, IHttpResponse, Task>
+  nameWithType: Func<IHttpRequest, IHttpResponse, Task>
+  fullName: Func<Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, Task>
+  nameWithType.vb: Func(Of IHttpRequest, IHttpResponse, Task)
+  fullName.vb: Func(Of Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, Task)
+  name.vb: Func(Of IHttpRequest, IHttpResponse, Task)
+  spec.csharp:
+  - uid: Func`3
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Butterfly.Core.WebApi.IHttpRequest
+    name: IHttpRequest
+    nameWithType: IHttpRequest
+    fullName: Butterfly.Core.WebApi.IHttpRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Butterfly.Core.WebApi.IHttpResponse
+    name: IHttpResponse
+    nameWithType: IHttpResponse
+    fullName: Butterfly.Core.WebApi.IHttpResponse
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`3
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Butterfly.Core.WebApi.IHttpRequest
+    name: IHttpRequest
+    nameWithType: IHttpRequest
+    fullName: Butterfly.Core.WebApi.IHttpRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Butterfly.Core.WebApi.IHttpResponse
+    name: IHttpResponse
+    nameWithType: IHttpResponse
+    fullName: Butterfly.Core.WebApi.IHttpResponse
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func`3
+  isExternal: true
+  name: Func<, , >
+  nameWithType: Func<, , >
+  fullName: Func<, , >
+  nameWithType.vb: Func(Of , , )
+  fullName.vb: Func(Of , , )
+  name.vb: Func(Of , , )
+  spec.csharp:
+  - uid: Func`3
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`3
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+shouldSkipMarkup: true

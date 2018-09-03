@@ -1,0 +1,1374 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.WebApi.BaseHttpRequest
+  commentId: T:Butterfly.Core.WebApi.BaseHttpRequest
+  id: BaseHttpRequest
+  parent: Butterfly.Core.WebApi
+  children:
+  - Butterfly.Core.WebApi.BaseHttpRequest.Headers
+  - Butterfly.Core.WebApi.BaseHttpRequest.InputStream
+  - Butterfly.Core.WebApi.BaseHttpRequest.logger
+  - Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync``1
+  - Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream(Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32},Action{System.String,System.String})
+  - Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync
+  - Butterfly.Core.WebApi.BaseHttpRequest.PathParams
+  - Butterfly.Core.WebApi.BaseHttpRequest.QueryParams
+  - Butterfly.Core.WebApi.BaseHttpRequest.RequestUrl
+  langs:
+  - csharp
+  - vb
+  name: BaseHttpRequest
+  nameWithType: BaseHttpRequest
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/BaseHttpRequest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: BaseHttpRequest
+    path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
+    startLine: 16
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  syntax:
+    content: 'public abstract class BaseHttpRequest : object, IHttpRequest, IWebRequest'
+    content.vb: >-
+      Public MustInherit Class BaseHttpRequest
+
+          Inherits Object
+
+          Implements IHttpRequest, IWebRequest
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Butterfly.EmbedIO.EmbedIOHttpWebRequest
+  - Butterfly.RHttpServer.RedHttpServerWebRequest
+  implements:
+  - Butterfly.Core.WebApi.IHttpRequest
+  - Butterfly.Core.Util.IWebRequest
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.logger
+  commentId: F:Butterfly.Core.WebApi.BaseHttpRequest.logger
+  id: logger
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  langs:
+  - csharp
+  - vb
+  name: logger
+  nameWithType: BaseHttpRequest.logger
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.logger
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/BaseHttpRequest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: logger
+    path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
+    startLine: 17
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  syntax:
+    content: protected static readonly Logger logger
+    return:
+      type: Logger
+    content.vb: Protected Shared ReadOnly logger As Logger
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.InputStream
+  commentId: P:Butterfly.Core.WebApi.BaseHttpRequest.InputStream
+  id: InputStream
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  langs:
+  - csharp
+  - vb
+  name: InputStream
+  nameWithType: BaseHttpRequest.InputStream
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.InputStream
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/BaseHttpRequest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: InputStream
+    path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
+    startLine: 19
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  syntax:
+    content: protected abstract Stream InputStream { get; }
+    parameters: []
+    return:
+      type: Stream
+    content.vb: Protected MustOverride ReadOnly Property InputStream As Stream
+  overload: Butterfly.Core.WebApi.BaseHttpRequest.InputStream*
+  modifiers.csharp:
+  - protected
+  - abstract
+  - get
+  modifiers.vb:
+  - Protected
+  - MustOverride
+  - ReadOnly
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.RequestUrl
+  commentId: P:Butterfly.Core.WebApi.BaseHttpRequest.RequestUrl
+  id: RequestUrl
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  langs:
+  - csharp
+  - vb
+  name: RequestUrl
+  nameWithType: BaseHttpRequest.RequestUrl
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.RequestUrl
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/BaseHttpRequest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: RequestUrl
+    path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
+    startLine: 21
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  syntax:
+    content: public abstract Uri RequestUrl { get; }
+    parameters: []
+    return:
+      type: Uri
+    content.vb: Public MustOverride ReadOnly Property RequestUrl As Uri
+  overload: Butterfly.Core.WebApi.BaseHttpRequest.RequestUrl*
+  implements:
+  - Butterfly.Core.Util.IWebRequest.RequestUrl
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.Headers
+  commentId: P:Butterfly.Core.WebApi.BaseHttpRequest.Headers
+  id: Headers
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  langs:
+  - csharp
+  - vb
+  name: Headers
+  nameWithType: BaseHttpRequest.Headers
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.Headers
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/BaseHttpRequest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Headers
+    path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
+    startLine: 23
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  syntax:
+    content: public abstract Dictionary<string, string> Headers { get; }
+    parameters: []
+    return:
+      type: Dictionary{System.String,System.String}
+    content.vb: Public MustOverride ReadOnly Property Headers As Dictionary(Of String, String)
+  overload: Butterfly.Core.WebApi.BaseHttpRequest.Headers*
+  implements:
+  - Butterfly.Core.Util.IWebRequest.Headers
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.PathParams
+  commentId: P:Butterfly.Core.WebApi.BaseHttpRequest.PathParams
+  id: PathParams
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  langs:
+  - csharp
+  - vb
+  name: PathParams
+  nameWithType: BaseHttpRequest.PathParams
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.PathParams
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/BaseHttpRequest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: PathParams
+    path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
+    startLine: 25
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  syntax:
+    content: public abstract Dictionary<string, string> PathParams { get; }
+    parameters: []
+    return:
+      type: Dictionary{System.String,System.String}
+    content.vb: Public MustOverride ReadOnly Property PathParams As Dictionary(Of String, String)
+  overload: Butterfly.Core.WebApi.BaseHttpRequest.PathParams*
+  implements:
+  - Butterfly.Core.Util.IWebRequest.PathParams
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.QueryParams
+  commentId: P:Butterfly.Core.WebApi.BaseHttpRequest.QueryParams
+  id: QueryParams
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  langs:
+  - csharp
+  - vb
+  name: QueryParams
+  nameWithType: BaseHttpRequest.QueryParams
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.QueryParams
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/BaseHttpRequest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: QueryParams
+    path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
+    startLine: 27
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  syntax:
+    content: public abstract Dictionary<string, string> QueryParams { get; }
+    parameters: []
+    return:
+      type: Dictionary{System.String,System.String}
+    content.vb: Public MustOverride ReadOnly Property QueryParams As Dictionary(Of String, String)
+  overload: Butterfly.Core.WebApi.BaseHttpRequest.QueryParams*
+  implements:
+  - Butterfly.Core.Util.IWebRequest.QueryParams
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync
+  commentId: M:Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync
+  id: ParseAsUrlEncodedAsync
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  langs:
+  - csharp
+  - vb
+  name: ParseAsUrlEncodedAsync()
+  nameWithType: BaseHttpRequest.ParseAsUrlEncodedAsync()
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/BaseHttpRequest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ParseAsUrlEncodedAsync
+    path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
+    startLine: 29
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  syntax:
+    content: public Task<Dictionary<string, string>> ParseAsUrlEncodedAsync()
+    return:
+      type: Task{Dictionary{System.String,System.String}}
+    content.vb: Public Function ParseAsUrlEncodedAsync As Task(Of Dictionary(Of String, String))
+  overload: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync*
+  implements:
+  - Butterfly.Core.WebApi.IHttpRequest.ParseAsUrlEncodedAsync
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync``1
+  commentId: M:Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync``1
+  id: ParseAsJsonAsync``1
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  langs:
+  - csharp
+  - vb
+  name: ParseAsJsonAsync<T>()
+  nameWithType: BaseHttpRequest.ParseAsJsonAsync<T>()
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync<T>()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/BaseHttpRequest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ParseAsJsonAsync
+    path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
+    startLine: 36
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  syntax:
+    content: public Task<T> ParseAsJsonAsync<T>()
+    typeParameters:
+    - id: T
+    return:
+      type: Task{{T}}
+    content.vb: Public Function ParseAsJsonAsync(Of T) As Task(Of T)
+  overload: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync*
+  implements:
+  - Butterfly.Core.WebApi.IHttpRequest.ParseAsJsonAsync``1
+  nameWithType.vb: BaseHttpRequest.ParseAsJsonAsync(Of T)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync(Of T)()
+  name.vb: ParseAsJsonAsync(Of T)()
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream(Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32},Action{System.String,System.String})
+  commentId: M:Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream(Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32},Action{System.String,System.String})
+  id: ParseAsMultipartStream(Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32},Action{System.String,System.String})
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  langs:
+  - csharp
+  - vb
+  name: ParseAsMultipartStream(Action<String, String, String, String, Byte[], Int32>, Action<String, String>)
+  nameWithType: BaseHttpRequest.ParseAsMultipartStream(Action<String, String, String, String, Byte[], Int32>, Action<String, String>)
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream(Action<System.String, System.String, System.String, System.String, System.Byte[], System.Int32>, Action<System.String, System.String>)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/BaseHttpRequest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ParseAsMultipartStream
+    path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
+    startLine: 43
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  syntax:
+    content: public void ParseAsMultipartStream(Action<string, string, string, string, byte[], int> onData, Action<string, string> onParameter = null)
+    parameters:
+    - id: onData
+      type: Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32}
+    - id: onParameter
+      type: Action{System.String,System.String}
+    content.vb: Public Sub ParseAsMultipartStream(onData As Action(Of String, String, String, String, Byte(), Integer), onParameter As Action(Of String, String) = Nothing)
+  overload: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream*
+  implements:
+  - Butterfly.Core.WebApi.IHttpRequest.ParseAsMultipartStream(Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32},Action{System.String,System.String})
+  nameWithType.vb: BaseHttpRequest.ParseAsMultipartStream(Action(Of String, String, String, String, Byte(), Int32), Action(Of String, String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream(Action(Of System.String, System.String, System.String, System.String, System.Byte(), System.Int32), Action(Of System.String, System.String))
+  name.vb: ParseAsMultipartStream(Action(Of String, String, String, String, Byte(), Int32), Action(Of String, String))
+references:
+- uid: Butterfly.Core.WebApi
+  commentId: N:Butterfly.Core.WebApi
+  name: Butterfly.Core.WebApi
+  nameWithType: Butterfly.Core.WebApi
+  fullName: Butterfly.Core.WebApi
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.WebApi.IHttpRequest
+  commentId: T:Butterfly.Core.WebApi.IHttpRequest
+  parent: Butterfly.Core.WebApi
+  name: IHttpRequest
+  nameWithType: IHttpRequest
+  fullName: Butterfly.Core.WebApi.IHttpRequest
+- uid: Butterfly.Core.Util.IWebRequest
+  commentId: T:Butterfly.Core.Util.IWebRequest
+  parent: Butterfly.Core.Util
+  name: IWebRequest
+  nameWithType: IWebRequest
+  fullName: Butterfly.Core.Util.IWebRequest
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: Logger
+  isExternal: true
+  name: Logger
+  nameWithType: Logger
+  fullName: Logger
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.InputStream*
+  commentId: Overload:Butterfly.Core.WebApi.BaseHttpRequest.InputStream
+  name: InputStream
+  nameWithType: BaseHttpRequest.InputStream
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.InputStream
+- uid: Stream
+  isExternal: true
+  name: Stream
+  nameWithType: Stream
+  fullName: Stream
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.RequestUrl*
+  commentId: Overload:Butterfly.Core.WebApi.BaseHttpRequest.RequestUrl
+  name: RequestUrl
+  nameWithType: BaseHttpRequest.RequestUrl
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.RequestUrl
+- uid: Butterfly.Core.Util.IWebRequest.RequestUrl
+  commentId: P:Butterfly.Core.Util.IWebRequest.RequestUrl
+  parent: Butterfly.Core.Util.IWebRequest
+  name: RequestUrl
+  nameWithType: IWebRequest.RequestUrl
+  fullName: Butterfly.Core.Util.IWebRequest.RequestUrl
+- uid: Uri
+  isExternal: true
+  name: Uri
+  nameWithType: Uri
+  fullName: Uri
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.Headers*
+  commentId: Overload:Butterfly.Core.WebApi.BaseHttpRequest.Headers
+  name: Headers
+  nameWithType: BaseHttpRequest.Headers
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.Headers
+- uid: Butterfly.Core.Util.IWebRequest.Headers
+  commentId: P:Butterfly.Core.Util.IWebRequest.Headers
+  parent: Butterfly.Core.Util.IWebRequest
+  name: Headers
+  nameWithType: IWebRequest.Headers
+  fullName: Butterfly.Core.Util.IWebRequest.Headers
+- uid: Dictionary{System.String,System.String}
+  commentId: '!:Dictionary{System.String,System.String}'
+  definition: Dictionary`2
+  name: Dictionary<String, String>
+  nameWithType: Dictionary<String, String>
+  fullName: Dictionary<System.String, System.String>
+  nameWithType.vb: Dictionary(Of String, String)
+  fullName.vb: Dictionary(Of System.String, System.String)
+  name.vb: Dictionary(Of String, String)
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Dictionary`2
+  isExternal: true
+  name: Dictionary<, >
+  nameWithType: Dictionary<, >
+  fullName: Dictionary<, >
+  nameWithType.vb: Dictionary(Of , )
+  fullName.vb: Dictionary(Of , )
+  name.vb: Dictionary(Of , )
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.PathParams*
+  commentId: Overload:Butterfly.Core.WebApi.BaseHttpRequest.PathParams
+  name: PathParams
+  nameWithType: BaseHttpRequest.PathParams
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.PathParams
+- uid: Butterfly.Core.Util.IWebRequest.PathParams
+  commentId: P:Butterfly.Core.Util.IWebRequest.PathParams
+  parent: Butterfly.Core.Util.IWebRequest
+  name: PathParams
+  nameWithType: IWebRequest.PathParams
+  fullName: Butterfly.Core.Util.IWebRequest.PathParams
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.QueryParams*
+  commentId: Overload:Butterfly.Core.WebApi.BaseHttpRequest.QueryParams
+  name: QueryParams
+  nameWithType: BaseHttpRequest.QueryParams
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.QueryParams
+- uid: Butterfly.Core.Util.IWebRequest.QueryParams
+  commentId: P:Butterfly.Core.Util.IWebRequest.QueryParams
+  parent: Butterfly.Core.Util.IWebRequest
+  name: QueryParams
+  nameWithType: IWebRequest.QueryParams
+  fullName: Butterfly.Core.Util.IWebRequest.QueryParams
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync*
+  commentId: Overload:Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync
+  name: ParseAsUrlEncodedAsync
+  nameWithType: BaseHttpRequest.ParseAsUrlEncodedAsync
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync
+- uid: Butterfly.Core.WebApi.IHttpRequest.ParseAsUrlEncodedAsync
+  commentId: M:Butterfly.Core.WebApi.IHttpRequest.ParseAsUrlEncodedAsync
+  parent: Butterfly.Core.WebApi.IHttpRequest
+  name: ParseAsUrlEncodedAsync()
+  nameWithType: IHttpRequest.ParseAsUrlEncodedAsync()
+  fullName: Butterfly.Core.WebApi.IHttpRequest.ParseAsUrlEncodedAsync()
+  spec.csharp:
+  - uid: Butterfly.Core.WebApi.IHttpRequest.ParseAsUrlEncodedAsync
+    name: ParseAsUrlEncodedAsync
+    nameWithType: IHttpRequest.ParseAsUrlEncodedAsync
+    fullName: Butterfly.Core.WebApi.IHttpRequest.ParseAsUrlEncodedAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.WebApi.IHttpRequest.ParseAsUrlEncodedAsync
+    name: ParseAsUrlEncodedAsync
+    nameWithType: IHttpRequest.ParseAsUrlEncodedAsync
+    fullName: Butterfly.Core.WebApi.IHttpRequest.ParseAsUrlEncodedAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task{Dictionary{System.String,System.String}}
+  commentId: '!:Task{Dictionary{System.String,System.String}}'
+  definition: Task`1
+  name: Task<Dictionary<String, String>>
+  nameWithType: Task<Dictionary<String, String>>
+  fullName: Task<Dictionary<System.String, System.String>>
+  nameWithType.vb: Task(Of Dictionary(Of String, String))
+  fullName.vb: Task(Of Dictionary(Of System.String, System.String))
+  name.vb: Task(Of Dictionary(Of String, String))
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
+  isExternal: true
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync*
+  commentId: Overload:Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync
+  name: ParseAsJsonAsync
+  nameWithType: BaseHttpRequest.ParseAsJsonAsync
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync
+- uid: Butterfly.Core.WebApi.IHttpRequest.ParseAsJsonAsync``1
+  commentId: M:Butterfly.Core.WebApi.IHttpRequest.ParseAsJsonAsync``1
+  parent: Butterfly.Core.WebApi.IHttpRequest
+  name: ParseAsJsonAsync<T>()
+  nameWithType: IHttpRequest.ParseAsJsonAsync<T>()
+  fullName: Butterfly.Core.WebApi.IHttpRequest.ParseAsJsonAsync<T>()
+  nameWithType.vb: IHttpRequest.ParseAsJsonAsync(Of T)()
+  fullName.vb: Butterfly.Core.WebApi.IHttpRequest.ParseAsJsonAsync(Of T)()
+  name.vb: ParseAsJsonAsync(Of T)()
+  spec.csharp:
+  - uid: Butterfly.Core.WebApi.IHttpRequest.ParseAsJsonAsync``1
+    name: ParseAsJsonAsync<T>
+    nameWithType: IHttpRequest.ParseAsJsonAsync<T>
+    fullName: Butterfly.Core.WebApi.IHttpRequest.ParseAsJsonAsync<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.WebApi.IHttpRequest.ParseAsJsonAsync``1
+    name: ParseAsJsonAsync(Of T)
+    nameWithType: IHttpRequest.ParseAsJsonAsync(Of T)
+    fullName: Butterfly.Core.WebApi.IHttpRequest.ParseAsJsonAsync(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task{{T}}
+  commentId: '!:Task{``0}'
+  definition: Task`1
+  name: Task<T>
+  nameWithType: Task<T>
+  fullName: Task<T>
+  nameWithType.vb: Task(Of T)
+  fullName.vb: Task(Of T)
+  name.vb: Task(Of T)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream*
+  commentId: Overload:Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream
+  name: ParseAsMultipartStream
+  nameWithType: BaseHttpRequest.ParseAsMultipartStream
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream
+- uid: Butterfly.Core.WebApi.IHttpRequest.ParseAsMultipartStream(Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32},Action{System.String,System.String})
+  commentId: M:Butterfly.Core.WebApi.IHttpRequest.ParseAsMultipartStream(Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32},Action{System.String,System.String})
+  parent: Butterfly.Core.WebApi.IHttpRequest
+  isExternal: true
+  name: ParseAsMultipartStream(Action<String, String, String, String, Byte[], Int32>, Action<String, String>)
+  nameWithType: IHttpRequest.ParseAsMultipartStream(Action<String, String, String, String, Byte[], Int32>, Action<String, String>)
+  fullName: Butterfly.Core.WebApi.IHttpRequest.ParseAsMultipartStream(Action<System.String, System.String, System.String, System.String, System.Byte[], System.Int32>, Action<System.String, System.String>)
+  nameWithType.vb: IHttpRequest.ParseAsMultipartStream(Action(Of String, String, String, String, Byte(), Int32), Action(Of String, String))
+  fullName.vb: Butterfly.Core.WebApi.IHttpRequest.ParseAsMultipartStream(Action(Of System.String, System.String, System.String, System.String, System.Byte(), System.Int32), Action(Of System.String, System.String))
+  name.vb: ParseAsMultipartStream(Action(Of String, String, String, String, Byte(), Int32), Action(Of String, String))
+  spec.csharp:
+  - uid: Butterfly.Core.WebApi.IHttpRequest.ParseAsMultipartStream(Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32},Action{System.String,System.String})
+    name: ParseAsMultipartStream
+    nameWithType: IHttpRequest.ParseAsMultipartStream
+    fullName: Butterfly.Core.WebApi.IHttpRequest.ParseAsMultipartStream
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Action`6
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.WebApi.IHttpRequest.ParseAsMultipartStream(Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32},Action{System.String,System.String})
+    name: ParseAsMultipartStream
+    nameWithType: IHttpRequest.ParseAsMultipartStream
+    fullName: Butterfly.Core.WebApi.IHttpRequest.ParseAsMultipartStream
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Action`6
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32}
+  commentId: '!:Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32}'
+  definition: Action`6
+  name: Action<String, String, String, String, Byte[], Int32>
+  nameWithType: Action<String, String, String, String, Byte[], Int32>
+  fullName: Action<System.String, System.String, System.String, System.String, System.Byte[], System.Int32>
+  nameWithType.vb: Action(Of String, String, String, String, Byte(), Int32)
+  fullName.vb: Action(Of System.String, System.String, System.String, System.String, System.Byte(), System.Int32)
+  name.vb: Action(Of String, String, String, String, Byte(), Int32)
+  spec.csharp:
+  - uid: Action`6
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`6
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action{System.String,System.String}
+  commentId: '!:Action{System.String,System.String}'
+  definition: Action`2
+  name: Action<String, String>
+  nameWithType: Action<String, String>
+  fullName: Action<System.String, System.String>
+  nameWithType.vb: Action(Of String, String)
+  fullName.vb: Action(Of System.String, System.String)
+  name.vb: Action(Of String, String)
+  spec.csharp:
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action`6
+  isExternal: true
+  name: Action<, , , , , >
+  nameWithType: Action<, , , , , >
+  fullName: Action<, , , , , >
+  nameWithType.vb: Action(Of , , , , , )
+  fullName.vb: Action(Of , , , , , )
+  name.vb: Action(Of , , , , , )
+  spec.csharp:
+  - uid: Action`6
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`6
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action`2
+  isExternal: true
+  name: Action<, >
+  nameWithType: Action<, >
+  fullName: Action<, >
+  nameWithType.vb: Action(Of , )
+  fullName.vb: Action(Of , )
+  name.vb: Action(Of , )
+  spec.csharp:
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+shouldSkipMarkup: true

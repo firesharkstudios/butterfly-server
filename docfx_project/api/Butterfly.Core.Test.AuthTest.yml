@@ -1,0 +1,190 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Test.AuthTest
+  commentId: T:Butterfly.Core.Test.AuthTest
+  id: AuthTest
+  parent: Butterfly.Core.Test
+  children:
+  - Butterfly.Core.Test.AuthTest.logger
+  - Butterfly.Core.Test.AuthTest.SimpleAuthTest
+  - Butterfly.Core.Test.AuthTest.TruncateData(Butterfly.Core.Database.IDatabase)
+  langs:
+  - csharp
+  - vb
+  name: AuthTest
+  nameWithType: AuthTest
+  fullName: Butterfly.Core.Test.AuthTest
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core.Test/AuthTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: AuthTest
+    path: ../Butterfly.Core.Test/AuthTest.cs
+    startLine: 15
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: 'public class AuthTest : object'
+    content.vb: >-
+      Public Class AuthTest
+
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Test.AuthTest.logger
+  commentId: F:Butterfly.Core.Test.AuthTest.logger
+  id: logger
+  parent: Butterfly.Core.Test.AuthTest
+  langs:
+  - csharp
+  - vb
+  name: logger
+  nameWithType: AuthTest.logger
+  fullName: Butterfly.Core.Test.AuthTest.logger
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core.Test/AuthTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: logger
+    path: ../Butterfly.Core.Test/AuthTest.cs
+    startLine: 17
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: protected static readonly Logger logger
+    return:
+      type: Logger
+    content.vb: Protected Shared ReadOnly logger As Logger
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Core.Test.AuthTest.SimpleAuthTest
+  commentId: M:Butterfly.Core.Test.AuthTest.SimpleAuthTest
+  id: SimpleAuthTest
+  parent: Butterfly.Core.Test.AuthTest
+  langs:
+  - csharp
+  - vb
+  name: SimpleAuthTest()
+  nameWithType: AuthTest.SimpleAuthTest()
+  fullName: Butterfly.Core.Test.AuthTest.SimpleAuthTest()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core.Test/AuthTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: SimpleAuthTest
+    path: ../Butterfly.Core.Test/AuthTest.cs
+    startLine: 19
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: public Task SimpleAuthTest()
+    return:
+      type: Task
+    content.vb: Public Function SimpleAuthTest As Task
+  overload: Butterfly.Core.Test.AuthTest.SimpleAuthTest*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Test.AuthTest.TruncateData(Butterfly.Core.Database.IDatabase)
+  commentId: M:Butterfly.Core.Test.AuthTest.TruncateData(Butterfly.Core.Database.IDatabase)
+  id: TruncateData(Butterfly.Core.Database.IDatabase)
+  parent: Butterfly.Core.Test.AuthTest
+  langs:
+  - csharp
+  - vb
+  name: TruncateData(IDatabase)
+  nameWithType: AuthTest.TruncateData(IDatabase)
+  fullName: Butterfly.Core.Test.AuthTest.TruncateData(Butterfly.Core.Database.IDatabase)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core.Test/AuthTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TruncateData
+    path: ../Butterfly.Core.Test/AuthTest.cs
+    startLine: 49
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: public static Task TruncateData(IDatabase database)
+    parameters:
+    - id: database
+      type: Butterfly.Core.Database.IDatabase
+    return:
+      type: Task
+    content.vb: Public Shared Function TruncateData(database As IDatabase) As Task
+  overload: Butterfly.Core.Test.AuthTest.TruncateData*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Butterfly.Core.Test
+  commentId: N:Butterfly.Core.Test
+  name: Butterfly.Core.Test
+  nameWithType: Butterfly.Core.Test
+  fullName: Butterfly.Core.Test
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Logger
+  isExternal: true
+  name: Logger
+  nameWithType: Logger
+  fullName: Logger
+- uid: Butterfly.Core.Test.AuthTest.SimpleAuthTest*
+  commentId: Overload:Butterfly.Core.Test.AuthTest.SimpleAuthTest
+  name: SimpleAuthTest
+  nameWithType: AuthTest.SimpleAuthTest
+  fullName: Butterfly.Core.Test.AuthTest.SimpleAuthTest
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Butterfly.Core.Test.AuthTest.TruncateData*
+  commentId: Overload:Butterfly.Core.Test.AuthTest.TruncateData
+  name: TruncateData
+  nameWithType: AuthTest.TruncateData
+  fullName: Butterfly.Core.Test.AuthTest.TruncateData
+- uid: Butterfly.Core.Database.IDatabase
+  commentId: T:Butterfly.Core.Database.IDatabase
+  parent: Butterfly.Core.Database
+  name: IDatabase
+  nameWithType: IDatabase
+  fullName: Butterfly.Core.Database.IDatabase
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+shouldSkipMarkup: true

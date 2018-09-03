@@ -1,0 +1,91 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.ConsoleUtil
+  commentId: T:Butterfly.Core.Util.ConsoleUtil
+  id: ConsoleUtil
+  parent: Butterfly.Core.Util
+  children:
+  - Butterfly.Core.Util.ConsoleUtil.WaitForCancelKey
+  langs:
+  - csharp
+  - vb
+  name: ConsoleUtil
+  nameWithType: ConsoleUtil
+  fullName: Butterfly.Core.Util.ConsoleUtil
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/ConsoleUtil.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ConsoleUtil
+    path: ../Butterfly.Core/Util/ConsoleUtil.cs
+    startLine: 8
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: 'public static class ConsoleUtil : object'
+    content.vb: >-
+      Public Module ConsoleUtil
+
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Butterfly.Core.Util.ConsoleUtil.WaitForCancelKey
+  commentId: M:Butterfly.Core.Util.ConsoleUtil.WaitForCancelKey
+  id: WaitForCancelKey
+  parent: Butterfly.Core.Util.ConsoleUtil
+  langs:
+  - csharp
+  - vb
+  name: WaitForCancelKey()
+  nameWithType: ConsoleUtil.WaitForCancelKey()
+  fullName: Butterfly.Core.Util.ConsoleUtil.WaitForCancelKey()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/ConsoleUtil.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: WaitForCancelKey
+    path: ../Butterfly.Core/Util/ConsoleUtil.cs
+    startLine: 9
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static void WaitForCancelKey()
+    content.vb: Public Shared Sub WaitForCancelKey
+  overload: Butterfly.Core.Util.ConsoleUtil.WaitForCancelKey*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Util.ConsoleUtil.WaitForCancelKey*
+  commentId: Overload:Butterfly.Core.Util.ConsoleUtil.WaitForCancelKey
+  name: WaitForCancelKey
+  nameWithType: ConsoleUtil.WaitForCancelKey
+  fullName: Butterfly.Core.Util.ConsoleUtil.WaitForCancelKey
+shouldSkipMarkup: true

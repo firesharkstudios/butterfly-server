@@ -1,0 +1,737 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Notify.NotifyMessage
+  commentId: T:Butterfly.Core.Notify.NotifyMessage
+  id: NotifyMessage
+  parent: Butterfly.Core.Notify
+  children:
+  - Butterfly.Core.Notify.NotifyMessage.#ctor(System.String,System.String,System.String,System.String,System.String,System.Byte,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - Butterfly.Core.Notify.NotifyMessage.bodyHtml
+  - Butterfly.Core.Notify.NotifyMessage.bodyText
+  - Butterfly.Core.Notify.NotifyMessage.Evaluate(System.Object)
+  - Butterfly.Core.Notify.NotifyMessage.extraData
+  - Butterfly.Core.Notify.NotifyMessage.from
+  - Butterfly.Core.Notify.NotifyMessage.HTML_SECTION_NAME
+  - Butterfly.Core.Notify.NotifyMessage.logger
+  - Butterfly.Core.Notify.NotifyMessage.Parse(System.String)
+  - Butterfly.Core.Notify.NotifyMessage.ParseFile(System.String)
+  - Butterfly.Core.Notify.NotifyMessage.priority
+  - Butterfly.Core.Notify.NotifyMessage.SECTION_DELIM
+  - Butterfly.Core.Notify.NotifyMessage.subject
+  - Butterfly.Core.Notify.NotifyMessage.TEXT_SECTION_NAME
+  - Butterfly.Core.Notify.NotifyMessage.to
+  langs:
+  - csharp
+  - vb
+  name: NotifyMessage
+  nameWithType: NotifyMessage
+  fullName: Butterfly.Core.Notify.NotifyMessage
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: NotifyMessage
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 16
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: 'public class NotifyMessage : object'
+    content.vb: >-
+      Public Class NotifyMessage
+
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Notify.NotifyMessage.logger
+  commentId: F:Butterfly.Core.Notify.NotifyMessage.logger
+  id: logger
+  parent: Butterfly.Core.Notify.NotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: logger
+  nameWithType: NotifyMessage.logger
+  fullName: Butterfly.Core.Notify.NotifyMessage.logger
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: logger
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 18
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: protected static readonly Logger logger
+    return:
+      type: Logger
+    content.vb: Protected Shared ReadOnly logger As Logger
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Core.Notify.NotifyMessage.from
+  commentId: F:Butterfly.Core.Notify.NotifyMessage.from
+  id: from
+  parent: Butterfly.Core.Notify.NotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: from
+  nameWithType: NotifyMessage.from
+  fullName: Butterfly.Core.Notify.NotifyMessage.from
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: from
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 20
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public readonly string from
+    return:
+      type: System.String
+    content.vb: Public ReadOnly from As String
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Notify.NotifyMessage.to
+  commentId: F:Butterfly.Core.Notify.NotifyMessage.to
+  id: to
+  parent: Butterfly.Core.Notify.NotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: to
+  nameWithType: NotifyMessage.to
+  fullName: Butterfly.Core.Notify.NotifyMessage.to
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: to
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 21
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public readonly string to
+    return:
+      type: System.String
+    content.vb: Public ReadOnly to As String
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Notify.NotifyMessage.subject
+  commentId: F:Butterfly.Core.Notify.NotifyMessage.subject
+  id: subject
+  parent: Butterfly.Core.Notify.NotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: subject
+  nameWithType: NotifyMessage.subject
+  fullName: Butterfly.Core.Notify.NotifyMessage.subject
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: subject
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 22
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public readonly string subject
+    return:
+      type: System.String
+    content.vb: Public ReadOnly subject As String
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Notify.NotifyMessage.bodyText
+  commentId: F:Butterfly.Core.Notify.NotifyMessage.bodyText
+  id: bodyText
+  parent: Butterfly.Core.Notify.NotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: bodyText
+  nameWithType: NotifyMessage.bodyText
+  fullName: Butterfly.Core.Notify.NotifyMessage.bodyText
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: bodyText
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 23
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public readonly string bodyText
+    return:
+      type: System.String
+    content.vb: Public ReadOnly bodyText As String
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Notify.NotifyMessage.bodyHtml
+  commentId: F:Butterfly.Core.Notify.NotifyMessage.bodyHtml
+  id: bodyHtml
+  parent: Butterfly.Core.Notify.NotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: bodyHtml
+  nameWithType: NotifyMessage.bodyHtml
+  fullName: Butterfly.Core.Notify.NotifyMessage.bodyHtml
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: bodyHtml
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 24
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public readonly string bodyHtml
+    return:
+      type: System.String
+    content.vb: Public ReadOnly bodyHtml As String
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Notify.NotifyMessage.priority
+  commentId: F:Butterfly.Core.Notify.NotifyMessage.priority
+  id: priority
+  parent: Butterfly.Core.Notify.NotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: priority
+  nameWithType: NotifyMessage.priority
+  fullName: Butterfly.Core.Notify.NotifyMessage.priority
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: priority
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 25
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public readonly byte priority
+    return:
+      type: System.Byte
+    content.vb: Public ReadOnly priority As Byte
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Notify.NotifyMessage.extraData
+  commentId: F:Butterfly.Core.Notify.NotifyMessage.extraData
+  id: extraData
+  parent: Butterfly.Core.Notify.NotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: extraData
+  nameWithType: NotifyMessage.extraData
+  fullName: Butterfly.Core.Notify.NotifyMessage.extraData
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: extraData
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 27
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public System.Collections.Generic.Dictionary<string, object> extraData
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    content.vb: Public extraData As System.Collections.Generic.Dictionary(Of String, Object)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Notify.NotifyMessage.#ctor(System.String,System.String,System.String,System.String,System.String,System.Byte,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:Butterfly.Core.Notify.NotifyMessage.#ctor(System.String,System.String,System.String,System.String,System.String,System.Byte,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: '#ctor(System.String,System.String,System.String,System.String,System.String,System.Byte,System.Collections.Generic.Dictionary{System.String,System.Object})'
+  parent: Butterfly.Core.Notify.NotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: NotifyMessage(String, String, String, String, String, Byte, System.Collections.Generic.Dictionary<String, Object>)
+  nameWithType: NotifyMessage.NotifyMessage(String, String, String, String, String, Byte, System.Collections.Generic.Dictionary<String, Object>)
+  fullName: Butterfly.Core.Notify.NotifyMessage.NotifyMessage(System.String, System.String, System.String, System.String, System.String, System.Byte, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 29
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public NotifyMessage(string from, string to, string subject, string bodyText, string bodyHtml = null, byte priority = null, System.Collections.Generic.Dictionary<string, object> extraData = null)
+    parameters:
+    - id: from
+      type: System.String
+    - id: to
+      type: System.String
+    - id: subject
+      type: System.String
+    - id: bodyText
+      type: System.String
+    - id: bodyHtml
+      type: System.String
+    - id: priority
+      type: System.Byte
+    - id: extraData
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    content.vb: Public Sub New(from As String, to As String, subject As String, bodyText As String, bodyHtml As String = Nothing, priority As Byte = Nothing, extraData As System.Collections.Generic.Dictionary(Of String, Object) = Nothing)
+  overload: Butterfly.Core.Notify.NotifyMessage.#ctor*
+  nameWithType.vb: NotifyMessage.NotifyMessage(String, String, String, String, String, Byte, System.Collections.Generic.Dictionary(Of String, Object))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Notify.NotifyMessage.NotifyMessage(System.String, System.String, System.String, System.String, System.String, System.Byte, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: NotifyMessage(String, String, String, String, String, Byte, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.Core.Notify.NotifyMessage.TEXT_SECTION_NAME
+  commentId: F:Butterfly.Core.Notify.NotifyMessage.TEXT_SECTION_NAME
+  id: TEXT_SECTION_NAME
+  parent: Butterfly.Core.Notify.NotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: TEXT_SECTION_NAME
+  nameWithType: NotifyMessage.TEXT_SECTION_NAME
+  fullName: Butterfly.Core.Notify.NotifyMessage.TEXT_SECTION_NAME
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TEXT_SECTION_NAME
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 39
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: protected const string TEXT_SECTION_NAME = null
+    return:
+      type: System.String
+    content.vb: Protected Const TEXT_SECTION_NAME As String = Nothing
+  modifiers.csharp:
+  - protected
+  - const
+  modifiers.vb:
+  - Protected
+  - Const
+- uid: Butterfly.Core.Notify.NotifyMessage.HTML_SECTION_NAME
+  commentId: F:Butterfly.Core.Notify.NotifyMessage.HTML_SECTION_NAME
+  id: HTML_SECTION_NAME
+  parent: Butterfly.Core.Notify.NotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: HTML_SECTION_NAME
+  nameWithType: NotifyMessage.HTML_SECTION_NAME
+  fullName: Butterfly.Core.Notify.NotifyMessage.HTML_SECTION_NAME
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: HTML_SECTION_NAME
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 40
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: protected const string HTML_SECTION_NAME = null
+    return:
+      type: System.String
+    content.vb: Protected Const HTML_SECTION_NAME As String = Nothing
+  modifiers.csharp:
+  - protected
+  - const
+  modifiers.vb:
+  - Protected
+  - Const
+- uid: Butterfly.Core.Notify.NotifyMessage.SECTION_DELIM
+  commentId: F:Butterfly.Core.Notify.NotifyMessage.SECTION_DELIM
+  id: SECTION_DELIM
+  parent: Butterfly.Core.Notify.NotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: SECTION_DELIM
+  nameWithType: NotifyMessage.SECTION_DELIM
+  fullName: Butterfly.Core.Notify.NotifyMessage.SECTION_DELIM
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: SECTION_DELIM
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 41
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: protected const string SECTION_DELIM = null
+    return:
+      type: System.String
+    content.vb: Protected Const SECTION_DELIM As String = Nothing
+  modifiers.csharp:
+  - protected
+  - const
+  modifiers.vb:
+  - Protected
+  - Const
+- uid: Butterfly.Core.Notify.NotifyMessage.Evaluate(System.Object)
+  commentId: M:Butterfly.Core.Notify.NotifyMessage.Evaluate(System.Object)
+  id: Evaluate(System.Object)
+  parent: Butterfly.Core.Notify.NotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: Evaluate(Object)
+  nameWithType: NotifyMessage.Evaluate(Object)
+  fullName: Butterfly.Core.Notify.NotifyMessage.Evaluate(System.Object)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Evaluate
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 43
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public NotifyMessage Evaluate(dynamic vars)
+    parameters:
+    - id: vars
+      type: System.Object
+    return:
+      type: Butterfly.Core.Notify.NotifyMessage
+    content.vb: Public Function Evaluate(vars As Object) As NotifyMessage
+  overload: Butterfly.Core.Notify.NotifyMessage.Evaluate*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Notify.NotifyMessage.ParseFile(System.String)
+  commentId: M:Butterfly.Core.Notify.NotifyMessage.ParseFile(System.String)
+  id: ParseFile(System.String)
+  parent: Butterfly.Core.Notify.NotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: ParseFile(String)
+  nameWithType: NotifyMessage.ParseFile(String)
+  fullName: Butterfly.Core.Notify.NotifyMessage.ParseFile(System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ParseFile
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 60
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public static NotifyMessage ParseFile(string fileName)
+    parameters:
+    - id: fileName
+      type: System.String
+    return:
+      type: Butterfly.Core.Notify.NotifyMessage
+    content.vb: Public Shared Function ParseFile(fileName As String) As NotifyMessage
+  overload: Butterfly.Core.Notify.NotifyMessage.ParseFile*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Notify.NotifyMessage.Parse(System.String)
+  commentId: M:Butterfly.Core.Notify.NotifyMessage.Parse(System.String)
+  id: Parse(System.String)
+  parent: Butterfly.Core.Notify.NotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: Parse(String)
+  nameWithType: NotifyMessage.Parse(String)
+  fullName: Butterfly.Core.Notify.NotifyMessage.Parse(System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyMessage.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Parse
+    path: ../Butterfly.Core/Notify/NotifyMessage.cs
+    startLine: 66
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public static NotifyMessage Parse(string text)
+    parameters:
+    - id: text
+      type: System.String
+    return:
+      type: Butterfly.Core.Notify.NotifyMessage
+    content.vb: Public Shared Function Parse(text As String) As NotifyMessage
+  overload: Butterfly.Core.Notify.NotifyMessage.Parse*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Butterfly.Core.Notify
+  commentId: N:Butterfly.Core.Notify
+  name: Butterfly.Core.Notify
+  nameWithType: Butterfly.Core.Notify
+  fullName: Butterfly.Core.Notify
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Logger
+  isExternal: true
+  name: Logger
+  nameWithType: Logger
+  fullName: Logger
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Byte
+  isExternal: true
+  name: Byte
+  nameWithType: Byte
+  fullName: System.Byte
+- uid: System.Collections.Generic.Dictionary{System.String,System.Object}
+  commentId: '!:System.Collections.Generic.Dictionary{System.String,System.Object}'
+  definition: System.Collections.Generic.Dictionary`2
+  name: System.Collections.Generic.Dictionary<String, Object>
+  nameWithType: System.Collections.Generic.Dictionary<String, Object>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.Object>
+  nameWithType.vb: System.Collections.Generic.Dictionary(Of String, Object)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.Object)
+  name.vb: System.Collections.Generic.Dictionary(Of String, Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: System.Collections.Generic.Dictionary<, >
+  nameWithType: System.Collections.Generic.Dictionary<, >
+  fullName: System.Collections.Generic.Dictionary<, >
+  nameWithType.vb: System.Collections.Generic.Dictionary(Of , )
+  fullName.vb: System.Collections.Generic.Dictionary(Of , )
+  name.vb: System.Collections.Generic.Dictionary(Of , )
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Notify.NotifyMessage.#ctor*
+  commentId: Overload:Butterfly.Core.Notify.NotifyMessage.#ctor
+  name: NotifyMessage
+  nameWithType: NotifyMessage.NotifyMessage
+  fullName: Butterfly.Core.Notify.NotifyMessage.NotifyMessage
+- uid: Butterfly.Core.Notify.NotifyMessage.Evaluate*
+  commentId: Overload:Butterfly.Core.Notify.NotifyMessage.Evaluate
+  name: Evaluate
+  nameWithType: NotifyMessage.Evaluate
+  fullName: Butterfly.Core.Notify.NotifyMessage.Evaluate
+- uid: Butterfly.Core.Notify.NotifyMessage
+  commentId: T:Butterfly.Core.Notify.NotifyMessage
+  parent: Butterfly.Core.Notify
+  name: NotifyMessage
+  nameWithType: NotifyMessage
+  fullName: Butterfly.Core.Notify.NotifyMessage
+- uid: Butterfly.Core.Notify.NotifyMessage.ParseFile*
+  commentId: Overload:Butterfly.Core.Notify.NotifyMessage.ParseFile
+  name: ParseFile
+  nameWithType: NotifyMessage.ParseFile
+  fullName: Butterfly.Core.Notify.NotifyMessage.ParseFile
+- uid: Butterfly.Core.Notify.NotifyMessage.Parse*
+  commentId: Overload:Butterfly.Core.Notify.NotifyMessage.Parse
+  name: Parse
+  nameWithType: NotifyMessage.Parse
+  fullName: Butterfly.Core.Notify.NotifyMessage.Parse
+shouldSkipMarkup: true

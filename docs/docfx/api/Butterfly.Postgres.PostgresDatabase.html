@@ -73,9 +73,7 @@
   
   <h1 id="Butterfly_Postgres_PostgresDatabase" data-uid="Butterfly.Postgres.PostgresDatabase" class="text-break">Class PostgresDatabase
   </h1>
-  <div class="markdown level0 summary">
-Base class implementing <a class="xref" href="Butterfly.Core.Database.IDatabase.html">IDatabase</a>. New implementations will normally extend this class.
-</div>
+  <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -237,60 +235,6 @@ Base class implementing <a class="xref" href="Butterfly.Core.Database.IDatabase.
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class PostgresDatabase : BaseDatabase, IDatabase</code></pre>
   </div>
-  <h5 id="Butterfly_Postgres_PostgresDatabase_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks">
-Adding records and echoing all data change events to the console...<p>
-<pre><code>    // Create database instance (will also read the schema from the database)
-    var database = new SomeDatabase();
-
-    // Listen for all database data events
-    var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {
-        console.WriteLine($&quot;Low Level DataEventTransaction={dataEventTransaction}&quot;);
-    });
-
-    // INSERT a couple of records (this will cause a single data even transaction with
-    // two INSERT data events to be written to the console above)
-    using (var transaction = database.BeginTransaction()) {
-        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-            department_id: 1,
-            name: &quot;SpongeBob&quot;
-        });
-        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-            department_id: 1,
-            name: &quot;Squidward&quot;
-        });
-        await database.CommitAsync();
-    );</code></pre>
-
-Creating a DynamicView and echoing data change events on the DynamicView to the console...<p>
-<pre><code>    // Create database instance (will also read the schema from the database)
-    var database = new SomeDatabase();
-
-    // Create a DynamicViewSet that print any data events to the console
-    // (this will immediately echo an INITIAL data event for each existing matching record)
-    var dynamicViewSet = database.CreateAndStartDynamicViewSet(
-        &quot;SELECT * FROM employee WHERE department_id=@departmentId&quot;, 
-        new {
-            departmentId = 1
-        },
-        dataEventTransaction => {
-            Console.WriteLine(dataEventTransaction);
-        }
-    );
-
-    // This will cause the above DynamicViewSet to echo an INSERT data event
-    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-        department_id: 1
-        name: &quot;Mr Crabs&quot;
-    });
-
-    // This will NOT cause the above DynamicViewSet to echo an INSERT data event
-    // (because the department_id doesn&apos;t match)
-    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-        department_id: 2
-        name: &quot;Patrick Star&quot;
-    });</code></pre>
-</div>
   <h3 id="constructors">Constructors
   </h3>
   <a id="Butterfly_Postgres_PostgresDatabase__ctor_" data-uid="Butterfly.Postgres.PostgresDatabase.#ctor*"></a>

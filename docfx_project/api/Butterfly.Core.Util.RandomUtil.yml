@@ -1,0 +1,101 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.RandomUtil
+  commentId: T:Butterfly.Core.Util.RandomUtil
+  id: RandomUtil
+  parent: Butterfly.Core.Util
+  children:
+  - Butterfly.Core.Util.RandomUtil.Next(System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: RandomUtil
+  nameWithType: RandomUtil
+  fullName: Butterfly.Core.Util.RandomUtil
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/RandomUtil.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: RandomUtil
+    path: ../Butterfly.Core/Util/RandomUtil.cs
+    startLine: 8
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: 'public static class RandomUtil : object'
+    content.vb: >-
+      Public Module RandomUtil
+
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Butterfly.Core.Util.RandomUtil.Next(System.Int32)
+  commentId: M:Butterfly.Core.Util.RandomUtil.Next(System.Int32)
+  id: Next(System.Int32)
+  parent: Butterfly.Core.Util.RandomUtil
+  langs:
+  - csharp
+  - vb
+  name: Next(Int32)
+  nameWithType: RandomUtil.Next(Int32)
+  fullName: Butterfly.Core.Util.RandomUtil.Next(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/RandomUtil.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Next
+    path: ../Butterfly.Core/Util/RandomUtil.cs
+    startLine: 11
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static int Next(int max)
+    parameters:
+    - id: max
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Public Shared Function Next(max As Integer) As Integer
+  overload: Butterfly.Core.Util.RandomUtil.Next*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Util.RandomUtil.Next*
+  commentId: Overload:Butterfly.Core.Util.RandomUtil.Next
+  name: Next
+  nameWithType: RandomUtil.Next
+  fullName: Butterfly.Core.Util.RandomUtil.Next
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+shouldSkipMarkup: true

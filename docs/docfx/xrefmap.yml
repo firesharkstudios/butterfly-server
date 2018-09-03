@@ -7991,6 +7991,38 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Util.RandomUtil.Next
   nameWithType: RandomUtil.Next
+- uid: Butterfly.Core.Util.RunEvery
+  name: RunEvery
+  href: api/Butterfly.Core.Util.RunEvery.html
+  commentId: T:Butterfly.Core.Util.RunEvery
+  fullName: Butterfly.Core.Util.RunEvery
+  nameWithType: RunEvery
+- uid: Butterfly.Core.Util.RunEvery.#ctor(Action,System.Int32)
+  name: RunEvery(Action, Int32)
+  href: api/Butterfly.Core.Util.RunEvery.html#Butterfly_Core_Util_RunEvery__ctor_Action_System_Int32_
+  commentId: M:Butterfly.Core.Util.RunEvery.#ctor(Action,System.Int32)
+  fullName: Butterfly.Core.Util.RunEvery.RunEvery(Action, System.Int32)
+  nameWithType: RunEvery.RunEvery(Action, Int32)
+- uid: Butterfly.Core.Util.RunEvery.#ctor*
+  name: RunEvery
+  href: api/Butterfly.Core.Util.RunEvery.html#Butterfly_Core_Util_RunEvery__ctor_
+  commentId: Overload:Butterfly.Core.Util.RunEvery.#ctor
+  isSpec: "True"
+  fullName: Butterfly.Core.Util.RunEvery.RunEvery
+  nameWithType: RunEvery.RunEvery
+- uid: Butterfly.Core.Util.RunEvery.Dispose
+  name: Dispose()
+  href: api/Butterfly.Core.Util.RunEvery.html#Butterfly_Core_Util_RunEvery_Dispose
+  commentId: M:Butterfly.Core.Util.RunEvery.Dispose
+  fullName: Butterfly.Core.Util.RunEvery.Dispose()
+  nameWithType: RunEvery.Dispose()
+- uid: Butterfly.Core.Util.RunEvery.Dispose*
+  name: Dispose
+  href: api/Butterfly.Core.Util.RunEvery.html#Butterfly_Core_Util_RunEvery_Dispose_
+  commentId: Overload:Butterfly.Core.Util.RunEvery.Dispose
+  isSpec: "True"
+  fullName: Butterfly.Core.Util.RunEvery.Dispose
+  nameWithType: RunEvery.Dispose
 - uid: Butterfly.Core.Util.SafeUtil
   name: SafeUtil
   href: api/Butterfly.Core.Util.SafeUtil.html
@@ -8279,45 +8311,6 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.WebApi.BaseHttpRequest.RequestUrl
   nameWithType: BaseHttpRequest.RequestUrl
-- uid: Butterfly.Core.WebApi.BaseHttpRequest.UserAgent
-  name: UserAgent
-  href: api/Butterfly.Core.WebApi.BaseHttpRequest.html#Butterfly_Core_WebApi_BaseHttpRequest_UserAgent
-  commentId: P:Butterfly.Core.WebApi.BaseHttpRequest.UserAgent
-  fullName: Butterfly.Core.WebApi.BaseHttpRequest.UserAgent
-  nameWithType: BaseHttpRequest.UserAgent
-- uid: Butterfly.Core.WebApi.BaseHttpRequest.UserAgent*
-  name: UserAgent
-  href: api/Butterfly.Core.WebApi.BaseHttpRequest.html#Butterfly_Core_WebApi_BaseHttpRequest_UserAgent_
-  commentId: Overload:Butterfly.Core.WebApi.BaseHttpRequest.UserAgent
-  isSpec: "True"
-  fullName: Butterfly.Core.WebApi.BaseHttpRequest.UserAgent
-  nameWithType: BaseHttpRequest.UserAgent
-- uid: Butterfly.Core.WebApi.BaseHttpRequest.UserHostAddress
-  name: UserHostAddress
-  href: api/Butterfly.Core.WebApi.BaseHttpRequest.html#Butterfly_Core_WebApi_BaseHttpRequest_UserHostAddress
-  commentId: P:Butterfly.Core.WebApi.BaseHttpRequest.UserHostAddress
-  fullName: Butterfly.Core.WebApi.BaseHttpRequest.UserHostAddress
-  nameWithType: BaseHttpRequest.UserHostAddress
-- uid: Butterfly.Core.WebApi.BaseHttpRequest.UserHostAddress*
-  name: UserHostAddress
-  href: api/Butterfly.Core.WebApi.BaseHttpRequest.html#Butterfly_Core_WebApi_BaseHttpRequest_UserHostAddress_
-  commentId: Overload:Butterfly.Core.WebApi.BaseHttpRequest.UserHostAddress
-  isSpec: "True"
-  fullName: Butterfly.Core.WebApi.BaseHttpRequest.UserHostAddress
-  nameWithType: BaseHttpRequest.UserHostAddress
-- uid: Butterfly.Core.WebApi.BaseHttpRequest.UserHostName
-  name: UserHostName
-  href: api/Butterfly.Core.WebApi.BaseHttpRequest.html#Butterfly_Core_WebApi_BaseHttpRequest_UserHostName
-  commentId: P:Butterfly.Core.WebApi.BaseHttpRequest.UserHostName
-  fullName: Butterfly.Core.WebApi.BaseHttpRequest.UserHostName
-  nameWithType: BaseHttpRequest.UserHostName
-- uid: Butterfly.Core.WebApi.BaseHttpRequest.UserHostName*
-  name: UserHostName
-  href: api/Butterfly.Core.WebApi.BaseHttpRequest.html#Butterfly_Core_WebApi_BaseHttpRequest_UserHostName_
-  commentId: Overload:Butterfly.Core.WebApi.BaseHttpRequest.UserHostName
-  isSpec: "True"
-  fullName: Butterfly.Core.WebApi.BaseHttpRequest.UserHostName
-  nameWithType: BaseHttpRequest.UserHostName
 - uid: Butterfly.Core.WebApi.BaseWebApi
   name: BaseWebApi
   href: api/Butterfly.Core.WebApi.BaseWebApi.html
@@ -8506,45 +8499,6 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.WebApi.IHttpRequest.ParseAsUrlEncodedAsync
   nameWithType: IHttpRequest.ParseAsUrlEncodedAsync
-- uid: Butterfly.Core.WebApi.IHttpRequest.UserAgent
-  name: UserAgent
-  href: api/Butterfly.Core.WebApi.IHttpRequest.html#Butterfly_Core_WebApi_IHttpRequest_UserAgent
-  commentId: P:Butterfly.Core.WebApi.IHttpRequest.UserAgent
-  fullName: Butterfly.Core.WebApi.IHttpRequest.UserAgent
-  nameWithType: IHttpRequest.UserAgent
-- uid: Butterfly.Core.WebApi.IHttpRequest.UserAgent*
-  name: UserAgent
-  href: api/Butterfly.Core.WebApi.IHttpRequest.html#Butterfly_Core_WebApi_IHttpRequest_UserAgent_
-  commentId: Overload:Butterfly.Core.WebApi.IHttpRequest.UserAgent
-  isSpec: "True"
-  fullName: Butterfly.Core.WebApi.IHttpRequest.UserAgent
-  nameWithType: IHttpRequest.UserAgent
-- uid: Butterfly.Core.WebApi.IHttpRequest.UserHostAddress
-  name: UserHostAddress
-  href: api/Butterfly.Core.WebApi.IHttpRequest.html#Butterfly_Core_WebApi_IHttpRequest_UserHostAddress
-  commentId: P:Butterfly.Core.WebApi.IHttpRequest.UserHostAddress
-  fullName: Butterfly.Core.WebApi.IHttpRequest.UserHostAddress
-  nameWithType: IHttpRequest.UserHostAddress
-- uid: Butterfly.Core.WebApi.IHttpRequest.UserHostAddress*
-  name: UserHostAddress
-  href: api/Butterfly.Core.WebApi.IHttpRequest.html#Butterfly_Core_WebApi_IHttpRequest_UserHostAddress_
-  commentId: Overload:Butterfly.Core.WebApi.IHttpRequest.UserHostAddress
-  isSpec: "True"
-  fullName: Butterfly.Core.WebApi.IHttpRequest.UserHostAddress
-  nameWithType: IHttpRequest.UserHostAddress
-- uid: Butterfly.Core.WebApi.IHttpRequest.UserHostName
-  name: UserHostName
-  href: api/Butterfly.Core.WebApi.IHttpRequest.html#Butterfly_Core_WebApi_IHttpRequest_UserHostName
-  commentId: P:Butterfly.Core.WebApi.IHttpRequest.UserHostName
-  fullName: Butterfly.Core.WebApi.IHttpRequest.UserHostName
-  nameWithType: IHttpRequest.UserHostName
-- uid: Butterfly.Core.WebApi.IHttpRequest.UserHostName*
-  name: UserHostName
-  href: api/Butterfly.Core.WebApi.IHttpRequest.html#Butterfly_Core_WebApi_IHttpRequest_UserHostName_
-  commentId: Overload:Butterfly.Core.WebApi.IHttpRequest.UserHostName
-  isSpec: "True"
-  fullName: Butterfly.Core.WebApi.IHttpRequest.UserHostName
-  nameWithType: IHttpRequest.UserHostName
 - uid: Butterfly.Core.WebApi.IHttpResponse
   name: IHttpResponse
   href: api/Butterfly.Core.WebApi.IHttpResponse.html
@@ -8953,45 +8907,6 @@ references:
   isSpec: "True"
   fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.RequestUrl
   nameWithType: EmbedIOHttpWebRequest.RequestUrl
-- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserAgent
-  name: UserAgent
-  href: api/Butterfly.EmbedIO.EmbedIOHttpWebRequest.html#Butterfly_EmbedIO_EmbedIOHttpWebRequest_UserAgent
-  commentId: P:Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserAgent
-  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserAgent
-  nameWithType: EmbedIOHttpWebRequest.UserAgent
-- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserAgent*
-  name: UserAgent
-  href: api/Butterfly.EmbedIO.EmbedIOHttpWebRequest.html#Butterfly_EmbedIO_EmbedIOHttpWebRequest_UserAgent_
-  commentId: Overload:Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserAgent
-  isSpec: "True"
-  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserAgent
-  nameWithType: EmbedIOHttpWebRequest.UserAgent
-- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserHostAddress
-  name: UserHostAddress
-  href: api/Butterfly.EmbedIO.EmbedIOHttpWebRequest.html#Butterfly_EmbedIO_EmbedIOHttpWebRequest_UserHostAddress
-  commentId: P:Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserHostAddress
-  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserHostAddress
-  nameWithType: EmbedIOHttpWebRequest.UserHostAddress
-- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserHostAddress*
-  name: UserHostAddress
-  href: api/Butterfly.EmbedIO.EmbedIOHttpWebRequest.html#Butterfly_EmbedIO_EmbedIOHttpWebRequest_UserHostAddress_
-  commentId: Overload:Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserHostAddress
-  isSpec: "True"
-  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserHostAddress
-  nameWithType: EmbedIOHttpWebRequest.UserHostAddress
-- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserHostName
-  name: UserHostName
-  href: api/Butterfly.EmbedIO.EmbedIOHttpWebRequest.html#Butterfly_EmbedIO_EmbedIOHttpWebRequest_UserHostName
-  commentId: P:Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserHostName
-  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserHostName
-  nameWithType: EmbedIOHttpWebRequest.UserHostName
-- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserHostName*
-  name: UserHostName
-  href: api/Butterfly.EmbedIO.EmbedIOHttpWebRequest.html#Butterfly_EmbedIO_EmbedIOHttpWebRequest_UserHostName_
-  commentId: Overload:Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserHostName
-  isSpec: "True"
-  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.UserHostName
-  nameWithType: EmbedIOHttpWebRequest.UserHostName
 - uid: Butterfly.EmbedIO.EmbedIOSubscriptionApi
   name: EmbedIOSubscriptionApi
   href: api/Butterfly.EmbedIO.EmbedIOSubscriptionApi.html
@@ -10464,495 +10379,475 @@ references:
   commentId: F:Butterfly.Postgres.PostgresTransaction.transaction
   fullName: Butterfly.Postgres.PostgresTransaction.transaction
   nameWithType: PostgresTransaction.transaction
-- uid: Butterfly.RedHttpServer
-  name: Butterfly.RedHttpServer
-  href: api/Butterfly.RedHttpServer.html
-  commentId: N:Butterfly.RedHttpServer
-  fullName: Butterfly.RedHttpServer
-  nameWithType: Butterfly.RedHttpServer
-- uid: Butterfly.RedHttpServer.RedHttpServerChannelServer
-  name: RedHttpServerChannelServer
-  href: api/Butterfly.RedHttpServer.RedHttpServerChannelServer.html
-  commentId: T:Butterfly.RedHttpServer.RedHttpServerChannelServer
-  fullName: Butterfly.RedHttpServer.RedHttpServerChannelServer
-  nameWithType: RedHttpServerChannelServer
-- uid: Butterfly.RedHttpServer.RedHttpServerChannelServer.#ctor(Butterfly.RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})
-  name: RedHttpServerChannelServer(RedHttpServer, Int32, String, Func<String, String, Object>, Func<String, String, Task<Object>>, Func<Object, String>, Func<Object, Task<String>>)
-  href: api/Butterfly.RedHttpServer.RedHttpServerChannelServer.html#Butterfly_RedHttpServer_RedHttpServerChannelServer__ctor_Butterfly_RedHttpServer_System_Int32_System_String_Func_System_String_System_String_System_Object__Func_System_String_System_String_Task_System_Object___Func_System_Object_System_String__Func_System_Object_Task_System_String___
-  commentId: M:Butterfly.RedHttpServer.RedHttpServerChannelServer.#ctor(Butterfly.RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})
-  name.vb: RedHttpServerChannelServer(RedHttpServer, Int32, String, Func(Of String, String, Object), Func(Of String, String, Task(Of Object)), Func(Of Object, String), Func(Of Object, Task(Of String)))
-  fullName: Butterfly.RedHttpServer.RedHttpServerChannelServer.RedHttpServerChannelServer(Butterfly.RedHttpServer, System.Int32, System.String, Func<System.String, System.String, System.Object>, Func<System.String, System.String, Task<System.Object>>, Func<System.Object, System.String>, Func<System.Object, Task<System.String>>)
-  fullName.vb: Butterfly.RedHttpServer.RedHttpServerChannelServer.RedHttpServerChannelServer(Butterfly.RedHttpServer, System.Int32, System.String, Func(Of System.String, System.String, System.Object), Func(Of System.String, System.String, Task(Of System.Object)), Func(Of System.Object, System.String), Func(Of System.Object, Task(Of System.String)))
-  nameWithType: RedHttpServerChannelServer.RedHttpServerChannelServer(RedHttpServer, Int32, String, Func<String, String, Object>, Func<String, String, Task<Object>>, Func<Object, String>, Func<Object, Task<String>>)
-  nameWithType.vb: RedHttpServerChannelServer.RedHttpServerChannelServer(RedHttpServer, Int32, String, Func(Of String, String, Object), Func(Of String, String, Task(Of Object)), Func(Of Object, String), Func(Of Object, Task(Of String)))
-- uid: Butterfly.RedHttpServer.RedHttpServerChannelServer.#ctor*
-  name: RedHttpServerChannelServer
-  href: api/Butterfly.RedHttpServer.RedHttpServerChannelServer.html#Butterfly_RedHttpServer_RedHttpServerChannelServer__ctor_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerChannelServer.#ctor
+- uid: Butterfly.RHttpServer
+  name: Butterfly.RHttpServer
+  href: api/Butterfly.RHttpServer.html
+  commentId: N:Butterfly.RHttpServer
+  fullName: Butterfly.RHttpServer
+  nameWithType: Butterfly.RHttpServer
+- uid: Butterfly.RHttpServer.HttpRequestX
+  name: HttpRequestX
+  href: api/Butterfly.RHttpServer.HttpRequestX.html
+  commentId: T:Butterfly.RHttpServer.HttpRequestX
+  fullName: Butterfly.RHttpServer.HttpRequestX
+  nameWithType: HttpRequestX
+- uid: Butterfly.RHttpServer.HttpRequestX.ToUri(HttpRequest)
+  name: ToUri(HttpRequest)
+  href: api/Butterfly.RHttpServer.HttpRequestX.html#Butterfly_RHttpServer_HttpRequestX_ToUri_HttpRequest_
+  commentId: M:Butterfly.RHttpServer.HttpRequestX.ToUri(HttpRequest)
+  fullName: Butterfly.RHttpServer.HttpRequestX.ToUri(HttpRequest)
+  nameWithType: HttpRequestX.ToUri(HttpRequest)
+- uid: Butterfly.RHttpServer.HttpRequestX.ToUri*
+  name: ToUri
+  href: api/Butterfly.RHttpServer.HttpRequestX.html#Butterfly_RHttpServer_HttpRequestX_ToUri_
+  commentId: Overload:Butterfly.RHttpServer.HttpRequestX.ToUri
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerChannelServer.RedHttpServerChannelServer
-  nameWithType: RedHttpServerChannelServer.RedHttpServerChannelServer
-- uid: Butterfly.RedHttpServer.RedHttpServerChannelServer.DoStart
+  fullName: Butterfly.RHttpServer.HttpRequestX.ToUri
+  nameWithType: HttpRequestX.ToUri
+- uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi
+  name: RedHttpServerSubscriptionApi
+  href: api/Butterfly.RHttpServer.RedHttpServerSubscriptionApi.html
+  commentId: T:Butterfly.RHttpServer.RedHttpServerSubscriptionApi
+  fullName: Butterfly.RHttpServer.RedHttpServerSubscriptionApi
+  nameWithType: RedHttpServerSubscriptionApi
+- uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor(Red.RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})
+  name: RedHttpServerSubscriptionApi(RedHttpServer, Int32, String, Func<String, String, Object>, Func<String, String, Task<Object>>, Func<Object, String>, Func<Object, Task<String>>)
+  href: api/Butterfly.RHttpServer.RedHttpServerSubscriptionApi.html#Butterfly_RHttpServer_RedHttpServerSubscriptionApi__ctor_Red_RedHttpServer_System_Int32_System_String_Func_System_String_System_String_System_Object__Func_System_String_System_String_Task_System_Object___Func_System_Object_System_String__Func_System_Object_Task_System_String___
+  commentId: M:Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor(Red.RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})
+  name.vb: RedHttpServerSubscriptionApi(RedHttpServer, Int32, String, Func(Of String, String, Object), Func(Of String, String, Task(Of Object)), Func(Of Object, String), Func(Of Object, Task(Of String)))
+  fullName: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi(Red.RedHttpServer, System.Int32, System.String, Func<System.String, System.String, System.Object>, Func<System.String, System.String, Task<System.Object>>, Func<System.Object, System.String>, Func<System.Object, Task<System.String>>)
+  fullName.vb: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi(Red.RedHttpServer, System.Int32, System.String, Func(Of System.String, System.String, System.Object), Func(Of System.String, System.String, Task(Of System.Object)), Func(Of System.Object, System.String), Func(Of System.Object, Task(Of System.String)))
+  nameWithType: RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi(RedHttpServer, Int32, String, Func<String, String, Object>, Func<String, String, Task<Object>>, Func<Object, String>, Func<Object, Task<String>>)
+  nameWithType.vb: RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi(RedHttpServer, Int32, String, Func(Of String, String, Object), Func(Of String, String, Task(Of Object)), Func(Of Object, String), Func(Of Object, Task(Of String)))
+- uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor*
+  name: RedHttpServerSubscriptionApi
+  href: api/Butterfly.RHttpServer.RedHttpServerSubscriptionApi.html#Butterfly_RHttpServer_RedHttpServerSubscriptionApi__ctor_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor
+  isSpec: "True"
+  fullName: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi
+  nameWithType: RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi
+- uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.DoStart
   name: DoStart()
-  href: api/Butterfly.RedHttpServer.RedHttpServerChannelServer.html#Butterfly_RedHttpServer_RedHttpServerChannelServer_DoStart
-  commentId: M:Butterfly.RedHttpServer.RedHttpServerChannelServer.DoStart
-  fullName: Butterfly.RedHttpServer.RedHttpServerChannelServer.DoStart()
-  nameWithType: RedHttpServerChannelServer.DoStart()
-- uid: Butterfly.RedHttpServer.RedHttpServerChannelServer.DoStart*
+  href: api/Butterfly.RHttpServer.RedHttpServerSubscriptionApi.html#Butterfly_RHttpServer_RedHttpServerSubscriptionApi_DoStart
+  commentId: M:Butterfly.RHttpServer.RedHttpServerSubscriptionApi.DoStart
+  fullName: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.DoStart()
+  nameWithType: RedHttpServerSubscriptionApi.DoStart()
+- uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.DoStart*
   name: DoStart
-  href: api/Butterfly.RedHttpServer.RedHttpServerChannelServer.html#Butterfly_RedHttpServer_RedHttpServerChannelServer_DoStart_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerChannelServer.DoStart
+  href: api/Butterfly.RHttpServer.RedHttpServerSubscriptionApi.html#Butterfly_RHttpServer_RedHttpServerSubscriptionApi_DoStart_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerSubscriptionApi.DoStart
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerChannelServer.DoStart
-  nameWithType: RedHttpServerChannelServer.DoStart
-- uid: Butterfly.RedHttpServer.RedHttpServerChannelServer.path
+  fullName: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.DoStart
+  nameWithType: RedHttpServerSubscriptionApi.DoStart
+- uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.path
   name: path
-  href: api/Butterfly.RedHttpServer.RedHttpServerChannelServer.html#Butterfly_RedHttpServer_RedHttpServerChannelServer_path
-  commentId: F:Butterfly.RedHttpServer.RedHttpServerChannelServer.path
-  fullName: Butterfly.RedHttpServer.RedHttpServerChannelServer.path
-  nameWithType: RedHttpServerChannelServer.path
-- uid: Butterfly.RedHttpServer.RedHttpServerChannelServer.server
+  href: api/Butterfly.RHttpServer.RedHttpServerSubscriptionApi.html#Butterfly_RHttpServer_RedHttpServerSubscriptionApi_path
+  commentId: F:Butterfly.RHttpServer.RedHttpServerSubscriptionApi.path
+  fullName: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.path
+  nameWithType: RedHttpServerSubscriptionApi.path
+- uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.server
   name: server
-  href: api/Butterfly.RedHttpServer.RedHttpServerChannelServer.html#Butterfly_RedHttpServer_RedHttpServerChannelServer_server
-  commentId: F:Butterfly.RedHttpServer.RedHttpServerChannelServer.server
-  fullName: Butterfly.RedHttpServer.RedHttpServerChannelServer.server
-  nameWithType: RedHttpServerChannelServer.server
-- uid: Butterfly.RedHttpServer.RedHttpServerWebApiServer
-  name: RedHttpServerWebApiServer
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebApiServer.html
-  commentId: T:Butterfly.RedHttpServer.RedHttpServerWebApiServer
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebApiServer
-  nameWithType: RedHttpServerWebApiServer
-- uid: Butterfly.RedHttpServer.RedHttpServerWebApiServer.#ctor(Butterfly.RedHttpServer)
-  name: RedHttpServerWebApiServer(RedHttpServer)
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebApiServer.html#Butterfly_RedHttpServer_RedHttpServerWebApiServer__ctor_Butterfly_RedHttpServer_
-  commentId: M:Butterfly.RedHttpServer.RedHttpServerWebApiServer.#ctor(Butterfly.RedHttpServer)
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebApiServer.RedHttpServerWebApiServer(Butterfly.RedHttpServer)
-  nameWithType: RedHttpServerWebApiServer.RedHttpServerWebApiServer(RedHttpServer)
-- uid: Butterfly.RedHttpServer.RedHttpServerWebApiServer.#ctor*
-  name: RedHttpServerWebApiServer
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebApiServer.html#Butterfly_RedHttpServer_RedHttpServerWebApiServer__ctor_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebApiServer.#ctor
+  href: api/Butterfly.RHttpServer.RedHttpServerSubscriptionApi.html#Butterfly_RHttpServer_RedHttpServerSubscriptionApi_server
+  commentId: F:Butterfly.RHttpServer.RedHttpServerSubscriptionApi.server
+  fullName: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.server
+  nameWithType: RedHttpServerSubscriptionApi.server
+- uid: Butterfly.RHttpServer.RedHttpServerWebApi
+  name: RedHttpServerWebApi
+  href: api/Butterfly.RHttpServer.RedHttpServerWebApi.html
+  commentId: T:Butterfly.RHttpServer.RedHttpServerWebApi
+  fullName: Butterfly.RHttpServer.RedHttpServerWebApi
+  nameWithType: RedHttpServerWebApi
+- uid: Butterfly.RHttpServer.RedHttpServerWebApi.#ctor(Red.RedHttpServer)
+  name: RedHttpServerWebApi(RedHttpServer)
+  href: api/Butterfly.RHttpServer.RedHttpServerWebApi.html#Butterfly_RHttpServer_RedHttpServerWebApi__ctor_Red_RedHttpServer_
+  commentId: M:Butterfly.RHttpServer.RedHttpServerWebApi.#ctor(Red.RedHttpServer)
+  fullName: Butterfly.RHttpServer.RedHttpServerWebApi.RedHttpServerWebApi(Red.RedHttpServer)
+  nameWithType: RedHttpServerWebApi.RedHttpServerWebApi(RedHttpServer)
+- uid: Butterfly.RHttpServer.RedHttpServerWebApi.#ctor*
+  name: RedHttpServerWebApi
+  href: api/Butterfly.RHttpServer.RedHttpServerWebApi.html#Butterfly_RHttpServer_RedHttpServerWebApi__ctor_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebApi.#ctor
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebApiServer.RedHttpServerWebApiServer
-  nameWithType: RedHttpServerWebApiServer.RedHttpServerWebApiServer
-- uid: Butterfly.RedHttpServer.RedHttpServerWebApiServer.Dispose
+  fullName: Butterfly.RHttpServer.RedHttpServerWebApi.RedHttpServerWebApi
+  nameWithType: RedHttpServerWebApi.RedHttpServerWebApi
+- uid: Butterfly.RHttpServer.RedHttpServerWebApi.Compile
+  name: Compile()
+  href: api/Butterfly.RHttpServer.RedHttpServerWebApi.html#Butterfly_RHttpServer_RedHttpServerWebApi_Compile
+  commentId: M:Butterfly.RHttpServer.RedHttpServerWebApi.Compile
+  fullName: Butterfly.RHttpServer.RedHttpServerWebApi.Compile()
+  nameWithType: RedHttpServerWebApi.Compile()
+- uid: Butterfly.RHttpServer.RedHttpServerWebApi.Compile*
+  name: Compile
+  href: api/Butterfly.RHttpServer.RedHttpServerWebApi.html#Butterfly_RHttpServer_RedHttpServerWebApi_Compile_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebApi.Compile
+  isSpec: "True"
+  fullName: Butterfly.RHttpServer.RedHttpServerWebApi.Compile
+  nameWithType: RedHttpServerWebApi.Compile
+- uid: Butterfly.RHttpServer.RedHttpServerWebApi.Dispose
   name: Dispose()
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebApiServer.html#Butterfly_RedHttpServer_RedHttpServerWebApiServer_Dispose
-  commentId: M:Butterfly.RedHttpServer.RedHttpServerWebApiServer.Dispose
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebApiServer.Dispose()
-  nameWithType: RedHttpServerWebApiServer.Dispose()
-- uid: Butterfly.RedHttpServer.RedHttpServerWebApiServer.Dispose*
+  href: api/Butterfly.RHttpServer.RedHttpServerWebApi.html#Butterfly_RHttpServer_RedHttpServerWebApi_Dispose
+  commentId: M:Butterfly.RHttpServer.RedHttpServerWebApi.Dispose
+  fullName: Butterfly.RHttpServer.RedHttpServerWebApi.Dispose()
+  nameWithType: RedHttpServerWebApi.Dispose()
+- uid: Butterfly.RHttpServer.RedHttpServerWebApi.Dispose*
   name: Dispose
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebApiServer.html#Butterfly_RedHttpServer_RedHttpServerWebApiServer_Dispose_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebApiServer.Dispose
+  href: api/Butterfly.RHttpServer.RedHttpServerWebApi.html#Butterfly_RHttpServer_RedHttpServerWebApi_Dispose_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebApi.Dispose
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebApiServer.Dispose
-  nameWithType: RedHttpServerWebApiServer.Dispose
-- uid: Butterfly.RedHttpServer.RedHttpServerWebApiServer.server
+  fullName: Butterfly.RHttpServer.RedHttpServerWebApi.Dispose
+  nameWithType: RedHttpServerWebApi.Dispose
+- uid: Butterfly.RHttpServer.RedHttpServerWebApi.server
   name: server
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebApiServer.html#Butterfly_RedHttpServer_RedHttpServerWebApiServer_server
-  commentId: F:Butterfly.RedHttpServer.RedHttpServerWebApiServer.server
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebApiServer.server
-  nameWithType: RedHttpServerWebApiServer.server
-- uid: Butterfly.RedHttpServer.RedHttpServerWebApiServer.Start
-  name: Start()
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebApiServer.html#Butterfly_RedHttpServer_RedHttpServerWebApiServer_Start
-  commentId: M:Butterfly.RedHttpServer.RedHttpServerWebApiServer.Start
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebApiServer.Start()
-  nameWithType: RedHttpServerWebApiServer.Start()
-- uid: Butterfly.RedHttpServer.RedHttpServerWebApiServer.Start*
-  name: Start
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebApiServer.html#Butterfly_RedHttpServer_RedHttpServerWebApiServer_Start_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebApiServer.Start
-  isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebApiServer.Start
-  nameWithType: RedHttpServerWebApiServer.Start
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest
+  href: api/Butterfly.RHttpServer.RedHttpServerWebApi.html#Butterfly_RHttpServer_RedHttpServerWebApi_server
+  commentId: F:Butterfly.RHttpServer.RedHttpServerWebApi.server
+  fullName: Butterfly.RHttpServer.RedHttpServerWebApi.server
+  nameWithType: RedHttpServerWebApi.server
+- uid: Butterfly.RHttpServer.RedHttpServerWebRequest
   name: RedHttpServerWebRequest
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html
-  commentId: T:Butterfly.RedHttpServer.RedHttpServerWebRequest
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest
+  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html
+  commentId: T:Butterfly.RHttpServer.RedHttpServerWebRequest
+  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest
   nameWithType: RedHttpServerWebRequest
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.#ctor(RRequest)
-  name: RedHttpServerWebRequest(RRequest)
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest__ctor_RRequest_
-  commentId: M:Butterfly.RedHttpServer.RedHttpServerWebRequest.#ctor(RRequest)
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.RedHttpServerWebRequest(RRequest)
-  nameWithType: RedHttpServerWebRequest.RedHttpServerWebRequest(RRequest)
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.#ctor*
+- uid: Butterfly.RHttpServer.RedHttpServerWebRequest.#ctor(Red.Request)
+  name: RedHttpServerWebRequest(Request)
+  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html#Butterfly_RHttpServer_RedHttpServerWebRequest__ctor_Red_Request_
+  commentId: M:Butterfly.RHttpServer.RedHttpServerWebRequest.#ctor(Red.Request)
+  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest.RedHttpServerWebRequest(Red.Request)
+  nameWithType: RedHttpServerWebRequest.RedHttpServerWebRequest(Request)
+- uid: Butterfly.RHttpServer.RedHttpServerWebRequest.#ctor*
   name: RedHttpServerWebRequest
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest__ctor_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebRequest.#ctor
+  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html#Butterfly_RHttpServer_RedHttpServerWebRequest__ctor_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebRequest.#ctor
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.RedHttpServerWebRequest
+  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest.RedHttpServerWebRequest
   nameWithType: RedHttpServerWebRequest.RedHttpServerWebRequest
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.Headers
+- uid: Butterfly.RHttpServer.RedHttpServerWebRequest.Headers
   name: Headers
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_Headers
-  commentId: P:Butterfly.RedHttpServer.RedHttpServerWebRequest.Headers
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.Headers
+  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html#Butterfly_RHttpServer_RedHttpServerWebRequest_Headers
+  commentId: P:Butterfly.RHttpServer.RedHttpServerWebRequest.Headers
+  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest.Headers
   nameWithType: RedHttpServerWebRequest.Headers
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.Headers*
+- uid: Butterfly.RHttpServer.RedHttpServerWebRequest.Headers*
   name: Headers
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_Headers_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebRequest.Headers
+  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html#Butterfly_RHttpServer_RedHttpServerWebRequest_Headers_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebRequest.Headers
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.Headers
+  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest.Headers
   nameWithType: RedHttpServerWebRequest.Headers
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.InputStream
+- uid: Butterfly.RHttpServer.RedHttpServerWebRequest.InputStream
   name: InputStream
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_InputStream
-  commentId: P:Butterfly.RedHttpServer.RedHttpServerWebRequest.InputStream
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.InputStream
+  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html#Butterfly_RHttpServer_RedHttpServerWebRequest_InputStream
+  commentId: P:Butterfly.RHttpServer.RedHttpServerWebRequest.InputStream
+  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest.InputStream
   nameWithType: RedHttpServerWebRequest.InputStream
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.InputStream*
+- uid: Butterfly.RHttpServer.RedHttpServerWebRequest.InputStream*
   name: InputStream
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_InputStream_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebRequest.InputStream
+  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html#Butterfly_RHttpServer_RedHttpServerWebRequest_InputStream_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebRequest.InputStream
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.InputStream
+  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest.InputStream
   nameWithType: RedHttpServerWebRequest.InputStream
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.PathParams
+- uid: Butterfly.RHttpServer.RedHttpServerWebRequest.PathParams
   name: PathParams
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_PathParams
-  commentId: P:Butterfly.RedHttpServer.RedHttpServerWebRequest.PathParams
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.PathParams
+  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html#Butterfly_RHttpServer_RedHttpServerWebRequest_PathParams
+  commentId: P:Butterfly.RHttpServer.RedHttpServerWebRequest.PathParams
+  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest.PathParams
   nameWithType: RedHttpServerWebRequest.PathParams
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.PathParams*
+- uid: Butterfly.RHttpServer.RedHttpServerWebRequest.PathParams*
   name: PathParams
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_PathParams_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebRequest.PathParams
+  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html#Butterfly_RHttpServer_RedHttpServerWebRequest_PathParams_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebRequest.PathParams
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.PathParams
+  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest.PathParams
   nameWithType: RedHttpServerWebRequest.PathParams
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.QueryParams
+- uid: Butterfly.RHttpServer.RedHttpServerWebRequest.QueryParams
   name: QueryParams
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_QueryParams
-  commentId: P:Butterfly.RedHttpServer.RedHttpServerWebRequest.QueryParams
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.QueryParams
+  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html#Butterfly_RHttpServer_RedHttpServerWebRequest_QueryParams
+  commentId: P:Butterfly.RHttpServer.RedHttpServerWebRequest.QueryParams
+  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest.QueryParams
   nameWithType: RedHttpServerWebRequest.QueryParams
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.QueryParams*
+- uid: Butterfly.RHttpServer.RedHttpServerWebRequest.QueryParams*
   name: QueryParams
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_QueryParams_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebRequest.QueryParams
+  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html#Butterfly_RHttpServer_RedHttpServerWebRequest_QueryParams_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebRequest.QueryParams
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.QueryParams
+  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest.QueryParams
   nameWithType: RedHttpServerWebRequest.QueryParams
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.request
+- uid: Butterfly.RHttpServer.RedHttpServerWebRequest.request
   name: request
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_request
-  commentId: F:Butterfly.RedHttpServer.RedHttpServerWebRequest.request
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.request
+  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html#Butterfly_RHttpServer_RedHttpServerWebRequest_request
+  commentId: F:Butterfly.RHttpServer.RedHttpServerWebRequest.request
+  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest.request
   nameWithType: RedHttpServerWebRequest.request
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.RequestUrl
+- uid: Butterfly.RHttpServer.RedHttpServerWebRequest.RequestUrl
   name: RequestUrl
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_RequestUrl
-  commentId: P:Butterfly.RedHttpServer.RedHttpServerWebRequest.RequestUrl
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.RequestUrl
+  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html#Butterfly_RHttpServer_RedHttpServerWebRequest_RequestUrl
+  commentId: P:Butterfly.RHttpServer.RedHttpServerWebRequest.RequestUrl
+  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest.RequestUrl
   nameWithType: RedHttpServerWebRequest.RequestUrl
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.RequestUrl*
+- uid: Butterfly.RHttpServer.RedHttpServerWebRequest.RequestUrl*
   name: RequestUrl
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_RequestUrl_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebRequest.RequestUrl
+  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html#Butterfly_RHttpServer_RedHttpServerWebRequest_RequestUrl_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebRequest.RequestUrl
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.RequestUrl
+  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest.RequestUrl
   nameWithType: RedHttpServerWebRequest.RequestUrl
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.UserAgent
-  name: UserAgent
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_UserAgent
-  commentId: P:Butterfly.RedHttpServer.RedHttpServerWebRequest.UserAgent
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.UserAgent
-  nameWithType: RedHttpServerWebRequest.UserAgent
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.UserAgent*
-  name: UserAgent
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_UserAgent_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebRequest.UserAgent
-  isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.UserAgent
-  nameWithType: RedHttpServerWebRequest.UserAgent
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.UserHostAddress
-  name: UserHostAddress
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_UserHostAddress
-  commentId: P:Butterfly.RedHttpServer.RedHttpServerWebRequest.UserHostAddress
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.UserHostAddress
-  nameWithType: RedHttpServerWebRequest.UserHostAddress
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.UserHostAddress*
-  name: UserHostAddress
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_UserHostAddress_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebRequest.UserHostAddress
-  isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.UserHostAddress
-  nameWithType: RedHttpServerWebRequest.UserHostAddress
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.UserHostName
-  name: UserHostName
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_UserHostName
-  commentId: P:Butterfly.RedHttpServer.RedHttpServerWebRequest.UserHostName
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.UserHostName
-  nameWithType: RedHttpServerWebRequest.UserHostName
-- uid: Butterfly.RedHttpServer.RedHttpServerWebRequest.UserHostName*
-  name: UserHostName
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html#Butterfly_RedHttpServer_RedHttpServerWebRequest_UserHostName_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebRequest.UserHostName
-  isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebRequest.UserHostName
-  nameWithType: RedHttpServerWebRequest.UserHostName
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse
   name: RedHttpServerWebResponse
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html
-  commentId: T:Butterfly.RedHttpServer.RedHttpServerWebResponse
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html
+  commentId: T:Butterfly.RHttpServer.RedHttpServerWebResponse
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse
   nameWithType: RedHttpServerWebResponse
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.#ctor(RResponse)
-  name: RedHttpServerWebResponse(RResponse)
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse__ctor_RResponse_
-  commentId: M:Butterfly.RedHttpServer.RedHttpServerWebResponse.#ctor(RResponse)
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.RedHttpServerWebResponse(RResponse)
-  nameWithType: RedHttpServerWebResponse.RedHttpServerWebResponse(RResponse)
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.#ctor*
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor(Red.Response)
+  name: RedHttpServerWebResponse(Response)
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse__ctor_Red_Response_
+  commentId: M:Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor(Red.Response)
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.RedHttpServerWebResponse(Red.Response)
+  nameWithType: RedHttpServerWebResponse.RedHttpServerWebResponse(Response)
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor*
   name: RedHttpServerWebResponse
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse__ctor_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebResponse.#ctor
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse__ctor_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.RedHttpServerWebResponse
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.RedHttpServerWebResponse
   nameWithType: RedHttpServerWebResponse.RedHttpServerWebResponse
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.GetHeader(System.String)
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.GetHeader(System.String)
   name: GetHeader(String)
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_GetHeader_System_String_
-  commentId: M:Butterfly.RedHttpServer.RedHttpServerWebResponse.GetHeader(System.String)
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.GetHeader(System.String)
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_GetHeader_System_String_
+  commentId: M:Butterfly.RHttpServer.RedHttpServerWebResponse.GetHeader(System.String)
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.GetHeader(System.String)
   nameWithType: RedHttpServerWebResponse.GetHeader(String)
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.GetHeader*
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.GetHeader*
   name: GetHeader
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_GetHeader_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebResponse.GetHeader
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_GetHeader_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebResponse.GetHeader
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.GetHeader
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.GetHeader
   nameWithType: RedHttpServerWebResponse.GetHeader
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.OutputStream
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.OutputStream
   name: OutputStream
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_OutputStream
-  commentId: P:Butterfly.RedHttpServer.RedHttpServerWebResponse.OutputStream
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.OutputStream
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_OutputStream
+  commentId: P:Butterfly.RHttpServer.RedHttpServerWebResponse.OutputStream
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.OutputStream
   nameWithType: RedHttpServerWebResponse.OutputStream
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.OutputStream*
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.OutputStream*
   name: OutputStream
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_OutputStream_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebResponse.OutputStream
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_OutputStream_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebResponse.OutputStream
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.OutputStream
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.OutputStream
   nameWithType: RedHttpServerWebResponse.OutputStream
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.response
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.response
   name: response
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_response
-  commentId: F:Butterfly.RedHttpServer.RedHttpServerWebResponse.response
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.response
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_response
+  commentId: F:Butterfly.RHttpServer.RedHttpServerWebResponse.response
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.response
   nameWithType: RedHttpServerWebResponse.response
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.SendRedirect(System.String)
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.SendRedirect(System.String)
   name: SendRedirect(String)
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_SendRedirect_System_String_
-  commentId: M:Butterfly.RedHttpServer.RedHttpServerWebResponse.SendRedirect(System.String)
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.SendRedirect(System.String)
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_SendRedirect_System_String_
+  commentId: M:Butterfly.RHttpServer.RedHttpServerWebResponse.SendRedirect(System.String)
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.SendRedirect(System.String)
   nameWithType: RedHttpServerWebResponse.SendRedirect(String)
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.SendRedirect*
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.SendRedirect*
   name: SendRedirect
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_SendRedirect_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebResponse.SendRedirect
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_SendRedirect_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebResponse.SendRedirect
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.SendRedirect
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.SendRedirect
   nameWithType: RedHttpServerWebResponse.SendRedirect
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.SetHeader(System.String,System.String)
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.SetHeader(System.String,System.String)
   name: SetHeader(String, String)
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_SetHeader_System_String_System_String_
-  commentId: M:Butterfly.RedHttpServer.RedHttpServerWebResponse.SetHeader(System.String,System.String)
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.SetHeader(System.String, System.String)
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_SetHeader_System_String_System_String_
+  commentId: M:Butterfly.RHttpServer.RedHttpServerWebResponse.SetHeader(System.String,System.String)
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.SetHeader(System.String, System.String)
   nameWithType: RedHttpServerWebResponse.SetHeader(String, String)
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.SetHeader*
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.SetHeader*
   name: SetHeader
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_SetHeader_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebResponse.SetHeader
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_SetHeader_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebResponse.SetHeader
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.SetHeader
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.SetHeader
   nameWithType: RedHttpServerWebResponse.SetHeader
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.StatusCode
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.StatusCode
   name: StatusCode
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_StatusCode
-  commentId: P:Butterfly.RedHttpServer.RedHttpServerWebResponse.StatusCode
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.StatusCode
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_StatusCode
+  commentId: P:Butterfly.RHttpServer.RedHttpServerWebResponse.StatusCode
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.StatusCode
   nameWithType: RedHttpServerWebResponse.StatusCode
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.StatusCode*
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.StatusCode*
   name: StatusCode
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_StatusCode_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebResponse.StatusCode
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_StatusCode_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebResponse.StatusCode
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.StatusCode
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.StatusCode
   nameWithType: RedHttpServerWebResponse.StatusCode
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.StatusText
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.StatusText
   name: StatusText
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_StatusText
-  commentId: P:Butterfly.RedHttpServer.RedHttpServerWebResponse.StatusText
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.StatusText
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_StatusText
+  commentId: P:Butterfly.RHttpServer.RedHttpServerWebResponse.StatusText
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.StatusText
   nameWithType: RedHttpServerWebResponse.StatusText
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.StatusText*
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.StatusText*
   name: StatusText
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_StatusText_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebResponse.StatusText
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_StatusText_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebResponse.StatusText
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.StatusText
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.StatusText
   nameWithType: RedHttpServerWebResponse.StatusText
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.WriteAsJsonAsync(System.Object)
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.WriteAsJsonAsync(System.Object)
   name: WriteAsJsonAsync(Object)
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_WriteAsJsonAsync_System_Object_
-  commentId: M:Butterfly.RedHttpServer.RedHttpServerWebResponse.WriteAsJsonAsync(System.Object)
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.WriteAsJsonAsync(System.Object)
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_WriteAsJsonAsync_System_Object_
+  commentId: M:Butterfly.RHttpServer.RedHttpServerWebResponse.WriteAsJsonAsync(System.Object)
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.WriteAsJsonAsync(System.Object)
   nameWithType: RedHttpServerWebResponse.WriteAsJsonAsync(Object)
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.WriteAsJsonAsync*
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.WriteAsJsonAsync*
   name: WriteAsJsonAsync
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_WriteAsJsonAsync_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebResponse.WriteAsJsonAsync
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_WriteAsJsonAsync_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebResponse.WriteAsJsonAsync
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.WriteAsJsonAsync
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.WriteAsJsonAsync
   nameWithType: RedHttpServerWebResponse.WriteAsJsonAsync
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.WriteAsTextAsync(System.String)
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.WriteAsTextAsync(System.String)
   name: WriteAsTextAsync(String)
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_WriteAsTextAsync_System_String_
-  commentId: M:Butterfly.RedHttpServer.RedHttpServerWebResponse.WriteAsTextAsync(System.String)
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.WriteAsTextAsync(System.String)
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_WriteAsTextAsync_System_String_
+  commentId: M:Butterfly.RHttpServer.RedHttpServerWebResponse.WriteAsTextAsync(System.String)
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.WriteAsTextAsync(System.String)
   nameWithType: RedHttpServerWebResponse.WriteAsTextAsync(String)
-- uid: Butterfly.RedHttpServer.RedHttpServerWebResponse.WriteAsTextAsync*
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.WriteAsTextAsync*
   name: WriteAsTextAsync
-  href: api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html#Butterfly_RedHttpServer_RedHttpServerWebResponse_WriteAsTextAsync_
-  commentId: Overload:Butterfly.RedHttpServer.RedHttpServerWebResponse.WriteAsTextAsync
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse_WriteAsTextAsync_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebResponse.WriteAsTextAsync
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.RedHttpServerWebResponse.WriteAsTextAsync
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.WriteAsTextAsync
   nameWithType: RedHttpServerWebResponse.WriteAsTextAsync
-- uid: Butterfly.RedHttpServer.WebSocketDialogChannel
-  name: WebSocketDialogChannel
-  href: api/Butterfly.RedHttpServer.WebSocketDialogChannel.html
-  commentId: T:Butterfly.RedHttpServer.WebSocketDialogChannel
-  fullName: Butterfly.RedHttpServer.WebSocketDialogChannel
-  nameWithType: WebSocketDialogChannel
-- uid: Butterfly.RedHttpServer.WebSocketDialogChannel.#ctor(BaseChannelServer,WebSocketDialog)
-  name: WebSocketDialogChannel(BaseChannelServer, WebSocketDialog)
-  href: api/Butterfly.RedHttpServer.WebSocketDialogChannel.html#Butterfly_RedHttpServer_WebSocketDialogChannel__ctor_BaseChannelServer_WebSocketDialog_
-  commentId: M:Butterfly.RedHttpServer.WebSocketDialogChannel.#ctor(BaseChannelServer,WebSocketDialog)
-  fullName: Butterfly.RedHttpServer.WebSocketDialogChannel.WebSocketDialogChannel(BaseChannelServer, WebSocketDialog)
-  nameWithType: WebSocketDialogChannel.WebSocketDialogChannel(BaseChannelServer, WebSocketDialog)
-- uid: Butterfly.RedHttpServer.WebSocketDialogChannel.#ctor*
-  name: WebSocketDialogChannel
-  href: api/Butterfly.RedHttpServer.WebSocketDialogChannel.html#Butterfly_RedHttpServer_WebSocketDialogChannel__ctor_
-  commentId: Overload:Butterfly.RedHttpServer.WebSocketDialogChannel.#ctor
+- uid: Butterfly.RHttpServer.WebSocketDialogChannelConnection
+  name: WebSocketDialogChannelConnection
+  href: api/Butterfly.RHttpServer.WebSocketDialogChannelConnection.html
+  commentId: T:Butterfly.RHttpServer.WebSocketDialogChannelConnection
+  fullName: Butterfly.RHttpServer.WebSocketDialogChannelConnection
+  nameWithType: WebSocketDialogChannelConnection
+- uid: Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Red.WebSocketDialog)
+  name: WebSocketDialogChannelConnection(BaseSubscriptionApi, WebSocketDialog)
+  href: api/Butterfly.RHttpServer.WebSocketDialogChannelConnection.html#Butterfly_RHttpServer_WebSocketDialogChannelConnection__ctor_Butterfly_Core_Channel_BaseSubscriptionApi_Red_WebSocketDialog_
+  commentId: M:Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Red.WebSocketDialog)
+  fullName: Butterfly.RHttpServer.WebSocketDialogChannelConnection.WebSocketDialogChannelConnection(Butterfly.Core.Channel.BaseSubscriptionApi, Red.WebSocketDialog)
+  nameWithType: WebSocketDialogChannelConnection.WebSocketDialogChannelConnection(BaseSubscriptionApi, WebSocketDialog)
+- uid: Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor*
+  name: WebSocketDialogChannelConnection
+  href: api/Butterfly.RHttpServer.WebSocketDialogChannelConnection.html#Butterfly_RHttpServer_WebSocketDialogChannelConnection__ctor_
+  commentId: Overload:Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.WebSocketDialogChannel.WebSocketDialogChannel
-  nameWithType: WebSocketDialogChannel.WebSocketDialogChannel
-- uid: Butterfly.RedHttpServer.WebSocketDialogChannel.DoDispose
+  fullName: Butterfly.RHttpServer.WebSocketDialogChannelConnection.WebSocketDialogChannelConnection
+  nameWithType: WebSocketDialogChannelConnection.WebSocketDialogChannelConnection
+- uid: Butterfly.RHttpServer.WebSocketDialogChannelConnection.DoDispose
   name: DoDispose()
-  href: api/Butterfly.RedHttpServer.WebSocketDialogChannel.html#Butterfly_RedHttpServer_WebSocketDialogChannel_DoDispose
-  commentId: M:Butterfly.RedHttpServer.WebSocketDialogChannel.DoDispose
-  fullName: Butterfly.RedHttpServer.WebSocketDialogChannel.DoDispose()
-  nameWithType: WebSocketDialogChannel.DoDispose()
-- uid: Butterfly.RedHttpServer.WebSocketDialogChannel.DoDispose*
+  href: api/Butterfly.RHttpServer.WebSocketDialogChannelConnection.html#Butterfly_RHttpServer_WebSocketDialogChannelConnection_DoDispose
+  commentId: M:Butterfly.RHttpServer.WebSocketDialogChannelConnection.DoDispose
+  fullName: Butterfly.RHttpServer.WebSocketDialogChannelConnection.DoDispose()
+  nameWithType: WebSocketDialogChannelConnection.DoDispose()
+- uid: Butterfly.RHttpServer.WebSocketDialogChannelConnection.DoDispose*
   name: DoDispose
-  href: api/Butterfly.RedHttpServer.WebSocketDialogChannel.html#Butterfly_RedHttpServer_WebSocketDialogChannel_DoDispose_
-  commentId: Overload:Butterfly.RedHttpServer.WebSocketDialogChannel.DoDispose
+  href: api/Butterfly.RHttpServer.WebSocketDialogChannelConnection.html#Butterfly_RHttpServer_WebSocketDialogChannelConnection_DoDispose_
+  commentId: Overload:Butterfly.RHttpServer.WebSocketDialogChannelConnection.DoDispose
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.WebSocketDialogChannel.DoDispose
-  nameWithType: WebSocketDialogChannel.DoDispose
-- uid: Butterfly.RedHttpServer.WebSocketDialogChannel.SendAsync(System.String)
+  fullName: Butterfly.RHttpServer.WebSocketDialogChannelConnection.DoDispose
+  nameWithType: WebSocketDialogChannelConnection.DoDispose
+- uid: Butterfly.RHttpServer.WebSocketDialogChannelConnection.SendAsync(System.String)
   name: SendAsync(String)
-  href: api/Butterfly.RedHttpServer.WebSocketDialogChannel.html#Butterfly_RedHttpServer_WebSocketDialogChannel_SendAsync_System_String_
-  commentId: M:Butterfly.RedHttpServer.WebSocketDialogChannel.SendAsync(System.String)
-  fullName: Butterfly.RedHttpServer.WebSocketDialogChannel.SendAsync(System.String)
-  nameWithType: WebSocketDialogChannel.SendAsync(String)
-- uid: Butterfly.RedHttpServer.WebSocketDialogChannel.SendAsync*
+  href: api/Butterfly.RHttpServer.WebSocketDialogChannelConnection.html#Butterfly_RHttpServer_WebSocketDialogChannelConnection_SendAsync_System_String_
+  commentId: M:Butterfly.RHttpServer.WebSocketDialogChannelConnection.SendAsync(System.String)
+  fullName: Butterfly.RHttpServer.WebSocketDialogChannelConnection.SendAsync(System.String)
+  nameWithType: WebSocketDialogChannelConnection.SendAsync(String)
+- uid: Butterfly.RHttpServer.WebSocketDialogChannelConnection.SendAsync*
   name: SendAsync
-  href: api/Butterfly.RedHttpServer.WebSocketDialogChannel.html#Butterfly_RedHttpServer_WebSocketDialogChannel_SendAsync_
-  commentId: Overload:Butterfly.RedHttpServer.WebSocketDialogChannel.SendAsync
+  href: api/Butterfly.RHttpServer.WebSocketDialogChannelConnection.html#Butterfly_RHttpServer_WebSocketDialogChannelConnection_SendAsync_
+  commentId: Overload:Butterfly.RHttpServer.WebSocketDialogChannelConnection.SendAsync
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.WebSocketDialogChannel.SendAsync
-  nameWithType: WebSocketDialogChannel.SendAsync
-- uid: Butterfly.RedHttpServer.WebSocketDialogChannel.webSocketDialog
+  fullName: Butterfly.RHttpServer.WebSocketDialogChannelConnection.SendAsync
+  nameWithType: WebSocketDialogChannelConnection.SendAsync
+- uid: Butterfly.RHttpServer.WebSocketDialogChannelConnection.webSocketDialog
   name: webSocketDialog
-  href: api/Butterfly.RedHttpServer.WebSocketDialogChannel.html#Butterfly_RedHttpServer_WebSocketDialogChannel_webSocketDialog
-  commentId: F:Butterfly.RedHttpServer.WebSocketDialogChannel.webSocketDialog
-  fullName: Butterfly.RedHttpServer.WebSocketDialogChannel.webSocketDialog
-  nameWithType: WebSocketDialogChannel.webSocketDialog
-- uid: Butterfly.RedHttpServer.WebSocketDialogWebRequest
+  href: api/Butterfly.RHttpServer.WebSocketDialogChannelConnection.html#Butterfly_RHttpServer_WebSocketDialogChannelConnection_webSocketDialog
+  commentId: F:Butterfly.RHttpServer.WebSocketDialogChannelConnection.webSocketDialog
+  fullName: Butterfly.RHttpServer.WebSocketDialogChannelConnection.webSocketDialog
+  nameWithType: WebSocketDialogChannelConnection.webSocketDialog
+- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest
   name: WebSocketDialogWebRequest
-  href: api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.html
-  commentId: T:Butterfly.RedHttpServer.WebSocketDialogWebRequest
-  fullName: Butterfly.RedHttpServer.WebSocketDialogWebRequest
+  href: api/Butterfly.RHttpServer.WebSocketDialogWebRequest.html
+  commentId: T:Butterfly.RHttpServer.WebSocketDialogWebRequest
+  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest
   nameWithType: WebSocketDialogWebRequest
-- uid: Butterfly.RedHttpServer.WebSocketDialogWebRequest.#ctor(WebSocketDialog)
+- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor(Red.WebSocketDialog)
   name: WebSocketDialogWebRequest(WebSocketDialog)
-  href: api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.html#Butterfly_RedHttpServer_WebSocketDialogWebRequest__ctor_WebSocketDialog_
-  commentId: M:Butterfly.RedHttpServer.WebSocketDialogWebRequest.#ctor(WebSocketDialog)
-  fullName: Butterfly.RedHttpServer.WebSocketDialogWebRequest.WebSocketDialogWebRequest(WebSocketDialog)
+  href: api/Butterfly.RHttpServer.WebSocketDialogWebRequest.html#Butterfly_RHttpServer_WebSocketDialogWebRequest__ctor_Red_WebSocketDialog_
+  commentId: M:Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor(Red.WebSocketDialog)
+  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest.WebSocketDialogWebRequest(Red.WebSocketDialog)
   nameWithType: WebSocketDialogWebRequest.WebSocketDialogWebRequest(WebSocketDialog)
-- uid: Butterfly.RedHttpServer.WebSocketDialogWebRequest.#ctor*
+- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor*
   name: WebSocketDialogWebRequest
-  href: api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.html#Butterfly_RedHttpServer_WebSocketDialogWebRequest__ctor_
-  commentId: Overload:Butterfly.RedHttpServer.WebSocketDialogWebRequest.#ctor
+  href: api/Butterfly.RHttpServer.WebSocketDialogWebRequest.html#Butterfly_RHttpServer_WebSocketDialogWebRequest__ctor_
+  commentId: Overload:Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.WebSocketDialogWebRequest.WebSocketDialogWebRequest
+  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest.WebSocketDialogWebRequest
   nameWithType: WebSocketDialogWebRequest.WebSocketDialogWebRequest
-- uid: Butterfly.RedHttpServer.WebSocketDialogWebRequest.Headers
+- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.Headers
   name: Headers
-  href: api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.html#Butterfly_RedHttpServer_WebSocketDialogWebRequest_Headers
-  commentId: P:Butterfly.RedHttpServer.WebSocketDialogWebRequest.Headers
-  fullName: Butterfly.RedHttpServer.WebSocketDialogWebRequest.Headers
+  href: api/Butterfly.RHttpServer.WebSocketDialogWebRequest.html#Butterfly_RHttpServer_WebSocketDialogWebRequest_Headers
+  commentId: P:Butterfly.RHttpServer.WebSocketDialogWebRequest.Headers
+  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest.Headers
   nameWithType: WebSocketDialogWebRequest.Headers
-- uid: Butterfly.RedHttpServer.WebSocketDialogWebRequest.Headers*
+- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.Headers*
   name: Headers
-  href: api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.html#Butterfly_RedHttpServer_WebSocketDialogWebRequest_Headers_
-  commentId: Overload:Butterfly.RedHttpServer.WebSocketDialogWebRequest.Headers
+  href: api/Butterfly.RHttpServer.WebSocketDialogWebRequest.html#Butterfly_RHttpServer_WebSocketDialogWebRequest_Headers_
+  commentId: Overload:Butterfly.RHttpServer.WebSocketDialogWebRequest.Headers
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.WebSocketDialogWebRequest.Headers
+  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest.Headers
   nameWithType: WebSocketDialogWebRequest.Headers
-- uid: Butterfly.RedHttpServer.WebSocketDialogWebRequest.PathParams
+- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.PathParams
   name: PathParams
-  href: api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.html#Butterfly_RedHttpServer_WebSocketDialogWebRequest_PathParams
-  commentId: P:Butterfly.RedHttpServer.WebSocketDialogWebRequest.PathParams
-  fullName: Butterfly.RedHttpServer.WebSocketDialogWebRequest.PathParams
+  href: api/Butterfly.RHttpServer.WebSocketDialogWebRequest.html#Butterfly_RHttpServer_WebSocketDialogWebRequest_PathParams
+  commentId: P:Butterfly.RHttpServer.WebSocketDialogWebRequest.PathParams
+  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest.PathParams
   nameWithType: WebSocketDialogWebRequest.PathParams
-- uid: Butterfly.RedHttpServer.WebSocketDialogWebRequest.PathParams*
+- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.PathParams*
   name: PathParams
-  href: api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.html#Butterfly_RedHttpServer_WebSocketDialogWebRequest_PathParams_
-  commentId: Overload:Butterfly.RedHttpServer.WebSocketDialogWebRequest.PathParams
+  href: api/Butterfly.RHttpServer.WebSocketDialogWebRequest.html#Butterfly_RHttpServer_WebSocketDialogWebRequest_PathParams_
+  commentId: Overload:Butterfly.RHttpServer.WebSocketDialogWebRequest.PathParams
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.WebSocketDialogWebRequest.PathParams
+  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest.PathParams
   nameWithType: WebSocketDialogWebRequest.PathParams
-- uid: Butterfly.RedHttpServer.WebSocketDialogWebRequest.QueryParams
+- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.QueryParams
   name: QueryParams
-  href: api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.html#Butterfly_RedHttpServer_WebSocketDialogWebRequest_QueryParams
-  commentId: P:Butterfly.RedHttpServer.WebSocketDialogWebRequest.QueryParams
-  fullName: Butterfly.RedHttpServer.WebSocketDialogWebRequest.QueryParams
+  href: api/Butterfly.RHttpServer.WebSocketDialogWebRequest.html#Butterfly_RHttpServer_WebSocketDialogWebRequest_QueryParams
+  commentId: P:Butterfly.RHttpServer.WebSocketDialogWebRequest.QueryParams
+  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest.QueryParams
   nameWithType: WebSocketDialogWebRequest.QueryParams
-- uid: Butterfly.RedHttpServer.WebSocketDialogWebRequest.QueryParams*
+- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.QueryParams*
   name: QueryParams
-  href: api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.html#Butterfly_RedHttpServer_WebSocketDialogWebRequest_QueryParams_
-  commentId: Overload:Butterfly.RedHttpServer.WebSocketDialogWebRequest.QueryParams
+  href: api/Butterfly.RHttpServer.WebSocketDialogWebRequest.html#Butterfly_RHttpServer_WebSocketDialogWebRequest_QueryParams_
+  commentId: Overload:Butterfly.RHttpServer.WebSocketDialogWebRequest.QueryParams
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.WebSocketDialogWebRequest.QueryParams
+  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest.QueryParams
   nameWithType: WebSocketDialogWebRequest.QueryParams
-- uid: Butterfly.RedHttpServer.WebSocketDialogWebRequest.RequestUrl
+- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.RequestUrl
   name: RequestUrl
-  href: api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.html#Butterfly_RedHttpServer_WebSocketDialogWebRequest_RequestUrl
-  commentId: P:Butterfly.RedHttpServer.WebSocketDialogWebRequest.RequestUrl
-  fullName: Butterfly.RedHttpServer.WebSocketDialogWebRequest.RequestUrl
+  href: api/Butterfly.RHttpServer.WebSocketDialogWebRequest.html#Butterfly_RHttpServer_WebSocketDialogWebRequest_RequestUrl
+  commentId: P:Butterfly.RHttpServer.WebSocketDialogWebRequest.RequestUrl
+  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest.RequestUrl
   nameWithType: WebSocketDialogWebRequest.RequestUrl
-- uid: Butterfly.RedHttpServer.WebSocketDialogWebRequest.RequestUrl*
+- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.RequestUrl*
   name: RequestUrl
-  href: api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.html#Butterfly_RedHttpServer_WebSocketDialogWebRequest_RequestUrl_
-  commentId: Overload:Butterfly.RedHttpServer.WebSocketDialogWebRequest.RequestUrl
+  href: api/Butterfly.RHttpServer.WebSocketDialogWebRequest.html#Butterfly_RHttpServer_WebSocketDialogWebRequest_RequestUrl_
+  commentId: Overload:Butterfly.RHttpServer.WebSocketDialogWebRequest.RequestUrl
   isSpec: "True"
-  fullName: Butterfly.RedHttpServer.WebSocketDialogWebRequest.RequestUrl
+  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest.RequestUrl
   nameWithType: WebSocketDialogWebRequest.RequestUrl
-- uid: Butterfly.RedHttpServer.WebSocketDialogWebRequest.webSocketDialog
+- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.webSocketDialog
   name: webSocketDialog
-  href: api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.html#Butterfly_RedHttpServer_WebSocketDialogWebRequest_webSocketDialog
-  commentId: F:Butterfly.RedHttpServer.WebSocketDialogWebRequest.webSocketDialog
-  fullName: Butterfly.RedHttpServer.WebSocketDialogWebRequest.webSocketDialog
+  href: api/Butterfly.RHttpServer.WebSocketDialogWebRequest.html#Butterfly_RHttpServer_WebSocketDialogWebRequest_webSocketDialog
+  commentId: F:Butterfly.RHttpServer.WebSocketDialogWebRequest.webSocketDialog
+  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest.webSocketDialog
   nameWithType: WebSocketDialogWebRequest.webSocketDialog
 - uid: Butterfly.SQLite
   name: Butterfly.SQLite

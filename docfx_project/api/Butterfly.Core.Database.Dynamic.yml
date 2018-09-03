@@ -1,0 +1,61 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.Dynamic
+  commentId: N:Butterfly.Core.Database.Dynamic
+  id: Butterfly.Core.Database.Dynamic
+  children:
+  - Butterfly.Core.Database.Dynamic.BaseDynamicParam
+  - Butterfly.Core.Database.Dynamic.ChildDynamicParam
+  - Butterfly.Core.Database.Dynamic.DynamicView
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet
+  - Butterfly.Core.Database.Dynamic.MultiValueDynamicParam
+  - Butterfly.Core.Database.Dynamic.SingleValueDynamicParam
+  langs:
+  - csharp
+  - vb
+  name: Butterfly.Core.Database.Dynamic
+  nameWithType: Butterfly.Core.Database.Dynamic
+  fullName: Butterfly.Core.Database.Dynamic
+  type: Namespace
+  assemblies:
+  - Butterfly.Core
+references:
+- uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam
+  commentId: T:Butterfly.Core.Database.Dynamic.BaseDynamicParam
+  parent: Butterfly.Core.Database.Dynamic
+  name: BaseDynamicParam
+  nameWithType: BaseDynamicParam
+  fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam
+- uid: Butterfly.Core.Database.Dynamic.DynamicView
+  commentId: T:Butterfly.Core.Database.Dynamic.DynamicView
+  parent: Butterfly.Core.Database.Dynamic
+  name: DynamicView
+  nameWithType: DynamicView
+  fullName: Butterfly.Core.Database.Dynamic.DynamicView
+- uid: Butterfly.Core.Database.Dynamic.ChildDynamicParam
+  commentId: T:Butterfly.Core.Database.Dynamic.ChildDynamicParam
+  name: ChildDynamicParam
+  nameWithType: ChildDynamicParam
+  fullName: Butterfly.Core.Database.Dynamic.ChildDynamicParam
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  commentId: T:Butterfly.Core.Database.Dynamic.DynamicViewSet
+  parent: Butterfly.Core.Database.Dynamic
+  name: DynamicViewSet
+  nameWithType: DynamicViewSet
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet
+- uid: Butterfly.Core.Database.Dynamic.MultiValueDynamicParam
+  commentId: T:Butterfly.Core.Database.Dynamic.MultiValueDynamicParam
+  name: MultiValueDynamicParam
+  nameWithType: MultiValueDynamicParam
+  fullName: Butterfly.Core.Database.Dynamic.MultiValueDynamicParam
+- uid: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam
+  commentId: T:Butterfly.Core.Database.Dynamic.SingleValueDynamicParam
+  name: SingleValueDynamicParam
+  nameWithType: SingleValueDynamicParam
+  fullName: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam
+- uid: Butterfly.Core.Database.Dynamic
+  commentId: N:Butterfly.Core.Database.Dynamic
+  name: Butterfly.Core.Database.Dynamic
+  nameWithType: Butterfly.Core.Database.Dynamic
+  fullName: Butterfly.Core.Database.Dynamic
+shouldSkipMarkup: true

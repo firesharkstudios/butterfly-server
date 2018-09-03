@@ -1,0 +1,35 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Auth
+  commentId: N:Butterfly.Core.Auth
+  id: Butterfly.Core.Auth
+  children:
+  - Butterfly.Core.Auth.AuthManager
+  - Butterfly.Core.Auth.AuthToken
+  langs:
+  - csharp
+  - vb
+  name: Butterfly.Core.Auth
+  nameWithType: Butterfly.Core.Auth
+  fullName: Butterfly.Core.Auth
+  type: Namespace
+  assemblies:
+  - Butterfly.Core
+references:
+- uid: Butterfly.Core.Auth.AuthManager
+  commentId: T:Butterfly.Core.Auth.AuthManager
+  name: AuthManager
+  nameWithType: AuthManager
+  fullName: Butterfly.Core.Auth.AuthManager
+- uid: Butterfly.Core.Auth.AuthToken
+  commentId: T:Butterfly.Core.Auth.AuthToken
+  parent: Butterfly.Core.Auth
+  name: AuthToken
+  nameWithType: AuthToken
+  fullName: Butterfly.Core.Auth.AuthToken
+- uid: Butterfly.Core.Auth
+  commentId: N:Butterfly.Core.Auth
+  name: Butterfly.Core.Auth
+  nameWithType: Butterfly.Core.Auth
+  fullName: Butterfly.Core.Auth
+shouldSkipMarkup: true

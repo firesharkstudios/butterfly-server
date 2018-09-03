@@ -1,0 +1,83 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.IDynamicParam
+  commentId: T:Butterfly.Core.Database.IDynamicParam
+  id: IDynamicParam
+  parent: Butterfly.Core.Database
+  children:
+  - Butterfly.Core.Database.IDynamicParam.GetValue
+  langs:
+  - csharp
+  - vb
+  name: IDynamicParam
+  nameWithType: IDynamicParam
+  fullName: Butterfly.Core.Database.IDynamicParam
+  type: Interface
+  source:
+    remote:
+      path: Butterfly.Core/Database/IDynamicParam.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: IDynamicParam
+    path: ../Butterfly.Core/Database/IDynamicParam.cs
+    startLine: 8
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  summary: "\nUse to implement a parameter value that can change\n"
+  example: []
+  syntax:
+    content: public interface IDynamicParam
+    content.vb: Public Interface IDynamicParam
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Butterfly.Core.Database.IDynamicParam.GetValue
+  commentId: M:Butterfly.Core.Database.IDynamicParam.GetValue
+  id: GetValue
+  parent: Butterfly.Core.Database.IDynamicParam
+  langs:
+  - csharp
+  - vb
+  name: GetValue()
+  nameWithType: IDynamicParam.GetValue()
+  fullName: Butterfly.Core.Database.IDynamicParam.GetValue()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/IDynamicParam.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: GetValue
+    path: ../Butterfly.Core/Database/IDynamicParam.cs
+    startLine: 9
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: object GetValue()
+    return:
+      type: System.Object
+    content.vb: Function GetValue As Object
+  overload: Butterfly.Core.Database.IDynamicParam.GetValue*
+references:
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: Butterfly.Core.Database.IDynamicParam.GetValue*
+  commentId: Overload:Butterfly.Core.Database.IDynamicParam.GetValue
+  name: GetValue
+  nameWithType: IDynamicParam.GetValue
+  fullName: Butterfly.Core.Database.IDynamicParam.GetValue
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+shouldSkipMarkup: true

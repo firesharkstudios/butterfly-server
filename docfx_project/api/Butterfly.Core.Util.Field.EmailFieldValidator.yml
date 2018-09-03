@@ -1,0 +1,381 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.Field.EmailFieldValidator
+  commentId: T:Butterfly.Core.Util.Field.EmailFieldValidator
+  id: EmailFieldValidator
+  parent: Butterfly.Core.Util.Field
+  children:
+  - Butterfly.Core.Util.Field.EmailFieldValidator.#ctor(System.String,System.Boolean,System.Boolean)
+  - Butterfly.Core.Util.Field.EmailFieldValidator.allowNull
+  - Butterfly.Core.Util.Field.EmailFieldValidator.logger
+  - Butterfly.Core.Util.Field.EmailFieldValidator.name
+  - Butterfly.Core.Util.Field.EmailFieldValidator.REGEX
+  - Butterfly.Core.Util.Field.EmailFieldValidator.stripName
+  - Butterfly.Core.Util.Field.EmailFieldValidator.Validate(System.String)
+  langs:
+  - csharp
+  - vb
+  name: EmailFieldValidator
+  nameWithType: EmailFieldValidator
+  fullName: Butterfly.Core.Util.Field.EmailFieldValidator
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: EmailFieldValidator
+    path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
+    startLine: 9
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: 'public class EmailFieldValidator : object, IFieldValidator'
+    content.vb: >-
+      Public Class EmailFieldValidator
+
+          Inherits Object
+
+          Implements IFieldValidator
+  inheritance:
+  - System.Object
+  implements:
+  - Butterfly.Core.Util.Field.IFieldValidator
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Util.Field.EmailFieldValidator.logger
+  commentId: F:Butterfly.Core.Util.Field.EmailFieldValidator.logger
+  id: logger
+  parent: Butterfly.Core.Util.Field.EmailFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: logger
+  nameWithType: EmailFieldValidator.logger
+  fullName: Butterfly.Core.Util.Field.EmailFieldValidator.logger
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: logger
+    path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
+    startLine: 10
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected static readonly Logger logger
+    return:
+      type: Logger
+    content.vb: Protected Shared ReadOnly logger As Logger
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.EmailFieldValidator.name
+  commentId: F:Butterfly.Core.Util.Field.EmailFieldValidator.name
+  id: name
+  parent: Butterfly.Core.Util.Field.EmailFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: name
+  nameWithType: EmailFieldValidator.name
+  fullName: Butterfly.Core.Util.Field.EmailFieldValidator.name
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: name
+    path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
+    startLine: 12
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected readonly string name
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly name As String
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.EmailFieldValidator.allowNull
+  commentId: F:Butterfly.Core.Util.Field.EmailFieldValidator.allowNull
+  id: allowNull
+  parent: Butterfly.Core.Util.Field.EmailFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: allowNull
+  nameWithType: EmailFieldValidator.allowNull
+  fullName: Butterfly.Core.Util.Field.EmailFieldValidator.allowNull
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: allowNull
+    path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
+    startLine: 13
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected readonly bool allowNull
+    return:
+      type: System.Boolean
+    content.vb: Protected ReadOnly allowNull As Boolean
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.EmailFieldValidator.stripName
+  commentId: F:Butterfly.Core.Util.Field.EmailFieldValidator.stripName
+  id: stripName
+  parent: Butterfly.Core.Util.Field.EmailFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: stripName
+  nameWithType: EmailFieldValidator.stripName
+  fullName: Butterfly.Core.Util.Field.EmailFieldValidator.stripName
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: stripName
+    path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
+    startLine: 14
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected readonly bool stripName
+    return:
+      type: System.Boolean
+    content.vb: Protected ReadOnly stripName As Boolean
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.EmailFieldValidator.REGEX
+  commentId: F:Butterfly.Core.Util.Field.EmailFieldValidator.REGEX
+  id: REGEX
+  parent: Butterfly.Core.Util.Field.EmailFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: REGEX
+  nameWithType: EmailFieldValidator.REGEX
+  fullName: Butterfly.Core.Util.Field.EmailFieldValidator.REGEX
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: REGEX
+    path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
+    startLine: 16
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected static readonly Regex REGEX
+    return:
+      type: Regex
+    content.vb: Protected Shared ReadOnly REGEX As Regex
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.EmailFieldValidator.#ctor(System.String,System.Boolean,System.Boolean)
+  commentId: M:Butterfly.Core.Util.Field.EmailFieldValidator.#ctor(System.String,System.Boolean,System.Boolean)
+  id: '#ctor(System.String,System.Boolean,System.Boolean)'
+  parent: Butterfly.Core.Util.Field.EmailFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: EmailFieldValidator(String, Boolean, Boolean)
+  nameWithType: EmailFieldValidator.EmailFieldValidator(String, Boolean, Boolean)
+  fullName: Butterfly.Core.Util.Field.EmailFieldValidator.EmailFieldValidator(System.String, System.Boolean, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
+    startLine: 18
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: public EmailFieldValidator(string name, bool allowNull = true, bool stripName = false)
+    parameters:
+    - id: name
+      type: System.String
+    - id: allowNull
+      type: System.Boolean
+    - id: stripName
+      type: System.Boolean
+    content.vb: Public Sub New(name As String, allowNull As Boolean = True, stripName As Boolean = False)
+  overload: Butterfly.Core.Util.Field.EmailFieldValidator.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Util.Field.EmailFieldValidator.Validate(System.String)
+  commentId: M:Butterfly.Core.Util.Field.EmailFieldValidator.Validate(System.String)
+  id: Validate(System.String)
+  parent: Butterfly.Core.Util.Field.EmailFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: Validate(String)
+  nameWithType: EmailFieldValidator.Validate(String)
+  fullName: Butterfly.Core.Util.Field.EmailFieldValidator.Validate(System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Validate
+    path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
+    startLine: 24
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: public string Validate(string value)
+    parameters:
+    - id: value
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Function Validate(value As String) As String
+  overload: Butterfly.Core.Util.Field.EmailFieldValidator.Validate*
+  implements:
+  - Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.Core.Util.Field
+  commentId: N:Butterfly.Core.Util.Field
+  name: Butterfly.Core.Util.Field
+  nameWithType: Butterfly.Core.Util.Field
+  fullName: Butterfly.Core.Util.Field
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Util.Field.IFieldValidator
+  commentId: T:Butterfly.Core.Util.Field.IFieldValidator
+  parent: Butterfly.Core.Util.Field
+  name: IFieldValidator
+  nameWithType: IFieldValidator
+  fullName: Butterfly.Core.Util.Field.IFieldValidator
+- uid: Logger
+  isExternal: true
+  name: Logger
+  nameWithType: Logger
+  fullName: Logger
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Regex
+  isExternal: true
+  name: Regex
+  nameWithType: Regex
+  fullName: Regex
+- uid: Butterfly.Core.Util.Field.EmailFieldValidator.#ctor*
+  commentId: Overload:Butterfly.Core.Util.Field.EmailFieldValidator.#ctor
+  name: EmailFieldValidator
+  nameWithType: EmailFieldValidator.EmailFieldValidator
+  fullName: Butterfly.Core.Util.Field.EmailFieldValidator.EmailFieldValidator
+- uid: Butterfly.Core.Util.Field.EmailFieldValidator.Validate*
+  commentId: Overload:Butterfly.Core.Util.Field.EmailFieldValidator.Validate
+  name: Validate
+  nameWithType: EmailFieldValidator.Validate
+  fullName: Butterfly.Core.Util.Field.EmailFieldValidator.Validate
+- uid: Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  commentId: M:Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  parent: Butterfly.Core.Util.Field.IFieldValidator
+  isExternal: true
+  name: Validate(String)
+  nameWithType: IFieldValidator.Validate(String)
+  fullName: Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  spec.csharp:
+  - uid: Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+    name: Validate
+    nameWithType: IFieldValidator.Validate
+    fullName: Butterfly.Core.Util.Field.IFieldValidator.Validate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+    name: Validate
+    nameWithType: IFieldValidator.Validate
+    fullName: Butterfly.Core.Util.Field.IFieldValidator.Validate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+shouldSkipMarkup: true

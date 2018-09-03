@@ -1,0 +1,146 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.TableIndexType
+  commentId: T:Butterfly.Core.Database.TableIndexType
+  id: TableIndexType
+  parent: Butterfly.Core.Database
+  children:
+  - Butterfly.Core.Database.TableIndexType.Other
+  - Butterfly.Core.Database.TableIndexType.Primary
+  - Butterfly.Core.Database.TableIndexType.Unique
+  langs:
+  - csharp
+  - vb
+  name: TableIndexType
+  nameWithType: TableIndexType
+  fullName: Butterfly.Core.Database.TableIndexType
+  type: Enum
+  source:
+    remote:
+      path: Butterfly.Core/Database/TableIndex.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TableIndexType
+    path: ../Butterfly.Core/Database/TableIndex.cs
+    startLine: 6
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: 'public enum TableIndexType : int'
+    content.vb: Public Enum TableIndexType As Integer
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: Butterfly.Core.Database.TableIndexType.Primary
+  commentId: F:Butterfly.Core.Database.TableIndexType.Primary
+  id: Primary
+  parent: Butterfly.Core.Database.TableIndexType
+  langs:
+  - csharp
+  - vb
+  name: Primary
+  nameWithType: TableIndexType.Primary
+  fullName: Butterfly.Core.Database.TableIndexType.Primary
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/TableIndex.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Primary
+    path: ../Butterfly.Core/Database/TableIndex.cs
+    startLine: 7
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: Primary = 0
+    return:
+      type: Butterfly.Core.Database.TableIndexType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Butterfly.Core.Database.TableIndexType.Unique
+  commentId: F:Butterfly.Core.Database.TableIndexType.Unique
+  id: Unique
+  parent: Butterfly.Core.Database.TableIndexType
+  langs:
+  - csharp
+  - vb
+  name: Unique
+  nameWithType: TableIndexType.Unique
+  fullName: Butterfly.Core.Database.TableIndexType.Unique
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/TableIndex.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Unique
+    path: ../Butterfly.Core/Database/TableIndex.cs
+    startLine: 8
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: Unique = 1
+    return:
+      type: Butterfly.Core.Database.TableIndexType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Butterfly.Core.Database.TableIndexType.Other
+  commentId: F:Butterfly.Core.Database.TableIndexType.Other
+  id: Other
+  parent: Butterfly.Core.Database.TableIndexType
+  langs:
+  - csharp
+  - vb
+  name: Other
+  nameWithType: TableIndexType.Other
+  fullName: Butterfly.Core.Database.TableIndexType.Other
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/TableIndex.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Other
+    path: ../Butterfly.Core/Database/TableIndex.cs
+    startLine: 9
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: Other = 2
+    return:
+      type: Butterfly.Core.Database.TableIndexType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: Butterfly.Core.Database.TableIndexType
+  commentId: T:Butterfly.Core.Database.TableIndexType
+  parent: Butterfly.Core.Database
+  name: TableIndexType
+  nameWithType: TableIndexType
+  fullName: Butterfly.Core.Database.TableIndexType
+shouldSkipMarkup: true

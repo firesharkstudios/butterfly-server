@@ -1,0 +1,392 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Client.DotNet.Subscription
+  commentId: T:Butterfly.Client.DotNet.Subscription
+  id: Subscription
+  parent: Butterfly.Client.DotNet
+  children:
+  - Butterfly.Client.DotNet.Subscription.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object},Action{System.Collections.Generic.Dictionary{System.String,System.Object}})
+  - Butterfly.Client.DotNet.Subscription.onMessage
+  - Butterfly.Client.DotNet.Subscription.vars
+  langs:
+  - csharp
+  - vb
+  name: Subscription
+  nameWithType: Subscription
+  fullName: Butterfly.Client.DotNet.Subscription
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Client.DotNet/WebSocketChannelClient.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Subscription
+    path: ../Butterfly.Client.DotNet/WebSocketChannelClient.cs
+    startLine: 199
+  assemblies:
+  - Butterfly.Client.DotNet
+  namespace: Butterfly.Client.DotNet
+  syntax:
+    content: 'public class Subscription : object'
+    content.vb: >-
+      Public Class Subscription
+
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Client.DotNet.Subscription.vars
+  commentId: F:Butterfly.Client.DotNet.Subscription.vars
+  id: vars
+  parent: Butterfly.Client.DotNet.Subscription
+  langs:
+  - csharp
+  - vb
+  name: vars
+  nameWithType: Subscription.vars
+  fullName: Butterfly.Client.DotNet.Subscription.vars
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Client.DotNet/WebSocketChannelClient.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: vars
+    path: ../Butterfly.Client.DotNet/WebSocketChannelClient.cs
+    startLine: 200
+  assemblies:
+  - Butterfly.Client.DotNet
+  namespace: Butterfly.Client.DotNet
+  syntax:
+    content: public readonly System.Collections.Generic.Dictionary<string, object> vars
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    content.vb: Public ReadOnly vars As System.Collections.Generic.Dictionary(Of String, Object)
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Client.DotNet.Subscription.onMessage
+  commentId: F:Butterfly.Client.DotNet.Subscription.onMessage
+  id: onMessage
+  parent: Butterfly.Client.DotNet.Subscription
+  langs:
+  - csharp
+  - vb
+  name: onMessage
+  nameWithType: Subscription.onMessage
+  fullName: Butterfly.Client.DotNet.Subscription.onMessage
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Client.DotNet/WebSocketChannelClient.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: onMessage
+    path: ../Butterfly.Client.DotNet/WebSocketChannelClient.cs
+    startLine: 201
+  assemblies:
+  - Butterfly.Client.DotNet
+  namespace: Butterfly.Client.DotNet
+  syntax:
+    content: public readonly Action<System.Collections.Generic.Dictionary<string, object>> onMessage
+    return:
+      type: Action{System.Collections.Generic.Dictionary{System.String,System.Object}}
+    content.vb: Public ReadOnly onMessage As Action(Of System.Collections.Generic.Dictionary(Of String, Object))
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Client.DotNet.Subscription.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object},Action{System.Collections.Generic.Dictionary{System.String,System.Object}})
+  commentId: M:Butterfly.Client.DotNet.Subscription.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object},Action{System.Collections.Generic.Dictionary{System.String,System.Object}})
+  id: '#ctor(System.Collections.Generic.Dictionary{System.String,System.Object},Action{System.Collections.Generic.Dictionary{System.String,System.Object}})'
+  parent: Butterfly.Client.DotNet.Subscription
+  langs:
+  - csharp
+  - vb
+  name: Subscription(System.Collections.Generic.Dictionary<String, Object>, Action<System.Collections.Generic.Dictionary<String, Object>>)
+  nameWithType: Subscription.Subscription(System.Collections.Generic.Dictionary<String, Object>, Action<System.Collections.Generic.Dictionary<String, Object>>)
+  fullName: Butterfly.Client.DotNet.Subscription.Subscription(System.Collections.Generic.Dictionary<System.String, System.Object>, Action<System.Collections.Generic.Dictionary<System.String, System.Object>>)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Client.DotNet/WebSocketChannelClient.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Client.DotNet/WebSocketChannelClient.cs
+    startLine: 203
+  assemblies:
+  - Butterfly.Client.DotNet
+  namespace: Butterfly.Client.DotNet
+  syntax:
+    content: public Subscription(System.Collections.Generic.Dictionary<string, object> vars, Action<System.Collections.Generic.Dictionary<string, object>> onMessage)
+    parameters:
+    - id: vars
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    - id: onMessage
+      type: Action{System.Collections.Generic.Dictionary{System.String,System.Object}}
+    content.vb: Public Sub New(vars As System.Collections.Generic.Dictionary(Of String, Object), onMessage As Action(Of System.Collections.Generic.Dictionary(Of String, Object)))
+  overload: Butterfly.Client.DotNet.Subscription.#ctor*
+  nameWithType.vb: Subscription.Subscription(System.Collections.Generic.Dictionary(Of String, Object), Action(Of System.Collections.Generic.Dictionary(Of String, Object)))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Client.DotNet.Subscription.Subscription(System.Collections.Generic.Dictionary(Of System.String, System.Object), Action(Of System.Collections.Generic.Dictionary(Of System.String, System.Object)))
+  name.vb: Subscription(System.Collections.Generic.Dictionary(Of String, Object), Action(Of System.Collections.Generic.Dictionary(Of String, Object)))
+references:
+- uid: Butterfly.Client.DotNet
+  commentId: N:Butterfly.Client.DotNet
+  name: Butterfly.Client.DotNet
+  nameWithType: Butterfly.Client.DotNet
+  fullName: Butterfly.Client.DotNet
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Collections.Generic.Dictionary{System.String,System.Object}
+  commentId: '!:System.Collections.Generic.Dictionary{System.String,System.Object}'
+  definition: System.Collections.Generic.Dictionary`2
+  name: System.Collections.Generic.Dictionary<String, Object>
+  nameWithType: System.Collections.Generic.Dictionary<String, Object>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.Object>
+  nameWithType.vb: System.Collections.Generic.Dictionary(Of String, Object)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.Object)
+  name.vb: System.Collections.Generic.Dictionary(Of String, Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: System.Collections.Generic.Dictionary<, >
+  nameWithType: System.Collections.Generic.Dictionary<, >
+  fullName: System.Collections.Generic.Dictionary<, >
+  nameWithType.vb: System.Collections.Generic.Dictionary(Of , )
+  fullName.vb: System.Collections.Generic.Dictionary(Of , )
+  name.vb: System.Collections.Generic.Dictionary(Of , )
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action{System.Collections.Generic.Dictionary{System.String,System.Object}}
+  commentId: '!:Action{System.Collections.Generic.Dictionary{System.String,System.Object}}'
+  definition: Action`1
+  name: Action<System.Collections.Generic.Dictionary<String, Object>>
+  nameWithType: Action<System.Collections.Generic.Dictionary<String, Object>>
+  fullName: Action<System.Collections.Generic.Dictionary<System.String, System.Object>>
+  nameWithType.vb: Action(Of System.Collections.Generic.Dictionary(Of String, Object))
+  fullName.vb: Action(Of System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: Action(Of System.Collections.Generic.Dictionary(Of String, Object))
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action`1
+  isExternal: true
+  name: Action<>
+  nameWithType: Action<>
+  fullName: Action<>
+  nameWithType.vb: Action(Of )
+  fullName.vb: Action(Of )
+  name.vb: Action(Of )
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Client.DotNet.Subscription.#ctor*
+  commentId: Overload:Butterfly.Client.DotNet.Subscription.#ctor
+  name: Subscription
+  nameWithType: Subscription.Subscription
+  fullName: Butterfly.Client.DotNet.Subscription.Subscription
+shouldSkipMarkup: true

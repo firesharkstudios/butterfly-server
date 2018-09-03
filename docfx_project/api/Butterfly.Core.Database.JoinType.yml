@@ -1,0 +1,179 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.JoinType
+  commentId: T:Butterfly.Core.Database.JoinType
+  id: JoinType
+  parent: Butterfly.Core.Database
+  children:
+  - Butterfly.Core.Database.JoinType.Inner
+  - Butterfly.Core.Database.JoinType.Left
+  - Butterfly.Core.Database.JoinType.None
+  - Butterfly.Core.Database.JoinType.Right
+  langs:
+  - csharp
+  - vb
+  name: JoinType
+  nameWithType: JoinType
+  fullName: Butterfly.Core.Database.JoinType
+  type: Enum
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/BaseStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: JoinType
+    path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
+    startLine: 105
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: 'public enum JoinType : int'
+    content.vb: Public Enum JoinType As Integer
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: Butterfly.Core.Database.JoinType.None
+  commentId: F:Butterfly.Core.Database.JoinType.None
+  id: None
+  parent: Butterfly.Core.Database.JoinType
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: JoinType.None
+  fullName: Butterfly.Core.Database.JoinType.None
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/BaseStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: None
+    path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
+    startLine: 106
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: None = 0
+    return:
+      type: Butterfly.Core.Database.JoinType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Butterfly.Core.Database.JoinType.Inner
+  commentId: F:Butterfly.Core.Database.JoinType.Inner
+  id: Inner
+  parent: Butterfly.Core.Database.JoinType
+  langs:
+  - csharp
+  - vb
+  name: Inner
+  nameWithType: JoinType.Inner
+  fullName: Butterfly.Core.Database.JoinType.Inner
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/BaseStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Inner
+    path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
+    startLine: 107
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: Inner = 1
+    return:
+      type: Butterfly.Core.Database.JoinType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Butterfly.Core.Database.JoinType.Left
+  commentId: F:Butterfly.Core.Database.JoinType.Left
+  id: Left
+  parent: Butterfly.Core.Database.JoinType
+  langs:
+  - csharp
+  - vb
+  name: Left
+  nameWithType: JoinType.Left
+  fullName: Butterfly.Core.Database.JoinType.Left
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/BaseStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Left
+    path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
+    startLine: 108
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: Left = 2
+    return:
+      type: Butterfly.Core.Database.JoinType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Butterfly.Core.Database.JoinType.Right
+  commentId: F:Butterfly.Core.Database.JoinType.Right
+  id: Right
+  parent: Butterfly.Core.Database.JoinType
+  langs:
+  - csharp
+  - vb
+  name: Right
+  nameWithType: JoinType.Right
+  fullName: Butterfly.Core.Database.JoinType.Right
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/BaseStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Right
+    path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
+    startLine: 109
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: Right = 3
+    return:
+      type: Butterfly.Core.Database.JoinType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: Butterfly.Core.Database.JoinType
+  commentId: T:Butterfly.Core.Database.JoinType
+  parent: Butterfly.Core.Database
+  name: JoinType
+  nameWithType: JoinType
+  fullName: Butterfly.Core.Database.JoinType
+shouldSkipMarkup: true

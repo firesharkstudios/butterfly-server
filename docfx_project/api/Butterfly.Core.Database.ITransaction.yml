@@ -1,0 +1,1027 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.ITransaction
+  commentId: T:Butterfly.Core.Database.ITransaction
+  id: ITransaction
+  parent: Butterfly.Core.Database
+  children:
+  - Butterfly.Core.Database.ITransaction.Commit
+  - Butterfly.Core.Database.ITransaction.CommitAsync
+  - Butterfly.Core.Database.ITransaction.Database
+  - Butterfly.Core.Database.ITransaction.DeleteAsync(System.String,System.Object)
+  - Butterfly.Core.Database.ITransaction.InsertAsync``1(System.String,System.Object,System.Boolean)
+  - Butterfly.Core.Database.ITransaction.OnCommit(Func{Task})
+  - Butterfly.Core.Database.ITransaction.Rollback
+  - Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Object},System.String[])
+  - Butterfly.Core.Database.ITransaction.TruncateAsync(System.String)
+  - Butterfly.Core.Database.ITransaction.UpdateAsync(System.String,System.Object)
+  langs:
+  - csharp
+  - vb
+  name: ITransaction
+  nameWithType: ITransaction
+  fullName: Butterfly.Core.Database.ITransaction
+  type: Interface
+  source:
+    remote:
+      path: Butterfly.Core/Database/ITransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ITransaction
+    path: ../Butterfly.Core/Database/ITransaction.cs
+    startLine: 19
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  summary: "\nAllows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing \na single <see cref=\"!:DataEventTransaction\"></see> on the underlying <xref href=\"Butterfly.Core.Database.IDatabase\" data-throw-if-not-resolved=\"false\"></xref> instance\nwhen the transaction is committed.<p></p>\n\nMust call <xref href=\"Butterfly.Core.Database.ITransaction.Commit\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"Butterfly.Core.Database.ITransaction.CommitAsync\" data-throw-if-not-resolved=\"false\"></xref> to have the changes committed.<p></p>\n\nIf the transaction is disposed without calling <xref href=\"Butterfly.Core.Database.ITransaction.Commit\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"Butterfly.Core.Database.ITransaction.CommitAsync\" data-throw-if-not-resolved=\"false\"></xref> the transaction is automatically rolled back.\n"
+  example: []
+  syntax:
+    content: 'public interface ITransaction : IDisposable'
+    content.vb: >-
+      Public Interface ITransaction
+
+          Inherits IDisposable
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Butterfly.Core.Database.ITransaction.Database
+  commentId: P:Butterfly.Core.Database.ITransaction.Database
+  id: Database
+  parent: Butterfly.Core.Database.ITransaction
+  langs:
+  - csharp
+  - vb
+  name: Database
+  nameWithType: ITransaction.Database
+  fullName: Butterfly.Core.Database.ITransaction.Database
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/Database/ITransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Database
+    path: ../Butterfly.Core/Database/ITransaction.cs
+    startLine: 21
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: IDatabase Database { get; }
+    parameters: []
+    return:
+      type: Butterfly.Core.Database.IDatabase
+    content.vb: ReadOnly Property Database As IDatabase
+  overload: Butterfly.Core.Database.ITransaction.Database*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Butterfly.Core.Database.ITransaction.InsertAsync``1(System.String,System.Object,System.Boolean)
+  commentId: M:Butterfly.Core.Database.ITransaction.InsertAsync``1(System.String,System.Object,System.Boolean)
+  id: InsertAsync``1(System.String,System.Object,System.Boolean)
+  parent: Butterfly.Core.Database.ITransaction
+  langs:
+  - csharp
+  - vb
+  name: InsertAsync<T>(String, Object, Boolean)
+  nameWithType: ITransaction.InsertAsync<T>(String, Object, Boolean)
+  fullName: Butterfly.Core.Database.ITransaction.InsertAsync<T>(System.String, System.Object, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/ITransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: InsertAsync
+    path: ../Butterfly.Core/Database/ITransaction.cs
+    startLine: 56
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  summary: "\nExecutes an INSERT statement within this transaction\n"
+  remarks: "\nDo an INSERT using the table name and an anonymous type...\n<pre><code>await transaction.InsertAsync(&quot;message&quot;, new {\n    text = &quot;Hello&quot;,\n    owner_id = &quot;123&quot;,\n});</code></pre>\nDo an INSERT using a full statement and a Dictionary...\n<pre><code>await transaction.InsertAsync(&quot;INSERT INTO message (text, owner_id) VALUES (@t, @oid)&quot;, new Dictionary&lt;string, object> {\n    [&quot;t&quot;] = &quot;Hello&quot;,\n    [&quot;oid&quot;] = &quot;123&quot;,\n});</code></pre>\n"
+  example: []
+  syntax:
+    content: Task<T> InsertAsync<T>(string insertStatement, dynamic vars = null, bool ignoreIfDuplicate = false)
+    parameters:
+    - id: insertStatement
+      type: System.String
+      description: "\nEither a table name or a full INSERT statement with vars prefixed by @ (like <pre><code>@name</code></pre>)\n"
+    - id: vars
+      type: System.Object
+      description: "\nEither an anonymous type or a Dictionary. \nIf <code data-dev-comment-type=\"paramref\" class=\"paramref\">insertStatement</code> is a table name, the <code data-dev-comment-type=\"paramref\" class=\"paramref\">vars</code> values will be used to build the UPDATE statement.\nIf <code data-dev-comment-type=\"paramref\" class=\"paramref\">insertStatement</code> is a full INSERT statement, there must be one entry for each var referenced in <code data-dev-comment-type=\"paramref\" class=\"paramref\">insertStatement</code>.\n"
+    - id: ignoreIfDuplicate
+      type: System.Boolean
+      description: "\nIf the INSERT attempts to duplicate the primary key then either \nthrow an <xref href=\"Butterfly.Core.Database.DuplicateKeyDatabaseException\" data-throw-if-not-resolved=\"false\"></xref> error if <code data-dev-comment-type=\"paramref\" class=\"paramref\">ignoreIfDuplicate</code> is true\nor just ignore if <code data-dev-comment-type=\"paramref\" class=\"paramref\">ignoreIfDuplicate</code> is false\n"
+    typeParameters:
+    - id: T
+    return:
+      type: Task{{T}}
+      description: Primary key value (semi-colon delimited string if multi-field primary key)
+    content.vb: Function InsertAsync(Of T)(insertStatement As String, vars As Object = Nothing, ignoreIfDuplicate As Boolean = False) As Task(Of T)
+  overload: Butterfly.Core.Database.ITransaction.InsertAsync*
+  nameWithType.vb: ITransaction.InsertAsync(Of T)(String, Object, Boolean)
+  fullName.vb: Butterfly.Core.Database.ITransaction.InsertAsync(Of T)(System.String, System.Object, System.Boolean)
+  name.vb: InsertAsync(Of T)(String, Object, Boolean)
+- uid: Butterfly.Core.Database.ITransaction.UpdateAsync(System.String,System.Object)
+  commentId: M:Butterfly.Core.Database.ITransaction.UpdateAsync(System.String,System.Object)
+  id: UpdateAsync(System.String,System.Object)
+  parent: Butterfly.Core.Database.ITransaction
+  langs:
+  - csharp
+  - vb
+  name: UpdateAsync(String, Object)
+  nameWithType: ITransaction.UpdateAsync(String, Object)
+  fullName: Butterfly.Core.Database.ITransaction.UpdateAsync(System.String, System.Object)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/ITransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: UpdateAsync
+    path: ../Butterfly.Core/Database/ITransaction.cs
+    startLine: 86
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  summary: "\nExecutes an UPDATE statement within this transaction\n"
+  remarks: "\nDo an UPDATE using the table name and an anonymous type...\n<pre><code>await database.UpdateAsync(&quot;message&quot;, new {\n    id = 123,\n    text = &quot;Hello&quot;,\n});</code></pre>\nDo an UPDATE using a full statement and a Dictionary...\n<pre><code>await database.UpdateAsync(&quot;UPDATE message SET text=@t WHERE id=@id&quot;, new Dictionary&lt;string, object> {\n    [&quot;id&quot;] = 123,\n    [&quot;t&quot;] = &quot;Hello&quot;,\n});</code></pre>\n"
+  example: []
+  syntax:
+    content: Task<int> UpdateAsync(string updateStatement, dynamic vars)
+    parameters:
+    - id: updateStatement
+      type: System.String
+      description: "\nEither a table name or a full UPDATE statement with vars prefixed by @ (like <pre><code>@name</code></pre>)\n"
+    - id: vars
+      type: System.Object
+      description: "\nEither an anonymous type or a Dictionary. \nIf <code data-dev-comment-type=\"paramref\" class=\"paramref\">updateStatement</code> is a table name, the <code data-dev-comment-type=\"paramref\" class=\"paramref\">vars</code> values will be used to build the SET clause and WHERE clause of the UPDATE statement.\nIf <code data-dev-comment-type=\"paramref\" class=\"paramref\">updateStatement</code> is a full UPDATE statement, there must be one entry for each var referenced in <code data-dev-comment-type=\"paramref\" class=\"paramref\">updateStatement</code>.\n"
+    return:
+      type: Task{System.Int32}
+      description: Number of records updated
+    content.vb: Function UpdateAsync(updateStatement As String, vars As Object) As Task(Of Integer)
+  overload: Butterfly.Core.Database.ITransaction.UpdateAsync*
+- uid: Butterfly.Core.Database.ITransaction.DeleteAsync(System.String,System.Object)
+  commentId: M:Butterfly.Core.Database.ITransaction.DeleteAsync(System.String,System.Object)
+  id: DeleteAsync(System.String,System.Object)
+  parent: Butterfly.Core.Database.ITransaction
+  langs:
+  - csharp
+  - vb
+  name: DeleteAsync(String, Object)
+  nameWithType: ITransaction.DeleteAsync(String, Object)
+  fullName: Butterfly.Core.Database.ITransaction.DeleteAsync(System.String, System.Object)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/ITransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DeleteAsync
+    path: ../Butterfly.Core/Database/ITransaction.cs
+    startLine: 114
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  summary: "\nExecutes a DELETE statement within this transaction\n"
+  remarks: "\nDo a DELETE using the table name and an anonymous type...\n<pre><code>await database.DeleteAsync(&quot;message&quot;, new {\n    id = 123\n});</code></pre>\nDo a DELETE using a full statement and a Dictionary...\n<pre><code>await database.DeleteAsync(&quot;DELETE FROM message WHERE id=@id&quot;, new Dictionary&lt;string, object> {\n    [&quot;id&quot;] = 123\n});</code></pre>\n"
+  example: []
+  syntax:
+    content: Task<int> DeleteAsync(string deleteStatement, dynamic vars)
+    parameters:
+    - id: deleteStatement
+      type: System.String
+      description: "\nEither a table name or a full DELETE statement with vars prefixed by @ (like <pre><code>@name</code></pre>)\n"
+    - id: vars
+      type: System.Object
+      description: "\nEither an anonymous type or a Dictionary. \nIf <code data-dev-comment-type=\"paramref\" class=\"paramref\">deleteStatement</code> is a table name, the <code data-dev-comment-type=\"paramref\" class=\"paramref\">vars</code> values will be used to build the WHERE clause of the DELETE statement.\nIf <code data-dev-comment-type=\"paramref\" class=\"paramref\">deleteStatement</code> is a full DELETE statement, there must be one entry for each var referenced in <code data-dev-comment-type=\"paramref\" class=\"paramref\">deleteStatement</code>.\n"
+    return:
+      type: Task{System.Int32}
+      description: Number of records deleted
+    content.vb: Function DeleteAsync(deleteStatement As String, vars As Object) As Task(Of Integer)
+  overload: Butterfly.Core.Database.ITransaction.DeleteAsync*
+- uid: Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Object},System.String[])
+  commentId: M:Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Object},System.String[])
+  id: SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Object},System.String[])
+  parent: Butterfly.Core.Database.ITransaction
+  langs:
+  - csharp
+  - vb
+  name: SynchronizeAsync(String, System.Collections.Generic.Dictionary<String, Object>[], System.Collections.Generic.Dictionary<String, Object>[], Func<System.Collections.Generic.Dictionary<String, Object>, Object>, String[])
+  nameWithType: ITransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary<String, Object>[], System.Collections.Generic.Dictionary<String, Object>[], Func<System.Collections.Generic.Dictionary<String, Object>, Object>, String[])
+  fullName: Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>[], System.Collections.Generic.Dictionary<System.String, System.Object>[], Func<System.Collections.Generic.Dictionary<System.String, System.Object>, System.Object>, System.String[])
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/ITransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: SynchronizeAsync
+    path: ../Butterfly.Core/Database/ITransaction.cs
+    startLine: 116
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: Task<bool> SynchronizeAsync(string tableName, System.Collections.Generic.Dictionary<string, object>[] existingRecords, System.Collections.Generic.Dictionary<string, object>[] newRecords, Func<System.Collections.Generic.Dictionary<string, object>, dynamic> getDeleteKey, string[] keyFieldNames = null)
+    parameters:
+    - id: tableName
+      type: System.String
+    - id: existingRecords
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}[]
+    - id: newRecords
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}[]
+    - id: getDeleteKey
+      type: Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Object}
+    - id: keyFieldNames
+      type: System.String[]
+    return:
+      type: Task{System.Boolean}
+    content.vb: Function SynchronizeAsync(tableName As String, existingRecords As System.Collections.Generic.Dictionary(Of String, Object)(), newRecords As System.Collections.Generic.Dictionary(Of String, Object)(), getDeleteKey As Func(Of System.Collections.Generic.Dictionary(Of String, Object), Object), keyFieldNames As String() = Nothing) As Task(Of Boolean)
+  overload: Butterfly.Core.Database.ITransaction.SynchronizeAsync*
+  nameWithType.vb: ITransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of String, Object)(), System.Collections.Generic.Dictionary(Of String, Object)(), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Object), String())
+  fullName.vb: Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object)(), System.Collections.Generic.Dictionary(Of System.String, System.Object)(), Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Object), System.String())
+  name.vb: SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of String, Object)(), System.Collections.Generic.Dictionary(Of String, Object)(), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Object), String())
+- uid: Butterfly.Core.Database.ITransaction.TruncateAsync(System.String)
+  commentId: M:Butterfly.Core.Database.ITransaction.TruncateAsync(System.String)
+  id: TruncateAsync(System.String)
+  parent: Butterfly.Core.Database.ITransaction
+  langs:
+  - csharp
+  - vb
+  name: TruncateAsync(String)
+  nameWithType: ITransaction.TruncateAsync(String)
+  fullName: Butterfly.Core.Database.ITransaction.TruncateAsync(System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/ITransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TruncateAsync
+    path: ../Butterfly.Core/Database/ITransaction.cs
+    startLine: 123
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  summary: "\nTruncate a table (deletes all records)\n"
+  example: []
+  syntax:
+    content: Task TruncateAsync(string tableName)
+    parameters:
+    - id: tableName
+      type: System.String
+      description: ''
+    return:
+      type: Task
+      description: ''
+    content.vb: Function TruncateAsync(tableName As String) As Task
+  overload: Butterfly.Core.Database.ITransaction.TruncateAsync*
+- uid: Butterfly.Core.Database.ITransaction.Commit
+  commentId: M:Butterfly.Core.Database.ITransaction.Commit
+  id: Commit
+  parent: Butterfly.Core.Database.ITransaction
+  langs:
+  - csharp
+  - vb
+  name: Commit()
+  nameWithType: ITransaction.Commit()
+  fullName: Butterfly.Core.Database.ITransaction.Commit()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/ITransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Commit
+    path: ../Butterfly.Core/Database/ITransaction.cs
+    startLine: 128
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  summary: "\nCommit the transaction\n"
+  example: []
+  syntax:
+    content: void Commit()
+    content.vb: Sub Commit
+  overload: Butterfly.Core.Database.ITransaction.Commit*
+- uid: Butterfly.Core.Database.ITransaction.CommitAsync
+  commentId: M:Butterfly.Core.Database.ITransaction.CommitAsync
+  id: CommitAsync
+  parent: Butterfly.Core.Database.ITransaction
+  langs:
+  - csharp
+  - vb
+  name: CommitAsync()
+  nameWithType: ITransaction.CommitAsync()
+  fullName: Butterfly.Core.Database.ITransaction.CommitAsync()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/ITransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: CommitAsync
+    path: ../Butterfly.Core/Database/ITransaction.cs
+    startLine: 131
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  example: []
+  syntax:
+    content: Task CommitAsync()
+    return:
+      type: Task
+    content.vb: Function CommitAsync As Task
+  overload: Butterfly.Core.Database.ITransaction.CommitAsync*
+- uid: Butterfly.Core.Database.ITransaction.OnCommit(Func{Task})
+  commentId: M:Butterfly.Core.Database.ITransaction.OnCommit(Func{Task})
+  id: OnCommit(Func{Task})
+  parent: Butterfly.Core.Database.ITransaction
+  langs:
+  - csharp
+  - vb
+  name: OnCommit(Func<Task>)
+  nameWithType: ITransaction.OnCommit(Func<Task>)
+  fullName: Butterfly.Core.Database.ITransaction.OnCommit(Func<Task>)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/ITransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: OnCommit
+    path: ../Butterfly.Core/Database/ITransaction.cs
+    startLine: 133
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: void OnCommit(Func<Task> onCommit)
+    parameters:
+    - id: onCommit
+      type: Func{Task}
+    content.vb: Sub OnCommit(onCommit As Func(Of Task))
+  overload: Butterfly.Core.Database.ITransaction.OnCommit*
+  nameWithType.vb: ITransaction.OnCommit(Func(Of Task))
+  fullName.vb: Butterfly.Core.Database.ITransaction.OnCommit(Func(Of Task))
+  name.vb: OnCommit(Func(Of Task))
+- uid: Butterfly.Core.Database.ITransaction.Rollback
+  commentId: M:Butterfly.Core.Database.ITransaction.Rollback
+  id: Rollback
+  parent: Butterfly.Core.Database.ITransaction
+  langs:
+  - csharp
+  - vb
+  name: Rollback()
+  nameWithType: ITransaction.Rollback()
+  fullName: Butterfly.Core.Database.ITransaction.Rollback()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/ITransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Rollback
+    path: ../Butterfly.Core/Database/ITransaction.cs
+    startLine: 138
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  summary: "\nRollback the transaction (called automatically if transaction is disposed without calling <xref href=\"Butterfly.Core.Database.ITransaction.Commit\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"Butterfly.Core.Database.ITransaction.CommitAsync\" data-throw-if-not-resolved=\"false\"></xref>)\n"
+  example: []
+  syntax:
+    content: void Rollback()
+    content.vb: Sub Rollback
+  overload: Butterfly.Core.Database.ITransaction.Rollback*
+references:
+- uid: Butterfly.Core.Database.IDatabase
+  commentId: T:Butterfly.Core.Database.IDatabase
+  parent: Butterfly.Core.Database
+  name: IDatabase
+  nameWithType: IDatabase
+  fullName: Butterfly.Core.Database.IDatabase
+- uid: Butterfly.Core.Database.ITransaction.Commit
+  commentId: M:Butterfly.Core.Database.ITransaction.Commit
+  parent: Butterfly.Core.Database.ITransaction
+  name: Commit()
+  nameWithType: ITransaction.Commit()
+  fullName: Butterfly.Core.Database.ITransaction.Commit()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.ITransaction.Commit
+    name: Commit
+    nameWithType: ITransaction.Commit
+    fullName: Butterfly.Core.Database.ITransaction.Commit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.ITransaction.Commit
+    name: Commit
+    nameWithType: ITransaction.Commit
+    fullName: Butterfly.Core.Database.ITransaction.Commit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.ITransaction.CommitAsync
+  commentId: M:Butterfly.Core.Database.ITransaction.CommitAsync
+  parent: Butterfly.Core.Database.ITransaction
+  name: CommitAsync()
+  nameWithType: ITransaction.CommitAsync()
+  fullName: Butterfly.Core.Database.ITransaction.CommitAsync()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.ITransaction.CommitAsync
+    name: CommitAsync
+    nameWithType: ITransaction.CommitAsync
+    fullName: Butterfly.Core.Database.ITransaction.CommitAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.ITransaction.CommitAsync
+    name: CommitAsync
+    nameWithType: ITransaction.CommitAsync
+    fullName: Butterfly.Core.Database.ITransaction.CommitAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: Butterfly.Core.Database.ITransaction
+  commentId: T:Butterfly.Core.Database.ITransaction
+  parent: Butterfly.Core.Database
+  name: ITransaction
+  nameWithType: ITransaction
+  fullName: Butterfly.Core.Database.ITransaction
+- uid: Butterfly.Core.Database.ITransaction.Database*
+  commentId: Overload:Butterfly.Core.Database.ITransaction.Database
+  name: Database
+  nameWithType: ITransaction.Database
+  fullName: Butterfly.Core.Database.ITransaction.Database
+- uid: Butterfly.Core.Database.DuplicateKeyDatabaseException
+  commentId: T:Butterfly.Core.Database.DuplicateKeyDatabaseException
+  name: DuplicateKeyDatabaseException
+  nameWithType: DuplicateKeyDatabaseException
+  fullName: Butterfly.Core.Database.DuplicateKeyDatabaseException
+- uid: Butterfly.Core.Database.ITransaction.InsertAsync*
+  commentId: Overload:Butterfly.Core.Database.ITransaction.InsertAsync
+  name: InsertAsync
+  nameWithType: ITransaction.InsertAsync
+  fullName: Butterfly.Core.Database.ITransaction.InsertAsync
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Task{{T}}
+  commentId: '!:Task{``0}'
+  definition: Task`1
+  name: Task<T>
+  nameWithType: Task<T>
+  fullName: Task<T>
+  nameWithType.vb: Task(Of T)
+  fullName.vb: Task(Of T)
+  name.vb: Task(Of T)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
+  isExternal: true
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.ITransaction.UpdateAsync*
+  commentId: Overload:Butterfly.Core.Database.ITransaction.UpdateAsync
+  name: UpdateAsync
+  nameWithType: ITransaction.UpdateAsync
+  fullName: Butterfly.Core.Database.ITransaction.UpdateAsync
+- uid: Task{System.Int32}
+  commentId: '!:Task{System.Int32}'
+  definition: Task`1
+  name: Task<Int32>
+  nameWithType: Task<Int32>
+  fullName: Task<System.Int32>
+  nameWithType.vb: Task(Of Int32)
+  fullName.vb: Task(Of System.Int32)
+  name.vb: Task(Of Int32)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.ITransaction.DeleteAsync*
+  commentId: Overload:Butterfly.Core.Database.ITransaction.DeleteAsync
+  name: DeleteAsync
+  nameWithType: ITransaction.DeleteAsync
+  fullName: Butterfly.Core.Database.ITransaction.DeleteAsync
+- uid: Butterfly.Core.Database.ITransaction.SynchronizeAsync*
+  commentId: Overload:Butterfly.Core.Database.ITransaction.SynchronizeAsync
+  name: SynchronizeAsync
+  nameWithType: ITransaction.SynchronizeAsync
+  fullName: Butterfly.Core.Database.ITransaction.SynchronizeAsync
+- uid: System.Collections.Generic.Dictionary{System.String,System.Object}[]
+  isExternal: true
+  name: System.Collections.Generic.Dictionary<String, Object>[]
+  nameWithType: System.Collections.Generic.Dictionary<String, Object>[]
+  fullName: System.Collections.Generic.Dictionary<System.String, System.Object>[]
+  nameWithType.vb: System.Collections.Generic.Dictionary(Of String, Object)()
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.Object)()
+  name.vb: System.Collections.Generic.Dictionary(Of String, Object)()
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Object}
+  commentId: '!:Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Object}'
+  definition: Func`2
+  name: Func<System.Collections.Generic.Dictionary<String, Object>, Object>
+  nameWithType: Func<System.Collections.Generic.Dictionary<String, Object>, Object>
+  fullName: Func<System.Collections.Generic.Dictionary<System.String, System.Object>, System.Object>
+  nameWithType.vb: Func(Of System.Collections.Generic.Dictionary(Of String, Object), )
+  fullName.vb: Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), )
+  name.vb: Func(Of System.Collections.Generic.Dictionary(Of String, Object), )
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Task{System.Boolean}
+  commentId: '!:Task{System.Boolean}'
+  definition: Task`1
+  name: Task<Boolean>
+  nameWithType: Task<Boolean>
+  fullName: Task<System.Boolean>
+  nameWithType.vb: Task(Of Boolean)
+  fullName.vb: Task(Of System.Boolean)
+  name.vb: Task(Of Boolean)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func`2
+  isExternal: true
+  name: Func<, >
+  nameWithType: Func<, >
+  fullName: Func<, >
+  nameWithType.vb: Func(Of , )
+  fullName.vb: Func(Of , )
+  name.vb: Func(Of , )
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.ITransaction.TruncateAsync*
+  commentId: Overload:Butterfly.Core.Database.ITransaction.TruncateAsync
+  name: TruncateAsync
+  nameWithType: ITransaction.TruncateAsync
+  fullName: Butterfly.Core.Database.ITransaction.TruncateAsync
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Butterfly.Core.Database.ITransaction.Commit*
+  commentId: Overload:Butterfly.Core.Database.ITransaction.Commit
+  name: Commit
+  nameWithType: ITransaction.Commit
+  fullName: Butterfly.Core.Database.ITransaction.Commit
+- uid: Butterfly.Core.Database.ITransaction.CommitAsync*
+  commentId: Overload:Butterfly.Core.Database.ITransaction.CommitAsync
+  name: CommitAsync
+  nameWithType: ITransaction.CommitAsync
+  fullName: Butterfly.Core.Database.ITransaction.CommitAsync
+- uid: Butterfly.Core.Database.ITransaction.OnCommit*
+  commentId: Overload:Butterfly.Core.Database.ITransaction.OnCommit
+  name: OnCommit
+  nameWithType: ITransaction.OnCommit
+  fullName: Butterfly.Core.Database.ITransaction.OnCommit
+- uid: Func{Task}
+  commentId: '!:Func{Task}'
+  definition: Func`1
+  name: Func<Task>
+  nameWithType: Func<Task>
+  fullName: Func<Task>
+  nameWithType.vb: Func(Of Task)
+  fullName.vb: Func(Of Task)
+  name.vb: Func(Of Task)
+  spec.csharp:
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func`1
+  isExternal: true
+  name: Func<>
+  nameWithType: Func<>
+  fullName: Func<>
+  nameWithType.vb: Func(Of )
+  fullName.vb: Func(Of )
+  name.vb: Func(Of )
+  spec.csharp:
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.ITransaction.Rollback*
+  commentId: Overload:Butterfly.Core.Database.ITransaction.Rollback
+  name: Rollback
+  nameWithType: ITransaction.Rollback
+  fullName: Butterfly.Core.Database.ITransaction.Rollback
+shouldSkipMarkup: true

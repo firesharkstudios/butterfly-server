@@ -1,0 +1,254 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Test.DynamicUnitTest
+  commentId: T:Butterfly.Core.Test.DynamicUnitTest
+  id: DynamicUnitTest
+  parent: Butterfly.Core.Test
+  children:
+  - Butterfly.Core.Test.DynamicUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
+  - Butterfly.Core.Test.DynamicUnitTest.TestInsertUpdateDeleteEvents(Butterfly.Core.Database.IDatabase,System.Object,System.String,System.String,System.Object,System.Int32,System.Int32,System.Int32,System.Int32,System.String[])
+  - Butterfly.Core.Test.DynamicUnitTest.TestMinimalSelects(Butterfly.Core.Database.IDatabase)
+  langs:
+  - csharp
+  - vb
+  name: DynamicUnitTest
+  nameWithType: DynamicUnitTest
+  fullName: Butterfly.Core.Test.DynamicUnitTest
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core.Test/DynamicUnitTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DynamicUnitTest
+    path: ../Butterfly.Core.Test/DynamicUnitTest.cs
+    startLine: 17
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: 'public class DynamicUnitTest : object'
+    content.vb: >-
+      Public Class DynamicUnitTest
+
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Test.DynamicUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
+  commentId: M:Butterfly.Core.Test.DynamicUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
+  id: TestDatabase(Butterfly.Core.Database.IDatabase)
+  parent: Butterfly.Core.Test.DynamicUnitTest
+  langs:
+  - csharp
+  - vb
+  name: TestDatabase(IDatabase)
+  nameWithType: DynamicUnitTest.TestDatabase(IDatabase)
+  fullName: Butterfly.Core.Test.DynamicUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core.Test/DynamicUnitTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TestDatabase
+    path: ../Butterfly.Core.Test/DynamicUnitTest.cs
+    startLine: 19
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: public static Task TestDatabase(IDatabase database)
+    parameters:
+    - id: database
+      type: Butterfly.Core.Database.IDatabase
+    return:
+      type: Task
+    content.vb: Public Shared Function TestDatabase(database As IDatabase) As Task
+  overload: Butterfly.Core.Test.DynamicUnitTest.TestDatabase*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Test.DynamicUnitTest.TestInsertUpdateDeleteEvents(Butterfly.Core.Database.IDatabase,System.Object,System.String,System.String,System.Object,System.Int32,System.Int32,System.Int32,System.Int32,System.String[])
+  commentId: M:Butterfly.Core.Test.DynamicUnitTest.TestInsertUpdateDeleteEvents(Butterfly.Core.Database.IDatabase,System.Object,System.String,System.String,System.Object,System.Int32,System.Int32,System.Int32,System.Int32,System.String[])
+  id: TestInsertUpdateDeleteEvents(Butterfly.Core.Database.IDatabase,System.Object,System.String,System.String,System.Object,System.Int32,System.Int32,System.Int32,System.Int32,System.String[])
+  parent: Butterfly.Core.Test.DynamicUnitTest
+  langs:
+  - csharp
+  - vb
+  name: TestInsertUpdateDeleteEvents(IDatabase, Object, String, String, Object, Int32, Int32, Int32, Int32, String[])
+  nameWithType: DynamicUnitTest.TestInsertUpdateDeleteEvents(IDatabase, Object, String, String, Object, Int32, Int32, Int32, Int32, String[])
+  fullName: Butterfly.Core.Test.DynamicUnitTest.TestInsertUpdateDeleteEvents(Butterfly.Core.Database.IDatabase, System.Object, System.String, System.String, System.Object, System.Int32, System.Int32, System.Int32, System.Int32, System.String[])
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core.Test/DynamicUnitTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TestInsertUpdateDeleteEvents
+    path: ../Butterfly.Core.Test/DynamicUnitTest.cs
+    startLine: 36
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: public static Task TestInsertUpdateDeleteEvents(IDatabase database, object salesDepartmentId, string selectSourceSql, string updateField, object updateValue, int initialCount, int insertCount, int updateCount, int deleteCount, string[] keyFieldNames = null)
+    parameters:
+    - id: database
+      type: Butterfly.Core.Database.IDatabase
+    - id: salesDepartmentId
+      type: System.Object
+    - id: selectSourceSql
+      type: System.String
+    - id: updateField
+      type: System.String
+    - id: updateValue
+      type: System.Object
+    - id: initialCount
+      type: System.Int32
+    - id: insertCount
+      type: System.Int32
+    - id: updateCount
+      type: System.Int32
+    - id: deleteCount
+      type: System.Int32
+    - id: keyFieldNames
+      type: System.String[]
+    return:
+      type: Task
+    content.vb: Public Shared Function TestInsertUpdateDeleteEvents(database As IDatabase, salesDepartmentId As Object, selectSourceSql As String, updateField As String, updateValue As Object, initialCount As Integer, insertCount As Integer, updateCount As Integer, deleteCount As Integer, keyFieldNames As String() = Nothing) As Task
+  overload: Butterfly.Core.Test.DynamicUnitTest.TestInsertUpdateDeleteEvents*
+  nameWithType.vb: DynamicUnitTest.TestInsertUpdateDeleteEvents(IDatabase, Object, String, String, Object, Int32, Int32, Int32, Int32, String())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Butterfly.Core.Test.DynamicUnitTest.TestInsertUpdateDeleteEvents(Butterfly.Core.Database.IDatabase, System.Object, System.String, System.String, System.Object, System.Int32, System.Int32, System.Int32, System.Int32, System.String())
+  name.vb: TestInsertUpdateDeleteEvents(IDatabase, Object, String, String, Object, Int32, Int32, Int32, Int32, String())
+- uid: Butterfly.Core.Test.DynamicUnitTest.TestMinimalSelects(Butterfly.Core.Database.IDatabase)
+  commentId: M:Butterfly.Core.Test.DynamicUnitTest.TestMinimalSelects(Butterfly.Core.Database.IDatabase)
+  id: TestMinimalSelects(Butterfly.Core.Database.IDatabase)
+  parent: Butterfly.Core.Test.DynamicUnitTest
+  langs:
+  - csharp
+  - vb
+  name: TestMinimalSelects(IDatabase)
+  nameWithType: DynamicUnitTest.TestMinimalSelects(IDatabase)
+  fullName: Butterfly.Core.Test.DynamicUnitTest.TestMinimalSelects(Butterfly.Core.Database.IDatabase)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core.Test/DynamicUnitTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TestMinimalSelects
+    path: ../Butterfly.Core.Test/DynamicUnitTest.cs
+    startLine: 106
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: public static Task TestMinimalSelects(IDatabase database)
+    parameters:
+    - id: database
+      type: Butterfly.Core.Database.IDatabase
+    return:
+      type: Task
+    content.vb: Public Shared Function TestMinimalSelects(database As IDatabase) As Task
+  overload: Butterfly.Core.Test.DynamicUnitTest.TestMinimalSelects*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Butterfly.Core.Test
+  commentId: N:Butterfly.Core.Test
+  name: Butterfly.Core.Test
+  nameWithType: Butterfly.Core.Test
+  fullName: Butterfly.Core.Test
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Test.DynamicUnitTest.TestDatabase*
+  commentId: Overload:Butterfly.Core.Test.DynamicUnitTest.TestDatabase
+  name: TestDatabase
+  nameWithType: DynamicUnitTest.TestDatabase
+  fullName: Butterfly.Core.Test.DynamicUnitTest.TestDatabase
+- uid: Butterfly.Core.Database.IDatabase
+  commentId: T:Butterfly.Core.Database.IDatabase
+  parent: Butterfly.Core.Database
+  name: IDatabase
+  nameWithType: IDatabase
+  fullName: Butterfly.Core.Database.IDatabase
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: Butterfly.Core.Test.DynamicUnitTest.TestInsertUpdateDeleteEvents*
+  commentId: Overload:Butterfly.Core.Test.DynamicUnitTest.TestInsertUpdateDeleteEvents
+  name: TestInsertUpdateDeleteEvents
+  nameWithType: DynamicUnitTest.TestInsertUpdateDeleteEvents
+  fullName: Butterfly.Core.Test.DynamicUnitTest.TestInsertUpdateDeleteEvents
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Butterfly.Core.Test.DynamicUnitTest.TestMinimalSelects*
+  commentId: Overload:Butterfly.Core.Test.DynamicUnitTest.TestMinimalSelects
+  name: TestMinimalSelects
+  nameWithType: DynamicUnitTest.TestMinimalSelects
+  fullName: Butterfly.Core.Test.DynamicUnitTest.TestMinimalSelects
+shouldSkipMarkup: true

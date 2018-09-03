@@ -1,0 +1,99 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.DatabaseException
+  commentId: T:Butterfly.Core.Database.DatabaseException
+  id: DatabaseException
+  parent: Butterfly.Core.Database
+  children:
+  - Butterfly.Core.Database.DatabaseException.#ctor(System.String)
+  langs:
+  - csharp
+  - vb
+  name: DatabaseException
+  nameWithType: DatabaseException
+  fullName: Butterfly.Core.Database.DatabaseException
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Database/BaseDatabase.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DatabaseException
+    path: ../Butterfly.Core/Database/BaseDatabase.cs
+    startLine: 456
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: 'public class DatabaseException : Exception'
+    content.vb: >-
+      Public Class DatabaseException
+
+          Inherits Exception
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Butterfly.Core.Database.DuplicateKeyDatabaseException
+  - Butterfly.Core.Database.UnableToConnectDatabaseException
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Database.DatabaseException.#ctor(System.String)
+  commentId: M:Butterfly.Core.Database.DatabaseException.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: Butterfly.Core.Database.DatabaseException
+  langs:
+  - csharp
+  - vb
+  name: DatabaseException(String)
+  nameWithType: DatabaseException.DatabaseException(String)
+  fullName: Butterfly.Core.Database.DatabaseException.DatabaseException(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Database/BaseDatabase.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Database/BaseDatabase.cs
+    startLine: 457
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public DatabaseException(string message)
+    parameters:
+    - id: message
+      type: System.String
+    content.vb: Public Sub New(message As String)
+  overload: Butterfly.Core.Database.DatabaseException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Database.DatabaseException.#ctor*
+  commentId: Overload:Butterfly.Core.Database.DatabaseException.#ctor
+  name: DatabaseException
+  nameWithType: DatabaseException.DatabaseException
+  fullName: Butterfly.Core.Database.DatabaseException.DatabaseException
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+shouldSkipMarkup: true

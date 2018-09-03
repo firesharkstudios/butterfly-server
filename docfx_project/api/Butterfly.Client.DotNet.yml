@@ -1,0 +1,41 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Client.DotNet
+  commentId: N:Butterfly.Client.DotNet
+  id: Butterfly.Client.DotNet
+  children:
+  - Butterfly.Client.DotNet.Subscription
+  - Butterfly.Client.DotNet.WebSocketChannelClient
+  - Butterfly.Client.DotNet.WebSocketChannelClientStatus
+  langs:
+  - csharp
+  - vb
+  name: Butterfly.Client.DotNet
+  nameWithType: Butterfly.Client.DotNet
+  fullName: Butterfly.Client.DotNet
+  type: Namespace
+  assemblies:
+  - Butterfly.Client.DotNet
+references:
+- uid: Butterfly.Client.DotNet.WebSocketChannelClientStatus
+  commentId: T:Butterfly.Client.DotNet.WebSocketChannelClientStatus
+  parent: Butterfly.Client.DotNet
+  name: WebSocketChannelClientStatus
+  nameWithType: WebSocketChannelClientStatus
+  fullName: Butterfly.Client.DotNet.WebSocketChannelClientStatus
+- uid: Butterfly.Client.DotNet.WebSocketChannelClient
+  commentId: T:Butterfly.Client.DotNet.WebSocketChannelClient
+  name: WebSocketChannelClient
+  nameWithType: WebSocketChannelClient
+  fullName: Butterfly.Client.DotNet.WebSocketChannelClient
+- uid: Butterfly.Client.DotNet.Subscription
+  commentId: T:Butterfly.Client.DotNet.Subscription
+  name: Subscription
+  nameWithType: Subscription
+  fullName: Butterfly.Client.DotNet.Subscription
+- uid: Butterfly.Client.DotNet
+  commentId: N:Butterfly.Client.DotNet
+  name: Butterfly.Client.DotNet
+  nameWithType: Butterfly.Client.DotNet
+  fullName: Butterfly.Client.DotNet
+shouldSkipMarkup: true

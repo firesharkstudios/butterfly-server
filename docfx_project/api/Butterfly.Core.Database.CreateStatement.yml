@@ -1,0 +1,798 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.CreateStatement
+  commentId: T:Butterfly.Core.Database.CreateStatement
+  id: CreateStatement
+  parent: Butterfly.Core.Database
+  children:
+  - Butterfly.Core.Database.CreateStatement.#ctor(System.String)
+  - Butterfly.Core.Database.CreateStatement.FIELD_REGEX
+  - Butterfly.Core.Database.CreateStatement.FieldDefs
+  - Butterfly.Core.Database.CreateStatement.INDEX_REGEX
+  - Butterfly.Core.Database.CreateStatement.Indexes
+  - Butterfly.Core.Database.CreateStatement.PRIMARY_KEY_REGEX
+  - Butterfly.Core.Database.CreateStatement.STATEMENT_REGEX
+  - Butterfly.Core.Database.CreateStatement.TableName
+  langs:
+  - csharp
+  - vb
+  name: CreateStatement
+  nameWithType: CreateStatement
+  fullName: Butterfly.Core.Database.CreateStatement
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/CreateStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: CreateStatement
+    path: ../Butterfly.Core/Database/Statements/CreateStatement.cs
+    startLine: 13
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  summary: "\nInternal class used to parse CREATE statements\n"
+  example: []
+  syntax:
+    content: 'public class CreateStatement : BaseStatement'
+    content.vb: >-
+      Public Class CreateStatement
+
+          Inherits BaseStatement
+  inheritance:
+  - System.Object
+  - Butterfly.Core.Database.BaseStatement
+  inheritedMembers:
+  - Butterfly.Core.Database.BaseStatement.IsSqlTableName
+  - Butterfly.Core.Database.BaseStatement.Sql
+  - Butterfly.Core.Database.BaseStatement.StatementFromRefs
+  - Butterfly.Core.Database.BaseStatement.FindStatementFromRefByTableAlias(System.String)
+  - Butterfly.Core.Database.BaseStatement.fromTableNames
+  - Butterfly.Core.Database.BaseStatement.HasTableInFrom(System.String)
+  - Butterfly.Core.Database.BaseStatement.ConfirmAllParamsUsed(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - Butterfly.Core.Database.BaseStatement.ConvertParamsToDict(System.Object,System.Boolean)
+  - Butterfly.Core.Database.BaseStatement.EQUALS_REF_REGEX
+  - Butterfly.Core.Database.BaseStatement.RemapStatementParamsToFieldValues(System.Collections.Generic.Dictionary{System.String,System.Object},Butterfly.Core.Database.StatementEqualsRef[])
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Database.CreateStatement.STATEMENT_REGEX
+  commentId: F:Butterfly.Core.Database.CreateStatement.STATEMENT_REGEX
+  id: STATEMENT_REGEX
+  parent: Butterfly.Core.Database.CreateStatement
+  langs:
+  - csharp
+  - vb
+  name: STATEMENT_REGEX
+  nameWithType: CreateStatement.STATEMENT_REGEX
+  fullName: Butterfly.Core.Database.CreateStatement.STATEMENT_REGEX
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/CreateStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: STATEMENT_REGEX
+    path: ../Butterfly.Core/Database/Statements/CreateStatement.cs
+    startLine: 14
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: protected static readonly Regex STATEMENT_REGEX
+    return:
+      type: Regex
+    content.vb: Protected Shared ReadOnly STATEMENT_REGEX As Regex
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Core.Database.CreateStatement.FIELD_REGEX
+  commentId: F:Butterfly.Core.Database.CreateStatement.FIELD_REGEX
+  id: FIELD_REGEX
+  parent: Butterfly.Core.Database.CreateStatement
+  langs:
+  - csharp
+  - vb
+  name: FIELD_REGEX
+  nameWithType: CreateStatement.FIELD_REGEX
+  fullName: Butterfly.Core.Database.CreateStatement.FIELD_REGEX
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/CreateStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: FIELD_REGEX
+    path: ../Butterfly.Core/Database/Statements/CreateStatement.cs
+    startLine: 15
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: protected static readonly Regex FIELD_REGEX
+    return:
+      type: Regex
+    content.vb: Protected Shared ReadOnly FIELD_REGEX As Regex
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Core.Database.CreateStatement.PRIMARY_KEY_REGEX
+  commentId: F:Butterfly.Core.Database.CreateStatement.PRIMARY_KEY_REGEX
+  id: PRIMARY_KEY_REGEX
+  parent: Butterfly.Core.Database.CreateStatement
+  langs:
+  - csharp
+  - vb
+  name: PRIMARY_KEY_REGEX
+  nameWithType: CreateStatement.PRIMARY_KEY_REGEX
+  fullName: Butterfly.Core.Database.CreateStatement.PRIMARY_KEY_REGEX
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/CreateStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: PRIMARY_KEY_REGEX
+    path: ../Butterfly.Core/Database/Statements/CreateStatement.cs
+    startLine: 16
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: protected static readonly Regex PRIMARY_KEY_REGEX
+    return:
+      type: Regex
+    content.vb: Protected Shared ReadOnly PRIMARY_KEY_REGEX As Regex
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Core.Database.CreateStatement.INDEX_REGEX
+  commentId: F:Butterfly.Core.Database.CreateStatement.INDEX_REGEX
+  id: INDEX_REGEX
+  parent: Butterfly.Core.Database.CreateStatement
+  langs:
+  - csharp
+  - vb
+  name: INDEX_REGEX
+  nameWithType: CreateStatement.INDEX_REGEX
+  fullName: Butterfly.Core.Database.CreateStatement.INDEX_REGEX
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/CreateStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: INDEX_REGEX
+    path: ../Butterfly.Core/Database/Statements/CreateStatement.cs
+    startLine: 17
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: protected static readonly Regex INDEX_REGEX
+    return:
+      type: Regex
+    content.vb: Protected Shared ReadOnly INDEX_REGEX As Regex
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Core.Database.CreateStatement.#ctor(System.String)
+  commentId: M:Butterfly.Core.Database.CreateStatement.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: Butterfly.Core.Database.CreateStatement
+  langs:
+  - csharp
+  - vb
+  name: CreateStatement(String)
+  nameWithType: CreateStatement.CreateStatement(String)
+  fullName: Butterfly.Core.Database.CreateStatement.CreateStatement(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/CreateStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Database/Statements/CreateStatement.cs
+    startLine: 19
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public CreateStatement(string sql)
+    parameters:
+    - id: sql
+      type: System.String
+    content.vb: Public Sub New(sql As String)
+  overload: Butterfly.Core.Database.CreateStatement.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Database.CreateStatement.TableName
+  commentId: P:Butterfly.Core.Database.CreateStatement.TableName
+  id: TableName
+  parent: Butterfly.Core.Database.CreateStatement
+  langs:
+  - csharp
+  - vb
+  name: TableName
+  nameWithType: CreateStatement.TableName
+  fullName: Butterfly.Core.Database.CreateStatement.TableName
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/CreateStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TableName
+    path: ../Butterfly.Core/Database/Statements/CreateStatement.cs
+    startLine: 69
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public string TableName { get; protected set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property TableName As String
+  overload: Butterfly.Core.Database.CreateStatement.TableName*
+  modifiers.csharp:
+  - public
+  - get
+  - protected set
+  modifiers.vb:
+  - Public
+  - Get
+  - Protected Set
+- uid: Butterfly.Core.Database.CreateStatement.FieldDefs
+  commentId: P:Butterfly.Core.Database.CreateStatement.FieldDefs
+  id: FieldDefs
+  parent: Butterfly.Core.Database.CreateStatement
+  langs:
+  - csharp
+  - vb
+  name: FieldDefs
+  nameWithType: CreateStatement.FieldDefs
+  fullName: Butterfly.Core.Database.CreateStatement.FieldDefs
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/CreateStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: FieldDefs
+    path: ../Butterfly.Core/Database/Statements/CreateStatement.cs
+    startLine: 74
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public TableFieldDef[] FieldDefs { get; protected set; }
+    parameters: []
+    return:
+      type: Butterfly.Core.Database.TableFieldDef[]
+    content.vb: Public Property FieldDefs As TableFieldDef()
+  overload: Butterfly.Core.Database.CreateStatement.FieldDefs*
+  modifiers.csharp:
+  - public
+  - get
+  - protected set
+  modifiers.vb:
+  - Public
+  - Get
+  - Protected Set
+- uid: Butterfly.Core.Database.CreateStatement.Indexes
+  commentId: P:Butterfly.Core.Database.CreateStatement.Indexes
+  id: Indexes
+  parent: Butterfly.Core.Database.CreateStatement
+  langs:
+  - csharp
+  - vb
+  name: Indexes
+  nameWithType: CreateStatement.Indexes
+  fullName: Butterfly.Core.Database.CreateStatement.Indexes
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/CreateStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Indexes
+    path: ../Butterfly.Core/Database/Statements/CreateStatement.cs
+    startLine: 79
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public TableIndex[] Indexes { get; protected set; }
+    parameters: []
+    return:
+      type: Butterfly.Core.Database.TableIndex[]
+    content.vb: Public Property Indexes As TableIndex()
+  overload: Butterfly.Core.Database.CreateStatement.Indexes*
+  modifiers.csharp:
+  - public
+  - get
+  - protected set
+  modifiers.vb:
+  - Public
+  - Get
+  - Protected Set
+references:
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Database.BaseStatement
+  commentId: T:Butterfly.Core.Database.BaseStatement
+  parent: Butterfly.Core.Database
+  name: BaseStatement
+  nameWithType: BaseStatement
+  fullName: Butterfly.Core.Database.BaseStatement
+- uid: Butterfly.Core.Database.BaseStatement.IsSqlTableName
+  commentId: P:Butterfly.Core.Database.BaseStatement.IsSqlTableName
+  parent: Butterfly.Core.Database.BaseStatement
+  name: IsSqlTableName
+  nameWithType: BaseStatement.IsSqlTableName
+  fullName: Butterfly.Core.Database.BaseStatement.IsSqlTableName
+- uid: Butterfly.Core.Database.BaseStatement.Sql
+  commentId: P:Butterfly.Core.Database.BaseStatement.Sql
+  parent: Butterfly.Core.Database.BaseStatement
+  name: Sql
+  nameWithType: BaseStatement.Sql
+  fullName: Butterfly.Core.Database.BaseStatement.Sql
+- uid: Butterfly.Core.Database.BaseStatement.StatementFromRefs
+  commentId: P:Butterfly.Core.Database.BaseStatement.StatementFromRefs
+  parent: Butterfly.Core.Database.BaseStatement
+  name: StatementFromRefs
+  nameWithType: BaseStatement.StatementFromRefs
+  fullName: Butterfly.Core.Database.BaseStatement.StatementFromRefs
+- uid: Butterfly.Core.Database.BaseStatement.FindStatementFromRefByTableAlias(System.String)
+  commentId: M:Butterfly.Core.Database.BaseStatement.FindStatementFromRefByTableAlias(System.String)
+  parent: Butterfly.Core.Database.BaseStatement
+  isExternal: true
+  name: FindStatementFromRefByTableAlias(String)
+  nameWithType: BaseStatement.FindStatementFromRefByTableAlias(String)
+  fullName: Butterfly.Core.Database.BaseStatement.FindStatementFromRefByTableAlias(System.String)
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseStatement.FindStatementFromRefByTableAlias(System.String)
+    name: FindStatementFromRefByTableAlias
+    nameWithType: BaseStatement.FindStatementFromRefByTableAlias
+    fullName: Butterfly.Core.Database.BaseStatement.FindStatementFromRefByTableAlias
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseStatement.FindStatementFromRefByTableAlias(System.String)
+    name: FindStatementFromRefByTableAlias
+    nameWithType: BaseStatement.FindStatementFromRefByTableAlias
+    fullName: Butterfly.Core.Database.BaseStatement.FindStatementFromRefByTableAlias
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseStatement.fromTableNames
+  commentId: F:Butterfly.Core.Database.BaseStatement.fromTableNames
+  parent: Butterfly.Core.Database.BaseStatement
+  name: fromTableNames
+  nameWithType: BaseStatement.fromTableNames
+  fullName: Butterfly.Core.Database.BaseStatement.fromTableNames
+- uid: Butterfly.Core.Database.BaseStatement.HasTableInFrom(System.String)
+  commentId: M:Butterfly.Core.Database.BaseStatement.HasTableInFrom(System.String)
+  parent: Butterfly.Core.Database.BaseStatement
+  isExternal: true
+  name: HasTableInFrom(String)
+  nameWithType: BaseStatement.HasTableInFrom(String)
+  fullName: Butterfly.Core.Database.BaseStatement.HasTableInFrom(System.String)
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseStatement.HasTableInFrom(System.String)
+    name: HasTableInFrom
+    nameWithType: BaseStatement.HasTableInFrom
+    fullName: Butterfly.Core.Database.BaseStatement.HasTableInFrom
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseStatement.HasTableInFrom(System.String)
+    name: HasTableInFrom
+    nameWithType: BaseStatement.HasTableInFrom
+    fullName: Butterfly.Core.Database.BaseStatement.HasTableInFrom
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseStatement.ConfirmAllParamsUsed(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:Butterfly.Core.Database.BaseStatement.ConfirmAllParamsUsed(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: Butterfly.Core.Database.BaseStatement
+  isExternal: true
+  name: ConfirmAllParamsUsed(String, System.Collections.Generic.Dictionary<String, Object>)
+  nameWithType: BaseStatement.ConfirmAllParamsUsed(String, System.Collections.Generic.Dictionary<String, Object>)
+  fullName: Butterfly.Core.Database.BaseStatement.ConfirmAllParamsUsed(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  nameWithType.vb: BaseStatement.ConfirmAllParamsUsed(String, System.Collections.Generic.Dictionary(Of String, Object))
+  fullName.vb: Butterfly.Core.Database.BaseStatement.ConfirmAllParamsUsed(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: ConfirmAllParamsUsed(String, System.Collections.Generic.Dictionary(Of String, Object))
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseStatement.ConfirmAllParamsUsed(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+    name: ConfirmAllParamsUsed
+    nameWithType: BaseStatement.ConfirmAllParamsUsed
+    fullName: Butterfly.Core.Database.BaseStatement.ConfirmAllParamsUsed
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseStatement.ConfirmAllParamsUsed(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+    name: ConfirmAllParamsUsed
+    nameWithType: BaseStatement.ConfirmAllParamsUsed
+    fullName: Butterfly.Core.Database.BaseStatement.ConfirmAllParamsUsed
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseStatement.ConvertParamsToDict(System.Object,System.Boolean)
+  commentId: M:Butterfly.Core.Database.BaseStatement.ConvertParamsToDict(System.Object,System.Boolean)
+  parent: Butterfly.Core.Database.BaseStatement
+  isExternal: true
+  name: ConvertParamsToDict(Object, Boolean)
+  nameWithType: BaseStatement.ConvertParamsToDict(Object, Boolean)
+  fullName: Butterfly.Core.Database.BaseStatement.ConvertParamsToDict(System.Object, System.Boolean)
+  nameWithType.vb: BaseStatement.ConvertParamsToDict(, Boolean)
+  fullName.vb: Butterfly.Core.Database.BaseStatement.ConvertParamsToDict(, System.Boolean)
+  name.vb: ConvertParamsToDict(, Boolean)
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseStatement.ConvertParamsToDict(System.Object,System.Boolean)
+    name: ConvertParamsToDict
+    nameWithType: BaseStatement.ConvertParamsToDict
+    fullName: Butterfly.Core.Database.BaseStatement.ConvertParamsToDict
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseStatement.ConvertParamsToDict(System.Object,System.Boolean)
+    name: ConvertParamsToDict
+    nameWithType: BaseStatement.ConvertParamsToDict
+    fullName: Butterfly.Core.Database.BaseStatement.ConvertParamsToDict
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseStatement.EQUALS_REF_REGEX
+  commentId: F:Butterfly.Core.Database.BaseStatement.EQUALS_REF_REGEX
+  parent: Butterfly.Core.Database.BaseStatement
+  name: EQUALS_REF_REGEX
+  nameWithType: BaseStatement.EQUALS_REF_REGEX
+  fullName: Butterfly.Core.Database.BaseStatement.EQUALS_REF_REGEX
+- uid: Butterfly.Core.Database.BaseStatement.RemapStatementParamsToFieldValues(System.Collections.Generic.Dictionary{System.String,System.Object},Butterfly.Core.Database.StatementEqualsRef[])
+  commentId: M:Butterfly.Core.Database.BaseStatement.RemapStatementParamsToFieldValues(System.Collections.Generic.Dictionary{System.String,System.Object},Butterfly.Core.Database.StatementEqualsRef[])
+  parent: Butterfly.Core.Database.BaseStatement
+  isExternal: true
+  name: RemapStatementParamsToFieldValues(System.Collections.Generic.Dictionary<String, Object>, StatementEqualsRef[])
+  nameWithType: BaseStatement.RemapStatementParamsToFieldValues(System.Collections.Generic.Dictionary<String, Object>, StatementEqualsRef[])
+  fullName: Butterfly.Core.Database.BaseStatement.RemapStatementParamsToFieldValues(System.Collections.Generic.Dictionary<System.String, System.Object>, Butterfly.Core.Database.StatementEqualsRef[])
+  nameWithType.vb: BaseStatement.RemapStatementParamsToFieldValues(System.Collections.Generic.Dictionary(Of String, Object), StatementEqualsRef())
+  fullName.vb: Butterfly.Core.Database.BaseStatement.RemapStatementParamsToFieldValues(System.Collections.Generic.Dictionary(Of System.String, System.Object), Butterfly.Core.Database.StatementEqualsRef())
+  name.vb: RemapStatementParamsToFieldValues(System.Collections.Generic.Dictionary(Of String, Object), StatementEqualsRef())
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseStatement.RemapStatementParamsToFieldValues(System.Collections.Generic.Dictionary{System.String,System.Object},Butterfly.Core.Database.StatementEqualsRef[])
+    name: RemapStatementParamsToFieldValues
+    nameWithType: BaseStatement.RemapStatementParamsToFieldValues
+    fullName: Butterfly.Core.Database.BaseStatement.RemapStatementParamsToFieldValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Butterfly.Core.Database.StatementEqualsRef
+    name: StatementEqualsRef
+    nameWithType: StatementEqualsRef
+    fullName: Butterfly.Core.Database.StatementEqualsRef
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseStatement.RemapStatementParamsToFieldValues(System.Collections.Generic.Dictionary{System.String,System.Object},Butterfly.Core.Database.StatementEqualsRef[])
+    name: RemapStatementParamsToFieldValues
+    nameWithType: BaseStatement.RemapStatementParamsToFieldValues
+    fullName: Butterfly.Core.Database.BaseStatement.RemapStatementParamsToFieldValues
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Butterfly.Core.Database.StatementEqualsRef
+    name: StatementEqualsRef
+    nameWithType: StatementEqualsRef
+    fullName: Butterfly.Core.Database.StatementEqualsRef
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Regex
+  isExternal: true
+  name: Regex
+  nameWithType: Regex
+  fullName: Regex
+- uid: Butterfly.Core.Database.CreateStatement.#ctor*
+  commentId: Overload:Butterfly.Core.Database.CreateStatement.#ctor
+  name: CreateStatement
+  nameWithType: CreateStatement.CreateStatement
+  fullName: Butterfly.Core.Database.CreateStatement.CreateStatement
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Butterfly.Core.Database.CreateStatement.TableName*
+  commentId: Overload:Butterfly.Core.Database.CreateStatement.TableName
+  name: TableName
+  nameWithType: CreateStatement.TableName
+  fullName: Butterfly.Core.Database.CreateStatement.TableName
+- uid: Butterfly.Core.Database.CreateStatement.FieldDefs*
+  commentId: Overload:Butterfly.Core.Database.CreateStatement.FieldDefs
+  name: FieldDefs
+  nameWithType: CreateStatement.FieldDefs
+  fullName: Butterfly.Core.Database.CreateStatement.FieldDefs
+- uid: Butterfly.Core.Database.TableFieldDef[]
+  isExternal: true
+  name: TableFieldDef[]
+  nameWithType: TableFieldDef[]
+  fullName: Butterfly.Core.Database.TableFieldDef[]
+  nameWithType.vb: TableFieldDef()
+  fullName.vb: Butterfly.Core.Database.TableFieldDef()
+  name.vb: TableFieldDef()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.TableFieldDef
+    name: TableFieldDef
+    nameWithType: TableFieldDef
+    fullName: Butterfly.Core.Database.TableFieldDef
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: Butterfly.Core.Database.TableFieldDef
+    name: TableFieldDef
+    nameWithType: TableFieldDef
+    fullName: Butterfly.Core.Database.TableFieldDef
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Butterfly.Core.Database.CreateStatement.Indexes*
+  commentId: Overload:Butterfly.Core.Database.CreateStatement.Indexes
+  name: Indexes
+  nameWithType: CreateStatement.Indexes
+  fullName: Butterfly.Core.Database.CreateStatement.Indexes
+- uid: Butterfly.Core.Database.TableIndex[]
+  isExternal: true
+  name: TableIndex[]
+  nameWithType: TableIndex[]
+  fullName: Butterfly.Core.Database.TableIndex[]
+  nameWithType.vb: TableIndex()
+  fullName.vb: Butterfly.Core.Database.TableIndex()
+  name.vb: TableIndex()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.TableIndex
+    name: TableIndex
+    nameWithType: TableIndex
+    fullName: Butterfly.Core.Database.TableIndex
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: Butterfly.Core.Database.TableIndex
+    name: TableIndex
+    nameWithType: TableIndex
+    fullName: Butterfly.Core.Database.TableIndex
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+shouldSkipMarkup: true

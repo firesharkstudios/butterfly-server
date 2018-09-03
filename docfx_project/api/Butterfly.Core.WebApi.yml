@@ -1,0 +1,63 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.WebApi
+  commentId: N:Butterfly.Core.WebApi
+  id: Butterfly.Core.WebApi
+  children:
+  - Butterfly.Core.WebApi.BaseHttpRequest
+  - Butterfly.Core.WebApi.BaseWebApi
+  - Butterfly.Core.WebApi.IHttpRequest
+  - Butterfly.Core.WebApi.IHttpResponse
+  - Butterfly.Core.WebApi.IWebApi
+  - Butterfly.Core.WebApi.WebHandler
+  langs:
+  - csharp
+  - vb
+  name: Butterfly.Core.WebApi
+  nameWithType: Butterfly.Core.WebApi
+  fullName: Butterfly.Core.WebApi
+  type: Namespace
+  assemblies:
+  - Butterfly.Core
+references:
+- uid: Butterfly.Core.WebApi.BaseHttpRequest
+  commentId: T:Butterfly.Core.WebApi.BaseHttpRequest
+  parent: Butterfly.Core.WebApi
+  name: BaseHttpRequest
+  nameWithType: BaseHttpRequest
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest
+- uid: Butterfly.Core.WebApi.BaseWebApi
+  commentId: T:Butterfly.Core.WebApi.BaseWebApi
+  parent: Butterfly.Core.WebApi
+  name: BaseWebApi
+  nameWithType: BaseWebApi
+  fullName: Butterfly.Core.WebApi.BaseWebApi
+- uid: Butterfly.Core.WebApi.IHttpRequest
+  commentId: T:Butterfly.Core.WebApi.IHttpRequest
+  parent: Butterfly.Core.WebApi
+  name: IHttpRequest
+  nameWithType: IHttpRequest
+  fullName: Butterfly.Core.WebApi.IHttpRequest
+- uid: Butterfly.Core.WebApi.IHttpResponse
+  commentId: T:Butterfly.Core.WebApi.IHttpResponse
+  parent: Butterfly.Core.WebApi
+  name: IHttpResponse
+  nameWithType: IHttpResponse
+  fullName: Butterfly.Core.WebApi.IHttpResponse
+- uid: Butterfly.Core.WebApi.IWebApi
+  commentId: T:Butterfly.Core.WebApi.IWebApi
+  parent: Butterfly.Core.WebApi
+  name: IWebApi
+  nameWithType: IWebApi
+  fullName: Butterfly.Core.WebApi.IWebApi
+- uid: Butterfly.Core.WebApi.WebHandler
+  commentId: T:Butterfly.Core.WebApi.WebHandler
+  name: WebHandler
+  nameWithType: WebHandler
+  fullName: Butterfly.Core.WebApi.WebHandler
+- uid: Butterfly.Core.WebApi
+  commentId: N:Butterfly.Core.WebApi
+  name: Butterfly.Core.WebApi
+  nameWithType: Butterfly.Core.WebApi
+  fullName: Butterfly.Core.WebApi
+shouldSkipMarkup: true

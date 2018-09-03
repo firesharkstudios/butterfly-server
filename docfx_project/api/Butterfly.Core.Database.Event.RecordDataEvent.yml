@@ -1,0 +1,366 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.Event.RecordDataEvent
+  commentId: T:Butterfly.Core.Database.Event.RecordDataEvent
+  id: RecordDataEvent
+  parent: Butterfly.Core.Database.Event
+  children:
+  - Butterfly.Core.Database.Event.RecordDataEvent.#ctor(Butterfly.Core.Database.Event.DataEventType,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - Butterfly.Core.Database.Event.RecordDataEvent.record
+  - Butterfly.Core.Database.Event.RecordDataEvent.ToString
+  langs:
+  - csharp
+  - vb
+  name: RecordDataEvent
+  nameWithType: RecordDataEvent
+  fullName: Butterfly.Core.Database.Event.RecordDataEvent
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: RecordDataEvent
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 74
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: 'public class RecordDataEvent : KeyValueDataEvent'
+    content.vb: >-
+      Public Class RecordDataEvent
+
+          Inherits KeyValueDataEvent
+  inheritance:
+  - System.Object
+  - Butterfly.Core.Database.Event.DataEvent
+  - Butterfly.Core.Database.Event.KeyValueDataEvent
+  inheritedMembers:
+  - Butterfly.Core.Database.Event.KeyValueDataEvent.name
+  - Butterfly.Core.Database.Event.KeyValueDataEvent.keyValue
+  - Butterfly.Core.Database.Event.DataEvent.dataEventType
+  - Butterfly.Core.Database.Event.DataEvent.id
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Database.Event.RecordDataEvent.record
+  commentId: F:Butterfly.Core.Database.Event.RecordDataEvent.record
+  id: record
+  parent: Butterfly.Core.Database.Event.RecordDataEvent
+  langs:
+  - csharp
+  - vb
+  name: record
+  nameWithType: RecordDataEvent.record
+  fullName: Butterfly.Core.Database.Event.RecordDataEvent.record
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: record
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 75
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public readonly System.Collections.Generic.Dictionary<string, object> record
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    content.vb: Public ReadOnly record As System.Collections.Generic.Dictionary(Of String, Object)
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Database.Event.RecordDataEvent.#ctor(Butterfly.Core.Database.Event.DataEventType,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:Butterfly.Core.Database.Event.RecordDataEvent.#ctor(Butterfly.Core.Database.Event.DataEventType,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: '#ctor(Butterfly.Core.Database.Event.DataEventType,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})'
+  parent: Butterfly.Core.Database.Event.RecordDataEvent
+  langs:
+  - csharp
+  - vb
+  name: RecordDataEvent(DataEventType, String, Object, System.Collections.Generic.Dictionary<String, Object>)
+  nameWithType: RecordDataEvent.RecordDataEvent(DataEventType, String, Object, System.Collections.Generic.Dictionary<String, Object>)
+  fullName: Butterfly.Core.Database.Event.RecordDataEvent.RecordDataEvent(Butterfly.Core.Database.Event.DataEventType, System.String, System.Object, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 77
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public RecordDataEvent(DataEventType dataEventType, string name, object keyValue, System.Collections.Generic.Dictionary<string, object> record)
+    parameters:
+    - id: dataEventType
+      type: Butterfly.Core.Database.Event.DataEventType
+    - id: name
+      type: System.String
+    - id: keyValue
+      type: System.Object
+    - id: record
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    content.vb: Public Sub New(dataEventType As DataEventType, name As String, keyValue As Object, record As System.Collections.Generic.Dictionary(Of String, Object))
+  overload: Butterfly.Core.Database.Event.RecordDataEvent.#ctor*
+  nameWithType.vb: RecordDataEvent.RecordDataEvent(DataEventType, String, Object, System.Collections.Generic.Dictionary(Of String, Object))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Database.Event.RecordDataEvent.RecordDataEvent(Butterfly.Core.Database.Event.DataEventType, System.String, System.Object, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: RecordDataEvent(DataEventType, String, Object, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.Core.Database.Event.RecordDataEvent.ToString
+  commentId: M:Butterfly.Core.Database.Event.RecordDataEvent.ToString
+  id: ToString
+  parent: Butterfly.Core.Database.Event.RecordDataEvent
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: RecordDataEvent.ToString()
+  fullName: Butterfly.Core.Database.Event.RecordDataEvent.ToString()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ToString
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 81
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString As String
+  overridden: Butterfly.Core.Database.Event.KeyValueDataEvent.ToString
+  overload: Butterfly.Core.Database.Event.RecordDataEvent.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: Butterfly.Core.Database.Event
+  commentId: N:Butterfly.Core.Database.Event
+  name: Butterfly.Core.Database.Event
+  nameWithType: Butterfly.Core.Database.Event
+  fullName: Butterfly.Core.Database.Event
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Database.Event.DataEvent
+  commentId: T:Butterfly.Core.Database.Event.DataEvent
+  parent: Butterfly.Core.Database.Event
+  name: DataEvent
+  nameWithType: DataEvent
+  fullName: Butterfly.Core.Database.Event.DataEvent
+- uid: Butterfly.Core.Database.Event.KeyValueDataEvent
+  commentId: T:Butterfly.Core.Database.Event.KeyValueDataEvent
+  parent: Butterfly.Core.Database.Event
+  name: KeyValueDataEvent
+  nameWithType: KeyValueDataEvent
+  fullName: Butterfly.Core.Database.Event.KeyValueDataEvent
+- uid: Butterfly.Core.Database.Event.KeyValueDataEvent.name
+  commentId: F:Butterfly.Core.Database.Event.KeyValueDataEvent.name
+  parent: Butterfly.Core.Database.Event.KeyValueDataEvent
+  name: name
+  nameWithType: KeyValueDataEvent.name
+  fullName: Butterfly.Core.Database.Event.KeyValueDataEvent.name
+- uid: Butterfly.Core.Database.Event.KeyValueDataEvent.keyValue
+  commentId: F:Butterfly.Core.Database.Event.KeyValueDataEvent.keyValue
+  parent: Butterfly.Core.Database.Event.KeyValueDataEvent
+  name: keyValue
+  nameWithType: KeyValueDataEvent.keyValue
+  fullName: Butterfly.Core.Database.Event.KeyValueDataEvent.keyValue
+- uid: Butterfly.Core.Database.Event.DataEvent.dataEventType
+  commentId: F:Butterfly.Core.Database.Event.DataEvent.dataEventType
+  parent: Butterfly.Core.Database.Event.DataEvent
+  name: dataEventType
+  nameWithType: DataEvent.dataEventType
+  fullName: Butterfly.Core.Database.Event.DataEvent.dataEventType
+- uid: Butterfly.Core.Database.Event.DataEvent.id
+  commentId: P:Butterfly.Core.Database.Event.DataEvent.id
+  parent: Butterfly.Core.Database.Event.DataEvent
+  name: id
+  nameWithType: DataEvent.id
+  fullName: Butterfly.Core.Database.Event.DataEvent.id
+- uid: System.Collections.Generic.Dictionary{System.String,System.Object}
+  commentId: '!:System.Collections.Generic.Dictionary{System.String,System.Object}'
+  definition: System.Collections.Generic.Dictionary`2
+  name: System.Collections.Generic.Dictionary<String, Object>
+  nameWithType: System.Collections.Generic.Dictionary<String, Object>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.Object>
+  nameWithType.vb: System.Collections.Generic.Dictionary(Of String, Object)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.Object)
+  name.vb: System.Collections.Generic.Dictionary(Of String, Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: System.Collections.Generic.Dictionary<, >
+  nameWithType: System.Collections.Generic.Dictionary<, >
+  fullName: System.Collections.Generic.Dictionary<, >
+  nameWithType.vb: System.Collections.Generic.Dictionary(Of , )
+  fullName.vb: System.Collections.Generic.Dictionary(Of , )
+  name.vb: System.Collections.Generic.Dictionary(Of , )
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.Event.RecordDataEvent.#ctor*
+  commentId: Overload:Butterfly.Core.Database.Event.RecordDataEvent.#ctor
+  name: RecordDataEvent
+  nameWithType: RecordDataEvent.RecordDataEvent
+  fullName: Butterfly.Core.Database.Event.RecordDataEvent.RecordDataEvent
+- uid: Butterfly.Core.Database.Event.DataEventType
+  commentId: T:Butterfly.Core.Database.Event.DataEventType
+  parent: Butterfly.Core.Database.Event
+  name: DataEventType
+  nameWithType: DataEventType
+  fullName: Butterfly.Core.Database.Event.DataEventType
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Butterfly.Core.Database.Event.KeyValueDataEvent.ToString
+  commentId: M:Butterfly.Core.Database.Event.KeyValueDataEvent.ToString
+  parent: Butterfly.Core.Database.Event.KeyValueDataEvent
+  name: ToString()
+  nameWithType: KeyValueDataEvent.ToString()
+  fullName: Butterfly.Core.Database.Event.KeyValueDataEvent.ToString()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.Event.KeyValueDataEvent.ToString
+    name: ToString
+    nameWithType: KeyValueDataEvent.ToString
+    fullName: Butterfly.Core.Database.Event.KeyValueDataEvent.ToString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.Event.KeyValueDataEvent.ToString
+    name: ToString
+    nameWithType: KeyValueDataEvent.ToString
+    fullName: Butterfly.Core.Database.Event.KeyValueDataEvent.ToString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.Event.RecordDataEvent.ToString*
+  commentId: Overload:Butterfly.Core.Database.Event.RecordDataEvent.ToString
+  name: ToString
+  nameWithType: RecordDataEvent.ToString
+  fullName: Butterfly.Core.Database.Event.RecordDataEvent.ToString
+shouldSkipMarkup: true

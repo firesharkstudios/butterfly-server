@@ -1,0 +1,133 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.MySql.Test.SQLiteTest
+  commentId: T:Butterfly.MySql.Test.SQLiteTest
+  id: SQLiteTest
+  parent: Butterfly.MySql.Test
+  children:
+  - Butterfly.MySql.Test.SQLiteTest.TestDatabase
+  - Butterfly.MySql.Test.SQLiteTest.TestDynamic
+  langs:
+  - csharp
+  - vb
+  name: SQLiteTest
+  nameWithType: SQLiteTest
+  fullName: Butterfly.MySql.Test.SQLiteTest
+  type: Class
+  source:
+    remote:
+      path: Butterfly.SQLite.Test/SQLiteTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: SQLiteTest
+    path: ../Butterfly.SQLite.Test/SQLiteTest.cs
+    startLine: 11
+  assemblies:
+  - Butterfly.SQLite.Test
+  namespace: Butterfly.MySql.Test
+  syntax:
+    content: 'public class SQLiteTest : object'
+    content.vb: >-
+      Public Class SQLiteTest
+
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.MySql.Test.SQLiteTest.TestDatabase
+  commentId: M:Butterfly.MySql.Test.SQLiteTest.TestDatabase
+  id: TestDatabase
+  parent: Butterfly.MySql.Test.SQLiteTest
+  langs:
+  - csharp
+  - vb
+  name: TestDatabase()
+  nameWithType: SQLiteTest.TestDatabase()
+  fullName: Butterfly.MySql.Test.SQLiteTest.TestDatabase()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.SQLite.Test/SQLiteTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TestDatabase
+    path: ../Butterfly.SQLite.Test/SQLiteTest.cs
+    startLine: 13
+  assemblies:
+  - Butterfly.SQLite.Test
+  namespace: Butterfly.MySql.Test
+  syntax:
+    content: public Task TestDatabase()
+    return:
+      type: Task
+    content.vb: Public Function TestDatabase As Task
+  overload: Butterfly.MySql.Test.SQLiteTest.TestDatabase*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.MySql.Test.SQLiteTest.TestDynamic
+  commentId: M:Butterfly.MySql.Test.SQLiteTest.TestDynamic
+  id: TestDynamic
+  parent: Butterfly.MySql.Test.SQLiteTest
+  langs:
+  - csharp
+  - vb
+  name: TestDynamic()
+  nameWithType: SQLiteTest.TestDynamic()
+  fullName: Butterfly.MySql.Test.SQLiteTest.TestDynamic()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.SQLite.Test/SQLiteTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TestDynamic
+    path: ../Butterfly.SQLite.Test/SQLiteTest.cs
+    startLine: 20
+  assemblies:
+  - Butterfly.SQLite.Test
+  namespace: Butterfly.MySql.Test
+  syntax:
+    content: public Task TestDynamic()
+    return:
+      type: Task
+    content.vb: Public Function TestDynamic As Task
+  overload: Butterfly.MySql.Test.SQLiteTest.TestDynamic*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.MySql.Test
+  commentId: N:Butterfly.MySql.Test
+  name: Butterfly.MySql.Test
+  nameWithType: Butterfly.MySql.Test
+  fullName: Butterfly.MySql.Test
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.MySql.Test.SQLiteTest.TestDatabase*
+  commentId: Overload:Butterfly.MySql.Test.SQLiteTest.TestDatabase
+  name: TestDatabase
+  nameWithType: SQLiteTest.TestDatabase
+  fullName: Butterfly.MySql.Test.SQLiteTest.TestDatabase
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Butterfly.MySql.Test.SQLiteTest.TestDynamic*
+  commentId: Overload:Butterfly.MySql.Test.SQLiteTest.TestDynamic
+  name: TestDynamic
+  nameWithType: SQLiteTest.TestDynamic
+  fullName: Butterfly.MySql.Test.SQLiteTest.TestDynamic
+shouldSkipMarkup: true

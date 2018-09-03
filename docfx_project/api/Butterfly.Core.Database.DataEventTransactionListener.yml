@@ -1,0 +1,387 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.DataEventTransactionListener
+  commentId: T:Butterfly.Core.Database.DataEventTransactionListener
+  id: DataEventTransactionListener
+  parent: Butterfly.Core.Database
+  children:
+  - Butterfly.Core.Database.DataEventTransactionListener.#ctor(Action{Butterfly.Core.Database.Event.DataEventTransaction})
+  - Butterfly.Core.Database.DataEventTransactionListener.#ctor(Func{Butterfly.Core.Database.Event.DataEventTransaction,Task})
+  - Butterfly.Core.Database.DataEventTransactionListener.listener
+  - Butterfly.Core.Database.DataEventTransactionListener.listenerAsync
+  langs:
+  - csharp
+  - vb
+  name: DataEventTransactionListener
+  nameWithType: DataEventTransactionListener
+  fullName: Butterfly.Core.Database.DataEventTransactionListener
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Database/DataEventTransactionListener.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DataEventTransactionListener
+    path: ../Butterfly.Core/Database/DataEventTransactionListener.cs
+    startLine: 13
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  summary: "\nInternal class used to store references to data event transaction listeners\n"
+  example: []
+  syntax:
+    content: 'public class DataEventTransactionListener : object'
+    content.vb: >-
+      Public Class DataEventTransactionListener
+
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Database.DataEventTransactionListener.listener
+  commentId: F:Butterfly.Core.Database.DataEventTransactionListener.listener
+  id: listener
+  parent: Butterfly.Core.Database.DataEventTransactionListener
+  langs:
+  - csharp
+  - vb
+  name: listener
+  nameWithType: DataEventTransactionListener.listener
+  fullName: Butterfly.Core.Database.DataEventTransactionListener.listener
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/DataEventTransactionListener.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: listener
+    path: ../Butterfly.Core/Database/DataEventTransactionListener.cs
+    startLine: 14
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public readonly Action<DataEventTransaction> listener
+    return:
+      type: Action{Butterfly.Core.Database.Event.DataEventTransaction}
+    content.vb: Public ReadOnly listener As Action(Of DataEventTransaction)
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Database.DataEventTransactionListener.listenerAsync
+  commentId: F:Butterfly.Core.Database.DataEventTransactionListener.listenerAsync
+  id: listenerAsync
+  parent: Butterfly.Core.Database.DataEventTransactionListener
+  langs:
+  - csharp
+  - vb
+  name: listenerAsync
+  nameWithType: DataEventTransactionListener.listenerAsync
+  fullName: Butterfly.Core.Database.DataEventTransactionListener.listenerAsync
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/DataEventTransactionListener.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: listenerAsync
+    path: ../Butterfly.Core/Database/DataEventTransactionListener.cs
+    startLine: 15
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public readonly Func<DataEventTransaction, Task> listenerAsync
+    return:
+      type: Func{Butterfly.Core.Database.Event.DataEventTransaction,Task}
+    content.vb: Public ReadOnly listenerAsync As Func(Of DataEventTransaction, Task)
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Database.DataEventTransactionListener.#ctor(Action{Butterfly.Core.Database.Event.DataEventTransaction})
+  commentId: M:Butterfly.Core.Database.DataEventTransactionListener.#ctor(Action{Butterfly.Core.Database.Event.DataEventTransaction})
+  id: '#ctor(Action{Butterfly.Core.Database.Event.DataEventTransaction})'
+  parent: Butterfly.Core.Database.DataEventTransactionListener
+  langs:
+  - csharp
+  - vb
+  name: DataEventTransactionListener(Action<DataEventTransaction>)
+  nameWithType: DataEventTransactionListener.DataEventTransactionListener(Action<DataEventTransaction>)
+  fullName: Butterfly.Core.Database.DataEventTransactionListener.DataEventTransactionListener(Action<Butterfly.Core.Database.Event.DataEventTransaction>)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Database/DataEventTransactionListener.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Database/DataEventTransactionListener.cs
+    startLine: 17
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public DataEventTransactionListener(Action<DataEventTransaction> listener)
+    parameters:
+    - id: listener
+      type: Action{Butterfly.Core.Database.Event.DataEventTransaction}
+    content.vb: Public Sub New(listener As Action(Of DataEventTransaction))
+  overload: Butterfly.Core.Database.DataEventTransactionListener.#ctor*
+  nameWithType.vb: DataEventTransactionListener.DataEventTransactionListener(Action(Of DataEventTransaction))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Database.DataEventTransactionListener.DataEventTransactionListener(Action(Of Butterfly.Core.Database.Event.DataEventTransaction))
+  name.vb: DataEventTransactionListener(Action(Of DataEventTransaction))
+- uid: Butterfly.Core.Database.DataEventTransactionListener.#ctor(Func{Butterfly.Core.Database.Event.DataEventTransaction,Task})
+  commentId: M:Butterfly.Core.Database.DataEventTransactionListener.#ctor(Func{Butterfly.Core.Database.Event.DataEventTransaction,Task})
+  id: '#ctor(Func{Butterfly.Core.Database.Event.DataEventTransaction,Task})'
+  parent: Butterfly.Core.Database.DataEventTransactionListener
+  langs:
+  - csharp
+  - vb
+  name: DataEventTransactionListener(Func<DataEventTransaction, Task>)
+  nameWithType: DataEventTransactionListener.DataEventTransactionListener(Func<DataEventTransaction, Task>)
+  fullName: Butterfly.Core.Database.DataEventTransactionListener.DataEventTransactionListener(Func<Butterfly.Core.Database.Event.DataEventTransaction, Task>)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Database/DataEventTransactionListener.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Database/DataEventTransactionListener.cs
+    startLine: 22
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public DataEventTransactionListener(Func<DataEventTransaction, Task> listener)
+    parameters:
+    - id: listener
+      type: Func{Butterfly.Core.Database.Event.DataEventTransaction,Task}
+    content.vb: Public Sub New(listener As Func(Of DataEventTransaction, Task))
+  overload: Butterfly.Core.Database.DataEventTransactionListener.#ctor*
+  nameWithType.vb: DataEventTransactionListener.DataEventTransactionListener(Func(Of DataEventTransaction, Task))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Database.DataEventTransactionListener.DataEventTransactionListener(Func(Of Butterfly.Core.Database.Event.DataEventTransaction, Task))
+  name.vb: DataEventTransactionListener(Func(Of DataEventTransaction, Task))
+references:
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Action{Butterfly.Core.Database.Event.DataEventTransaction}
+  commentId: '!:Action{Butterfly.Core.Database.Event.DataEventTransaction}'
+  definition: Action`1
+  name: Action<DataEventTransaction>
+  nameWithType: Action<DataEventTransaction>
+  fullName: Action<Butterfly.Core.Database.Event.DataEventTransaction>
+  nameWithType.vb: Action(Of DataEventTransaction)
+  fullName.vb: Action(Of Butterfly.Core.Database.Event.DataEventTransaction)
+  name.vb: Action(Of DataEventTransaction)
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Butterfly.Core.Database.Event.DataEventTransaction
+    name: DataEventTransaction
+    nameWithType: DataEventTransaction
+    fullName: Butterfly.Core.Database.Event.DataEventTransaction
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Butterfly.Core.Database.Event.DataEventTransaction
+    name: DataEventTransaction
+    nameWithType: DataEventTransaction
+    fullName: Butterfly.Core.Database.Event.DataEventTransaction
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action`1
+  isExternal: true
+  name: Action<>
+  nameWithType: Action<>
+  fullName: Action<>
+  nameWithType.vb: Action(Of )
+  fullName.vb: Action(Of )
+  name.vb: Action(Of )
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func{Butterfly.Core.Database.Event.DataEventTransaction,Task}
+  commentId: '!:Func{Butterfly.Core.Database.Event.DataEventTransaction,Task}'
+  definition: Func`2
+  name: Func<DataEventTransaction, Task>
+  nameWithType: Func<DataEventTransaction, Task>
+  fullName: Func<Butterfly.Core.Database.Event.DataEventTransaction, Task>
+  nameWithType.vb: Func(Of DataEventTransaction, Task)
+  fullName.vb: Func(Of Butterfly.Core.Database.Event.DataEventTransaction, Task)
+  name.vb: Func(Of DataEventTransaction, Task)
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Butterfly.Core.Database.Event.DataEventTransaction
+    name: DataEventTransaction
+    nameWithType: DataEventTransaction
+    fullName: Butterfly.Core.Database.Event.DataEventTransaction
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Butterfly.Core.Database.Event.DataEventTransaction
+    name: DataEventTransaction
+    nameWithType: DataEventTransaction
+    fullName: Butterfly.Core.Database.Event.DataEventTransaction
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func`2
+  isExternal: true
+  name: Func<, >
+  nameWithType: Func<, >
+  fullName: Func<, >
+  nameWithType.vb: Func(Of , )
+  fullName.vb: Func(Of , )
+  name.vb: Func(Of , )
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.DataEventTransactionListener.#ctor*
+  commentId: Overload:Butterfly.Core.Database.DataEventTransactionListener.#ctor
+  name: DataEventTransactionListener
+  nameWithType: DataEventTransactionListener.DataEventTransactionListener
+  fullName: Butterfly.Core.Database.DataEventTransactionListener.DataEventTransactionListener
+shouldSkipMarkup: true

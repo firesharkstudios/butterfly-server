@@ -1,0 +1,237 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.Event.DataEvent
+  commentId: T:Butterfly.Core.Database.Event.DataEvent
+  id: DataEvent
+  parent: Butterfly.Core.Database.Event
+  children:
+  - Butterfly.Core.Database.Event.DataEvent.#ctor(Butterfly.Core.Database.Event.DataEventType)
+  - Butterfly.Core.Database.Event.DataEvent.dataEventType
+  - Butterfly.Core.Database.Event.DataEvent.id
+  - Butterfly.Core.Database.Event.DataEvent.ToString
+  langs:
+  - csharp
+  - vb
+  name: DataEvent
+  nameWithType: DataEvent
+  fullName: Butterfly.Core.Database.Event.DataEvent
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DataEvent
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 22
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  summary: "\nRepresents the initial data or a change in the data.  The <xref href=\"Butterfly.Core.Database.Event.DataEvent.dataEventType\" data-throw-if-not-resolved=\"false\"></xref> indicates \nthe type of change and the <see cref=\"!:name\"></see> indicates the table or view name.<p></p>\n"
+  example: []
+  syntax:
+    content: 'public class DataEvent : object'
+    content.vb: >-
+      Public Class DataEvent
+
+          Inherits Object
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Butterfly.Core.Database.Event.InitialBeginDataEvent
+  - Butterfly.Core.Database.Event.InitialEndDataEvent
+  - Butterfly.Core.Database.Event.KeyValueDataEvent
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Database.Event.DataEvent.dataEventType
+  commentId: F:Butterfly.Core.Database.Event.DataEvent.dataEventType
+  id: dataEventType
+  parent: Butterfly.Core.Database.Event.DataEvent
+  langs:
+  - csharp
+  - vb
+  name: dataEventType
+  nameWithType: DataEvent.dataEventType
+  fullName: Butterfly.Core.Database.Event.DataEvent.dataEventType
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: dataEventType
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 24
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public readonly DataEventType dataEventType
+    return:
+      type: Butterfly.Core.Database.Event.DataEventType
+    content.vb: Public ReadOnly dataEventType As DataEventType
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Database.Event.DataEvent.#ctor(Butterfly.Core.Database.Event.DataEventType)
+  commentId: M:Butterfly.Core.Database.Event.DataEvent.#ctor(Butterfly.Core.Database.Event.DataEventType)
+  id: '#ctor(Butterfly.Core.Database.Event.DataEventType)'
+  parent: Butterfly.Core.Database.Event.DataEvent
+  langs:
+  - csharp
+  - vb
+  name: DataEvent(DataEventType)
+  nameWithType: DataEvent.DataEvent(DataEventType)
+  fullName: Butterfly.Core.Database.Event.DataEvent.DataEvent(Butterfly.Core.Database.Event.DataEventType)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 26
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public DataEvent(DataEventType dataEventType)
+    parameters:
+    - id: dataEventType
+      type: Butterfly.Core.Database.Event.DataEventType
+    content.vb: Public Sub New(dataEventType As DataEventType)
+  overload: Butterfly.Core.Database.Event.DataEvent.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Database.Event.DataEvent.id
+  commentId: P:Butterfly.Core.Database.Event.DataEvent.id
+  id: id
+  parent: Butterfly.Core.Database.Event.DataEvent
+  langs:
+  - csharp
+  - vb
+  name: id
+  nameWithType: DataEvent.id
+  fullName: Butterfly.Core.Database.Event.DataEvent.id
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: id
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 31
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public string id { get; protected set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property id As String
+  overload: Butterfly.Core.Database.Event.DataEvent.id*
+  modifiers.csharp:
+  - public
+  - get
+  - protected set
+  modifiers.vb:
+  - Public
+  - Get
+  - Protected Set
+- uid: Butterfly.Core.Database.Event.DataEvent.ToString
+  commentId: M:Butterfly.Core.Database.Event.DataEvent.ToString
+  id: ToString
+  parent: Butterfly.Core.Database.Event.DataEvent
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: DataEvent.ToString()
+  fullName: Butterfly.Core.Database.Event.DataEvent.ToString()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ToString
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 36
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString As String
+  overload: Butterfly.Core.Database.Event.DataEvent.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: Butterfly.Core.Database.Event.DataEvent.dataEventType
+  commentId: F:Butterfly.Core.Database.Event.DataEvent.dataEventType
+  parent: Butterfly.Core.Database.Event.DataEvent
+  name: dataEventType
+  nameWithType: DataEvent.dataEventType
+  fullName: Butterfly.Core.Database.Event.DataEvent.dataEventType
+- uid: Butterfly.Core.Database.Event
+  commentId: N:Butterfly.Core.Database.Event
+  name: Butterfly.Core.Database.Event
+  nameWithType: Butterfly.Core.Database.Event
+  fullName: Butterfly.Core.Database.Event
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Database.Event.DataEvent
+  commentId: T:Butterfly.Core.Database.Event.DataEvent
+  parent: Butterfly.Core.Database.Event
+  name: DataEvent
+  nameWithType: DataEvent
+  fullName: Butterfly.Core.Database.Event.DataEvent
+- uid: Butterfly.Core.Database.Event.DataEventType
+  commentId: T:Butterfly.Core.Database.Event.DataEventType
+  parent: Butterfly.Core.Database.Event
+  name: DataEventType
+  nameWithType: DataEventType
+  fullName: Butterfly.Core.Database.Event.DataEventType
+- uid: Butterfly.Core.Database.Event.DataEvent.#ctor*
+  commentId: Overload:Butterfly.Core.Database.Event.DataEvent.#ctor
+  name: DataEvent
+  nameWithType: DataEvent.DataEvent
+  fullName: Butterfly.Core.Database.Event.DataEvent.DataEvent
+- uid: Butterfly.Core.Database.Event.DataEvent.id*
+  commentId: Overload:Butterfly.Core.Database.Event.DataEvent.id
+  name: id
+  nameWithType: DataEvent.id
+  fullName: Butterfly.Core.Database.Event.DataEvent.id
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Butterfly.Core.Database.Event.DataEvent.ToString*
+  commentId: Overload:Butterfly.Core.Database.Event.DataEvent.ToString
+  name: ToString
+  nameWithType: DataEvent.ToString
+  fullName: Butterfly.Core.Database.Event.DataEvent.ToString
+shouldSkipMarkup: true

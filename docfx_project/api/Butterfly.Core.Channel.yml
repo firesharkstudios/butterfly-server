@@ -1,0 +1,63 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Channel
+  commentId: N:Butterfly.Core.Channel
+  id: Butterfly.Core.Channel
+  children:
+  - Butterfly.Core.Channel.BaseChannelConnection
+  - Butterfly.Core.Channel.BaseSubscriptionApi
+  - Butterfly.Core.Channel.Channel
+  - Butterfly.Core.Channel.ChannelSubscription
+  - Butterfly.Core.Channel.IChannelConnection
+  - Butterfly.Core.Channel.ISubscriptionApi
+  langs:
+  - csharp
+  - vb
+  name: Butterfly.Core.Channel
+  nameWithType: Butterfly.Core.Channel
+  fullName: Butterfly.Core.Channel
+  type: Namespace
+  assemblies:
+  - Butterfly.Core
+references:
+- uid: Butterfly.Core.Channel.BaseChannelConnection
+  commentId: T:Butterfly.Core.Channel.BaseChannelConnection
+  parent: Butterfly.Core.Channel
+  name: BaseChannelConnection
+  nameWithType: BaseChannelConnection
+  fullName: Butterfly.Core.Channel.BaseChannelConnection
+- uid: Butterfly.Core.Channel.BaseSubscriptionApi
+  commentId: T:Butterfly.Core.Channel.BaseSubscriptionApi
+  parent: Butterfly.Core.Channel
+  name: BaseSubscriptionApi
+  nameWithType: BaseSubscriptionApi
+  fullName: Butterfly.Core.Channel.BaseSubscriptionApi
+- uid: Butterfly.Core.Channel.Channel
+  commentId: T:Butterfly.Core.Channel.Channel
+  name: Channel
+  nameWithType: Channel
+  fullName: Butterfly.Core.Channel.Channel
+- uid: Butterfly.Core.Channel.ChannelSubscription
+  commentId: T:Butterfly.Core.Channel.ChannelSubscription
+  parent: Butterfly.Core.Channel
+  name: ChannelSubscription
+  nameWithType: ChannelSubscription
+  fullName: Butterfly.Core.Channel.ChannelSubscription
+- uid: Butterfly.Core.Channel.IChannelConnection
+  commentId: T:Butterfly.Core.Channel.IChannelConnection
+  parent: Butterfly.Core.Channel
+  name: IChannelConnection
+  nameWithType: IChannelConnection
+  fullName: Butterfly.Core.Channel.IChannelConnection
+- uid: Butterfly.Core.Channel.ISubscriptionApi
+  commentId: T:Butterfly.Core.Channel.ISubscriptionApi
+  parent: Butterfly.Core.Channel
+  name: ISubscriptionApi
+  nameWithType: ISubscriptionApi
+  fullName: Butterfly.Core.Channel.ISubscriptionApi
+- uid: Butterfly.Core.Channel
+  commentId: N:Butterfly.Core.Channel
+  name: Butterfly.Core.Channel
+  nameWithType: Butterfly.Core.Channel
+  fullName: Butterfly.Core.Channel
+shouldSkipMarkup: true

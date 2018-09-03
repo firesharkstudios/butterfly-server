@@ -1,0 +1,53 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Test
+  commentId: N:Butterfly.Core.Test
+  id: Butterfly.Core.Test
+  children:
+  - Butterfly.Core.Test.AuthTest
+  - Butterfly.Core.Test.ChannelUnitTest
+  - Butterfly.Core.Test.DatabaseUnitTest
+  - Butterfly.Core.Test.DynamicUnitTest
+  - Butterfly.Core.Test.TestDisposable
+  - Butterfly.Core.Test.WebApiUnitTest
+  langs:
+  - csharp
+  - vb
+  name: Butterfly.Core.Test
+  nameWithType: Butterfly.Core.Test
+  fullName: Butterfly.Core.Test
+  type: Namespace
+  assemblies:
+  - Butterfly.Core.Test
+references:
+- uid: Butterfly.Core.Test.AuthTest
+  commentId: T:Butterfly.Core.Test.AuthTest
+  name: AuthTest
+  nameWithType: AuthTest
+  fullName: Butterfly.Core.Test.AuthTest
+- uid: Butterfly.Core.Test.ChannelUnitTest
+  commentId: T:Butterfly.Core.Test.ChannelUnitTest
+  name: ChannelUnitTest
+  nameWithType: ChannelUnitTest
+  fullName: Butterfly.Core.Test.ChannelUnitTest
+- uid: Butterfly.Core.Test.TestDisposable
+  commentId: T:Butterfly.Core.Test.TestDisposable
+  name: TestDisposable
+  nameWithType: TestDisposable
+  fullName: Butterfly.Core.Test.TestDisposable
+- uid: Butterfly.Core.Test.DatabaseUnitTest
+  commentId: T:Butterfly.Core.Test.DatabaseUnitTest
+  name: DatabaseUnitTest
+  nameWithType: DatabaseUnitTest
+  fullName: Butterfly.Core.Test.DatabaseUnitTest
+- uid: Butterfly.Core.Test.DynamicUnitTest
+  commentId: T:Butterfly.Core.Test.DynamicUnitTest
+  name: DynamicUnitTest
+  nameWithType: DynamicUnitTest
+  fullName: Butterfly.Core.Test.DynamicUnitTest
+- uid: Butterfly.Core.Test.WebApiUnitTest
+  commentId: T:Butterfly.Core.Test.WebApiUnitTest
+  name: WebApiUnitTest
+  nameWithType: WebApiUnitTest
+  fullName: Butterfly.Core.Test.WebApiUnitTest
+shouldSkipMarkup: true

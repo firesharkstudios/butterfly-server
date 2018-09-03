@@ -1,0 +1,63 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Notify
+  commentId: N:Butterfly.Core.Notify
+  id: Butterfly.Core.Notify
+  children:
+  - Butterfly.Core.Notify.BaseNotifyMessageSender
+  - Butterfly.Core.Notify.INotifyMessageSender
+  - Butterfly.Core.Notify.NotifyManager
+  - Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  - Butterfly.Core.Notify.NotifyMessage
+  - Butterfly.Core.Notify.NotifyMessageType
+  langs:
+  - csharp
+  - vb
+  name: Butterfly.Core.Notify
+  nameWithType: Butterfly.Core.Notify
+  fullName: Butterfly.Core.Notify
+  type: Namespace
+  assemblies:
+  - Butterfly.Core
+references:
+- uid: Butterfly.Core.Notify.BaseNotifyMessageSender
+  commentId: T:Butterfly.Core.Notify.BaseNotifyMessageSender
+  parent: Butterfly.Core.Notify
+  name: BaseNotifyMessageSender
+  nameWithType: BaseNotifyMessageSender
+  fullName: Butterfly.Core.Notify.BaseNotifyMessageSender
+- uid: Butterfly.Core.Notify.INotifyMessageSender
+  commentId: T:Butterfly.Core.Notify.INotifyMessageSender
+  parent: Butterfly.Core.Notify
+  name: INotifyMessageSender
+  nameWithType: INotifyMessageSender
+  fullName: Butterfly.Core.Notify.INotifyMessageSender
+- uid: Butterfly.Core.Notify.NotifyMessageType
+  commentId: T:Butterfly.Core.Notify.NotifyMessageType
+  parent: Butterfly.Core.Notify
+  name: NotifyMessageType
+  nameWithType: NotifyMessageType
+  fullName: Butterfly.Core.Notify.NotifyMessageType
+- uid: Butterfly.Core.Notify.NotifyManager
+  commentId: T:Butterfly.Core.Notify.NotifyManager
+  name: NotifyManager
+  nameWithType: NotifyManager
+  fullName: Butterfly.Core.Notify.NotifyManager
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  commentId: T:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  parent: Butterfly.Core.Notify
+  name: NotifyManager.NotifyMessageEngine
+  nameWithType: NotifyManager.NotifyMessageEngine
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+- uid: Butterfly.Core.Notify.NotifyMessage
+  commentId: T:Butterfly.Core.Notify.NotifyMessage
+  parent: Butterfly.Core.Notify
+  name: NotifyMessage
+  nameWithType: NotifyMessage
+  fullName: Butterfly.Core.Notify.NotifyMessage
+- uid: Butterfly.Core.Notify
+  commentId: N:Butterfly.Core.Notify
+  name: Butterfly.Core.Notify
+  nameWithType: Butterfly.Core.Notify
+  fullName: Butterfly.Core.Notify
+shouldSkipMarkup: true

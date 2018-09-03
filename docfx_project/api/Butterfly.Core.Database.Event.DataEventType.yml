@@ -1,0 +1,245 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.Event.DataEventType
+  commentId: T:Butterfly.Core.Database.Event.DataEventType
+  id: DataEventType
+  parent: Butterfly.Core.Database.Event
+  children:
+  - Butterfly.Core.Database.Event.DataEventType.Delete
+  - Butterfly.Core.Database.Event.DataEventType.Initial
+  - Butterfly.Core.Database.Event.DataEventType.InitialBegin
+  - Butterfly.Core.Database.Event.DataEventType.InitialEnd
+  - Butterfly.Core.Database.Event.DataEventType.Insert
+  - Butterfly.Core.Database.Event.DataEventType.Update
+  langs:
+  - csharp
+  - vb
+  name: DataEventType
+  nameWithType: DataEventType
+  fullName: Butterfly.Core.Database.Event.DataEventType
+  type: Enum
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DataEventType
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 9
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: 'public enum DataEventType : int'
+    content.vb: Public Enum DataEventType As Integer
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: Butterfly.Core.Database.Event.DataEventType.InitialBegin
+  commentId: F:Butterfly.Core.Database.Event.DataEventType.InitialBegin
+  id: InitialBegin
+  parent: Butterfly.Core.Database.Event.DataEventType
+  langs:
+  - csharp
+  - vb
+  name: InitialBegin
+  nameWithType: DataEventType.InitialBegin
+  fullName: Butterfly.Core.Database.Event.DataEventType.InitialBegin
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: InitialBegin
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 10
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: InitialBegin = 0
+    return:
+      type: Butterfly.Core.Database.Event.DataEventType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Butterfly.Core.Database.Event.DataEventType.Initial
+  commentId: F:Butterfly.Core.Database.Event.DataEventType.Initial
+  id: Initial
+  parent: Butterfly.Core.Database.Event.DataEventType
+  langs:
+  - csharp
+  - vb
+  name: Initial
+  nameWithType: DataEventType.Initial
+  fullName: Butterfly.Core.Database.Event.DataEventType.Initial
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Initial
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 11
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: Initial = 1
+    return:
+      type: Butterfly.Core.Database.Event.DataEventType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Butterfly.Core.Database.Event.DataEventType.InitialEnd
+  commentId: F:Butterfly.Core.Database.Event.DataEventType.InitialEnd
+  id: InitialEnd
+  parent: Butterfly.Core.Database.Event.DataEventType
+  langs:
+  - csharp
+  - vb
+  name: InitialEnd
+  nameWithType: DataEventType.InitialEnd
+  fullName: Butterfly.Core.Database.Event.DataEventType.InitialEnd
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: InitialEnd
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 12
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: InitialEnd = 2
+    return:
+      type: Butterfly.Core.Database.Event.DataEventType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Butterfly.Core.Database.Event.DataEventType.Insert
+  commentId: F:Butterfly.Core.Database.Event.DataEventType.Insert
+  id: Insert
+  parent: Butterfly.Core.Database.Event.DataEventType
+  langs:
+  - csharp
+  - vb
+  name: Insert
+  nameWithType: DataEventType.Insert
+  fullName: Butterfly.Core.Database.Event.DataEventType.Insert
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Insert
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 13
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: Insert = 3
+    return:
+      type: Butterfly.Core.Database.Event.DataEventType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Butterfly.Core.Database.Event.DataEventType.Update
+  commentId: F:Butterfly.Core.Database.Event.DataEventType.Update
+  id: Update
+  parent: Butterfly.Core.Database.Event.DataEventType
+  langs:
+  - csharp
+  - vb
+  name: Update
+  nameWithType: DataEventType.Update
+  fullName: Butterfly.Core.Database.Event.DataEventType.Update
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Update
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 14
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: Update = 4
+    return:
+      type: Butterfly.Core.Database.Event.DataEventType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Butterfly.Core.Database.Event.DataEventType.Delete
+  commentId: F:Butterfly.Core.Database.Event.DataEventType.Delete
+  id: Delete
+  parent: Butterfly.Core.Database.Event.DataEventType
+  langs:
+  - csharp
+  - vb
+  name: Delete
+  nameWithType: DataEventType.Delete
+  fullName: Butterfly.Core.Database.Event.DataEventType.Delete
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Delete
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 15
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: Delete = 5
+    return:
+      type: Butterfly.Core.Database.Event.DataEventType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: Butterfly.Core.Database.Event
+  commentId: N:Butterfly.Core.Database.Event
+  name: Butterfly.Core.Database.Event
+  nameWithType: Butterfly.Core.Database.Event
+  fullName: Butterfly.Core.Database.Event
+- uid: Butterfly.Core.Database.Event.DataEventType
+  commentId: T:Butterfly.Core.Database.Event.DataEventType
+  parent: Butterfly.Core.Database.Event
+  name: DataEventType
+  nameWithType: DataEventType
+  fullName: Butterfly.Core.Database.Event.DataEventType
+shouldSkipMarkup: true

@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Aws.Test
+  commentId: N:Butterfly.Aws.Test
+  id: Butterfly.Aws.Test
+  children:
+  - Butterfly.Aws.Test.AwsTest
+  langs:
+  - csharp
+  - vb
+  name: Butterfly.Aws.Test
+  nameWithType: Butterfly.Aws.Test
+  fullName: Butterfly.Aws.Test
+  type: Namespace
+  assemblies:
+  - Butterfly.Aws.Test
+references:
+- uid: Butterfly.Aws.Test.AwsTest
+  commentId: T:Butterfly.Aws.Test.AwsTest
+  name: AwsTest
+  nameWithType: AwsTest
+  fullName: Butterfly.Aws.Test.AwsTest
+shouldSkipMarkup: true
