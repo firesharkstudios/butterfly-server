@@ -1,8 +1,6 @@
 
 # Overview
 
-This animation shows an [example](#example) application with three clients automatically sychronized with Butterfly Server .NET...
-
 ![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/demo.gif) 
 
 Butterfly Server .NET provides...
@@ -36,9 +34,13 @@ An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/
 
 Get the source from [GitHub](https://github.com/firesharkstudios/butterfly-server-dotnet).
 
-# Example
+# Examples
 
-You can see an animation of running this example in the [Overview](#overview) section.
+You can try these three examples...
+
+- [Hello World](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.HelloWorld) - Shows *Hello World* in an alert box on the client
+- [Database](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Database) - Shows data change events on a *DynamicView* in a console
+- [Todo Manager](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) - Shows a simple *Todo* web app using [Vuetify](https://vuetifyjs.com) on the client
 
 ## Try It
 
@@ -62,111 +64,6 @@ npm run dev
 You should see http://localhost:8080/ open in a browser. Try opening a second browser instance at http://localhost:8080/. Notice that changes are automatically synchronized between the two browser instances.
 
 Click [here](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) to see instructions for the Cordova and Electron clients.
-
-## The Server
-
-Here is all server code for our todo list manager...
-
-```csharp
-using System;
-
-using Butterfly.Core.Util;
-
-using Dict = System.Collections.Generic.Dictionary<string, object>;
-
-namespace Butterfly.Example.Todo {
-    class Program {
-        static void Main(string[] args) {
-            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/")) {
-                // Create a MemoryDatabase (no persistence, limited features)
-                var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-                database.CreateFromText(@"CREATE TABLE todo (
-	                id VARCHAR(50) NOT NULL,
-	                name VARCHAR(40) NOT NULL,
-	                PRIMARY KEY(id)
-                );");
-                database.SetDefaultValue("id", tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}");
-
-                // Listen for API requests
-                embedIOContext.WebApi.OnPost("/api/todo/insert", async (req, res) => {
-                    var todo = await req.ParseAsJsonAsync<Dict>();
-                    await database.InsertAndCommitAsync<string>("todo", todo);
-                });
-                embedIOContext.WebApi.OnPost("/api/todo/delete", async (req, res) => {
-                    var id = await req.ParseAsJsonAsync<string>();
-                    await database.DeleteAndCommitAsync("todo", id);
-                });
-
-                // Listen for subscribe requests...
-                // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
-                // - The handler can push data to the client by calling channel.Queue()
-                embedIOContext.SubscriptionApi.OnSubscribe("todos", (vars, channel) => {
-                    return database.CreateAndStartDynamicViewAsync("SELECT * FROM todo", dataEventTransaction => channel.Queue(dataEventTransaction));
-                });
-
-                embedIOContext.Start();
-
-                Console.ReadLine();
-            }
-        }
-    }
-}
-```
-
-The above C# code...
-- Creates a Memory [database](#accessing-a-database) with a single *todo* table
-- Defines a [Web API](#creating-a-web-api) to insert and delete *todo* records
-- Defines a [Subscription API](#creating-a-subscription-api) to subscribe to a *todos* subscription
-
-Clients are expected to...
-- Use the subscription API to subscribe to the *todos* subscription to get a list of all initial *todo* records and any changes to the *todo* records
-- Use the defined web API to insert and delete *todo* records
-
-See [Todo Example](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) for the working server code.
-
-## The Client
-
-Now, let's see how a client might interact with this server using the [Butterfly Client](#butterfly-client) javascript library.
-
-First, the client should use *WebSocketChannelClient* to maintain an open WebSocket to the server...
-
-```js
-let channelClient = new WebSocketChannelClient({
-    url: `ws://${window.location.host}/ws`
-});
-channelClient.connect();
-```
-
-Next, the client will want to subscribe to a channel to receive data...
-
-```js
-let todosList = [];
-channelClient.subscribe({
-    channel: 'todos',
-    handler: new ArrayDataEventHandler({
-        arrayMapping: {
-            todo: todosList
-        }
-    })
-});
-```
-
-This subscription will cause the local *todosList* array to be synchronized with the *todo* records on the server.
-
-Next, let's invoke a method on our API to add a new *todo* record (use whatever client HTTP library you wish)...
-
-```js
-$.ajax('/api/todo/insert', {
-  method: 'POST',
-  data: JSON.stringify({
-    name: 'My First To-Do',
-  }),
-});
-```
-
-After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be sychronized from the server to the client's local *todosList* array.
-
-See [Butterfly.Example.Todo](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo/www) for a full working client based on [Vuetify](https://vuetifyjs.com) and [Vue.js](https://vuejs.org/).
 
 # Concepts
 
