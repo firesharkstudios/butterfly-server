@@ -983,7 +983,7 @@ Here is an unprioritized wish list going forward...
 
 Add support for the following databases...
 
-- MS Sql Server
+- MS Sql Server (in progress)
 - Postgres
 - Mongo DB
 
