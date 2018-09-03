@@ -1,3 +1,4 @@
+
 # Overview
 
 This animation shows an [example](#example) application with three clients automatically sychronized with Butterfly Server .NET...
@@ -10,7 +11,15 @@ Butterfly Server .NET provides...
 - Ability to define a [Subscription API](#creating-a-subscription-api) that allow pushing real-time data to clients
 - Ability to modify, retrieve, and publish data change events on a [Database](#accessing-a-database)
 
-Butterfly Server .NET targets *.NET Framework 2.0* and does **not** have any dependencies on ASP.NET.
+Also, Butterfly Server .NET...
+
+- Targets *.NET Framework 2.0*
+- Fully supports async/await
+- Does **not** depend on ASP.NET
+- Does **not** use polling
+
+
+An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/) can be found [here](https://medium.com/@kent_19698/build-a-real-time-chat-app-from-scratch-using-vue-js-and-c-in-5-minutes-599387bdccbb).
 
 # Getting Started
 
@@ -119,7 +128,7 @@ See [Todo Server](https://github.com/firesharkstudios/butterfly-server-dotnet/tr
 
 Now, let's see how a client might interact with this server using the [Butterfly Client](#butterfly-client) javascript library.
 
-First, the client should use [WebSocketChannelClient](#websocketchannelclient) to maintain an open WebSocket to the server...
+First, the client should use *WebSocketChannelClient* to maintain an open WebSocket to the server...
 
 ```js
 let channelClient = new WebSocketChannelClient({
@@ -157,9 +166,52 @@ $.ajax('/api/todo/insert', {
 
 After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be sychronized from the server to the client's local *todosList* array.
 
-See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Client) for a full working client based on Vuetify and Vue.
+See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Client) for a full working client based on [Vuetify](https://vuetifyjs.com) and [Vue.js](https://vuejs.org/).
 
 # Concepts
+
+## Working with Dictionaries
+
+Since *Dictionary<string, object>* is used so extensively, you'll likely find it useful to declare an alias with your other *using* statements...
+
+```cs
+using Dict = System.Collections.Generic.Dictionary<string, object>;
+```
+
+*Butterfly.Core.Util* contains a [GetAs](https://butterflyserver.io/docfx/api/Butterfly.Core.Util.DictionaryX.html#Butterfly_Core_Util_DictionaryX_GetAs__3_Dictionary___0___1____0___2_) extension method for *Dict* that makes it easier to convert values...
+
+Here are a few common scenarios related to database records...
+
+```cs
+// Retrieve from the todo table using the primary key value
+Dict row = await database.SelectRowAsync("todo", "123");
+
+// Retrieve as string
+var id = row.GetAs("id", "");
+
+// Retrieve as integer
+var count = row.GetAs("count", -1);
+
+// Retrieve as float
+var amount = row.GetAs("id", 0.0f);
+
+// Retrieve as DateTime instance (auto converts UNIX timestamp)
+var createdAt = row.GetAs("created_at", DateTime.MinValue);
+```
+
+Here are a couple common scenarios related to the Web API...
+
+```cs
+webApi.OnPost("/api/todo/insert", async (req, res) => {
+    var todo = await req.ParseAsJsonAsync<Dict>();
+
+    // Retrieve as array
+    var tags = todo.GetAs<string[]>("tags", null);
+
+    // Retrieve as dictionary
+    var options = todo.GetAs<Dict>("options", null);
+});
+```
 
 ## Creating a Web Api
 
@@ -302,52 +354,119 @@ A common usecase is to return a *DynamicViewSet* instance that pushes initial da
 
 You need an implementation like [EmbedIO](#using-embedio) to get an instance of [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.ISubscriptionApi.html).
 
-### Example Subscriptions
+### Example Simple Subscription
 
-Example of a subscription returning multiple datasets and a dataset that uses a JOIN...
+The following javascript client subscribes to an *echo-messages* subscription passing in a *someName* variable and echoing the *messageType* and *message* received from the server to the console...
+
+```js
+// Javascript client
+channelClient.subscribe({
+    channel: 'echo-messages',
+    vars: {
+        someName = 'Spongebob',
+    },
+    handler(messageType, message) {
+        console.debug(`messageType=${messageType},message=${message}`);
+    })
+});
+```
+
+The above code assumes you have [Butterfly Client](#butterfly-client) installed and have initialized a *WebSocketChannelClient* instance.
+
+The following server code defines the *echo-messages* subscription that uses an instance of the *RunEvery* class to send a message to any subscribed clients every 2 seconds...
 
 ```cs
-subscriptionApi.OnSubscribe("todo-page", async(vars, channel) => {
-  var dynamicViewSet = database.CreateDynamicViewSet(dataEventTransaction => channel.Queue(dataEventTransaction);
-
-  string userId = channel.Connection.AuthToken;
-
-  // DynamicViews can include JOINs and will update if 
-  // any of the joined tables change the resultset
-  // (note this requires using a database like MySQL that supports JOINs)
-  dynamicViewSet.CreateDynamicView(
-    @"SELECT td.id, td.name, td.user_id, u.name user_name
-    FROM todo td
-      INNER JOIN user u ON td.user_id=u.id
-    WHERE u.id=@userId",
-    new {
-      userId
-    }
-  );
-
-  // A channel can return multiple resultsets as well
-  dynamicViewSet.CreateDynamicView(
-    @"SELECT id, name
-    FROM tag
-    WHERE user_id=@userId",
-    new {
-      userId
-    }
-  );
-
-  return dynamicViewSet;
+// C# server
+subscriptionApi.OnSubscribe("echo-messages", (vars, channel) => {
+    int count = 0;
+    var someName = vars.GetAs("someName", "");
+    return Butterfly.Util.RunEvery(() => {
+        channel.Queue("Echo", $"Message #{++count} from {someName}");
+    }, 2000);
 );
 ```
 
-In this example, a client subscribing to *todo-page* will get a *todo* collection and a *tag* collection both filtered by user id.  
+Notice that the subscription handler above returns the instance of *RunEvery* which implements *IDisposable*.  The *RunEvery* instance will be disposed when the client unsubscribes (or disconnects for too long).
 
-Because the new *todo* collection is the result of a join, the client will receive updates if changes to either of the underlying *todo* table or *user* table would change the resultset.
+So, the end result of running the code above would be the following in the client javascript console...
+
+```js
+messageType=Echo,message=Message #1 from Spongebob
+messageType=Echo,message=Message #2 from Spongebob
+messageType=Echo,message=Message #3 from Spongebob
+...
+```
+
+
+### Example Dynamic Subscription
+
+The following javascript client subscribes to a *todo-page* subscription and maps the two datasets to the local *todosList* and *tagsList* arrays...
+
+```js
+let todosList = [];
+let tagsList = [];
+channelClient.subscribe({
+    channel: 'todo-page',
+    vars: {
+        userId: '123'
+    },
+    handler: new ArrayDataEventHandler({
+        arrayMapping: {
+            todo: todosList
+            tag: tagsList
+        }
+    })
+});
+```
+
+The above code assumes you have [Butterfly Client](#butterfly-client) installed and have initialized a *WebSocketChannelClient* instance.
+
+The following server code defines the *todo-page* subscription that returns a *DynamicViewSet* containing two *DynamicViews* (one for *todos* and one for *tags*)...
+
+```cs
+subscriptionApi.OnSubscribe("todo-page", async(vars, channel) => {
+    var dynamicViewSet = database.CreateDynamicViewSet(dataEventTransaction => channel.Queue(dataEventTransaction);
+
+    string userId = vars.GetAs("userId", "");
+    if (!string.IsNullOrEmpty(userId)) throw new Exception("Must specify a userId in vars");
+
+    // DynamicViews can include JOINs and will update if 
+    // any of the joined tables change the resultset
+    // (note this requires using a database like MySQL that supports JOINs)
+    dynamicViewSet.CreateDynamicView(
+        @"SELECT td.id, td.name, td.user_id, u.name user_name
+        FROM todo td
+            INNER JOIN user u ON td.user_id=u.id
+        WHERE u.id=@userId",
+        new {
+            userId
+        }
+    );
+
+    // A channel can return multiple resultsets as well
+    dynamicViewSet.CreateDynamicView(
+        @"SELECT id, name
+        FROM tag
+        WHERE user_id=@userId",
+        new {
+            userId
+        }
+    );
+
+    // Send initial datasets and send any data changes as they occur    
+    await dynamicViewSet.StartAsync();
+
+    return dynamicViewSet;
+);
+```
+
+So, the end result of running the code above would be a local *todosList* and *tagsList* arrays that automatically stay synchronized with the server.
 
 ## Accessing a Database
 
 ### Overview
 
-An [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance allows creating transactions, modifying data, retrieving data, and subscribing to data change events.
+An [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance allows modifying data, selecting data, and creating *DynamicViews*.
 
 ```cs
 var id = await database.InsertAndCommitAsync<string>("todo", new {
@@ -362,96 +481,98 @@ await database.DeleteAndCommitAsync("todo", id);
 var name = await database.SelectValueAsync<string>("SELECT name FROM todo", id);
 ```
 
-The [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance also support transactions and the ability to publish data change events on tables and even complex SELECT statements.
 
+### Creating the Database Structure
 
-### Using a Memory Database
+You can create the database structure by either...
 
-[Butterfly.Core.Database.MemoryDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Memory.MemoryDatabase.html) database is included in [Butterfly.Core](api/Butterfly.Core.md).
-
-In your application...
-
-```csharp
-var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-database.CreateFromText(@"CREATE TABLE todo (
-	id VARCHAR(50) NOT NULL,
-	name VARCHAR(40) NOT NULL,
-	PRIMARY KEY(id)
-);");
-```
-
-### Creating the Database
-
-You can either create the database structure by...
-
-- Executing CreateFromTextAsync() or CreateFromResourceAsync() in Butterfly Server .NET
-- Creating the database yourself outside of Butterfly Server .NET
+- Executing [CreateFromTextAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromTextAsync_System_String_) or [CreateFromResourceAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromResourceFileAsync_Assembly_System_String_) in Butterfly Server .NET (most useful for MemoryDatabase)
+- Creating the database yourself outside of Butterfly Server .NET (normally recommended)
 
 ### Selecting Data
 
-Call *IDatabase.SelectRowsAsync()* with alternative values for the *sql* parameter and alternative values for the *vars* parameter...
+There are three flavors of selecting data with different return values...
+
+| Method | Description |
+| --- | --- |
+| [SelectRowsAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectRowsAsync_System_String_System_Object_System_Int32_) | Returns an array of *Dict* instances |
+| [SelectRowAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectRowAsync_System_String_System_Object_) | Returns a single *Dict* instances |
+| [SelectValueAsync<T>()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectValueAsync__1_System_String_System_Object___0_) | Returns a single value |
+
+Each flavor above takes a *sql* parameter and optional *values* parameter.
+
+The *sql* parameter can be specified in multiple ways...
+
+| Name | Example Value |
+| --- | --- | --- |
+| Table name only | `"todo"` |
+| SELECT without WHERE | `"SELECT * FROM todo"` |
+| Full SELECT| `"SELECT * FROM todo WHERE id=@id"` |
+
+The *values* parameter can also be specified in multiple ways...
+
+| Name | Example Value |
+| --- | --- | --- |
+| Anonymous type | `new { id = "123" }` |
+| Dictionary | `new Dictionary<string, object> { ["id"] = "123" }` |
+| Primary Key Value | `"123"` |
+
+Specific value types will also cause a WHERE clause to be rewritten as follows...
+
+| Original WHERE | Values | New WHERE |
+| --- | --- | --- |
+| WHERE test=@test | `new { test = (string)null }` | WHERE test IS NULL |
+| WHERE test!=@test | `new { test = (string)null }` | WHERE test IS NOT NULL |
+| WHERE test=@test | `new { test = new string[] {"123","456") }` | WHERE test IN ('123', '456') |
+| WHERE test!=@test | `new { test = new string[] {"123","456") }` | WHERE test NOT IN ('123', '456') |
+
+So, these are all valid examples...
 
 ```cs
-var sql1 = "employee"; // SELECT statement is auto generated
-var sql2 = "SELECT * FROM employee"; // WHERE statement is auto generated 
-var sql3 = "SELECT * FROM employee WHERE id=@id"; // Specify exact SELECT statement
+// Both of these effectively run SELECT * FROM employee
+Dict[] allEmployees1 = await database.SelectRowsAsync("employee");
+Dict[] allEmployees2 = await database.SelectRowsAsync("SELECT * FROM employee");
 
-var vars1 = "123"; // Can specify just the primary key value
-var vars2 = new { id = "123" }; // Can specify parameters using an anonymous type
-var vars3 = new Dictionary<string, object> { { "id", "123" } }; // Can specify parameters using a Dictionary
- 
-// Any combination of sql1/sql2/sql3 and vars1/vars2/vars3 would yield identical results
-Dictionary<string, object>[] rows = await database.SelectAsync(sql1, vars1);
-```
-
-Retrieve multiple rows, a single row, or a single value...
-
-```cs
-// Retrieve multiple rows
-Dictionary<string, object>[] rows = await database.SelectRowsAsync("SELECT * FROM employee");
-
-// Retrieve a single row 
-Dictionary<string, object> row = await database.SelectRowAsync("SELECT * FROM employee", "123")
-
-// Retrieve a single value
-string name = await database.SelectValueAsync<string>("SELECT name FROM employee", "123")
-```
-
-The WHERE clause will be auto-generated or rewritten in specific scenarios...
-
-```cs
-// Executes WHERE department_id = '123'
-Dictionary<string, object>[] rows = await database.SelectRowsAsync("employee", new {
-	department_id = "123"
+// Both of these effectively run SELECT * FROM employee WHERE department_id="123"_
+Dict[] departmentEmployees1 = await database.SelectRowsAsync("employee", new {
+    department_id = "123"
+});
+Dict[] departmentEmployees1 = await database.SelectRowsAsync("employee", new Dict {
+    { "department_id", "123" }
 });
 
-// Executes WHERE department_id IS NULL
-Dictionary<string, object>[] rows = await database.SelectRowsAsync("employee", new {
-	department_id = (string)null
+// All three of these effectively run SELECT name FROM employee WHERE id='123'
+string name1 = await database.SelectValueAsync<string>("SELECT name FROM employee", "123");
+string name2 = await database.SelectValueAsync<string>("SELECT name FROM employee", new {
+    id = "123"
+});
+string name3 = await database.SelectValueAsync<string>("SELECT name FROM employee", new Dict {
+    { "id", "123" },
 });
 
-// Executes WHERE department_id IS NOT NULL
-Dictionary<string, object>[] rows = await database.SelectRowsAsync(
-	"SELECT * employee WHERE department_id!=@did", 
-	new {
-		did = (string)null
-	}
-);
-
-// Executes WHERE department_id IN ('123', '456')
-Dictionary<string, object>[] rows = await database.SelectRowsAsync("employee", new {
-	department_id = new string[] { "123", "456"}
+// Effectively runs SELECT * FROM employee WHERE department_id IS NULL
+Dict[] rows = await database.SelectRowsAsync("employee", new {
+    department_id = (string)null
 });
 
-// Executes WHERE department_id NOT IN ('123', '456')
-Dictionary<string, object>[] rows = await database.SelectRowsAsync(
-	"SELECT * employee WHERE department_id!=@did", 
-	new {
-		did = new string[] { "123", "456"}
-	}
-);
+// Effectively runs SELECT * FROM employee WHERE department_id IS NOT NULL
+Dict[] rows = await database.SelectRowsAsync("SELECT * employee WHERE department_id!=@department_id", new {
+    department_id = (string)null
+});
+
+// Effectively runs SELECT * FROM employee WHERE department_id IN ('123', '456')
+Dict[] rows = await database.SelectRowsAsync("employee", new {
+    department_id = new string[] { "123", "456"}
+});
+
+// Effectively runs SELECT * FROM employee WHERE department_id NOT IN ('123', '456')
+Dict[] rows = await database.SelectRowsAsync("SELECT * employee WHERE department_id!=@department_id", new {
+    department_id = new string[] { "123", "456"}
+});
 ```
 ### Modifying Data
+
+A [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance has convenience methods that create a transaction, perform a specific action, and commit the transaction as follows...
 
 ```cs
 // Execute a single INSERT and return the value of the primary key
@@ -471,9 +592,9 @@ database.UpdateAndCommitAsync<string>("employee", new {
 // Assuming the employee table has a unique index on the id field, 
 // this deletes the matching record
 database.DeleteAndCommitAsync<string>("employee", "123");
-
 ```
-### Transactions
+
+In addition, you can explicitly create and commit a transaction that performs multiple actions...
 
 ```cs
 // If either INSERT fails, neither INSERT will be saved
@@ -485,62 +606,76 @@ using (ITransaction transaction = await database.BeginTransactionAsync()) {
 		name = "Jim Smith",
 		department_id = departmentId,
 	});
+
+    // Don't forget to Commit the transaction
 	await transaction.CommitAsync();
 }
 ```
+
+Sometimes, it's useful to run code after a transaction is committed, this can be done using [OnCommit](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.ITransaction.html#Butterfly_Core_Database_ITransaction_OnCommit_Func_Task__) to register an action that will execute after the transaction is committed.
+
 ### Synchronizing Data
 
-Use *ITransaction.SynchronizeAsync* to determine the right INSERT, UPDATE, and DELETE statements to synchronize two collections...
+It's common to synchronize a set of records in the database with a new set of inputs.  
+
+The [SynchronizeAsync](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.ITransaction.html#Butterfly_Core_Database_ITransaction_SynchronizeAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object____System_Collections_Generic_Dictionary_System_String_System_Object____Func_System_Collections_Generic_Dictionary_System_String_System_Object__System_Object__System_String___) can be used to determine the right INSERT, UPDATE, and DELETE statements to synchronize two collections...
 
 ```cs
 // Assumes an article_tag table with article_id and tag_name fields
-public async Task SynchronizeTag(string articleId, string[] tagNames) {
-	// First, create the existingRecords from the database
-	Dict[] existingRecords = database.SelectRowsAsync(
-		@"SELECT article_id, tag_name 
-		FROM article_tag 
-		WHERE article_id=@articleId",
-		new {
-			articleId
-		}
-	);
+public async Task SynchronizeTags(string articleId, string[] tagNames) {
+    // First, retrieve the existing records from the database
+    Dict[] existingRecords = database.SelectRowsAsync(
+        @"SELECT article_id, tag_name 
+        FROM article_tag 
+        WHERE article_id=@articleId",
+        new {
+            articleId
+        }
+    );
 
-	// Next, create the newRecords collection from the tagNames parameter
-	Dict[] newRecords = tagNames.Select(x => new Dictionary<string, object> {
-		{ "article_id", articleId },
-		{ "tag_name", x },
-	});
+    // Next, create the new records collection from the tagNames parameter
+    Dict[] newRecords = tagNames.Select(x => new Dict {
+        { "article_id", articleId },
+        { "tag_name", x },
+    }).ToArray();
 
-	// Now, execute the right INSERT, UPDATE, and DELETE statements to make
-	// the newRecords collection match the existingRecords collection
-	using (ITransaction transaction = database.BeginTransactionAsync()) {
-		bool changed = await transaction.SynchronizeAsync(
-			"article_tag", 
-			existingRecords, 
-			newRecords, 
-			existingRecord => new Dictionary<string, object> {
-				article_id = existingRecord.GetAs("article_id", (string)null),
-				tag_name = existingRecord.GetAs("tag_name", (string)null),
-			},
-		);
-	}
+    // Now, execute SynchronizeAsync() to determine the right 
+    // INSERT, UPDATE, and DELETE statements to make the collections match
+    using (ITransaction transaction = database.BeginTransactionAsync()) {
+        await transaction.SynchronizeAsync(
+            "article_tag", 
+            existingRecords, 
+            newRecords
+        );
+    }
 }
 ```
 
 ### Defaults, Overrides, and Preprocessors
 
-Can be defined globally or per table...
+A [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance allows defining...
+
+- Default Values (applies to INSERTs)
+- Override Values (applies to INSERTs and UPDATEs)
+- Input Proprocessors
+
+Each can be defined globally or per table.
+
+Examples...
 
 ```cs
-// Add an id field to all INSERTs with values like at_58b5fff4-322b-4fe8-b45d-386dac7a79f9
+// Add an id field to any INSERT with values like at_58b5fff4-322b-4fe8-b45d-386dac7a79f9
 // if INSERTing on an auth_token table
 database.SetDefaultValue(
     "id", 
     tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}"
 );
 
-// Add a created_at field to all INSERTS with the current time
+// Add a created_at field to any INSERT with the current time
 database.SetDefaultValue("created_at", tableName => DateTime.Now.ToUnixTimestamp());
+
+// Add an updated_at field to any INSERT or UPDATE with the current time
+this.database.SetOverrideValue("updated_at", tableName => DateTime.Now.ToUnixTimestamp());
 
 // Remap any DateTime values to UNIX timestamp values
 database.AddInputPreprocessor(BaseDatabase.RemapTypeInputPreprocessor<DateTime>(
@@ -556,48 +691,156 @@ database.AddInputPreprocessor(BaseDatabase.RemapTypeInputPreprocessor<string>(
 database.AddInputPreprocessor(BaseDatabase.CopyFieldValue("$UPDATED_AT$", "updated_at"));
 ```
 
-### Dynamic Views
+## Using Dynamic Views
 
-Dynamic views allow receiving both the initial data and data change events when the data changes.
+### Overview
 
+A [DynamicViewSet](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicViewSet.html) allows...
+
+- Defining multiple [DynamicView](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicView.html) instances using a familiar SELECT syntax
+- Publishing the initial datasets as a single [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) instance
+- Publishing any changes as new [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) instances
+
+Each [DynamicView](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicView.html) instance must...
+
+- Have a unique name (defaults to the first table name in the SELECT)
+- Have key field(s) that uniquely identify each row (defaults to the primary key of the first table in the SELECT) 
+
+You can use the [Butterfly Client](#butterfly-client) libraries to consume these [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) instances to keep local javascript arrays synchronized with your server.
+
+Key limitations...
+
+- Only INSERTs, UPDATEs, and DELETEs executed via an [IDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html) instance will trigger data change events
+- SELECT statements with UNIONs are not supported
+- SELECT statements with subqueries may not be supported depending on the type of subquery
+- SELECT statements with multiple references to the same table can only trigger updates on one of the references
+
+A [DynamicView](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicView.html) will execute additional modified SELECT statements on each underlying data change event.  These modified SELECT statements are designed to execute quickly (always includes a primary key of an underlying table); however, this is additional overhead that should be considered on higher traffic implementations.
+
+### Example
+
+Here is an example of creating a [DynamicViewSet](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicViewSet.html) and triggering [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) instances by starting the [DynamicViewSet](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicViewSet.html) and by executing an INSERT...
 ```cs
-// Create a DynamicViewSet that simply prints all data events to the console
-using (DynamicViewSet dynamicViewSet = database.CreateDynamicViewSet(
-	dataEventTransaction => Console.WriteLine(dataEventTransaction)
-) {
-	// Create dynamic view for all employees in department
-	dynamicViewSet.CreateDynamicView("employee", new {
-		department_id = "123"
-	});
+var dynamicViewSet = database.CreateAndStartDynamicViewAsync(
+    @"SELECT t.id, t.name todo_name, u.name user_name
+    FROM todo t 
+        INNER JOIN user u ON t.user_id=u.id
+    WHERE is_done=@isDoneFilter",
+    dataEventTransaction => {
+        var json = JsonUtil.Serialize(dataEventTransaction, format: true);
+        Console.WriteLine($"dataEventTransaction={json}");
+    },
+    new {
+        isDoneFilter = "Y"
+    }
+);
+dynamicViewSet.Start();
+```
 
-	// Create dynamic view for all resources in department
-	dynamicViewSet.CreateDynamicView("resource", new {
-		department_id = "123"
-	});
+The above code would cause a [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) like this to be echoed to the console...
 
-	// This will cause each DynamicView above to execute
-	// and all the initial data in each DynamicView to be
-	// echoed to the console in a single DataEventTransaction
-	dynamicViewSet.Start();
-
-	// This will cause a new DataEventTransaction with a single
-	// INSERT event to be echoed to the console
-	database.InsertAndCommitAsync("employee", new {
-		name = "Joe Smith",
-		department_id = "123",
-	});
-
-	// This will NOT cause a new DataEventTransaction to
-	// be printed to the console because this INSERT
-	// does not change the DynamicView results above
-	database.InsertAndCommitAsync("employee", new {
-		name = "Joe Smith",
-		department_id = "456",
-	});
+```js
+dataEventTransaction={
+  "dateTime": "2018-08-24 14:25:59",
+  "dataEvents": [
+    {
+      "name": "todo",
+      "keyFieldNames": [
+        "id"
+      ],
+      "dataEventType": "InitialBegin",
+      "id": "f916082a-7e56-4974-8bce-9c0af0792362"
+    },
+    {
+      "record": {
+        "id": "t_7dcdaf99-50ab-4bd5-ab26-271974e9cc49",
+        "todo_name": "Todo #4",
+        "user_name": "Patrick"
+      },
+      "name": "todo",
+      "keyValue": "t_7dcdaf99-50ab-4bd5-ab26-271974e9cc49",
+      "dataEventType": "Initial",
+      "id": "134afc7e-a24e-448a-b800-baed7774d6d2"
+    },
+    {
+      "record": {
+        "id": "t_0f2c7147-317b-4f70-851c-dc906db6f2c3",
+        "todo_name": "Todo #1",
+        "user_name": "Spongebob"
+      },
+      "name": "todo",
+      "keyValue": "t_0f2c7147-317b-4f70-851c-dc906db6f2c3",
+      "dataEventType": "Initial",
+      "id": "aaa6e491-5ad4-4a2b-9891-b1d402172c46"
+    },
+    {
+      "record": {
+        "id": "t_e71e3d82-2153-4b1b-8fcd-29815805307b",
+        "todo_name": "Todo #2",
+        "user_name": "Spongebob"
+      },
+      "name": "todo",
+      "keyValue": "t_e71e3d82-2153-4b1b-8fcd-29815805307b",
+      "dataEventType": "Initial",
+      "id": "efea5a4b-9a9c-4bea-bc19-d6a460f27abb"
+    },
+    {
+      "dataEventType": "InitialEnd",
+      "id": "f25b8841-b9a3-4ec6-af0a-3d34687fa767"
+    }
+  ]
 }
 ```
 
+Now, let's add a record that impacts our [DynamicViewSet](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicViewSet.html)...
+
+```cs
+await database.InsertAndCommitAsync<string>("todo", new {
+    name = "Task #5",
+    user_id = spongebobId,
+    is_done = "N",
+});
+```
+
+The above code would trigger the following [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) to be echoed to the console...
+
+```js
+dataEventTransaction={
+  "dateTime": "2018-08-24 14:25:59",
+  "dataEvents": [
+    {
+      "record": {
+        "id": "t_89378473-97ed-4e0f-9c1d-4303ef6f4d04",
+        "todo_name": "Task #5",
+        "user_name": "Spongebob"
+      },
+      "name": "todo",
+      "keyValue": "t_89378473-97ed-4e0f-9c1d-4303ef6f4d04",
+      "dataEventType": "Insert",
+      "id": "e140185e-9636-45e9-9687-a3368ad6caeb"
+    }
+  ]
+}
+```
+
+You can run a more robust example [here](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.DatabaseDemo/Program.cs).
+
 ## Implementations
+
+### Using a Memory Database
+
+[Butterfly.Core.Database.MemoryDatabase](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Memory.MemoryDatabase.html) database is included in [Butterfly.Core](api/Butterfly.Core.md) and doesn't require installing additional packages; however, *MemoryDatabase* has these key limitattions...
+
+- Data is NOT persisted
+- SELECT statements with JOINs are NOT supported
+
+Under the hood, the *MemoryDatabase* is using a System.Data.DataTable instance to manage the data.
+
+In your application...
+
+```csharp
+var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
+```
 
 ### Using EmbedIO
 
@@ -660,13 +903,63 @@ var database = new Butterfly.SQLite.SQLiteDatabase("Filename=./my_database.db");
 
 ## Butterfly Client
 
-### Installing
+### Overview
 
-### WebSocketChannelClient
+Butterfly Client is a javascript library that allows...
 
-### ArrayDataEventHandler
+- Maintaining a connection to your server to receive subscription messages
+- Mapping subscription messages received to synchronize local javascript arrays with the server
 
-### Vuex Bindings
+The easiest way to install Butterfly Client is with npm...
+
+```
+npm install butterfly-client
+```
+
+You can then include the Butterfly Client with a script import like...
+
+```html
+<script src="./node_modules/butterfly-client/lib/butterfly-client.js"></script>
+```
+
+Or include the classes you need with an appropriate ES6 import like...
+
+```
+import { ArrayDataEventHandler, WebSocketChannelClient } from 'butterfly-client'
+```
+
+### Example
+
+An *WebSocketChannelClient* instance maintains a connection to your server to receive subscription messages and an *ArrayDataEventHandler* instance maps the subscription messages to local javascript arrays to keep these local javascript arrays synchronized with your server...
+
+```js
+let channelClient = new WebSocketChannelClient({
+    url: `ws://localhost:8080/ws`,
+    onStateChange(newState) {
+        console.debug(`newState=${newState}`);
+    },
+    onSubscriptionsUpdated(newSubscriptions) {
+        console.debug(`newSubscriptions=${newSubscriptions}`);
+    },
+});
+channelClient.connect('Authorization : Bearer xyz');
+
+let list1 = [];
+let list2 = [];
+channelClient.subscribe(
+    channel: 'todos',
+    handler: new ArrayDataEventHandler({
+        channel: 'my-channel',
+        vars: {
+            someInfo: 'Some Info',
+        },
+        arrayMapping: {
+            tableName1: list1,
+            tableName2: list2,
+        }
+    })
+);
+```
 
 # API Documentation
 
@@ -682,7 +975,44 @@ Click [here](https://butterflyserver.io/docfx/api/) for the API Documentation
 - [SignalR](https://github.com/SignalR/SignalR)
 - [SignalW](https://github.com/Spreads/SignalW)
 
-# Contributing
+# Wishlist
+
+Here is an unprioritized wish list going forward...
+
+## More Databases
+
+Add support for the following databases...
+
+- MS Sql Server (in progress)
+- Postgres
+- Mongo DB
+
+## More Web Servers
+
+Add support for the following web servers...
+
+- Kestrel
+
+## More Client Bindings
+
+Add support for the following clients...
+
+- React
+- Angular
+- WinForms
+
+## More Examples
+
+Add examples that show...
+
+- How to install on *Raspberry Pi*
+- How to do authentication
+
+## Other Stuff
+
+- Add performance benchmarks
+- Add documentation for *Butterfly.Auth*
+- Add documentation for *Butterfly.Notify*
 
 If you'd like to contribute, please fork the repository and use a feature
 branch. Pull requests are warmly welcome.

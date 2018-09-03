@@ -11,6 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="client\**" />
+    <EmbeddedResource Remove="client\**" />
+    <None Remove="client\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EmbedIO" Version="1.16.0" />
     <PackageReference Include="NLog" Version="4.5.9" />
   </ItemGroup>
@@ -24,6 +30,11 @@
     <None Update="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="electron\" />
+    <Folder Include="cordova\" />
   </ItemGroup>
 
 </Project>

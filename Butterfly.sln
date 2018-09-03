@@ -32,90 +32,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Butterfly.Client.Web", "But
 		SlnRelativePath = "Butterfly.Client.Web\"
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Butterfly.Example.HelloWorld.Client", "Butterfly.Example.HelloWorld.Client\", "{D9CE0B65-2346-462F-B80E-42EBA594FFEF}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_50809"
-		Debug.AspNetCompiler.PhysicalPath = "Butterfly.Example.HelloWorld.Client\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50809\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_50809"
-		Release.AspNetCompiler.PhysicalPath = "Butterfly.Example.HelloWorld.Client\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50809\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "50809"
-		SlnRelativePath = "Butterfly.Example.HelloWorld.Client\"
-	EndProjectSection
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Butterfly.Example.Todo.Client", "Butterfly.Example.Todo.Client\", "{235D822D-6F78-42FC-A92D-D5417C6C6ED5}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_51233"
-		Debug.AspNetCompiler.PhysicalPath = "Butterfly.Example.Todo.Client\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51233\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_51233"
-		Release.AspNetCompiler.PhysicalPath = "Butterfly.Example.Todo.Client\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51233\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "51233"
-		SlnRelativePath = "Butterfly.Example.Todo.Client\"
-	EndProjectSection
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Butterfly.Example.Todo.CordovaClient", "Butterfly.Example.Todo.CordovaClient\", "{E579D650-391F-4AE9-9854-7D61356D5B94}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_55766"
-		Debug.AspNetCompiler.PhysicalPath = "Butterfly.Example.Todo.CordovaClient\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55766\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_55766"
-		Release.AspNetCompiler.PhysicalPath = "Butterfly.Example.Todo.CordovaClient\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55766\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "55766"
-		SlnRelativePath = "Butterfly.Example.Todo.CordovaClient\"
-	EndProjectSection
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Butterfly.Example.Todo.ElectronClient", "Butterfly.Example.Todo.ElectronClient\", "{17DB026E-6DB0-4249-A769-FC65E9A97AB3}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_54707"
-		Debug.AspNetCompiler.PhysicalPath = "Butterfly.Example.Todo.ElectronClient\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54707\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_54707"
-		Release.AspNetCompiler.PhysicalPath = "Butterfly.Example.Todo.ElectronClient\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54707\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "54707"
-		SlnRelativePath = "Butterfly.Example.Todo.ElectronClient\"
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Core", "Butterfly.Core\Butterfly.Core.csproj", "{B4355616-EEFF-4BF9-93E6-13E4C36077E0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Aws", "Butterfly.Aws\Butterfly.Aws.csproj", "{37D235DE-9C15-4B97-A9BB-4FA76132444D}"
@@ -131,12 +47,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.SQLite", "Butterfly.SQLite\Butterfly.SQLite.csproj", "{BF750914-2BAD-4058-8196-A903858FD237}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Twilio", "Butterfly.Twilio\Butterfly.Twilio.csproj", "{BE2B58FC-5A55-46C9-90A5-FB89914C2EAA}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.DatabaseDemo", "Butterfly.Example.DatabaseDemo\Butterfly.Example.DatabaseDemo.csproj", "{BDBDEFDF-BCC6-415C-8110-306FEE107258}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.HelloWorld.Server", "Butterfly.Example.HelloWorld.Server\Butterfly.Example.HelloWorld.Server.csproj", "{42852F1F-40B4-4348-9265-7C0F78D1BC4D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Todo.Server", "Butterfly.Example.Todo.Server\Butterfly.Example.Todo.Server.csproj", "{AE34FB06-5DB5-4ABD-B1B8-87EEDB902866}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.EmbedIO.Test", "Butterfly.EmbedIO.Test\Butterfly.EmbedIO.Test.csproj", "{7FAC0D68-DAEC-47F2-8DBE-240EA54E9AC0}"
 EndProject
@@ -196,6 +106,12 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "docfx_project", "docfx_proj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.SqlServer.Test", "Butterfly.SqlServer.Test\Butterfly.SqlServer.Test.csproj", "{09880E3C-38C8-4AF8-A886-93C5DA76B30A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Database", "Butterfly.Example.Database\Butterfly.Example.Database.csproj", "{5AA54991-472C-4A67-85D6-E20C86BBEDD6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.HelloWorld", "Butterfly.Example.HelloWorld\Butterfly.Example.HelloWorld.csproj", "{EFD1260F-AFAA-4128-965E-7E0D2CF83703}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Todo", "Butterfly.Example.Todo\Butterfly.Example.Todo.csproj", "{8BE5BE15-ED6B-4B7F-A7C0-C382665316B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -204,14 +120,6 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F0CCFC28-AA45-48F2-9D5C-488C415520A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F0CCFC28-AA45-48F2-9D5C-488C415520A5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9CE0B65-2346-462F-B80E-42EBA594FFEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9CE0B65-2346-462F-B80E-42EBA594FFEF}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{235D822D-6F78-42FC-A92D-D5417C6C6ED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{235D822D-6F78-42FC-A92D-D5417C6C6ED5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{E579D650-391F-4AE9-9854-7D61356D5B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E579D650-391F-4AE9-9854-7D61356D5B94}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{17DB026E-6DB0-4249-A769-FC65E9A97AB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17DB026E-6DB0-4249-A769-FC65E9A97AB3}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{B4355616-EEFF-4BF9-93E6-13E4C36077E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B4355616-EEFF-4BF9-93E6-13E4C36077E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4355616-EEFF-4BF9-93E6-13E4C36077E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -244,18 +152,6 @@ Global
 		{BE2B58FC-5A55-46C9-90A5-FB89914C2EAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE2B58FC-5A55-46C9-90A5-FB89914C2EAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE2B58FC-5A55-46C9-90A5-FB89914C2EAA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BDBDEFDF-BCC6-415C-8110-306FEE107258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BDBDEFDF-BCC6-415C-8110-306FEE107258}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BDBDEFDF-BCC6-415C-8110-306FEE107258}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BDBDEFDF-BCC6-415C-8110-306FEE107258}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42852F1F-40B4-4348-9265-7C0F78D1BC4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42852F1F-40B4-4348-9265-7C0F78D1BC4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42852F1F-40B4-4348-9265-7C0F78D1BC4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42852F1F-40B4-4348-9265-7C0F78D1BC4D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE34FB06-5DB5-4ABD-B1B8-87EEDB902866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE34FB06-5DB5-4ABD-B1B8-87EEDB902866}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE34FB06-5DB5-4ABD-B1B8-87EEDB902866}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE34FB06-5DB5-4ABD-B1B8-87EEDB902866}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7FAC0D68-DAEC-47F2-8DBE-240EA54E9AC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7FAC0D68-DAEC-47F2-8DBE-240EA54E9AC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FAC0D68-DAEC-47F2-8DBE-240EA54E9AC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -292,6 +188,18 @@ Global
 		{09880E3C-38C8-4AF8-A886-93C5DA76B30A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09880E3C-38C8-4AF8-A886-93C5DA76B30A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09880E3C-38C8-4AF8-A886-93C5DA76B30A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AA54991-472C-4A67-85D6-E20C86BBEDD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AA54991-472C-4A67-85D6-E20C86BBEDD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AA54991-472C-4A67-85D6-E20C86BBEDD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AA54991-472C-4A67-85D6-E20C86BBEDD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFD1260F-AFAA-4128-965E-7E0D2CF83703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFD1260F-AFAA-4128-965E-7E0D2CF83703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFD1260F-AFAA-4128-965E-7E0D2CF83703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFD1260F-AFAA-4128-965E-7E0D2CF83703}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BE5BE15-ED6B-4B7F-A7C0-C382665316B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BE5BE15-ED6B-4B7F-A7C0-C382665316B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BE5BE15-ED6B-4B7F-A7C0-C382665316B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BE5BE15-ED6B-4B7F-A7C0-C382665316B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

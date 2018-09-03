@@ -13,9 +13,7 @@ namespace Butterfly.Example.HelloWorld.Server {
         static async Task Main(string[] args) {
             const int port = 8080;
 
-            var basePath = FileX.GetParentPathUntil(Directory.GetCurrentDirectory(), "Butterfly.Example.HelloWorld.Server");
-            var staticPath = FileX.Resolve(Path.Combine(basePath, "../Butterfly.Example.HelloWorld.Client"));
-            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext($"http://+:{port}/", staticPath: staticPath)) {
+            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext($"http://+:{port}/", staticPath: "../../../www")) {
                 // Create a MemoryDatabase (no persistence, limited features)
                 var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
                 await database.CreateFromTextAsync(@"CREATE TABLE message (
