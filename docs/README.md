@@ -7,7 +7,7 @@ Butterfly Server .NET provides...
 
 - Ability to define a [Web API](#creating-a-web-api)
 - Ability to define a [Subscription API](#creating-a-subscription-api) that allow pushing real-time data to clients
-- Ability to publish data change events on a [Database](#accessing-a-database)
+- Ability to publish data change events on a [Database](#accessing-a-database) and [Dynamic Views](#using-dynamic-views)
 
 Also, Butterfly Server .NET...
 
@@ -39,7 +39,7 @@ Get the source from [GitHub](https://github.com/firesharkstudios/butterfly-serve
 You can try these three examples...
 
 - [Hello World](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.HelloWorld) - Shows *Hello World* in an alert box on the client
-- [Database](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Database) - Shows data change events on a *DynamicView* in a console
+- [Database](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Database) - Shows data change events on a [Dynamic View](#using-dynamic-views) in a console
 - [Todo Manager](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) - Shows a simple *Todo* web app using [Vuetify](https://vuetifyjs.com) on the client
 
 ## Try It
