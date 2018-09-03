@@ -133,6 +133,7 @@ namespace MyDatabaseTest {
         }
 
         static Task<DynamicViewSet> CreateDynamicViewSet(IDatabase database, string isDoneFilter) {
+            Console.WriteLine("Creating DynamicView...");
             return database.CreateAndStartDynamicViewAsync(
                 @"SELECT t.id, t.name todo_name, u.name user_name
                 FROM todo t 

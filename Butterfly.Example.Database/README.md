@@ -1,4 +1,4 @@
-# Butterfly Server .NET - Database World Example
+# Butterfly Server .NET - Database Example
 
 > A simple console app that triggers data change events on a DynamicView
 
@@ -28,6 +28,7 @@ Here is the expected console output...
 
 ```
 Creating sample data...
+Creating DynamicView...
 dataEvents={
   "dateTime": "2018-09-03 09:54:15",
   "dataEvents": [
