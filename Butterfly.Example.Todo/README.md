@@ -22,9 +22,19 @@ dotnet run -vm
 
 You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Todo/Program.cs).
 
-# Open the Web Client
+# Run the Web Client
 
-Simply open a browser to http://localhost:8000/.
+```
+cd butterfly-server-dotnet\Butterfly.Example.Todo\www
+npm install
+npm run dev
+```
+
+This will open a browser to http://localhost:8080/.
+
+Now, open as many other browser instances to http://localhost:8080/ as you wish to confirm the todo list stays synchronized across all connected clients.
+
+**Note:** The server process is listening for API requests on port 8000 and the node dev server is listening on port 8080 and proxying API requests to port 8000.
 
 # Run the Cordova Client
 
