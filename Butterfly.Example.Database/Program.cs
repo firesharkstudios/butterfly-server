@@ -8,7 +8,7 @@ using Butterfly.Core.Database;
 using Butterfly.Core.Database.Dynamic;
 using Butterfly.Core.Util;
 
-namespace MyDatabaseTest {
+namespace Butterfly.Example.Database {
     class Program {
         /*
          * Requires creating a MySQL database like...

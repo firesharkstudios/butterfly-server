@@ -47,21 +47,21 @@ Run this in a terminal or command prompt...
 ```
 git clone https://github.com/firesharkstudios/butterfly-server-dotnet
 
-cd butterfly-server-dotnet\Butterfly.Example.Todo.Server
+cd butterfly-server-dotnet\Butterfly.Example.Todo
 dotnet run -vm
 ```
 
 Run this in a second terminal or command prompt...
 
 ```
-cd butterfly-server-dotnet\Butterfly.Example.Todo.Client
+cd butterfly-server-dotnet\Butterfly.Example.Todo\www
 npm install
 npm run dev
 ```
 
 You should see http://localhost:8080/ open in a browser. Try opening a second browser instance at http://localhost:8080/. Notice that changes are automatically synchronized between the two browser instances.
 
-There is also a [Cordova Todo Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.CordovaClient) and an [Electron Todo Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.ElectronClient).
+Click [here](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) to see instructions for the Cordova and Electron clients.
 
 ## The Server
 
@@ -74,7 +74,7 @@ using Butterfly.Core.Util;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Example.HelloWorld.Server {
+namespace Butterfly.Example.Todo {
     class Program {
         static void Main(string[] args) {
             using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/")) {
@@ -122,7 +122,7 @@ Clients are expected to...
 - Use the subscription API to subscribe to the *todos* subscription to get a list of all initial *todo* records and any changes to the *todo* records
 - Use the defined web API to insert and delete *todo* records
 
-See [Todo Server](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Server) for the working server code.
+See [Todo Example](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) for the working server code.
 
 ## The Client
 

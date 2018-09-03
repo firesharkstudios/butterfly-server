@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using Butterfly.Core.Util;
 
-namespace Butterfly.Example.HelloWorld.Server {
+namespace Butterfly.Example.HelloWorld {
     class Program {
         // Using async Task Main() requires adding <LangVersion>latest</LangVersion> to .csproj file
         static async Task Main(string[] args) {
