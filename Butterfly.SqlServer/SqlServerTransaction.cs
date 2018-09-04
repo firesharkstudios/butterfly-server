@@ -90,6 +90,8 @@ namespace Butterfly.SqlServer
 
 		protected override async Task<Func<object>> DoInsertAsync(string executableSql, Dict executableParams, bool ignoreIfDuplicate)
 		{
+			executableSql += " SELECT SCOPE_IDENTITY();";
+
 			var result = await ExecuteCommandAsync<object>(async c =>
 			{
 				return await c.ExecuteScalarAsync();

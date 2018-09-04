@@ -62,6 +62,8 @@ namespace Butterfly.SqlServer
 						{
 							row[column.ColumnName] = reader[column.ColumnName];
 						}
+
+						rows.Add(row);
 					}
 				}
 
