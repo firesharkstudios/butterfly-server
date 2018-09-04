@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -210,15 +209,20 @@ namespace Butterfly.SqlServer
 			try
 			{
 				using (var connection = new SqlConnection(ConnectionString))
-				using (var command = new SqlCommand(executableSql, connection))
 				{
 					connection.Open();
 
-					if (executableParams != null)
-						foreach (var param in executableParams)
-							command.Parameters.Add(new SqlParameter(param.Key, param.Value));
+					// 20180904 - Execute command with snapshot transaction, because there are potential uncommittedTransactionListeners
+					//            that needs to be processed before the main transaction completes in BaseTransaction.CommitAsync()
+					using (var transaction = connection.BeginTransaction(System.Data.IsolationLevel.Snapshot))
+					using (var command = new SqlCommand(executableSql, connection, transaction))
+					{
+						if (executableParams != null)
+							foreach (var param in executableParams)
+								command.Parameters.Add(new SqlParameter(param.Key, param.Value));
 
-					return query(command);
+						return query(command);
+					}
 				}
 			}
 			catch (SqlException ex)
@@ -232,15 +236,20 @@ namespace Butterfly.SqlServer
 			try
 			{
 				using (var connection = new SqlConnection(ConnectionString))
-				using (var command = new SqlCommand(executableSql, connection))
 				{
 					await connection.OpenAsync();
 
-					if (executableParams != null)
-						foreach (var param in executableParams)
-							command.Parameters.Add(new SqlParameter(param.Key, param.Value));
+					// 20180904 - Execute command with snapshot transaction, because there are potential uncommittedTransactionListeners
+					//            that needs to be processed before the main transaction completes in BaseTransaction.CommitAsync()
+					using (var transaction = connection.BeginTransaction(System.Data.IsolationLevel.Snapshot))
+					using (var command = new SqlCommand(executableSql, connection, transaction))
+					{
+						if (executableParams != null)
+							foreach (var param in executableParams)
+								command.Parameters.Add(new SqlParameter(param.Key, param.Value));
 
-					return await query(command);
+						return await query(command);
+					}
 				}
 			}
 			catch (SqlException ex)
