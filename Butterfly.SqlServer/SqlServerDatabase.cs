@@ -1,4 +1,9 @@
-﻿using Butterfly.Core.Database;
+﻿/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+using Butterfly.Core.Database;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -10,8 +15,11 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.SqlServer
 {
+	/// <inheritdoc/>
 	public class SqlServerDatabase : BaseDatabase
 	{
+		private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
 		private static Regex LIMIT_REGEX = new Regex(@"^(SELECT).+(LIMIT\s+(.+?))$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
 		public SqlServerDatabase(string connectionString) : base(connectionString) {
@@ -229,6 +237,11 @@ namespace Butterfly.SqlServer
 			{
 				throw new DatabaseException(ex.Message);
 			}
+			catch (Exception e)
+			{
+				logger.Error(e, $"Error executing {executableSql}...");
+				throw e;
+			}
 		}
 
 		private async Task<T> ExecuteCommandAsync<T>(Func<DbCommand, Task<T>> query, string executableSql, Dict executableParams = null)
@@ -255,6 +268,11 @@ namespace Butterfly.SqlServer
 			catch (SqlException ex)
 			{
 				throw new DatabaseException(ex.Message);
+			}
+			catch (Exception e)
+			{
+				logger.Error(e, $"Error executing {executableSql}...");
+				throw e;
 			}
 		}
 

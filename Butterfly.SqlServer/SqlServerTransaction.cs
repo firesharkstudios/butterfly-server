@@ -1,4 +1,9 @@
-﻿using Butterfly.Core.Database;
+﻿/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+using Butterfly.Core.Database;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -9,8 +14,11 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.SqlServer
 {
+	/// <inheritdoc/>
 	public class SqlServerTransaction : BaseTransaction
 	{
+		private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
 		protected SqlTransaction transaction;
 		private SqlServerDatabase sqlServerDatabase;
 		private SqlConnection sqlConnection;
@@ -135,6 +143,7 @@ namespace Butterfly.SqlServer
 			}
 			catch (Exception e)
 			{
+				logger.Error(e, $"Error executing {executableSql}...");
 				throw e;
 			}
 		}
@@ -158,9 +167,9 @@ namespace Butterfly.SqlServer
 			}
 			catch (Exception e)
 			{
+				logger.Error(e, $"Error executing {executableSql}...");
 				throw e;
 			}
 		}
-
 	}
 }
