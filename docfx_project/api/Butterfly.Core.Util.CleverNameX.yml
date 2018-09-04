@@ -1,0 +1,195 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.CleverNameX
+  commentId: T:Butterfly.Core.Util.CleverNameX
+  id: CleverNameX
+  parent: Butterfly.Core.Util
+  children:
+  - Butterfly.Core.Util.CleverNameX.ANIMALS
+  - Butterfly.Core.Util.CleverNameX.COLORS
+  - Butterfly.Core.Util.CleverNameX.Generate
+  langs:
+  - csharp
+  - vb
+  name: CleverNameX
+  nameWithType: CleverNameX
+  fullName: Butterfly.Core.Util.CleverNameX
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/CleverNameX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: CleverNameX
+    path: ../Butterfly.Core/Util/CleverNameX.cs
+    startLine: 7
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: 'public static class CleverNameX : object'
+    content.vb: >-
+      Public Module CleverNameX
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Butterfly.Core.Util.CleverNameX.Generate
+  commentId: M:Butterfly.Core.Util.CleverNameX.Generate
+  id: Generate
+  parent: Butterfly.Core.Util.CleverNameX
+  langs:
+  - csharp
+  - vb
+  name: Generate()
+  nameWithType: CleverNameX.Generate()
+  fullName: Butterfly.Core.Util.CleverNameX.Generate()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/CleverNameX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Generate
+    path: ../Butterfly.Core/Util/CleverNameX.cs
+    startLine: 10
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static string Generate()
+    return:
+      type: System.String
+    content.vb: Public Shared Function Generate As String
+  overload: Butterfly.Core.Util.CleverNameX.Generate*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.CleverNameX.COLORS
+  commentId: F:Butterfly.Core.Util.CleverNameX.COLORS
+  id: COLORS
+  parent: Butterfly.Core.Util.CleverNameX
+  langs:
+  - csharp
+  - vb
+  name: COLORS
+  nameWithType: CleverNameX.COLORS
+  fullName: Butterfly.Core.Util.CleverNameX.COLORS
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/CleverNameX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: COLORS
+    path: ../Butterfly.Core/Util/CleverNameX.cs
+    startLine: 14
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static readonly string[] COLORS
+    return:
+      type: System.String[]
+    content.vb: Public Shared ReadOnly COLORS As String()
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Core.Util.CleverNameX.ANIMALS
+  commentId: F:Butterfly.Core.Util.CleverNameX.ANIMALS
+  id: ANIMALS
+  parent: Butterfly.Core.Util.CleverNameX
+  langs:
+  - csharp
+  - vb
+  name: ANIMALS
+  nameWithType: CleverNameX.ANIMALS
+  fullName: Butterfly.Core.Util.CleverNameX.ANIMALS
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/CleverNameX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ANIMALS
+    path: ../Butterfly.Core/Util/CleverNameX.cs
+    startLine: 68
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static readonly string[] ANIMALS
+    return:
+      type: System.String[]
+    content.vb: Public Shared ReadOnly ANIMALS As String()
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+references:
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Util.CleverNameX.Generate*
+  commentId: Overload:Butterfly.Core.Util.CleverNameX.Generate
+  name: Generate
+  nameWithType: CleverNameX.Generate
+  fullName: Butterfly.Core.Util.CleverNameX.Generate
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+shouldSkipMarkup: true

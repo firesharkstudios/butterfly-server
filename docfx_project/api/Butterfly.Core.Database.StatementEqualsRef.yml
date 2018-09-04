@@ -1,0 +1,384 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.StatementEqualsRef
+  commentId: T:Butterfly.Core.Database.StatementEqualsRef
+  id: StatementEqualsRef
+  parent: Butterfly.Core.Database
+  children:
+  - Butterfly.Core.Database.StatementEqualsRef.#ctor(System.String,System.String,System.String)
+  - Butterfly.Core.Database.StatementEqualsRef.fieldName
+  - Butterfly.Core.Database.StatementEqualsRef.GetMatchingParams(Butterfly.Core.Database.StatementEqualsRef[],System.Collections.Generic.Dictionary{System.String,System.Object})
+  - Butterfly.Core.Database.StatementEqualsRef.paramName
+  - Butterfly.Core.Database.StatementEqualsRef.tableName
+  langs:
+  - csharp
+  - vb
+  name: StatementEqualsRef
+  nameWithType: StatementEqualsRef
+  fullName: Butterfly.Core.Database.StatementEqualsRef
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/BaseStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: StatementEqualsRef
+    path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
+    startLine: 177
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  summary: "\nInternal class representing a SQL equality reference like &quot;table_alias.field_name=@param_name&quot;\n"
+  example: []
+  syntax:
+    content: 'public class StatementEqualsRef : object'
+    content.vb: >-
+      Public Class StatementEqualsRef
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Database.StatementEqualsRef.tableName
+  commentId: F:Butterfly.Core.Database.StatementEqualsRef.tableName
+  id: tableName
+  parent: Butterfly.Core.Database.StatementEqualsRef
+  langs:
+  - csharp
+  - vb
+  name: tableName
+  nameWithType: StatementEqualsRef.tableName
+  fullName: Butterfly.Core.Database.StatementEqualsRef.tableName
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/BaseStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: tableName
+    path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
+    startLine: 178
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public readonly string tableName
+    return:
+      type: System.String
+    content.vb: Public ReadOnly tableName As String
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Database.StatementEqualsRef.fieldName
+  commentId: F:Butterfly.Core.Database.StatementEqualsRef.fieldName
+  id: fieldName
+  parent: Butterfly.Core.Database.StatementEqualsRef
+  langs:
+  - csharp
+  - vb
+  name: fieldName
+  nameWithType: StatementEqualsRef.fieldName
+  fullName: Butterfly.Core.Database.StatementEqualsRef.fieldName
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/BaseStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: fieldName
+    path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
+    startLine: 179
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public readonly string fieldName
+    return:
+      type: System.String
+    content.vb: Public ReadOnly fieldName As String
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Database.StatementEqualsRef.paramName
+  commentId: F:Butterfly.Core.Database.StatementEqualsRef.paramName
+  id: paramName
+  parent: Butterfly.Core.Database.StatementEqualsRef
+  langs:
+  - csharp
+  - vb
+  name: paramName
+  nameWithType: StatementEqualsRef.paramName
+  fullName: Butterfly.Core.Database.StatementEqualsRef.paramName
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/BaseStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: paramName
+    path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
+    startLine: 180
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public readonly string paramName
+    return:
+      type: System.String
+    content.vb: Public ReadOnly paramName As String
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Database.StatementEqualsRef.#ctor(System.String,System.String,System.String)
+  commentId: M:Butterfly.Core.Database.StatementEqualsRef.#ctor(System.String,System.String,System.String)
+  id: '#ctor(System.String,System.String,System.String)'
+  parent: Butterfly.Core.Database.StatementEqualsRef
+  langs:
+  - csharp
+  - vb
+  name: StatementEqualsRef(String, String, String)
+  nameWithType: StatementEqualsRef.StatementEqualsRef(String, String, String)
+  fullName: Butterfly.Core.Database.StatementEqualsRef.StatementEqualsRef(System.String, System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/BaseStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
+    startLine: 182
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public StatementEqualsRef(string tableName, string fieldName, string paramName)
+    parameters:
+    - id: tableName
+      type: System.String
+    - id: fieldName
+      type: System.String
+    - id: paramName
+      type: System.String
+    content.vb: Public Sub New(tableName As String, fieldName As String, paramName As String)
+  overload: Butterfly.Core.Database.StatementEqualsRef.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Database.StatementEqualsRef.GetMatchingParams(Butterfly.Core.Database.StatementEqualsRef[],System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:Butterfly.Core.Database.StatementEqualsRef.GetMatchingParams(Butterfly.Core.Database.StatementEqualsRef[],System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: GetMatchingParams(Butterfly.Core.Database.StatementEqualsRef[],System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: Butterfly.Core.Database.StatementEqualsRef
+  langs:
+  - csharp
+  - vb
+  name: GetMatchingParams(StatementEqualsRef[], System.Collections.Generic.Dictionary<String, Object>)
+  nameWithType: StatementEqualsRef.GetMatchingParams(StatementEqualsRef[], System.Collections.Generic.Dictionary<String, Object>)
+  fullName: Butterfly.Core.Database.StatementEqualsRef.GetMatchingParams(Butterfly.Core.Database.StatementEqualsRef[], System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Statements/BaseStatement.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: GetMatchingParams
+    path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
+    startLine: 188
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public static System.Collections.Generic.Dictionary<string, object> GetMatchingParams(StatementEqualsRef[] equalsRefs, System.Collections.Generic.Dictionary<string, object> sourceParams)
+    parameters:
+    - id: equalsRefs
+      type: Butterfly.Core.Database.StatementEqualsRef[]
+    - id: sourceParams
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    content.vb: Public Shared Function GetMatchingParams(equalsRefs As StatementEqualsRef(), sourceParams As System.Collections.Generic.Dictionary(Of String, Object)) As System.Collections.Generic.Dictionary(Of String, Object)
+  overload: Butterfly.Core.Database.StatementEqualsRef.GetMatchingParams*
+  nameWithType.vb: StatementEqualsRef.GetMatchingParams(StatementEqualsRef(), System.Collections.Generic.Dictionary(Of String, Object))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Butterfly.Core.Database.StatementEqualsRef.GetMatchingParams(Butterfly.Core.Database.StatementEqualsRef(), System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: GetMatchingParams(StatementEqualsRef(), System.Collections.Generic.Dictionary(Of String, Object))
+references:
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Butterfly.Core.Database.StatementEqualsRef.#ctor*
+  commentId: Overload:Butterfly.Core.Database.StatementEqualsRef.#ctor
+  name: StatementEqualsRef
+  nameWithType: StatementEqualsRef.StatementEqualsRef
+  fullName: Butterfly.Core.Database.StatementEqualsRef.StatementEqualsRef
+- uid: Butterfly.Core.Database.StatementEqualsRef.GetMatchingParams*
+  commentId: Overload:Butterfly.Core.Database.StatementEqualsRef.GetMatchingParams
+  name: GetMatchingParams
+  nameWithType: StatementEqualsRef.GetMatchingParams
+  fullName: Butterfly.Core.Database.StatementEqualsRef.GetMatchingParams
+- uid: Butterfly.Core.Database.StatementEqualsRef[]
+  isExternal: true
+  name: StatementEqualsRef[]
+  nameWithType: StatementEqualsRef[]
+  fullName: Butterfly.Core.Database.StatementEqualsRef[]
+  nameWithType.vb: StatementEqualsRef()
+  fullName.vb: Butterfly.Core.Database.StatementEqualsRef()
+  name.vb: StatementEqualsRef()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.StatementEqualsRef
+    name: StatementEqualsRef
+    nameWithType: StatementEqualsRef
+    fullName: Butterfly.Core.Database.StatementEqualsRef
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: Butterfly.Core.Database.StatementEqualsRef
+    name: StatementEqualsRef
+    nameWithType: StatementEqualsRef
+    fullName: Butterfly.Core.Database.StatementEqualsRef
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Collections.Generic.Dictionary{System.String,System.Object}
+  commentId: '!:System.Collections.Generic.Dictionary{System.String,System.Object}'
+  definition: System.Collections.Generic.Dictionary`2
+  name: System.Collections.Generic.Dictionary<String, Object>
+  nameWithType: System.Collections.Generic.Dictionary<String, Object>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.Object>
+  nameWithType.vb: System.Collections.Generic.Dictionary(Of String, Object)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.Object)
+  name.vb: System.Collections.Generic.Dictionary(Of String, Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: System.Collections.Generic.Dictionary<, >
+  nameWithType: System.Collections.Generic.Dictionary<, >
+  fullName: System.Collections.Generic.Dictionary<, >
+  nameWithType.vb: System.Collections.Generic.Dictionary(Of , )
+  fullName.vb: System.Collections.Generic.Dictionary(Of , )
+  name.vb: System.Collections.Generic.Dictionary(Of , )
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+shouldSkipMarkup: true

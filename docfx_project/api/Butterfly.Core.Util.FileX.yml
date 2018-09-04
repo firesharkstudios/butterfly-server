@@ -1,0 +1,514 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.FileX
+  commentId: T:Butterfly.Core.Util.FileX
+  id: FileX
+  parent: Butterfly.Core.Util
+  children:
+  - Butterfly.Core.Util.FileX.GetParentPathUntil(System.String,System.String)
+  - Butterfly.Core.Util.FileX.GetReadFileStream(System.String,System.Boolean)
+  - Butterfly.Core.Util.FileX.GetWriteFileStream(System.String,System.Boolean)
+  - Butterfly.Core.Util.FileX.LoadResourceAsText(Assembly,System.String)
+  - Butterfly.Core.Util.FileX.LoadResourceAsTextAsync(Assembly,System.String)
+  - Butterfly.Core.Util.FileX.ReadTextAsync(System.String)
+  - Butterfly.Core.Util.FileX.Resolve(System.String)
+  - Butterfly.Core.Util.FileX.WriteTextAsync(System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: FileX
+  nameWithType: FileX
+  fullName: Butterfly.Core.Util.FileX
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/FileX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: FileX
+    path: ../Butterfly.Core/Util/FileX.cs
+    startLine: 11
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: 'public static class FileX : object'
+    content.vb: >-
+      Public Module FileX
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Butterfly.Core.Util.FileX.GetParentPathUntil(System.String,System.String)
+  commentId: M:Butterfly.Core.Util.FileX.GetParentPathUntil(System.String,System.String)
+  id: GetParentPathUntil(System.String,System.String)
+  parent: Butterfly.Core.Util.FileX
+  langs:
+  - csharp
+  - vb
+  name: GetParentPathUntil(String, String)
+  nameWithType: FileX.GetParentPathUntil(String, String)
+  fullName: Butterfly.Core.Util.FileX.GetParentPathUntil(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/FileX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: GetParentPathUntil
+    path: ../Butterfly.Core/Util/FileX.cs
+    startLine: 12
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static string GetParentPathUntil(string path, string name)
+    parameters:
+    - id: path
+      type: System.String
+    - id: name
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetParentPathUntil(path As String, name As String) As String
+  overload: Butterfly.Core.Util.FileX.GetParentPathUntil*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.FileX.Resolve(System.String)
+  commentId: M:Butterfly.Core.Util.FileX.Resolve(System.String)
+  id: Resolve(System.String)
+  parent: Butterfly.Core.Util.FileX
+  langs:
+  - csharp
+  - vb
+  name: Resolve(String)
+  nameWithType: FileX.Resolve(String)
+  fullName: Butterfly.Core.Util.FileX.Resolve(System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/FileX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Resolve
+    path: ../Butterfly.Core/Util/FileX.cs
+    startLine: 22
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static string Resolve(string path)
+    parameters:
+    - id: path
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function Resolve(path As String) As String
+  overload: Butterfly.Core.Util.FileX.Resolve*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.FileX.WriteTextAsync(System.String,System.String)
+  commentId: M:Butterfly.Core.Util.FileX.WriteTextAsync(System.String,System.String)
+  id: WriteTextAsync(System.String,System.String)
+  parent: Butterfly.Core.Util.FileX
+  langs:
+  - csharp
+  - vb
+  name: WriteTextAsync(String, String)
+  nameWithType: FileX.WriteTextAsync(String, String)
+  fullName: Butterfly.Core.Util.FileX.WriteTextAsync(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/FileX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: WriteTextAsync
+    path: ../Butterfly.Core/Util/FileX.cs
+    startLine: 26
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static Task WriteTextAsync(string filePath, string text)
+    parameters:
+    - id: filePath
+      type: System.String
+    - id: text
+      type: System.String
+    return:
+      type: Task
+    content.vb: Public Shared Function WriteTextAsync(filePath As String, text As String) As Task
+  overload: Butterfly.Core.Util.FileX.WriteTextAsync*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.FileX.ReadTextAsync(System.String)
+  commentId: M:Butterfly.Core.Util.FileX.ReadTextAsync(System.String)
+  id: ReadTextAsync(System.String)
+  parent: Butterfly.Core.Util.FileX
+  langs:
+  - csharp
+  - vb
+  name: ReadTextAsync(String)
+  nameWithType: FileX.ReadTextAsync(String)
+  fullName: Butterfly.Core.Util.FileX.ReadTextAsync(System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/FileX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ReadTextAsync
+    path: ../Butterfly.Core/Util/FileX.cs
+    startLine: 34
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static Task<string> ReadTextAsync(string filePath)
+    parameters:
+    - id: filePath
+      type: System.String
+    return:
+      type: Task{System.String}
+    content.vb: Public Shared Function ReadTextAsync(filePath As String) As Task(Of String)
+  overload: Butterfly.Core.Util.FileX.ReadTextAsync*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.FileX.GetReadFileStream(System.String,System.Boolean)
+  commentId: M:Butterfly.Core.Util.FileX.GetReadFileStream(System.String,System.Boolean)
+  id: GetReadFileStream(System.String,System.Boolean)
+  parent: Butterfly.Core.Util.FileX
+  langs:
+  - csharp
+  - vb
+  name: GetReadFileStream(String, Boolean)
+  nameWithType: FileX.GetReadFileStream(String, Boolean)
+  fullName: Butterfly.Core.Util.FileX.GetReadFileStream(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/FileX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: GetReadFileStream
+    path: ../Butterfly.Core/Util/FileX.cs
+    startLine: 49
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static FileStream GetReadFileStream(string file, bool async = true)
+    parameters:
+    - id: file
+      type: System.String
+    - id: async
+      type: System.Boolean
+    return:
+      type: FileStream
+    content.vb: Public Shared Function GetReadFileStream(file As String, async As Boolean = True) As FileStream
+  overload: Butterfly.Core.Util.FileX.GetReadFileStream*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.FileX.GetWriteFileStream(System.String,System.Boolean)
+  commentId: M:Butterfly.Core.Util.FileX.GetWriteFileStream(System.String,System.Boolean)
+  id: GetWriteFileStream(System.String,System.Boolean)
+  parent: Butterfly.Core.Util.FileX
+  langs:
+  - csharp
+  - vb
+  name: GetWriteFileStream(String, Boolean)
+  nameWithType: FileX.GetWriteFileStream(String, Boolean)
+  fullName: Butterfly.Core.Util.FileX.GetWriteFileStream(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/FileX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: GetWriteFileStream
+    path: ../Butterfly.Core/Util/FileX.cs
+    startLine: 54
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static FileStream GetWriteFileStream(string file, bool async = true)
+    parameters:
+    - id: file
+      type: System.String
+    - id: async
+      type: System.Boolean
+    return:
+      type: FileStream
+    content.vb: Public Shared Function GetWriteFileStream(file As String, async As Boolean = True) As FileStream
+  overload: Butterfly.Core.Util.FileX.GetWriteFileStream*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.FileX.LoadResourceAsText(Assembly,System.String)
+  commentId: M:Butterfly.Core.Util.FileX.LoadResourceAsText(Assembly,System.String)
+  id: LoadResourceAsText(Assembly,System.String)
+  parent: Butterfly.Core.Util.FileX
+  langs:
+  - csharp
+  - vb
+  name: LoadResourceAsText(Assembly, String)
+  nameWithType: FileX.LoadResourceAsText(Assembly, String)
+  fullName: Butterfly.Core.Util.FileX.LoadResourceAsText(Assembly, System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/FileX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: LoadResourceAsText
+    path: ../Butterfly.Core/Util/FileX.cs
+    startLine: 59
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static string LoadResourceAsText(Assembly assembly, string file)
+    parameters:
+    - id: assembly
+      type: Assembly
+    - id: file
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function LoadResourceAsText(assembly As Assembly, file As String) As String
+  overload: Butterfly.Core.Util.FileX.LoadResourceAsText*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.FileX.LoadResourceAsTextAsync(Assembly,System.String)
+  commentId: M:Butterfly.Core.Util.FileX.LoadResourceAsTextAsync(Assembly,System.String)
+  id: LoadResourceAsTextAsync(Assembly,System.String)
+  parent: Butterfly.Core.Util.FileX
+  langs:
+  - csharp
+  - vb
+  name: LoadResourceAsTextAsync(Assembly, String)
+  nameWithType: FileX.LoadResourceAsTextAsync(Assembly, String)
+  fullName: Butterfly.Core.Util.FileX.LoadResourceAsTextAsync(Assembly, System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/FileX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: LoadResourceAsTextAsync
+    path: ../Butterfly.Core/Util/FileX.cs
+    startLine: 65
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static Task<string> LoadResourceAsTextAsync(Assembly assembly, string file)
+    parameters:
+    - id: assembly
+      type: Assembly
+    - id: file
+      type: System.String
+    return:
+      type: Task{System.String}
+    content.vb: Public Shared Function LoadResourceAsTextAsync(assembly As Assembly, file As String) As Task(Of String)
+  overload: Butterfly.Core.Util.FileX.LoadResourceAsTextAsync*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Util.FileX.GetParentPathUntil*
+  commentId: Overload:Butterfly.Core.Util.FileX.GetParentPathUntil
+  name: GetParentPathUntil
+  nameWithType: FileX.GetParentPathUntil
+  fullName: Butterfly.Core.Util.FileX.GetParentPathUntil
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Butterfly.Core.Util.FileX.Resolve*
+  commentId: Overload:Butterfly.Core.Util.FileX.Resolve
+  name: Resolve
+  nameWithType: FileX.Resolve
+  fullName: Butterfly.Core.Util.FileX.Resolve
+- uid: Butterfly.Core.Util.FileX.WriteTextAsync*
+  commentId: Overload:Butterfly.Core.Util.FileX.WriteTextAsync
+  name: WriteTextAsync
+  nameWithType: FileX.WriteTextAsync
+  fullName: Butterfly.Core.Util.FileX.WriteTextAsync
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Butterfly.Core.Util.FileX.ReadTextAsync*
+  commentId: Overload:Butterfly.Core.Util.FileX.ReadTextAsync
+  name: ReadTextAsync
+  nameWithType: FileX.ReadTextAsync
+  fullName: Butterfly.Core.Util.FileX.ReadTextAsync
+- uid: Task{System.String}
+  commentId: '!:Task{System.String}'
+  definition: Task`1
+  name: Task<String>
+  nameWithType: Task<String>
+  fullName: Task<System.String>
+  nameWithType.vb: Task(Of String)
+  fullName.vb: Task(Of System.String)
+  name.vb: Task(Of String)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
+  isExternal: true
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Util.FileX.GetReadFileStream*
+  commentId: Overload:Butterfly.Core.Util.FileX.GetReadFileStream
+  name: GetReadFileStream
+  nameWithType: FileX.GetReadFileStream
+  fullName: Butterfly.Core.Util.FileX.GetReadFileStream
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: FileStream
+  isExternal: true
+  name: FileStream
+  nameWithType: FileStream
+  fullName: FileStream
+- uid: Butterfly.Core.Util.FileX.GetWriteFileStream*
+  commentId: Overload:Butterfly.Core.Util.FileX.GetWriteFileStream
+  name: GetWriteFileStream
+  nameWithType: FileX.GetWriteFileStream
+  fullName: Butterfly.Core.Util.FileX.GetWriteFileStream
+- uid: Butterfly.Core.Util.FileX.LoadResourceAsText*
+  commentId: Overload:Butterfly.Core.Util.FileX.LoadResourceAsText
+  name: LoadResourceAsText
+  nameWithType: FileX.LoadResourceAsText
+  fullName: Butterfly.Core.Util.FileX.LoadResourceAsText
+- uid: Assembly
+  isExternal: true
+  name: Assembly
+  nameWithType: Assembly
+  fullName: Assembly
+- uid: Butterfly.Core.Util.FileX.LoadResourceAsTextAsync*
+  commentId: Overload:Butterfly.Core.Util.FileX.LoadResourceAsTextAsync
+  name: LoadResourceAsTextAsync
+  nameWithType: FileX.LoadResourceAsTextAsync
+  fullName: Butterfly.Core.Util.FileX.LoadResourceAsTextAsync
+shouldSkipMarkup: true

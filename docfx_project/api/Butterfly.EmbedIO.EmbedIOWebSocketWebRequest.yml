@@ -1,0 +1,421 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest
+  commentId: T:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest
+  id: EmbedIOWebSocketWebRequest
+  parent: Butterfly.EmbedIO
+  children:
+  - Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor(WebSocketContext)
+  - Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.context
+  - Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.Headers
+  - Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.PathParams
+  - Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.QueryParams
+  - Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.RequestUrl
+  langs:
+  - csharp
+  - vb
+  name: EmbedIOWebSocketWebRequest
+  nameWithType: EmbedIOWebSocketWebRequest
+  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest
+  type: Class
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: EmbedIOWebSocketWebRequest
+    path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
+    startLine: 115
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: 'public class EmbedIOWebSocketWebRequest : object, IWebRequest'
+    content.vb: >-
+      Public Class EmbedIOWebSocketWebRequest
+          Inherits Object
+          Implements IWebRequest
+  inheritance:
+  - System.Object
+  implements:
+  - Butterfly.Core.Util.IWebRequest
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.context
+  commentId: F:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.context
+  id: context
+  parent: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest
+  langs:
+  - csharp
+  - vb
+  name: context
+  nameWithType: EmbedIOWebSocketWebRequest.context
+  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.context
+  type: Field
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: context
+    path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
+    startLine: 117
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: protected readonly WebSocketContext context
+    return:
+      type: WebSocketContext
+    content.vb: Protected ReadOnly context As WebSocketContext
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor(WebSocketContext)
+  commentId: M:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor(WebSocketContext)
+  id: '#ctor(WebSocketContext)'
+  parent: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest
+  langs:
+  - csharp
+  - vb
+  name: EmbedIOWebSocketWebRequest(WebSocketContext)
+  nameWithType: EmbedIOWebSocketWebRequest.EmbedIOWebSocketWebRequest(WebSocketContext)
+  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.EmbedIOWebSocketWebRequest(WebSocketContext)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
+    startLine: 119
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: public EmbedIOWebSocketWebRequest(WebSocketContext context)
+    parameters:
+    - id: context
+      type: WebSocketContext
+    content.vb: Public Sub New(context As WebSocketContext)
+  overload: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.RequestUrl
+  commentId: P:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.RequestUrl
+  id: RequestUrl
+  parent: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest
+  langs:
+  - csharp
+  - vb
+  name: RequestUrl
+  nameWithType: EmbedIOWebSocketWebRequest.RequestUrl
+  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.RequestUrl
+  type: Property
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: RequestUrl
+    path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
+    startLine: 123
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: public Uri RequestUrl { get; }
+    parameters: []
+    return:
+      type: Uri
+    content.vb: Public ReadOnly Property RequestUrl As Uri
+  overload: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.RequestUrl*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.Headers
+  commentId: P:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.Headers
+  id: Headers
+  parent: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest
+  langs:
+  - csharp
+  - vb
+  name: Headers
+  nameWithType: EmbedIOWebSocketWebRequest.Headers
+  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.Headers
+  type: Property
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Headers
+    path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
+    startLine: 125
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: public Dictionary<string, string> Headers { get; }
+    parameters: []
+    return:
+      type: Dictionary{System.String,System.String}
+    content.vb: Public ReadOnly Property Headers As Dictionary(Of String, String)
+  overload: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.Headers*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.PathParams
+  commentId: P:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.PathParams
+  id: PathParams
+  parent: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest
+  langs:
+  - csharp
+  - vb
+  name: PathParams
+  nameWithType: EmbedIOWebSocketWebRequest.PathParams
+  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.PathParams
+  type: Property
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: PathParams
+    path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
+    startLine: 127
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: public Dictionary<string, string> PathParams { get; }
+    parameters: []
+    return:
+      type: Dictionary{System.String,System.String}
+    content.vb: Public ReadOnly Property PathParams As Dictionary(Of String, String)
+  overload: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.PathParams*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.QueryParams
+  commentId: P:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.QueryParams
+  id: QueryParams
+  parent: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest
+  langs:
+  - csharp
+  - vb
+  name: QueryParams
+  nameWithType: EmbedIOWebSocketWebRequest.QueryParams
+  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.QueryParams
+  type: Property
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: QueryParams
+    path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
+    startLine: 129
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: public Dictionary<string, string> QueryParams { get; }
+    parameters: []
+    return:
+      type: Dictionary{System.String,System.String}
+    content.vb: Public ReadOnly Property QueryParams As Dictionary(Of String, String)
+  overload: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.QueryParams*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+references:
+- uid: Butterfly.EmbedIO
+  commentId: N:Butterfly.EmbedIO
+  name: Butterfly.EmbedIO
+  nameWithType: Butterfly.EmbedIO
+  fullName: Butterfly.EmbedIO
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Util.IWebRequest
+  commentId: T:Butterfly.Core.Util.IWebRequest
+  parent: Butterfly.Core.Util
+  name: IWebRequest
+  nameWithType: IWebRequest
+  fullName: Butterfly.Core.Util.IWebRequest
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: WebSocketContext
+  isExternal: true
+  name: WebSocketContext
+  nameWithType: WebSocketContext
+  fullName: WebSocketContext
+- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor*
+  commentId: Overload:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor
+  name: EmbedIOWebSocketWebRequest
+  nameWithType: EmbedIOWebSocketWebRequest.EmbedIOWebSocketWebRequest
+  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.EmbedIOWebSocketWebRequest
+- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.RequestUrl*
+  commentId: Overload:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.RequestUrl
+  name: RequestUrl
+  nameWithType: EmbedIOWebSocketWebRequest.RequestUrl
+  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.RequestUrl
+- uid: Uri
+  isExternal: true
+  name: Uri
+  nameWithType: Uri
+  fullName: Uri
+- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.Headers*
+  commentId: Overload:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.Headers
+  name: Headers
+  nameWithType: EmbedIOWebSocketWebRequest.Headers
+  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.Headers
+- uid: Dictionary{System.String,System.String}
+  commentId: '!:Dictionary{System.String,System.String}'
+  definition: Dictionary`2
+  name: Dictionary<String, String>
+  nameWithType: Dictionary<String, String>
+  fullName: Dictionary<System.String, System.String>
+  nameWithType.vb: Dictionary(Of String, String)
+  fullName.vb: Dictionary(Of System.String, System.String)
+  name.vb: Dictionary(Of String, String)
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Dictionary`2
+  isExternal: true
+  name: Dictionary<, >
+  nameWithType: Dictionary<, >
+  fullName: Dictionary<, >
+  nameWithType.vb: Dictionary(Of , )
+  fullName.vb: Dictionary(Of , )
+  name.vb: Dictionary(Of , )
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.PathParams*
+  commentId: Overload:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.PathParams
+  name: PathParams
+  nameWithType: EmbedIOWebSocketWebRequest.PathParams
+  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.PathParams
+- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.QueryParams*
+  commentId: Overload:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.QueryParams
+  name: QueryParams
+  nameWithType: EmbedIOWebSocketWebRequest.QueryParams
+  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.QueryParams
+shouldSkipMarkup: true

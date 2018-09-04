@@ -1,0 +1,221 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.TableIndex
+  commentId: T:Butterfly.Core.Database.TableIndex
+  id: TableIndex
+  parent: Butterfly.Core.Database
+  children:
+  - Butterfly.Core.Database.TableIndex.#ctor(Butterfly.Core.Database.TableIndexType,System.String[])
+  - Butterfly.Core.Database.TableIndex.FieldNames
+  - Butterfly.Core.Database.TableIndex.IndexType
+  langs:
+  - csharp
+  - vb
+  name: TableIndex
+  nameWithType: TableIndex
+  fullName: Butterfly.Core.Database.TableIndex
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Database/TableIndex.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TableIndex
+    path: ../Butterfly.Core/Database/TableIndex.cs
+    startLine: 15
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  summary: "\nDefines an index for a <xref href=\"Butterfly.Core.Database.Table\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: 'public class TableIndex : object'
+    content.vb: >-
+      Public Class TableIndex
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Database.TableIndex.#ctor(Butterfly.Core.Database.TableIndexType,System.String[])
+  commentId: M:Butterfly.Core.Database.TableIndex.#ctor(Butterfly.Core.Database.TableIndexType,System.String[])
+  id: '#ctor(Butterfly.Core.Database.TableIndexType,System.String[])'
+  parent: Butterfly.Core.Database.TableIndex
+  langs:
+  - csharp
+  - vb
+  name: TableIndex(TableIndexType, String[])
+  nameWithType: TableIndex.TableIndex(TableIndexType, String[])
+  fullName: Butterfly.Core.Database.TableIndex.TableIndex(Butterfly.Core.Database.TableIndexType, System.String[])
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Database/TableIndex.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Database/TableIndex.cs
+    startLine: 16
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public TableIndex(TableIndexType indexType, string[] fieldNames)
+    parameters:
+    - id: indexType
+      type: Butterfly.Core.Database.TableIndexType
+    - id: fieldNames
+      type: System.String[]
+    content.vb: Public Sub New(indexType As TableIndexType, fieldNames As String())
+  overload: Butterfly.Core.Database.TableIndex.#ctor*
+  nameWithType.vb: TableIndex.TableIndex(TableIndexType, String())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Database.TableIndex.TableIndex(Butterfly.Core.Database.TableIndexType, System.String())
+  name.vb: TableIndex(TableIndexType, String())
+- uid: Butterfly.Core.Database.TableIndex.IndexType
+  commentId: P:Butterfly.Core.Database.TableIndex.IndexType
+  id: IndexType
+  parent: Butterfly.Core.Database.TableIndex
+  langs:
+  - csharp
+  - vb
+  name: IndexType
+  nameWithType: TableIndex.IndexType
+  fullName: Butterfly.Core.Database.TableIndex.IndexType
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/Database/TableIndex.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: IndexType
+    path: ../Butterfly.Core/Database/TableIndex.cs
+    startLine: 21
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public TableIndexType IndexType { get; protected set; }
+    parameters: []
+    return:
+      type: Butterfly.Core.Database.TableIndexType
+    content.vb: Public Property IndexType As TableIndexType
+  overload: Butterfly.Core.Database.TableIndex.IndexType*
+  modifiers.csharp:
+  - public
+  - get
+  - protected set
+  modifiers.vb:
+  - Public
+  - Get
+  - Protected Set
+- uid: Butterfly.Core.Database.TableIndex.FieldNames
+  commentId: P:Butterfly.Core.Database.TableIndex.FieldNames
+  id: FieldNames
+  parent: Butterfly.Core.Database.TableIndex
+  langs:
+  - csharp
+  - vb
+  name: FieldNames
+  nameWithType: TableIndex.FieldNames
+  fullName: Butterfly.Core.Database.TableIndex.FieldNames
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/Database/TableIndex.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: FieldNames
+    path: ../Butterfly.Core/Database/TableIndex.cs
+    startLine: 26
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public string[] FieldNames { get; protected set; }
+    parameters: []
+    return:
+      type: System.String[]
+    content.vb: Public Property FieldNames As String()
+  overload: Butterfly.Core.Database.TableIndex.FieldNames*
+  modifiers.csharp:
+  - public
+  - get
+  - protected set
+  modifiers.vb:
+  - Public
+  - Get
+  - Protected Set
+references:
+- uid: Butterfly.Core.Database.Table
+  commentId: T:Butterfly.Core.Database.Table
+  parent: Butterfly.Core.Database
+  name: Table
+  nameWithType: Table
+  fullName: Butterfly.Core.Database.Table
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Database.TableIndex.#ctor*
+  commentId: Overload:Butterfly.Core.Database.TableIndex.#ctor
+  name: TableIndex
+  nameWithType: TableIndex.TableIndex
+  fullName: Butterfly.Core.Database.TableIndex.TableIndex
+- uid: Butterfly.Core.Database.TableIndexType
+  commentId: T:Butterfly.Core.Database.TableIndexType
+  parent: Butterfly.Core.Database
+  name: TableIndexType
+  nameWithType: TableIndexType
+  fullName: Butterfly.Core.Database.TableIndexType
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Butterfly.Core.Database.TableIndex.IndexType*
+  commentId: Overload:Butterfly.Core.Database.TableIndex.IndexType
+  name: IndexType
+  nameWithType: TableIndex.IndexType
+  fullName: Butterfly.Core.Database.TableIndex.IndexType
+- uid: Butterfly.Core.Database.TableIndex.FieldNames*
+  commentId: Overload:Butterfly.Core.Database.TableIndex.FieldNames
+  name: FieldNames
+  nameWithType: TableIndex.FieldNames
+  fullName: Butterfly.Core.Database.TableIndex.FieldNames
+shouldSkipMarkup: true

@@ -1,0 +1,94 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Notify.Test.TwilioTest
+  commentId: T:Butterfly.Notify.Test.TwilioTest
+  id: TwilioTest
+  parent: Butterfly.Notify.Test
+  children:
+  - Butterfly.Notify.Test.TwilioTest.SendTwilioSmsNotifyMessage
+  langs:
+  - csharp
+  - vb
+  name: TwilioTest
+  nameWithType: TwilioTest
+  fullName: Butterfly.Notify.Test.TwilioTest
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Twilio.Test/TwilioTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TwilioTest
+    path: ../Butterfly.Twilio.Test/TwilioTest.cs
+    startLine: 11
+  assemblies:
+  - Butterfly.Twilio.Test
+  namespace: Butterfly.Notify.Test
+  syntax:
+    content: 'public class TwilioTest : object'
+    content.vb: >-
+      Public Class TwilioTest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Notify.Test.TwilioTest.SendTwilioSmsNotifyMessage
+  commentId: M:Butterfly.Notify.Test.TwilioTest.SendTwilioSmsNotifyMessage
+  id: SendTwilioSmsNotifyMessage
+  parent: Butterfly.Notify.Test.TwilioTest
+  langs:
+  - csharp
+  - vb
+  name: SendTwilioSmsNotifyMessage()
+  nameWithType: TwilioTest.SendTwilioSmsNotifyMessage()
+  fullName: Butterfly.Notify.Test.TwilioTest.SendTwilioSmsNotifyMessage()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Twilio.Test/TwilioTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: SendTwilioSmsNotifyMessage
+    path: ../Butterfly.Twilio.Test/TwilioTest.cs
+    startLine: 13
+  assemblies:
+  - Butterfly.Twilio.Test
+  namespace: Butterfly.Notify.Test
+  syntax:
+    content: public Task SendTwilioSmsNotifyMessage()
+    return:
+      type: Task
+    content.vb: Public Function SendTwilioSmsNotifyMessage As Task
+  overload: Butterfly.Notify.Test.TwilioTest.SendTwilioSmsNotifyMessage*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.Notify.Test
+  commentId: N:Butterfly.Notify.Test
+  name: Butterfly.Notify.Test
+  nameWithType: Butterfly.Notify.Test
+  fullName: Butterfly.Notify.Test
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Notify.Test.TwilioTest.SendTwilioSmsNotifyMessage*
+  commentId: Overload:Butterfly.Notify.Test.TwilioTest.SendTwilioSmsNotifyMessage
+  name: SendTwilioSmsNotifyMessage
+  nameWithType: TwilioTest.SendTwilioSmsNotifyMessage
+  fullName: Butterfly.Notify.Test.TwilioTest.SendTwilioSmsNotifyMessage
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+shouldSkipMarkup: true

@@ -1,0 +1,339 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.DictionaryItemDisposable`2
+  commentId: T:Butterfly.Core.Util.DictionaryItemDisposable`2
+  id: DictionaryItemDisposable`2
+  parent: Butterfly.Core.Util
+  children:
+  - Butterfly.Core.Util.DictionaryItemDisposable`2.#ctor(Dictionary{`0,`1},`0,`1)
+  - Butterfly.Core.Util.DictionaryItemDisposable`2.dictionary
+  - Butterfly.Core.Util.DictionaryItemDisposable`2.Dispose
+  - Butterfly.Core.Util.DictionaryItemDisposable`2.key
+  langs:
+  - csharp
+  - vb
+  name: DictionaryItemDisposable<T, U>
+  nameWithType: DictionaryItemDisposable<T, U>
+  fullName: Butterfly.Core.Util.DictionaryItemDisposable<T, U>
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/DictionaryItemDisposable.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DictionaryItemDisposable
+    path: ../Butterfly.Core/Util/DictionaryItemDisposable.cs
+    startLine: 8
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: 'public class DictionaryItemDisposable<T, U> : IDisposable'
+    typeParameters:
+    - id: T
+    - id: U
+    content.vb: >-
+      Public Class DictionaryItemDisposable(Of T, U)
+          Inherits IDisposable
+  inheritance:
+  - System.Object
+  nameWithType.vb: DictionaryItemDisposable(Of T, U)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  fullName.vb: Butterfly.Core.Util.DictionaryItemDisposable(Of T, U)
+  name.vb: DictionaryItemDisposable(Of T, U)
+- uid: Butterfly.Core.Util.DictionaryItemDisposable`2.dictionary
+  commentId: F:Butterfly.Core.Util.DictionaryItemDisposable`2.dictionary
+  id: dictionary
+  parent: Butterfly.Core.Util.DictionaryItemDisposable`2
+  langs:
+  - csharp
+  - vb
+  name: dictionary
+  nameWithType: DictionaryItemDisposable<T, U>.dictionary
+  fullName: Butterfly.Core.Util.DictionaryItemDisposable<T, U>.dictionary
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/DictionaryItemDisposable.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: dictionary
+    path: ../Butterfly.Core/Util/DictionaryItemDisposable.cs
+    startLine: 10
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: protected readonly Dictionary<T, U> dictionary
+    return:
+      type: Dictionary{{T},{U}}
+    content.vb: Protected ReadOnly dictionary As Dictionary(Of T, U)
+  nameWithType.vb: DictionaryItemDisposable(Of T, U).dictionary
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+  fullName.vb: Butterfly.Core.Util.DictionaryItemDisposable(Of T, U).dictionary
+- uid: Butterfly.Core.Util.DictionaryItemDisposable`2.key
+  commentId: F:Butterfly.Core.Util.DictionaryItemDisposable`2.key
+  id: key
+  parent: Butterfly.Core.Util.DictionaryItemDisposable`2
+  langs:
+  - csharp
+  - vb
+  name: key
+  nameWithType: DictionaryItemDisposable<T, U>.key
+  fullName: Butterfly.Core.Util.DictionaryItemDisposable<T, U>.key
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/DictionaryItemDisposable.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: key
+    path: ../Butterfly.Core/Util/DictionaryItemDisposable.cs
+    startLine: 11
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: protected readonly T key
+    return:
+      type: '{T}'
+    content.vb: Protected ReadOnly key As T
+  nameWithType.vb: DictionaryItemDisposable(Of T, U).key
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+  fullName.vb: Butterfly.Core.Util.DictionaryItemDisposable(Of T, U).key
+- uid: Butterfly.Core.Util.DictionaryItemDisposable`2.#ctor(Dictionary{`0,`1},`0,`1)
+  commentId: M:Butterfly.Core.Util.DictionaryItemDisposable`2.#ctor(Dictionary{`0,`1},`0,`1)
+  id: '#ctor(Dictionary{`0,`1},`0,`1)'
+  parent: Butterfly.Core.Util.DictionaryItemDisposable`2
+  langs:
+  - csharp
+  - vb
+  name: DictionaryItemDisposable(Dictionary<T, U>, T, U)
+  nameWithType: DictionaryItemDisposable<T, U>.DictionaryItemDisposable(Dictionary<T, U>, T, U)
+  fullName: Butterfly.Core.Util.DictionaryItemDisposable<T, U>.DictionaryItemDisposable(Dictionary<T, U>, T, U)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Util/DictionaryItemDisposable.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Util/DictionaryItemDisposable.cs
+    startLine: 13
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public DictionaryItemDisposable(Dictionary<T, U> list, T key, U item)
+    parameters:
+    - id: list
+      type: Dictionary{{T},{U}}
+    - id: key
+      type: '{T}'
+    - id: item
+      type: '{U}'
+    content.vb: Public Sub New(list As Dictionary(Of T, U), key As T, item As U)
+  overload: Butterfly.Core.Util.DictionaryItemDisposable`2.#ctor*
+  nameWithType.vb: DictionaryItemDisposable(Of T, U).DictionaryItemDisposable(Dictionary(Of T, U), T, U)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Util.DictionaryItemDisposable(Of T, U).DictionaryItemDisposable(Dictionary(Of T, U), T, U)
+  name.vb: DictionaryItemDisposable(Dictionary(Of T, U), T, U)
+- uid: Butterfly.Core.Util.DictionaryItemDisposable`2.Dispose
+  commentId: M:Butterfly.Core.Util.DictionaryItemDisposable`2.Dispose
+  id: Dispose
+  parent: Butterfly.Core.Util.DictionaryItemDisposable`2
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: DictionaryItemDisposable<T, U>.Dispose()
+  fullName: Butterfly.Core.Util.DictionaryItemDisposable<T, U>.Dispose()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/DictionaryItemDisposable.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Dispose
+    path: ../Butterfly.Core/Util/DictionaryItemDisposable.cs
+    startLine: 19
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose
+  overload: Butterfly.Core.Util.DictionaryItemDisposable`2.Dispose*
+  nameWithType.vb: DictionaryItemDisposable(Of T, U).Dispose()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Util.DictionaryItemDisposable(Of T, U).Dispose()
+references:
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Dictionary{{T},{U}}
+  commentId: '!:Dictionary{`0,`1}'
+  definition: Dictionary`2
+  name: Dictionary<T, U>
+  nameWithType: Dictionary<T, U>
+  fullName: Dictionary<T, U>
+  nameWithType.vb: Dictionary(Of T, U)
+  fullName.vb: Dictionary(Of T, U)
+  name.vb: Dictionary(Of T, U)
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: U
+    nameWithType: U
+    fullName: U
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: U
+    nameWithType: U
+    fullName: U
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Dictionary`2
+  isExternal: true
+  name: Dictionary<, >
+  nameWithType: Dictionary<, >
+  fullName: Dictionary<, >
+  nameWithType.vb: Dictionary(Of , )
+  fullName.vb: Dictionary(Of , )
+  name.vb: Dictionary(Of , )
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Butterfly.Core.Util.DictionaryItemDisposable`2.#ctor*
+  commentId: Overload:Butterfly.Core.Util.DictionaryItemDisposable`2.#ctor
+  name: DictionaryItemDisposable
+  nameWithType: DictionaryItemDisposable<T, U>.DictionaryItemDisposable
+  fullName: Butterfly.Core.Util.DictionaryItemDisposable<T, U>.DictionaryItemDisposable
+  nameWithType.vb: DictionaryItemDisposable(Of T, U).DictionaryItemDisposable
+  fullName.vb: Butterfly.Core.Util.DictionaryItemDisposable(Of T, U).DictionaryItemDisposable
+- uid: '{U}'
+  commentId: '!:U'
+  definition: U
+  name: U
+  nameWithType: U
+  fullName: U
+- uid: U
+  commentId: '!:U'
+  name: U
+  nameWithType: U
+  fullName: U
+- uid: Butterfly.Core.Util.DictionaryItemDisposable`2.Dispose*
+  commentId: Overload:Butterfly.Core.Util.DictionaryItemDisposable`2.Dispose
+  name: Dispose
+  nameWithType: DictionaryItemDisposable<T, U>.Dispose
+  fullName: Butterfly.Core.Util.DictionaryItemDisposable<T, U>.Dispose
+  nameWithType.vb: DictionaryItemDisposable(Of T, U).Dispose
+  fullName.vb: Butterfly.Core.Util.DictionaryItemDisposable(Of T, U).Dispose
+shouldSkipMarkup: true

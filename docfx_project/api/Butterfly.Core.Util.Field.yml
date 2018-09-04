@@ -1,0 +1,55 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.Field
+  commentId: N:Butterfly.Core.Util.Field
+  id: Butterfly.Core.Util.Field
+  children:
+  - Butterfly.Core.Util.Field.EmailFieldValidator
+  - Butterfly.Core.Util.Field.GenericFieldValidator
+  - Butterfly.Core.Util.Field.IFieldValidator
+  - Butterfly.Core.Util.Field.NameFieldValidator
+  - Butterfly.Core.Util.Field.PhoneFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: Butterfly.Core.Util.Field
+  nameWithType: Butterfly.Core.Util.Field
+  fullName: Butterfly.Core.Util.Field
+  type: Namespace
+  assemblies:
+  - Butterfly.Core
+references:
+- uid: Butterfly.Core.Util.Field.EmailFieldValidator
+  commentId: T:Butterfly.Core.Util.Field.EmailFieldValidator
+  parent: Butterfly.Core.Util.Field
+  name: EmailFieldValidator
+  nameWithType: EmailFieldValidator
+  fullName: Butterfly.Core.Util.Field.EmailFieldValidator
+- uid: Butterfly.Core.Util.Field.GenericFieldValidator
+  commentId: T:Butterfly.Core.Util.Field.GenericFieldValidator
+  name: GenericFieldValidator
+  nameWithType: GenericFieldValidator
+  fullName: Butterfly.Core.Util.Field.GenericFieldValidator
+- uid: Butterfly.Core.Util.Field.IFieldValidator
+  commentId: T:Butterfly.Core.Util.Field.IFieldValidator
+  parent: Butterfly.Core.Util.Field
+  name: IFieldValidator
+  nameWithType: IFieldValidator
+  fullName: Butterfly.Core.Util.Field.IFieldValidator
+- uid: Butterfly.Core.Util.Field.NameFieldValidator
+  commentId: T:Butterfly.Core.Util.Field.NameFieldValidator
+  name: NameFieldValidator
+  nameWithType: NameFieldValidator
+  fullName: Butterfly.Core.Util.Field.NameFieldValidator
+- uid: Butterfly.Core.Util.Field.PhoneFieldValidator
+  commentId: T:Butterfly.Core.Util.Field.PhoneFieldValidator
+  parent: Butterfly.Core.Util.Field
+  name: PhoneFieldValidator
+  nameWithType: PhoneFieldValidator
+  fullName: Butterfly.Core.Util.Field.PhoneFieldValidator
+- uid: Butterfly.Core.Util.Field
+  commentId: N:Butterfly.Core.Util.Field
+  name: Butterfly.Core.Util.Field
+  nameWithType: Butterfly.Core.Util.Field
+  fullName: Butterfly.Core.Util.Field
+shouldSkipMarkup: true

@@ -1,0 +1,83 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.Field.IFieldValidator
+  commentId: T:Butterfly.Core.Util.Field.IFieldValidator
+  id: IFieldValidator
+  parent: Butterfly.Core.Util.Field
+  children:
+  - Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  langs:
+  - csharp
+  - vb
+  name: IFieldValidator
+  nameWithType: IFieldValidator
+  fullName: Butterfly.Core.Util.Field.IFieldValidator
+  type: Interface
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/IFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: IFieldValidator
+    path: ../Butterfly.Core/Util/Field/IFieldValidator.cs
+    startLine: 5
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: public interface IFieldValidator
+    content.vb: Public Interface IFieldValidator
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  commentId: M:Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  id: Validate(System.String)
+  parent: Butterfly.Core.Util.Field.IFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: Validate(String)
+  nameWithType: IFieldValidator.Validate(String)
+  fullName: Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/IFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Validate
+    path: ../Butterfly.Core/Util/Field/IFieldValidator.cs
+    startLine: 7
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: string Validate(string value)
+    parameters:
+    - id: value
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Function Validate(value As String) As String
+  overload: Butterfly.Core.Util.Field.IFieldValidator.Validate*
+references:
+- uid: Butterfly.Core.Util.Field
+  commentId: N:Butterfly.Core.Util.Field
+  name: Butterfly.Core.Util.Field
+  nameWithType: Butterfly.Core.Util.Field
+  fullName: Butterfly.Core.Util.Field
+- uid: Butterfly.Core.Util.Field.IFieldValidator.Validate*
+  commentId: Overload:Butterfly.Core.Util.Field.IFieldValidator.Validate
+  name: Validate
+  nameWithType: IFieldValidator.Validate
+  fullName: Butterfly.Core.Util.Field.IFieldValidator.Validate
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+shouldSkipMarkup: true

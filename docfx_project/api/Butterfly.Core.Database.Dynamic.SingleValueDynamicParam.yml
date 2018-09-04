@@ -1,0 +1,405 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam
+  commentId: T:Butterfly.Core.Database.Dynamic.SingleValueDynamicParam
+  id: SingleValueDynamicParam
+  parent: Butterfly.Core.Database.Dynamic
+  children:
+  - Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.#ctor(System.String)
+  - Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.Clear
+  - Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.GetValue
+  - Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.SetValue(System.Object)
+  - Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.value
+  langs:
+  - csharp
+  - vb
+  name: SingleValueDynamicParam
+  nameWithType: SingleValueDynamicParam
+  fullName: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: SingleValueDynamicParam
+    path: ../Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
+    startLine: 8
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  summary: "\nA <xref href=\"Butterfly.Core.Database.IDynamicParam\" data-throw-if-not-resolved=\"false\"></xref> that may only contain a single value\n"
+  example: []
+  syntax:
+    content: 'public class SingleValueDynamicParam : BaseDynamicParam, IDynamicParam'
+    content.vb: >-
+      Public Class SingleValueDynamicParam
+          Inherits BaseDynamicParam
+          Implements IDynamicParam
+  inheritance:
+  - System.Object
+  - Butterfly.Core.Database.Dynamic.BaseDynamicParam
+  implements:
+  - Butterfly.Core.Database.IDynamicParam
+  inheritedMembers:
+  - Butterfly.Core.Database.Dynamic.BaseDynamicParam.logger
+  - Butterfly.Core.Database.Dynamic.BaseDynamicParam.name
+  - Butterfly.Core.Database.Dynamic.BaseDynamicParam.Dirty
+  - Butterfly.Core.Database.Dynamic.BaseDynamicParam.SetDirty
+  - Butterfly.Core.Database.Dynamic.BaseDynamicParam.ResetDirty
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.value
+  commentId: F:Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.value
+  id: value
+  parent: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam
+  langs:
+  - csharp
+  - vb
+  name: value
+  nameWithType: SingleValueDynamicParam.value
+  fullName: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.value
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: value
+    path: ../Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
+    startLine: 9
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected object value
+    return:
+      type: System.Object
+    content.vb: Protected value As Object
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.#ctor(System.String)
+  commentId: M:Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam
+  langs:
+  - csharp
+  - vb
+  name: SingleValueDynamicParam(String)
+  nameWithType: SingleValueDynamicParam.SingleValueDynamicParam(String)
+  fullName: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.SingleValueDynamicParam(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
+    startLine: 11
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: public SingleValueDynamicParam(string name)
+    parameters:
+    - id: name
+      type: System.String
+    content.vb: Public Sub New(name As String)
+  overload: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.Clear
+  commentId: M:Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.Clear
+  id: Clear
+  parent: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: SingleValueDynamicParam.Clear()
+  fullName: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.Clear()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Clear
+    path: ../Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
+    startLine: 14
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: public override void Clear()
+    content.vb: Public Overrides Sub Clear
+  overridden: Butterfly.Core.Database.Dynamic.BaseDynamicParam.Clear
+  overload: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.Clear*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.GetValue
+  commentId: M:Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.GetValue
+  id: GetValue
+  parent: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam
+  langs:
+  - csharp
+  - vb
+  name: GetValue()
+  nameWithType: SingleValueDynamicParam.GetValue()
+  fullName: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.GetValue()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: GetValue
+    path: ../Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
+    startLine: 21
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: public override object GetValue()
+    return:
+      type: System.Object
+    content.vb: Public Overrides Function GetValue As Object
+  overridden: Butterfly.Core.Database.Dynamic.BaseDynamicParam.GetValue
+  overload: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.GetValue*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.SetValue(System.Object)
+  commentId: M:Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.SetValue(System.Object)
+  id: SetValue(System.Object)
+  parent: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam
+  langs:
+  - csharp
+  - vb
+  name: SetValue(Object)
+  nameWithType: SingleValueDynamicParam.SetValue(Object)
+  fullName: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.SetValue(System.Object)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: SetValue
+    path: ../Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
+    startLine: 25
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: public void SetValue(object value)
+    parameters:
+    - id: value
+      type: System.Object
+    content.vb: Public Sub SetValue(value As Object)
+  overload: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.SetValue*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.Core.Database.IDynamicParam
+  commentId: T:Butterfly.Core.Database.IDynamicParam
+  parent: Butterfly.Core.Database
+  name: IDynamicParam
+  nameWithType: IDynamicParam
+  fullName: Butterfly.Core.Database.IDynamicParam
+- uid: Butterfly.Core.Database.Dynamic
+  commentId: N:Butterfly.Core.Database.Dynamic
+  name: Butterfly.Core.Database.Dynamic
+  nameWithType: Butterfly.Core.Database.Dynamic
+  fullName: Butterfly.Core.Database.Dynamic
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam
+  commentId: T:Butterfly.Core.Database.Dynamic.BaseDynamicParam
+  parent: Butterfly.Core.Database.Dynamic
+  name: BaseDynamicParam
+  nameWithType: BaseDynamicParam
+  fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam
+- uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam.logger
+  commentId: F:Butterfly.Core.Database.Dynamic.BaseDynamicParam.logger
+  parent: Butterfly.Core.Database.Dynamic.BaseDynamicParam
+  name: logger
+  nameWithType: BaseDynamicParam.logger
+  fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam.logger
+- uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam.name
+  commentId: F:Butterfly.Core.Database.Dynamic.BaseDynamicParam.name
+  parent: Butterfly.Core.Database.Dynamic.BaseDynamicParam
+  name: name
+  nameWithType: BaseDynamicParam.name
+  fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam.name
+- uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam.Dirty
+  commentId: P:Butterfly.Core.Database.Dynamic.BaseDynamicParam.Dirty
+  parent: Butterfly.Core.Database.Dynamic.BaseDynamicParam
+  name: Dirty
+  nameWithType: BaseDynamicParam.Dirty
+  fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam.Dirty
+- uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam.SetDirty
+  commentId: M:Butterfly.Core.Database.Dynamic.BaseDynamicParam.SetDirty
+  parent: Butterfly.Core.Database.Dynamic.BaseDynamicParam
+  name: SetDirty()
+  nameWithType: BaseDynamicParam.SetDirty()
+  fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam.SetDirty()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam.SetDirty
+    name: SetDirty
+    nameWithType: BaseDynamicParam.SetDirty
+    fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam.SetDirty
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam.SetDirty
+    name: SetDirty
+    nameWithType: BaseDynamicParam.SetDirty
+    fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam.SetDirty
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam.ResetDirty
+  commentId: M:Butterfly.Core.Database.Dynamic.BaseDynamicParam.ResetDirty
+  parent: Butterfly.Core.Database.Dynamic.BaseDynamicParam
+  name: ResetDirty()
+  nameWithType: BaseDynamicParam.ResetDirty()
+  fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam.ResetDirty()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam.ResetDirty
+    name: ResetDirty
+    nameWithType: BaseDynamicParam.ResetDirty
+    fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam.ResetDirty
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam.ResetDirty
+    name: ResetDirty
+    nameWithType: BaseDynamicParam.ResetDirty
+    fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam.ResetDirty
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.#ctor*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.#ctor
+  name: SingleValueDynamicParam
+  nameWithType: SingleValueDynamicParam.SingleValueDynamicParam
+  fullName: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.SingleValueDynamicParam
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam.Clear
+  commentId: M:Butterfly.Core.Database.Dynamic.BaseDynamicParam.Clear
+  parent: Butterfly.Core.Database.Dynamic.BaseDynamicParam
+  name: Clear()
+  nameWithType: BaseDynamicParam.Clear()
+  fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam.Clear()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam.Clear
+    name: Clear
+    nameWithType: BaseDynamicParam.Clear
+    fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam.Clear
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam.Clear
+    name: Clear
+    nameWithType: BaseDynamicParam.Clear
+    fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam.Clear
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.Clear*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.Clear
+  name: Clear
+  nameWithType: SingleValueDynamicParam.Clear
+  fullName: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.Clear
+- uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam.GetValue
+  commentId: M:Butterfly.Core.Database.Dynamic.BaseDynamicParam.GetValue
+  parent: Butterfly.Core.Database.Dynamic.BaseDynamicParam
+  name: GetValue()
+  nameWithType: BaseDynamicParam.GetValue()
+  fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam.GetValue()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam.GetValue
+    name: GetValue
+    nameWithType: BaseDynamicParam.GetValue
+    fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam.GetValue
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.Dynamic.BaseDynamicParam.GetValue
+    name: GetValue
+    nameWithType: BaseDynamicParam.GetValue
+    fullName: Butterfly.Core.Database.Dynamic.BaseDynamicParam.GetValue
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.GetValue*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.GetValue
+  name: GetValue
+  nameWithType: SingleValueDynamicParam.GetValue
+  fullName: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.GetValue
+- uid: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.SetValue*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.SetValue
+  name: SetValue
+  nameWithType: SingleValueDynamicParam.SetValue
+  fullName: Butterfly.Core.Database.Dynamic.SingleValueDynamicParam.SetValue
+shouldSkipMarkup: true

@@ -11,19 +11,18 @@
     <h2>Overview</h2>
     <p>This example simply sends a "Hello World" from the client to the server and has the server echo "Hello World" back to the client in an alert() box.</p>
 
-    <h2>Detailed Data Flow</h2>
+    <p>Like many Hello World examples, this is a rather convuluted way to send "Hello World" to a server and have it echoed back. This does show though how a dataset (messages in this case) are automatically synchronized from Butterfly Server .NET to each connected client.</p>
+
+    <h2>Data Flow</h2>
     <ol>
-        <li>Client creates a "channel" to the server (using a WebSocket in this example)</li>
-        <li>When the channel connects, client executes a POST to /api/hello-world/message on the server sending "Hello World"</li>
-        <li>When the server receives the POST to /api/hello-world/message, the server INSERTs a "Hello World" record in the database which publishes a "Hello World" INSERT data event which triggers sending "Hello World" to the client over the channel</li>
-        <li>When the client receives the data event over the channel, the client calls alert() to display the message</li>
+        <li>Client creates a "my-channel" subscription over a WebSocket using the <i>WebSocketChannelClient</i> class </li>
+        <li>Client executes a POST to <i>/api/message/insert</i> on the server sending "Hello World"</li>
+        <li>When the server receives the POST to <i>/api/message/insert</i>, the server INSERTs a "Hello World" record in the <i>message</i> table which publishes a "Hello World" data event sent to the subscribed client</li>
+        <li>When the client receives the data event, the client calls alert() to display the message</li>
     </ol>
 
-    <h2>Background</h2>
-    <p>Like many Hello World examples, this is a rather convuluted way to send "Hello World" to a server and have it echoed back. The real power in this framework is having changes automatically update multiple views of multiple clients. For example, executing an UPDATE to change a department name from "HR" to "New HR" might automatically update all clients viewing employees by department, all clients viewing a list of departments, etc.</p>
-
     <h2>The Code</h2>
-    <p>Server: <a href="https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server/blob/master/Butterfly.Example.HelloWorld.Server/Program.cs">Program.cs</a>, Client: <a href="https://github.com/firesharkstudios/Butterfly-Realtime-Web-App-Server/blob/master/Butterfly.Example.HelloWorld.Client/index.html">index.html</a></p>
+    <p>Server: <a href="https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.HelloWorld/Program.cs">Program.cs</a>, Client: <a href="https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.HelloWorld/www/index.html">index.html</a></p>
 
     <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
     <script src="./node_modules/butterfly-client/lib/butterfly-client.js"></script>

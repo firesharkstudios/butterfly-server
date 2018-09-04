@@ -1,0 +1,376 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Aws.AwsSesEmailNotifyMessageSender
+  commentId: T:Butterfly.Aws.AwsSesEmailNotifyMessageSender
+  id: AwsSesEmailNotifyMessageSender
+  parent: Butterfly.Aws
+  children:
+  - Butterfly.Aws.AwsSesEmailNotifyMessageSender.DoSendAsync(System.String,System.String,System.String,System.String,System.String)
+  - Butterfly.Aws.AwsSesEmailNotifyMessageSender.logger
+  langs:
+  - csharp
+  - vb
+  name: AwsSesEmailNotifyMessageSender
+  nameWithType: AwsSesEmailNotifyMessageSender
+  fullName: Butterfly.Aws.AwsSesEmailNotifyMessageSender
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Aws/AwsSesEmailNotifyMessageSender.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: AwsSesEmailNotifyMessageSender
+    path: ../Butterfly.Aws/AwsSesEmailNotifyMessageSender.cs
+    startLine: 15
+  assemblies:
+  - Butterfly.Aws
+  namespace: Butterfly.Aws
+  syntax:
+    content: 'public class AwsSesEmailNotifyMessageSender : BaseNotifyMessageSender, INotifyMessageSender'
+    content.vb: >-
+      Public Class AwsSesEmailNotifyMessageSender
+          Inherits BaseNotifyMessageSender
+          Implements INotifyMessageSender
+  inheritance:
+  - System.Object
+  - Butterfly.Core.Notify.BaseNotifyMessageSender
+  implements:
+  - Butterfly.Core.Notify.INotifyMessageSender
+  inheritedMembers:
+  - Butterfly.Core.Notify.BaseNotifyMessageSender.sendEveryMillis
+  - Butterfly.Core.Notify.BaseNotifyMessageSender.lastSend
+  - Butterfly.Core.Notify.BaseNotifyMessageSender.SendAsync(System.String,System.String,System.String,System.String,System.String)
+  - Butterfly.Core.Notify.BaseNotifyMessageSender.CanSendNextAt
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Aws.AwsSesEmailNotifyMessageSender.logger
+  commentId: F:Butterfly.Aws.AwsSesEmailNotifyMessageSender.logger
+  id: logger
+  parent: Butterfly.Aws.AwsSesEmailNotifyMessageSender
+  langs:
+  - csharp
+  - vb
+  name: logger
+  nameWithType: AwsSesEmailNotifyMessageSender.logger
+  fullName: Butterfly.Aws.AwsSesEmailNotifyMessageSender.logger
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Aws/AwsSesEmailNotifyMessageSender.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: logger
+    path: ../Butterfly.Aws/AwsSesEmailNotifyMessageSender.cs
+    startLine: 17
+  assemblies:
+  - Butterfly.Aws
+  namespace: Butterfly.Aws
+  syntax:
+    content: protected static readonly Logger logger
+    return:
+      type: Logger
+    content.vb: Protected Shared ReadOnly logger As Logger
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Aws.AwsSesEmailNotifyMessageSender.DoSendAsync(System.String,System.String,System.String,System.String,System.String)
+  commentId: M:Butterfly.Aws.AwsSesEmailNotifyMessageSender.DoSendAsync(System.String,System.String,System.String,System.String,System.String)
+  id: DoSendAsync(System.String,System.String,System.String,System.String,System.String)
+  parent: Butterfly.Aws.AwsSesEmailNotifyMessageSender
+  langs:
+  - csharp
+  - vb
+  name: DoSendAsync(String, String, String, String, String)
+  nameWithType: AwsSesEmailNotifyMessageSender.DoSendAsync(String, String, String, String, String)
+  fullName: Butterfly.Aws.AwsSesEmailNotifyMessageSender.DoSendAsync(System.String, System.String, System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Aws/AwsSesEmailNotifyMessageSender.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DoSendAsync
+    path: ../Butterfly.Aws/AwsSesEmailNotifyMessageSender.cs
+    startLine: 19
+  assemblies:
+  - Butterfly.Aws
+  namespace: Butterfly.Aws
+  syntax:
+    content: protected override Task<string> DoSendAsync(string from, string to, string subject, string bodyText, string bodyHtml)
+    parameters:
+    - id: from
+      type: System.String
+    - id: to
+      type: System.String
+    - id: subject
+      type: System.String
+    - id: bodyText
+      type: System.String
+    - id: bodyHtml
+      type: System.String
+    return:
+      type: Task{System.String}
+    content.vb: Protected Overrides Function DoSendAsync(from As String, to As String, subject As String, bodyText As String, bodyHtml As String) As Task(Of String)
+  overload: Butterfly.Aws.AwsSesEmailNotifyMessageSender.DoSendAsync*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+references:
+- uid: Butterfly.Aws
+  commentId: N:Butterfly.Aws
+  name: Butterfly.Aws
+  nameWithType: Butterfly.Aws
+  fullName: Butterfly.Aws
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Notify.BaseNotifyMessageSender
+  commentId: T:Butterfly.Core.Notify.BaseNotifyMessageSender
+  parent: Butterfly.Core.Notify
+  name: BaseNotifyMessageSender
+  nameWithType: BaseNotifyMessageSender
+  fullName: Butterfly.Core.Notify.BaseNotifyMessageSender
+- uid: Butterfly.Core.Notify.INotifyMessageSender
+  commentId: T:Butterfly.Core.Notify.INotifyMessageSender
+  parent: Butterfly.Core.Notify
+  name: INotifyMessageSender
+  nameWithType: INotifyMessageSender
+  fullName: Butterfly.Core.Notify.INotifyMessageSender
+- uid: Butterfly.Core.Notify.BaseNotifyMessageSender.sendEveryMillis
+  commentId: F:Butterfly.Core.Notify.BaseNotifyMessageSender.sendEveryMillis
+  parent: Butterfly.Core.Notify.BaseNotifyMessageSender
+  name: sendEveryMillis
+  nameWithType: BaseNotifyMessageSender.sendEveryMillis
+  fullName: Butterfly.Core.Notify.BaseNotifyMessageSender.sendEveryMillis
+- uid: Butterfly.Core.Notify.BaseNotifyMessageSender.lastSend
+  commentId: F:Butterfly.Core.Notify.BaseNotifyMessageSender.lastSend
+  parent: Butterfly.Core.Notify.BaseNotifyMessageSender
+  name: lastSend
+  nameWithType: BaseNotifyMessageSender.lastSend
+  fullName: Butterfly.Core.Notify.BaseNotifyMessageSender.lastSend
+- uid: Butterfly.Core.Notify.BaseNotifyMessageSender.SendAsync(System.String,System.String,System.String,System.String,System.String)
+  commentId: M:Butterfly.Core.Notify.BaseNotifyMessageSender.SendAsync(System.String,System.String,System.String,System.String,System.String)
+  parent: Butterfly.Core.Notify.BaseNotifyMessageSender
+  isExternal: true
+  name: SendAsync(String, String, String, String, String)
+  nameWithType: BaseNotifyMessageSender.SendAsync(String, String, String, String, String)
+  fullName: Butterfly.Core.Notify.BaseNotifyMessageSender.SendAsync(System.String, System.String, System.String, System.String, System.String)
+  spec.csharp:
+  - uid: Butterfly.Core.Notify.BaseNotifyMessageSender.SendAsync(System.String,System.String,System.String,System.String,System.String)
+    name: SendAsync
+    nameWithType: BaseNotifyMessageSender.SendAsync
+    fullName: Butterfly.Core.Notify.BaseNotifyMessageSender.SendAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Notify.BaseNotifyMessageSender.SendAsync(System.String,System.String,System.String,System.String,System.String)
+    name: SendAsync
+    nameWithType: BaseNotifyMessageSender.SendAsync
+    fullName: Butterfly.Core.Notify.BaseNotifyMessageSender.SendAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Notify.BaseNotifyMessageSender.CanSendNextAt
+  commentId: P:Butterfly.Core.Notify.BaseNotifyMessageSender.CanSendNextAt
+  parent: Butterfly.Core.Notify.BaseNotifyMessageSender
+  name: CanSendNextAt
+  nameWithType: BaseNotifyMessageSender.CanSendNextAt
+  fullName: Butterfly.Core.Notify.BaseNotifyMessageSender.CanSendNextAt
+- uid: Butterfly.Core.Notify
+  commentId: N:Butterfly.Core.Notify
+  name: Butterfly.Core.Notify
+  nameWithType: Butterfly.Core.Notify
+  fullName: Butterfly.Core.Notify
+- uid: Logger
+  isExternal: true
+  name: Logger
+  nameWithType: Logger
+  fullName: Logger
+- uid: Butterfly.Aws.AwsSesEmailNotifyMessageSender.DoSendAsync*
+  commentId: Overload:Butterfly.Aws.AwsSesEmailNotifyMessageSender.DoSendAsync
+  name: DoSendAsync
+  nameWithType: AwsSesEmailNotifyMessageSender.DoSendAsync
+  fullName: Butterfly.Aws.AwsSesEmailNotifyMessageSender.DoSendAsync
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Task{System.String}
+  commentId: '!:Task{System.String}'
+  definition: Task`1
+  name: Task<String>
+  nameWithType: Task<String>
+  fullName: Task<System.String>
+  nameWithType.vb: Task(Of String)
+  fullName.vb: Task(Of System.String)
+  name.vb: Task(Of String)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
+  isExternal: true
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+shouldSkipMarkup: true

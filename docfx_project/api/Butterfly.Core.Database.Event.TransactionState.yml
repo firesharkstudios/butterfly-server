@@ -1,0 +1,113 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.Event.TransactionState
+  commentId: T:Butterfly.Core.Database.Event.TransactionState
+  id: TransactionState
+  parent: Butterfly.Core.Database.Event
+  children:
+  - Butterfly.Core.Database.Event.TransactionState.Committed
+  - Butterfly.Core.Database.Event.TransactionState.Uncommitted
+  langs:
+  - csharp
+  - vb
+  name: TransactionState
+  nameWithType: TransactionState
+  fullName: Butterfly.Core.Database.Event.TransactionState
+  type: Enum
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEventTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TransactionState
+    path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
+    startLine: 9
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: 'public enum TransactionState : int'
+    content.vb: Public Enum TransactionState As Integer
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: Butterfly.Core.Database.Event.TransactionState.Uncommitted
+  commentId: F:Butterfly.Core.Database.Event.TransactionState.Uncommitted
+  id: Uncommitted
+  parent: Butterfly.Core.Database.Event.TransactionState
+  langs:
+  - csharp
+  - vb
+  name: Uncommitted
+  nameWithType: TransactionState.Uncommitted
+  fullName: Butterfly.Core.Database.Event.TransactionState.Uncommitted
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEventTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Uncommitted
+    path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
+    startLine: 10
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: Uncommitted = 0
+    return:
+      type: Butterfly.Core.Database.Event.TransactionState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Butterfly.Core.Database.Event.TransactionState.Committed
+  commentId: F:Butterfly.Core.Database.Event.TransactionState.Committed
+  id: Committed
+  parent: Butterfly.Core.Database.Event.TransactionState
+  langs:
+  - csharp
+  - vb
+  name: Committed
+  nameWithType: TransactionState.Committed
+  fullName: Butterfly.Core.Database.Event.TransactionState.Committed
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEventTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Committed
+    path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
+    startLine: 11
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: Committed = 1
+    return:
+      type: Butterfly.Core.Database.Event.TransactionState
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: Butterfly.Core.Database.Event
+  commentId: N:Butterfly.Core.Database.Event
+  name: Butterfly.Core.Database.Event
+  nameWithType: Butterfly.Core.Database.Event
+  fullName: Butterfly.Core.Database.Event
+- uid: Butterfly.Core.Database.Event.TransactionState
+  commentId: T:Butterfly.Core.Database.Event.TransactionState
+  parent: Butterfly.Core.Database.Event
+  name: TransactionState
+  nameWithType: TransactionState
+  fullName: Butterfly.Core.Database.Event.TransactionState
+shouldSkipMarkup: true

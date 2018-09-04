@@ -1,0 +1,344 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.ListItemDisposable`1
+  commentId: T:Butterfly.Core.Util.ListItemDisposable`1
+  id: ListItemDisposable`1
+  parent: Butterfly.Core.Util
+  children:
+  - Butterfly.Core.Util.ListItemDisposable`1.#ctor(List{`0},`0)
+  - Butterfly.Core.Util.ListItemDisposable`1.Dispose
+  - Butterfly.Core.Util.ListItemDisposable`1.item
+  - Butterfly.Core.Util.ListItemDisposable`1.list
+  - Butterfly.Core.Util.ListItemDisposable`1.logger
+  langs:
+  - csharp
+  - vb
+  name: ListItemDisposable<T>
+  nameWithType: ListItemDisposable<T>
+  fullName: Butterfly.Core.Util.ListItemDisposable<T>
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/ListItemDisposable.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ListItemDisposable
+    path: ../Butterfly.Core/Util/ListItemDisposable.cs
+    startLine: 9
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: 'public class ListItemDisposable<T> : IDisposable'
+    typeParameters:
+    - id: T
+    content.vb: >-
+      Public Class ListItemDisposable(Of T)
+          Inherits IDisposable
+  inheritance:
+  - System.Object
+  nameWithType.vb: ListItemDisposable(Of T)
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  fullName.vb: Butterfly.Core.Util.ListItemDisposable(Of T)
+  name.vb: ListItemDisposable(Of T)
+- uid: Butterfly.Core.Util.ListItemDisposable`1.logger
+  commentId: F:Butterfly.Core.Util.ListItemDisposable`1.logger
+  id: logger
+  parent: Butterfly.Core.Util.ListItemDisposable`1
+  langs:
+  - csharp
+  - vb
+  name: logger
+  nameWithType: ListItemDisposable<T>.logger
+  fullName: Butterfly.Core.Util.ListItemDisposable<T>.logger
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/ListItemDisposable.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: logger
+    path: ../Butterfly.Core/Util/ListItemDisposable.cs
+    startLine: 11
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: protected static readonly Logger logger
+    return:
+      type: Logger
+    content.vb: Protected Shared ReadOnly logger As Logger
+  nameWithType.vb: ListItemDisposable(Of T).logger
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+  fullName.vb: Butterfly.Core.Util.ListItemDisposable(Of T).logger
+- uid: Butterfly.Core.Util.ListItemDisposable`1.list
+  commentId: F:Butterfly.Core.Util.ListItemDisposable`1.list
+  id: list
+  parent: Butterfly.Core.Util.ListItemDisposable`1
+  langs:
+  - csharp
+  - vb
+  name: list
+  nameWithType: ListItemDisposable<T>.list
+  fullName: Butterfly.Core.Util.ListItemDisposable<T>.list
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/ListItemDisposable.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: list
+    path: ../Butterfly.Core/Util/ListItemDisposable.cs
+    startLine: 13
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: protected readonly List<T> list
+    return:
+      type: List{{T}}
+    content.vb: Protected ReadOnly list As List(Of T)
+  nameWithType.vb: ListItemDisposable(Of T).list
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+  fullName.vb: Butterfly.Core.Util.ListItemDisposable(Of T).list
+- uid: Butterfly.Core.Util.ListItemDisposable`1.item
+  commentId: F:Butterfly.Core.Util.ListItemDisposable`1.item
+  id: item
+  parent: Butterfly.Core.Util.ListItemDisposable`1
+  langs:
+  - csharp
+  - vb
+  name: item
+  nameWithType: ListItemDisposable<T>.item
+  fullName: Butterfly.Core.Util.ListItemDisposable<T>.item
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/ListItemDisposable.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: item
+    path: ../Butterfly.Core/Util/ListItemDisposable.cs
+    startLine: 14
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: protected readonly T item
+    return:
+      type: '{T}'
+    content.vb: Protected ReadOnly item As T
+  nameWithType.vb: ListItemDisposable(Of T).item
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+  fullName.vb: Butterfly.Core.Util.ListItemDisposable(Of T).item
+- uid: Butterfly.Core.Util.ListItemDisposable`1.#ctor(List{`0},`0)
+  commentId: M:Butterfly.Core.Util.ListItemDisposable`1.#ctor(List{`0},`0)
+  id: '#ctor(List{`0},`0)'
+  parent: Butterfly.Core.Util.ListItemDisposable`1
+  langs:
+  - csharp
+  - vb
+  name: ListItemDisposable(List<T>, T)
+  nameWithType: ListItemDisposable<T>.ListItemDisposable(List<T>, T)
+  fullName: Butterfly.Core.Util.ListItemDisposable<T>.ListItemDisposable(List<T>, T)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Util/ListItemDisposable.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Util/ListItemDisposable.cs
+    startLine: 16
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public ListItemDisposable(List<T> list, T item)
+    parameters:
+    - id: list
+      type: List{{T}}
+    - id: item
+      type: '{T}'
+    content.vb: Public Sub New(list As List(Of T), item As T)
+  overload: Butterfly.Core.Util.ListItemDisposable`1.#ctor*
+  nameWithType.vb: ListItemDisposable(Of T).ListItemDisposable(List(Of T), T)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Util.ListItemDisposable(Of T).ListItemDisposable(List(Of T), T)
+  name.vb: ListItemDisposable(List(Of T), T)
+- uid: Butterfly.Core.Util.ListItemDisposable`1.Dispose
+  commentId: M:Butterfly.Core.Util.ListItemDisposable`1.Dispose
+  id: Dispose
+  parent: Butterfly.Core.Util.ListItemDisposable`1
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: ListItemDisposable<T>.Dispose()
+  fullName: Butterfly.Core.Util.ListItemDisposable<T>.Dispose()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/ListItemDisposable.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Dispose
+    path: ../Butterfly.Core/Util/ListItemDisposable.cs
+    startLine: 23
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose
+  overload: Butterfly.Core.Util.ListItemDisposable`1.Dispose*
+  nameWithType.vb: ListItemDisposable(Of T).Dispose()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Util.ListItemDisposable(Of T).Dispose()
+references:
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Logger
+  isExternal: true
+  name: Logger
+  nameWithType: Logger
+  fullName: Logger
+- uid: List{{T}}
+  commentId: '!:List{`0}'
+  definition: List`1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: List`1
+  isExternal: true
+  name: List<>
+  nameWithType: List<>
+  fullName: List<>
+  nameWithType.vb: List(Of )
+  fullName.vb: List(Of )
+  name.vb: List(Of )
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Butterfly.Core.Util.ListItemDisposable`1.#ctor*
+  commentId: Overload:Butterfly.Core.Util.ListItemDisposable`1.#ctor
+  name: ListItemDisposable
+  nameWithType: ListItemDisposable<T>.ListItemDisposable
+  fullName: Butterfly.Core.Util.ListItemDisposable<T>.ListItemDisposable
+  nameWithType.vb: ListItemDisposable(Of T).ListItemDisposable
+  fullName.vb: Butterfly.Core.Util.ListItemDisposable(Of T).ListItemDisposable
+- uid: Butterfly.Core.Util.ListItemDisposable`1.Dispose*
+  commentId: Overload:Butterfly.Core.Util.ListItemDisposable`1.Dispose
+  name: Dispose
+  nameWithType: ListItemDisposable<T>.Dispose
+  fullName: Butterfly.Core.Util.ListItemDisposable<T>.Dispose
+  nameWithType.vb: ListItemDisposable(Of T).Dispose
+  fullName.vb: Butterfly.Core.Util.ListItemDisposable(Of T).Dispose
+shouldSkipMarkup: true

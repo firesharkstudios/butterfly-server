@@ -1,0 +1,285 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.Event.InitialBeginDataEvent
+  commentId: T:Butterfly.Core.Database.Event.InitialBeginDataEvent
+  id: InitialBeginDataEvent
+  parent: Butterfly.Core.Database.Event
+  children:
+  - Butterfly.Core.Database.Event.InitialBeginDataEvent.#ctor(System.String,System.String[])
+  - Butterfly.Core.Database.Event.InitialBeginDataEvent.keyFieldNames
+  - Butterfly.Core.Database.Event.InitialBeginDataEvent.name
+  - Butterfly.Core.Database.Event.InitialBeginDataEvent.ToString
+  langs:
+  - csharp
+  - vb
+  name: InitialBeginDataEvent
+  nameWithType: InitialBeginDataEvent
+  fullName: Butterfly.Core.Database.Event.InitialBeginDataEvent
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: InitialBeginDataEvent
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 41
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: 'public class InitialBeginDataEvent : DataEvent'
+    content.vb: >-
+      Public Class InitialBeginDataEvent
+          Inherits DataEvent
+  inheritance:
+  - System.Object
+  - Butterfly.Core.Database.Event.DataEvent
+  inheritedMembers:
+  - Butterfly.Core.Database.Event.DataEvent.dataEventType
+  - Butterfly.Core.Database.Event.DataEvent.id
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Database.Event.InitialBeginDataEvent.name
+  commentId: F:Butterfly.Core.Database.Event.InitialBeginDataEvent.name
+  id: name
+  parent: Butterfly.Core.Database.Event.InitialBeginDataEvent
+  langs:
+  - csharp
+  - vb
+  name: name
+  nameWithType: InitialBeginDataEvent.name
+  fullName: Butterfly.Core.Database.Event.InitialBeginDataEvent.name
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: name
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 42
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public readonly string name
+    return:
+      type: System.String
+    content.vb: Public ReadOnly name As String
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Database.Event.InitialBeginDataEvent.keyFieldNames
+  commentId: F:Butterfly.Core.Database.Event.InitialBeginDataEvent.keyFieldNames
+  id: keyFieldNames
+  parent: Butterfly.Core.Database.Event.InitialBeginDataEvent
+  langs:
+  - csharp
+  - vb
+  name: keyFieldNames
+  nameWithType: InitialBeginDataEvent.keyFieldNames
+  fullName: Butterfly.Core.Database.Event.InitialBeginDataEvent.keyFieldNames
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: keyFieldNames
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 43
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public readonly string[] keyFieldNames
+    return:
+      type: System.String[]
+    content.vb: Public ReadOnly keyFieldNames As String()
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Database.Event.InitialBeginDataEvent.#ctor(System.String,System.String[])
+  commentId: M:Butterfly.Core.Database.Event.InitialBeginDataEvent.#ctor(System.String,System.String[])
+  id: '#ctor(System.String,System.String[])'
+  parent: Butterfly.Core.Database.Event.InitialBeginDataEvent
+  langs:
+  - csharp
+  - vb
+  name: InitialBeginDataEvent(String, String[])
+  nameWithType: InitialBeginDataEvent.InitialBeginDataEvent(String, String[])
+  fullName: Butterfly.Core.Database.Event.InitialBeginDataEvent.InitialBeginDataEvent(System.String, System.String[])
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 45
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public InitialBeginDataEvent(string name, string[] keyFieldNames)
+    parameters:
+    - id: name
+      type: System.String
+    - id: keyFieldNames
+      type: System.String[]
+    content.vb: Public Sub New(name As String, keyFieldNames As String())
+  overload: Butterfly.Core.Database.Event.InitialBeginDataEvent.#ctor*
+  nameWithType.vb: InitialBeginDataEvent.InitialBeginDataEvent(String, String())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Database.Event.InitialBeginDataEvent.InitialBeginDataEvent(System.String, System.String())
+  name.vb: InitialBeginDataEvent(String, String())
+- uid: Butterfly.Core.Database.Event.InitialBeginDataEvent.ToString
+  commentId: M:Butterfly.Core.Database.Event.InitialBeginDataEvent.ToString
+  id: ToString
+  parent: Butterfly.Core.Database.Event.InitialBeginDataEvent
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: InitialBeginDataEvent.ToString()
+  fullName: Butterfly.Core.Database.Event.InitialBeginDataEvent.ToString()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEvent.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ToString
+    path: ../Butterfly.Core/Database/Event/DataEvent.cs
+    startLine: 50
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString As String
+  overridden: Butterfly.Core.Database.Event.DataEvent.ToString
+  overload: Butterfly.Core.Database.Event.InitialBeginDataEvent.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+references:
+- uid: Butterfly.Core.Database.Event
+  commentId: N:Butterfly.Core.Database.Event
+  name: Butterfly.Core.Database.Event
+  nameWithType: Butterfly.Core.Database.Event
+  fullName: Butterfly.Core.Database.Event
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Database.Event.DataEvent
+  commentId: T:Butterfly.Core.Database.Event.DataEvent
+  parent: Butterfly.Core.Database.Event
+  name: DataEvent
+  nameWithType: DataEvent
+  fullName: Butterfly.Core.Database.Event.DataEvent
+- uid: Butterfly.Core.Database.Event.DataEvent.dataEventType
+  commentId: F:Butterfly.Core.Database.Event.DataEvent.dataEventType
+  parent: Butterfly.Core.Database.Event.DataEvent
+  name: dataEventType
+  nameWithType: DataEvent.dataEventType
+  fullName: Butterfly.Core.Database.Event.DataEvent.dataEventType
+- uid: Butterfly.Core.Database.Event.DataEvent.id
+  commentId: P:Butterfly.Core.Database.Event.DataEvent.id
+  parent: Butterfly.Core.Database.Event.DataEvent
+  name: id
+  nameWithType: DataEvent.id
+  fullName: Butterfly.Core.Database.Event.DataEvent.id
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Butterfly.Core.Database.Event.InitialBeginDataEvent.#ctor*
+  commentId: Overload:Butterfly.Core.Database.Event.InitialBeginDataEvent.#ctor
+  name: InitialBeginDataEvent
+  nameWithType: InitialBeginDataEvent.InitialBeginDataEvent
+  fullName: Butterfly.Core.Database.Event.InitialBeginDataEvent.InitialBeginDataEvent
+- uid: Butterfly.Core.Database.Event.DataEvent.ToString
+  commentId: M:Butterfly.Core.Database.Event.DataEvent.ToString
+  parent: Butterfly.Core.Database.Event.DataEvent
+  name: ToString()
+  nameWithType: DataEvent.ToString()
+  fullName: Butterfly.Core.Database.Event.DataEvent.ToString()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.Event.DataEvent.ToString
+    name: ToString
+    nameWithType: DataEvent.ToString
+    fullName: Butterfly.Core.Database.Event.DataEvent.ToString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.Event.DataEvent.ToString
+    name: ToString
+    nameWithType: DataEvent.ToString
+    fullName: Butterfly.Core.Database.Event.DataEvent.ToString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.Event.InitialBeginDataEvent.ToString*
+  commentId: Overload:Butterfly.Core.Database.Event.InitialBeginDataEvent.ToString
+  name: ToString
+  nameWithType: InitialBeginDataEvent.ToString
+  fullName: Butterfly.Core.Database.Event.InitialBeginDataEvent.ToString
+shouldSkipMarkup: true

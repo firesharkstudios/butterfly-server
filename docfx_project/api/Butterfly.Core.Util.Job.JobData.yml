@@ -1,0 +1,169 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.Job.JobData
+  commentId: T:Butterfly.Core.Util.Job.JobData
+  id: JobData
+  parent: Butterfly.Core.Util.Job
+  children:
+  - Butterfly.Core.Util.Job.JobData.#ctor(Butterfly.Core.Util.Job.IJob,DateTime)
+  - Butterfly.Core.Util.Job.JobData.job
+  - Butterfly.Core.Util.Job.JobData.nextRunAt
+  langs:
+  - csharp
+  - vb
+  name: JobData
+  nameWithType: JobData
+  fullName: Butterfly.Core.Util.Job.JobData
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/Job/JobManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: JobData
+    path: ../Butterfly.Core/Util/Job/JobManager.cs
+    startLine: 75
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Job
+  syntax:
+    content: 'public class JobData : object'
+    content.vb: >-
+      Public Class JobData
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Util.Job.JobData.job
+  commentId: F:Butterfly.Core.Util.Job.JobData.job
+  id: job
+  parent: Butterfly.Core.Util.Job.JobData
+  langs:
+  - csharp
+  - vb
+  name: job
+  nameWithType: JobData.job
+  fullName: Butterfly.Core.Util.Job.JobData.job
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Job/JobManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: job
+    path: ../Butterfly.Core/Util/Job/JobManager.cs
+    startLine: 76
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Job
+  syntax:
+    content: public readonly IJob job
+    return:
+      type: Butterfly.Core.Util.Job.IJob
+    content.vb: Public ReadOnly job As IJob
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Util.Job.JobData.nextRunAt
+  commentId: F:Butterfly.Core.Util.Job.JobData.nextRunAt
+  id: nextRunAt
+  parent: Butterfly.Core.Util.Job.JobData
+  langs:
+  - csharp
+  - vb
+  name: nextRunAt
+  nameWithType: JobData.nextRunAt
+  fullName: Butterfly.Core.Util.Job.JobData.nextRunAt
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Job/JobManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: nextRunAt
+    path: ../Butterfly.Core/Util/Job/JobManager.cs
+    startLine: 77
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Job
+  syntax:
+    content: public DateTime nextRunAt
+    return:
+      type: DateTime
+    content.vb: Public nextRunAt As DateTime
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Util.Job.JobData.#ctor(Butterfly.Core.Util.Job.IJob,DateTime)
+  commentId: M:Butterfly.Core.Util.Job.JobData.#ctor(Butterfly.Core.Util.Job.IJob,DateTime)
+  id: '#ctor(Butterfly.Core.Util.Job.IJob,DateTime)'
+  parent: Butterfly.Core.Util.Job.JobData
+  langs:
+  - csharp
+  - vb
+  name: JobData(IJob, DateTime)
+  nameWithType: JobData.JobData(IJob, DateTime)
+  fullName: Butterfly.Core.Util.Job.JobData.JobData(Butterfly.Core.Util.Job.IJob, DateTime)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Util/Job/JobManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Util/Job/JobManager.cs
+    startLine: 79
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Job
+  syntax:
+    content: public JobData(IJob job, DateTime nextRunAt)
+    parameters:
+    - id: job
+      type: Butterfly.Core.Util.Job.IJob
+    - id: nextRunAt
+      type: DateTime
+    content.vb: Public Sub New(job As IJob, nextRunAt As DateTime)
+  overload: Butterfly.Core.Util.Job.JobData.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.Core.Util.Job
+  commentId: N:Butterfly.Core.Util.Job
+  name: Butterfly.Core.Util.Job
+  nameWithType: Butterfly.Core.Util.Job
+  fullName: Butterfly.Core.Util.Job
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Util.Job.IJob
+  commentId: T:Butterfly.Core.Util.Job.IJob
+  parent: Butterfly.Core.Util.Job
+  name: IJob
+  nameWithType: IJob
+  fullName: Butterfly.Core.Util.Job.IJob
+- uid: DateTime
+  isExternal: true
+  name: DateTime
+  nameWithType: DateTime
+  fullName: DateTime
+- uid: Butterfly.Core.Util.Job.JobData.#ctor*
+  commentId: Overload:Butterfly.Core.Util.Job.JobData.#ctor
+  name: JobData
+  nameWithType: JobData.JobData
+  fullName: Butterfly.Core.Util.Job.JobData.JobData
+shouldSkipMarkup: true

@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Channel.BaseChannelConnection.html",
-          "hash": "FBgEoLy0ZV5mUuUPUSATPA=="
+          "hash": "i3OzslYoHhJmhukJhC1qNg=="
         }
       },
       "is_incremental": false,
@@ -165,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Channel.BaseSubscriptionApi.html",
-          "hash": "yYEGFuQ8qZ9YLdwCH0APPg=="
+          "hash": "8DUJOPah+VkQrh77X5vqkQ=="
         }
       },
       "is_incremental": false,
@@ -1140,7 +1140,7 @@
           "hash": "eMo3Nc88mZIniWNrtmxkrA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1277,6 +1277,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.RunEvery.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.RunEvery.html",
+          "hash": "rtN85Igw+og1eNiPdVnFXQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Butterfly.Core.Util.SafeUtil.yml",
       "output": {
         ".html": {
@@ -1329,7 +1341,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Util.html",
-          "hash": "Vv/FbeYJofGoodeZjXC7Rw=="
+          "hash": "1EQyh1dVvKWYam8B9xtwoA=="
         }
       },
       "is_incremental": false,
@@ -1341,7 +1353,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.WebApi.BaseHttpRequest.html",
-          "hash": "u630GYGcO0gTr1LqPZOr/Q=="
+          "hash": "i5SLJ1be7nRHVkd9KXrX0w=="
         }
       },
       "is_incremental": false,
@@ -1353,7 +1365,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.WebApi.BaseWebApi.html",
-          "hash": "R6w0y7R+SG+jvoBSCiWj6A=="
+          "hash": "x60gOJfrGBpqtCNff5dTKA=="
         }
       },
       "is_incremental": false,
@@ -1365,7 +1377,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.WebApi.IHttpRequest.html",
-          "hash": "OhlzajLYeTR2isPWXr7sOg=="
+          "hash": "ef5YlmDS5H0OEmxs3xATBw=="
         }
       },
       "is_incremental": false,
@@ -1437,7 +1449,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.EmbedIO.EmbedIOHttpWebRequest.html",
-          "hash": "tpzZzQal8sysbCXFhx24LQ=="
+          "hash": "D03/W/4JBHjd1BA47siODQ=="
         }
       },
       "is_incremental": false,
@@ -1533,7 +1545,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.EmbedIO.Test.EmbedIOTest.html",
-          "hash": "MIRNzfcNZVM2ZUMk0lq97Q=="
+          "hash": "kMWcCbTPgKsrrl/Duksy+g=="
         }
       },
       "is_incremental": false,
@@ -1697,11 +1709,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Butterfly.RedHttpServer.RedHttpServerChannelServer.yml",
+      "source_relative_path": "api/Butterfly.RHttpServer.HttpRequestX.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Butterfly.RedHttpServer.RedHttpServerChannelServer.html",
-          "hash": "lwKizbcp9qC5vzR5kpKKiQ=="
+          "relative_path": "api/Butterfly.RHttpServer.HttpRequestX.html",
+          "hash": "KtQx003z84xXq2brfPe/Vw=="
         }
       },
       "is_incremental": false,
@@ -1709,11 +1721,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Butterfly.RedHttpServer.RedHttpServerWebApiServer.yml",
+      "source_relative_path": "api/Butterfly.RHttpServer.RedHttpServerSubscriptionApi.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Butterfly.RedHttpServer.RedHttpServerWebApiServer.html",
-          "hash": "RegWzq081lSvY5txdba+yw=="
+          "relative_path": "api/Butterfly.RHttpServer.RedHttpServerSubscriptionApi.html",
+          "hash": "QrKTGRKFbzM5WwpTit/5kw=="
         }
       },
       "is_incremental": false,
@@ -1721,11 +1733,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Butterfly.RedHttpServer.RedHttpServerWebRequest.yml",
+      "source_relative_path": "api/Butterfly.RHttpServer.RedHttpServerWebApi.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Butterfly.RedHttpServer.RedHttpServerWebRequest.html",
-          "hash": "MxPAJkqk/puK7owcH+yh6Q=="
+          "relative_path": "api/Butterfly.RHttpServer.RedHttpServerWebApi.html",
+          "hash": "ZuiDctwPUgRj/5o1Ag1TVw=="
         }
       },
       "is_incremental": false,
@@ -1733,11 +1745,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Butterfly.RedHttpServer.RedHttpServerWebResponse.yml",
+      "source_relative_path": "api/Butterfly.RHttpServer.RedHttpServerWebRequest.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Butterfly.RedHttpServer.RedHttpServerWebResponse.html",
-          "hash": "bYQS8+dIDyEUZrlHdhFROA=="
+          "relative_path": "api/Butterfly.RHttpServer.RedHttpServerWebRequest.html",
+          "hash": "srDfSRF/5wIgesu8/WUAwg=="
         }
       },
       "is_incremental": false,
@@ -1745,11 +1757,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Butterfly.RedHttpServer.WebSocketDialogChannel.yml",
+      "source_relative_path": "api/Butterfly.RHttpServer.RedHttpServerWebResponse.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Butterfly.RedHttpServer.WebSocketDialogChannel.html",
-          "hash": "XqKh2CYMazUIDvUqtycriw=="
+          "relative_path": "api/Butterfly.RHttpServer.RedHttpServerWebResponse.html",
+          "hash": "+6BRVShcMwPwEHt4VEDbVA=="
         }
       },
       "is_incremental": false,
@@ -1757,11 +1769,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.yml",
+      "source_relative_path": "api/Butterfly.RHttpServer.WebSocketDialogChannelConnection.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Butterfly.RedHttpServer.WebSocketDialogWebRequest.html",
-          "hash": "WtjzAnCSoacUfOHEost2uw=="
+          "relative_path": "api/Butterfly.RHttpServer.WebSocketDialogChannelConnection.html",
+          "hash": "s/w9PSiKDWNRdVs33HAzMw=="
         }
       },
       "is_incremental": false,
@@ -1769,11 +1781,23 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Butterfly.RedHttpServer.yml",
+      "source_relative_path": "api/Butterfly.RHttpServer.WebSocketDialogWebRequest.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Butterfly.RedHttpServer.html",
-          "hash": "0xt01PiyXSjgklY6YA1k1w=="
+          "relative_path": "api/Butterfly.RHttpServer.WebSocketDialogWebRequest.html",
+          "hash": "BWWk7UJQI3edEQaJUe9nwA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.RHttpServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.RHttpServer.html",
+          "hash": "0bI+Oas5faLUFkGX1lt6hg=="
         }
       },
       "is_incremental": false,
@@ -1852,24 +1876,12 @@
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "api/index.md",
-      "output": {
-        ".html": {
-          "relative_path": "api/index.html",
-          "hash": "PlPrsz1ZIXA7vhuVzC1YRg=="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
       "type": "Toc",
       "source_relative_path": "api/toc.yml",
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "U3a9ie1i/eOP2oNqZW002Q=="
+          "hash": "y6Wa/4A1EbyAYHRj8DMfGQ=="
         }
       },
       "is_incremental": false,

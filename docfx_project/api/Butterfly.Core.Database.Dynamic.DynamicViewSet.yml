@@ -1,0 +1,1650 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  commentId: T:Butterfly.Core.Database.Dynamic.DynamicViewSet
+  id: DynamicViewSet
+  parent: Butterfly.Core.Database.Dynamic
+  children:
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor(Butterfly.Core.Database.IDatabase,Action{Butterfly.Core.Database.Event.DataEventTransaction})
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor(Butterfly.Core.Database.IDatabase,Func{Butterfly.Core.Database.Event.DataEventTransaction,Task})
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.asyncListener
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[])
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicViewDataEvents(Butterfly.Core.Database.Event.DataEventTransaction,Butterfly.Core.Database.Dynamic.DynamicView)
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.disposables
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.Dispose
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.dynamicViews
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.GetImpactedRecordsStorageKey(Butterfly.Core.Database.Dynamic.DynamicView,Butterfly.Core.Database.Event.DataEvent,Butterfly.Core.Database.Event.TransactionState)
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.GetInitialDataEventsAsync(Butterfly.Core.Database.Dynamic.DynamicView)
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.HasImpactedRecords(Butterfly.Core.Database.Event.TransactionState,Butterfly.Core.Database.Event.DataEvent,Butterfly.Core.Database.JoinType)
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.Id
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.incomingDataEventTransactions
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.isStarted
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.listener
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.monitor
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessCommittedDataEventTransactionAsync(Butterfly.Core.Database.Event.DataEventTransaction)
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessUncommittedDataEventTransactionAsync(Butterfly.Core.Database.Event.DataEventTransaction)
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.RequeryDynamicViewsAsync(System.Boolean)
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.RunAsync
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.runCancellationTokenSource
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.SendToListenerAsync(Butterfly.Core.Database.Event.DataEventTransaction)
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.StoreImpactedRecordsInDataEventTransaction(Butterfly.Core.Database.Event.TransactionState,Butterfly.Core.Database.Event.DataEventTransaction)
+  langs:
+  - csharp
+  - vb
+  name: DynamicViewSet
+  nameWithType: DynamicViewSet
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DynamicViewSet
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 24
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  summary: "\nRepresents a collection of <xref href=\"Butterfly.Core.Database.Dynamic.DynamicView\" data-throw-if-not-resolved=\"false\"></xref> instances.  Often a\n<xref href=\"Butterfly.Core.Database.Dynamic.DynamicViewSet\" data-throw-if-not-resolved=\"false\"></xref> instance will represent all the data that should be \nreplicated to a specific client.\n"
+  example: []
+  syntax:
+    content: 'public class DynamicViewSet : IDisposable'
+    content.vb: >-
+      Public Class DynamicViewSet
+          Inherits IDisposable
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.listener
+  commentId: F:Butterfly.Core.Database.Dynamic.DynamicViewSet.listener
+  id: listener
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: listener
+  nameWithType: DynamicViewSet.listener
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.listener
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: listener
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 27
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected readonly Action<DataEventTransaction> listener
+    return:
+      type: Action{Butterfly.Core.Database.Event.DataEventTransaction}
+    content.vb: Protected ReadOnly listener As Action(Of DataEventTransaction)
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.asyncListener
+  commentId: F:Butterfly.Core.Database.Dynamic.DynamicViewSet.asyncListener
+  id: asyncListener
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: asyncListener
+  nameWithType: DynamicViewSet.asyncListener
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.asyncListener
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: asyncListener
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 28
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected readonly Func<DataEventTransaction, Task> asyncListener
+    return:
+      type: Func{Butterfly.Core.Database.Event.DataEventTransaction,Task}
+    content.vb: Protected ReadOnly asyncListener As Func(Of DataEventTransaction, Task)
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.dynamicViews
+  commentId: F:Butterfly.Core.Database.Dynamic.DynamicViewSet.dynamicViews
+  id: dynamicViews
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: dynamicViews
+  nameWithType: DynamicViewSet.dynamicViews
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.dynamicViews
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: dynamicViews
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 30
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected readonly List<DynamicView> dynamicViews
+    return:
+      type: List{Butterfly.Core.Database.Dynamic.DynamicView}
+    content.vb: Protected ReadOnly dynamicViews As List(Of DynamicView)
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.incomingDataEventTransactions
+  commentId: F:Butterfly.Core.Database.Dynamic.DynamicViewSet.incomingDataEventTransactions
+  id: incomingDataEventTransactions
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: incomingDataEventTransactions
+  nameWithType: DynamicViewSet.incomingDataEventTransactions
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.incomingDataEventTransactions
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: incomingDataEventTransactions
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 31
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected readonly ConcurrentQueue<DataEventTransaction> incomingDataEventTransactions
+    return:
+      type: ConcurrentQueue{Butterfly.Core.Database.Event.DataEventTransaction}
+    content.vb: Protected ReadOnly incomingDataEventTransactions As ConcurrentQueue(Of DataEventTransaction)
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.runCancellationTokenSource
+  commentId: F:Butterfly.Core.Database.Dynamic.DynamicViewSet.runCancellationTokenSource
+  id: runCancellationTokenSource
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: runCancellationTokenSource
+  nameWithType: DynamicViewSet.runCancellationTokenSource
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.runCancellationTokenSource
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: runCancellationTokenSource
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 33
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected readonly CancellationTokenSource runCancellationTokenSource
+    return:
+      type: CancellationTokenSource
+    content.vb: Protected ReadOnly runCancellationTokenSource As CancellationTokenSource
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.monitor
+  commentId: F:Butterfly.Core.Database.Dynamic.DynamicViewSet.monitor
+  id: monitor
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: monitor
+  nameWithType: DynamicViewSet.monitor
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.monitor
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: monitor
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 34
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected readonly AsyncMonitor monitor
+    return:
+      type: AsyncMonitor
+    content.vb: Protected ReadOnly monitor As AsyncMonitor
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.disposables
+  commentId: F:Butterfly.Core.Database.Dynamic.DynamicViewSet.disposables
+  id: disposables
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: disposables
+  nameWithType: DynamicViewSet.disposables
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.disposables
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: disposables
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 36
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected readonly List<IDisposable> disposables
+    return:
+      type: List{IDisposable}
+    content.vb: Protected ReadOnly disposables As List(Of IDisposable)
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor(Butterfly.Core.Database.IDatabase,Action{Butterfly.Core.Database.Event.DataEventTransaction})
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor(Butterfly.Core.Database.IDatabase,Action{Butterfly.Core.Database.Event.DataEventTransaction})
+  id: '#ctor(Butterfly.Core.Database.IDatabase,Action{Butterfly.Core.Database.Event.DataEventTransaction})'
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: DynamicViewSet(IDatabase, Action<DataEventTransaction>)
+  nameWithType: DynamicViewSet.DynamicViewSet(IDatabase, Action<DataEventTransaction>)
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.DynamicViewSet(Butterfly.Core.Database.IDatabase, Action<Butterfly.Core.Database.Event.DataEventTransaction>)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 38
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: public DynamicViewSet(IDatabase database, Action<DataEventTransaction> listener)
+    parameters:
+    - id: database
+      type: Butterfly.Core.Database.IDatabase
+    - id: listener
+      type: Action{Butterfly.Core.Database.Event.DataEventTransaction}
+    content.vb: Public Sub New(database As IDatabase, listener As Action(Of DataEventTransaction))
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor*
+  nameWithType.vb: DynamicViewSet.DynamicViewSet(IDatabase, Action(Of DataEventTransaction))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Database.Dynamic.DynamicViewSet.DynamicViewSet(Butterfly.Core.Database.IDatabase, Action(Of Butterfly.Core.Database.Event.DataEventTransaction))
+  name.vb: DynamicViewSet(IDatabase, Action(Of DataEventTransaction))
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor(Butterfly.Core.Database.IDatabase,Func{Butterfly.Core.Database.Event.DataEventTransaction,Task})
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor(Butterfly.Core.Database.IDatabase,Func{Butterfly.Core.Database.Event.DataEventTransaction,Task})
+  id: '#ctor(Butterfly.Core.Database.IDatabase,Func{Butterfly.Core.Database.Event.DataEventTransaction,Task})'
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: DynamicViewSet(IDatabase, Func<DataEventTransaction, Task>)
+  nameWithType: DynamicViewSet.DynamicViewSet(IDatabase, Func<DataEventTransaction, Task>)
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.DynamicViewSet(Butterfly.Core.Database.IDatabase, Func<Butterfly.Core.Database.Event.DataEventTransaction, Task>)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 44
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: public DynamicViewSet(IDatabase database, Func<DataEventTransaction, Task> asyncListener)
+    parameters:
+    - id: database
+      type: Butterfly.Core.Database.IDatabase
+    - id: asyncListener
+      type: Func{Butterfly.Core.Database.Event.DataEventTransaction,Task}
+    content.vb: Public Sub New(database As IDatabase, asyncListener As Func(Of DataEventTransaction, Task))
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor*
+  nameWithType.vb: DynamicViewSet.DynamicViewSet(IDatabase, Func(Of DataEventTransaction, Task))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Database.Dynamic.DynamicViewSet.DynamicViewSet(Butterfly.Core.Database.IDatabase, Func(Of Butterfly.Core.Database.Event.DataEventTransaction, Task))
+  name.vb: DynamicViewSet(IDatabase, Func(Of DataEventTransaction, Task))
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.Id
+  commentId: P:Butterfly.Core.Database.Dynamic.DynamicViewSet.Id
+  id: Id
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: DynamicViewSet.Id
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.Id
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Id
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 50
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: public string Id { get; protected set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Id As String
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.Id*
+  modifiers.csharp:
+  - public
+  - get
+  - protected set
+  modifiers.vb:
+  - Public
+  - Get
+  - Protected Set
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[])
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[])
+  id: CreateDynamicView(System.String,System.Object,System.String,System.String[])
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: CreateDynamicView(String, Object, String, String[])
+  nameWithType: DynamicViewSet.CreateDynamicView(String, Object, String, String[])
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String, System.Object, System.String, System.String[])
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: CreateDynamicView
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 64
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  summary: "\nCreates an instance of a DynamicView. Must call <xref href=\"Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync\" data-throw-if-not-resolved=\"false\"></xref> to send \ninitial <xref href=\"Butterfly.Core.Database.Event.DataEventTransaction\" data-throw-if-not-resolved=\"false\"></xref> instance and listen for new <xref href=\"Butterfly.Core.Database.Event.DataEventTransaction\" data-throw-if-not-resolved=\"false\"></xref>instances.\n"
+  example: []
+  syntax:
+    content: public DynamicView CreateDynamicView(string sql, dynamic values = null, string name = null, string[] keyFieldNames = null)
+    parameters:
+    - id: sql
+      type: System.String
+    - id: values
+      type: System.Object
+    - id: name
+      type: System.String
+    - id: keyFieldNames
+      type: System.String[]
+    return:
+      type: Butterfly.Core.Database.Dynamic.DynamicView
+    content.vb: Public Function CreateDynamicView(sql As String, values As Object = Nothing, name As String = Nothing, keyFieldNames As String() = Nothing) As DynamicView
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView*
+  nameWithType.vb: DynamicViewSet.CreateDynamicView(String, Object, String, String())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String, System.Object, System.String, System.String())
+  name.vb: CreateDynamicView(String, Object, String, String())
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.isStarted
+  commentId: F:Butterfly.Core.Database.Dynamic.DynamicViewSet.isStarted
+  id: isStarted
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: isStarted
+  nameWithType: DynamicViewSet.isStarted
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.isStarted
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: isStarted
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 70
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected bool isStarted
+    return:
+      type: System.Boolean
+    content.vb: Protected isStarted As Boolean
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync
+  id: StartAsync
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: StartAsync()
+  nameWithType: DynamicViewSet.StartAsync()
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: StartAsync
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 77
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  summary: "\nSend an initial <xref href=\"Butterfly.Core.Database.Event.DataEventTransaction\" data-throw-if-not-resolved=\"false\"></xref> to the registered listener and\nsends new <xref href=\"Butterfly.Core.Database.Event.DataEventTransaction\" data-throw-if-not-resolved=\"false\"></xref> instances when any data in the underlying\n<xref href=\"Butterfly.Core.Database.Dynamic.DynamicView\" data-throw-if-not-resolved=\"false\"></xref> instances changes. Stops listening <xref href=\"Butterfly.Core.Database.Dynamic.DynamicViewSet.Dispose\" data-throw-if-not-resolved=\"false\"></xref> is called.\n"
+  example: []
+  syntax:
+    content: public Task<DynamicViewSet> StartAsync()
+    return:
+      type: Task{Butterfly.Core.Database.Dynamic.DynamicViewSet}
+      description: ''
+    content.vb: Public Function StartAsync As Task(Of DynamicViewSet)
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessUncommittedDataEventTransactionAsync(Butterfly.Core.Database.Event.DataEventTransaction)
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessUncommittedDataEventTransactionAsync(Butterfly.Core.Database.Event.DataEventTransaction)
+  id: ProcessUncommittedDataEventTransactionAsync(Butterfly.Core.Database.Event.DataEventTransaction)
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: ProcessUncommittedDataEventTransactionAsync(DataEventTransaction)
+  nameWithType: DynamicViewSet.ProcessUncommittedDataEventTransactionAsync(DataEventTransaction)
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessUncommittedDataEventTransactionAsync(Butterfly.Core.Database.Event.DataEventTransaction)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ProcessUncommittedDataEventTransactionAsync
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 98
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected Task ProcessUncommittedDataEventTransactionAsync(DataEventTransaction dataEventTransaction)
+    parameters:
+    - id: dataEventTransaction
+      type: Butterfly.Core.Database.Event.DataEventTransaction
+    return:
+      type: Task
+    content.vb: Protected Function ProcessUncommittedDataEventTransactionAsync(dataEventTransaction As DataEventTransaction) As Task
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessUncommittedDataEventTransactionAsync*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessCommittedDataEventTransactionAsync(Butterfly.Core.Database.Event.DataEventTransaction)
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessCommittedDataEventTransactionAsync(Butterfly.Core.Database.Event.DataEventTransaction)
+  id: ProcessCommittedDataEventTransactionAsync(Butterfly.Core.Database.Event.DataEventTransaction)
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: ProcessCommittedDataEventTransactionAsync(DataEventTransaction)
+  nameWithType: DynamicViewSet.ProcessCommittedDataEventTransactionAsync(DataEventTransaction)
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessCommittedDataEventTransactionAsync(Butterfly.Core.Database.Event.DataEventTransaction)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ProcessCommittedDataEventTransactionAsync
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 102
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected Task ProcessCommittedDataEventTransactionAsync(DataEventTransaction dataEventTransaction)
+    parameters:
+    - id: dataEventTransaction
+      type: Butterfly.Core.Database.Event.DataEventTransaction
+    return:
+      type: Task
+    content.vb: Protected Function ProcessCommittedDataEventTransactionAsync(dataEventTransaction As DataEventTransaction) As Task
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessCommittedDataEventTransactionAsync*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.StoreImpactedRecordsInDataEventTransaction(Butterfly.Core.Database.Event.TransactionState,Butterfly.Core.Database.Event.DataEventTransaction)
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.StoreImpactedRecordsInDataEventTransaction(Butterfly.Core.Database.Event.TransactionState,Butterfly.Core.Database.Event.DataEventTransaction)
+  id: StoreImpactedRecordsInDataEventTransaction(Butterfly.Core.Database.Event.TransactionState,Butterfly.Core.Database.Event.DataEventTransaction)
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: StoreImpactedRecordsInDataEventTransaction(TransactionState, DataEventTransaction)
+  nameWithType: DynamicViewSet.StoreImpactedRecordsInDataEventTransaction(TransactionState, DataEventTransaction)
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.StoreImpactedRecordsInDataEventTransaction(Butterfly.Core.Database.Event.TransactionState, Butterfly.Core.Database.Event.DataEventTransaction)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: StoreImpactedRecordsInDataEventTransaction
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 109
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected Task StoreImpactedRecordsInDataEventTransaction(TransactionState transactionState, DataEventTransaction dataEventTransaction)
+    parameters:
+    - id: transactionState
+      type: Butterfly.Core.Database.Event.TransactionState
+    - id: dataEventTransaction
+      type: Butterfly.Core.Database.Event.DataEventTransaction
+    return:
+      type: Task
+    content.vb: Protected Function StoreImpactedRecordsInDataEventTransaction(transactionState As TransactionState, dataEventTransaction As DataEventTransaction) As Task
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.StoreImpactedRecordsInDataEventTransaction*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.GetImpactedRecordsStorageKey(Butterfly.Core.Database.Dynamic.DynamicView,Butterfly.Core.Database.Event.DataEvent,Butterfly.Core.Database.Event.TransactionState)
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.GetImpactedRecordsStorageKey(Butterfly.Core.Database.Dynamic.DynamicView,Butterfly.Core.Database.Event.DataEvent,Butterfly.Core.Database.Event.TransactionState)
+  id: GetImpactedRecordsStorageKey(Butterfly.Core.Database.Dynamic.DynamicView,Butterfly.Core.Database.Event.DataEvent,Butterfly.Core.Database.Event.TransactionState)
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: GetImpactedRecordsStorageKey(DynamicView, DataEvent, TransactionState)
+  nameWithType: DynamicViewSet.GetImpactedRecordsStorageKey(DynamicView, DataEvent, TransactionState)
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.GetImpactedRecordsStorageKey(Butterfly.Core.Database.Dynamic.DynamicView, Butterfly.Core.Database.Event.DataEvent, Butterfly.Core.Database.Event.TransactionState)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: GetImpactedRecordsStorageKey
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 125
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected string GetImpactedRecordsStorageKey(DynamicView dynamicView, DataEvent dataEvent, TransactionState transactionState)
+    parameters:
+    - id: dynamicView
+      type: Butterfly.Core.Database.Dynamic.DynamicView
+    - id: dataEvent
+      type: Butterfly.Core.Database.Event.DataEvent
+    - id: transactionState
+      type: Butterfly.Core.Database.Event.TransactionState
+    return:
+      type: System.String
+    content.vb: Protected Function GetImpactedRecordsStorageKey(dynamicView As DynamicView, dataEvent As DataEvent, transactionState As TransactionState) As String
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.GetImpactedRecordsStorageKey*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.HasImpactedRecords(Butterfly.Core.Database.Event.TransactionState,Butterfly.Core.Database.Event.DataEvent,Butterfly.Core.Database.JoinType)
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.HasImpactedRecords(Butterfly.Core.Database.Event.TransactionState,Butterfly.Core.Database.Event.DataEvent,Butterfly.Core.Database.JoinType)
+  id: HasImpactedRecords(Butterfly.Core.Database.Event.TransactionState,Butterfly.Core.Database.Event.DataEvent,Butterfly.Core.Database.JoinType)
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: HasImpactedRecords(TransactionState, DataEvent, JoinType)
+  nameWithType: DynamicViewSet.HasImpactedRecords(TransactionState, DataEvent, JoinType)
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.HasImpactedRecords(Butterfly.Core.Database.Event.TransactionState, Butterfly.Core.Database.Event.DataEvent, Butterfly.Core.Database.JoinType)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: HasImpactedRecords
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 129
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected bool HasImpactedRecords(TransactionState transactionState, DataEvent dataEvent, JoinType joinType)
+    parameters:
+    - id: transactionState
+      type: Butterfly.Core.Database.Event.TransactionState
+    - id: dataEvent
+      type: Butterfly.Core.Database.Event.DataEvent
+    - id: joinType
+      type: Butterfly.Core.Database.JoinType
+    return:
+      type: System.Boolean
+    content.vb: Protected Function HasImpactedRecords(transactionState As TransactionState, dataEvent As DataEvent, joinType As JoinType) As Boolean
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.HasImpactedRecords*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.RunAsync
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.RunAsync
+  id: RunAsync
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: RunAsync()
+  nameWithType: DynamicViewSet.RunAsync()
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.RunAsync()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: RunAsync
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 148
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  summary: "\nProcesses queued data change transactions (runs on a background thread)\n"
+  example: []
+  syntax:
+    content: protected Task RunAsync()
+    return:
+      type: Task
+      description: ''
+    content.vb: Protected Function RunAsync As Task
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.RunAsync*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicViewDataEvents(Butterfly.Core.Database.Event.DataEventTransaction,Butterfly.Core.Database.Dynamic.DynamicView)
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicViewDataEvents(Butterfly.Core.Database.Event.DataEventTransaction,Butterfly.Core.Database.Dynamic.DynamicView)
+  id: CreateDynamicViewDataEvents(Butterfly.Core.Database.Event.DataEventTransaction,Butterfly.Core.Database.Dynamic.DynamicView)
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: CreateDynamicViewDataEvents(DataEventTransaction, DynamicView)
+  nameWithType: DynamicViewSet.CreateDynamicViewDataEvents(DataEventTransaction, DynamicView)
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicViewDataEvents(Butterfly.Core.Database.Event.DataEventTransaction, Butterfly.Core.Database.Dynamic.DynamicView)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: CreateDynamicViewDataEvents
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 178
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected DataEvent[] CreateDynamicViewDataEvents(DataEventTransaction dataEventTransaction, DynamicView dynamicView)
+    parameters:
+    - id: dataEventTransaction
+      type: Butterfly.Core.Database.Event.DataEventTransaction
+    - id: dynamicView
+      type: Butterfly.Core.Database.Dynamic.DynamicView
+    return:
+      type: Butterfly.Core.Database.Event.DataEvent[]
+    content.vb: Protected Function CreateDynamicViewDataEvents(dataEventTransaction As DataEventTransaction, dynamicView As DynamicView) As DataEvent()
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicViewDataEvents*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.SendToListenerAsync(Butterfly.Core.Database.Event.DataEventTransaction)
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.SendToListenerAsync(Butterfly.Core.Database.Event.DataEventTransaction)
+  id: SendToListenerAsync(Butterfly.Core.Database.Event.DataEventTransaction)
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: SendToListenerAsync(DataEventTransaction)
+  nameWithType: DynamicViewSet.SendToListenerAsync(DataEventTransaction)
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.SendToListenerAsync(Butterfly.Core.Database.Event.DataEventTransaction)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: SendToListenerAsync
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 221
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected Task SendToListenerAsync(DataEventTransaction dataEventTransaction)
+    parameters:
+    - id: dataEventTransaction
+      type: Butterfly.Core.Database.Event.DataEventTransaction
+    return:
+      type: Task
+    content.vb: Protected Function SendToListenerAsync(dataEventTransaction As DataEventTransaction) As Task
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.SendToListenerAsync*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.RequeryDynamicViewsAsync(System.Boolean)
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.RequeryDynamicViewsAsync(System.Boolean)
+  id: RequeryDynamicViewsAsync(System.Boolean)
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: RequeryDynamicViewsAsync(Boolean)
+  nameWithType: DynamicViewSet.RequeryDynamicViewsAsync(Boolean)
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.RequeryDynamicViewsAsync(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: RequeryDynamicViewsAsync
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 238
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  summary: "\nReturn the initial query results if any of the query parameters have changed or if passed force=true\n"
+  example: []
+  syntax:
+    content: protected Task<DataEvent[]> RequeryDynamicViewsAsync(bool onlyIfDirtyParams)
+    parameters:
+    - id: onlyIfDirtyParams
+      type: System.Boolean
+      description: ''
+    return:
+      type: Task{Butterfly.Core.Database.Event.DataEvent[]}
+      description: ''
+    content.vb: Protected Function RequeryDynamicViewsAsync(onlyIfDirtyParams As Boolean) As Task(Of DataEvent())
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.RequeryDynamicViewsAsync*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.GetInitialDataEventsAsync(Butterfly.Core.Database.Dynamic.DynamicView)
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.GetInitialDataEventsAsync(Butterfly.Core.Database.Dynamic.DynamicView)
+  id: GetInitialDataEventsAsync(Butterfly.Core.Database.Dynamic.DynamicView)
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: GetInitialDataEventsAsync(DynamicView)
+  nameWithType: DynamicViewSet.GetInitialDataEventsAsync(DynamicView)
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.GetInitialDataEventsAsync(Butterfly.Core.Database.Dynamic.DynamicView)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: GetInitialDataEventsAsync
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 254
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: protected Task<DataEvent[]> GetInitialDataEventsAsync(DynamicView dynamicView)
+    parameters:
+    - id: dynamicView
+      type: Butterfly.Core.Database.Dynamic.DynamicView
+    return:
+      type: Task{Butterfly.Core.Database.Event.DataEvent[]}
+    content.vb: Protected Function GetInitialDataEventsAsync(dynamicView As DynamicView) As Task(Of DataEvent())
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.GetInitialDataEventsAsync*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.Dispose
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.Dispose
+  id: Dispose
+  parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: DynamicViewSet.Dispose()
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.Dispose()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Dispose
+    path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
+    startLine: 261
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Dynamic
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose
+  overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.Dispose*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.Core.Database.Dynamic.DynamicView
+  commentId: T:Butterfly.Core.Database.Dynamic.DynamicView
+  parent: Butterfly.Core.Database.Dynamic
+  name: DynamicView
+  nameWithType: DynamicView
+  fullName: Butterfly.Core.Database.Dynamic.DynamicView
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  commentId: T:Butterfly.Core.Database.Dynamic.DynamicViewSet
+  parent: Butterfly.Core.Database.Dynamic
+  name: DynamicViewSet
+  nameWithType: DynamicViewSet
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet
+- uid: Butterfly.Core.Database.Dynamic
+  commentId: N:Butterfly.Core.Database.Dynamic
+  name: Butterfly.Core.Database.Dynamic
+  nameWithType: Butterfly.Core.Database.Dynamic
+  fullName: Butterfly.Core.Database.Dynamic
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Action{Butterfly.Core.Database.Event.DataEventTransaction}
+  commentId: '!:Action{Butterfly.Core.Database.Event.DataEventTransaction}'
+  definition: Action`1
+  name: Action<DataEventTransaction>
+  nameWithType: Action<DataEventTransaction>
+  fullName: Action<Butterfly.Core.Database.Event.DataEventTransaction>
+  nameWithType.vb: Action(Of DataEventTransaction)
+  fullName.vb: Action(Of Butterfly.Core.Database.Event.DataEventTransaction)
+  name.vb: Action(Of DataEventTransaction)
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Butterfly.Core.Database.Event.DataEventTransaction
+    name: DataEventTransaction
+    nameWithType: DataEventTransaction
+    fullName: Butterfly.Core.Database.Event.DataEventTransaction
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Butterfly.Core.Database.Event.DataEventTransaction
+    name: DataEventTransaction
+    nameWithType: DataEventTransaction
+    fullName: Butterfly.Core.Database.Event.DataEventTransaction
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Action`1
+  isExternal: true
+  name: Action<>
+  nameWithType: Action<>
+  fullName: Action<>
+  nameWithType.vb: Action(Of )
+  fullName.vb: Action(Of )
+  name.vb: Action(Of )
+  spec.csharp:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Action`1
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func{Butterfly.Core.Database.Event.DataEventTransaction,Task}
+  commentId: '!:Func{Butterfly.Core.Database.Event.DataEventTransaction,Task}'
+  definition: Func`2
+  name: Func<DataEventTransaction, Task>
+  nameWithType: Func<DataEventTransaction, Task>
+  fullName: Func<Butterfly.Core.Database.Event.DataEventTransaction, Task>
+  nameWithType.vb: Func(Of DataEventTransaction, Task)
+  fullName.vb: Func(Of Butterfly.Core.Database.Event.DataEventTransaction, Task)
+  name.vb: Func(Of DataEventTransaction, Task)
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Butterfly.Core.Database.Event.DataEventTransaction
+    name: DataEventTransaction
+    nameWithType: DataEventTransaction
+    fullName: Butterfly.Core.Database.Event.DataEventTransaction
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Butterfly.Core.Database.Event.DataEventTransaction
+    name: DataEventTransaction
+    nameWithType: DataEventTransaction
+    fullName: Butterfly.Core.Database.Event.DataEventTransaction
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func`2
+  isExternal: true
+  name: Func<, >
+  nameWithType: Func<, >
+  fullName: Func<, >
+  nameWithType.vb: Func(Of , )
+  fullName.vb: Func(Of , )
+  name.vb: Func(Of , )
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: List{Butterfly.Core.Database.Dynamic.DynamicView}
+  commentId: '!:List{Butterfly.Core.Database.Dynamic.DynamicView}'
+  definition: List`1
+  name: List<DynamicView>
+  nameWithType: List<DynamicView>
+  fullName: List<Butterfly.Core.Database.Dynamic.DynamicView>
+  nameWithType.vb: List(Of DynamicView)
+  fullName.vb: List(Of Butterfly.Core.Database.Dynamic.DynamicView)
+  name.vb: List(Of DynamicView)
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Butterfly.Core.Database.Dynamic.DynamicView
+    name: DynamicView
+    nameWithType: DynamicView
+    fullName: Butterfly.Core.Database.Dynamic.DynamicView
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Butterfly.Core.Database.Dynamic.DynamicView
+    name: DynamicView
+    nameWithType: DynamicView
+    fullName: Butterfly.Core.Database.Dynamic.DynamicView
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: List`1
+  isExternal: true
+  name: List<>
+  nameWithType: List<>
+  fullName: List<>
+  nameWithType.vb: List(Of )
+  fullName.vb: List(Of )
+  name.vb: List(Of )
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ConcurrentQueue{Butterfly.Core.Database.Event.DataEventTransaction}
+  commentId: '!:ConcurrentQueue{Butterfly.Core.Database.Event.DataEventTransaction}'
+  definition: ConcurrentQueue`1
+  name: ConcurrentQueue<DataEventTransaction>
+  nameWithType: ConcurrentQueue<DataEventTransaction>
+  fullName: ConcurrentQueue<Butterfly.Core.Database.Event.DataEventTransaction>
+  nameWithType.vb: ConcurrentQueue(Of DataEventTransaction)
+  fullName.vb: ConcurrentQueue(Of Butterfly.Core.Database.Event.DataEventTransaction)
+  name.vb: ConcurrentQueue(Of DataEventTransaction)
+  spec.csharp:
+  - uid: ConcurrentQueue`1
+    name: ConcurrentQueue
+    nameWithType: ConcurrentQueue
+    fullName: ConcurrentQueue
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Butterfly.Core.Database.Event.DataEventTransaction
+    name: DataEventTransaction
+    nameWithType: DataEventTransaction
+    fullName: Butterfly.Core.Database.Event.DataEventTransaction
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: ConcurrentQueue`1
+    name: ConcurrentQueue
+    nameWithType: ConcurrentQueue
+    fullName: ConcurrentQueue
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Butterfly.Core.Database.Event.DataEventTransaction
+    name: DataEventTransaction
+    nameWithType: DataEventTransaction
+    fullName: Butterfly.Core.Database.Event.DataEventTransaction
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ConcurrentQueue`1
+  isExternal: true
+  name: ConcurrentQueue<>
+  nameWithType: ConcurrentQueue<>
+  fullName: ConcurrentQueue<>
+  nameWithType.vb: ConcurrentQueue(Of )
+  fullName.vb: ConcurrentQueue(Of )
+  name.vb: ConcurrentQueue(Of )
+  spec.csharp:
+  - uid: ConcurrentQueue`1
+    name: ConcurrentQueue
+    nameWithType: ConcurrentQueue
+    fullName: ConcurrentQueue
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: ConcurrentQueue`1
+    name: ConcurrentQueue
+    nameWithType: ConcurrentQueue
+    fullName: ConcurrentQueue
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CancellationTokenSource
+  isExternal: true
+  name: CancellationTokenSource
+  nameWithType: CancellationTokenSource
+  fullName: CancellationTokenSource
+- uid: AsyncMonitor
+  isExternal: true
+  name: AsyncMonitor
+  nameWithType: AsyncMonitor
+  fullName: AsyncMonitor
+- uid: List{IDisposable}
+  commentId: '!:List{IDisposable}'
+  definition: List`1
+  name: List<IDisposable>
+  nameWithType: List<IDisposable>
+  fullName: List<IDisposable>
+  nameWithType.vb: List(Of IDisposable)
+  fullName.vb: List(Of IDisposable)
+  name.vb: List(Of IDisposable)
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: IDisposable
+    name: IDisposable
+    nameWithType: IDisposable
+    fullName: IDisposable
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: IDisposable
+    name: IDisposable
+    nameWithType: IDisposable
+    fullName: IDisposable
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor
+  name: DynamicViewSet
+  nameWithType: DynamicViewSet.DynamicViewSet
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.DynamicViewSet
+- uid: Butterfly.Core.Database.IDatabase
+  commentId: T:Butterfly.Core.Database.IDatabase
+  parent: Butterfly.Core.Database
+  name: IDatabase
+  nameWithType: IDatabase
+  fullName: Butterfly.Core.Database.IDatabase
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.Id*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicViewSet.Id
+  name: Id
+  nameWithType: DynamicViewSet.Id
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.Id
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync
+  isExternal: true
+- uid: Butterfly.Core.Database.Event.DataEventTransaction
+  commentId: T:Butterfly.Core.Database.Event.DataEventTransaction
+  parent: Butterfly.Core.Database.Event
+  name: DataEventTransaction
+  nameWithType: DataEventTransaction
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView
+  name: CreateDynamicView
+  nameWithType: DynamicViewSet.CreateDynamicView
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Butterfly.Core.Database.Event
+  commentId: N:Butterfly.Core.Database.Event
+  name: Butterfly.Core.Database.Event
+  nameWithType: Butterfly.Core.Database.Event
+  fullName: Butterfly.Core.Database.Event
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.Dispose
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.Dispose
+  isExternal: true
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync
+  name: StartAsync
+  nameWithType: DynamicViewSet.StartAsync
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync
+- uid: Task{Butterfly.Core.Database.Dynamic.DynamicViewSet}
+  commentId: '!:Task{Butterfly.Core.Database.Dynamic.DynamicViewSet}'
+  definition: Task`1
+  name: Task<DynamicViewSet>
+  nameWithType: Task<DynamicViewSet>
+  fullName: Task<Butterfly.Core.Database.Dynamic.DynamicViewSet>
+  nameWithType.vb: Task(Of DynamicViewSet)
+  fullName.vb: Task(Of Butterfly.Core.Database.Dynamic.DynamicViewSet)
+  name.vb: Task(Of DynamicViewSet)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Butterfly.Core.Database.Dynamic.DynamicViewSet
+    name: DynamicViewSet
+    nameWithType: DynamicViewSet
+    fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Butterfly.Core.Database.Dynamic.DynamicViewSet
+    name: DynamicViewSet
+    nameWithType: DynamicViewSet
+    fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
+  isExternal: true
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessUncommittedDataEventTransactionAsync*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessUncommittedDataEventTransactionAsync
+  name: ProcessUncommittedDataEventTransactionAsync
+  nameWithType: DynamicViewSet.ProcessUncommittedDataEventTransactionAsync
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessUncommittedDataEventTransactionAsync
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessCommittedDataEventTransactionAsync*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessCommittedDataEventTransactionAsync
+  name: ProcessCommittedDataEventTransactionAsync
+  nameWithType: DynamicViewSet.ProcessCommittedDataEventTransactionAsync
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.ProcessCommittedDataEventTransactionAsync
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.StoreImpactedRecordsInDataEventTransaction*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicViewSet.StoreImpactedRecordsInDataEventTransaction
+  name: StoreImpactedRecordsInDataEventTransaction
+  nameWithType: DynamicViewSet.StoreImpactedRecordsInDataEventTransaction
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.StoreImpactedRecordsInDataEventTransaction
+- uid: Butterfly.Core.Database.Event.TransactionState
+  commentId: T:Butterfly.Core.Database.Event.TransactionState
+  parent: Butterfly.Core.Database.Event
+  name: TransactionState
+  nameWithType: TransactionState
+  fullName: Butterfly.Core.Database.Event.TransactionState
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.GetImpactedRecordsStorageKey*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicViewSet.GetImpactedRecordsStorageKey
+  name: GetImpactedRecordsStorageKey
+  nameWithType: DynamicViewSet.GetImpactedRecordsStorageKey
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.GetImpactedRecordsStorageKey
+- uid: Butterfly.Core.Database.Event.DataEvent
+  commentId: T:Butterfly.Core.Database.Event.DataEvent
+  parent: Butterfly.Core.Database.Event
+  name: DataEvent
+  nameWithType: DataEvent
+  fullName: Butterfly.Core.Database.Event.DataEvent
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.HasImpactedRecords*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicViewSet.HasImpactedRecords
+  name: HasImpactedRecords
+  nameWithType: DynamicViewSet.HasImpactedRecords
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.HasImpactedRecords
+- uid: Butterfly.Core.Database.JoinType
+  commentId: T:Butterfly.Core.Database.JoinType
+  parent: Butterfly.Core.Database
+  name: JoinType
+  nameWithType: JoinType
+  fullName: Butterfly.Core.Database.JoinType
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.RunAsync*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicViewSet.RunAsync
+  name: RunAsync
+  nameWithType: DynamicViewSet.RunAsync
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.RunAsync
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicViewDataEvents*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicViewDataEvents
+  name: CreateDynamicViewDataEvents
+  nameWithType: DynamicViewSet.CreateDynamicViewDataEvents
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicViewDataEvents
+- uid: Butterfly.Core.Database.Event.DataEvent[]
+  isExternal: true
+  name: DataEvent[]
+  nameWithType: DataEvent[]
+  fullName: Butterfly.Core.Database.Event.DataEvent[]
+  nameWithType.vb: DataEvent()
+  fullName.vb: Butterfly.Core.Database.Event.DataEvent()
+  name.vb: DataEvent()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.Event.DataEvent
+    name: DataEvent
+    nameWithType: DataEvent
+    fullName: Butterfly.Core.Database.Event.DataEvent
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: Butterfly.Core.Database.Event.DataEvent
+    name: DataEvent
+    nameWithType: DataEvent
+    fullName: Butterfly.Core.Database.Event.DataEvent
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.SendToListenerAsync*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicViewSet.SendToListenerAsync
+  name: SendToListenerAsync
+  nameWithType: DynamicViewSet.SendToListenerAsync
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.SendToListenerAsync
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.RequeryDynamicViewsAsync*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicViewSet.RequeryDynamicViewsAsync
+  name: RequeryDynamicViewsAsync
+  nameWithType: DynamicViewSet.RequeryDynamicViewsAsync
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.RequeryDynamicViewsAsync
+- uid: Task{Butterfly.Core.Database.Event.DataEvent[]}
+  commentId: '!:Task{Butterfly.Core.Database.Event.DataEvent[]}'
+  definition: Task`1
+  name: Task<DataEvent[]>
+  nameWithType: Task<DataEvent[]>
+  fullName: Task<Butterfly.Core.Database.Event.DataEvent[]>
+  nameWithType.vb: Task(Of DataEvent())
+  fullName.vb: Task(Of Butterfly.Core.Database.Event.DataEvent())
+  name.vb: Task(Of DataEvent())
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Butterfly.Core.Database.Event.DataEvent
+    name: DataEvent
+    nameWithType: DataEvent
+    fullName: Butterfly.Core.Database.Event.DataEvent
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Butterfly.Core.Database.Event.DataEvent
+    name: DataEvent
+    nameWithType: DataEvent
+    fullName: Butterfly.Core.Database.Event.DataEvent
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.GetInitialDataEventsAsync*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicViewSet.GetInitialDataEventsAsync
+  name: GetInitialDataEventsAsync
+  nameWithType: DynamicViewSet.GetInitialDataEventsAsync
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.GetInitialDataEventsAsync
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.Dispose*
+  commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicViewSet.Dispose
+  name: Dispose
+  nameWithType: DynamicViewSet.Dispose
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.Dispose
+shouldSkipMarkup: true

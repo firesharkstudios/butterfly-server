@@ -1,0 +1,41 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.Job
+  commentId: N:Butterfly.Core.Util.Job
+  id: Butterfly.Core.Util.Job
+  children:
+  - Butterfly.Core.Util.Job.IJob
+  - Butterfly.Core.Util.Job.JobData
+  - Butterfly.Core.Util.Job.JobManager
+  langs:
+  - csharp
+  - vb
+  name: Butterfly.Core.Util.Job
+  nameWithType: Butterfly.Core.Util.Job
+  fullName: Butterfly.Core.Util.Job
+  type: Namespace
+  assemblies:
+  - Butterfly.Core
+references:
+- uid: Butterfly.Core.Util.Job.IJob
+  commentId: T:Butterfly.Core.Util.Job.IJob
+  parent: Butterfly.Core.Util.Job
+  name: IJob
+  nameWithType: IJob
+  fullName: Butterfly.Core.Util.Job.IJob
+- uid: Butterfly.Core.Util.Job.JobManager
+  commentId: T:Butterfly.Core.Util.Job.JobManager
+  name: JobManager
+  nameWithType: JobManager
+  fullName: Butterfly.Core.Util.Job.JobManager
+- uid: Butterfly.Core.Util.Job.JobData
+  commentId: T:Butterfly.Core.Util.Job.JobData
+  name: JobData
+  nameWithType: JobData
+  fullName: Butterfly.Core.Util.Job.JobData
+- uid: Butterfly.Core.Util.Job
+  commentId: N:Butterfly.Core.Util.Job
+  name: Butterfly.Core.Util.Job
+  nameWithType: Butterfly.Core.Util.Job
+  fullName: Butterfly.Core.Util.Job
+shouldSkipMarkup: true

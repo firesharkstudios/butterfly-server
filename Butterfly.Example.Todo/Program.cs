@@ -11,7 +11,7 @@ using Butterfly.Core.Util;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Example.HelloWorld.Server {
+namespace Butterfly.Example.Todo {
     class Program {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 

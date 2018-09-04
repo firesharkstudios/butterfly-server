@@ -1,0 +1,293 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.ProcessX
+  commentId: T:Butterfly.Core.Util.ProcessX
+  id: ProcessX
+  parent: Butterfly.Core.Util
+  children:
+  - Butterfly.Core.Util.ProcessX.AddHttpUrlAcl(System.String)
+  - Butterfly.Core.Util.ProcessX.AddHttpUrlAclIfNeeded(System.String)
+  - Butterfly.Core.Util.ProcessX.HasHttpUrlAcl(System.String)
+  - Butterfly.Core.Util.ProcessX.OpenBrowser(System.String)
+  - Butterfly.Core.Util.ProcessX.WaitForExitAsync(Process,CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: ProcessX
+  nameWithType: ProcessX
+  fullName: Butterfly.Core.Util.ProcessX
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/ProcessX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ProcessX
+    path: ../Butterfly.Core/Util/ProcessX.cs
+    startLine: 10
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: 'public static class ProcessX : object'
+    content.vb: >-
+      Public Module ProcessX
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Butterfly.Core.Util.ProcessX.OpenBrowser(System.String)
+  commentId: M:Butterfly.Core.Util.ProcessX.OpenBrowser(System.String)
+  id: OpenBrowser(System.String)
+  parent: Butterfly.Core.Util.ProcessX
+  langs:
+  - csharp
+  - vb
+  name: OpenBrowser(String)
+  nameWithType: ProcessX.OpenBrowser(String)
+  fullName: Butterfly.Core.Util.ProcessX.OpenBrowser(System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/ProcessX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: OpenBrowser
+    path: ../Butterfly.Core/Util/ProcessX.cs
+    startLine: 14
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static void OpenBrowser(string url)
+    parameters:
+    - id: url
+      type: System.String
+    content.vb: Public Shared Sub OpenBrowser(url As String)
+  overload: Butterfly.Core.Util.ProcessX.OpenBrowser*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.ProcessX.AddHttpUrlAclIfNeeded(System.String)
+  commentId: M:Butterfly.Core.Util.ProcessX.AddHttpUrlAclIfNeeded(System.String)
+  id: AddHttpUrlAclIfNeeded(System.String)
+  parent: Butterfly.Core.Util.ProcessX
+  langs:
+  - csharp
+  - vb
+  name: AddHttpUrlAclIfNeeded(String)
+  nameWithType: ProcessX.AddHttpUrlAclIfNeeded(String)
+  fullName: Butterfly.Core.Util.ProcessX.AddHttpUrlAclIfNeeded(System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/ProcessX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: AddHttpUrlAclIfNeeded
+    path: ../Butterfly.Core/Util/ProcessX.cs
+    startLine: 36
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static void AddHttpUrlAclIfNeeded(string url)
+    parameters:
+    - id: url
+      type: System.String
+    content.vb: Public Shared Sub AddHttpUrlAclIfNeeded(url As String)
+  overload: Butterfly.Core.Util.ProcessX.AddHttpUrlAclIfNeeded*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.ProcessX.AddHttpUrlAcl(System.String)
+  commentId: M:Butterfly.Core.Util.ProcessX.AddHttpUrlAcl(System.String)
+  id: AddHttpUrlAcl(System.String)
+  parent: Butterfly.Core.Util.ProcessX
+  langs:
+  - csharp
+  - vb
+  name: AddHttpUrlAcl(String)
+  nameWithType: ProcessX.AddHttpUrlAcl(String)
+  fullName: Butterfly.Core.Util.ProcessX.AddHttpUrlAcl(System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/ProcessX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: AddHttpUrlAcl
+    path: ../Butterfly.Core/Util/ProcessX.cs
+    startLine: 43
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static void AddHttpUrlAcl(string url)
+    parameters:
+    - id: url
+      type: System.String
+    content.vb: Public Shared Sub AddHttpUrlAcl(url As String)
+  overload: Butterfly.Core.Util.ProcessX.AddHttpUrlAcl*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.ProcessX.HasHttpUrlAcl(System.String)
+  commentId: M:Butterfly.Core.Util.ProcessX.HasHttpUrlAcl(System.String)
+  id: HasHttpUrlAcl(System.String)
+  parent: Butterfly.Core.Util.ProcessX
+  langs:
+  - csharp
+  - vb
+  name: HasHttpUrlAcl(String)
+  nameWithType: ProcessX.HasHttpUrlAcl(String)
+  fullName: Butterfly.Core.Util.ProcessX.HasHttpUrlAcl(System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/ProcessX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: HasHttpUrlAcl
+    path: ../Butterfly.Core/Util/ProcessX.cs
+    startLine: 57
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static bool HasHttpUrlAcl(string url)
+    parameters:
+    - id: url
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function HasHttpUrlAcl(url As String) As Boolean
+  overload: Butterfly.Core.Util.ProcessX.HasHttpUrlAcl*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.ProcessX.WaitForExitAsync(Process,CancellationToken)
+  commentId: M:Butterfly.Core.Util.ProcessX.WaitForExitAsync(Process,CancellationToken)
+  id: WaitForExitAsync(Process,CancellationToken)
+  isExtensionMethod: true
+  parent: Butterfly.Core.Util.ProcessX
+  langs:
+  - csharp
+  - vb
+  name: WaitForExitAsync(Process, CancellationToken)
+  nameWithType: ProcessX.WaitForExitAsync(Process, CancellationToken)
+  fullName: Butterfly.Core.Util.ProcessX.WaitForExitAsync(Process, CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/ProcessX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: WaitForExitAsync
+    path: ../Butterfly.Core/Util/ProcessX.cs
+    startLine: 80
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static Task WaitForExitAsync(this Process process, CancellationToken cancellationToken = null)
+    parameters:
+    - id: process
+      type: Process
+    - id: cancellationToken
+      type: CancellationToken
+    return:
+      type: Task
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function WaitForExitAsync(process As Process, cancellationToken As CancellationToken = Nothing) As Task
+  overload: Butterfly.Core.Util.ProcessX.WaitForExitAsync*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Util.ProcessX.OpenBrowser*
+  commentId: Overload:Butterfly.Core.Util.ProcessX.OpenBrowser
+  name: OpenBrowser
+  nameWithType: ProcessX.OpenBrowser
+  fullName: Butterfly.Core.Util.ProcessX.OpenBrowser
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Butterfly.Core.Util.ProcessX.AddHttpUrlAclIfNeeded*
+  commentId: Overload:Butterfly.Core.Util.ProcessX.AddHttpUrlAclIfNeeded
+  name: AddHttpUrlAclIfNeeded
+  nameWithType: ProcessX.AddHttpUrlAclIfNeeded
+  fullName: Butterfly.Core.Util.ProcessX.AddHttpUrlAclIfNeeded
+- uid: Butterfly.Core.Util.ProcessX.AddHttpUrlAcl*
+  commentId: Overload:Butterfly.Core.Util.ProcessX.AddHttpUrlAcl
+  name: AddHttpUrlAcl
+  nameWithType: ProcessX.AddHttpUrlAcl
+  fullName: Butterfly.Core.Util.ProcessX.AddHttpUrlAcl
+- uid: Butterfly.Core.Util.ProcessX.HasHttpUrlAcl*
+  commentId: Overload:Butterfly.Core.Util.ProcessX.HasHttpUrlAcl
+  name: HasHttpUrlAcl
+  nameWithType: ProcessX.HasHttpUrlAcl
+  fullName: Butterfly.Core.Util.ProcessX.HasHttpUrlAcl
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Butterfly.Core.Util.ProcessX.WaitForExitAsync*
+  commentId: Overload:Butterfly.Core.Util.ProcessX.WaitForExitAsync
+  name: WaitForExitAsync
+  nameWithType: ProcessX.WaitForExitAsync
+  fullName: Butterfly.Core.Util.ProcessX.WaitForExitAsync
+- uid: Process
+  commentId: '!:Process'
+  isExternal: true
+  name: Process
+  nameWithType: Process
+  fullName: Process
+- uid: CancellationToken
+  isExternal: true
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: CancellationToken
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+shouldSkipMarkup: true

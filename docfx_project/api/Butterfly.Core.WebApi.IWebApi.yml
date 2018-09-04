@@ -1,0 +1,394 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.WebApi.IWebApi
+  commentId: T:Butterfly.Core.WebApi.IWebApi
+  id: IWebApi
+  parent: Butterfly.Core.WebApi
+  children:
+  - Butterfly.Core.WebApi.IWebApi.Compile
+  - Butterfly.Core.WebApi.IWebApi.OnDelete(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  - Butterfly.Core.WebApi.IWebApi.OnGet(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  - Butterfly.Core.WebApi.IWebApi.OnPost(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  - Butterfly.Core.WebApi.IWebApi.OnPut(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  langs:
+  - csharp
+  - vb
+  name: IWebApi
+  nameWithType: IWebApi
+  fullName: Butterfly.Core.WebApi.IWebApi
+  type: Interface
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/IWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: IWebApi
+    path: ../Butterfly.Core/WebApi/IWebApi.cs
+    startLine: 24
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  summary: "\nAllows receiving API requests via HTTP (inspired by Node.js&apos; Express)<p></p>\n"
+  remarks: "\nExample usage...<p></p>\n<pre><code>    var webApi = new SomeWebApi();\n    webApi.OnGet(&quot;/chat-messages&quot;, async(req, res) => {\n        // Handle the request and return any objects as needed (will be JSON encoded)\n    });\n    webApi.OnPost(&quot;/login&quot;, async(req, res) => {\n        // Handle the request and return any objects as needed (will be JSON encoded)\n    });\n    webApi.Compile();</code></pre>\n"
+  example: []
+  syntax:
+    content: 'public interface IWebApi : IDisposable'
+    content.vb: >-
+      Public Interface IWebApi
+          Inherits IDisposable
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Butterfly.Core.WebApi.IWebApi.OnDelete(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  commentId: M:Butterfly.Core.WebApi.IWebApi.OnDelete(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  id: OnDelete(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  parent: Butterfly.Core.WebApi.IWebApi
+  langs:
+  - csharp
+  - vb
+  name: OnDelete(String, Func<IHttpRequest, IHttpResponse, Task>)
+  nameWithType: IWebApi.OnDelete(String, Func<IHttpRequest, IHttpResponse, Task>)
+  fullName: Butterfly.Core.WebApi.IWebApi.OnDelete(System.String, Func<Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, Task>)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/IWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: OnDelete
+    path: ../Butterfly.Core/WebApi/IWebApi.cs
+    startLine: 30
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  summary: "\nAdd a listener responding to PATCH requests\n"
+  example: []
+  syntax:
+    content: void OnDelete(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
+    parameters:
+    - id: path
+      type: System.String
+      description: ''
+    - id: listener
+      type: Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}
+      description: ''
+    content.vb: Sub OnDelete(path As String, listener As Func(Of IHttpRequest, IHttpResponse, Task))
+  overload: Butterfly.Core.WebApi.IWebApi.OnDelete*
+  nameWithType.vb: IWebApi.OnDelete(String, Func(Of IHttpRequest, IHttpResponse, Task))
+  fullName.vb: Butterfly.Core.WebApi.IWebApi.OnDelete(System.String, Func(Of Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, Task))
+  name.vb: OnDelete(String, Func(Of IHttpRequest, IHttpResponse, Task))
+- uid: Butterfly.Core.WebApi.IWebApi.OnGet(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  commentId: M:Butterfly.Core.WebApi.IWebApi.OnGet(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  id: OnGet(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  parent: Butterfly.Core.WebApi.IWebApi
+  langs:
+  - csharp
+  - vb
+  name: OnGet(String, Func<IHttpRequest, IHttpResponse, Task>)
+  nameWithType: IWebApi.OnGet(String, Func<IHttpRequest, IHttpResponse, Task>)
+  fullName: Butterfly.Core.WebApi.IWebApi.OnGet(System.String, Func<Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, Task>)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/IWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: OnGet
+    path: ../Butterfly.Core/WebApi/IWebApi.cs
+    startLine: 37
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  summary: "\nAdd a listener responding to GET requests\n"
+  example: []
+  syntax:
+    content: void OnGet(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
+    parameters:
+    - id: path
+      type: System.String
+      description: ''
+    - id: listener
+      type: Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}
+      description: ''
+    content.vb: Sub OnGet(path As String, listener As Func(Of IHttpRequest, IHttpResponse, Task))
+  overload: Butterfly.Core.WebApi.IWebApi.OnGet*
+  nameWithType.vb: IWebApi.OnGet(String, Func(Of IHttpRequest, IHttpResponse, Task))
+  fullName.vb: Butterfly.Core.WebApi.IWebApi.OnGet(System.String, Func(Of Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, Task))
+  name.vb: OnGet(String, Func(Of IHttpRequest, IHttpResponse, Task))
+- uid: Butterfly.Core.WebApi.IWebApi.OnPost(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  commentId: M:Butterfly.Core.WebApi.IWebApi.OnPost(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  id: OnPost(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  parent: Butterfly.Core.WebApi.IWebApi
+  langs:
+  - csharp
+  - vb
+  name: OnPost(String, Func<IHttpRequest, IHttpResponse, Task>)
+  nameWithType: IWebApi.OnPost(String, Func<IHttpRequest, IHttpResponse, Task>)
+  fullName: Butterfly.Core.WebApi.IWebApi.OnPost(System.String, Func<Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, Task>)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/IWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: OnPost
+    path: ../Butterfly.Core/WebApi/IWebApi.cs
+    startLine: 44
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  summary: "\nAdd a listener responding to POST requests\n"
+  example: []
+  syntax:
+    content: void OnPost(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
+    parameters:
+    - id: path
+      type: System.String
+      description: ''
+    - id: listener
+      type: Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}
+      description: ''
+    content.vb: Sub OnPost(path As String, listener As Func(Of IHttpRequest, IHttpResponse, Task))
+  overload: Butterfly.Core.WebApi.IWebApi.OnPost*
+  nameWithType.vb: IWebApi.OnPost(String, Func(Of IHttpRequest, IHttpResponse, Task))
+  fullName.vb: Butterfly.Core.WebApi.IWebApi.OnPost(System.String, Func(Of Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, Task))
+  name.vb: OnPost(String, Func(Of IHttpRequest, IHttpResponse, Task))
+- uid: Butterfly.Core.WebApi.IWebApi.OnPut(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  commentId: M:Butterfly.Core.WebApi.IWebApi.OnPut(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  id: OnPut(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})
+  parent: Butterfly.Core.WebApi.IWebApi
+  langs:
+  - csharp
+  - vb
+  name: OnPut(String, Func<IHttpRequest, IHttpResponse, Task>)
+  nameWithType: IWebApi.OnPut(String, Func<IHttpRequest, IHttpResponse, Task>)
+  fullName: Butterfly.Core.WebApi.IWebApi.OnPut(System.String, Func<Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, Task>)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/IWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: OnPut
+    path: ../Butterfly.Core/WebApi/IWebApi.cs
+    startLine: 51
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  summary: "\nAdd a listener responding to PUT requests\n"
+  example: []
+  syntax:
+    content: void OnPut(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
+    parameters:
+    - id: path
+      type: System.String
+      description: ''
+    - id: listener
+      type: Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}
+      description: ''
+    content.vb: Sub OnPut(path As String, listener As Func(Of IHttpRequest, IHttpResponse, Task))
+  overload: Butterfly.Core.WebApi.IWebApi.OnPut*
+  nameWithType.vb: IWebApi.OnPut(String, Func(Of IHttpRequest, IHttpResponse, Task))
+  fullName.vb: Butterfly.Core.WebApi.IWebApi.OnPut(System.String, Func(Of Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, Task))
+  name.vb: OnPut(String, Func(Of IHttpRequest, IHttpResponse, Task))
+- uid: Butterfly.Core.WebApi.IWebApi.Compile
+  commentId: M:Butterfly.Core.WebApi.IWebApi.Compile
+  id: Compile
+  parent: Butterfly.Core.WebApi.IWebApi
+  langs:
+  - csharp
+  - vb
+  name: Compile()
+  nameWithType: IWebApi.Compile()
+  fullName: Butterfly.Core.WebApi.IWebApi.Compile()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/WebApi/IWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Compile
+    path: ../Butterfly.Core/WebApi/IWebApi.cs
+    startLine: 56
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.WebApi
+  summary: "\nCompile the web api\n"
+  example: []
+  syntax:
+    content: void Compile()
+    content.vb: Sub Compile
+  overload: Butterfly.Core.WebApi.IWebApi.Compile*
+references:
+- uid: Butterfly.Core.WebApi
+  commentId: N:Butterfly.Core.WebApi
+  name: Butterfly.Core.WebApi
+  nameWithType: Butterfly.Core.WebApi
+  fullName: Butterfly.Core.WebApi
+- uid: Butterfly.Core.WebApi.IWebApi.OnDelete*
+  commentId: Overload:Butterfly.Core.WebApi.IWebApi.OnDelete
+  name: OnDelete
+  nameWithType: IWebApi.OnDelete
+  fullName: Butterfly.Core.WebApi.IWebApi.OnDelete
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}
+  commentId: '!:Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}'
+  definition: Func`3
+  name: Func<IHttpRequest, IHttpResponse, Task>
+  nameWithType: Func<IHttpRequest, IHttpResponse, Task>
+  fullName: Func<Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, Task>
+  nameWithType.vb: Func(Of IHttpRequest, IHttpResponse, Task)
+  fullName.vb: Func(Of Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, Task)
+  name.vb: Func(Of IHttpRequest, IHttpResponse, Task)
+  spec.csharp:
+  - uid: Func`3
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Butterfly.Core.WebApi.IHttpRequest
+    name: IHttpRequest
+    nameWithType: IHttpRequest
+    fullName: Butterfly.Core.WebApi.IHttpRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Butterfly.Core.WebApi.IHttpResponse
+    name: IHttpResponse
+    nameWithType: IHttpResponse
+    fullName: Butterfly.Core.WebApi.IHttpResponse
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`3
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Butterfly.Core.WebApi.IHttpRequest
+    name: IHttpRequest
+    nameWithType: IHttpRequest
+    fullName: Butterfly.Core.WebApi.IHttpRequest
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Butterfly.Core.WebApi.IHttpResponse
+    name: IHttpResponse
+    nameWithType: IHttpResponse
+    fullName: Butterfly.Core.WebApi.IHttpResponse
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func`3
+  isExternal: true
+  name: Func<, , >
+  nameWithType: Func<, , >
+  fullName: Func<, , >
+  nameWithType.vb: Func(Of , , )
+  fullName.vb: Func(Of , , )
+  name.vb: Func(Of , , )
+  spec.csharp:
+  - uid: Func`3
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`3
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.WebApi.IWebApi.OnGet*
+  commentId: Overload:Butterfly.Core.WebApi.IWebApi.OnGet
+  name: OnGet
+  nameWithType: IWebApi.OnGet
+  fullName: Butterfly.Core.WebApi.IWebApi.OnGet
+- uid: Butterfly.Core.WebApi.IWebApi.OnPost*
+  commentId: Overload:Butterfly.Core.WebApi.IWebApi.OnPost
+  name: OnPost
+  nameWithType: IWebApi.OnPost
+  fullName: Butterfly.Core.WebApi.IWebApi.OnPost
+- uid: Butterfly.Core.WebApi.IWebApi.OnPut*
+  commentId: Overload:Butterfly.Core.WebApi.IWebApi.OnPut
+  name: OnPut
+  nameWithType: IWebApi.OnPut
+  fullName: Butterfly.Core.WebApi.IWebApi.OnPut
+- uid: Butterfly.Core.WebApi.IWebApi.Compile*
+  commentId: Overload:Butterfly.Core.WebApi.IWebApi.Compile
+  name: Compile
+  nameWithType: IWebApi.Compile
+  fullName: Butterfly.Core.WebApi.IWebApi.Compile
+shouldSkipMarkup: true

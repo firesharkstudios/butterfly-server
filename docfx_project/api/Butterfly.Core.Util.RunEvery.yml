@@ -1,0 +1,138 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.RunEvery
+  commentId: T:Butterfly.Core.Util.RunEvery
+  id: RunEvery
+  parent: Butterfly.Core.Util
+  children:
+  - Butterfly.Core.Util.RunEvery.#ctor(Action,System.Int32)
+  - Butterfly.Core.Util.RunEvery.Dispose
+  langs:
+  - csharp
+  - vb
+  name: RunEvery
+  nameWithType: RunEvery
+  fullName: Butterfly.Core.Util.RunEvery
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/RunEvery.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: RunEvery
+    path: ../Butterfly.Core/Util/RunEvery.cs
+    startLine: 6
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: 'public class RunEvery : IDisposable'
+    content.vb: >-
+      Public Class RunEvery
+          Inherits IDisposable
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Util.RunEvery.#ctor(Action,System.Int32)
+  commentId: M:Butterfly.Core.Util.RunEvery.#ctor(Action,System.Int32)
+  id: '#ctor(Action,System.Int32)'
+  parent: Butterfly.Core.Util.RunEvery
+  langs:
+  - csharp
+  - vb
+  name: RunEvery(Action, Int32)
+  nameWithType: RunEvery.RunEvery(Action, Int32)
+  fullName: Butterfly.Core.Util.RunEvery.RunEvery(Action, System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Util/RunEvery.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Util/RunEvery.cs
+    startLine: 10
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public RunEvery(Action action, int everyMillis)
+    parameters:
+    - id: action
+      type: Action
+    - id: everyMillis
+      type: System.Int32
+    content.vb: Public Sub New(action As Action, everyMillis As Integer)
+  overload: Butterfly.Core.Util.RunEvery.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Util.RunEvery.Dispose
+  commentId: M:Butterfly.Core.Util.RunEvery.Dispose
+  id: Dispose
+  parent: Butterfly.Core.Util.RunEvery
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: RunEvery.Dispose()
+  fullName: Butterfly.Core.Util.RunEvery.Dispose()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/RunEvery.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Dispose
+    path: ../Butterfly.Core/Util/RunEvery.cs
+    startLine: 25
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose
+  overload: Butterfly.Core.Util.RunEvery.Dispose*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Util.RunEvery.#ctor*
+  commentId: Overload:Butterfly.Core.Util.RunEvery.#ctor
+  name: RunEvery
+  nameWithType: RunEvery.RunEvery
+  fullName: Butterfly.Core.Util.RunEvery.RunEvery
+- uid: Action
+  isExternal: true
+  name: Action
+  nameWithType: Action
+  fullName: Action
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Butterfly.Core.Util.RunEvery.Dispose*
+  commentId: Overload:Butterfly.Core.Util.RunEvery.Dispose
+  name: Dispose
+  nameWithType: RunEvery.Dispose
+  fullName: Butterfly.Core.Util.RunEvery.Dispose
+shouldSkipMarkup: true

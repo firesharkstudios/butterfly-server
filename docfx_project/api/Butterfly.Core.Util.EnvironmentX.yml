@@ -1,0 +1,97 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.EnvironmentX
+  commentId: T:Butterfly.Core.Util.EnvironmentX
+  id: EnvironmentX
+  parent: Butterfly.Core.Util
+  children:
+  - Butterfly.Core.Util.EnvironmentX.IsRunningOnMono
+  langs:
+  - csharp
+  - vb
+  name: EnvironmentX
+  nameWithType: EnvironmentX
+  fullName: Butterfly.Core.Util.EnvironmentX
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/EnvironmentX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: EnvironmentX
+    path: ../Butterfly.Core/Util/EnvironmentX.cs
+    startLine: 7
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: 'public static class EnvironmentX : object'
+    content.vb: >-
+      Public Module EnvironmentX
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Butterfly.Core.Util.EnvironmentX.IsRunningOnMono
+  commentId: M:Butterfly.Core.Util.EnvironmentX.IsRunningOnMono
+  id: IsRunningOnMono
+  parent: Butterfly.Core.Util.EnvironmentX
+  langs:
+  - csharp
+  - vb
+  name: IsRunningOnMono()
+  nameWithType: EnvironmentX.IsRunningOnMono()
+  fullName: Butterfly.Core.Util.EnvironmentX.IsRunningOnMono()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/EnvironmentX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: IsRunningOnMono
+    path: ../Butterfly.Core/Util/EnvironmentX.cs
+    startLine: 8
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static bool IsRunningOnMono()
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Function IsRunningOnMono As Boolean
+  overload: Butterfly.Core.Util.EnvironmentX.IsRunningOnMono*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Util.EnvironmentX.IsRunningOnMono*
+  commentId: Overload:Butterfly.Core.Util.EnvironmentX.IsRunningOnMono
+  name: IsRunningOnMono
+  nameWithType: EnvironmentX.IsRunningOnMono
+  fullName: Butterfly.Core.Util.EnvironmentX.IsRunningOnMono
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+shouldSkipMarkup: true

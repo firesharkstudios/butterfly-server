@@ -1,0 +1,87 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.PermissionDeniedException
+  commentId: T:Butterfly.Core.Util.PermissionDeniedException
+  id: PermissionDeniedException
+  parent: Butterfly.Core.Util
+  children:
+  - Butterfly.Core.Util.PermissionDeniedException.#ctor
+  langs:
+  - csharp
+  - vb
+  name: PermissionDeniedException
+  nameWithType: PermissionDeniedException
+  fullName: Butterfly.Core.Util.PermissionDeniedException
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/UnauthorizedException.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: PermissionDeniedException
+    path: ../Butterfly.Core/Util/UnauthorizedException.cs
+    startLine: 12
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: 'public class PermissionDeniedException : Exception'
+    content.vb: >-
+      Public Class PermissionDeniedException
+          Inherits Exception
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Util.PermissionDeniedException.#ctor
+  commentId: M:Butterfly.Core.Util.PermissionDeniedException.#ctor
+  id: '#ctor'
+  parent: Butterfly.Core.Util.PermissionDeniedException
+  langs:
+  - csharp
+  - vb
+  name: PermissionDeniedException()
+  nameWithType: PermissionDeniedException.PermissionDeniedException()
+  fullName: Butterfly.Core.Util.PermissionDeniedException.PermissionDeniedException()
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Util/UnauthorizedException.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Util/UnauthorizedException.cs
+    startLine: 13
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public PermissionDeniedException()
+    content.vb: Public Sub New
+  overload: Butterfly.Core.Util.PermissionDeniedException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Util.PermissionDeniedException.#ctor*
+  commentId: Overload:Butterfly.Core.Util.PermissionDeniedException.#ctor
+  name: PermissionDeniedException
+  nameWithType: PermissionDeniedException.PermissionDeniedException
+  fullName: Butterfly.Core.Util.PermissionDeniedException.PermissionDeniedException
+shouldSkipMarkup: true

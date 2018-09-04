@@ -1,0 +1,111 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.IWebRequestX
+  commentId: T:Butterfly.Core.Util.IWebRequestX
+  id: IWebRequestX
+  parent: Butterfly.Core.Util
+  children:
+  - Butterfly.Core.Util.IWebRequestX.GetAuthenticationHeaderValue(Butterfly.Core.Util.IWebRequest)
+  langs:
+  - csharp
+  - vb
+  name: IWebRequestX
+  nameWithType: IWebRequestX
+  fullName: Butterfly.Core.Util.IWebRequestX
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/IWebRequestX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: IWebRequestX
+    path: ../Butterfly.Core/Util/IWebRequestX.cs
+    startLine: 8
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: 'public static class IWebRequestX : object'
+    content.vb: >-
+      Public Module IWebRequestX
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Butterfly.Core.Util.IWebRequestX.GetAuthenticationHeaderValue(Butterfly.Core.Util.IWebRequest)
+  commentId: M:Butterfly.Core.Util.IWebRequestX.GetAuthenticationHeaderValue(Butterfly.Core.Util.IWebRequest)
+  id: GetAuthenticationHeaderValue(Butterfly.Core.Util.IWebRequest)
+  isExtensionMethod: true
+  parent: Butterfly.Core.Util.IWebRequestX
+  langs:
+  - csharp
+  - vb
+  name: GetAuthenticationHeaderValue(IWebRequest)
+  nameWithType: IWebRequestX.GetAuthenticationHeaderValue(IWebRequest)
+  fullName: Butterfly.Core.Util.IWebRequestX.GetAuthenticationHeaderValue(Butterfly.Core.Util.IWebRequest)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/IWebRequestX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: GetAuthenticationHeaderValue
+    path: ../Butterfly.Core/Util/IWebRequestX.cs
+    startLine: 9
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static AuthenticationHeaderValue GetAuthenticationHeaderValue(this IWebRequest me)
+    parameters:
+    - id: me
+      type: Butterfly.Core.Util.IWebRequest
+    return:
+      type: AuthenticationHeaderValue
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetAuthenticationHeaderValue(me As IWebRequest) As AuthenticationHeaderValue
+  overload: Butterfly.Core.Util.IWebRequestX.GetAuthenticationHeaderValue*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Util.IWebRequestX.GetAuthenticationHeaderValue*
+  commentId: Overload:Butterfly.Core.Util.IWebRequestX.GetAuthenticationHeaderValue
+  name: GetAuthenticationHeaderValue
+  nameWithType: IWebRequestX.GetAuthenticationHeaderValue
+  fullName: Butterfly.Core.Util.IWebRequestX.GetAuthenticationHeaderValue
+- uid: Butterfly.Core.Util.IWebRequest
+  commentId: T:Butterfly.Core.Util.IWebRequest
+  parent: Butterfly.Core.Util
+  name: IWebRequest
+  nameWithType: IWebRequest
+  fullName: Butterfly.Core.Util.IWebRequest
+- uid: AuthenticationHeaderValue
+  commentId: '!:AuthenticationHeaderValue'
+  isExternal: true
+  name: AuthenticationHeaderValue
+  nameWithType: AuthenticationHeaderValue
+  fullName: AuthenticationHeaderValue
+shouldSkipMarkup: true

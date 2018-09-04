@@ -1,0 +1,132 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.MySql.Test.MySqlDatabaseUnitTest
+  commentId: T:Butterfly.MySql.Test.MySqlDatabaseUnitTest
+  id: MySqlDatabaseUnitTest
+  parent: Butterfly.MySql.Test
+  children:
+  - Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDatabase
+  - Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDynamic
+  langs:
+  - csharp
+  - vb
+  name: MySqlDatabaseUnitTest
+  nameWithType: MySqlDatabaseUnitTest
+  fullName: Butterfly.MySql.Test.MySqlDatabaseUnitTest
+  type: Class
+  source:
+    remote:
+      path: Butterfly.MySql.Test/MySqlTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: MySqlDatabaseUnitTest
+    path: ../Butterfly.MySql.Test/MySqlTest.cs
+    startLine: 10
+  assemblies:
+  - Butterfly.MySql.Test
+  namespace: Butterfly.MySql.Test
+  syntax:
+    content: 'public class MySqlDatabaseUnitTest : object'
+    content.vb: >-
+      Public Class MySqlDatabaseUnitTest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDatabase
+  commentId: M:Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDatabase
+  id: TestDatabase
+  parent: Butterfly.MySql.Test.MySqlDatabaseUnitTest
+  langs:
+  - csharp
+  - vb
+  name: TestDatabase()
+  nameWithType: MySqlDatabaseUnitTest.TestDatabase()
+  fullName: Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDatabase()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql.Test/MySqlTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TestDatabase
+    path: ../Butterfly.MySql.Test/MySqlTest.cs
+    startLine: 12
+  assemblies:
+  - Butterfly.MySql.Test
+  namespace: Butterfly.MySql.Test
+  syntax:
+    content: public Task TestDatabase()
+    return:
+      type: Task
+    content.vb: Public Function TestDatabase As Task
+  overload: Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDatabase*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDynamic
+  commentId: M:Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDynamic
+  id: TestDynamic
+  parent: Butterfly.MySql.Test.MySqlDatabaseUnitTest
+  langs:
+  - csharp
+  - vb
+  name: TestDynamic()
+  nameWithType: MySqlDatabaseUnitTest.TestDynamic()
+  fullName: Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDynamic()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql.Test/MySqlTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TestDynamic
+    path: ../Butterfly.MySql.Test/MySqlTest.cs
+    startLine: 18
+  assemblies:
+  - Butterfly.MySql.Test
+  namespace: Butterfly.MySql.Test
+  syntax:
+    content: public Task TestDynamic()
+    return:
+      type: Task
+    content.vb: Public Function TestDynamic As Task
+  overload: Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDynamic*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.MySql.Test
+  commentId: N:Butterfly.MySql.Test
+  name: Butterfly.MySql.Test
+  nameWithType: Butterfly.MySql.Test
+  fullName: Butterfly.MySql.Test
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDatabase*
+  commentId: Overload:Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDatabase
+  name: TestDatabase
+  nameWithType: MySqlDatabaseUnitTest.TestDatabase
+  fullName: Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDatabase
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDynamic*
+  commentId: Overload:Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDynamic
+  name: TestDynamic
+  nameWithType: MySqlDatabaseUnitTest.TestDynamic
+  fullName: Butterfly.MySql.Test.MySqlDatabaseUnitTest.TestDynamic
+shouldSkipMarkup: true

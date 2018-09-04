@@ -1,0 +1,488 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Test.DatabaseUnitTest
+  commentId: T:Butterfly.Core.Test.DatabaseUnitTest
+  id: DatabaseUnitTest
+  parent: Butterfly.Core.Test
+  children:
+  - Butterfly.Core.Test.DatabaseUnitTest.DataMemoryDatabase
+  - Butterfly.Core.Test.DatabaseUnitTest.InsertBasicData(Butterfly.Core.Database.IDatabase)
+  - Butterfly.Core.Test.DatabaseUnitTest.Parse
+  - Butterfly.Core.Test.DatabaseUnitTest.SelectBasicData(Butterfly.Core.Database.IDatabase,System.Object,System.Object,System.Object)
+  - Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
+  - Butterfly.Core.Test.DatabaseUnitTest.TestTransactions(Butterfly.Core.Database.IDatabase)
+  - Butterfly.Core.Test.DatabaseUnitTest.TruncateData(Butterfly.Core.Database.IDatabase)
+  - Butterfly.Core.Test.DatabaseUnitTest.UpdateAndDeleteBasicData(Butterfly.Core.Database.IDatabase,System.Object)
+  langs:
+  - csharp
+  - vb
+  name: DatabaseUnitTest
+  nameWithType: DatabaseUnitTest
+  fullName: Butterfly.Core.Test.DatabaseUnitTest
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core.Test/DatabaseUnitTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DatabaseUnitTest
+    path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
+    startLine: 17
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: 'public class DatabaseUnitTest : object'
+    content.vb: >-
+      Public Class DatabaseUnitTest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Test.DatabaseUnitTest.Parse
+  commentId: M:Butterfly.Core.Test.DatabaseUnitTest.Parse
+  id: Parse
+  parent: Butterfly.Core.Test.DatabaseUnitTest
+  langs:
+  - csharp
+  - vb
+  name: Parse()
+  nameWithType: DatabaseUnitTest.Parse()
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.Parse()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core.Test/DatabaseUnitTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Parse
+    path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
+    startLine: 19
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: public Task Parse()
+    return:
+      type: Task
+    content.vb: Public Function Parse As Task
+  overload: Butterfly.Core.Test.DatabaseUnitTest.Parse*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Test.DatabaseUnitTest.DataMemoryDatabase
+  commentId: M:Butterfly.Core.Test.DatabaseUnitTest.DataMemoryDatabase
+  id: DataMemoryDatabase
+  parent: Butterfly.Core.Test.DatabaseUnitTest
+  langs:
+  - csharp
+  - vb
+  name: DataMemoryDatabase()
+  nameWithType: DatabaseUnitTest.DataMemoryDatabase()
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.DataMemoryDatabase()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core.Test/DatabaseUnitTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DataMemoryDatabase
+    path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
+    startLine: 45
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: public Task DataMemoryDatabase()
+    return:
+      type: Task
+    content.vb: Public Function DataMemoryDatabase As Task
+  overload: Butterfly.Core.Test.DatabaseUnitTest.DataMemoryDatabase*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
+  commentId: M:Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
+  id: TestDatabase(Butterfly.Core.Database.IDatabase)
+  parent: Butterfly.Core.Test.DatabaseUnitTest
+  langs:
+  - csharp
+  - vb
+  name: TestDatabase(IDatabase)
+  nameWithType: DatabaseUnitTest.TestDatabase(IDatabase)
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core.Test/DatabaseUnitTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TestDatabase
+    path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
+    startLine: 51
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: public static Task TestDatabase(IDatabase database)
+    parameters:
+    - id: database
+      type: Butterfly.Core.Database.IDatabase
+    return:
+      type: Task
+    content.vb: Public Shared Function TestDatabase(database As IDatabase) As Task
+  overload: Butterfly.Core.Test.DatabaseUnitTest.TestDatabase*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Test.DatabaseUnitTest.TruncateData(Butterfly.Core.Database.IDatabase)
+  commentId: M:Butterfly.Core.Test.DatabaseUnitTest.TruncateData(Butterfly.Core.Database.IDatabase)
+  id: TruncateData(Butterfly.Core.Database.IDatabase)
+  parent: Butterfly.Core.Test.DatabaseUnitTest
+  langs:
+  - csharp
+  - vb
+  name: TruncateData(IDatabase)
+  nameWithType: DatabaseUnitTest.TruncateData(IDatabase)
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.TruncateData(Butterfly.Core.Database.IDatabase)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core.Test/DatabaseUnitTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TruncateData
+    path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
+    startLine: 66
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: public static Task TruncateData(IDatabase database)
+    parameters:
+    - id: database
+      type: Butterfly.Core.Database.IDatabase
+    return:
+      type: Task
+    content.vb: Public Shared Function TruncateData(database As IDatabase) As Task
+  overload: Butterfly.Core.Test.DatabaseUnitTest.TruncateData*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Test.DatabaseUnitTest.InsertBasicData(Butterfly.Core.Database.IDatabase)
+  commentId: M:Butterfly.Core.Test.DatabaseUnitTest.InsertBasicData(Butterfly.Core.Database.IDatabase)
+  id: InsertBasicData(Butterfly.Core.Database.IDatabase)
+  parent: Butterfly.Core.Test.DatabaseUnitTest
+  langs:
+  - csharp
+  - vb
+  name: InsertBasicData(IDatabase)
+  nameWithType: DatabaseUnitTest.InsertBasicData(IDatabase)
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.InsertBasicData(Butterfly.Core.Database.IDatabase)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core.Test/DatabaseUnitTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: InsertBasicData
+    path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
+    startLine: 75
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: public static Task<> InsertBasicData(IDatabase database)
+    parameters:
+    - id: database
+      type: Butterfly.Core.Database.IDatabase
+    return:
+      type: Task{System.ValueTuple{System.Object,System.Object,System.Object}}
+    content.vb: Public Shared Function InsertBasicData(database As IDatabase) As Task(Of )
+  overload: Butterfly.Core.Test.DatabaseUnitTest.InsertBasicData*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Test.DatabaseUnitTest.TestTransactions(Butterfly.Core.Database.IDatabase)
+  commentId: M:Butterfly.Core.Test.DatabaseUnitTest.TestTransactions(Butterfly.Core.Database.IDatabase)
+  id: TestTransactions(Butterfly.Core.Database.IDatabase)
+  parent: Butterfly.Core.Test.DatabaseUnitTest
+  langs:
+  - csharp
+  - vb
+  name: TestTransactions(IDatabase)
+  nameWithType: DatabaseUnitTest.TestTransactions(IDatabase)
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.TestTransactions(Butterfly.Core.Database.IDatabase)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core.Test/DatabaseUnitTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TestTransactions
+    path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
+    startLine: 145
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: protected static Task TestTransactions(IDatabase database)
+    parameters:
+    - id: database
+      type: Butterfly.Core.Database.IDatabase
+    return:
+      type: Task
+    content.vb: Protected Shared Function TestTransactions(database As IDatabase) As Task
+  overload: Butterfly.Core.Test.DatabaseUnitTest.TestTransactions*
+  modifiers.csharp:
+  - protected
+  - static
+  modifiers.vb:
+  - Protected
+  - Shared
+- uid: Butterfly.Core.Test.DatabaseUnitTest.SelectBasicData(Butterfly.Core.Database.IDatabase,System.Object,System.Object,System.Object)
+  commentId: M:Butterfly.Core.Test.DatabaseUnitTest.SelectBasicData(Butterfly.Core.Database.IDatabase,System.Object,System.Object,System.Object)
+  id: SelectBasicData(Butterfly.Core.Database.IDatabase,System.Object,System.Object,System.Object)
+  parent: Butterfly.Core.Test.DatabaseUnitTest
+  langs:
+  - csharp
+  - vb
+  name: SelectBasicData(IDatabase, Object, Object, Object)
+  nameWithType: DatabaseUnitTest.SelectBasicData(IDatabase, Object, Object, Object)
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.SelectBasicData(Butterfly.Core.Database.IDatabase, System.Object, System.Object, System.Object)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core.Test/DatabaseUnitTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: SelectBasicData
+    path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
+    startLine: 177
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: protected static Task SelectBasicData(IDatabase database, object salesDepartmentId, object hrDepartmentId, object customerServiceDepartmentId)
+    parameters:
+    - id: database
+      type: Butterfly.Core.Database.IDatabase
+    - id: salesDepartmentId
+      type: System.Object
+    - id: hrDepartmentId
+      type: System.Object
+    - id: customerServiceDepartmentId
+      type: System.Object
+    return:
+      type: Task
+    content.vb: Protected Shared Function SelectBasicData(database As IDatabase, salesDepartmentId As Object, hrDepartmentId As Object, customerServiceDepartmentId As Object) As Task
+  overload: Butterfly.Core.Test.DatabaseUnitTest.SelectBasicData*
+  modifiers.csharp:
+  - protected
+  - static
+  modifiers.vb:
+  - Protected
+  - Shared
+- uid: Butterfly.Core.Test.DatabaseUnitTest.UpdateAndDeleteBasicData(Butterfly.Core.Database.IDatabase,System.Object)
+  commentId: M:Butterfly.Core.Test.DatabaseUnitTest.UpdateAndDeleteBasicData(Butterfly.Core.Database.IDatabase,System.Object)
+  id: UpdateAndDeleteBasicData(Butterfly.Core.Database.IDatabase,System.Object)
+  parent: Butterfly.Core.Test.DatabaseUnitTest
+  langs:
+  - csharp
+  - vb
+  name: UpdateAndDeleteBasicData(IDatabase, Object)
+  nameWithType: DatabaseUnitTest.UpdateAndDeleteBasicData(IDatabase, Object)
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.UpdateAndDeleteBasicData(Butterfly.Core.Database.IDatabase, System.Object)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core.Test/DatabaseUnitTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: UpdateAndDeleteBasicData
+    path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
+    startLine: 333
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: protected static Task UpdateAndDeleteBasicData(IDatabase database, object hrDepartmentId)
+    parameters:
+    - id: database
+      type: Butterfly.Core.Database.IDatabase
+    - id: hrDepartmentId
+      type: System.Object
+    return:
+      type: Task
+    content.vb: Protected Shared Function UpdateAndDeleteBasicData(database As IDatabase, hrDepartmentId As Object) As Task
+  overload: Butterfly.Core.Test.DatabaseUnitTest.UpdateAndDeleteBasicData*
+  modifiers.csharp:
+  - protected
+  - static
+  modifiers.vb:
+  - Protected
+  - Shared
+references:
+- uid: Butterfly.Core.Test
+  commentId: N:Butterfly.Core.Test
+  name: Butterfly.Core.Test
+  nameWithType: Butterfly.Core.Test
+  fullName: Butterfly.Core.Test
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Test.DatabaseUnitTest.Parse*
+  commentId: Overload:Butterfly.Core.Test.DatabaseUnitTest.Parse
+  name: Parse
+  nameWithType: DatabaseUnitTest.Parse
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.Parse
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Butterfly.Core.Test.DatabaseUnitTest.DataMemoryDatabase*
+  commentId: Overload:Butterfly.Core.Test.DatabaseUnitTest.DataMemoryDatabase
+  name: DataMemoryDatabase
+  nameWithType: DatabaseUnitTest.DataMemoryDatabase
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.DataMemoryDatabase
+- uid: Butterfly.Core.Test.DatabaseUnitTest.TestDatabase*
+  commentId: Overload:Butterfly.Core.Test.DatabaseUnitTest.TestDatabase
+  name: TestDatabase
+  nameWithType: DatabaseUnitTest.TestDatabase
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.TestDatabase
+- uid: Butterfly.Core.Database.IDatabase
+  commentId: T:Butterfly.Core.Database.IDatabase
+  parent: Butterfly.Core.Database
+  name: IDatabase
+  nameWithType: IDatabase
+  fullName: Butterfly.Core.Database.IDatabase
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: Butterfly.Core.Test.DatabaseUnitTest.TruncateData*
+  commentId: Overload:Butterfly.Core.Test.DatabaseUnitTest.TruncateData
+  name: TruncateData
+  nameWithType: DatabaseUnitTest.TruncateData
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.TruncateData
+- uid: Butterfly.Core.Test.DatabaseUnitTest.InsertBasicData*
+  commentId: Overload:Butterfly.Core.Test.DatabaseUnitTest.InsertBasicData
+  name: InsertBasicData
+  nameWithType: DatabaseUnitTest.InsertBasicData
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.InsertBasicData
+- uid: Task{System.ValueTuple{System.Object,System.Object,System.Object}}
+  commentId: '!:Task{System.ValueTuple{System.Object,System.Object,System.Object}}'
+  definition: Task`1
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<System.>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of System.)
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple{System.Object,System.Object,System.Object}
+    name: ''
+    nameWithType: ''
+    fullName: System.
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple{System.Object,System.Object,System.Object}
+    name: ''
+    nameWithType: ''
+    fullName: System.
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
+  isExternal: true
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Test.DatabaseUnitTest.TestTransactions*
+  commentId: Overload:Butterfly.Core.Test.DatabaseUnitTest.TestTransactions
+  name: TestTransactions
+  nameWithType: DatabaseUnitTest.TestTransactions
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.TestTransactions
+- uid: Butterfly.Core.Test.DatabaseUnitTest.SelectBasicData*
+  commentId: Overload:Butterfly.Core.Test.DatabaseUnitTest.SelectBasicData
+  name: SelectBasicData
+  nameWithType: DatabaseUnitTest.SelectBasicData
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.SelectBasicData
+- uid: Butterfly.Core.Test.DatabaseUnitTest.UpdateAndDeleteBasicData*
+  commentId: Overload:Butterfly.Core.Test.DatabaseUnitTest.UpdateAndDeleteBasicData
+  name: UpdateAndDeleteBasicData
+  nameWithType: DatabaseUnitTest.UpdateAndDeleteBasicData
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.UpdateAndDeleteBasicData
+shouldSkipMarkup: true

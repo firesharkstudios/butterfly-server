@@ -1,0 +1,755 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Channel.Channel
+  commentId: T:Butterfly.Core.Channel.Channel
+  id: Channel
+  parent: Butterfly.Core.Channel
+  children:
+  - Butterfly.Core.Channel.Channel.#ctor(Butterfly.Core.Channel.IChannelConnection,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - Butterfly.Core.Channel.Channel.Attach(IDisposable)
+  - Butterfly.Core.Channel.Channel.channelKey
+  - Butterfly.Core.Channel.Channel.ChannelKey
+  - Butterfly.Core.Channel.Channel.connection
+  - Butterfly.Core.Channel.Channel.Connection
+  - Butterfly.Core.Channel.Channel.disposables
+  - Butterfly.Core.Channel.Channel.Dispose
+  - Butterfly.Core.Channel.Channel.logger
+  - Butterfly.Core.Channel.Channel.Queue(System.Object)
+  - Butterfly.Core.Channel.Channel.Queue(System.String,System.Object)
+  - Butterfly.Core.Channel.Channel.vars
+  - Butterfly.Core.Channel.Channel.Vars
+  langs:
+  - csharp
+  - vb
+  name: Channel
+  nameWithType: Channel
+  fullName: Butterfly.Core.Channel.Channel
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Channel/Channel.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Channel
+    path: ../Butterfly.Core/Channel/Channel.cs
+    startLine: 15
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Channel
+  summary: "\nRepresents a channel that clients can subscribe to\n"
+  example: []
+  syntax:
+    content: 'public class Channel : IDisposable'
+    content.vb: >-
+      Public Class Channel
+          Inherits IDisposable
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Channel.Channel.logger
+  commentId: F:Butterfly.Core.Channel.Channel.logger
+  id: logger
+  parent: Butterfly.Core.Channel.Channel
+  langs:
+  - csharp
+  - vb
+  name: logger
+  nameWithType: Channel.logger
+  fullName: Butterfly.Core.Channel.Channel.logger
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Channel/Channel.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: logger
+    path: ../Butterfly.Core/Channel/Channel.cs
+    startLine: 16
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Channel
+  syntax:
+    content: protected static readonly Logger logger
+    return:
+      type: Logger
+    content.vb: Protected Shared ReadOnly logger As Logger
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Core.Channel.Channel.connection
+  commentId: F:Butterfly.Core.Channel.Channel.connection
+  id: connection
+  parent: Butterfly.Core.Channel.Channel
+  langs:
+  - csharp
+  - vb
+  name: connection
+  nameWithType: Channel.connection
+  fullName: Butterfly.Core.Channel.Channel.connection
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Channel/Channel.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: connection
+    path: ../Butterfly.Core/Channel/Channel.cs
+    startLine: 18
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Channel
+  syntax:
+    content: protected readonly IChannelConnection connection
+    return:
+      type: Butterfly.Core.Channel.IChannelConnection
+    content.vb: Protected ReadOnly connection As IChannelConnection
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Channel.Channel.channelKey
+  commentId: F:Butterfly.Core.Channel.Channel.channelKey
+  id: channelKey
+  parent: Butterfly.Core.Channel.Channel
+  langs:
+  - csharp
+  - vb
+  name: channelKey
+  nameWithType: Channel.channelKey
+  fullName: Butterfly.Core.Channel.Channel.channelKey
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Channel/Channel.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: channelKey
+    path: ../Butterfly.Core/Channel/Channel.cs
+    startLine: 19
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Channel
+  syntax:
+    content: protected readonly string channelKey
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly channelKey As String
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Channel.Channel.vars
+  commentId: F:Butterfly.Core.Channel.Channel.vars
+  id: vars
+  parent: Butterfly.Core.Channel.Channel
+  langs:
+  - csharp
+  - vb
+  name: vars
+  nameWithType: Channel.vars
+  fullName: Butterfly.Core.Channel.Channel.vars
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Channel/Channel.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: vars
+    path: ../Butterfly.Core/Channel/Channel.cs
+    startLine: 20
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Channel
+  syntax:
+    content: protected readonly System.Collections.Generic.Dictionary<string, object> vars
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    content.vb: Protected ReadOnly vars As System.Collections.Generic.Dictionary(Of String, Object)
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Channel.Channel.#ctor(Butterfly.Core.Channel.IChannelConnection,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:Butterfly.Core.Channel.Channel.#ctor(Butterfly.Core.Channel.IChannelConnection,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: '#ctor(Butterfly.Core.Channel.IChannelConnection,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})'
+  parent: Butterfly.Core.Channel.Channel
+  langs:
+  - csharp
+  - vb
+  name: Channel(IChannelConnection, String, System.Collections.Generic.Dictionary<String, Object>)
+  nameWithType: Channel.Channel(IChannelConnection, String, System.Collections.Generic.Dictionary<String, Object>)
+  fullName: Butterfly.Core.Channel.Channel.Channel(Butterfly.Core.Channel.IChannelConnection, System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Channel/Channel.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Channel/Channel.cs
+    startLine: 22
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Channel
+  syntax:
+    content: public Channel(IChannelConnection connection, string channelKey, System.Collections.Generic.Dictionary<string, object> vars)
+    parameters:
+    - id: connection
+      type: Butterfly.Core.Channel.IChannelConnection
+    - id: channelKey
+      type: System.String
+    - id: vars
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    content.vb: Public Sub New(connection As IChannelConnection, channelKey As String, vars As System.Collections.Generic.Dictionary(Of String, Object))
+  overload: Butterfly.Core.Channel.Channel.#ctor*
+  nameWithType.vb: Channel.Channel(IChannelConnection, String, System.Collections.Generic.Dictionary(Of String, Object))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Channel.Channel.Channel(Butterfly.Core.Channel.IChannelConnection, System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: Channel(IChannelConnection, String, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.Core.Channel.Channel.Connection
+  commentId: P:Butterfly.Core.Channel.Channel.Connection
+  id: Connection
+  parent: Butterfly.Core.Channel.Channel
+  langs:
+  - csharp
+  - vb
+  name: Connection
+  nameWithType: Channel.Connection
+  fullName: Butterfly.Core.Channel.Channel.Connection
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/Channel/Channel.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Connection
+    path: ../Butterfly.Core/Channel/Channel.cs
+    startLine: 28
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Channel
+  syntax:
+    content: public IChannelConnection Connection { get; }
+    parameters: []
+    return:
+      type: Butterfly.Core.Channel.IChannelConnection
+    content.vb: Public ReadOnly Property Connection As IChannelConnection
+  overload: Butterfly.Core.Channel.Channel.Connection*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Channel.Channel.ChannelKey
+  commentId: P:Butterfly.Core.Channel.Channel.ChannelKey
+  id: ChannelKey
+  parent: Butterfly.Core.Channel.Channel
+  langs:
+  - csharp
+  - vb
+  name: ChannelKey
+  nameWithType: Channel.ChannelKey
+  fullName: Butterfly.Core.Channel.Channel.ChannelKey
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/Channel/Channel.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ChannelKey
+    path: ../Butterfly.Core/Channel/Channel.cs
+    startLine: 30
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Channel
+  syntax:
+    content: public string ChannelKey { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property ChannelKey As String
+  overload: Butterfly.Core.Channel.Channel.ChannelKey*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Channel.Channel.Vars
+  commentId: P:Butterfly.Core.Channel.Channel.Vars
+  id: Vars
+  parent: Butterfly.Core.Channel.Channel
+  langs:
+  - csharp
+  - vb
+  name: Vars
+  nameWithType: Channel.Vars
+  fullName: Butterfly.Core.Channel.Channel.Vars
+  type: Property
+  source:
+    remote:
+      path: Butterfly.Core/Channel/Channel.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Vars
+    path: ../Butterfly.Core/Channel/Channel.cs
+    startLine: 32
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Channel
+  syntax:
+    content: public System.Collections.Generic.Dictionary<string, object> Vars { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    content.vb: Public ReadOnly Property Vars As System.Collections.Generic.Dictionary(Of String, Object)
+  overload: Butterfly.Core.Channel.Channel.Vars*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Channel.Channel.disposables
+  commentId: F:Butterfly.Core.Channel.Channel.disposables
+  id: disposables
+  parent: Butterfly.Core.Channel.Channel
+  langs:
+  - csharp
+  - vb
+  name: disposables
+  nameWithType: Channel.disposables
+  fullName: Butterfly.Core.Channel.Channel.disposables
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Channel/Channel.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: disposables
+    path: ../Butterfly.Core/Channel/Channel.cs
+    startLine: 34
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Channel
+  syntax:
+    content: protected readonly List<IDisposable> disposables
+    return:
+      type: List{IDisposable}
+    content.vb: Protected ReadOnly disposables As List(Of IDisposable)
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Channel.Channel.Attach(IDisposable)
+  commentId: M:Butterfly.Core.Channel.Channel.Attach(IDisposable)
+  id: Attach(IDisposable)
+  parent: Butterfly.Core.Channel.Channel
+  langs:
+  - csharp
+  - vb
+  name: Attach(IDisposable)
+  nameWithType: Channel.Attach(IDisposable)
+  fullName: Butterfly.Core.Channel.Channel.Attach(IDisposable)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Channel/Channel.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Attach
+    path: ../Butterfly.Core/Channel/Channel.cs
+    startLine: 36
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Channel
+  syntax:
+    content: public void Attach(IDisposable disposable)
+    parameters:
+    - id: disposable
+      type: IDisposable
+    content.vb: Public Sub Attach(disposable As IDisposable)
+  overload: Butterfly.Core.Channel.Channel.Attach*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Channel.Channel.Queue(System.Object)
+  commentId: M:Butterfly.Core.Channel.Channel.Queue(System.Object)
+  id: Queue(System.Object)
+  parent: Butterfly.Core.Channel.Channel
+  langs:
+  - csharp
+  - vb
+  name: Queue(Object)
+  nameWithType: Channel.Queue(Object)
+  fullName: Butterfly.Core.Channel.Channel.Queue(System.Object)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Channel/Channel.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Queue
+    path: ../Butterfly.Core/Channel/Channel.cs
+    startLine: 40
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Channel
+  syntax:
+    content: public void Queue(object data)
+    parameters:
+    - id: data
+      type: System.Object
+    content.vb: Public Sub Queue(data As Object)
+  overload: Butterfly.Core.Channel.Channel.Queue*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Channel.Channel.Queue(System.String,System.Object)
+  commentId: M:Butterfly.Core.Channel.Channel.Queue(System.String,System.Object)
+  id: Queue(System.String,System.Object)
+  parent: Butterfly.Core.Channel.Channel
+  langs:
+  - csharp
+  - vb
+  name: Queue(String, Object)
+  nameWithType: Channel.Queue(String, Object)
+  fullName: Butterfly.Core.Channel.Channel.Queue(System.String, System.Object)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Channel/Channel.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Queue
+    path: ../Butterfly.Core/Channel/Channel.cs
+    startLine: 44
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Channel
+  syntax:
+    content: public void Queue(string messageType, object data)
+    parameters:
+    - id: messageType
+      type: System.String
+    - id: data
+      type: System.Object
+    content.vb: Public Sub Queue(messageType As String, data As Object)
+  overload: Butterfly.Core.Channel.Channel.Queue*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Channel.Channel.Dispose
+  commentId: M:Butterfly.Core.Channel.Channel.Dispose
+  id: Dispose
+  parent: Butterfly.Core.Channel.Channel
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Channel.Dispose()
+  fullName: Butterfly.Core.Channel.Channel.Dispose()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Channel/Channel.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Dispose
+    path: ../Butterfly.Core/Channel/Channel.cs
+    startLine: 48
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Channel
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose
+  overload: Butterfly.Core.Channel.Channel.Dispose*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.Core.Channel
+  commentId: N:Butterfly.Core.Channel
+  name: Butterfly.Core.Channel
+  nameWithType: Butterfly.Core.Channel
+  fullName: Butterfly.Core.Channel
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Logger
+  isExternal: true
+  name: Logger
+  nameWithType: Logger
+  fullName: Logger
+- uid: Butterfly.Core.Channel.IChannelConnection
+  commentId: T:Butterfly.Core.Channel.IChannelConnection
+  parent: Butterfly.Core.Channel
+  name: IChannelConnection
+  nameWithType: IChannelConnection
+  fullName: Butterfly.Core.Channel.IChannelConnection
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Collections.Generic.Dictionary{System.String,System.Object}
+  commentId: '!:System.Collections.Generic.Dictionary{System.String,System.Object}'
+  definition: System.Collections.Generic.Dictionary`2
+  name: System.Collections.Generic.Dictionary<String, Object>
+  nameWithType: System.Collections.Generic.Dictionary<String, Object>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.Object>
+  nameWithType.vb: System.Collections.Generic.Dictionary(Of String, Object)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.Object)
+  name.vb: System.Collections.Generic.Dictionary(Of String, Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: System.Collections.Generic.Dictionary<, >
+  nameWithType: System.Collections.Generic.Dictionary<, >
+  fullName: System.Collections.Generic.Dictionary<, >
+  nameWithType.vb: System.Collections.Generic.Dictionary(Of , )
+  fullName.vb: System.Collections.Generic.Dictionary(Of , )
+  name.vb: System.Collections.Generic.Dictionary(Of , )
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Channel.Channel.#ctor*
+  commentId: Overload:Butterfly.Core.Channel.Channel.#ctor
+  name: Channel
+  nameWithType: Channel.Channel
+  fullName: Butterfly.Core.Channel.Channel.Channel
+- uid: Butterfly.Core.Channel.Channel.Connection*
+  commentId: Overload:Butterfly.Core.Channel.Channel.Connection
+  name: Connection
+  nameWithType: Channel.Connection
+  fullName: Butterfly.Core.Channel.Channel.Connection
+- uid: Butterfly.Core.Channel.Channel.ChannelKey*
+  commentId: Overload:Butterfly.Core.Channel.Channel.ChannelKey
+  name: ChannelKey
+  nameWithType: Channel.ChannelKey
+  fullName: Butterfly.Core.Channel.Channel.ChannelKey
+- uid: Butterfly.Core.Channel.Channel.Vars*
+  commentId: Overload:Butterfly.Core.Channel.Channel.Vars
+  name: Vars
+  nameWithType: Channel.Vars
+  fullName: Butterfly.Core.Channel.Channel.Vars
+- uid: List{IDisposable}
+  commentId: '!:List{IDisposable}'
+  definition: List`1
+  name: List<IDisposable>
+  nameWithType: List<IDisposable>
+  fullName: List<IDisposable>
+  nameWithType.vb: List(Of IDisposable)
+  fullName.vb: List(Of IDisposable)
+  name.vb: List(Of IDisposable)
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: IDisposable
+    name: IDisposable
+    nameWithType: IDisposable
+    fullName: IDisposable
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: IDisposable
+    name: IDisposable
+    nameWithType: IDisposable
+    fullName: IDisposable
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: List`1
+  isExternal: true
+  name: List<>
+  nameWithType: List<>
+  fullName: List<>
+  nameWithType.vb: List(Of )
+  fullName.vb: List(Of )
+  name.vb: List(Of )
+  spec.csharp:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: List`1
+    name: List
+    nameWithType: List
+    fullName: List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Channel.Channel.Attach*
+  commentId: Overload:Butterfly.Core.Channel.Channel.Attach
+  name: Attach
+  nameWithType: Channel.Attach
+  fullName: Butterfly.Core.Channel.Channel.Attach
+- uid: IDisposable
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: IDisposable
+- uid: Butterfly.Core.Channel.Channel.Queue*
+  commentId: Overload:Butterfly.Core.Channel.Channel.Queue
+  name: Queue
+  nameWithType: Channel.Queue
+  fullName: Butterfly.Core.Channel.Channel.Queue
+- uid: Butterfly.Core.Channel.Channel.Dispose*
+  commentId: Overload:Butterfly.Core.Channel.Channel.Dispose
+  name: Dispose
+  nameWithType: Channel.Dispose
+  fullName: Butterfly.Core.Channel.Channel.Dispose
+shouldSkipMarkup: true

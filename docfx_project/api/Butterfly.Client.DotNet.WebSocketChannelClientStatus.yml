@@ -1,0 +1,146 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Client.DotNet.WebSocketChannelClientStatus
+  commentId: T:Butterfly.Client.DotNet.WebSocketChannelClientStatus
+  id: WebSocketChannelClientStatus
+  parent: Butterfly.Client.DotNet
+  children:
+  - Butterfly.Client.DotNet.WebSocketChannelClientStatus.Connected
+  - Butterfly.Client.DotNet.WebSocketChannelClientStatus.Connecting
+  - Butterfly.Client.DotNet.WebSocketChannelClientStatus.Reconnecting
+  langs:
+  - csharp
+  - vb
+  name: WebSocketChannelClientStatus
+  nameWithType: WebSocketChannelClientStatus
+  fullName: Butterfly.Client.DotNet.WebSocketChannelClientStatus
+  type: Enum
+  source:
+    remote:
+      path: Butterfly.Client.DotNet/WebSocketChannelClient.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: WebSocketChannelClientStatus
+    path: ../Butterfly.Client.DotNet/WebSocketChannelClient.cs
+    startLine: 22
+  assemblies:
+  - Butterfly.Client.DotNet
+  namespace: Butterfly.Client.DotNet
+  syntax:
+    content: 'public enum WebSocketChannelClientStatus : int'
+    content.vb: Public Enum WebSocketChannelClientStatus As Integer
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: Butterfly.Client.DotNet.WebSocketChannelClientStatus.Connecting
+  commentId: F:Butterfly.Client.DotNet.WebSocketChannelClientStatus.Connecting
+  id: Connecting
+  parent: Butterfly.Client.DotNet.WebSocketChannelClientStatus
+  langs:
+  - csharp
+  - vb
+  name: Connecting
+  nameWithType: WebSocketChannelClientStatus.Connecting
+  fullName: Butterfly.Client.DotNet.WebSocketChannelClientStatus.Connecting
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Client.DotNet/WebSocketChannelClient.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Connecting
+    path: ../Butterfly.Client.DotNet/WebSocketChannelClient.cs
+    startLine: 23
+  assemblies:
+  - Butterfly.Client.DotNet
+  namespace: Butterfly.Client.DotNet
+  syntax:
+    content: Connecting = 0
+    return:
+      type: Butterfly.Client.DotNet.WebSocketChannelClientStatus
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Butterfly.Client.DotNet.WebSocketChannelClientStatus.Reconnecting
+  commentId: F:Butterfly.Client.DotNet.WebSocketChannelClientStatus.Reconnecting
+  id: Reconnecting
+  parent: Butterfly.Client.DotNet.WebSocketChannelClientStatus
+  langs:
+  - csharp
+  - vb
+  name: Reconnecting
+  nameWithType: WebSocketChannelClientStatus.Reconnecting
+  fullName: Butterfly.Client.DotNet.WebSocketChannelClientStatus.Reconnecting
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Client.DotNet/WebSocketChannelClient.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Reconnecting
+    path: ../Butterfly.Client.DotNet/WebSocketChannelClient.cs
+    startLine: 24
+  assemblies:
+  - Butterfly.Client.DotNet
+  namespace: Butterfly.Client.DotNet
+  syntax:
+    content: Reconnecting = 1
+    return:
+      type: Butterfly.Client.DotNet.WebSocketChannelClientStatus
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Butterfly.Client.DotNet.WebSocketChannelClientStatus.Connected
+  commentId: F:Butterfly.Client.DotNet.WebSocketChannelClientStatus.Connected
+  id: Connected
+  parent: Butterfly.Client.DotNet.WebSocketChannelClientStatus
+  langs:
+  - csharp
+  - vb
+  name: Connected
+  nameWithType: WebSocketChannelClientStatus.Connected
+  fullName: Butterfly.Client.DotNet.WebSocketChannelClientStatus.Connected
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Client.DotNet/WebSocketChannelClient.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Connected
+    path: ../Butterfly.Client.DotNet/WebSocketChannelClient.cs
+    startLine: 25
+  assemblies:
+  - Butterfly.Client.DotNet
+  namespace: Butterfly.Client.DotNet
+  syntax:
+    content: Connected = 2
+    return:
+      type: Butterfly.Client.DotNet.WebSocketChannelClientStatus
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: Butterfly.Client.DotNet
+  commentId: N:Butterfly.Client.DotNet
+  name: Butterfly.Client.DotNet
+  nameWithType: Butterfly.Client.DotNet
+  fullName: Butterfly.Client.DotNet
+- uid: Butterfly.Client.DotNet.WebSocketChannelClientStatus
+  commentId: T:Butterfly.Client.DotNet.WebSocketChannelClientStatus
+  parent: Butterfly.Client.DotNet
+  name: WebSocketChannelClientStatus
+  nameWithType: WebSocketChannelClientStatus
+  fullName: Butterfly.Client.DotNet.WebSocketChannelClientStatus
+shouldSkipMarkup: true

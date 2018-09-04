@@ -1,0 +1,625 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  commentId: T:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  id: NotifyManager.NotifyMessageEngine
+  parent: Butterfly.Core.Notify
+  children:
+  - Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.#ctor(Butterfly.Core.Notify.NotifyMessageType,Butterfly.Core.Notify.INotifyMessageSender,Butterfly.Core.Database.IDatabase,System.String)
+  - Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.cancellationTokenSource
+  - Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.database
+  - Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.notifyMessageSender
+  - Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.notifyMessageTableName
+  - Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.notifyMessageType
+  - Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Pulse
+  - Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Queue(Butterfly.Core.Database.ITransaction,System.String,System.String,System.String,System.String,System.String,System.Byte,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Start
+  - Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.started
+  - Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Stop
+  langs:
+  - csharp
+  - vb
+  name: NotifyManager.NotifyMessageEngine
+  nameWithType: NotifyManager.NotifyMessageEngine
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: NotifyMessageEngine
+    path: ../Butterfly.Core/Notify/NotifyManager.cs
+    startLine: 209
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: 'protected class NotifyMessageEngine : object'
+    content.vb: >-
+      Protected Class NotifyMessageEngine
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - protected
+  - class
+  modifiers.vb:
+  - Protected
+  - Class
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.notifyMessageType
+  commentId: F:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.notifyMessageType
+  id: notifyMessageType
+  parent: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  langs:
+  - csharp
+  - vb
+  name: notifyMessageType
+  nameWithType: NotifyManager.NotifyMessageEngine.notifyMessageType
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.notifyMessageType
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: notifyMessageType
+    path: ../Butterfly.Core/Notify/NotifyManager.cs
+    startLine: 210
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: protected readonly NotifyMessageType notifyMessageType
+    return:
+      type: Butterfly.Core.Notify.NotifyMessageType
+    content.vb: Protected ReadOnly notifyMessageType As NotifyMessageType
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.notifyMessageSender
+  commentId: F:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.notifyMessageSender
+  id: notifyMessageSender
+  parent: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  langs:
+  - csharp
+  - vb
+  name: notifyMessageSender
+  nameWithType: NotifyManager.NotifyMessageEngine.notifyMessageSender
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.notifyMessageSender
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: notifyMessageSender
+    path: ../Butterfly.Core/Notify/NotifyManager.cs
+    startLine: 211
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: protected readonly INotifyMessageSender notifyMessageSender
+    return:
+      type: Butterfly.Core.Notify.INotifyMessageSender
+    content.vb: Protected ReadOnly notifyMessageSender As INotifyMessageSender
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.database
+  commentId: F:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.database
+  id: database
+  parent: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  langs:
+  - csharp
+  - vb
+  name: database
+  nameWithType: NotifyManager.NotifyMessageEngine.database
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.database
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: database
+    path: ../Butterfly.Core/Notify/NotifyManager.cs
+    startLine: 212
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: protected readonly IDatabase database
+    return:
+      type: Butterfly.Core.Database.IDatabase
+    content.vb: Protected ReadOnly database As IDatabase
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.notifyMessageTableName
+  commentId: F:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.notifyMessageTableName
+  id: notifyMessageTableName
+  parent: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  langs:
+  - csharp
+  - vb
+  name: notifyMessageTableName
+  nameWithType: NotifyManager.NotifyMessageEngine.notifyMessageTableName
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.notifyMessageTableName
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: notifyMessageTableName
+    path: ../Butterfly.Core/Notify/NotifyManager.cs
+    startLine: 213
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: protected readonly string notifyMessageTableName
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly notifyMessageTableName As String
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.cancellationTokenSource
+  commentId: F:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.cancellationTokenSource
+  id: cancellationTokenSource
+  parent: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  langs:
+  - csharp
+  - vb
+  name: cancellationTokenSource
+  nameWithType: NotifyManager.NotifyMessageEngine.cancellationTokenSource
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.cancellationTokenSource
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: cancellationTokenSource
+    path: ../Butterfly.Core/Notify/NotifyManager.cs
+    startLine: 215
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: protected CancellationTokenSource cancellationTokenSource
+    return:
+      type: CancellationTokenSource
+    content.vb: Protected cancellationTokenSource As CancellationTokenSource
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.#ctor(Butterfly.Core.Notify.NotifyMessageType,Butterfly.Core.Notify.INotifyMessageSender,Butterfly.Core.Database.IDatabase,System.String)
+  commentId: M:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.#ctor(Butterfly.Core.Notify.NotifyMessageType,Butterfly.Core.Notify.INotifyMessageSender,Butterfly.Core.Database.IDatabase,System.String)
+  id: '#ctor(Butterfly.Core.Notify.NotifyMessageType,Butterfly.Core.Notify.INotifyMessageSender,Butterfly.Core.Database.IDatabase,System.String)'
+  parent: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  langs:
+  - csharp
+  - vb
+  name: NotifyMessageEngine(NotifyMessageType, INotifyMessageSender, IDatabase, String)
+  nameWithType: NotifyManager.NotifyMessageEngine.NotifyMessageEngine(NotifyMessageType, INotifyMessageSender, IDatabase, String)
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.NotifyMessageEngine(Butterfly.Core.Notify.NotifyMessageType, Butterfly.Core.Notify.INotifyMessageSender, Butterfly.Core.Database.IDatabase, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Notify/NotifyManager.cs
+    startLine: 217
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public NotifyMessageEngine(NotifyMessageType notifyMessageType, INotifyMessageSender notifyMessageSender, IDatabase database, string notifyMessageTableName)
+    parameters:
+    - id: notifyMessageType
+      type: Butterfly.Core.Notify.NotifyMessageType
+    - id: notifyMessageSender
+      type: Butterfly.Core.Notify.INotifyMessageSender
+    - id: database
+      type: Butterfly.Core.Database.IDatabase
+    - id: notifyMessageTableName
+      type: System.String
+    content.vb: Public Sub New(notifyMessageType As NotifyMessageType, notifyMessageSender As INotifyMessageSender, database As IDatabase, notifyMessageTableName As String)
+  overload: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.started
+  commentId: F:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.started
+  id: started
+  parent: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  langs:
+  - csharp
+  - vb
+  name: started
+  nameWithType: NotifyManager.NotifyMessageEngine.started
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.started
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: started
+    path: ../Butterfly.Core/Notify/NotifyManager.cs
+    startLine: 224
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: protected bool started
+    return:
+      type: System.Boolean
+    content.vb: Protected started As Boolean
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Start
+  commentId: M:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Start
+  id: Start
+  parent: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  langs:
+  - csharp
+  - vb
+  name: Start()
+  nameWithType: NotifyManager.NotifyMessageEngine.Start()
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Start()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Start
+    path: ../Butterfly.Core/Notify/NotifyManager.cs
+    startLine: 226
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public void Start()
+    content.vb: Public Sub Start
+  overload: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Start*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Stop
+  commentId: M:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Stop
+  id: Stop
+  parent: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  langs:
+  - csharp
+  - vb
+  name: Stop()
+  nameWithType: NotifyManager.NotifyMessageEngine.Stop()
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Stop()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Stop
+    path: ../Butterfly.Core/Notify/NotifyManager.cs
+    startLine: 232
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public void Stop()
+    content.vb: Public Sub Stop
+  overload: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Stop*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Queue(Butterfly.Core.Database.ITransaction,System.String,System.String,System.String,System.String,System.String,System.Byte,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Queue(Butterfly.Core.Database.ITransaction,System.String,System.String,System.String,System.String,System.String,System.Byte,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: Queue(Butterfly.Core.Database.ITransaction,System.String,System.String,System.String,System.String,System.String,System.Byte,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  langs:
+  - csharp
+  - vb
+  name: Queue(ITransaction, String, String, String, String, String, Byte, System.Collections.Generic.Dictionary<String, Object>)
+  nameWithType: NotifyManager.NotifyMessageEngine.Queue(ITransaction, String, String, String, String, String, Byte, System.Collections.Generic.Dictionary<String, Object>)
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Queue(Butterfly.Core.Database.ITransaction, System.String, System.String, System.String, System.String, System.String, System.Byte, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Queue
+    path: ../Butterfly.Core/Notify/NotifyManager.cs
+    startLine: 237
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public Task Queue(ITransaction transaction, string from, string to, string subject, string bodyText, string bodyHtml, byte priority, System.Collections.Generic.Dictionary<string, object> extraData)
+    parameters:
+    - id: transaction
+      type: Butterfly.Core.Database.ITransaction
+    - id: from
+      type: System.String
+    - id: to
+      type: System.String
+    - id: subject
+      type: System.String
+    - id: bodyText
+      type: System.String
+    - id: bodyHtml
+      type: System.String
+    - id: priority
+      type: System.Byte
+    - id: extraData
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    return:
+      type: Task
+    content.vb: Public Function Queue(transaction As ITransaction, from As String, to As String, subject As String, bodyText As String, bodyHtml As String, priority As Byte, extraData As System.Collections.Generic.Dictionary(Of String, Object)) As Task
+  overload: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Queue*
+  nameWithType.vb: NotifyManager.NotifyMessageEngine.Queue(ITransaction, String, String, String, String, String, Byte, System.Collections.Generic.Dictionary(Of String, Object))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Queue(Butterfly.Core.Database.ITransaction, System.String, System.String, System.String, System.String, System.String, System.Byte, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: Queue(ITransaction, String, String, String, String, String, Byte, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Pulse
+  commentId: M:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Pulse
+  id: Pulse
+  parent: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
+  langs:
+  - csharp
+  - vb
+  name: Pulse()
+  nameWithType: NotifyManager.NotifyMessageEngine.Pulse()
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Pulse()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Notify/NotifyManager.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Pulse
+    path: ../Butterfly.Core/Notify/NotifyManager.cs
+    startLine: 252
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Notify
+  syntax:
+    content: public void Pulse()
+    content.vb: Public Sub Pulse
+  overload: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Pulse*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.Core.Notify
+  commentId: N:Butterfly.Core.Notify
+  name: Butterfly.Core.Notify
+  nameWithType: Butterfly.Core.Notify
+  fullName: Butterfly.Core.Notify
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Notify.NotifyMessageType
+  commentId: T:Butterfly.Core.Notify.NotifyMessageType
+  parent: Butterfly.Core.Notify
+  name: NotifyMessageType
+  nameWithType: NotifyMessageType
+  fullName: Butterfly.Core.Notify.NotifyMessageType
+- uid: Butterfly.Core.Notify.INotifyMessageSender
+  commentId: T:Butterfly.Core.Notify.INotifyMessageSender
+  parent: Butterfly.Core.Notify
+  name: INotifyMessageSender
+  nameWithType: INotifyMessageSender
+  fullName: Butterfly.Core.Notify.INotifyMessageSender
+- uid: Butterfly.Core.Database.IDatabase
+  commentId: T:Butterfly.Core.Database.IDatabase
+  parent: Butterfly.Core.Database
+  name: IDatabase
+  nameWithType: IDatabase
+  fullName: Butterfly.Core.Database.IDatabase
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CancellationTokenSource
+  isExternal: true
+  name: CancellationTokenSource
+  nameWithType: CancellationTokenSource
+  fullName: CancellationTokenSource
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.#ctor*
+  commentId: Overload:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.#ctor
+  name: NotifyMessageEngine
+  nameWithType: NotifyManager.NotifyMessageEngine.NotifyMessageEngine
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.NotifyMessageEngine
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Start*
+  commentId: Overload:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Start
+  name: Start
+  nameWithType: NotifyManager.NotifyMessageEngine.Start
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Start
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Stop*
+  commentId: Overload:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Stop
+  name: Stop
+  nameWithType: NotifyManager.NotifyMessageEngine.Stop
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Stop
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Queue*
+  commentId: Overload:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Queue
+  name: Queue
+  nameWithType: NotifyManager.NotifyMessageEngine.Queue
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Queue
+- uid: Butterfly.Core.Database.ITransaction
+  commentId: T:Butterfly.Core.Database.ITransaction
+  parent: Butterfly.Core.Database
+  name: ITransaction
+  nameWithType: ITransaction
+  fullName: Butterfly.Core.Database.ITransaction
+- uid: System.Byte
+  isExternal: true
+  name: Byte
+  nameWithType: Byte
+  fullName: System.Byte
+- uid: System.Collections.Generic.Dictionary{System.String,System.Object}
+  commentId: '!:System.Collections.Generic.Dictionary{System.String,System.Object}'
+  definition: System.Collections.Generic.Dictionary`2
+  name: System.Collections.Generic.Dictionary<String, Object>
+  nameWithType: System.Collections.Generic.Dictionary<String, Object>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.Object>
+  nameWithType.vb: System.Collections.Generic.Dictionary(Of String, Object)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.Object)
+  name.vb: System.Collections.Generic.Dictionary(Of String, Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: System.Collections.Generic.Dictionary<, >
+  nameWithType: System.Collections.Generic.Dictionary<, >
+  fullName: System.Collections.Generic.Dictionary<, >
+  nameWithType.vb: System.Collections.Generic.Dictionary(Of , )
+  fullName.vb: System.Collections.Generic.Dictionary(Of , )
+  name.vb: System.Collections.Generic.Dictionary(Of , )
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Pulse*
+  commentId: Overload:Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Pulse
+  name: Pulse
+  nameWithType: NotifyManager.NotifyMessageEngine.Pulse
+  fullName: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine.Pulse
+shouldSkipMarkup: true

@@ -1,0 +1,332 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.SafeUtil
+  commentId: T:Butterfly.Core.Util.SafeUtil
+  id: SafeUtil
+  parent: Butterfly.Core.Util
+  children:
+  - Butterfly.Core.Util.SafeUtil.FromSafeBase(System.String,System.String)
+  - Butterfly.Core.Util.SafeUtil.FULL_SAFE_BASE_ALPHABET
+  - Butterfly.Core.Util.SafeUtil.GetRandom(System.Int32,System.String)
+  - Butterfly.Core.Util.SafeUtil.InvalidCharacterMatch(System.String,System.String)
+  - Butterfly.Core.Util.SafeUtil.Scrub(System.String,System.String)
+  - Butterfly.Core.Util.SafeUtil.ToSafeBase(System.UInt64,System.String)
+  langs:
+  - csharp
+  - vb
+  name: SafeUtil
+  nameWithType: SafeUtil
+  fullName: Butterfly.Core.Util.SafeUtil
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/SafeUtil.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: SafeUtil
+    path: ../Butterfly.Core/Util/SafeUtil.cs
+    startLine: 15
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: 'public static class SafeUtil : object'
+    content.vb: >-
+      Public Module SafeUtil
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Butterfly.Core.Util.SafeUtil.FULL_SAFE_BASE_ALPHABET
+  commentId: F:Butterfly.Core.Util.SafeUtil.FULL_SAFE_BASE_ALPHABET
+  id: FULL_SAFE_BASE_ALPHABET
+  parent: Butterfly.Core.Util.SafeUtil
+  langs:
+  - csharp
+  - vb
+  name: FULL_SAFE_BASE_ALPHABET
+  nameWithType: SafeUtil.FULL_SAFE_BASE_ALPHABET
+  fullName: Butterfly.Core.Util.SafeUtil.FULL_SAFE_BASE_ALPHABET
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/SafeUtil.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: FULL_SAFE_BASE_ALPHABET
+    path: ../Butterfly.Core/Util/SafeUtil.cs
+    startLine: 16
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public const string FULL_SAFE_BASE_ALPHABET = null
+    return:
+      type: System.String
+    content.vb: Public Const FULL_SAFE_BASE_ALPHABET As String = Nothing
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Butterfly.Core.Util.SafeUtil.GetRandom(System.Int32,System.String)
+  commentId: M:Butterfly.Core.Util.SafeUtil.GetRandom(System.Int32,System.String)
+  id: GetRandom(System.Int32,System.String)
+  parent: Butterfly.Core.Util.SafeUtil
+  langs:
+  - csharp
+  - vb
+  name: GetRandom(Int32, String)
+  nameWithType: SafeUtil.GetRandom(Int32, String)
+  fullName: Butterfly.Core.Util.SafeUtil.GetRandom(System.Int32, System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/SafeUtil.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: GetRandom
+    path: ../Butterfly.Core/Util/SafeUtil.cs
+    startLine: 18
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static string GetRandom(int length, string alphabet = null)
+    parameters:
+    - id: length
+      type: System.Int32
+    - id: alphabet
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetRandom(length As Integer, alphabet As String = Nothing) As String
+  overload: Butterfly.Core.Util.SafeUtil.GetRandom*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.SafeUtil.ToSafeBase(System.UInt64,System.String)
+  commentId: M:Butterfly.Core.Util.SafeUtil.ToSafeBase(System.UInt64,System.String)
+  id: ToSafeBase(System.UInt64,System.String)
+  parent: Butterfly.Core.Util.SafeUtil
+  langs:
+  - csharp
+  - vb
+  name: ToSafeBase(UInt64, String)
+  nameWithType: SafeUtil.ToSafeBase(UInt64, String)
+  fullName: Butterfly.Core.Util.SafeUtil.ToSafeBase(System.UInt64, System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/SafeUtil.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ToSafeBase
+    path: ../Butterfly.Core/Util/SafeUtil.cs
+    startLine: 28
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static string ToSafeBase(ulong number, string alphabet = null)
+    parameters:
+    - id: number
+      type: System.UInt64
+    - id: alphabet
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function ToSafeBase(number As ULong, alphabet As String = Nothing) As String
+  overload: Butterfly.Core.Util.SafeUtil.ToSafeBase*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.SafeUtil.FromSafeBase(System.String,System.String)
+  commentId: M:Butterfly.Core.Util.SafeUtil.FromSafeBase(System.String,System.String)
+  id: FromSafeBase(System.String,System.String)
+  parent: Butterfly.Core.Util.SafeUtil
+  langs:
+  - csharp
+  - vb
+  name: FromSafeBase(String, String)
+  nameWithType: SafeUtil.FromSafeBase(String, String)
+  fullName: Butterfly.Core.Util.SafeUtil.FromSafeBase(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/SafeUtil.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: FromSafeBase
+    path: ../Butterfly.Core/Util/SafeUtil.cs
+    startLine: 39
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static ulong FromSafeBase(string text, string alphabet = null)
+    parameters:
+    - id: text
+      type: System.String
+    - id: alphabet
+      type: System.String
+    return:
+      type: System.UInt64
+    content.vb: Public Shared Function FromSafeBase(text As String, alphabet As String = Nothing) As ULong
+  overload: Butterfly.Core.Util.SafeUtil.FromSafeBase*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.SafeUtil.Scrub(System.String,System.String)
+  commentId: M:Butterfly.Core.Util.SafeUtil.Scrub(System.String,System.String)
+  id: Scrub(System.String,System.String)
+  parent: Butterfly.Core.Util.SafeUtil
+  langs:
+  - csharp
+  - vb
+  name: Scrub(String, String)
+  nameWithType: SafeUtil.Scrub(String, String)
+  fullName: Butterfly.Core.Util.SafeUtil.Scrub(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/SafeUtil.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Scrub
+    path: ../Butterfly.Core/Util/SafeUtil.cs
+    startLine: 48
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static string Scrub(string raw, string alphabet = null)
+    parameters:
+    - id: raw
+      type: System.String
+    - id: alphabet
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function Scrub(raw As String, alphabet As String = Nothing) As String
+  overload: Butterfly.Core.Util.SafeUtil.Scrub*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.SafeUtil.InvalidCharacterMatch(System.String,System.String)
+  commentId: M:Butterfly.Core.Util.SafeUtil.InvalidCharacterMatch(System.String,System.String)
+  id: InvalidCharacterMatch(System.String,System.String)
+  parent: Butterfly.Core.Util.SafeUtil
+  langs:
+  - csharp
+  - vb
+  name: InvalidCharacterMatch(String, String)
+  nameWithType: SafeUtil.InvalidCharacterMatch(String, String)
+  fullName: Butterfly.Core.Util.SafeUtil.InvalidCharacterMatch(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/SafeUtil.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: InvalidCharacterMatch
+    path: ../Butterfly.Core/Util/SafeUtil.cs
+    startLine: 53
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static Match InvalidCharacterMatch(string raw, string alphabet = null)
+    parameters:
+    - id: raw
+      type: System.String
+    - id: alphabet
+      type: System.String
+    return:
+      type: Match
+    content.vb: Public Shared Function InvalidCharacterMatch(raw As String, alphabet As String = Nothing) As Match
+  overload: Butterfly.Core.Util.SafeUtil.InvalidCharacterMatch*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Butterfly.Core.Util.SafeUtil.GetRandom*
+  commentId: Overload:Butterfly.Core.Util.SafeUtil.GetRandom
+  name: GetRandom
+  nameWithType: SafeUtil.GetRandom
+  fullName: Butterfly.Core.Util.SafeUtil.GetRandom
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Butterfly.Core.Util.SafeUtil.ToSafeBase*
+  commentId: Overload:Butterfly.Core.Util.SafeUtil.ToSafeBase
+  name: ToSafeBase
+  nameWithType: SafeUtil.ToSafeBase
+  fullName: Butterfly.Core.Util.SafeUtil.ToSafeBase
+- uid: System.UInt64
+  isExternal: true
+  name: UInt64
+  nameWithType: UInt64
+  fullName: System.UInt64
+- uid: Butterfly.Core.Util.SafeUtil.FromSafeBase*
+  commentId: Overload:Butterfly.Core.Util.SafeUtil.FromSafeBase
+  name: FromSafeBase
+  nameWithType: SafeUtil.FromSafeBase
+  fullName: Butterfly.Core.Util.SafeUtil.FromSafeBase
+- uid: Butterfly.Core.Util.SafeUtil.Scrub*
+  commentId: Overload:Butterfly.Core.Util.SafeUtil.Scrub
+  name: Scrub
+  nameWithType: SafeUtil.Scrub
+  fullName: Butterfly.Core.Util.SafeUtil.Scrub
+- uid: Butterfly.Core.Util.SafeUtil.InvalidCharacterMatch*
+  commentId: Overload:Butterfly.Core.Util.SafeUtil.InvalidCharacterMatch
+  name: InvalidCharacterMatch
+  nameWithType: SafeUtil.InvalidCharacterMatch
+  fullName: Butterfly.Core.Util.SafeUtil.InvalidCharacterMatch
+- uid: Match
+  commentId: '!:Match'
+  isExternal: true
+  name: Match
+  nameWithType: Match
+  fullName: Match
+shouldSkipMarkup: true

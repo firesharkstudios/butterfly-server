@@ -1,0 +1,261 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.EmbedIO.MyWebModule
+  commentId: T:Butterfly.EmbedIO.MyWebModule
+  id: MyWebModule
+  parent: Butterfly.EmbedIO
+  children:
+  - Butterfly.EmbedIO.MyWebModule.#ctor(ICollection{Butterfly.Core.WebApi.WebHandler})
+  - Butterfly.EmbedIO.MyWebModule.logger
+  - Butterfly.EmbedIO.MyWebModule.Name
+  langs:
+  - csharp
+  - vb
+  name: MyWebModule
+  nameWithType: MyWebModule
+  fullName: Butterfly.EmbedIO.MyWebModule
+  type: Class
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: MyWebModule
+    path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
+    startLine: 39
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: 'public class MyWebModule : WebModuleBase'
+    content.vb: >-
+      Public Class MyWebModule
+          Inherits WebModuleBase
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.EmbedIO.MyWebModule.logger
+  commentId: F:Butterfly.EmbedIO.MyWebModule.logger
+  id: logger
+  parent: Butterfly.EmbedIO.MyWebModule
+  langs:
+  - csharp
+  - vb
+  name: logger
+  nameWithType: MyWebModule.logger
+  fullName: Butterfly.EmbedIO.MyWebModule.logger
+  type: Field
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: logger
+    path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
+    startLine: 40
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: protected static readonly Logger logger
+    return:
+      type: Logger
+    content.vb: Protected Shared ReadOnly logger As Logger
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.EmbedIO.MyWebModule.#ctor(ICollection{Butterfly.Core.WebApi.WebHandler})
+  commentId: M:Butterfly.EmbedIO.MyWebModule.#ctor(ICollection{Butterfly.Core.WebApi.WebHandler})
+  id: '#ctor(ICollection{Butterfly.Core.WebApi.WebHandler})'
+  parent: Butterfly.EmbedIO.MyWebModule
+  langs:
+  - csharp
+  - vb
+  name: MyWebModule(ICollection<WebHandler>)
+  nameWithType: MyWebModule.MyWebModule(ICollection<WebHandler>)
+  fullName: Butterfly.EmbedIO.MyWebModule.MyWebModule(ICollection<Butterfly.Core.WebApi.WebHandler>)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
+    startLine: 42
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: public MyWebModule(ICollection<WebHandler> webHandlers)
+    parameters:
+    - id: webHandlers
+      type: ICollection{Butterfly.Core.WebApi.WebHandler}
+    content.vb: Public Sub New(webHandlers As ICollection(Of WebHandler))
+  overload: Butterfly.EmbedIO.MyWebModule.#ctor*
+  nameWithType.vb: MyWebModule.MyWebModule(ICollection(Of WebHandler))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.EmbedIO.MyWebModule.MyWebModule(ICollection(Of Butterfly.Core.WebApi.WebHandler))
+  name.vb: MyWebModule(ICollection(Of WebHandler))
+- uid: Butterfly.EmbedIO.MyWebModule.Name
+  commentId: P:Butterfly.EmbedIO.MyWebModule.Name
+  id: Name
+  parent: Butterfly.EmbedIO.MyWebModule
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: MyWebModule.Name
+  fullName: Butterfly.EmbedIO.MyWebModule.Name
+  type: Property
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Name
+    path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
+    startLine: 81
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: public override string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Overrides ReadOnly Property Name As String
+  overload: Butterfly.EmbedIO.MyWebModule.Name*
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
+references:
+- uid: Butterfly.EmbedIO
+  commentId: N:Butterfly.EmbedIO
+  name: Butterfly.EmbedIO
+  nameWithType: Butterfly.EmbedIO
+  fullName: Butterfly.EmbedIO
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Logger
+  isExternal: true
+  name: Logger
+  nameWithType: Logger
+  fullName: Logger
+- uid: Butterfly.EmbedIO.MyWebModule.#ctor*
+  commentId: Overload:Butterfly.EmbedIO.MyWebModule.#ctor
+  name: MyWebModule
+  nameWithType: MyWebModule.MyWebModule
+  fullName: Butterfly.EmbedIO.MyWebModule.MyWebModule
+- uid: ICollection{Butterfly.Core.WebApi.WebHandler}
+  commentId: '!:ICollection{Butterfly.Core.WebApi.WebHandler}'
+  definition: ICollection`1
+  name: ICollection<WebHandler>
+  nameWithType: ICollection<WebHandler>
+  fullName: ICollection<Butterfly.Core.WebApi.WebHandler>
+  nameWithType.vb: ICollection(Of WebHandler)
+  fullName.vb: ICollection(Of Butterfly.Core.WebApi.WebHandler)
+  name.vb: ICollection(Of WebHandler)
+  spec.csharp:
+  - uid: ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: ICollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Butterfly.Core.WebApi.WebHandler
+    name: WebHandler
+    nameWithType: WebHandler
+    fullName: Butterfly.Core.WebApi.WebHandler
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: ICollection
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Butterfly.Core.WebApi.WebHandler
+    name: WebHandler
+    nameWithType: WebHandler
+    fullName: Butterfly.Core.WebApi.WebHandler
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ICollection`1
+  isExternal: true
+  name: ICollection<>
+  nameWithType: ICollection<>
+  fullName: ICollection<>
+  nameWithType.vb: ICollection(Of )
+  fullName.vb: ICollection(Of )
+  name.vb: ICollection(Of )
+  spec.csharp:
+  - uid: ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: ICollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: ICollection`1
+    name: ICollection
+    nameWithType: ICollection
+    fullName: ICollection
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.EmbedIO.MyWebModule.Name*
+  commentId: Overload:Butterfly.EmbedIO.MyWebModule.Name
+  name: Name
+  nameWithType: MyWebModule.Name
+  fullName: Butterfly.EmbedIO.MyWebModule.Name
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+shouldSkipMarkup: true

@@ -1,0 +1,2686 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.MySql.MySqlTransaction
+  commentId: T:Butterfly.MySql.MySqlTransaction
+  id: MySqlTransaction
+  parent: Butterfly.MySql
+  children:
+  - Butterfly.MySql.MySqlTransaction.#ctor(Butterfly.MySql.MySqlDatabase)
+  - Butterfly.MySql.MySqlTransaction.Begin
+  - Butterfly.MySql.MySqlTransaction.BeginAsync
+  - Butterfly.MySql.MySqlTransaction.connection
+  - Butterfly.MySql.MySqlTransaction.Dispose
+  - Butterfly.MySql.MySqlTransaction.DoCommit
+  - Butterfly.MySql.MySqlTransaction.DoCommitAsync
+  - Butterfly.MySql.MySqlTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)
+  - Butterfly.MySql.MySqlTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)
+  - Butterfly.MySql.MySqlTransaction.DoDeleteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - Butterfly.MySql.MySqlTransaction.DoExecute(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - Butterfly.MySql.MySqlTransaction.DoExecuteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - Butterfly.MySql.MySqlTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
+  - Butterfly.MySql.MySqlTransaction.DoRollback
+  - Butterfly.MySql.MySqlTransaction.DoTruncateAsync(System.String)
+  - Butterfly.MySql.MySqlTransaction.DoUpdateAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - Butterfly.MySql.MySqlTransaction.transaction
+  langs:
+  - csharp
+  - vb
+  name: MySqlTransaction
+  nameWithType: MySqlTransaction
+  fullName: Butterfly.MySql.MySqlTransaction
+  type: Class
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: MySqlTransaction
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 18
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  summary: "\nBase class implementing <xref href=\"Butterfly.Core.Database.ITransaction\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: 'public class MySqlTransaction : BaseTransaction, ITransaction, IDisposable'
+    content.vb: >-
+      Public Class MySqlTransaction
+          Inherits BaseTransaction
+          Implements ITransaction, IDisposable
+  inheritance:
+  - System.Object
+  - Butterfly.Core.Database.BaseTransaction
+  implements:
+  - Butterfly.Core.Database.ITransaction
+  - IDisposable
+  inheritedMembers:
+  - Butterfly.Core.Database.BaseTransaction.database
+  - Butterfly.Core.Database.BaseTransaction.dataEvents
+  - Butterfly.Core.Database.BaseTransaction.onCommits
+  - Butterfly.Core.Database.BaseTransaction.Database
+  - Butterfly.Core.Database.BaseTransaction.Create(Butterfly.Core.Database.CreateStatement)
+  - Butterfly.Core.Database.BaseTransaction.CreateAsync(Butterfly.Core.Database.CreateStatement)
+  - Butterfly.Core.Database.BaseTransaction.InsertAsync``1(System.String,System.Object,System.Boolean)
+  - Butterfly.Core.Database.BaseTransaction.InsertAsync(Butterfly.Core.Database.InsertStatement,System.Object,System.Boolean)
+  - Butterfly.Core.Database.BaseTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{`0,`1},System.Boolean)
+  - Butterfly.Core.Database.BaseTransaction.UpdateAsync(System.String,System.Object)
+  - Butterfly.Core.Database.BaseTransaction.UpdateAsync(Butterfly.Core.Database.UpdateStatement,System.Object)
+  - Butterfly.Core.Database.BaseTransaction.DoUpdateAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
+  - Butterfly.Core.Database.BaseTransaction.DeleteAsync(System.String,System.Object)
+  - Butterfly.Core.Database.BaseTransaction.DeleteAsync(Butterfly.Core.Database.DeleteStatement,System.Object)
+  - Butterfly.Core.Database.BaseTransaction.DoDeleteAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
+  - Butterfly.Core.Database.BaseTransaction.GetKeyValue(Butterfly.Core.Database.TableIndex,System.Collections.Generic.Dictionary{`0,`1},System.Collections.Generic.Dictionary{`0,`1},Butterfly.Core.Database.StatementEqualsRef[],Butterfly.Core.Database.TableIndex,System.String)
+  - Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{`0,`1}[],System.Collections.Generic.Dictionary{`0,`1}[],Func{`0,`1},System.String[])
+  - Butterfly.Core.Database.BaseTransaction.TruncateAsync(System.String)
+  - Butterfly.Core.Database.BaseTransaction.Commit
+  - Butterfly.Core.Database.BaseTransaction.CommitAsync
+  - Butterfly.Core.Database.BaseTransaction.OnCommit(Func{`0})
+  - Butterfly.Core.Database.BaseTransaction.Rollback
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.MySql.MySqlTransaction.connection
+  commentId: F:Butterfly.MySql.MySqlTransaction.connection
+  id: connection
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: connection
+  nameWithType: MySqlTransaction.connection
+  fullName: Butterfly.MySql.MySqlTransaction.connection
+  type: Field
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: connection
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 22
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: protected MySqlConnection connection
+    return:
+      type: MySqlConnection
+    content.vb: Protected connection As MySqlConnection
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.MySql.MySqlTransaction.transaction
+  commentId: F:Butterfly.MySql.MySqlTransaction.transaction
+  id: transaction
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: transaction
+  nameWithType: MySqlTransaction.transaction
+  fullName: Butterfly.MySql.MySqlTransaction.transaction
+  type: Field
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: transaction
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 23
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: protected MySql.Data.MySqlClient.MySqlTransaction transaction
+    return:
+      type: MySql.Data.MySqlClient.MySqlTransaction
+    content.vb: Protected transaction As MySql.Data.MySqlClient.MySqlTransaction
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Butterfly.MySql.MySqlTransaction.#ctor(Butterfly.MySql.MySqlDatabase)
+  commentId: M:Butterfly.MySql.MySqlTransaction.#ctor(Butterfly.MySql.MySqlDatabase)
+  id: '#ctor(Butterfly.MySql.MySqlDatabase)'
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: MySqlTransaction(MySqlDatabase)
+  nameWithType: MySqlTransaction.MySqlTransaction(MySqlDatabase)
+  fullName: Butterfly.MySql.MySqlTransaction.MySqlTransaction(Butterfly.MySql.MySqlDatabase)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 25
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: public MySqlTransaction(MySqlDatabase database)
+    parameters:
+    - id: database
+      type: Butterfly.MySql.MySqlDatabase
+    content.vb: Public Sub New(database As MySqlDatabase)
+  overload: Butterfly.MySql.MySqlTransaction.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.MySql.MySqlTransaction.Begin
+  commentId: M:Butterfly.MySql.MySqlTransaction.Begin
+  id: Begin
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: Begin()
+  nameWithType: MySqlTransaction.Begin()
+  fullName: Butterfly.MySql.MySqlTransaction.Begin()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Begin
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 28
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: public override void Begin()
+    content.vb: Public Overrides Sub Begin
+  overridden: Butterfly.Core.Database.BaseTransaction.Begin
+  overload: Butterfly.MySql.MySqlTransaction.Begin*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: Butterfly.MySql.MySqlTransaction.BeginAsync
+  commentId: M:Butterfly.MySql.MySqlTransaction.BeginAsync
+  id: BeginAsync
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: BeginAsync()
+  nameWithType: MySqlTransaction.BeginAsync()
+  fullName: Butterfly.MySql.MySqlTransaction.BeginAsync()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: BeginAsync
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 35
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: public override Task BeginAsync()
+    return:
+      type: Task
+    content.vb: Public Overrides Function BeginAsync As Task
+  overridden: Butterfly.Core.Database.BaseTransaction.BeginAsync
+  overload: Butterfly.MySql.MySqlTransaction.BeginAsync*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: Butterfly.MySql.MySqlTransaction.DoCommit
+  commentId: M:Butterfly.MySql.MySqlTransaction.DoCommit
+  id: DoCommit
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: DoCommit()
+  nameWithType: MySqlTransaction.DoCommit()
+  fullName: Butterfly.MySql.MySqlTransaction.DoCommit()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DoCommit
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 42
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: protected override void DoCommit()
+    content.vb: Protected Overrides Sub DoCommit
+  overridden: Butterfly.Core.Database.BaseTransaction.DoCommit
+  overload: Butterfly.MySql.MySqlTransaction.DoCommit*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: Butterfly.MySql.MySqlTransaction.DoCommitAsync
+  commentId: M:Butterfly.MySql.MySqlTransaction.DoCommitAsync
+  id: DoCommitAsync
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: DoCommitAsync()
+  nameWithType: MySqlTransaction.DoCommitAsync()
+  fullName: Butterfly.MySql.MySqlTransaction.DoCommitAsync()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DoCommitAsync
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 46
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: protected override Task DoCommitAsync()
+    return:
+      type: Task
+    content.vb: Protected Overrides Function DoCommitAsync As Task
+  overridden: Butterfly.Core.Database.BaseTransaction.DoCommitAsync
+  overload: Butterfly.MySql.MySqlTransaction.DoCommitAsync*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: Butterfly.MySql.MySqlTransaction.DoRollback
+  commentId: M:Butterfly.MySql.MySqlTransaction.DoRollback
+  id: DoRollback
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: DoRollback()
+  nameWithType: MySqlTransaction.DoRollback()
+  fullName: Butterfly.MySql.MySqlTransaction.DoRollback()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DoRollback
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 50
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: protected override void DoRollback()
+    content.vb: Protected Overrides Sub DoRollback
+  overridden: Butterfly.Core.Database.BaseTransaction.DoRollback
+  overload: Butterfly.MySql.MySqlTransaction.DoRollback*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: Butterfly.MySql.MySqlTransaction.Dispose
+  commentId: M:Butterfly.MySql.MySqlTransaction.Dispose
+  id: Dispose
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: MySqlTransaction.Dispose()
+  fullName: Butterfly.MySql.MySqlTransaction.Dispose()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Dispose
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 54
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: public override void Dispose()
+    content.vb: Public Overrides Sub Dispose
+  overridden: Butterfly.Core.Database.BaseTransaction.Dispose
+  overload: Butterfly.MySql.MySqlTransaction.Dispose*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: Butterfly.MySql.MySqlTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)
+  commentId: M:Butterfly.MySql.MySqlTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)
+  id: DoCreate(Butterfly.Core.Database.CreateStatement)
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: DoCreate(CreateStatement)
+  nameWithType: MySqlTransaction.DoCreate(CreateStatement)
+  fullName: Butterfly.MySql.MySqlTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DoCreate
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 59
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: protected override bool DoCreate(CreateStatement statement)
+    parameters:
+    - id: statement
+      type: Butterfly.Core.Database.CreateStatement
+    return:
+      type: System.Boolean
+    content.vb: Protected Overrides Function DoCreate(statement As CreateStatement) As Boolean
+  overridden: Butterfly.Core.Database.BaseTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)
+  overload: Butterfly.MySql.MySqlTransaction.DoCreate*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: Butterfly.MySql.MySqlTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)
+  commentId: M:Butterfly.MySql.MySqlTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)
+  id: DoCreateAsync(Butterfly.Core.Database.CreateStatement)
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: DoCreateAsync(CreateStatement)
+  nameWithType: MySqlTransaction.DoCreateAsync(CreateStatement)
+  fullName: Butterfly.MySql.MySqlTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DoCreateAsync
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 64
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: protected override Task<bool> DoCreateAsync(CreateStatement statement)
+    parameters:
+    - id: statement
+      type: Butterfly.Core.Database.CreateStatement
+    return:
+      type: Task{System.Boolean}
+    content.vb: Protected Overrides Function DoCreateAsync(statement As CreateStatement) As Task(Of Boolean)
+  overridden: Butterfly.Core.Database.BaseTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)
+  overload: Butterfly.MySql.MySqlTransaction.DoCreateAsync*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: Butterfly.MySql.MySqlTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
+  commentId: M:Butterfly.MySql.MySqlTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
+  id: DoInsertAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: DoInsertAsync(String, System.Collections.Generic.Dictionary<String, Object>, Boolean)
+  nameWithType: MySqlTransaction.DoInsertAsync(String, System.Collections.Generic.Dictionary<String, Object>, Boolean)
+  fullName: Butterfly.MySql.MySqlTransaction.DoInsertAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DoInsertAsync
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 69
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: protected override Task<Func<object>> DoInsertAsync(string executableSql, System.Collections.Generic.Dictionary<string, object> executableParams, bool ignoreIfDuplicate)
+    parameters:
+    - id: executableSql
+      type: System.String
+    - id: executableParams
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    - id: ignoreIfDuplicate
+      type: System.Boolean
+    return:
+      type: Task{Func{System.Object}}
+    content.vb: Protected Overrides Function DoInsertAsync(executableSql As String, executableParams As System.Collections.Generic.Dictionary(Of String, Object), ignoreIfDuplicate As Boolean) As Task(Of Func(Of Object))
+  overload: Butterfly.MySql.MySqlTransaction.DoInsertAsync*
+  nameWithType.vb: MySqlTransaction.DoInsertAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Boolean)
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+  fullName.vb: Butterfly.MySql.MySqlTransaction.DoInsertAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Boolean)
+  name.vb: DoInsertAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Boolean)
+- uid: Butterfly.MySql.MySqlTransaction.DoUpdateAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:Butterfly.MySql.MySqlTransaction.DoUpdateAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: DoUpdateAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: DoUpdateAsync(String, System.Collections.Generic.Dictionary<String, Object>)
+  nameWithType: MySqlTransaction.DoUpdateAsync(String, System.Collections.Generic.Dictionary<String, Object>)
+  fullName: Butterfly.MySql.MySqlTransaction.DoUpdateAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DoUpdateAsync
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 90
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: protected override Task<int> DoUpdateAsync(string executableSql, System.Collections.Generic.Dictionary<string, object> executableParams)
+    parameters:
+    - id: executableSql
+      type: System.String
+    - id: executableParams
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    return:
+      type: Task{System.Int32}
+    content.vb: Protected Overrides Function DoUpdateAsync(executableSql As String, executableParams As System.Collections.Generic.Dictionary(Of String, Object)) As Task(Of Integer)
+  overload: Butterfly.MySql.MySqlTransaction.DoUpdateAsync*
+  nameWithType.vb: MySqlTransaction.DoUpdateAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+  fullName.vb: Butterfly.MySql.MySqlTransaction.DoUpdateAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: DoUpdateAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.MySql.MySqlTransaction.DoDeleteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:Butterfly.MySql.MySqlTransaction.DoDeleteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: DoDeleteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: DoDeleteAsync(String, System.Collections.Generic.Dictionary<String, Object>)
+  nameWithType: MySqlTransaction.DoDeleteAsync(String, System.Collections.Generic.Dictionary<String, Object>)
+  fullName: Butterfly.MySql.MySqlTransaction.DoDeleteAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DoDeleteAsync
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 94
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: protected override Task<int> DoDeleteAsync(string executableSql, System.Collections.Generic.Dictionary<string, object> executableParams)
+    parameters:
+    - id: executableSql
+      type: System.String
+    - id: executableParams
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    return:
+      type: Task{System.Int32}
+    content.vb: Protected Overrides Function DoDeleteAsync(executableSql As String, executableParams As System.Collections.Generic.Dictionary(Of String, Object)) As Task(Of Integer)
+  overload: Butterfly.MySql.MySqlTransaction.DoDeleteAsync*
+  nameWithType.vb: MySqlTransaction.DoDeleteAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+  fullName.vb: Butterfly.MySql.MySqlTransaction.DoDeleteAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: DoDeleteAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.MySql.MySqlTransaction.DoTruncateAsync(System.String)
+  commentId: M:Butterfly.MySql.MySqlTransaction.DoTruncateAsync(System.String)
+  id: DoTruncateAsync(System.String)
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: DoTruncateAsync(String)
+  nameWithType: MySqlTransaction.DoTruncateAsync(String)
+  fullName: Butterfly.MySql.MySqlTransaction.DoTruncateAsync(System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DoTruncateAsync
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 98
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: protected override Task DoTruncateAsync(string tableName)
+    parameters:
+    - id: tableName
+      type: System.String
+    return:
+      type: Task
+    content.vb: Protected Overrides Function DoTruncateAsync(tableName As String) As Task
+  overload: Butterfly.MySql.MySqlTransaction.DoTruncateAsync*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: Butterfly.MySql.MySqlTransaction.DoExecute(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:Butterfly.MySql.MySqlTransaction.DoExecute(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: DoExecute(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: DoExecute(String, System.Collections.Generic.Dictionary<String, Object>)
+  nameWithType: MySqlTransaction.DoExecute(String, System.Collections.Generic.Dictionary<String, Object>)
+  fullName: Butterfly.MySql.MySqlTransaction.DoExecute(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DoExecute
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 102
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: protected int DoExecute(string executableSql, System.Collections.Generic.Dictionary<string, object> executableParams = null)
+    parameters:
+    - id: executableSql
+      type: System.String
+    - id: executableParams
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    return:
+      type: System.Int32
+    content.vb: Protected Function DoExecute(executableSql As String, executableParams As System.Collections.Generic.Dictionary(Of String, Object) = Nothing) As Integer
+  overload: Butterfly.MySql.MySqlTransaction.DoExecute*
+  nameWithType.vb: MySqlTransaction.DoExecute(String, System.Collections.Generic.Dictionary(Of String, Object))
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: Butterfly.MySql.MySqlTransaction.DoExecute(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: DoExecute(String, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.MySql.MySqlTransaction.DoExecuteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:Butterfly.MySql.MySqlTransaction.DoExecuteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: DoExecuteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: Butterfly.MySql.MySqlTransaction
+  langs:
+  - csharp
+  - vb
+  name: DoExecuteAsync(String, System.Collections.Generic.Dictionary<String, Object>)
+  nameWithType: MySqlTransaction.DoExecuteAsync(String, System.Collections.Generic.Dictionary<String, Object>)
+  fullName: Butterfly.MySql.MySqlTransaction.DoExecuteAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.MySql/MySqlTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DoExecuteAsync
+    path: ../Butterfly.MySql/MySqlTransaction.cs
+    startLine: 117
+  assemblies:
+  - Butterfly.MySql
+  namespace: Butterfly.MySql
+  syntax:
+    content: protected Task<int> DoExecuteAsync(string executableSql, System.Collections.Generic.Dictionary<string, object> executableParams = null)
+    parameters:
+    - id: executableSql
+      type: System.String
+    - id: executableParams
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    return:
+      type: Task{System.Int32}
+    content.vb: Protected Function DoExecuteAsync(executableSql As String, executableParams As System.Collections.Generic.Dictionary(Of String, Object) = Nothing) As Task(Of Integer)
+  overload: Butterfly.MySql.MySqlTransaction.DoExecuteAsync*
+  nameWithType.vb: MySqlTransaction.DoExecuteAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: Butterfly.MySql.MySqlTransaction.DoExecuteAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: DoExecuteAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+references:
+- uid: Butterfly.MySql
+  commentId: N:Butterfly.MySql
+  name: Butterfly.MySql
+  nameWithType: Butterfly.MySql
+  fullName: Butterfly.MySql
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Database.BaseTransaction
+  commentId: T:Butterfly.Core.Database.BaseTransaction
+  parent: Butterfly.Core.Database
+  name: BaseTransaction
+  nameWithType: BaseTransaction
+  fullName: Butterfly.Core.Database.BaseTransaction
+- uid: Butterfly.Core.Database.ITransaction
+  commentId: T:Butterfly.Core.Database.ITransaction
+  parent: Butterfly.Core.Database
+  name: ITransaction
+  nameWithType: ITransaction
+  fullName: Butterfly.Core.Database.ITransaction
+- uid: IDisposable
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: IDisposable
+- uid: Butterfly.Core.Database.BaseTransaction.database
+  commentId: F:Butterfly.Core.Database.BaseTransaction.database
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: database
+  nameWithType: BaseTransaction.database
+  fullName: Butterfly.Core.Database.BaseTransaction.database
+- uid: Butterfly.Core.Database.BaseTransaction.dataEvents
+  commentId: F:Butterfly.Core.Database.BaseTransaction.dataEvents
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: dataEvents
+  nameWithType: BaseTransaction.dataEvents
+  fullName: Butterfly.Core.Database.BaseTransaction.dataEvents
+- uid: Butterfly.Core.Database.BaseTransaction.onCommits
+  commentId: F:Butterfly.Core.Database.BaseTransaction.onCommits
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: onCommits
+  nameWithType: BaseTransaction.onCommits
+  fullName: Butterfly.Core.Database.BaseTransaction.onCommits
+- uid: Butterfly.Core.Database.BaseTransaction.Database
+  commentId: P:Butterfly.Core.Database.BaseTransaction.Database
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: Database
+  nameWithType: BaseTransaction.Database
+  fullName: Butterfly.Core.Database.BaseTransaction.Database
+- uid: Butterfly.Core.Database.BaseTransaction.Create(Butterfly.Core.Database.CreateStatement)
+  commentId: M:Butterfly.Core.Database.BaseTransaction.Create(Butterfly.Core.Database.CreateStatement)
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: Create(CreateStatement)
+  nameWithType: BaseTransaction.Create(CreateStatement)
+  fullName: Butterfly.Core.Database.BaseTransaction.Create(Butterfly.Core.Database.CreateStatement)
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.Create(Butterfly.Core.Database.CreateStatement)
+    name: Create
+    nameWithType: BaseTransaction.Create
+    fullName: Butterfly.Core.Database.BaseTransaction.Create
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.CreateStatement
+    name: CreateStatement
+    nameWithType: CreateStatement
+    fullName: Butterfly.Core.Database.CreateStatement
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.Create(Butterfly.Core.Database.CreateStatement)
+    name: Create
+    nameWithType: BaseTransaction.Create
+    fullName: Butterfly.Core.Database.BaseTransaction.Create
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.CreateStatement
+    name: CreateStatement
+    nameWithType: CreateStatement
+    fullName: Butterfly.Core.Database.CreateStatement
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.CreateAsync(Butterfly.Core.Database.CreateStatement)
+  commentId: M:Butterfly.Core.Database.BaseTransaction.CreateAsync(Butterfly.Core.Database.CreateStatement)
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: CreateAsync(CreateStatement)
+  nameWithType: BaseTransaction.CreateAsync(CreateStatement)
+  fullName: Butterfly.Core.Database.BaseTransaction.CreateAsync(Butterfly.Core.Database.CreateStatement)
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.CreateAsync(Butterfly.Core.Database.CreateStatement)
+    name: CreateAsync
+    nameWithType: BaseTransaction.CreateAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.CreateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.CreateStatement
+    name: CreateStatement
+    nameWithType: CreateStatement
+    fullName: Butterfly.Core.Database.CreateStatement
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.CreateAsync(Butterfly.Core.Database.CreateStatement)
+    name: CreateAsync
+    nameWithType: BaseTransaction.CreateAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.CreateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.CreateStatement
+    name: CreateStatement
+    nameWithType: CreateStatement
+    fullName: Butterfly.Core.Database.CreateStatement
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.InsertAsync``1(System.String,System.Object,System.Boolean)
+  commentId: M:Butterfly.Core.Database.BaseTransaction.InsertAsync``1(System.String,System.Object,System.Boolean)
+  parent: Butterfly.Core.Database.BaseTransaction
+  isExternal: true
+  name: InsertAsync<T>(String, Object, Boolean)
+  nameWithType: BaseTransaction.InsertAsync<T>(String, Object, Boolean)
+  fullName: Butterfly.Core.Database.BaseTransaction.InsertAsync<T>(System.String, System.Object, System.Boolean)
+  nameWithType.vb: BaseTransaction.InsertAsync(Of T)(String, , Boolean)
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.InsertAsync(Of T)(System.String, , System.Boolean)
+  name.vb: InsertAsync(Of T)(String, , Boolean)
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.InsertAsync``1(System.String,System.Object,System.Boolean)
+    name: InsertAsync<T>
+    nameWithType: BaseTransaction.InsertAsync<T>
+    fullName: Butterfly.Core.Database.BaseTransaction.InsertAsync<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.InsertAsync``1(System.String,System.Object,System.Boolean)
+    name: InsertAsync(Of T)
+    nameWithType: BaseTransaction.InsertAsync(Of T)
+    fullName: Butterfly.Core.Database.BaseTransaction.InsertAsync(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.InsertAsync(Butterfly.Core.Database.InsertStatement,System.Object,System.Boolean)
+  commentId: M:Butterfly.Core.Database.BaseTransaction.InsertAsync(Butterfly.Core.Database.InsertStatement,System.Object,System.Boolean)
+  parent: Butterfly.Core.Database.BaseTransaction
+  isExternal: true
+  name: InsertAsync(InsertStatement, Object, Boolean)
+  nameWithType: BaseTransaction.InsertAsync(InsertStatement, Object, Boolean)
+  fullName: Butterfly.Core.Database.BaseTransaction.InsertAsync(Butterfly.Core.Database.InsertStatement, System.Object, System.Boolean)
+  nameWithType.vb: BaseTransaction.InsertAsync(InsertStatement, , Boolean)
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.InsertAsync(Butterfly.Core.Database.InsertStatement, , System.Boolean)
+  name.vb: InsertAsync(InsertStatement, , Boolean)
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.InsertAsync(Butterfly.Core.Database.InsertStatement,System.Object,System.Boolean)
+    name: InsertAsync
+    nameWithType: BaseTransaction.InsertAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.InsertAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.InsertStatement
+    name: InsertStatement
+    nameWithType: InsertStatement
+    fullName: Butterfly.Core.Database.InsertStatement
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.InsertAsync(Butterfly.Core.Database.InsertStatement,System.Object,System.Boolean)
+    name: InsertAsync
+    nameWithType: BaseTransaction.InsertAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.InsertAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.InsertStatement
+    name: InsertStatement
+    nameWithType: InsertStatement
+    fullName: Butterfly.Core.Database.InsertStatement
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{`0,`1},System.Boolean)
+  commentId: M:Butterfly.Core.Database.BaseTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{`0,`1},System.Boolean)
+  parent: Butterfly.Core.Database.BaseTransaction
+  isExternal: true
+  name: DoInsertAsync(String, System.Collections.Generic.Dictionary<, >, Boolean)
+  nameWithType: BaseTransaction.DoInsertAsync(String, System.Collections.Generic.Dictionary<, >, Boolean)
+  fullName: Butterfly.Core.Database.BaseTransaction.DoInsertAsync(System.String, System.Collections.Generic.Dictionary<, >, System.Boolean)
+  nameWithType.vb: BaseTransaction.DoInsertAsync(String, System.Collections.Generic.Dictionary(Of , ), Boolean)
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.DoInsertAsync(System.String, System.Collections.Generic.Dictionary(Of , ), System.Boolean)
+  name.vb: DoInsertAsync(String, System.Collections.Generic.Dictionary(Of , ), Boolean)
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{`0,`1},System.Boolean)
+    name: DoInsertAsync
+    nameWithType: BaseTransaction.DoInsertAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.DoInsertAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{`0,`1},System.Boolean)
+    name: DoInsertAsync
+    nameWithType: BaseTransaction.DoInsertAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.DoInsertAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.UpdateAsync(System.String,System.Object)
+  commentId: M:Butterfly.Core.Database.BaseTransaction.UpdateAsync(System.String,System.Object)
+  parent: Butterfly.Core.Database.BaseTransaction
+  isExternal: true
+  name: UpdateAsync(String, Object)
+  nameWithType: BaseTransaction.UpdateAsync(String, Object)
+  fullName: Butterfly.Core.Database.BaseTransaction.UpdateAsync(System.String, System.Object)
+  nameWithType.vb: BaseTransaction.UpdateAsync(String, )
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.UpdateAsync(System.String, )
+  name.vb: UpdateAsync(String, )
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.UpdateAsync(System.String,System.Object)
+    name: UpdateAsync
+    nameWithType: BaseTransaction.UpdateAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.UpdateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.UpdateAsync(System.String,System.Object)
+    name: UpdateAsync
+    nameWithType: BaseTransaction.UpdateAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.UpdateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.UpdateAsync(Butterfly.Core.Database.UpdateStatement,System.Object)
+  commentId: M:Butterfly.Core.Database.BaseTransaction.UpdateAsync(Butterfly.Core.Database.UpdateStatement,System.Object)
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: UpdateAsync(UpdateStatement, Object)
+  nameWithType: BaseTransaction.UpdateAsync(UpdateStatement, Object)
+  fullName: Butterfly.Core.Database.BaseTransaction.UpdateAsync(Butterfly.Core.Database.UpdateStatement, System.Object)
+  nameWithType.vb: BaseTransaction.UpdateAsync(UpdateStatement, )
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.UpdateAsync(Butterfly.Core.Database.UpdateStatement, )
+  name.vb: UpdateAsync(UpdateStatement, )
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.UpdateAsync(Butterfly.Core.Database.UpdateStatement,System.Object)
+    name: UpdateAsync
+    nameWithType: BaseTransaction.UpdateAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.UpdateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.UpdateStatement
+    name: UpdateStatement
+    nameWithType: UpdateStatement
+    fullName: Butterfly.Core.Database.UpdateStatement
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.UpdateAsync(Butterfly.Core.Database.UpdateStatement,System.Object)
+    name: UpdateAsync
+    nameWithType: BaseTransaction.UpdateAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.UpdateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.UpdateStatement
+    name: UpdateStatement
+    nameWithType: UpdateStatement
+    fullName: Butterfly.Core.Database.UpdateStatement
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.DoUpdateAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
+  commentId: M:Butterfly.Core.Database.BaseTransaction.DoUpdateAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
+  parent: Butterfly.Core.Database.BaseTransaction
+  isExternal: true
+  name: DoUpdateAsync(String, System.Collections.Generic.Dictionary<, >)
+  nameWithType: BaseTransaction.DoUpdateAsync(String, System.Collections.Generic.Dictionary<, >)
+  fullName: Butterfly.Core.Database.BaseTransaction.DoUpdateAsync(System.String, System.Collections.Generic.Dictionary<, >)
+  nameWithType.vb: BaseTransaction.DoUpdateAsync(String, System.Collections.Generic.Dictionary(Of , ))
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.DoUpdateAsync(System.String, System.Collections.Generic.Dictionary(Of , ))
+  name.vb: DoUpdateAsync(String, System.Collections.Generic.Dictionary(Of , ))
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoUpdateAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
+    name: DoUpdateAsync
+    nameWithType: BaseTransaction.DoUpdateAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.DoUpdateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoUpdateAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
+    name: DoUpdateAsync
+    nameWithType: BaseTransaction.DoUpdateAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.DoUpdateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.DeleteAsync(System.String,System.Object)
+  commentId: M:Butterfly.Core.Database.BaseTransaction.DeleteAsync(System.String,System.Object)
+  parent: Butterfly.Core.Database.BaseTransaction
+  isExternal: true
+  name: DeleteAsync(String, Object)
+  nameWithType: BaseTransaction.DeleteAsync(String, Object)
+  fullName: Butterfly.Core.Database.BaseTransaction.DeleteAsync(System.String, System.Object)
+  nameWithType.vb: BaseTransaction.DeleteAsync(String, )
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.DeleteAsync(System.String, )
+  name.vb: DeleteAsync(String, )
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.DeleteAsync(System.String,System.Object)
+    name: DeleteAsync
+    nameWithType: BaseTransaction.DeleteAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.DeleteAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.DeleteAsync(System.String,System.Object)
+    name: DeleteAsync
+    nameWithType: BaseTransaction.DeleteAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.DeleteAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.DeleteAsync(Butterfly.Core.Database.DeleteStatement,System.Object)
+  commentId: M:Butterfly.Core.Database.BaseTransaction.DeleteAsync(Butterfly.Core.Database.DeleteStatement,System.Object)
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: DeleteAsync(DeleteStatement, Object)
+  nameWithType: BaseTransaction.DeleteAsync(DeleteStatement, Object)
+  fullName: Butterfly.Core.Database.BaseTransaction.DeleteAsync(Butterfly.Core.Database.DeleteStatement, System.Object)
+  nameWithType.vb: BaseTransaction.DeleteAsync(DeleteStatement, )
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.DeleteAsync(Butterfly.Core.Database.DeleteStatement, )
+  name.vb: DeleteAsync(DeleteStatement, )
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.DeleteAsync(Butterfly.Core.Database.DeleteStatement,System.Object)
+    name: DeleteAsync
+    nameWithType: BaseTransaction.DeleteAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.DeleteAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.DeleteStatement
+    name: DeleteStatement
+    nameWithType: DeleteStatement
+    fullName: Butterfly.Core.Database.DeleteStatement
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.DeleteAsync(Butterfly.Core.Database.DeleteStatement,System.Object)
+    name: DeleteAsync
+    nameWithType: BaseTransaction.DeleteAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.DeleteAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.DeleteStatement
+    name: DeleteStatement
+    nameWithType: DeleteStatement
+    fullName: Butterfly.Core.Database.DeleteStatement
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.DoDeleteAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
+  commentId: M:Butterfly.Core.Database.BaseTransaction.DoDeleteAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
+  parent: Butterfly.Core.Database.BaseTransaction
+  isExternal: true
+  name: DoDeleteAsync(String, System.Collections.Generic.Dictionary<, >)
+  nameWithType: BaseTransaction.DoDeleteAsync(String, System.Collections.Generic.Dictionary<, >)
+  fullName: Butterfly.Core.Database.BaseTransaction.DoDeleteAsync(System.String, System.Collections.Generic.Dictionary<, >)
+  nameWithType.vb: BaseTransaction.DoDeleteAsync(String, System.Collections.Generic.Dictionary(Of , ))
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.DoDeleteAsync(System.String, System.Collections.Generic.Dictionary(Of , ))
+  name.vb: DoDeleteAsync(String, System.Collections.Generic.Dictionary(Of , ))
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoDeleteAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
+    name: DoDeleteAsync
+    nameWithType: BaseTransaction.DoDeleteAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.DoDeleteAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoDeleteAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
+    name: DoDeleteAsync
+    nameWithType: BaseTransaction.DoDeleteAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.DoDeleteAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.GetKeyValue(Butterfly.Core.Database.TableIndex,System.Collections.Generic.Dictionary{`0,`1},System.Collections.Generic.Dictionary{`0,`1},Butterfly.Core.Database.StatementEqualsRef[],Butterfly.Core.Database.TableIndex,System.String)
+  commentId: M:Butterfly.Core.Database.BaseTransaction.GetKeyValue(Butterfly.Core.Database.TableIndex,System.Collections.Generic.Dictionary{`0,`1},System.Collections.Generic.Dictionary{`0,`1},Butterfly.Core.Database.StatementEqualsRef[],Butterfly.Core.Database.TableIndex,System.String)
+  parent: Butterfly.Core.Database.BaseTransaction
+  isExternal: true
+  name: GetKeyValue(TableIndex, System.Collections.Generic.Dictionary<, >, System.Collections.Generic.Dictionary<, >, StatementEqualsRef[], TableIndex, String)
+  nameWithType: BaseTransaction.GetKeyValue(TableIndex, System.Collections.Generic.Dictionary<, >, System.Collections.Generic.Dictionary<, >, StatementEqualsRef[], TableIndex, String)
+  fullName: Butterfly.Core.Database.BaseTransaction.GetKeyValue(Butterfly.Core.Database.TableIndex, System.Collections.Generic.Dictionary<, >, System.Collections.Generic.Dictionary<, >, Butterfly.Core.Database.StatementEqualsRef[], Butterfly.Core.Database.TableIndex, System.String)
+  nameWithType.vb: BaseTransaction.GetKeyValue(TableIndex, System.Collections.Generic.Dictionary(Of , ), System.Collections.Generic.Dictionary(Of , ), StatementEqualsRef(), TableIndex, String)
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.GetKeyValue(Butterfly.Core.Database.TableIndex, System.Collections.Generic.Dictionary(Of , ), System.Collections.Generic.Dictionary(Of , ), Butterfly.Core.Database.StatementEqualsRef(), Butterfly.Core.Database.TableIndex, System.String)
+  name.vb: GetKeyValue(TableIndex, System.Collections.Generic.Dictionary(Of , ), System.Collections.Generic.Dictionary(Of , ), StatementEqualsRef(), TableIndex, String)
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.GetKeyValue(Butterfly.Core.Database.TableIndex,System.Collections.Generic.Dictionary{`0,`1},System.Collections.Generic.Dictionary{`0,`1},Butterfly.Core.Database.StatementEqualsRef[],Butterfly.Core.Database.TableIndex,System.String)
+    name: GetKeyValue
+    nameWithType: BaseTransaction.GetKeyValue
+    fullName: Butterfly.Core.Database.BaseTransaction.GetKeyValue
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.TableIndex
+    name: TableIndex
+    nameWithType: TableIndex
+    fullName: Butterfly.Core.Database.TableIndex
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Butterfly.Core.Database.StatementEqualsRef
+    name: StatementEqualsRef
+    nameWithType: StatementEqualsRef
+    fullName: Butterfly.Core.Database.StatementEqualsRef
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Butterfly.Core.Database.TableIndex
+    name: TableIndex
+    nameWithType: TableIndex
+    fullName: Butterfly.Core.Database.TableIndex
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.GetKeyValue(Butterfly.Core.Database.TableIndex,System.Collections.Generic.Dictionary{`0,`1},System.Collections.Generic.Dictionary{`0,`1},Butterfly.Core.Database.StatementEqualsRef[],Butterfly.Core.Database.TableIndex,System.String)
+    name: GetKeyValue
+    nameWithType: BaseTransaction.GetKeyValue
+    fullName: Butterfly.Core.Database.BaseTransaction.GetKeyValue
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.TableIndex
+    name: TableIndex
+    nameWithType: TableIndex
+    fullName: Butterfly.Core.Database.TableIndex
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Butterfly.Core.Database.StatementEqualsRef
+    name: StatementEqualsRef
+    nameWithType: StatementEqualsRef
+    fullName: Butterfly.Core.Database.StatementEqualsRef
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Butterfly.Core.Database.TableIndex
+    name: TableIndex
+    nameWithType: TableIndex
+    fullName: Butterfly.Core.Database.TableIndex
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{`0,`1}[],System.Collections.Generic.Dictionary{`0,`1}[],Func{`0,`1},System.String[])
+  commentId: M:Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{`0,`1}[],System.Collections.Generic.Dictionary{`0,`1}[],Func{`0,`1},System.String[])
+  parent: Butterfly.Core.Database.BaseTransaction
+  isExternal: true
+  name: SynchronizeAsync(String, System.Collections.Generic.Dictionary<, >[], System.Collections.Generic.Dictionary<, >[], Func<, >, String[])
+  nameWithType: BaseTransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary<, >[], System.Collections.Generic.Dictionary<, >[], Func<, >, String[])
+  fullName: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary<, >[], System.Collections.Generic.Dictionary<, >[], Func<, >, System.String[])
+  nameWithType.vb: BaseTransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of , )(), System.Collections.Generic.Dictionary(Of , )(), Func(Of , ), String())
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary(Of , )(), System.Collections.Generic.Dictionary(Of , )(), Func(Of , ), System.String())
+  name.vb: SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of , )(), System.Collections.Generic.Dictionary(Of , )(), Func(Of , ), String())
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{`0,`1}[],System.Collections.Generic.Dictionary{`0,`1}[],Func{`0,`1},System.String[])
+    name: SynchronizeAsync
+    nameWithType: BaseTransaction.SynchronizeAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{`0,`1}[],System.Collections.Generic.Dictionary{`0,`1}[],Func{`0,`1},System.String[])
+    name: SynchronizeAsync
+    nameWithType: BaseTransaction.SynchronizeAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.TruncateAsync(System.String)
+  commentId: M:Butterfly.Core.Database.BaseTransaction.TruncateAsync(System.String)
+  parent: Butterfly.Core.Database.BaseTransaction
+  isExternal: true
+  name: TruncateAsync(String)
+  nameWithType: BaseTransaction.TruncateAsync(String)
+  fullName: Butterfly.Core.Database.BaseTransaction.TruncateAsync(System.String)
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.TruncateAsync(System.String)
+    name: TruncateAsync
+    nameWithType: BaseTransaction.TruncateAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.TruncateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.TruncateAsync(System.String)
+    name: TruncateAsync
+    nameWithType: BaseTransaction.TruncateAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.TruncateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.Commit
+  commentId: M:Butterfly.Core.Database.BaseTransaction.Commit
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: Commit()
+  nameWithType: BaseTransaction.Commit()
+  fullName: Butterfly.Core.Database.BaseTransaction.Commit()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.Commit
+    name: Commit
+    nameWithType: BaseTransaction.Commit
+    fullName: Butterfly.Core.Database.BaseTransaction.Commit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.Commit
+    name: Commit
+    nameWithType: BaseTransaction.Commit
+    fullName: Butterfly.Core.Database.BaseTransaction.Commit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.CommitAsync
+  commentId: M:Butterfly.Core.Database.BaseTransaction.CommitAsync
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: CommitAsync()
+  nameWithType: BaseTransaction.CommitAsync()
+  fullName: Butterfly.Core.Database.BaseTransaction.CommitAsync()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.CommitAsync
+    name: CommitAsync
+    nameWithType: BaseTransaction.CommitAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.CommitAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.CommitAsync
+    name: CommitAsync
+    nameWithType: BaseTransaction.CommitAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.CommitAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.OnCommit(Func{`0})
+  commentId: M:Butterfly.Core.Database.BaseTransaction.OnCommit(Func{`0})
+  parent: Butterfly.Core.Database.BaseTransaction
+  isExternal: true
+  name: OnCommit(Func<>)
+  nameWithType: BaseTransaction.OnCommit(Func<>)
+  fullName: Butterfly.Core.Database.BaseTransaction.OnCommit(Func<>)
+  nameWithType.vb: BaseTransaction.OnCommit(Func(Of ))
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.OnCommit(Func(Of ))
+  name.vb: OnCommit(Func(Of ))
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.OnCommit(Func{`0})
+    name: OnCommit
+    nameWithType: BaseTransaction.OnCommit
+    fullName: Butterfly.Core.Database.BaseTransaction.OnCommit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.OnCommit(Func{`0})
+    name: OnCommit
+    nameWithType: BaseTransaction.OnCommit
+    fullName: Butterfly.Core.Database.BaseTransaction.OnCommit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.BaseTransaction.Rollback
+  commentId: M:Butterfly.Core.Database.BaseTransaction.Rollback
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: Rollback()
+  nameWithType: BaseTransaction.Rollback()
+  fullName: Butterfly.Core.Database.BaseTransaction.Rollback()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.Rollback
+    name: Rollback
+    nameWithType: BaseTransaction.Rollback
+    fullName: Butterfly.Core.Database.BaseTransaction.Rollback
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.Rollback
+    name: Rollback
+    nameWithType: BaseTransaction.Rollback
+    fullName: Butterfly.Core.Database.BaseTransaction.Rollback
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: MySqlConnection
+  commentId: '!:MySqlConnection'
+  isExternal: true
+  name: MySqlConnection
+  nameWithType: MySqlConnection
+  fullName: MySqlConnection
+- uid: MySql.Data.MySqlClient.MySqlTransaction
+  commentId: '!:MySql.Data.MySqlClient.MySqlTransaction'
+  isExternal: true
+  name: MySql.Data.MySqlClient.MySqlTransaction
+  nameWithType: MySql.Data.MySqlClient.MySqlTransaction
+  fullName: MySql.Data.MySqlClient.MySqlTransaction
+- uid: Butterfly.MySql.MySqlTransaction.#ctor*
+  commentId: Overload:Butterfly.MySql.MySqlTransaction.#ctor
+  name: MySqlTransaction
+  nameWithType: MySqlTransaction.MySqlTransaction
+  fullName: Butterfly.MySql.MySqlTransaction.MySqlTransaction
+- uid: Butterfly.MySql.MySqlDatabase
+  commentId: T:Butterfly.MySql.MySqlDatabase
+  parent: Butterfly.MySql
+  name: MySqlDatabase
+  nameWithType: MySqlDatabase
+  fullName: Butterfly.MySql.MySqlDatabase
+- uid: Butterfly.Core.Database.BaseTransaction.Begin
+  commentId: M:Butterfly.Core.Database.BaseTransaction.Begin
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: Begin()
+  nameWithType: BaseTransaction.Begin()
+  fullName: Butterfly.Core.Database.BaseTransaction.Begin()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.Begin
+    name: Begin
+    nameWithType: BaseTransaction.Begin
+    fullName: Butterfly.Core.Database.BaseTransaction.Begin
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.Begin
+    name: Begin
+    nameWithType: BaseTransaction.Begin
+    fullName: Butterfly.Core.Database.BaseTransaction.Begin
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.MySql.MySqlTransaction.Begin*
+  commentId: Overload:Butterfly.MySql.MySqlTransaction.Begin
+  name: Begin
+  nameWithType: MySqlTransaction.Begin
+  fullName: Butterfly.MySql.MySqlTransaction.Begin
+- uid: Butterfly.Core.Database.BaseTransaction.BeginAsync
+  commentId: M:Butterfly.Core.Database.BaseTransaction.BeginAsync
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: BeginAsync()
+  nameWithType: BaseTransaction.BeginAsync()
+  fullName: Butterfly.Core.Database.BaseTransaction.BeginAsync()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.BeginAsync
+    name: BeginAsync
+    nameWithType: BaseTransaction.BeginAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.BeginAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.BeginAsync
+    name: BeginAsync
+    nameWithType: BaseTransaction.BeginAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.BeginAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.MySql.MySqlTransaction.BeginAsync*
+  commentId: Overload:Butterfly.MySql.MySqlTransaction.BeginAsync
+  name: BeginAsync
+  nameWithType: MySqlTransaction.BeginAsync
+  fullName: Butterfly.MySql.MySqlTransaction.BeginAsync
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Butterfly.Core.Database.BaseTransaction.DoCommit
+  commentId: M:Butterfly.Core.Database.BaseTransaction.DoCommit
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: DoCommit()
+  nameWithType: BaseTransaction.DoCommit()
+  fullName: Butterfly.Core.Database.BaseTransaction.DoCommit()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoCommit
+    name: DoCommit
+    nameWithType: BaseTransaction.DoCommit
+    fullName: Butterfly.Core.Database.BaseTransaction.DoCommit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoCommit
+    name: DoCommit
+    nameWithType: BaseTransaction.DoCommit
+    fullName: Butterfly.Core.Database.BaseTransaction.DoCommit
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.MySql.MySqlTransaction.DoCommit*
+  commentId: Overload:Butterfly.MySql.MySqlTransaction.DoCommit
+  name: DoCommit
+  nameWithType: MySqlTransaction.DoCommit
+  fullName: Butterfly.MySql.MySqlTransaction.DoCommit
+- uid: Butterfly.Core.Database.BaseTransaction.DoCommitAsync
+  commentId: M:Butterfly.Core.Database.BaseTransaction.DoCommitAsync
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: DoCommitAsync()
+  nameWithType: BaseTransaction.DoCommitAsync()
+  fullName: Butterfly.Core.Database.BaseTransaction.DoCommitAsync()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoCommitAsync
+    name: DoCommitAsync
+    nameWithType: BaseTransaction.DoCommitAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.DoCommitAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoCommitAsync
+    name: DoCommitAsync
+    nameWithType: BaseTransaction.DoCommitAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.DoCommitAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.MySql.MySqlTransaction.DoCommitAsync*
+  commentId: Overload:Butterfly.MySql.MySqlTransaction.DoCommitAsync
+  name: DoCommitAsync
+  nameWithType: MySqlTransaction.DoCommitAsync
+  fullName: Butterfly.MySql.MySqlTransaction.DoCommitAsync
+- uid: Butterfly.Core.Database.BaseTransaction.DoRollback
+  commentId: M:Butterfly.Core.Database.BaseTransaction.DoRollback
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: DoRollback()
+  nameWithType: BaseTransaction.DoRollback()
+  fullName: Butterfly.Core.Database.BaseTransaction.DoRollback()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoRollback
+    name: DoRollback
+    nameWithType: BaseTransaction.DoRollback
+    fullName: Butterfly.Core.Database.BaseTransaction.DoRollback
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoRollback
+    name: DoRollback
+    nameWithType: BaseTransaction.DoRollback
+    fullName: Butterfly.Core.Database.BaseTransaction.DoRollback
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.MySql.MySqlTransaction.DoRollback*
+  commentId: Overload:Butterfly.MySql.MySqlTransaction.DoRollback
+  name: DoRollback
+  nameWithType: MySqlTransaction.DoRollback
+  fullName: Butterfly.MySql.MySqlTransaction.DoRollback
+- uid: Butterfly.Core.Database.BaseTransaction.Dispose
+  commentId: M:Butterfly.Core.Database.BaseTransaction.Dispose
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: Dispose()
+  nameWithType: BaseTransaction.Dispose()
+  fullName: Butterfly.Core.Database.BaseTransaction.Dispose()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.Dispose
+    name: Dispose
+    nameWithType: BaseTransaction.Dispose
+    fullName: Butterfly.Core.Database.BaseTransaction.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.Dispose
+    name: Dispose
+    nameWithType: BaseTransaction.Dispose
+    fullName: Butterfly.Core.Database.BaseTransaction.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.MySql.MySqlTransaction.Dispose*
+  commentId: Overload:Butterfly.MySql.MySqlTransaction.Dispose
+  name: Dispose
+  nameWithType: MySqlTransaction.Dispose
+  fullName: Butterfly.MySql.MySqlTransaction.Dispose
+- uid: Butterfly.Core.Database.BaseTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)
+  commentId: M:Butterfly.Core.Database.BaseTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: DoCreate(CreateStatement)
+  nameWithType: BaseTransaction.DoCreate(CreateStatement)
+  fullName: Butterfly.Core.Database.BaseTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)
+    name: DoCreate
+    nameWithType: BaseTransaction.DoCreate
+    fullName: Butterfly.Core.Database.BaseTransaction.DoCreate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.CreateStatement
+    name: CreateStatement
+    nameWithType: CreateStatement
+    fullName: Butterfly.Core.Database.CreateStatement
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)
+    name: DoCreate
+    nameWithType: BaseTransaction.DoCreate
+    fullName: Butterfly.Core.Database.BaseTransaction.DoCreate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.CreateStatement
+    name: CreateStatement
+    nameWithType: CreateStatement
+    fullName: Butterfly.Core.Database.CreateStatement
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.MySql.MySqlTransaction.DoCreate*
+  commentId: Overload:Butterfly.MySql.MySqlTransaction.DoCreate
+  name: DoCreate
+  nameWithType: MySqlTransaction.DoCreate
+  fullName: Butterfly.MySql.MySqlTransaction.DoCreate
+- uid: Butterfly.Core.Database.CreateStatement
+  commentId: T:Butterfly.Core.Database.CreateStatement
+  parent: Butterfly.Core.Database
+  name: CreateStatement
+  nameWithType: CreateStatement
+  fullName: Butterfly.Core.Database.CreateStatement
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Butterfly.Core.Database.BaseTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)
+  commentId: M:Butterfly.Core.Database.BaseTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)
+  parent: Butterfly.Core.Database.BaseTransaction
+  name: DoCreateAsync(CreateStatement)
+  nameWithType: BaseTransaction.DoCreateAsync(CreateStatement)
+  fullName: Butterfly.Core.Database.BaseTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)
+    name: DoCreateAsync
+    nameWithType: BaseTransaction.DoCreateAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.DoCreateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.CreateStatement
+    name: CreateStatement
+    nameWithType: CreateStatement
+    fullName: Butterfly.Core.Database.CreateStatement
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)
+    name: DoCreateAsync
+    nameWithType: BaseTransaction.DoCreateAsync
+    fullName: Butterfly.Core.Database.BaseTransaction.DoCreateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Butterfly.Core.Database.CreateStatement
+    name: CreateStatement
+    nameWithType: CreateStatement
+    fullName: Butterfly.Core.Database.CreateStatement
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.MySql.MySqlTransaction.DoCreateAsync*
+  commentId: Overload:Butterfly.MySql.MySqlTransaction.DoCreateAsync
+  name: DoCreateAsync
+  nameWithType: MySqlTransaction.DoCreateAsync
+  fullName: Butterfly.MySql.MySqlTransaction.DoCreateAsync
+- uid: Task{System.Boolean}
+  commentId: '!:Task{System.Boolean}'
+  definition: Task`1
+  name: Task<Boolean>
+  nameWithType: Task<Boolean>
+  fullName: Task<System.Boolean>
+  nameWithType.vb: Task(Of Boolean)
+  fullName.vb: Task(Of System.Boolean)
+  name.vb: Task(Of Boolean)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
+  isExternal: true
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.MySql.MySqlTransaction.DoInsertAsync*
+  commentId: Overload:Butterfly.MySql.MySqlTransaction.DoInsertAsync
+  name: DoInsertAsync
+  nameWithType: MySqlTransaction.DoInsertAsync
+  fullName: Butterfly.MySql.MySqlTransaction.DoInsertAsync
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Collections.Generic.Dictionary{System.String,System.Object}
+  commentId: '!:System.Collections.Generic.Dictionary{System.String,System.Object}'
+  definition: System.Collections.Generic.Dictionary`2
+  name: System.Collections.Generic.Dictionary<String, Object>
+  nameWithType: System.Collections.Generic.Dictionary<String, Object>
+  fullName: System.Collections.Generic.Dictionary<System.String, System.Object>
+  nameWithType.vb: System.Collections.Generic.Dictionary(Of String, Object)
+  fullName.vb: System.Collections.Generic.Dictionary(Of System.String, System.Object)
+  name.vb: System.Collections.Generic.Dictionary(Of String, Object)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task{Func{System.Object}}
+  commentId: '!:Task{Func{System.Object}}'
+  definition: Task`1
+  name: Task<Func<Object>>
+  nameWithType: Task<Func<Object>>
+  fullName: Task<Func<System.Object>>
+  nameWithType.vb: Task(Of Func(Of Object))
+  fullName.vb: Task(Of Func(Of System.Object))
+  name.vb: Task(Of Func(Of Object))
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary`2
+  isExternal: true
+  name: System.Collections.Generic.Dictionary<, >
+  nameWithType: System.Collections.Generic.Dictionary<, >
+  fullName: System.Collections.Generic.Dictionary<, >
+  nameWithType.vb: System.Collections.Generic.Dictionary(Of , )
+  fullName.vb: System.Collections.Generic.Dictionary(Of , )
+  name.vb: System.Collections.Generic.Dictionary(Of , )
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.MySql.MySqlTransaction.DoUpdateAsync*
+  commentId: Overload:Butterfly.MySql.MySqlTransaction.DoUpdateAsync
+  name: DoUpdateAsync
+  nameWithType: MySqlTransaction.DoUpdateAsync
+  fullName: Butterfly.MySql.MySqlTransaction.DoUpdateAsync
+- uid: Task{System.Int32}
+  commentId: '!:Task{System.Int32}'
+  definition: Task`1
+  name: Task<Int32>
+  nameWithType: Task<Int32>
+  fullName: Task<System.Int32>
+  nameWithType.vb: Task(Of Int32)
+  fullName.vb: Task(Of System.Int32)
+  name.vb: Task(Of Int32)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.MySql.MySqlTransaction.DoDeleteAsync*
+  commentId: Overload:Butterfly.MySql.MySqlTransaction.DoDeleteAsync
+  name: DoDeleteAsync
+  nameWithType: MySqlTransaction.DoDeleteAsync
+  fullName: Butterfly.MySql.MySqlTransaction.DoDeleteAsync
+- uid: Butterfly.MySql.MySqlTransaction.DoTruncateAsync*
+  commentId: Overload:Butterfly.MySql.MySqlTransaction.DoTruncateAsync
+  name: DoTruncateAsync
+  nameWithType: MySqlTransaction.DoTruncateAsync
+  fullName: Butterfly.MySql.MySqlTransaction.DoTruncateAsync
+- uid: Butterfly.MySql.MySqlTransaction.DoExecute*
+  commentId: Overload:Butterfly.MySql.MySqlTransaction.DoExecute
+  name: DoExecute
+  nameWithType: MySqlTransaction.DoExecute
+  fullName: Butterfly.MySql.MySqlTransaction.DoExecute
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Butterfly.MySql.MySqlTransaction.DoExecuteAsync*
+  commentId: Overload:Butterfly.MySql.MySqlTransaction.DoExecuteAsync
+  name: DoExecuteAsync
+  nameWithType: MySqlTransaction.DoExecuteAsync
+  fullName: Butterfly.MySql.MySqlTransaction.DoExecuteAsync
+shouldSkipMarkup: true

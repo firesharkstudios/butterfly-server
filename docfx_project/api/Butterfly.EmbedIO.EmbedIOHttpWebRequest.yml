@@ -1,0 +1,808 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest
+  commentId: T:Butterfly.EmbedIO.EmbedIOHttpWebRequest
+  id: EmbedIOHttpWebRequest
+  parent: Butterfly.EmbedIO
+  children:
+  - Butterfly.EmbedIO.EmbedIOHttpWebRequest.#ctor(System.String,HttpListenerContext)
+  - Butterfly.EmbedIO.EmbedIOHttpWebRequest.context
+  - Butterfly.EmbedIO.EmbedIOHttpWebRequest.Headers
+  - Butterfly.EmbedIO.EmbedIOHttpWebRequest.InputStream
+  - Butterfly.EmbedIO.EmbedIOHttpWebRequest.PathParams
+  - Butterfly.EmbedIO.EmbedIOHttpWebRequest.pathPattern
+  - Butterfly.EmbedIO.EmbedIOHttpWebRequest.QueryParams
+  - Butterfly.EmbedIO.EmbedIOHttpWebRequest.RequestUrl
+  langs:
+  - csharp
+  - vb
+  name: EmbedIOHttpWebRequest
+  nameWithType: EmbedIOHttpWebRequest
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest
+  type: Class
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: EmbedIOHttpWebRequest
+    path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
+    startLine: 84
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: 'public class EmbedIOHttpWebRequest : BaseHttpRequest, IHttpRequest, IWebRequest'
+    content.vb: >-
+      Public Class EmbedIOHttpWebRequest
+          Inherits BaseHttpRequest
+          Implements IHttpRequest, IWebRequest
+  inheritance:
+  - System.Object
+  - Butterfly.Core.WebApi.BaseHttpRequest
+  implements:
+  - Butterfly.Core.WebApi.IHttpRequest
+  - Butterfly.Core.Util.IWebRequest
+  inheritedMembers:
+  - Butterfly.Core.WebApi.BaseHttpRequest.logger
+  - Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync
+  - Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync``1
+  - Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream(Action{`0,`1,`2,`3,`4,`5},Action{`0,`1})
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.pathPattern
+  commentId: F:Butterfly.EmbedIO.EmbedIOHttpWebRequest.pathPattern
+  id: pathPattern
+  parent: Butterfly.EmbedIO.EmbedIOHttpWebRequest
+  langs:
+  - csharp
+  - vb
+  name: pathPattern
+  nameWithType: EmbedIOHttpWebRequest.pathPattern
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.pathPattern
+  type: Field
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: pathPattern
+    path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
+    startLine: 86
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: public readonly string pathPattern
+    return:
+      type: System.String
+    content.vb: Public ReadOnly pathPattern As String
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.context
+  commentId: F:Butterfly.EmbedIO.EmbedIOHttpWebRequest.context
+  id: context
+  parent: Butterfly.EmbedIO.EmbedIOHttpWebRequest
+  langs:
+  - csharp
+  - vb
+  name: context
+  nameWithType: EmbedIOHttpWebRequest.context
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.context
+  type: Field
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: context
+    path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
+    startLine: 87
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: public readonly HttpListenerContext context
+    return:
+      type: HttpListenerContext
+    content.vb: Public ReadOnly context As HttpListenerContext
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.#ctor(System.String,HttpListenerContext)
+  commentId: M:Butterfly.EmbedIO.EmbedIOHttpWebRequest.#ctor(System.String,HttpListenerContext)
+  id: '#ctor(System.String,HttpListenerContext)'
+  parent: Butterfly.EmbedIO.EmbedIOHttpWebRequest
+  langs:
+  - csharp
+  - vb
+  name: EmbedIOHttpWebRequest(String, HttpListenerContext)
+  nameWithType: EmbedIOHttpWebRequest.EmbedIOHttpWebRequest(String, HttpListenerContext)
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.EmbedIOHttpWebRequest(System.String, HttpListenerContext)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
+    startLine: 89
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: public EmbedIOHttpWebRequest(string pathPattern, HttpListenerContext context)
+    parameters:
+    - id: pathPattern
+      type: System.String
+    - id: context
+      type: HttpListenerContext
+    content.vb: Public Sub New(pathPattern As String, context As HttpListenerContext)
+  overload: Butterfly.EmbedIO.EmbedIOHttpWebRequest.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.InputStream
+  commentId: P:Butterfly.EmbedIO.EmbedIOHttpWebRequest.InputStream
+  id: InputStream
+  parent: Butterfly.EmbedIO.EmbedIOHttpWebRequest
+  langs:
+  - csharp
+  - vb
+  name: InputStream
+  nameWithType: EmbedIOHttpWebRequest.InputStream
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.InputStream
+  type: Property
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: InputStream
+    path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
+    startLine: 94
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: protected override Stream InputStream { get; }
+    parameters: []
+    return:
+      type: Stream
+    content.vb: Protected Overrides ReadOnly Property InputStream As Stream
+  overridden: Butterfly.Core.WebApi.BaseHttpRequest.InputStream
+  overload: Butterfly.EmbedIO.EmbedIOHttpWebRequest.InputStream*
+  modifiers.csharp:
+  - protected
+  - override
+  - get
+  modifiers.vb:
+  - Protected
+  - Overrides
+  - ReadOnly
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.RequestUrl
+  commentId: P:Butterfly.EmbedIO.EmbedIOHttpWebRequest.RequestUrl
+  id: RequestUrl
+  parent: Butterfly.EmbedIO.EmbedIOHttpWebRequest
+  langs:
+  - csharp
+  - vb
+  name: RequestUrl
+  nameWithType: EmbedIOHttpWebRequest.RequestUrl
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.RequestUrl
+  type: Property
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: RequestUrl
+    path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
+    startLine: 96
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: public override Uri RequestUrl { get; }
+    parameters: []
+    return:
+      type: Uri
+    content.vb: Public Overrides ReadOnly Property RequestUrl As Uri
+  overridden: Butterfly.Core.WebApi.BaseHttpRequest.RequestUrl
+  overload: Butterfly.EmbedIO.EmbedIOHttpWebRequest.RequestUrl*
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.Headers
+  commentId: P:Butterfly.EmbedIO.EmbedIOHttpWebRequest.Headers
+  id: Headers
+  parent: Butterfly.EmbedIO.EmbedIOHttpWebRequest
+  langs:
+  - csharp
+  - vb
+  name: Headers
+  nameWithType: EmbedIOHttpWebRequest.Headers
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.Headers
+  type: Property
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Headers
+    path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
+    startLine: 98
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: public override Dictionary<string, string> Headers { get; }
+    parameters: []
+    return:
+      type: Dictionary{System.String,System.String}
+    content.vb: Public Overrides ReadOnly Property Headers As Dictionary(Of String, String)
+  overridden: Butterfly.Core.WebApi.BaseHttpRequest.Headers
+  overload: Butterfly.EmbedIO.EmbedIOHttpWebRequest.Headers*
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.PathParams
+  commentId: P:Butterfly.EmbedIO.EmbedIOHttpWebRequest.PathParams
+  id: PathParams
+  parent: Butterfly.EmbedIO.EmbedIOHttpWebRequest
+  langs:
+  - csharp
+  - vb
+  name: PathParams
+  nameWithType: EmbedIOHttpWebRequest.PathParams
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.PathParams
+  type: Property
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: PathParams
+    path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
+    startLine: 100
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: public override Dictionary<string, string> PathParams { get; }
+    parameters: []
+    return:
+      type: Dictionary{System.String,System.String}
+    content.vb: Public Overrides ReadOnly Property PathParams As Dictionary(Of String, String)
+  overridden: Butterfly.Core.WebApi.BaseHttpRequest.PathParams
+  overload: Butterfly.EmbedIO.EmbedIOHttpWebRequest.PathParams*
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.QueryParams
+  commentId: P:Butterfly.EmbedIO.EmbedIOHttpWebRequest.QueryParams
+  id: QueryParams
+  parent: Butterfly.EmbedIO.EmbedIOHttpWebRequest
+  langs:
+  - csharp
+  - vb
+  name: QueryParams
+  nameWithType: EmbedIOHttpWebRequest.QueryParams
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.QueryParams
+  type: Property
+  source:
+    remote:
+      path: Butterfly.EmbedIO/EmbedIOWebApi.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: QueryParams
+    path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
+    startLine: 107
+  assemblies:
+  - Butterfly.EmbedIO
+  namespace: Butterfly.EmbedIO
+  syntax:
+    content: public override Dictionary<string, string> QueryParams { get; }
+    parameters: []
+    return:
+      type: Dictionary{System.String,System.String}
+    content.vb: Public Overrides ReadOnly Property QueryParams As Dictionary(Of String, String)
+  overridden: Butterfly.Core.WebApi.BaseHttpRequest.QueryParams
+  overload: Butterfly.EmbedIO.EmbedIOHttpWebRequest.QueryParams*
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
+references:
+- uid: Butterfly.EmbedIO
+  commentId: N:Butterfly.EmbedIO
+  name: Butterfly.EmbedIO
+  nameWithType: Butterfly.EmbedIO
+  fullName: Butterfly.EmbedIO
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.WebApi.BaseHttpRequest
+  commentId: T:Butterfly.Core.WebApi.BaseHttpRequest
+  parent: Butterfly.Core.WebApi
+  name: BaseHttpRequest
+  nameWithType: BaseHttpRequest
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest
+- uid: Butterfly.Core.WebApi.IHttpRequest
+  commentId: T:Butterfly.Core.WebApi.IHttpRequest
+  parent: Butterfly.Core.WebApi
+  name: IHttpRequest
+  nameWithType: IHttpRequest
+  fullName: Butterfly.Core.WebApi.IHttpRequest
+- uid: Butterfly.Core.Util.IWebRequest
+  commentId: T:Butterfly.Core.Util.IWebRequest
+  parent: Butterfly.Core.Util
+  name: IWebRequest
+  nameWithType: IWebRequest
+  fullName: Butterfly.Core.Util.IWebRequest
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.logger
+  commentId: F:Butterfly.Core.WebApi.BaseHttpRequest.logger
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  name: logger
+  nameWithType: BaseHttpRequest.logger
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.logger
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync
+  commentId: M:Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  name: ParseAsUrlEncodedAsync()
+  nameWithType: BaseHttpRequest.ParseAsUrlEncodedAsync()
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync()
+  spec.csharp:
+  - uid: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync
+    name: ParseAsUrlEncodedAsync
+    nameWithType: BaseHttpRequest.ParseAsUrlEncodedAsync
+    fullName: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync
+    name: ParseAsUrlEncodedAsync
+    nameWithType: BaseHttpRequest.ParseAsUrlEncodedAsync
+    fullName: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsUrlEncodedAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync``1
+  commentId: M:Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync``1
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  name: ParseAsJsonAsync<T>()
+  nameWithType: BaseHttpRequest.ParseAsJsonAsync<T>()
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync<T>()
+  nameWithType.vb: BaseHttpRequest.ParseAsJsonAsync(Of T)()
+  fullName.vb: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync(Of T)()
+  name.vb: ParseAsJsonAsync(Of T)()
+  spec.csharp:
+  - uid: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync``1
+    name: ParseAsJsonAsync<T>
+    nameWithType: BaseHttpRequest.ParseAsJsonAsync<T>
+    fullName: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync``1
+    name: ParseAsJsonAsync(Of T)
+    nameWithType: BaseHttpRequest.ParseAsJsonAsync(Of T)
+    fullName: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsJsonAsync(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream(Action{`0,`1,`2,`3,`4,`5},Action{`0,`1})
+  commentId: M:Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream(Action{`0,`1,`2,`3,`4,`5},Action{`0,`1})
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  isExternal: true
+  name: ParseAsMultipartStream(Action<, , , , , >, Action<, >)
+  nameWithType: BaseHttpRequest.ParseAsMultipartStream(Action<, , , , , >, Action<, >)
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream(Action<, , , , , >, Action<, >)
+  nameWithType.vb: BaseHttpRequest.ParseAsMultipartStream(Action(Of , , , , , ), Action(Of , ))
+  fullName.vb: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream(Action(Of , , , , , ), Action(Of , ))
+  name.vb: ParseAsMultipartStream(Action(Of , , , , , ), Action(Of , ))
+  spec.csharp:
+  - uid: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream(Action{`0,`1,`2,`3,`4,`5},Action{`0,`1})
+    name: ParseAsMultipartStream
+    nameWithType: BaseHttpRequest.ParseAsMultipartStream
+    fullName: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Action`6
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream(Action{`0,`1,`2,`3,`4,`5},Action{`0,`1})
+    name: ParseAsMultipartStream
+    nameWithType: BaseHttpRequest.ParseAsMultipartStream
+    fullName: Butterfly.Core.WebApi.BaseHttpRequest.ParseAsMultipartStream
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Action`6
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Action`2
+    name: Action
+    nameWithType: Action
+    fullName: Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.WebApi
+  commentId: N:Butterfly.Core.WebApi
+  name: Butterfly.Core.WebApi
+  nameWithType: Butterfly.Core.WebApi
+  fullName: Butterfly.Core.WebApi
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: HttpListenerContext
+  isExternal: true
+  name: HttpListenerContext
+  nameWithType: HttpListenerContext
+  fullName: HttpListenerContext
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.#ctor*
+  commentId: Overload:Butterfly.EmbedIO.EmbedIOHttpWebRequest.#ctor
+  name: EmbedIOHttpWebRequest
+  nameWithType: EmbedIOHttpWebRequest.EmbedIOHttpWebRequest
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.EmbedIOHttpWebRequest
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.InputStream
+  commentId: P:Butterfly.Core.WebApi.BaseHttpRequest.InputStream
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  name: InputStream
+  nameWithType: BaseHttpRequest.InputStream
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.InputStream
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.InputStream*
+  commentId: Overload:Butterfly.EmbedIO.EmbedIOHttpWebRequest.InputStream
+  name: InputStream
+  nameWithType: EmbedIOHttpWebRequest.InputStream
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.InputStream
+- uid: Stream
+  isExternal: true
+  name: Stream
+  nameWithType: Stream
+  fullName: Stream
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.RequestUrl
+  commentId: P:Butterfly.Core.WebApi.BaseHttpRequest.RequestUrl
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  name: RequestUrl
+  nameWithType: BaseHttpRequest.RequestUrl
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.RequestUrl
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.RequestUrl*
+  commentId: Overload:Butterfly.EmbedIO.EmbedIOHttpWebRequest.RequestUrl
+  name: RequestUrl
+  nameWithType: EmbedIOHttpWebRequest.RequestUrl
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.RequestUrl
+- uid: Uri
+  isExternal: true
+  name: Uri
+  nameWithType: Uri
+  fullName: Uri
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.Headers
+  commentId: P:Butterfly.Core.WebApi.BaseHttpRequest.Headers
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  name: Headers
+  nameWithType: BaseHttpRequest.Headers
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.Headers
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.Headers*
+  commentId: Overload:Butterfly.EmbedIO.EmbedIOHttpWebRequest.Headers
+  name: Headers
+  nameWithType: EmbedIOHttpWebRequest.Headers
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.Headers
+- uid: Dictionary{System.String,System.String}
+  commentId: '!:Dictionary{System.String,System.String}'
+  definition: Dictionary`2
+  name: Dictionary<String, String>
+  nameWithType: Dictionary<String, String>
+  fullName: Dictionary<System.String, System.String>
+  nameWithType.vb: Dictionary(Of String, String)
+  fullName.vb: Dictionary(Of System.String, System.String)
+  name.vb: Dictionary(Of String, String)
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Dictionary`2
+  isExternal: true
+  name: Dictionary<, >
+  nameWithType: Dictionary<, >
+  fullName: Dictionary<, >
+  nameWithType.vb: Dictionary(Of , )
+  fullName.vb: Dictionary(Of , )
+  name.vb: Dictionary(Of , )
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.PathParams
+  commentId: P:Butterfly.Core.WebApi.BaseHttpRequest.PathParams
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  name: PathParams
+  nameWithType: BaseHttpRequest.PathParams
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.PathParams
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.PathParams*
+  commentId: Overload:Butterfly.EmbedIO.EmbedIOHttpWebRequest.PathParams
+  name: PathParams
+  nameWithType: EmbedIOHttpWebRequest.PathParams
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.PathParams
+- uid: Butterfly.Core.WebApi.BaseHttpRequest.QueryParams
+  commentId: P:Butterfly.Core.WebApi.BaseHttpRequest.QueryParams
+  parent: Butterfly.Core.WebApi.BaseHttpRequest
+  name: QueryParams
+  nameWithType: BaseHttpRequest.QueryParams
+  fullName: Butterfly.Core.WebApi.BaseHttpRequest.QueryParams
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.QueryParams*
+  commentId: Overload:Butterfly.EmbedIO.EmbedIOHttpWebRequest.QueryParams
+  name: QueryParams
+  nameWithType: EmbedIOHttpWebRequest.QueryParams
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.QueryParams
+shouldSkipMarkup: true

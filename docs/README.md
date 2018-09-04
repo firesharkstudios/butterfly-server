@@ -1,15 +1,13 @@
 
 # Overview
 
-This animation shows an [example](#example) application with three clients automatically sychronized with Butterfly Server .NET...
-
 ![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/demo.gif) 
 
-Butterfly Server .NET provides...
+Butterfly Server .NET allows...
 
-- Ability to define a [Web API](#creating-a-web-api)
-- Ability to define a [Subscription API](#creating-a-subscription-api) that allow pushing real-time data to clients
-- Ability to modify, retrieve, and publish data change events on a [Database](#accessing-a-database)
+- Defining a [Web API](#creating-a-web-api)
+- Defining a [Subscription API](#creating-a-subscription-api) that allow pushing real-time data to clients
+- Subscribing to data change events on [Databases](#accessing-a-database) and [Dynamic Views](#using-dynamic-views)
 
 Also, Butterfly Server .NET...
 
@@ -17,7 +15,6 @@ Also, Butterfly Server .NET...
 - Fully supports async/await
 - Does **not** depend on ASP.NET
 - Does **not** use polling
-
 
 An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/) can be found [here](https://medium.com/@kent_19698/build-a-real-time-chat-app-from-scratch-using-vue-js-and-c-in-5-minutes-599387bdccbb).
 
@@ -36,9 +33,13 @@ An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/
 
 Get the source from [GitHub](https://github.com/firesharkstudios/butterfly-server-dotnet).
 
-# Example
+# Examples
 
-You can see an animation of running this example in the [Overview](#overview) section.
+You can try these examples...
+
+- [Hello World](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.HelloWorld) - Shows *Hello World* in an alert box on the client
+- [Database](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Database) - Shows data change events on a [Dynamic View](#using-dynamic-views) in a console
+- [Todo Manager](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) - Shows a simple *Todo* web app using [Vuetify](https://vuetifyjs.com) on the client
 
 ## Try It
 
@@ -47,126 +48,21 @@ Run this in a terminal or command prompt...
 ```
 git clone https://github.com/firesharkstudios/butterfly-server-dotnet
 
-cd butterfly-server-dotnet\Butterfly.Example.Todo.Server
+cd butterfly-server-dotnet\Butterfly.Example.Todo
 dotnet run -vm
 ```
 
 Run this in a second terminal or command prompt...
 
 ```
-cd butterfly-server-dotnet\Butterfly.Example.Todo.Client
+cd butterfly-server-dotnet\Butterfly.Example.Todo\www
 npm install
 npm run dev
 ```
 
 You should see http://localhost:8080/ open in a browser. Try opening a second browser instance at http://localhost:8080/. Notice that changes are automatically synchronized between the two browser instances.
 
-There is also a [Cordova Todo Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.CordovaClient) and an [Electron Todo Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.ElectronClient).
-
-## The Server
-
-Here is all server code for our todo list manager...
-
-```csharp
-using System;
-
-using Butterfly.Core.Util;
-
-using Dict = System.Collections.Generic.Dictionary<string, object>;
-
-namespace Butterfly.Example.HelloWorld.Server {
-    class Program {
-        static void Main(string[] args) {
-            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/")) {
-                // Create a MemoryDatabase (no persistence, limited features)
-                var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-                database.CreateFromText(@"CREATE TABLE todo (
-	                id VARCHAR(50) NOT NULL,
-	                name VARCHAR(40) NOT NULL,
-	                PRIMARY KEY(id)
-                );");
-                database.SetDefaultValue("id", tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}");
-
-                // Listen for API requests
-                embedIOContext.WebApi.OnPost("/api/todo/insert", async (req, res) => {
-                    var todo = await req.ParseAsJsonAsync<Dict>();
-                    await database.InsertAndCommitAsync<string>("todo", todo);
-                });
-                embedIOContext.WebApi.OnPost("/api/todo/delete", async (req, res) => {
-                    var id = await req.ParseAsJsonAsync<string>();
-                    await database.DeleteAndCommitAsync("todo", id);
-                });
-
-                // Listen for subscribe requests...
-                // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
-                // - The handler can push data to the client by calling channel.Queue()
-                embedIOContext.SubscriptionApi.OnSubscribe("todos", (vars, channel) => {
-                    return database.CreateAndStartDynamicViewAsync("SELECT * FROM todo", dataEventTransaction => channel.Queue(dataEventTransaction));
-                });
-
-                embedIOContext.Start();
-
-                Console.ReadLine();
-            }
-        }
-    }
-}
-```
-
-The above C# code...
-- Creates a Memory [database](#accessing-a-database) with a single *todo* table
-- Defines a [Web API](#creating-a-web-api) to insert and delete *todo* records
-- Defines a [Subscription API](#creating-a-subscription-api) to subscribe to a *todos* subscription
-
-Clients are expected to...
-- Use the subscription API to subscribe to the *todos* subscription to get a list of all initial *todo* records and any changes to the *todo* records
-- Use the defined web API to insert and delete *todo* records
-
-See [Todo Server](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Server) for the working server code.
-
-## The Client
-
-Now, let's see how a client might interact with this server using the [Butterfly Client](#butterfly-client) javascript library.
-
-First, the client should use *WebSocketChannelClient* to maintain an open WebSocket to the server...
-
-```js
-let channelClient = new WebSocketChannelClient({
-    url: `ws://${window.location.host}/ws`
-});
-channelClient.connect();
-```
-
-Next, the client will want to subscribe to a channel to receive data...
-
-```js
-let todosList = [];
-channelClient.subscribe({
-    channel: 'todos',
-    handler: new ArrayDataEventHandler({
-        arrayMapping: {
-            todo: todosList
-        }
-    })
-});
-```
-
-This subscription will cause the local *todosList* array to be synchronized with the *todo* records on the server.
-
-Next, let's invoke a method on our API to add a new *todo* record (use whatever client HTTP library you wish)...
-
-```js
-$.ajax('/api/todo/insert', {
-  method: 'POST',
-  data: JSON.stringify({
-    name: 'My First To-Do',
-  }),
-});
-```
-
-After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be sychronized from the server to the client's local *todosList* array.
-
-See [Butterfly.Example.Todo.Client](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo.Client) for a full working client based on [Vuetify](https://vuetifyjs.com) and [Vue.js](https://vuejs.org/).
+Click [here](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) to see instructions for the Cordova and Electron clients.
 
 # Concepts
 
@@ -698,12 +594,12 @@ database.AddInputPreprocessor(BaseDatabase.CopyFieldValue("$UPDATED_AT$", "updat
 A [DynamicViewSet](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicViewSet.html) allows...
 
 - Defining multiple [DynamicView](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicView.html) instances using a familiar SELECT syntax
-- Publishing the initial datasets as a single [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) instance
+- Publishing the initial rows as a single [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) instance
 - Publishing any changes as new [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) instances
 
 Each [DynamicView](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicView.html) instance must...
 
-- Have a unique name (defaults to the first table name in the SELECT)
+- Have a unique name (defaults to the first table name in the SELECT) within a [DynamicViewSet](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Dynamic.DynamicViewSet.html)
 - Have key field(s) that uniquely identify each row (defaults to the primary key of the first table in the SELECT) 
 
 You can use the [Butterfly Client](#butterfly-client) libraries to consume these [DataEventTransaction](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.Event.DataEventTransaction.html) instances to keep local javascript arrays synchronized with your server.
@@ -823,7 +719,7 @@ dataEventTransaction={
 }
 ```
 
-You can run a more robust example [here](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.DatabaseDemo/Program.cs).
+You can run a more robust example [here](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Database/Program.cs).
 
 ## Implementations
 
@@ -964,6 +860,57 @@ channelClient.subscribe(
 # API Documentation
 
 Click [here](https://butterflyserver.io/docfx/api/) for the API Documentation
+
+# Running on Raspberry Pi
+
+These steps worked to get Butterfly Server .NET running on a *Raspberry Pi 3 B+*...
+
+```
+# Install dotnet (per https://www.hanselman.com/blog/BuildingRunningAndTestingNETCoreAndASPNETCore21InDockerOnARaspberryPiARM32.aspx)...
+
+sudo apt-get -y update
+sudo apt-get -y install libunwind8 gettext
+wget https://dotnetcli.blob.core.windows.net/dotnet/Sdk/2.1.300-rc1-008673/dotnet-sdk-2.1.300-rc1-008673-linux-arm.tar.gz
+sudo mkdir /opt/dotnet
+sudo tar -xvf dotnet-sdk-2.1.300-rc1-008673-linux-arm.tar.gz -C /opt/dotnet/
+sudo ln -s /opt/dotnet/dotnet /usr/local/bin
+dotnet --info
+
+# Install node (per https://linux.tips/tutorials/how-to-install-latest-version-of-node-js-on-raspberry-pi-3)...
+
+sudo -i
+curl -L https://git.io/n-install | bash
+. /root/.bashrc
+exit
+
+# Create server...
+
+sudo mkdir -p /opt/chat
+cd /opt/chat
+sudo dotnet new console
+sudo dotnet add package Butterfly.Core
+sudo dotnet add package Butterfly.EmbedIO
+
+# Copy and paste Program.cs from https://medium.com/@kent_19698/build-a-real-time-chat-app-from-scratch-using-vue-js-and-c-in-5-minutes-599387bdccbb
+# Edit Program.cs to replace "../../../www" with args[0]
+
+# Create www site...
+
+sudo -i
+mkdir www
+cd www
+npm init
+npm install vue reqwest butterfly-client
+exit
+
+# Copy and paste index.html from https://medium.com/@kent_19698/build-a-real-time-chat-app-from-scratch-using-vue-js-and-c-in-5-minutes-599387bdccbb
+
+# Run it...
+
+sudo dotnet run /opt/chat/www
+
+# Open http://<raspberry-pi-ip-address>:8000 from any machine on same network
+```
 
 # In the Wild
 

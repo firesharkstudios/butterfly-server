@@ -288,9 +288,8 @@ namespace Butterfly.Core.Auth {
                 Dict registration = await req.ParseAsJsonAsync<Dict>();
                 AuthToken authToken = await this.RegisterAsync(registration, new Dict {
                     { "host_name", Dns.GetHostName() },
-                    { "user_agent", req.UserAgent },
-                    { "user_host_address", req.UserHostAddress },
-                    { "user_host_name", req.UserHostName },
+                    { "user_agent", req.Headers.GetAs("User-Agent", "") },
+                    { "user_host_name", req.Headers.GetAs("Host", "") },
                 });
                 await res.WriteAsJsonAsync(authToken);
             });

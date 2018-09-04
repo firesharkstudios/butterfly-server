@@ -96,12 +96,6 @@ namespace Butterfly.EmbedIO {
 
         public override Uri RequestUrl => this.context.Request.Url;
 
-        public override string UserAgent => this.context.Request.UserAgent;
-
-        public override string UserHostAddress => this.context.Request.UserHostAddress;
-
-        public override string UserHostName => this.context.Request.UserHostName;
-
         public override Dictionary<string, string> Headers => this.context.Request.Headers?.ToDictionary(forceUpperCaseKeys: true);
 
         public override Dictionary<string, string> PathParams {

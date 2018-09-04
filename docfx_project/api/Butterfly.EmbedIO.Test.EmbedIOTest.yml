@@ -1,0 +1,132 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.EmbedIO.Test.EmbedIOTest
+  commentId: T:Butterfly.EmbedIO.Test.EmbedIOTest
+  id: EmbedIOTest
+  parent: Butterfly.EmbedIO.Test
+  children:
+  - Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel
+  - Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb
+  langs:
+  - csharp
+  - vb
+  name: EmbedIOTest
+  nameWithType: EmbedIOTest
+  fullName: Butterfly.EmbedIO.Test.EmbedIOTest
+  type: Class
+  source:
+    remote:
+      path: Butterfly.RHttpServer.Test/RHttpServerTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: EmbedIOTest
+    path: ../Butterfly.RHttpServer.Test/RHttpServerTest.cs
+    startLine: 13
+  assemblies:
+  - Butterfly.RHttpServer.Test
+  namespace: Butterfly.EmbedIO.Test
+  syntax:
+    content: 'public class EmbedIOTest : object'
+    content.vb: >-
+      Public Class EmbedIOTest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel
+  commentId: M:Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel
+  id: EmbedIOChannel
+  parent: Butterfly.EmbedIO.Test.EmbedIOTest
+  langs:
+  - csharp
+  - vb
+  name: EmbedIOChannel()
+  nameWithType: EmbedIOTest.EmbedIOChannel()
+  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.RHttpServer.Test/RHttpServerTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: EmbedIOChannel
+    path: ../Butterfly.RHttpServer.Test/RHttpServerTest.cs
+    startLine: 15
+  assemblies:
+  - Butterfly.RHttpServer.Test
+  namespace: Butterfly.EmbedIO.Test
+  syntax:
+    content: public Task EmbedIOChannel()
+    return:
+      type: Task
+    content.vb: Public Function EmbedIOChannel As Task
+  overload: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb
+  commentId: M:Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb
+  id: EmbedIOWeb
+  parent: Butterfly.EmbedIO.Test.EmbedIOTest
+  langs:
+  - csharp
+  - vb
+  name: EmbedIOWeb()
+  nameWithType: EmbedIOTest.EmbedIOWeb()
+  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.RHttpServer.Test/RHttpServerTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: EmbedIOWeb
+    path: ../Butterfly.RHttpServer.Test/RHttpServerTest.cs
+    startLine: 25
+  assemblies:
+  - Butterfly.RHttpServer.Test
+  namespace: Butterfly.EmbedIO.Test
+  syntax:
+    content: public Task EmbedIOWeb()
+    return:
+      type: Task
+    content.vb: Public Function EmbedIOWeb As Task
+  overload: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.EmbedIO.Test
+  commentId: N:Butterfly.EmbedIO.Test
+  name: Butterfly.EmbedIO.Test
+  nameWithType: Butterfly.EmbedIO.Test
+  fullName: Butterfly.EmbedIO.Test
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel*
+  commentId: Overload:Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel
+  name: EmbedIOChannel
+  nameWithType: EmbedIOTest.EmbedIOChannel
+  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb*
+  commentId: Overload:Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb
+  name: EmbedIOWeb
+  nameWithType: EmbedIOTest.EmbedIOWeb
+  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb
+shouldSkipMarkup: true

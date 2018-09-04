@@ -1,0 +1,343 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.Field.PhoneFieldValidator
+  commentId: T:Butterfly.Core.Util.Field.PhoneFieldValidator
+  id: PhoneFieldValidator
+  parent: Butterfly.Core.Util.Field
+  children:
+  - Butterfly.Core.Util.Field.PhoneFieldValidator.#ctor(System.String,System.Boolean)
+  - Butterfly.Core.Util.Field.PhoneFieldValidator.allowNull
+  - Butterfly.Core.Util.Field.PhoneFieldValidator.logger
+  - Butterfly.Core.Util.Field.PhoneFieldValidator.name
+  - Butterfly.Core.Util.Field.PhoneFieldValidator.NON_PHONE_CHARS
+  - Butterfly.Core.Util.Field.PhoneFieldValidator.Validate(System.String)
+  langs:
+  - csharp
+  - vb
+  name: PhoneFieldValidator
+  nameWithType: PhoneFieldValidator
+  fullName: Butterfly.Core.Util.Field.PhoneFieldValidator
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: PhoneFieldValidator
+    path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
+    startLine: 9
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: 'public class PhoneFieldValidator : object, IFieldValidator'
+    content.vb: >-
+      Public Class PhoneFieldValidator
+          Inherits Object
+          Implements IFieldValidator
+  inheritance:
+  - System.Object
+  implements:
+  - Butterfly.Core.Util.Field.IFieldValidator
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Util.Field.PhoneFieldValidator.logger
+  commentId: F:Butterfly.Core.Util.Field.PhoneFieldValidator.logger
+  id: logger
+  parent: Butterfly.Core.Util.Field.PhoneFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: logger
+  nameWithType: PhoneFieldValidator.logger
+  fullName: Butterfly.Core.Util.Field.PhoneFieldValidator.logger
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: logger
+    path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
+    startLine: 10
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected static readonly Logger logger
+    return:
+      type: Logger
+    content.vb: Protected Shared ReadOnly logger As Logger
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.PhoneFieldValidator.name
+  commentId: F:Butterfly.Core.Util.Field.PhoneFieldValidator.name
+  id: name
+  parent: Butterfly.Core.Util.Field.PhoneFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: name
+  nameWithType: PhoneFieldValidator.name
+  fullName: Butterfly.Core.Util.Field.PhoneFieldValidator.name
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: name
+    path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
+    startLine: 12
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected readonly string name
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly name As String
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.PhoneFieldValidator.allowNull
+  commentId: F:Butterfly.Core.Util.Field.PhoneFieldValidator.allowNull
+  id: allowNull
+  parent: Butterfly.Core.Util.Field.PhoneFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: allowNull
+  nameWithType: PhoneFieldValidator.allowNull
+  fullName: Butterfly.Core.Util.Field.PhoneFieldValidator.allowNull
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: allowNull
+    path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
+    startLine: 13
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected readonly bool allowNull
+    return:
+      type: System.Boolean
+    content.vb: Protected ReadOnly allowNull As Boolean
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.PhoneFieldValidator.NON_PHONE_CHARS
+  commentId: F:Butterfly.Core.Util.Field.PhoneFieldValidator.NON_PHONE_CHARS
+  id: NON_PHONE_CHARS
+  parent: Butterfly.Core.Util.Field.PhoneFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: NON_PHONE_CHARS
+  nameWithType: PhoneFieldValidator.NON_PHONE_CHARS
+  fullName: Butterfly.Core.Util.Field.PhoneFieldValidator.NON_PHONE_CHARS
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: NON_PHONE_CHARS
+    path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
+    startLine: 15
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected static readonly Regex NON_PHONE_CHARS
+    return:
+      type: Regex
+    content.vb: Protected Shared ReadOnly NON_PHONE_CHARS As Regex
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.PhoneFieldValidator.#ctor(System.String,System.Boolean)
+  commentId: M:Butterfly.Core.Util.Field.PhoneFieldValidator.#ctor(System.String,System.Boolean)
+  id: '#ctor(System.String,System.Boolean)'
+  parent: Butterfly.Core.Util.Field.PhoneFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: PhoneFieldValidator(String, Boolean)
+  nameWithType: PhoneFieldValidator.PhoneFieldValidator(String, Boolean)
+  fullName: Butterfly.Core.Util.Field.PhoneFieldValidator.PhoneFieldValidator(System.String, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
+    startLine: 17
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: public PhoneFieldValidator(string name, bool allowNull = true)
+    parameters:
+    - id: name
+      type: System.String
+    - id: allowNull
+      type: System.Boolean
+    content.vb: Public Sub New(name As String, allowNull As Boolean = True)
+  overload: Butterfly.Core.Util.Field.PhoneFieldValidator.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Util.Field.PhoneFieldValidator.Validate(System.String)
+  commentId: M:Butterfly.Core.Util.Field.PhoneFieldValidator.Validate(System.String)
+  id: Validate(System.String)
+  parent: Butterfly.Core.Util.Field.PhoneFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: Validate(String)
+  nameWithType: PhoneFieldValidator.Validate(String)
+  fullName: Butterfly.Core.Util.Field.PhoneFieldValidator.Validate(System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Validate
+    path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
+    startLine: 22
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: public string Validate(string value)
+    parameters:
+    - id: value
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Function Validate(value As String) As String
+  overload: Butterfly.Core.Util.Field.PhoneFieldValidator.Validate*
+  implements:
+  - Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.Core.Util.Field
+  commentId: N:Butterfly.Core.Util.Field
+  name: Butterfly.Core.Util.Field
+  nameWithType: Butterfly.Core.Util.Field
+  fullName: Butterfly.Core.Util.Field
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Util.Field.IFieldValidator
+  commentId: T:Butterfly.Core.Util.Field.IFieldValidator
+  parent: Butterfly.Core.Util.Field
+  name: IFieldValidator
+  nameWithType: IFieldValidator
+  fullName: Butterfly.Core.Util.Field.IFieldValidator
+- uid: Logger
+  isExternal: true
+  name: Logger
+  nameWithType: Logger
+  fullName: Logger
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Regex
+  isExternal: true
+  name: Regex
+  nameWithType: Regex
+  fullName: Regex
+- uid: Butterfly.Core.Util.Field.PhoneFieldValidator.#ctor*
+  commentId: Overload:Butterfly.Core.Util.Field.PhoneFieldValidator.#ctor
+  name: PhoneFieldValidator
+  nameWithType: PhoneFieldValidator.PhoneFieldValidator
+  fullName: Butterfly.Core.Util.Field.PhoneFieldValidator.PhoneFieldValidator
+- uid: Butterfly.Core.Util.Field.PhoneFieldValidator.Validate*
+  commentId: Overload:Butterfly.Core.Util.Field.PhoneFieldValidator.Validate
+  name: Validate
+  nameWithType: PhoneFieldValidator.Validate
+  fullName: Butterfly.Core.Util.Field.PhoneFieldValidator.Validate
+- uid: Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  commentId: M:Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  parent: Butterfly.Core.Util.Field.IFieldValidator
+  isExternal: true
+  name: Validate(String)
+  nameWithType: IFieldValidator.Validate(String)
+  fullName: Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  spec.csharp:
+  - uid: Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+    name: Validate
+    nameWithType: IFieldValidator.Validate
+    fullName: Butterfly.Core.Util.Field.IFieldValidator.Validate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+    name: Validate
+    nameWithType: IFieldValidator.Validate
+    fullName: Butterfly.Core.Util.Field.IFieldValidator.Validate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+shouldSkipMarkup: true

@@ -1,0 +1,124 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Test.WebApiUnitTest
+  commentId: T:Butterfly.Core.Test.WebApiUnitTest
+  id: WebApiUnitTest
+  parent: Butterfly.Core.Test
+  children:
+  - Butterfly.Core.Test.WebApiUnitTest.TestWeb(Butterfly.Core.WebApi.IWebApi,System.String,Action)
+  langs:
+  - csharp
+  - vb
+  name: WebApiUnitTest
+  nameWithType: WebApiUnitTest
+  fullName: Butterfly.Core.Test.WebApiUnitTest
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core.Test/WebApiUnitTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: WebApiUnitTest
+    path: ../Butterfly.Core.Test/WebApiUnitTest.cs
+    startLine: 13
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: 'public class WebApiUnitTest : object'
+    content.vb: >-
+      Public Class WebApiUnitTest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Test.WebApiUnitTest.TestWeb(Butterfly.Core.WebApi.IWebApi,System.String,Action)
+  commentId: M:Butterfly.Core.Test.WebApiUnitTest.TestWeb(Butterfly.Core.WebApi.IWebApi,System.String,Action)
+  id: TestWeb(Butterfly.Core.WebApi.IWebApi,System.String,Action)
+  parent: Butterfly.Core.Test.WebApiUnitTest
+  langs:
+  - csharp
+  - vb
+  name: TestWeb(IWebApi, String, Action)
+  nameWithType: WebApiUnitTest.TestWeb(IWebApi, String, Action)
+  fullName: Butterfly.Core.Test.WebApiUnitTest.TestWeb(Butterfly.Core.WebApi.IWebApi, System.String, Action)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core.Test/WebApiUnitTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TestWeb
+    path: ../Butterfly.Core.Test/WebApiUnitTest.cs
+    startLine: 15
+  assemblies:
+  - Butterfly.Core.Test
+  namespace: Butterfly.Core.Test
+  syntax:
+    content: public static Task TestWeb(IWebApi webServer, string url, Action start)
+    parameters:
+    - id: webServer
+      type: Butterfly.Core.WebApi.IWebApi
+    - id: url
+      type: System.String
+    - id: start
+      type: Action
+    return:
+      type: Task
+    content.vb: Public Shared Function TestWeb(webServer As IWebApi, url As String, start As Action) As Task
+  overload: Butterfly.Core.Test.WebApiUnitTest.TestWeb*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Butterfly.Core.Test
+  commentId: N:Butterfly.Core.Test
+  name: Butterfly.Core.Test
+  nameWithType: Butterfly.Core.Test
+  fullName: Butterfly.Core.Test
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Test.WebApiUnitTest.TestWeb*
+  commentId: Overload:Butterfly.Core.Test.WebApiUnitTest.TestWeb
+  name: TestWeb
+  nameWithType: WebApiUnitTest.TestWeb
+  fullName: Butterfly.Core.Test.WebApiUnitTest.TestWeb
+- uid: Butterfly.Core.WebApi.IWebApi
+  commentId: T:Butterfly.Core.WebApi.IWebApi
+  parent: Butterfly.Core.WebApi
+  name: IWebApi
+  nameWithType: IWebApi
+  fullName: Butterfly.Core.WebApi.IWebApi
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Action
+  isExternal: true
+  name: Action
+  nameWithType: Action
+  fullName: Action
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Butterfly.Core.WebApi
+  commentId: N:Butterfly.Core.WebApi
+  name: Butterfly.Core.WebApi
+  nameWithType: Butterfly.Core.WebApi
+  fullName: Butterfly.Core.WebApi
+shouldSkipMarkup: true

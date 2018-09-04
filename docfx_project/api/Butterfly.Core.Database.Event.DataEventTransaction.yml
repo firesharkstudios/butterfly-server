@@ -1,0 +1,642 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.Event.DataEventTransaction
+  commentId: T:Butterfly.Core.Database.Event.DataEventTransaction
+  id: DataEventTransaction
+  parent: Butterfly.Core.Database.Event
+  children:
+  - Butterfly.Core.Database.Event.DataEventTransaction.#ctor(DateTime,Butterfly.Core.Database.Event.DataEvent[])
+  - Butterfly.Core.Database.Event.DataEventTransaction.dataEvents
+  - Butterfly.Core.Database.Event.DataEventTransaction.dateTime
+  - Butterfly.Core.Database.Event.DataEventTransaction.Fetch(System.String)
+  - Butterfly.Core.Database.Event.DataEventTransaction.FilterDataEvents(Butterfly.Core.Database.Event.DataEventTransaction,Func{Butterfly.Core.Database.Event.DataEvent,System.Boolean})
+  - Butterfly.Core.Database.Event.DataEventTransaction.storage
+  - Butterfly.Core.Database.Event.DataEventTransaction.Store(System.String,System.Object)
+  - Butterfly.Core.Database.Event.DataEventTransaction.ToString
+  langs:
+  - csharp
+  - vb
+  name: DataEventTransaction
+  nameWithType: DataEventTransaction
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEventTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DataEventTransaction
+    path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
+    startLine: 18
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  summary: "\nRepresents a series of <xref href=\"Butterfly.Core.Database.Event.DataEvent\" data-throw-if-not-resolved=\"false\"></xref> instances resulting either\nfrom an initial query or from committing an <xref href=\"Butterfly.Core.Database.IDatabase\" data-throw-if-not-resolved=\"false\"></xref> transaction\n"
+  example: []
+  syntax:
+    content: 'public class DataEventTransaction : object'
+    content.vb: >-
+      Public Class DataEventTransaction
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Database.Event.DataEventTransaction.dateTime
+  commentId: F:Butterfly.Core.Database.Event.DataEventTransaction.dateTime
+  id: dateTime
+  parent: Butterfly.Core.Database.Event.DataEventTransaction
+  langs:
+  - csharp
+  - vb
+  name: dateTime
+  nameWithType: DataEventTransaction.dateTime
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction.dateTime
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEventTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: dateTime
+    path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
+    startLine: 19
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public readonly DateTime dateTime
+    return:
+      type: DateTime
+    content.vb: Public ReadOnly dateTime As DateTime
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Database.Event.DataEventTransaction.dataEvents
+  commentId: F:Butterfly.Core.Database.Event.DataEventTransaction.dataEvents
+  id: dataEvents
+  parent: Butterfly.Core.Database.Event.DataEventTransaction
+  langs:
+  - csharp
+  - vb
+  name: dataEvents
+  nameWithType: DataEventTransaction.dataEvents
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction.dataEvents
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEventTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: dataEvents
+    path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
+    startLine: 20
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public readonly DataEvent[] dataEvents
+    return:
+      type: Butterfly.Core.Database.Event.DataEvent[]
+    content.vb: Public ReadOnly dataEvents As DataEvent()
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Database.Event.DataEventTransaction.storage
+  commentId: F:Butterfly.Core.Database.Event.DataEventTransaction.storage
+  id: storage
+  parent: Butterfly.Core.Database.Event.DataEventTransaction
+  langs:
+  - csharp
+  - vb
+  name: storage
+  nameWithType: DataEventTransaction.storage
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction.storage
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEventTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: storage
+    path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
+    startLine: 22
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: protected readonly Dictionary<string, object> storage
+    return:
+      type: Dictionary{System.String,System.Object}
+    content.vb: Protected ReadOnly storage As Dictionary(Of String, Object)
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Database.Event.DataEventTransaction.#ctor(DateTime,Butterfly.Core.Database.Event.DataEvent[])
+  commentId: M:Butterfly.Core.Database.Event.DataEventTransaction.#ctor(DateTime,Butterfly.Core.Database.Event.DataEvent[])
+  id: '#ctor(DateTime,Butterfly.Core.Database.Event.DataEvent[])'
+  parent: Butterfly.Core.Database.Event.DataEventTransaction
+  langs:
+  - csharp
+  - vb
+  name: DataEventTransaction(DateTime, DataEvent[])
+  nameWithType: DataEventTransaction.DataEventTransaction(DateTime, DataEvent[])
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction.DataEventTransaction(DateTime, Butterfly.Core.Database.Event.DataEvent[])
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEventTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
+    startLine: 24
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public DataEventTransaction(DateTime dateTime, DataEvent[] dataEvents)
+    parameters:
+    - id: dateTime
+      type: DateTime
+    - id: dataEvents
+      type: Butterfly.Core.Database.Event.DataEvent[]
+    content.vb: Public Sub New(dateTime As DateTime, dataEvents As DataEvent())
+  overload: Butterfly.Core.Database.Event.DataEventTransaction.#ctor*
+  nameWithType.vb: DataEventTransaction.DataEventTransaction(DateTime, DataEvent())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Database.Event.DataEventTransaction.DataEventTransaction(DateTime, Butterfly.Core.Database.Event.DataEvent())
+  name.vb: DataEventTransaction(DateTime, DataEvent())
+- uid: Butterfly.Core.Database.Event.DataEventTransaction.Store(System.String,System.Object)
+  commentId: M:Butterfly.Core.Database.Event.DataEventTransaction.Store(System.String,System.Object)
+  id: Store(System.String,System.Object)
+  parent: Butterfly.Core.Database.Event.DataEventTransaction
+  langs:
+  - csharp
+  - vb
+  name: Store(String, Object)
+  nameWithType: DataEventTransaction.Store(String, Object)
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction.Store(System.String, System.Object)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEventTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Store
+    path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
+    startLine: 29
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public void Store(string key, object obj)
+    parameters:
+    - id: key
+      type: System.String
+    - id: obj
+      type: System.Object
+    content.vb: Public Sub Store(key As String, obj As Object)
+  overload: Butterfly.Core.Database.Event.DataEventTransaction.Store*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Database.Event.DataEventTransaction.Fetch(System.String)
+  commentId: M:Butterfly.Core.Database.Event.DataEventTransaction.Fetch(System.String)
+  id: Fetch(System.String)
+  parent: Butterfly.Core.Database.Event.DataEventTransaction
+  langs:
+  - csharp
+  - vb
+  name: Fetch(String)
+  nameWithType: DataEventTransaction.Fetch(String)
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction.Fetch(System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEventTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Fetch
+    path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
+    startLine: 31
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public object Fetch(string key)
+    parameters:
+    - id: key
+      type: System.String
+    return:
+      type: System.Object
+    content.vb: Public Function Fetch(key As String) As Object
+  overload: Butterfly.Core.Database.Event.DataEventTransaction.Fetch*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Database.Event.DataEventTransaction.ToString
+  commentId: M:Butterfly.Core.Database.Event.DataEventTransaction.ToString
+  id: ToString
+  parent: Butterfly.Core.Database.Event.DataEventTransaction
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: DataEventTransaction.ToString()
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction.ToString()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEventTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ToString
+    path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
+    startLine: 36
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString As String
+  overload: Butterfly.Core.Database.Event.DataEventTransaction.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: Butterfly.Core.Database.Event.DataEventTransaction.FilterDataEvents(Butterfly.Core.Database.Event.DataEventTransaction,Func{Butterfly.Core.Database.Event.DataEvent,System.Boolean})
+  commentId: M:Butterfly.Core.Database.Event.DataEventTransaction.FilterDataEvents(Butterfly.Core.Database.Event.DataEventTransaction,Func{Butterfly.Core.Database.Event.DataEvent,System.Boolean})
+  id: FilterDataEvents(Butterfly.Core.Database.Event.DataEventTransaction,Func{Butterfly.Core.Database.Event.DataEvent,System.Boolean})
+  parent: Butterfly.Core.Database.Event.DataEventTransaction
+  langs:
+  - csharp
+  - vb
+  name: FilterDataEvents(DataEventTransaction, Func<DataEvent, Boolean>)
+  nameWithType: DataEventTransaction.FilterDataEvents(DataEventTransaction, Func<DataEvent, Boolean>)
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction.FilterDataEvents(Butterfly.Core.Database.Event.DataEventTransaction, Func<Butterfly.Core.Database.Event.DataEvent, System.Boolean>)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Database/Event/DataEventTransaction.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: FilterDataEvents
+    path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
+    startLine: 40
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database.Event
+  syntax:
+    content: public static DataEventTransaction FilterDataEvents(DataEventTransaction dataEventTransaction, Func<DataEvent, bool> dataEventFilter)
+    parameters:
+    - id: dataEventTransaction
+      type: Butterfly.Core.Database.Event.DataEventTransaction
+    - id: dataEventFilter
+      type: Func{Butterfly.Core.Database.Event.DataEvent,System.Boolean}
+    return:
+      type: Butterfly.Core.Database.Event.DataEventTransaction
+    content.vb: Public Shared Function FilterDataEvents(dataEventTransaction As DataEventTransaction, dataEventFilter As Func(Of DataEvent, Boolean)) As DataEventTransaction
+  overload: Butterfly.Core.Database.Event.DataEventTransaction.FilterDataEvents*
+  nameWithType.vb: DataEventTransaction.FilterDataEvents(DataEventTransaction, Func(Of DataEvent, Boolean))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Butterfly.Core.Database.Event.DataEventTransaction.FilterDataEvents(Butterfly.Core.Database.Event.DataEventTransaction, Func(Of Butterfly.Core.Database.Event.DataEvent, System.Boolean))
+  name.vb: FilterDataEvents(DataEventTransaction, Func(Of DataEvent, Boolean))
+references:
+- uid: Butterfly.Core.Database.Event.DataEvent
+  commentId: T:Butterfly.Core.Database.Event.DataEvent
+  parent: Butterfly.Core.Database.Event
+  name: DataEvent
+  nameWithType: DataEvent
+  fullName: Butterfly.Core.Database.Event.DataEvent
+- uid: Butterfly.Core.Database.IDatabase
+  commentId: T:Butterfly.Core.Database.IDatabase
+  parent: Butterfly.Core.Database
+  name: IDatabase
+  nameWithType: IDatabase
+  fullName: Butterfly.Core.Database.IDatabase
+- uid: Butterfly.Core.Database.Event
+  commentId: N:Butterfly.Core.Database.Event
+  name: Butterfly.Core.Database.Event
+  nameWithType: Butterfly.Core.Database.Event
+  fullName: Butterfly.Core.Database.Event
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: DateTime
+  isExternal: true
+  name: DateTime
+  nameWithType: DateTime
+  fullName: DateTime
+- uid: Butterfly.Core.Database.Event.DataEvent[]
+  isExternal: true
+  name: DataEvent[]
+  nameWithType: DataEvent[]
+  fullName: Butterfly.Core.Database.Event.DataEvent[]
+  nameWithType.vb: DataEvent()
+  fullName.vb: Butterfly.Core.Database.Event.DataEvent()
+  name.vb: DataEvent()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.Event.DataEvent
+    name: DataEvent
+    nameWithType: DataEvent
+    fullName: Butterfly.Core.Database.Event.DataEvent
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: Butterfly.Core.Database.Event.DataEvent
+    name: DataEvent
+    nameWithType: DataEvent
+    fullName: Butterfly.Core.Database.Event.DataEvent
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Dictionary{System.String,System.Object}
+  commentId: '!:Dictionary{System.String,System.Object}'
+  definition: Dictionary`2
+  name: Dictionary<String, Object>
+  nameWithType: Dictionary<String, Object>
+  fullName: Dictionary<System.String, System.Object>
+  nameWithType.vb: Dictionary(Of String, Object)
+  fullName.vb: Dictionary(Of System.String, System.Object)
+  name.vb: Dictionary(Of String, Object)
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Dictionary`2
+  isExternal: true
+  name: Dictionary<, >
+  nameWithType: Dictionary<, >
+  fullName: Dictionary<, >
+  nameWithType.vb: Dictionary(Of , )
+  fullName.vb: Dictionary(Of , )
+  name.vb: Dictionary(Of , )
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Database.Event.DataEventTransaction.#ctor*
+  commentId: Overload:Butterfly.Core.Database.Event.DataEventTransaction.#ctor
+  name: DataEventTransaction
+  nameWithType: DataEventTransaction.DataEventTransaction
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction.DataEventTransaction
+- uid: Butterfly.Core.Database.Event.DataEventTransaction.Store*
+  commentId: Overload:Butterfly.Core.Database.Event.DataEventTransaction.Store
+  name: Store
+  nameWithType: DataEventTransaction.Store
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction.Store
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Butterfly.Core.Database.Event.DataEventTransaction.Fetch*
+  commentId: Overload:Butterfly.Core.Database.Event.DataEventTransaction.Fetch
+  name: Fetch
+  nameWithType: DataEventTransaction.Fetch
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction.Fetch
+- uid: Butterfly.Core.Database.Event.DataEventTransaction.ToString*
+  commentId: Overload:Butterfly.Core.Database.Event.DataEventTransaction.ToString
+  name: ToString
+  nameWithType: DataEventTransaction.ToString
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction.ToString
+- uid: Butterfly.Core.Database.Event.DataEventTransaction.FilterDataEvents*
+  commentId: Overload:Butterfly.Core.Database.Event.DataEventTransaction.FilterDataEvents
+  name: FilterDataEvents
+  nameWithType: DataEventTransaction.FilterDataEvents
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction.FilterDataEvents
+- uid: Butterfly.Core.Database.Event.DataEventTransaction
+  commentId: T:Butterfly.Core.Database.Event.DataEventTransaction
+  parent: Butterfly.Core.Database.Event
+  name: DataEventTransaction
+  nameWithType: DataEventTransaction
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction
+- uid: Func{Butterfly.Core.Database.Event.DataEvent,System.Boolean}
+  commentId: '!:Func{Butterfly.Core.Database.Event.DataEvent,System.Boolean}'
+  definition: Func`2
+  name: Func<DataEvent, Boolean>
+  nameWithType: Func<DataEvent, Boolean>
+  fullName: Func<Butterfly.Core.Database.Event.DataEvent, System.Boolean>
+  nameWithType.vb: Func(Of DataEvent, Boolean)
+  fullName.vb: Func(Of Butterfly.Core.Database.Event.DataEvent, System.Boolean)
+  name.vb: Func(Of DataEvent, Boolean)
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Butterfly.Core.Database.Event.DataEvent
+    name: DataEvent
+    nameWithType: DataEvent
+    fullName: Butterfly.Core.Database.Event.DataEvent
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Butterfly.Core.Database.Event.DataEvent
+    name: DataEvent
+    nameWithType: DataEvent
+    fullName: Butterfly.Core.Database.Event.DataEvent
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func`2
+  isExternal: true
+  name: Func<, >
+  nameWithType: Func<, >
+  fullName: Func<, >
+  nameWithType.vb: Func(Of , )
+  fullName.vb: Func(Of , )
+  name.vb: Func(Of , )
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+shouldSkipMarkup: true

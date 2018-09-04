@@ -10,10 +10,6 @@ using Butterfly.Core.Util;
 
 namespace Butterfly.Core.WebApi {
     public interface IHttpRequest : IWebRequest {
-        string UserAgent { get; }
-        string UserHostAddress { get; }
-        string UserHostName { get; }
-
         Task<T> ParseAsJsonAsync<T>();
         Task<Dictionary<string, string>> ParseAsUrlEncodedAsync();
         void ParseAsMultipartStream(Action<string, string, string, string, byte[], int> onData, Action<string, string> onParameter = null);
