@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
@@ -12,6 +13,8 @@ namespace Butterfly.SqlServer
 {
 	public class SqlServerDatabase : BaseDatabase
 	{
+		private static Regex LIMIT_REGEX = new Regex(@"^(SELECT).+(LIMIT\s+(.+?))$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+
 		public SqlServerDatabase(string connectionString) : base(connectionString) {
 		}
 		
@@ -49,6 +52,8 @@ namespace Butterfly.SqlServer
 
 		protected override async Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams)
 		{
+			var sql = ConvertLimit(executableSql);
+
 			var result = await ExecuteCommandAsync<Dict[]>(async c =>
 			{
 				var rows = new List<Dict>();
@@ -68,7 +73,19 @@ namespace Butterfly.SqlServer
 				}
 
 				return rows.ToArray();
-			}, executableSql, executableParams);
+			}, sql, executableParams);
+
+			return result;
+		}
+
+		private string ConvertLimit(string sql)
+		{
+			var match = LIMIT_REGEX.Match(sql);
+			if (!match.Success) return sql;
+
+			var result = sql.Replace(match.Groups[2].Value, string.Empty)
+											.Replace(match.Groups[1].Value, $"{match.Groups[1].Value} TOP {match.Groups[3]}");
+											
 
 			return result;
 		}
