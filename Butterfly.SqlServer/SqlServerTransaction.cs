@@ -81,7 +81,7 @@ namespace Butterfly.SqlServer
 			var result = await ExecuteCommandAsync<int>(async c =>
 			{
 				return await c.ExecuteNonQueryAsync();
-			}, executableSql);
+			}, executableSql, executableParams);
 
 			return result;
 		}
@@ -111,7 +111,7 @@ namespace Butterfly.SqlServer
 			var result = await ExecuteCommandAsync<int>(async c =>
 			{
 				return await c.ExecuteNonQueryAsync();
-			}, executableSql);
+			}, executableSql, executableParams);
 
 			return result;
 		}

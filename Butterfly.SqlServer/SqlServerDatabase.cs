@@ -177,7 +177,7 @@ namespace Butterfly.SqlServer
 						var indexName = reader["name"].ToString();
 						var columnName = reader["column_name"].ToString();
 						var isPrimaryKey = bool.Parse(reader["is_primary_key"].ToString());
-						var isUnique = bool.Parse(reader["is_primary_key"].ToString());
+						var isUnique = bool.Parse(reader["is_unique"].ToString());
 
 						if (lastIndexName != indexName)
 						{

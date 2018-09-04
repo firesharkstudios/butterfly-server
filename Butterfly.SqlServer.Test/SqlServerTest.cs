@@ -10,12 +10,20 @@ namespace Butterfly.SqlServer.Test
 	public class SqlServerTest
 	{
 		const string connectionString = @"Server=localhost; Initial Catalog=Butterfly; User ID=sa; Password=f00b@rF!ght3rs";
+		const string dbSql = "Butterfly.SqlServer.Test.db.sql";
 
 		[TestMethod]
 		public async Task TestDatabase()
 		{
 			IDatabase database = new SqlServerDatabase(connectionString);
-			await DatabaseUnitTest.TestDatabase(database, Assembly.GetExecutingAssembly(), "Butterfly.SqlServer.Test.db.sql");
+			await DatabaseUnitTest.TestDatabase(database, Assembly.GetExecutingAssembly(), dbSql);
+		}
+
+		[TestMethod]
+		public async Task TestDynamic()
+		{
+			var database = new SqlServerDatabase(connectionString);
+			await DynamicUnitTest.TestDatabase(database, Assembly.GetExecutingAssembly(), dbSql);
 		}
 	}
 }
