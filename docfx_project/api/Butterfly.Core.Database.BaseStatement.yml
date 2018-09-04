@@ -39,7 +39,6 @@ items:
     content: 'public abstract class BaseStatement : object'
     content.vb: >-
       Public MustInherit Class BaseStatement
-
           Inherits Object
   inheritance:
   - System.Object

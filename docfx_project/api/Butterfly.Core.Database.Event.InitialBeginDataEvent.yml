@@ -31,7 +31,6 @@ items:
     content: 'public class InitialBeginDataEvent : DataEvent'
     content.vb: >-
       Public Class InitialBeginDataEvent
-
           Inherits DataEvent
   inheritance:
   - System.Object

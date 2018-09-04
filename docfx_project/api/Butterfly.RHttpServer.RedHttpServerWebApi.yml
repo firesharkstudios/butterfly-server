@@ -5,7 +5,7 @@ items:
   id: RedHttpServerWebApi
   parent: Butterfly.RHttpServer
   children:
-  - Butterfly.RHttpServer.RedHttpServerWebApi.#ctor(Red.RedHttpServer)
+  - Butterfly.RHttpServer.RedHttpServerWebApi.#ctor(RedHttpServer)
   - Butterfly.RHttpServer.RedHttpServerWebApi.Compile
   - Butterfly.RHttpServer.RedHttpServerWebApi.Dispose
   - Butterfly.RHttpServer.RedHttpServerWebApi.server
@@ -27,14 +27,14 @@ items:
   assemblies:
   - Butterfly.RHttpServer
   namespace: Butterfly.RHttpServer
+  summary: "\nBase class implementing <xref href=\"Butterfly.Core.WebApi.IWebApi\" data-throw-if-not-resolved=\"false\"></xref>. New implementations will normally extend this class.\n"
+  remarks: "\nExample usage...<p></p>\n<pre><code>    var webApi = new SomeWebApi();\n    webApi.OnGet(&quot;/chat-messages&quot;, async(req, res) => {\n        // Handle the request and return any objects as needed (will be JSON encoded)\n    });\n    webApi.OnPost(&quot;/login&quot;, async(req, res) => {\n        // Handle the request and return any objects as needed (will be JSON encoded)\n    });\n    webApi.Compile();</code></pre>\n"
   example: []
   syntax:
     content: 'public class RedHttpServerWebApi : BaseWebApi, IWebApi, IDisposable'
     content.vb: >-
       Public Class RedHttpServerWebApi
-
           Inherits BaseWebApi
-
           Implements IWebApi, IDisposable
   inheritance:
   - System.Object
@@ -82,7 +82,7 @@ items:
   syntax:
     content: public readonly RedHttpServer server
     return:
-      type: Red.RedHttpServer
+      type: RedHttpServer
     content.vb: Public ReadOnly server As RedHttpServer
   modifiers.csharp:
   - public
@@ -90,16 +90,16 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: Butterfly.RHttpServer.RedHttpServerWebApi.#ctor(Red.RedHttpServer)
-  commentId: M:Butterfly.RHttpServer.RedHttpServerWebApi.#ctor(Red.RedHttpServer)
-  id: '#ctor(Red.RedHttpServer)'
+- uid: Butterfly.RHttpServer.RedHttpServerWebApi.#ctor(RedHttpServer)
+  commentId: M:Butterfly.RHttpServer.RedHttpServerWebApi.#ctor(RedHttpServer)
+  id: '#ctor(RedHttpServer)'
   parent: Butterfly.RHttpServer.RedHttpServerWebApi
   langs:
   - csharp
   - vb
   name: RedHttpServerWebApi(RedHttpServer)
   nameWithType: RedHttpServerWebApi.RedHttpServerWebApi(RedHttpServer)
-  fullName: Butterfly.RHttpServer.RedHttpServerWebApi.RedHttpServerWebApi(Red.RedHttpServer)
+  fullName: Butterfly.RHttpServer.RedHttpServerWebApi.RedHttpServerWebApi(RedHttpServer)
   type: Constructor
   source:
     remote:
@@ -116,7 +116,7 @@ items:
     content: public RedHttpServerWebApi(RedHttpServer server)
     parameters:
     - id: server
-      type: Red.RedHttpServer
+      type: RedHttpServer
     content.vb: Public Sub New(server As RedHttpServer)
   overload: Butterfly.RHttpServer.RedHttpServerWebApi.#ctor*
   modifiers.csharp:
@@ -789,17 +789,11 @@ references:
   name: Butterfly.Core.WebApi
   nameWithType: Butterfly.Core.WebApi
   fullName: Butterfly.Core.WebApi
-- uid: Red.RedHttpServer
-  commentId: T:Red.RedHttpServer
-  parent: Red
+- uid: RedHttpServer
+  isExternal: true
   name: RedHttpServer
   nameWithType: RedHttpServer
-  fullName: Red.RedHttpServer
-- uid: Red
-  commentId: N:Red
-  name: Red
-  nameWithType: Red
-  fullName: Red
+  fullName: RedHttpServer
 - uid: Butterfly.RHttpServer.RedHttpServerWebApi.#ctor*
   commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebApi.#ctor
   name: RedHttpServerWebApi

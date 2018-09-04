@@ -35,14 +35,14 @@ items:
   assemblies:
   - Butterfly.SQLite
   namespace: Butterfly.SQLite
+  summary: "\nBase class implementing <xref href=\"Butterfly.Core.Database.IDatabase\" data-throw-if-not-resolved=\"false\"></xref>. New implementations will normally extend this class.\n"
+  remarks: "\nAdding records and echoing all data change events to the console...<p></p>\n<pre><code>    // Create database instance (will also read the schema from the database)\n    var database = new SomeDatabase();\n\n    // Listen for all database data events\n    var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {\n        console.WriteLine($&quot;Low Level DataEventTransaction={dataEventTransaction}&quot;);\n    });\n\n    // INSERT a couple of records (this will cause a single data even transaction with\n    // two INSERT data events to be written to the console above)\n    using (var transaction = database.BeginTransaction()) {\n        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n            department_id: 1,\n            name: &quot;SpongeBob&quot;\n        });\n        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n            department_id: 1,\n            name: &quot;Squidward&quot;\n        });\n        await database.CommitAsync();\n    );</code></pre>\n\nCreating a DynamicView and echoing data change events on the DynamicView to the console...<p></p>\n<pre><code>    // Create database instance (will also read the schema from the database)\n    var database = new SomeDatabase();\n\n    // Create a DynamicViewSet that print any data events to the console\n    // (this will immediately echo an INITIAL data event for each existing matching record)\n    var dynamicViewSet = database.CreateAndStartDynamicViewSet(\n        &quot;SELECT * FROM employee WHERE department_id=@departmentId&quot;, \n        new {\n            departmentId = 1\n        },\n        dataEventTransaction => {\n            Console.WriteLine(dataEventTransaction);\n        }\n    );\n\n    // This will cause the above DynamicViewSet to echo an INSERT data event\n    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n        department_id: 1\n        name: &quot;Mr Crabs&quot;\n    });\n\n    // This will NOT cause the above DynamicViewSet to echo an INSERT data event\n    // (because the department_id doesn&apos;t match)\n    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n        department_id: 2\n        name: &quot;Patrick Star&quot;\n    });</code></pre>\n"
   example: []
   syntax:
     content: 'public class SQLiteDatabase : BaseDatabase, IDatabase'
     content.vb: >-
       Public Class SQLiteDatabase
-
           Inherits BaseDatabase
-
           Implements IDatabase
   inheritance:
   - System.Object

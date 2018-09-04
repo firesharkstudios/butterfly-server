@@ -108,8 +108,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.HelloWorl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Todo", "Butterfly.Example.Todo\Butterfly.Example.Todo.csproj", "{8BE5BE15-ED6B-4B7F-A7C0-C382665316B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.RHttpServer.Test", "Butterfly.RHttpServer.Test\Butterfly.RHttpServer.Test.csproj", "{7A0BA94B-2BE0-4C0B-B5AC-6FDC44145609}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -190,17 +188,13 @@ Global
 		{8BE5BE15-ED6B-4B7F-A7C0-C382665316B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BE5BE15-ED6B-4B7F-A7C0-C382665316B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BE5BE15-ED6B-4B7F-A7C0-C382665316B4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7A0BA94B-2BE0-4C0B-B5AC-6FDC44145609}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A0BA94B-2BE0-4C0B-B5AC-6FDC44145609}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A0BA94B-2BE0-4C0B-B5AC-6FDC44145609}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7A0BA94B-2BE0-4C0B-B5AC-6FDC44145609}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_BuildVersioningStyle = None.None.None.Increment
-		BuildVersion_StartDate = 2000/1/1
 		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
+		BuildVersion_StartDate = 2000/1/1
+		BuildVersion_BuildVersioningStyle = None.None.None.Increment
 	EndGlobalSection
 EndGlobal

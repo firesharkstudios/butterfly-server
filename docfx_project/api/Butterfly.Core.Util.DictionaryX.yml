@@ -33,7 +33,6 @@ items:
     content: 'public static class DictionaryX : object'
     content.vb: >-
       Public Module DictionaryX
-
           Inherits Object
   inheritance:
   - System.Object

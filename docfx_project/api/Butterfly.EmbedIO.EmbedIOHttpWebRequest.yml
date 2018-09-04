@@ -35,9 +35,7 @@ items:
     content: 'public class EmbedIOHttpWebRequest : BaseHttpRequest, IHttpRequest, IWebRequest'
     content.vb: >-
       Public Class EmbedIOHttpWebRequest
-
           Inherits BaseHttpRequest
-
           Implements IHttpRequest, IWebRequest
   inheritance:
   - System.Object

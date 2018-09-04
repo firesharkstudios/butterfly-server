@@ -30,7 +30,6 @@ items:
     content: 'public class MyWebModule : WebModuleBase'
     content.vb: >-
       Public Class MyWebModule
-
           Inherits WebModuleBase
   inheritance:
   - System.Object

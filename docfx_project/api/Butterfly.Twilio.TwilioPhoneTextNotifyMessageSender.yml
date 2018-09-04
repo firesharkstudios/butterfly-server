@@ -32,9 +32,7 @@ items:
     content: 'public class TwilioPhoneTextNotifyMessageSender : BaseNotifyMessageSender, INotifyMessageSender'
     content.vb: >-
       Public Class TwilioPhoneTextNotifyMessageSender
-
           Inherits BaseNotifyMessageSender
-
           Implements INotifyMessageSender
   inheritance:
   - System.Object

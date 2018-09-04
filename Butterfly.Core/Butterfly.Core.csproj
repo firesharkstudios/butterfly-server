@@ -11,8 +11,8 @@
     <Company>Fireshark Studios, LLC</Company>
     <Product>Butterfly Server .NET</Product>
     <Copyright>Copyright 2017-2018 Fireshark Studios, LLC</Copyright>
-    <Version>1.0.2</Version>
-    <PackageReleaseNotes>Renamed IWebApiServer to IWebApi and IChannelServer to ISubscriptionApi</PackageReleaseNotes>
+    <Version>1.0.3</Version>
+    <PackageReleaseNotes>Various improvements and bug fixes</PackageReleaseNotes>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
   </PropertyGroup>
 

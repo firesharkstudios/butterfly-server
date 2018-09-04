@@ -37,9 +37,7 @@ items:
     content: 'public class EmbedIOWebResponse : object, IHttpResponse'
     content.vb: >-
       Public Class EmbedIOWebResponse
-
           Inherits Object
-
           Implements IHttpResponse
   inheritance:
   - System.Object

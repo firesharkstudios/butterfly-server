@@ -73,7 +73,9 @@
   
   <h1 id="Butterfly_RHttpServer_RedHttpServerSubscriptionApi" data-uid="Butterfly.RHttpServer.RedHttpServerSubscriptionApi" class="text-break">Class RedHttpServerSubscriptionApi
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary">
+Base class implementing <a class="xref" href="Butterfly.Core.Channel.ISubscriptionApi.html">ISubscriptionApi</a>. New implementations will normally extend this class.
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -152,10 +154,22 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class RedHttpServerSubscriptionApi : BaseSubscriptionApi, ISubscriptionApi, IDisposable</code></pre>
   </div>
+  <h5 id="Butterfly_RHttpServer_RedHttpServerSubscriptionApi_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks">
+Listen for subscription requests to the todos channel...<p>
+<pre><code>    var subscriptionApi = new SomeSubscriptionApi();
+    // Listen for subscribe requests...
+    // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
+    // - The handler can push data to the client by calling channel.Queue()
+    subscriptionApi.OnSubscribe(&quot;todos&quot;, (vars, channel) => {
+        return database.CreateAndStartDynamicView(&quot;todo&quot;, dataEventTransaction => channel.Queue(dataEventTransaction));
+    });
+    subscriptionApi.Start();</code></pre>
+</div>
   <h3 id="constructors">Constructors
   </h3>
   <a id="Butterfly_RHttpServer_RedHttpServerSubscriptionApi__ctor_" data-uid="Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor*"></a>
-  <h4 id="Butterfly_RHttpServer_RedHttpServerSubscriptionApi__ctor_Red_RedHttpServer_System_Int32_System_String_Func_System_String_System_String_System_Object__Func_System_String_System_String_Task_System_Object___Func_System_Object_System_String__Func_System_Object_Task_System_String___" data-uid="Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor(Red.RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})">RedHttpServerSubscriptionApi(RedHttpServer, Int32, String, Func&lt;String, String, Object&gt;, Func&lt;String, String, Task&lt;Object&gt;&gt;, Func&lt;Object, String&gt;, Func&lt;Object, Task&lt;String&gt;&gt;)</h4>
+  <h4 id="Butterfly_RHttpServer_RedHttpServerSubscriptionApi__ctor_RedHttpServer_System_Int32_System_String_Func_System_String_System_String_System_Object__Func_System_String_System_String_Task_System_Object___Func_System_Object_System_String__Func_System_Object_Task_System_String___" data-uid="Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor(RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})">RedHttpServerSubscriptionApi(RedHttpServer, Int32, String, Func&lt;String, String, Object&gt;, Func&lt;String, String, Task&lt;Object&gt;&gt;, Func&lt;Object, String&gt;, Func&lt;Object, Task&lt;String&gt;&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -173,7 +187,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Red.RedHttpServer</span></td>
+        <td><span class="xref">RedHttpServer</span></td>
         <td><span class="parametername">server</span></td>
         <td></td>
       </tr>
@@ -250,7 +264,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Red.RedHttpServer</span></td>
+        <td><span class="xref">RedHttpServer</span></td>
         <td></td>
       </tr>
     </tbody>

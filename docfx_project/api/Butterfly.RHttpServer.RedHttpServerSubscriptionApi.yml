@@ -5,7 +5,7 @@ items:
   id: RedHttpServerSubscriptionApi
   parent: Butterfly.RHttpServer
   children:
-  - Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor(Red.RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})
+  - Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor(RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})
   - Butterfly.RHttpServer.RedHttpServerSubscriptionApi.DoStart
   - Butterfly.RHttpServer.RedHttpServerSubscriptionApi.path
   - Butterfly.RHttpServer.RedHttpServerSubscriptionApi.server
@@ -27,14 +27,14 @@ items:
   assemblies:
   - Butterfly.RHttpServer
   namespace: Butterfly.RHttpServer
+  summary: "\nBase class implementing <xref href=\"Butterfly.Core.Channel.ISubscriptionApi\" data-throw-if-not-resolved=\"false\"></xref>. New implementations will normally extend this class.\n"
+  remarks: "\nListen for subscription requests to the todos channel...<p></p>\n<pre><code>    var subscriptionApi = new SomeSubscriptionApi();\n    // Listen for subscribe requests...\n    // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)\n    // - The handler can push data to the client by calling channel.Queue()\n    subscriptionApi.OnSubscribe(&quot;todos&quot;, (vars, channel) => {\n        return database.CreateAndStartDynamicView(&quot;todo&quot;, dataEventTransaction => channel.Queue(dataEventTransaction));\n    });\n    subscriptionApi.Start();</code></pre>\n"
   example: []
   syntax:
     content: 'public class RedHttpServerSubscriptionApi : BaseSubscriptionApi, ISubscriptionApi, IDisposable'
     content.vb: >-
       Public Class RedHttpServerSubscriptionApi
-
           Inherits BaseSubscriptionApi
-
           Implements ISubscriptionApi, IDisposable
   inheritance:
   - System.Object
@@ -93,7 +93,7 @@ items:
   syntax:
     content: public readonly RedHttpServer server
     return:
-      type: Red.RedHttpServer
+      type: RedHttpServer
     content.vb: Public ReadOnly server As RedHttpServer
   modifiers.csharp:
   - public
@@ -134,16 +134,16 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor(Red.RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})
-  commentId: M:Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor(Red.RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})
-  id: '#ctor(Red.RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})'
+- uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor(RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})
+  commentId: M:Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor(RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})
+  id: '#ctor(RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})'
   parent: Butterfly.RHttpServer.RedHttpServerSubscriptionApi
   langs:
   - csharp
   - vb
   name: RedHttpServerSubscriptionApi(RedHttpServer, Int32, String, Func<String, String, Object>, Func<String, String, Task<Object>>, Func<Object, String>, Func<Object, Task<String>>)
   nameWithType: RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi(RedHttpServer, Int32, String, Func<String, String, Object>, Func<String, String, Task<Object>>, Func<Object, String>, Func<Object, Task<String>>)
-  fullName: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi(Red.RedHttpServer, System.Int32, System.String, Func<System.String, System.String, System.Object>, Func<System.String, System.String, Task<System.Object>>, Func<System.Object, System.String>, Func<System.Object, Task<System.String>>)
+  fullName: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi(RedHttpServer, System.Int32, System.String, Func<System.String, System.String, System.Object>, Func<System.String, System.String, Task<System.Object>>, Func<System.Object, System.String>, Func<System.Object, Task<System.String>>)
   type: Constructor
   source:
     remote:
@@ -160,7 +160,7 @@ items:
     content: public RedHttpServerSubscriptionApi(RedHttpServer server, int mustReceiveHeartbeatMillis = 5000, string path = "/ws", Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null)
     parameters:
     - id: server
-      type: Red.RedHttpServer
+      type: RedHttpServer
     - id: mustReceiveHeartbeatMillis
       type: System.Int32
     - id: path
@@ -180,7 +180,7 @@ items:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi(Red.RedHttpServer, System.Int32, System.String, Func(Of System.String, System.String, System.Object), Func(Of System.String, System.String, Task(Of System.Object)), Func(Of System.Object, System.String), Func(Of System.Object, Task(Of System.String)))
+  fullName.vb: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi(RedHttpServer, System.Int32, System.String, Func(Of System.String, System.String, System.Object), Func(Of System.String, System.String, Task(Of System.Object)), Func(Of System.Object, System.String), Func(Of System.Object, Task(Of System.String)))
   name.vb: RedHttpServerSubscriptionApi(RedHttpServer, Int32, String, Func(Of String, String, Object), Func(Of String, String, Task(Of Object)), Func(Of Object, String), Func(Of Object, Task(Of String)))
 - uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.DoStart
   commentId: M:Butterfly.RHttpServer.RedHttpServerSubscriptionApi.DoStart
@@ -660,17 +660,11 @@ references:
   name: Butterfly.Core.Channel
   nameWithType: Butterfly.Core.Channel
   fullName: Butterfly.Core.Channel
-- uid: Red.RedHttpServer
-  commentId: T:Red.RedHttpServer
-  parent: Red
+- uid: RedHttpServer
+  isExternal: true
   name: RedHttpServer
   nameWithType: RedHttpServer
-  fullName: Red.RedHttpServer
-- uid: Red
-  commentId: N:Red
-  name: Red
-  nameWithType: Red
-  fullName: Red
+  fullName: RedHttpServer
 - uid: System.String
   isExternal: true
   name: String

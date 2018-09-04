@@ -34,9 +34,7 @@ items:
     content: 'public class EmailFieldValidator : object, IFieldValidator'
     content.vb: >-
       Public Class EmailFieldValidator
-
           Inherits Object
-
           Implements IFieldValidator
   inheritance:
   - System.Object

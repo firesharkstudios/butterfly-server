@@ -37,7 +37,6 @@ items:
     content: 'public class DataEventTransaction : object'
     content.vb: >-
       Public Class DataEventTransaction
-
           Inherits Object
   inheritance:
   - System.Object

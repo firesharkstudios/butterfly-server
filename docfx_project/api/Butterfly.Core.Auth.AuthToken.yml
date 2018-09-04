@@ -37,7 +37,6 @@ items:
     content: 'public class AuthToken : object'
     content.vb: >-
       Public Class AuthToken
-
           Inherits Object
   inheritance:
   - System.Object

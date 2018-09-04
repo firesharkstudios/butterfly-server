@@ -40,7 +40,6 @@ items:
     content: 'public class DynamicView : object'
     content.vb: >-
       Public Class DynamicView
-
           Inherits Object
   inheritance:
   - System.Object

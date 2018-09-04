@@ -34,7 +34,6 @@ items:
     content: 'public class StatementEqualsRef : object'
     content.vb: >-
       Public Class StatementEqualsRef
-
           Inherits Object
   inheritance:
   - System.Object

@@ -32,7 +32,6 @@ items:
     content: 'public class TableIndex : object'
     content.vb: >-
       Public Class TableIndex
-
           Inherits Object
   inheritance:
   - System.Object

@@ -73,7 +73,9 @@
   
   <h1 id="Butterfly_EmbedIO_EmbedIOWebApi" data-uid="Butterfly.EmbedIO.EmbedIOWebApi" class="text-break">Class EmbedIOWebApi
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary">
+Base class implementing <a class="xref" href="Butterfly.Core.WebApi.IWebApi.html">IWebApi</a>. New implementations will normally extend this class.
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -119,6 +121,18 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class EmbedIOWebApi : BaseWebApi, IWebApi, IDisposable</code></pre>
   </div>
+  <h5 id="Butterfly_EmbedIO_EmbedIOWebApi_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks">
+Example usage...<p>
+<pre><code>    var webApi = new SomeWebApi();
+    webApi.OnGet(&quot;/chat-messages&quot;, async(req, res) => {
+        // Handle the request and return any objects as needed (will be JSON encoded)
+    });
+    webApi.OnPost(&quot;/login&quot;, async(req, res) => {
+        // Handle the request and return any objects as needed (will be JSON encoded)
+    });
+    webApi.Compile();</code></pre>
+</div>
   <h3 id="constructors">Constructors
   </h3>
   <a id="Butterfly_EmbedIO_EmbedIOWebApi__ctor_" data-uid="Butterfly.EmbedIO.EmbedIOWebApi.#ctor*"></a>

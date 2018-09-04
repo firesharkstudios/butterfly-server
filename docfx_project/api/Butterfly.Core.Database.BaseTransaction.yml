@@ -61,9 +61,7 @@ items:
     content: 'public abstract class BaseTransaction : object, ITransaction, IDisposable'
     content.vb: >-
       Public MustInherit Class BaseTransaction
-
           Inherits Object
-
           Implements ITransaction, IDisposable
   inheritance:
   - System.Object

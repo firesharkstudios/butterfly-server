@@ -5,7 +5,7 @@ items:
   id: RedHttpServerWebResponse
   parent: Butterfly.RHttpServer
   children:
-  - Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor(Red.Response)
+  - Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor(Response)
   - Butterfly.RHttpServer.RedHttpServerWebResponse.GetHeader(System.String)
   - Butterfly.RHttpServer.RedHttpServerWebResponse.OutputStream
   - Butterfly.RHttpServer.RedHttpServerWebResponse.response
@@ -37,9 +37,7 @@ items:
     content: 'public class RedHttpServerWebResponse : object, IHttpResponse'
     content.vb: >-
       Public Class RedHttpServerWebResponse
-
           Inherits Object
-
           Implements IHttpResponse
   inheritance:
   - System.Object
@@ -76,7 +74,7 @@ items:
   syntax:
     content: public readonly Response response
     return:
-      type: Red.Response
+      type: Response
     content.vb: Public ReadOnly response As Response
   modifiers.csharp:
   - public
@@ -84,16 +82,16 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor(Red.Response)
-  commentId: M:Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor(Red.Response)
-  id: '#ctor(Red.Response)'
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor(Response)
+  commentId: M:Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor(Response)
+  id: '#ctor(Response)'
   parent: Butterfly.RHttpServer.RedHttpServerWebResponse
   langs:
   - csharp
   - vb
   name: RedHttpServerWebResponse(Response)
   nameWithType: RedHttpServerWebResponse.RedHttpServerWebResponse(Response)
-  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.RedHttpServerWebResponse(Red.Response)
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.RedHttpServerWebResponse(Response)
   type: Constructor
   source:
     remote:
@@ -110,7 +108,7 @@ items:
     content: public RedHttpServerWebResponse(Response response)
     parameters:
     - id: response
-      type: Red.Response
+      type: Response
     content.vb: Public Sub New(response As Response)
   overload: Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor*
   modifiers.csharp:
@@ -418,17 +416,11 @@ references:
   name: Butterfly.Core.WebApi
   nameWithType: Butterfly.Core.WebApi
   fullName: Butterfly.Core.WebApi
-- uid: Red.Response
-  commentId: T:Red.Response
-  parent: Red
+- uid: Response
+  isExternal: true
   name: Response
   nameWithType: Response
-  fullName: Red.Response
-- uid: Red
-  commentId: N:Red
-  name: Red
-  nameWithType: Red
-  fullName: Red
+  fullName: Response
 - uid: Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor*
   commentId: Overload:Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor
   name: RedHttpServerWebResponse

@@ -5,7 +5,7 @@ items:
   id: WebSocketDialogChannelConnection
   parent: Butterfly.RHttpServer
   children:
-  - Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Red.WebSocketDialog)
+  - Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,WebSocketDialog)
   - Butterfly.RHttpServer.WebSocketDialogChannelConnection.DoDispose
   - Butterfly.RHttpServer.WebSocketDialogChannelConnection.SendAsync(System.String)
   - Butterfly.RHttpServer.WebSocketDialogChannelConnection.webSocketDialog
@@ -31,9 +31,7 @@ items:
     content: 'public class WebSocketDialogChannelConnection : BaseChannelConnection, IChannelConnection, IDisposable'
     content.vb: >-
       Public Class WebSocketDialogChannelConnection
-
           Inherits BaseChannelConnection
-
           Implements IChannelConnection, IDisposable
   inheritance:
   - System.Object
@@ -96,7 +94,7 @@ items:
   syntax:
     content: protected readonly WebSocketDialog webSocketDialog
     return:
-      type: Red.WebSocketDialog
+      type: WebSocketDialog
     content.vb: Protected ReadOnly webSocketDialog As WebSocketDialog
   modifiers.csharp:
   - protected
@@ -104,16 +102,16 @@ items:
   modifiers.vb:
   - Protected
   - ReadOnly
-- uid: Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Red.WebSocketDialog)
-  commentId: M:Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Red.WebSocketDialog)
-  id: '#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Red.WebSocketDialog)'
+- uid: Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,WebSocketDialog)
+  commentId: M:Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,WebSocketDialog)
+  id: '#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,WebSocketDialog)'
   parent: Butterfly.RHttpServer.WebSocketDialogChannelConnection
   langs:
   - csharp
   - vb
   name: WebSocketDialogChannelConnection(BaseSubscriptionApi, WebSocketDialog)
   nameWithType: WebSocketDialogChannelConnection.WebSocketDialogChannelConnection(BaseSubscriptionApi, WebSocketDialog)
-  fullName: Butterfly.RHttpServer.WebSocketDialogChannelConnection.WebSocketDialogChannelConnection(Butterfly.Core.Channel.BaseSubscriptionApi, Red.WebSocketDialog)
+  fullName: Butterfly.RHttpServer.WebSocketDialogChannelConnection.WebSocketDialogChannelConnection(Butterfly.Core.Channel.BaseSubscriptionApi, WebSocketDialog)
   type: Constructor
   source:
     remote:
@@ -132,7 +130,7 @@ items:
     - id: subscriptionApi
       type: Butterfly.Core.Channel.BaseSubscriptionApi
     - id: webSocketDialog
-      type: Red.WebSocketDialog
+      type: WebSocketDialog
     content.vb: Public Sub New(subscriptionApi As BaseSubscriptionApi, webSocketDialog As WebSocketDialog)
   overload: Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor*
   modifiers.csharp:
@@ -702,17 +700,11 @@ references:
   name: Butterfly.Core.Channel
   nameWithType: Butterfly.Core.Channel
   fullName: Butterfly.Core.Channel
-- uid: Red.WebSocketDialog
-  commentId: T:Red.WebSocketDialog
-  parent: Red
+- uid: WebSocketDialog
+  isExternal: true
   name: WebSocketDialog
   nameWithType: WebSocketDialog
-  fullName: Red.WebSocketDialog
-- uid: Red
-  commentId: N:Red
-  name: Red
-  nameWithType: Red
-  fullName: Red
+  fullName: WebSocketDialog
 - uid: Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor*
   commentId: Overload:Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor
   name: WebSocketDialogChannelConnection

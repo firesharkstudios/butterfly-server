@@ -49,7 +49,6 @@ items:
     content: 'public class NotifyManager : object'
     content.vb: >-
       Public Class NotifyManager
-
           Inherits Object
   inheritance:
   - System.Object

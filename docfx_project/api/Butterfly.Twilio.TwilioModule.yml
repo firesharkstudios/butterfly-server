@@ -28,7 +28,6 @@ items:
     content: 'public static class TwilioModule : object'
     content.vb: >-
       Public Module TwilioModule
-
           Inherits Object
   inheritance:
   - System.Object

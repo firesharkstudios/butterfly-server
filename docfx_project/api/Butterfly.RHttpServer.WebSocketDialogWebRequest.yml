@@ -5,7 +5,7 @@ items:
   id: WebSocketDialogWebRequest
   parent: Butterfly.RHttpServer
   children:
-  - Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor(Red.WebSocketDialog)
+  - Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor(WebSocketDialog)
   - Butterfly.RHttpServer.WebSocketDialogWebRequest.Headers
   - Butterfly.RHttpServer.WebSocketDialogWebRequest.PathParams
   - Butterfly.RHttpServer.WebSocketDialogWebRequest.QueryParams
@@ -33,9 +33,7 @@ items:
     content: 'public class WebSocketDialogWebRequest : object, IWebRequest'
     content.vb: >-
       Public Class WebSocketDialogWebRequest
-
           Inherits Object
-
           Implements IWebRequest
   inheritance:
   - System.Object
@@ -72,7 +70,7 @@ items:
   syntax:
     content: protected readonly WebSocketDialog webSocketDialog
     return:
-      type: Red.WebSocketDialog
+      type: WebSocketDialog
     content.vb: Protected ReadOnly webSocketDialog As WebSocketDialog
   modifiers.csharp:
   - protected
@@ -80,16 +78,16 @@ items:
   modifiers.vb:
   - Protected
   - ReadOnly
-- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor(Red.WebSocketDialog)
-  commentId: M:Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor(Red.WebSocketDialog)
-  id: '#ctor(Red.WebSocketDialog)'
+- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor(WebSocketDialog)
+  commentId: M:Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor(WebSocketDialog)
+  id: '#ctor(WebSocketDialog)'
   parent: Butterfly.RHttpServer.WebSocketDialogWebRequest
   langs:
   - csharp
   - vb
   name: WebSocketDialogWebRequest(WebSocketDialog)
   nameWithType: WebSocketDialogWebRequest.WebSocketDialogWebRequest(WebSocketDialog)
-  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest.WebSocketDialogWebRequest(Red.WebSocketDialog)
+  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest.WebSocketDialogWebRequest(WebSocketDialog)
   type: Constructor
   source:
     remote:
@@ -106,7 +104,7 @@ items:
     content: public WebSocketDialogWebRequest(WebSocketDialog webSocketDialog)
     parameters:
     - id: webSocketDialog
-      type: Red.WebSocketDialog
+      type: WebSocketDialog
     content.vb: Public Sub New(webSocketDialog As WebSocketDialog)
   overload: Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor*
   modifiers.csharp:
@@ -276,17 +274,11 @@ references:
   name: Butterfly.Core.Util
   nameWithType: Butterfly.Core.Util
   fullName: Butterfly.Core.Util
-- uid: Red.WebSocketDialog
-  commentId: T:Red.WebSocketDialog
-  parent: Red
+- uid: WebSocketDialog
+  isExternal: true
   name: WebSocketDialog
   nameWithType: WebSocketDialog
-  fullName: Red.WebSocketDialog
-- uid: Red
-  commentId: N:Red
-  name: Red
-  nameWithType: Red
-  fullName: Red
+  fullName: WebSocketDialog
 - uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor*
   commentId: Overload:Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor
   name: WebSocketDialogWebRequest

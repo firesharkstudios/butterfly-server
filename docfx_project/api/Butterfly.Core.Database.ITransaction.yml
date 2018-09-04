@@ -39,7 +39,6 @@ items:
     content: 'public interface ITransaction : IDisposable'
     content.vb: >-
       Public Interface ITransaction
-
           Inherits IDisposable
   modifiers.csharp:
   - public

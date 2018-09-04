@@ -34,9 +34,7 @@ items:
     content: 'public class SingleValueDynamicParam : BaseDynamicParam, IDynamicParam'
     content.vb: >-
       Public Class SingleValueDynamicParam
-
           Inherits BaseDynamicParam
-
           Implements IDynamicParam
   inheritance:
   - System.Object

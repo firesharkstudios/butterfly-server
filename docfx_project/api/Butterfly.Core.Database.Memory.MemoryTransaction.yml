@@ -37,14 +37,13 @@ items:
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Memory
+  summary: "\nBase class implementing <xref href=\"Butterfly.Core.Database.ITransaction\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: 'public class MemoryTransaction : BaseTransaction, ITransaction, IDisposable'
     content.vb: >-
       Public Class MemoryTransaction
-
           Inherits BaseTransaction
-
           Implements ITransaction, IDisposable
   inheritance:
   - System.Object

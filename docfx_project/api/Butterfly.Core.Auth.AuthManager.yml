@@ -80,7 +80,6 @@ items:
     content: 'public class AuthManager : object'
     content.vb: >-
       Public Class AuthManager
-
           Inherits Object
   inheritance:
   - System.Object

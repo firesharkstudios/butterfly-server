@@ -10410,13 +10410,13 @@ references:
   commentId: T:Butterfly.RHttpServer.RedHttpServerSubscriptionApi
   fullName: Butterfly.RHttpServer.RedHttpServerSubscriptionApi
   nameWithType: RedHttpServerSubscriptionApi
-- uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor(Red.RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})
+- uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor(RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})
   name: RedHttpServerSubscriptionApi(RedHttpServer, Int32, String, Func<String, String, Object>, Func<String, String, Task<Object>>, Func<Object, String>, Func<Object, Task<String>>)
-  href: api/Butterfly.RHttpServer.RedHttpServerSubscriptionApi.html#Butterfly_RHttpServer_RedHttpServerSubscriptionApi__ctor_Red_RedHttpServer_System_Int32_System_String_Func_System_String_System_String_System_Object__Func_System_String_System_String_Task_System_Object___Func_System_Object_System_String__Func_System_Object_Task_System_String___
-  commentId: M:Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor(Red.RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})
+  href: api/Butterfly.RHttpServer.RedHttpServerSubscriptionApi.html#Butterfly_RHttpServer_RedHttpServerSubscriptionApi__ctor_RedHttpServer_System_Int32_System_String_Func_System_String_System_String_System_Object__Func_System_String_System_String_Task_System_Object___Func_System_Object_System_String__Func_System_Object_Task_System_String___
+  commentId: M:Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor(RedHttpServer,System.Int32,System.String,Func{System.String,System.String,System.Object},Func{System.String,System.String,Task{System.Object}},Func{System.Object,System.String},Func{System.Object,Task{System.String}})
   name.vb: RedHttpServerSubscriptionApi(RedHttpServer, Int32, String, Func(Of String, String, Object), Func(Of String, String, Task(Of Object)), Func(Of Object, String), Func(Of Object, Task(Of String)))
-  fullName: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi(Red.RedHttpServer, System.Int32, System.String, Func<System.String, System.String, System.Object>, Func<System.String, System.String, Task<System.Object>>, Func<System.Object, System.String>, Func<System.Object, Task<System.String>>)
-  fullName.vb: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi(Red.RedHttpServer, System.Int32, System.String, Func(Of System.String, System.String, System.Object), Func(Of System.String, System.String, Task(Of System.Object)), Func(Of System.Object, System.String), Func(Of System.Object, Task(Of System.String)))
+  fullName: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi(RedHttpServer, System.Int32, System.String, Func<System.String, System.String, System.Object>, Func<System.String, System.String, Task<System.Object>>, Func<System.Object, System.String>, Func<System.Object, Task<System.String>>)
+  fullName.vb: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi(RedHttpServer, System.Int32, System.String, Func(Of System.String, System.String, System.Object), Func(Of System.String, System.String, Task(Of System.Object)), Func(Of System.Object, System.String), Func(Of System.Object, Task(Of System.String)))
   nameWithType: RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi(RedHttpServer, Int32, String, Func<String, String, Object>, Func<String, String, Task<Object>>, Func<Object, String>, Func<Object, Task<String>>)
   nameWithType.vb: RedHttpServerSubscriptionApi.RedHttpServerSubscriptionApi(RedHttpServer, Int32, String, Func(Of String, String, Object), Func(Of String, String, Task(Of Object)), Func(Of Object, String), Func(Of Object, Task(Of String)))
 - uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi.#ctor*
@@ -10457,11 +10457,11 @@ references:
   commentId: T:Butterfly.RHttpServer.RedHttpServerWebApi
   fullName: Butterfly.RHttpServer.RedHttpServerWebApi
   nameWithType: RedHttpServerWebApi
-- uid: Butterfly.RHttpServer.RedHttpServerWebApi.#ctor(Red.RedHttpServer)
+- uid: Butterfly.RHttpServer.RedHttpServerWebApi.#ctor(RedHttpServer)
   name: RedHttpServerWebApi(RedHttpServer)
-  href: api/Butterfly.RHttpServer.RedHttpServerWebApi.html#Butterfly_RHttpServer_RedHttpServerWebApi__ctor_Red_RedHttpServer_
-  commentId: M:Butterfly.RHttpServer.RedHttpServerWebApi.#ctor(Red.RedHttpServer)
-  fullName: Butterfly.RHttpServer.RedHttpServerWebApi.RedHttpServerWebApi(Red.RedHttpServer)
+  href: api/Butterfly.RHttpServer.RedHttpServerWebApi.html#Butterfly_RHttpServer_RedHttpServerWebApi__ctor_RedHttpServer_
+  commentId: M:Butterfly.RHttpServer.RedHttpServerWebApi.#ctor(RedHttpServer)
+  fullName: Butterfly.RHttpServer.RedHttpServerWebApi.RedHttpServerWebApi(RedHttpServer)
   nameWithType: RedHttpServerWebApi.RedHttpServerWebApi(RedHttpServer)
 - uid: Butterfly.RHttpServer.RedHttpServerWebApi.#ctor*
   name: RedHttpServerWebApi
@@ -10508,11 +10508,11 @@ references:
   commentId: T:Butterfly.RHttpServer.RedHttpServerWebRequest
   fullName: Butterfly.RHttpServer.RedHttpServerWebRequest
   nameWithType: RedHttpServerWebRequest
-- uid: Butterfly.RHttpServer.RedHttpServerWebRequest.#ctor(Red.Request)
+- uid: Butterfly.RHttpServer.RedHttpServerWebRequest.#ctor(Request)
   name: RedHttpServerWebRequest(Request)
-  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html#Butterfly_RHttpServer_RedHttpServerWebRequest__ctor_Red_Request_
-  commentId: M:Butterfly.RHttpServer.RedHttpServerWebRequest.#ctor(Red.Request)
-  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest.RedHttpServerWebRequest(Red.Request)
+  href: api/Butterfly.RHttpServer.RedHttpServerWebRequest.html#Butterfly_RHttpServer_RedHttpServerWebRequest__ctor_Request_
+  commentId: M:Butterfly.RHttpServer.RedHttpServerWebRequest.#ctor(Request)
+  fullName: Butterfly.RHttpServer.RedHttpServerWebRequest.RedHttpServerWebRequest(Request)
   nameWithType: RedHttpServerWebRequest.RedHttpServerWebRequest(Request)
 - uid: Butterfly.RHttpServer.RedHttpServerWebRequest.#ctor*
   name: RedHttpServerWebRequest
@@ -10598,11 +10598,11 @@ references:
   commentId: T:Butterfly.RHttpServer.RedHttpServerWebResponse
   fullName: Butterfly.RHttpServer.RedHttpServerWebResponse
   nameWithType: RedHttpServerWebResponse
-- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor(Red.Response)
+- uid: Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor(Response)
   name: RedHttpServerWebResponse(Response)
-  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse__ctor_Red_Response_
-  commentId: M:Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor(Red.Response)
-  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.RedHttpServerWebResponse(Red.Response)
+  href: api/Butterfly.RHttpServer.RedHttpServerWebResponse.html#Butterfly_RHttpServer_RedHttpServerWebResponse__ctor_Response_
+  commentId: M:Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor(Response)
+  fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.RedHttpServerWebResponse(Response)
   nameWithType: RedHttpServerWebResponse.RedHttpServerWebResponse(Response)
 - uid: Butterfly.RHttpServer.RedHttpServerWebResponse.#ctor*
   name: RedHttpServerWebResponse
@@ -10727,11 +10727,11 @@ references:
   commentId: T:Butterfly.RHttpServer.WebSocketDialogChannelConnection
   fullName: Butterfly.RHttpServer.WebSocketDialogChannelConnection
   nameWithType: WebSocketDialogChannelConnection
-- uid: Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Red.WebSocketDialog)
+- uid: Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,WebSocketDialog)
   name: WebSocketDialogChannelConnection(BaseSubscriptionApi, WebSocketDialog)
-  href: api/Butterfly.RHttpServer.WebSocketDialogChannelConnection.html#Butterfly_RHttpServer_WebSocketDialogChannelConnection__ctor_Butterfly_Core_Channel_BaseSubscriptionApi_Red_WebSocketDialog_
-  commentId: M:Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Red.WebSocketDialog)
-  fullName: Butterfly.RHttpServer.WebSocketDialogChannelConnection.WebSocketDialogChannelConnection(Butterfly.Core.Channel.BaseSubscriptionApi, Red.WebSocketDialog)
+  href: api/Butterfly.RHttpServer.WebSocketDialogChannelConnection.html#Butterfly_RHttpServer_WebSocketDialogChannelConnection__ctor_Butterfly_Core_Channel_BaseSubscriptionApi_WebSocketDialog_
+  commentId: M:Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,WebSocketDialog)
+  fullName: Butterfly.RHttpServer.WebSocketDialogChannelConnection.WebSocketDialogChannelConnection(Butterfly.Core.Channel.BaseSubscriptionApi, WebSocketDialog)
   nameWithType: WebSocketDialogChannelConnection.WebSocketDialogChannelConnection(BaseSubscriptionApi, WebSocketDialog)
 - uid: Butterfly.RHttpServer.WebSocketDialogChannelConnection.#ctor*
   name: WebSocketDialogChannelConnection
@@ -10778,11 +10778,11 @@ references:
   commentId: T:Butterfly.RHttpServer.WebSocketDialogWebRequest
   fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest
   nameWithType: WebSocketDialogWebRequest
-- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor(Red.WebSocketDialog)
+- uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor(WebSocketDialog)
   name: WebSocketDialogWebRequest(WebSocketDialog)
-  href: api/Butterfly.RHttpServer.WebSocketDialogWebRequest.html#Butterfly_RHttpServer_WebSocketDialogWebRequest__ctor_Red_WebSocketDialog_
-  commentId: M:Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor(Red.WebSocketDialog)
-  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest.WebSocketDialogWebRequest(Red.WebSocketDialog)
+  href: api/Butterfly.RHttpServer.WebSocketDialogWebRequest.html#Butterfly_RHttpServer_WebSocketDialogWebRequest__ctor_WebSocketDialog_
+  commentId: M:Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor(WebSocketDialog)
+  fullName: Butterfly.RHttpServer.WebSocketDialogWebRequest.WebSocketDialogWebRequest(WebSocketDialog)
   nameWithType: WebSocketDialogWebRequest.WebSocketDialogWebRequest(WebSocketDialog)
 - uid: Butterfly.RHttpServer.WebSocketDialogWebRequest.#ctor*
   name: WebSocketDialogWebRequest

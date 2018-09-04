@@ -30,7 +30,6 @@ items:
     content: 'public static class CleverNameX : object'
     content.vb: >-
       Public Module CleverNameX
-
           Inherits Object
   inheritance:
   - System.Object

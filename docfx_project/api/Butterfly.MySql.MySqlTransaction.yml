@@ -40,14 +40,13 @@ items:
   assemblies:
   - Butterfly.MySql
   namespace: Butterfly.MySql
+  summary: "\nBase class implementing <xref href=\"Butterfly.Core.Database.ITransaction\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: 'public class MySqlTransaction : BaseTransaction, ITransaction, IDisposable'
     content.vb: >-
       Public Class MySqlTransaction
-
           Inherits BaseTransaction
-
           Implements ITransaction, IDisposable
   inheritance:
   - System.Object

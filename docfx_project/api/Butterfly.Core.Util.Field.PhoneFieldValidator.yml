@@ -33,9 +33,7 @@ items:
     content: 'public class PhoneFieldValidator : object, IFieldValidator'
     content.vb: >-
       Public Class PhoneFieldValidator
-
           Inherits Object
-
           Implements IFieldValidator
   inheritance:
   - System.Object

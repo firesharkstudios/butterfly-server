@@ -28,7 +28,6 @@ items:
     content: 'public class AwsTest : object'
     content.vb: >-
       Public Class AwsTest
-
           Inherits Object
   inheritance:
   - System.Object

@@ -38,7 +38,6 @@ items:
     content: 'protected class NotifyMessageEngine : object'
     content.vb: >-
       Protected Class NotifyMessageEngine
-
           Inherits Object
   inheritance:
   - System.Object

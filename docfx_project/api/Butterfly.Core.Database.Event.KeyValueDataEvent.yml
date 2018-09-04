@@ -31,7 +31,6 @@ items:
     content: 'public class KeyValueDataEvent : DataEvent'
     content.vb: >-
       Public Class KeyValueDataEvent
-
           Inherits DataEvent
   inheritance:
   - System.Object

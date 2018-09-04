@@ -12,7 +12,7 @@
     <Authors>Kent Johnson</Authors>
     <Copyright>Copyright 2017-2018 Fireshark Studios, LLC</Copyright>
     <Description>Implementation of Butterfly.Core.Database for Postgres</Description>
-    <PackageReleaseNotes>Renamed IWebApiServer to IWebApi and IChannelServer to ISubscriptionApi</PackageReleaseNotes>
+    <PackageReleaseNotes>Various improvements and bug fixes</PackageReleaseNotes>
     <Version>1.0.2</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
   </PropertyGroup>

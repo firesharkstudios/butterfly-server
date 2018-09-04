@@ -39,7 +39,6 @@ items:
     content: 'public class InsertStatement : BaseStatement'
     content.vb: >-
       Public Class InsertStatement
-
           Inherits BaseStatement
   inheritance:
   - System.Object

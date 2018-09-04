@@ -33,9 +33,7 @@ items:
     content: 'public class EmbedIOWebSocketWebRequest : object, IWebRequest'
     content.vb: >-
       Public Class EmbedIOWebSocketWebRequest
-
           Inherits Object
-
           Implements IWebRequest
   inheritance:
   - System.Object

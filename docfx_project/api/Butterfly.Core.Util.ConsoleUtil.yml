@@ -28,7 +28,6 @@ items:
     content: 'public static class ConsoleUtil : object'
     content.vb: >-
       Public Module ConsoleUtil
-
           Inherits Object
   inheritance:
   - System.Object

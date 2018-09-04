@@ -28,7 +28,6 @@ items:
     content: 'public class UnableToConnectDatabaseException : DatabaseException'
     content.vb: >-
       Public Class UnableToConnectDatabaseException
-
           Inherits DatabaseException
   inheritance:
   - System.Object
