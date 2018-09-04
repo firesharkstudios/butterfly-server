@@ -2,7 +2,7 @@
 
 > The Everything is Real-Time C# Backend for Single Page Applications
 
-![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/demo.gif) 
+![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/simple-chat-demo.gif) 
 
 Butterfly Server .NET provides...
 
