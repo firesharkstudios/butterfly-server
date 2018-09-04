@@ -4,6 +4,8 @@
 
 ![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/simple-chat-demo.gif) 
 
+![Star Us](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/yellow-star-24x24.png) Please star this project if you find it interesting
+
 Butterfly Server .NET provides...
 
 - A channel layer that allows the server to push real-time data to clients
