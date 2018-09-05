@@ -189,10 +189,10 @@ namespace Butterfly.Core.Database {
             Dict varsDict = statement.ConvertParamsToDict(vars);
             (string executableSql, Dict executableParams) = statement.GetExecutableSqlAndParams(varsDict);
             this.SelectCount++;
-            return this.DoSelectRowsAsync(executableSql, executableParams);
+            return this.DoSelectRowsAsync(executableSql, executableParams, statement.limit);
         }
 
-        protected abstract Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams);
+        protected abstract Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams, int limit);
 
         public async Task<T> QueryValueAsync<T>(string storedProcedureName, dynamic vars = null, T defaultValue = default(T)) {
             Dict row = await this.QueryRowAsync(storedProcedureName, vars);

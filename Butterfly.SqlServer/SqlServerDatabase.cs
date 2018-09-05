@@ -20,10 +20,19 @@ namespace Butterfly.SqlServer
 	{
 		private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-		private static Regex LIMIT_REGEX = new Regex(@"^(SELECT).+(LIMIT\s+(.+?))$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+		//private static Regex LIMIT_REGEX = new Regex(@"^(SELECT).+(LIMIT\s+(.+?))$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
-		public SqlServerDatabase(string connectionString) : base(connectionString) {
-		}
+        protected readonly bool forceIsolationLevelSnapshot;
+
+        /// <summary>
+        /// Creates an instance of IDatabase that works with a MS SQL Server database (or LocalDB in Visual Studio)
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <param name="forceIsolationLevelSnapshot">Setting this to true prevents SELECTs that depend on unfinished transactions from hanging (requires executing ALTER DATABASE {database} SET ALLOW_SNAPSHOT_ISOLATION ON on the database)</param>
+        public SqlServerDatabase(string connectionString, bool forceIsolationLevelSnapshot = false) : base(connectionString) {
+            this.forceIsolationLevelSnapshot = forceIsolationLevelSnapshot;
+
+        }
 		
 		public override bool CanJoin => true;
 
@@ -57,9 +66,9 @@ namespace Butterfly.SqlServer
 			return result;
 		}
 
-		protected override async Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams)
+		protected override async Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams, int limit)
 		{
-			var sql = ConvertLimit(executableSql);
+			var sql = ConvertLimit(executableSql, limit);
 
 			var result = await ExecuteCommandAsync<Dict[]>(async c =>
 			{
@@ -85,16 +94,9 @@ namespace Butterfly.SqlServer
 			return result;
 		}
 
-		private string ConvertLimit(string sql)
-		{
-			var match = LIMIT_REGEX.Match(sql);
-			if (!match.Success) return sql;
-
-			var result = sql.Replace(match.Groups[2].Value, string.Empty)
-											.Replace(match.Groups[1].Value, $"{match.Groups[1].Value} TOP {match.Groups[3]}");
-											
-
-			return result;
+        private readonly static Regex TOP_REGEX = new Regex(@"^SELECT\s", RegexOptions.IgnoreCase);
+		private string ConvertLimit(string sql, int limit) {
+            return limit > 0 ? TOP_REGEX.Replace(sql, $"SELECT TOP {limit} ") : sql;
 		}
 
 		protected override async Task LoadSchemaAsync()
@@ -220,10 +222,8 @@ namespace Butterfly.SqlServer
 				{
 					connection.Open();
 
-					// 20180904 - Execute command with snapshot transaction, because there are potential uncommittedTransactionListeners
-					//            that needs to be processed before the main transaction completes in BaseTransaction.CommitAsync()
-					using (var transaction = connection.BeginTransaction(System.Data.IsolationLevel.Snapshot))
-					using (var command = new SqlCommand(executableSql, connection, transaction))
+                    var sql = this.forceIsolationLevelSnapshot ? $"SET Transaction Isolation Level Snapshot {executableSql}" : executableSql;
+                    using (var command = new SqlCommand(sql, connection))
 					{
 						if (executableParams != null)
 							foreach (var param in executableParams)
@@ -252,10 +252,8 @@ namespace Butterfly.SqlServer
 				{
 					await connection.OpenAsync();
 
-					// 20180904 - Execute command with snapshot transaction, because there are potential uncommittedTransactionListeners
-					//            that needs to be processed before the main transaction completes in BaseTransaction.CommitAsync()
-					using (var transaction = connection.BeginTransaction(System.Data.IsolationLevel.Snapshot))
-					using (var command = new SqlCommand(executableSql, connection, transaction))
+                    var sql = this.forceIsolationLevelSnapshot ? $"SET Transaction Isolation Level Snapshot {executableSql}" : executableSql;
+                    using (var command = new SqlCommand(sql, connection))
 					{
 						if (executableParams != null)
 							foreach (var param in executableParams)

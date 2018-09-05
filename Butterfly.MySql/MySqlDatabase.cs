@@ -120,22 +120,18 @@ namespace Butterfly.MySql {
             return new MySqlTransaction(this);
         }
 
-        protected override async Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams) {
+        protected override async Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams, int limit) {
             SelectStatement statement = new SelectStatement(this, executableSql);
             MySqlParameter[] mySqlParams = executableParams.Select(keyValuePair => new MySqlParameter(keyValuePair.Key, keyValuePair.Value)).ToArray();
 
             List<Dict> rows = new List<Dict>();
             try {
-                using (MySqlDataReader reader = await ExecuteReaderAsync(this.ConnectionString, executableSql, mySqlParams)) {
+                var sql = limit > 0 ? $"{executableSql} LIMIT {limit}" : executableSql;
+                using (MySqlDataReader reader = await ExecuteReaderAsync(this.ConnectionString, sql, mySqlParams)) {
                     ReadOnlyCollection<DbColumn> columns = null;
                     while (reader.Read()) {
                         if (columns==null) columns = reader.GetColumnSchema();
                         Dict row = new Dictionary<string, object>();
-                        /*
-                        for (int i = 0; i < statement.FieldRefs.Length; i++) {
-                            row[statement.FieldRefs[i].fieldAlias] = ConvertValue(reader[i]);
-                        }
-                        */
                         foreach (var column in columns) {
                             row[column.ColumnName] = ConvertValue(reader[column.ColumnName]);
                         }
