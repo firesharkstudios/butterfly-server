@@ -30,7 +30,7 @@ items:
   namespace: Butterfly.Core.WebApi
   summary: "\nAllows handling requests/responses to a Web API via HTTP (inspired by Node.js&apos; Express)<p></p>\n"
   example:
-  - "\n<pre><code>webApi.OnGet(&quot;/chat-messages&quot;, async(req, res) => {\n// Handle the request and return any objects as needed (will be JSON encoded)\n});\nwebApi.OnPost(&quot;/login&quot;, async(req, res) => {\n// Handle the request and return any objects as needed (will be JSON encoded)\n});\nwebApi.Compile();</code></pre>\n"
+  - "\n<pre><code>webApi.OnGet(&quot;/chat-messages&quot;, async(req, res) => {\n    // Handle the request and return any objects as needed (will be JSON encoded)\n});\nwebApi.OnPost(&quot;/login&quot;, async(req, res) => {\n    // Handle the request and return any objects as needed (will be JSON encoded)\n});\nwebApi.Compile();</code></pre>\n"
   syntax:
     content: 'public interface IWebApi : IDisposable'
     content.vb: >-
@@ -66,7 +66,7 @@ items:
   namespace: Butterfly.Core.WebApi
   summary: "\nAdds a <code data-dev-comment-type=\"paramref\" class=\"paramref\">listener</code> executed when DELETE requests are received matching <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>\n"
   example:
-  - "\n<pre><code>webApi.OnDelete(&quot;/api/todo&quot;, async(req, res) => {\nvar id = await req.ParseAsJsonAsync&lt;string>();\nawait database.DeleteAndCommitAsync(&quot;todo&quot;, id);\n});\nwebApi.OnDelete(&quot;/api/todo/{id}&quot;, async(req, res) => {\nvar id = req.PathParams.GetAs(&quot;id&quot;, &quot;&quot;);\nawait database.DeleteAndCommitAsync(&quot;todo&quot;, id);\n});</code></pre>    \n"
+  - "\n<pre><code>webApi.OnDelete(&quot;/api/todo&quot;, async(req, res) => {\n    var id = await req.ParseAsJsonAsync&lt;string>();\n    await database.DeleteAndCommitAsync(&quot;todo&quot;, id);\n});\nwebApi.OnDelete(&quot;/api/todo/{id}&quot;, async(req, res) => {\n    var id = req.PathParams.GetAs(&quot;id&quot;, &quot;&quot;);\n    await database.DeleteAndCommitAsync(&quot;todo&quot;, id);\n});</code></pre>    \n"
   syntax:
     content: void OnDelete(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
     parameters:

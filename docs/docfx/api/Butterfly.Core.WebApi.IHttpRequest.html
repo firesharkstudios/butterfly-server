@@ -100,7 +100,9 @@
   </h3>
   <a id="Butterfly_Core_WebApi_IHttpRequest_ParseAsJsonAsync_" data-uid="Butterfly.Core.WebApi.IHttpRequest.ParseAsJsonAsync*"></a>
   <h4 id="Butterfly_Core_WebApi_IHttpRequest_ParseAsJsonAsync__1" data-uid="Butterfly.Core.WebApi.IHttpRequest.ParseAsJsonAsync``1">ParseAsJsonAsync&lt;T&gt;()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Parses the body of a POST as JSON
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -117,7 +119,7 @@
     <tbody>
       <tr>
         <td><span class="xref">Task</span>&lt;T&gt;</td>
-        <td></td>
+        <td>Returns an instance of <code data-dev-comment-type="typeparamref" class="typeparamref">T</code></td>
       </tr>
     </tbody>
   </table>
@@ -132,13 +134,15 @@
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
-        <td></td>
+        <td>The type of object to return</td>
       </tr>
     </tbody>
   </table>
   <a id="Butterfly_Core_WebApi_IHttpRequest_ParseAsMultipartStream_" data-uid="Butterfly.Core.WebApi.IHttpRequest.ParseAsMultipartStream*"></a>
   <h4 id="Butterfly_Core_WebApi_IHttpRequest_ParseAsMultipartStream_Action_System_String_System_String_System_String_System_String_System_Byte___System_Int32__Action_System_String_System_String__" data-uid="Butterfly.Core.WebApi.IHttpRequest.ParseAsMultipartStream(Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32},Action{System.String,System.String})">ParseAsMultipartStream(Action&lt;String, String, String, String, Byte[], Int32&gt;, Action&lt;String, String&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Parses the body of a POST as a multipart stream (based on https://www.nuget.org/packages/HttpMultipartParser/)
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -157,18 +161,20 @@
       <tr>
         <td><span class="xref">Action</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>, <span class="xref">System.String</span>, <span class="xref">System.String</span>, <span class="xref">System.Byte</span>[], <span class="xref">System.Int32</span>&gt;</td>
         <td><span class="parametername">onData</span></td>
-        <td></td>
+        <td>Callback with parameters for name, fileName, type, disposition, buffer, bytes</td>
       </tr>
       <tr>
         <td><span class="xref">Action</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
         <td><span class="parametername">onParameter</span></td>
-        <td></td>
+        <td>Callback with parameters for name, data</td>
       </tr>
     </tbody>
   </table>
   <a id="Butterfly_Core_WebApi_IHttpRequest_ParseAsUrlEncodedAsync_" data-uid="Butterfly.Core.WebApi.IHttpRequest.ParseAsUrlEncodedAsync*"></a>
   <h4 id="Butterfly_Core_WebApi_IHttpRequest_ParseAsUrlEncodedAsync" data-uid="Butterfly.Core.WebApi.IHttpRequest.ParseAsUrlEncodedAsync">ParseAsUrlEncodedAsync()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Parses the body of a POST as URL encoded data (like from a form)
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -185,7 +191,7 @@
     <tbody>
       <tr>
         <td><span class="xref">Task</span>&lt;<span class="xref">Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;&gt;</td>
-        <td></td>
+        <td>Returns an instance of <code data-dev-comment-type="typeparamref" class="typeparamref">T</code></td>
       </tr>
     </tbody>
   </table>

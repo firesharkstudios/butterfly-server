@@ -133,14 +133,13 @@ Retrieves the path params
       </tr>
     </tbody>
   </table>
-  <h5 id="Butterfly_Core_Util_IWebRequest_PathParams_remarks">Remarks</h5>
-  <div class="markdown level1 remarks">
-Example...
-<pre><code>    webApi.OnGet(&quot;/todo/{id}&quot;, (req, res) => {
-        // Opening /todo/123 would echo id=123 to the console below
-        Console.Writeline($&quot;id={req.PathParams[&quot;id&quot;]}&quot;);
-    });</code></pre>
-</div>
+  <h5 id="Butterfly_Core_Util_IWebRequest_PathParams_examples">Examples</h5>
+  
+<pre><code>webApi.OnGet(&quot;/todo/{id}&quot;, (req, res) => {
+    // Opening /todo/123 would echo id=123 to the console below
+    Console.Writeline($&quot;id={req.PathParams[&quot;id&quot;]}&quot;);
+});</code></pre>
+
   <a id="Butterfly_Core_Util_IWebRequest_QueryParams_" data-uid="Butterfly.Core.Util.IWebRequest.QueryParams*"></a>
   <h4 id="Butterfly_Core_Util_IWebRequest_QueryParams" data-uid="Butterfly.Core.Util.IWebRequest.QueryParams">QueryParams</h4>
   <div class="markdown level1 summary">
@@ -166,14 +165,13 @@ Retrieves the query string params
       </tr>
     </tbody>
   </table>
-  <h5 id="Butterfly_Core_Util_IWebRequest_QueryParams_remarks">Remarks</h5>
-  <div class="markdown level1 remarks">
-Example...
+  <h5 id="Butterfly_Core_Util_IWebRequest_QueryParams_examples">Examples</h5>
+  
 <pre><code>    webApi.OnGet(&quot;/todo&quot;, (req, res) => {
         // Opening /todo?id=123 would echo id=123 to the console below
         Console.Writeline($&quot;id={req.QueryParams[&quot;id&quot;]}&quot;);
     });</code></pre>
-</div>
+
   <a id="Butterfly_Core_Util_IWebRequest_RequestUrl_" data-uid="Butterfly.Core.Util.IWebRequest.RequestUrl*"></a>
   <h4 id="Butterfly_Core_Util_IWebRequest_RequestUrl" data-uid="Butterfly.Core.Util.IWebRequest.RequestUrl">RequestUrl</h4>
   <div class="markdown level1 summary">

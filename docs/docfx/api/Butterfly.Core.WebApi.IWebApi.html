@@ -86,10 +86,10 @@ Allows handling requests/responses to a Web API via HTTP (inspired by Node.js&ap
   <h5 id="Butterfly_Core_WebApi_IWebApi_examples"><strong>Examples</strong></h5>
   
 <pre><code>webApi.OnGet(&quot;/chat-messages&quot;, async(req, res) => {
-// Handle the request and return any objects as needed (will be JSON encoded)
+    // Handle the request and return any objects as needed (will be JSON encoded)
 });
 webApi.OnPost(&quot;/login&quot;, async(req, res) => {
-// Handle the request and return any objects as needed (will be JSON encoded)
+    // Handle the request and return any objects as needed (will be JSON encoded)
 });
 webApi.Compile();</code></pre>
 
@@ -140,12 +140,12 @@ Adds a <code data-dev-comment-type="paramref" class="paramref">listener</code> e
   <h5 id="Butterfly_Core_WebApi_IWebApi_OnDelete_System_String_Func_Butterfly_Core_WebApi_IHttpRequest_Butterfly_Core_WebApi_IHttpResponse_Task___examples">Examples</h5>
   
 <pre><code>webApi.OnDelete(&quot;/api/todo&quot;, async(req, res) => {
-var id = await req.ParseAsJsonAsync&lt;string>();
-await database.DeleteAndCommitAsync(&quot;todo&quot;, id);
+    var id = await req.ParseAsJsonAsync&lt;string>();
+    await database.DeleteAndCommitAsync(&quot;todo&quot;, id);
 });
 webApi.OnDelete(&quot;/api/todo/{id}&quot;, async(req, res) => {
-var id = req.PathParams.GetAs(&quot;id&quot;, &quot;&quot;);
-await database.DeleteAndCommitAsync(&quot;todo&quot;, id);
+    var id = req.PathParams.GetAs(&quot;id&quot;, &quot;&quot;);
+    await database.DeleteAndCommitAsync(&quot;todo&quot;, id);
 });</code></pre>    
 
   <a id="Butterfly_Core_WebApi_IWebApi_OnGet_" data-uid="Butterfly.Core.WebApi.IWebApi.OnGet*"></a>

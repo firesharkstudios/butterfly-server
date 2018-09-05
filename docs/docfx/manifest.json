@@ -1137,10 +1137,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Util.IWebRequest.html",
-          "hash": "eMo3Nc88mZIniWNrtmxkrA=="
+          "hash": "jXrZSMt3K5cQQUg79z6zDw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1152,7 +1152,7 @@
           "hash": "fw6tUaEsA7f2z3wmCsfXOQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1344,7 +1344,7 @@
           "hash": "1EQyh1dVvKWYam8B9xtwoA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1356,7 +1356,7 @@
           "hash": "i5SLJ1be7nRHVkd9KXrX0w=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1377,10 +1377,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.WebApi.IHttpRequest.html",
-          "hash": "ef5YlmDS5H0OEmxs3xATBw=="
+          "hash": "m/G1exzrP/JS9MjxYJ1/wg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1401,7 +1401,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.WebApi.IWebApi.html",
-          "hash": "cApEgr/BmDKK9vKszgfprQ=="
+          "hash": "Tz8KO7aJkNqyopDPfy6K8w=="
         }
       },
       "is_incremental": false,
@@ -1452,7 +1452,7 @@
           "hash": "D03/W/4JBHjd1BA47siODQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1512,7 +1512,7 @@
           "hash": "AeB6l5n+C/tgM/i5+eXQbg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1752,7 +1752,7 @@
           "hash": "srDfSRF/5wIgesu8/WUAwg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1788,7 +1788,7 @@
           "hash": "BWWk7UJQI3edEQaJUe9nwA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -2002,22 +2002,22 @@
         "incrementalPhase": "build"
       },
       "processors": {
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
-        },
-        "ConceptualDocumentProcessor": {
-          "can_incremental": true,
           "incrementalPhase": "build"
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build"
         },
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
           "incrementalPhase": "build"
         }
       }

@@ -22,10 +22,11 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: IHttpRequest
     path: ../Butterfly.Core/WebApi/IHttpRequest.cs
-    startLine: 11
+    startLine: 12
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
+  example: []
   syntax:
     content: 'public interface IHttpRequest : IWebRequest'
     content.vb: >-
@@ -62,16 +63,20 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ParseAsJsonAsync
     path: ../Butterfly.Core/WebApi/IHttpRequest.cs
-    startLine: 12
+    startLine: 18
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
+  summary: "\nParses the body of a POST as JSON\n"
+  example: []
   syntax:
     content: Task<T> ParseAsJsonAsync<T>()
     typeParameters:
     - id: T
+      description: The type of object to return
     return:
       type: Task{{T}}
+      description: Returns an instance of <code data-dev-comment-type="typeparamref" class="typeparamref">T</code>
     content.vb: Function ParseAsJsonAsync(Of T) As Task(Of T)
   overload: Butterfly.Core.WebApi.IHttpRequest.ParseAsJsonAsync*
   nameWithType.vb: IHttpRequest.ParseAsJsonAsync(Of T)()
@@ -95,14 +100,17 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ParseAsUrlEncodedAsync
     path: ../Butterfly.Core/WebApi/IHttpRequest.cs
-    startLine: 13
+    startLine: 25
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
+  summary: "\nParses the body of a POST as URL encoded data (like from a form)\n"
+  example: []
   syntax:
     content: Task<Dictionary<string, string>> ParseAsUrlEncodedAsync()
     return:
       type: Task{Dictionary{System.String,System.String}}
+      description: Returns an instance of <code data-dev-comment-type="typeparamref" class="typeparamref">T</code>
     content.vb: Function ParseAsUrlEncodedAsync As Task(Of Dictionary(Of String, String))
   overload: Butterfly.Core.WebApi.IHttpRequest.ParseAsUrlEncodedAsync*
 - uid: Butterfly.Core.WebApi.IHttpRequest.ParseAsMultipartStream(Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32},Action{System.String,System.String})
@@ -123,17 +131,21 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ParseAsMultipartStream
     path: ../Butterfly.Core/WebApi/IHttpRequest.cs
-    startLine: 14
+    startLine: 32
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
+  summary: "\nParses the body of a POST as a multipart stream (based on https://www.nuget.org/packages/HttpMultipartParser/)\n"
+  example: []
   syntax:
     content: void ParseAsMultipartStream(Action<string, string, string, string, byte[], int> onData, Action<string, string> onParameter = null)
     parameters:
     - id: onData
       type: Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32}
+      description: Callback with parameters for name, fileName, type, disposition, buffer, bytes
     - id: onParameter
       type: Action{System.String,System.String}
+      description: Callback with parameters for name, data
     content.vb: Sub ParseAsMultipartStream(onData As Action(Of String, String, String, String, Byte(), Integer), onParameter As Action(Of String, String) = Nothing)
   overload: Butterfly.Core.WebApi.IHttpRequest.ParseAsMultipartStream*
   nameWithType.vb: IHttpRequest.ParseAsMultipartStream(Action(Of String, String, String, String, Byte(), Int32), Action(Of String, String))

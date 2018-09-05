@@ -12,10 +12,10 @@ namespace Butterfly.Core.WebApi {
     /// <example>
     /// <code>
     /// webApi.OnGet("/chat-messages", async(req, res) => {
-    /// // Handle the request and return any objects as needed (will be JSON encoded)
+    ///     // Handle the request and return any objects as needed (will be JSON encoded)
     /// });
     /// webApi.OnPost("/login", async(req, res) => {
-    /// // Handle the request and return any objects as needed (will be JSON encoded)
+    ///     // Handle the request and return any objects as needed (will be JSON encoded)
     /// });
     /// webApi.Compile();
     /// </code>
@@ -27,12 +27,12 @@ namespace Butterfly.Core.WebApi {
         /// <example>
         /// <code>
         /// webApi.OnDelete("/api/todo", async(req, res) => {
-        /// var id = await req.ParseAsJsonAsync&lt;string&gt;();
-        /// await database.DeleteAndCommitAsync("todo", id);
+        ///     var id = await req.ParseAsJsonAsync&lt;string&gt;();
+        ///     await database.DeleteAndCommitAsync("todo", id);
         /// });
         /// webApi.OnDelete("/api/todo/{id}", async(req, res) => {
-        /// var id = req.PathParams.GetAs("id", "");
-        /// await database.DeleteAndCommitAsync("todo", id);
+        ///     var id = req.PathParams.GetAs("id", "");
+        ///     await database.DeleteAndCommitAsync("todo", id);
         /// });
         /// </code>    
         /// </example>

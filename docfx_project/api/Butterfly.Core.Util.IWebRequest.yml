@@ -126,13 +126,13 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: PathParams
     path: ../Butterfly.Core/Util/IWebRequest.cs
-    startLine: 31
+    startLine: 30
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
   summary: "\nRetrieves the path params\n"
-  remarks: "\nExample...\n<pre><code>    webApi.OnGet(&quot;/todo/{id}&quot;, (req, res) => {\n        // Opening /todo/123 would echo id=123 to the console below\n        Console.Writeline($&quot;id={req.PathParams[&quot;id&quot;]}&quot;);\n    });</code></pre>\n"
-  example: []
+  example:
+  - "\n<pre><code>webApi.OnGet(&quot;/todo/{id}&quot;, (req, res) => {\n    // Opening /todo/123 would echo id=123 to the console below\n    Console.Writeline($&quot;id={req.PathParams[&quot;id&quot;]}&quot;);\n});</code></pre>\n"
   syntax:
     content: Dictionary<string, string> PathParams { get; }
     parameters: []
@@ -162,13 +162,13 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: QueryParams
     path: ../Butterfly.Core/Util/IWebRequest.cs
-    startLine: 45
+    startLine: 43
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
   summary: "\nRetrieves the query string params\n"
-  remarks: "\nExample...\n<pre><code>    webApi.OnGet(&quot;/todo&quot;, (req, res) => {\n        // Opening /todo?id=123 would echo id=123 to the console below\n        Console.Writeline($&quot;id={req.QueryParams[&quot;id&quot;]}&quot;);\n    });</code></pre>\n"
-  example: []
+  example:
+  - "\n<pre><code>    webApi.OnGet(&quot;/todo&quot;, (req, res) => {\n        // Opening /todo?id=123 would echo id=123 to the console below\n        Console.Writeline($&quot;id={req.QueryParams[&quot;id&quot;]}&quot;);\n    });</code></pre>\n"
   syntax:
     content: Dictionary<string, string> QueryParams { get; }
     parameters: []

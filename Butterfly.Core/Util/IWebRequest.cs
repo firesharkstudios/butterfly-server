@@ -20,29 +20,27 @@ namespace Butterfly.Core.Util {
         /// <summary>
         /// Retrieves the path params
         /// </summary>
-        /// <remarks>
-        /// Example...
+        /// <example>
         /// <code>
-        ///     webApi.OnGet("/todo/{id}", (req, res) => {
-        ///         // Opening /todo/123 would echo id=123 to the console below
-        ///         Console.Writeline($"id={req.PathParams["id"]}");
-        ///     });
+        /// webApi.OnGet("/todo/{id}", (req, res) => {
+        ///     // Opening /todo/123 would echo id=123 to the console below
+        ///     Console.Writeline($"id={req.PathParams["id"]}");
+        /// });
         /// </code>
-        /// </remarks>
+        /// </example>
         Dictionary<string, string> PathParams { get; }
 
         /// <summary>
         /// Retrieves the query string params
         /// </summary>
-        /// <remarks>
-        /// Example...
+        /// <example>
         /// <code>
         ///     webApi.OnGet("/todo", (req, res) => {
         ///         // Opening /todo?id=123 would echo id=123 to the console below
         ///         Console.Writeline($"id={req.QueryParams["id"]}");
         ///     });
         /// </code>
-        /// </remarks>
+        /// </example>
         Dictionary<string, string> QueryParams { get; }
     }
 }
