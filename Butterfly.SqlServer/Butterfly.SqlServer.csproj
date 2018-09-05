@@ -3,6 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
+    <Version>1.0.3</Version>
+    <Authors>Johan van Rensburg, Kent Johnson</Authors>
+    <Company>Fireshark Studios, LLC</Company>
+    <Product>Butterfly Server .NET</Product>
+    <Description>Implementation of Butterfly.Core.Database for MS SQL Server</Description>
+    <Copyright>Copyright 2017-2018 Fireshark Studios, LLC</Copyright>
+    <PackageLicenseUrl>https://www.mozilla.org/en-US/MPL/2.0/</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/firesharkstudios/butterfly-server-dotnet</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/logo-40x40.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/firesharkstudios/butterfly-server-dotnet</RepositoryUrl>
+    <PackageTags>butterfly server database sqlserver</PackageTags>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

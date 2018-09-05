@@ -28,6 +28,7 @@ An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/
 | Butterfly.EmbedIO | [![nuget](https://img.shields.io/nuget/v/Butterfly.EmbedIO.svg)](https://www.nuget.org/packages/Butterfly.EmbedIO/) | `nuget install Butterfly.EmbedIO` |
 | Butterfly.MySQL | [![nuget](https://img.shields.io/nuget/v/Butterfly.MySQL.svg)](https://www.nuget.org/packages/Butterfly.MySQL/) | `nuget install Butterfly.MySQL` |
 | Butterfly.SQLite | [![nuget](https://img.shields.io/nuget/v/Butterfly.SQLite.svg)](https://www.nuget.org/packages/Butterfly.SQLite/) | `nuget install Butterfly.SQLite` |
+| Butterfly.SqlServer | [![nuget](https://img.shields.io/nuget/v/Butterfly.SqlServer.svg)](https://www.nuget.org/packages/Butterfly.SqlServer/) | `nuget install Butterfly.SqlServer` |
 
 ## Install from Source Code
 
@@ -795,6 +796,20 @@ In your application...
 
 ```csharp
 var database = new Butterfly.SQLite.SQLiteDatabase("Filename=./my_database.db");
+```
+
+### Using MS SQL Server
+
+In the *Package Manager Console*...
+
+```
+Install-Package Butterfly.SqlServer
+```
+
+In your application...
+
+```csharp
+var database = new Butterfly.SqlServer.SqlServerDatabase("Server=localhost; Initial Catalog=Butterfly; User ID=test; Password=test!123");
 ```
 
 ## Butterfly Client
