@@ -64,17 +64,17 @@ items:
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
-  summary: "\nAdd a listener responding to PATCH requests\n"
+  summary: "\nAdds a <code data-dev-comment-type=\"paramref\" class=\"paramref\">listener</code> executed when DELETE requests are received matching <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>\n"
   example: []
   syntax:
     content: void OnDelete(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
     parameters:
     - id: path
       type: System.String
-      description: ''
+      description: Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when DELETE requests match this path. Can use tokens like <pre><code>{id}</code></pre> in the path with the values of these tokens available in <see cref="!:IHttpRequest.PathParams">IHttpRequest.PathParams</see>.
     - id: listener
       type: Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}
-      description: ''
+      description: Execute this async handler when a DELETE request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code> (passes <xref href="Butterfly.Core.WebApi.IHttpRequest" data-throw-if-not-resolved="false"></xref> and <xref href="Butterfly.Core.WebApi.IHttpResponse" data-throw-if-not-resolved="false"></xref> instances to the handler)
     content.vb: Sub OnDelete(path As String, listener As Func(Of IHttpRequest, IHttpResponse, Task))
   overload: Butterfly.Core.WebApi.IWebApi.OnDelete*
   nameWithType.vb: IWebApi.OnDelete(String, Func(Of IHttpRequest, IHttpResponse, Task))
@@ -102,17 +102,17 @@ items:
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
-  summary: "\nAdd a listener responding to GET requests\n"
+  summary: "\nAdds a <code data-dev-comment-type=\"paramref\" class=\"paramref\">listener</code> executed when GET requests are received matching <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>\n"
   example: []
   syntax:
     content: void OnGet(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
     parameters:
     - id: path
       type: System.String
-      description: ''
+      description: Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when GET requests match this path. Can use tokens like <pre><code>{id}</code></pre> in the path with the values of these tokens available in <see cref="!:IHttpRequest.PathParams">IHttpRequest.PathParams</see>.
     - id: listener
       type: Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}
-      description: ''
+      description: Execute this async handler when a GET request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code> (passes <xref href="Butterfly.Core.WebApi.IHttpRequest" data-throw-if-not-resolved="false"></xref> and <xref href="Butterfly.Core.WebApi.IHttpResponse" data-throw-if-not-resolved="false"></xref> instances to the handler)
     content.vb: Sub OnGet(path As String, listener As Func(Of IHttpRequest, IHttpResponse, Task))
   overload: Butterfly.Core.WebApi.IWebApi.OnGet*
   nameWithType.vb: IWebApi.OnGet(String, Func(Of IHttpRequest, IHttpResponse, Task))
@@ -140,17 +140,17 @@ items:
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
-  summary: "\nAdd a listener responding to POST requests\n"
+  summary: "\nAdds a <code data-dev-comment-type=\"paramref\" class=\"paramref\">listener</code> executed when POST requests are received matching <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>\n"
   example: []
   syntax:
     content: void OnPost(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
     parameters:
     - id: path
       type: System.String
-      description: ''
+      description: Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when POST requests match this path. Can use tokens like <pre><code>{id}</code></pre> in the path with the values of these tokens available in <see cref="!:IHttpRequest.PathParams">IHttpRequest.PathParams</see>.
     - id: listener
       type: Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}
-      description: ''
+      description: Execute this async handler when a POST request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code> (passes <xref href="Butterfly.Core.WebApi.IHttpRequest" data-throw-if-not-resolved="false"></xref> and <xref href="Butterfly.Core.WebApi.IHttpResponse" data-throw-if-not-resolved="false"></xref> instances to the handler)
     content.vb: Sub OnPost(path As String, listener As Func(Of IHttpRequest, IHttpResponse, Task))
   overload: Butterfly.Core.WebApi.IWebApi.OnPost*
   nameWithType.vb: IWebApi.OnPost(String, Func(Of IHttpRequest, IHttpResponse, Task))
@@ -178,17 +178,17 @@ items:
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
-  summary: "\nAdd a listener responding to PUT requests\n"
+  summary: "\nAdds a <code data-dev-comment-type=\"paramref\" class=\"paramref\">listener</code> executed when PUT requests are received matching <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>\n"
   example: []
   syntax:
     content: void OnPut(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
     parameters:
     - id: path
       type: System.String
-      description: ''
+      description: Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when PUT requests match this path. Can use tokens like <pre><code>{id}</code></pre> in the path with the values of these tokens available in <see cref="!:IHttpRequest.PathParams">IHttpRequest.PathParams</see>.
     - id: listener
       type: Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}
-      description: ''
+      description: Execute this async handler when a PUT request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code> (passes <xref href="Butterfly.Core.WebApi.IHttpRequest" data-throw-if-not-resolved="false"></xref> and <xref href="Butterfly.Core.WebApi.IHttpResponse" data-throw-if-not-resolved="false"></xref> instances to the handler)
     content.vb: Sub OnPut(path As String, listener As Func(Of IHttpRequest, IHttpResponse, Task))
   overload: Butterfly.Core.WebApi.IWebApi.OnPut*
   nameWithType.vb: IWebApi.OnPut(String, Func(Of IHttpRequest, IHttpResponse, Task))
@@ -228,6 +228,18 @@ references:
   name: Butterfly.Core.WebApi
   nameWithType: Butterfly.Core.WebApi
   fullName: Butterfly.Core.WebApi
+- uid: Butterfly.Core.WebApi.IHttpRequest
+  commentId: T:Butterfly.Core.WebApi.IHttpRequest
+  parent: Butterfly.Core.WebApi
+  name: IHttpRequest
+  nameWithType: IHttpRequest
+  fullName: Butterfly.Core.WebApi.IHttpRequest
+- uid: Butterfly.Core.WebApi.IHttpResponse
+  commentId: T:Butterfly.Core.WebApi.IHttpResponse
+  parent: Butterfly.Core.WebApi
+  name: IHttpResponse
+  nameWithType: IHttpResponse
+  fullName: Butterfly.Core.WebApi.IHttpResponse
 - uid: Butterfly.Core.WebApi.IWebApi.OnDelete*
   commentId: Overload:Butterfly.Core.WebApi.IWebApi.OnDelete
   name: OnDelete

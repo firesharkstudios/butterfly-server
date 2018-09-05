@@ -24,31 +24,31 @@ namespace Butterfly.Core.WebApi {
     /// </remarks>
     public interface IWebApi : IDisposable {
         /// <summary>
-        /// Add a listener responding to PATCH requests
+        /// Adds a <paramref name="listener"/> executed when DELETE requests are received matching <paramref name="path"/>
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="listener"></param>
+        /// <param name="path">Only execute the <paramref name="listener"/> when DELETE requests match this path. Can use tokens like <code>{id}</code> in the path with the values of these tokens available in <see cref="IHttpRequest.PathParams">IHttpRequest.PathParams</see>.</param>
+        /// <param name="listener">Execute this async handler when a DELETE request is received matching the <paramref name="path"/> (passes <see cref="IHttpRequest"/> and <see cref="IHttpResponse"/> instances to the handler)</param>
         void OnDelete(string path, Func<IHttpRequest, IHttpResponse, Task> listener);
 
         /// <summary>
-        /// Add a listener responding to GET requests
+        /// Adds a <paramref name="listener"/> executed when GET requests are received matching <paramref name="path"/>
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="listener"></param>
+        /// <param name="path">Only execute the <paramref name="listener"/> when GET requests match this path. Can use tokens like <code>{id}</code> in the path with the values of these tokens available in <see cref="IHttpRequest.PathParams">IHttpRequest.PathParams</see>.</param>
+        /// <param name="listener">Execute this async handler when a GET request is received matching the <paramref name="path"/> (passes <see cref="IHttpRequest"/> and <see cref="IHttpResponse"/> instances to the handler)</param>
         void OnGet(string path, Func<IHttpRequest, IHttpResponse, Task> listener);
 
         /// <summary>
-        /// Add a listener responding to POST requests
+        /// Adds a <paramref name="listener"/> executed when POST requests are received matching <paramref name="path"/>
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="listener"></param>
+        /// <param name="path">Only execute the <paramref name="listener"/> when POST requests match this path. Can use tokens like <code>{id}</code> in the path with the values of these tokens available in <see cref="IHttpRequest.PathParams">IHttpRequest.PathParams</see>.</param>
+        /// <param name="listener">Execute this async handler when a POST request is received matching the <paramref name="path"/> (passes <see cref="IHttpRequest"/> and <see cref="IHttpResponse"/> instances to the handler)</param>
         void OnPost(string path, Func<IHttpRequest, IHttpResponse, Task> listener);
 
         /// <summary>
-        /// Add a listener responding to PUT requests
+        /// Adds a <paramref name="listener"/> executed when PUT requests are received matching <paramref name="path"/>
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="listener"></param>
+        /// <param name="path">Only execute the <paramref name="listener"/> when PUT requests match this path. Can use tokens like <code>{id}</code> in the path with the values of these tokens available in <see cref="IHttpRequest.PathParams">IHttpRequest.PathParams</see>.</param>
+        /// <param name="listener">Execute this async handler when a PUT request is received matching the <paramref name="path"/> (passes <see cref="IHttpRequest"/> and <see cref="IHttpResponse"/> instances to the handler)</param>
         void OnPut(string path, Func<IHttpRequest, IHttpResponse, Task> listener);
 
         /// <summary>
