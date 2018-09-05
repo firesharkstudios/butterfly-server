@@ -26,29 +26,62 @@ namespace Butterfly.Core.WebApi {
         /// <summary>
         /// Adds a <paramref name="listener"/> executed when DELETE requests are received matching <paramref name="path"/>
         /// </summary>
-        /// <param name="path">Only execute the <paramref name="listener"/> when DELETE requests match this path. Can use tokens like <code>{id}</code> in the path with the values of these tokens available in <see cref="IHttpRequest.PathParams">IHttpRequest.PathParams</see>.</param>
-        /// <param name="listener">Execute this async handler when a DELETE request is received matching the <paramref name="path"/> (passes <see cref="IHttpRequest"/> and <see cref="IHttpResponse"/> instances to the handler)</param>
+        /// <example>
+        ///     webApi.OnDelete("/api/todo", async(req, res) => {
+        ///         var id = await req.ParseAsJsonAsync&lt;string&gt;();
+        ///         await database.DeleteAndCommitAsync("todo", id);
+        ///     });
+        ///     webApi.OnDelete("/api/todo/{id}", async(req, res) => {
+        ///         var id = req.PathParams.GetAs("id", "");
+        ///         await database.DeleteAndCommitAsync("todo", id);
+        ///     });
+        /// </example>
+        /// <param name="path">Only execute the <paramref name="listener"/> when DELETE requests match this path.</param>
+        /// <param name="listener">Execute this async handler when a DELETE request is received matching the <paramref name="path"/></param>
         void OnDelete(string path, Func<IHttpRequest, IHttpResponse, Task> listener);
 
         /// <summary>
         /// Adds a <paramref name="listener"/> executed when GET requests are received matching <paramref name="path"/>
         /// </summary>
-        /// <param name="path">Only execute the <paramref name="listener"/> when GET requests match this path. Can use tokens like <code>{id}</code> in the path with the values of these tokens available in <see cref="IHttpRequest.PathParams">IHttpRequest.PathParams</see>.</param>
-        /// <param name="listener">Execute this async handler when a GET request is received matching the <paramref name="path"/> (passes <see cref="IHttpRequest"/> and <see cref="IHttpResponse"/> instances to the handler)</param>
+        /// <example>
+        ///     webApi.OnGet("/api/todos", async(req, res) => {
+        ///         Dict[] rows = await database.SelectRowsAsync("SELECT * FROM todo");
+        ///         await res.WriteAsJsonAsync(rows);
+        ///     });
+        ///     webApi.OnGet("/api/todo/{id}", async(req, res) => {
+        ///         var id = req.PathParams.GetAs("id", "");
+        ///         Dict row = await database.SelectRowAsync("SELECT * FROM todo", id);
+        ///         await res.WriteAsJsonAsync(row);
+        ///     });
+        /// </example>
+        /// <param name="path">Only execute the <paramref name="listener"/> when GET requests match this path.</param>
+        /// <param name="listener">Execute this async handler when a GET request is received matching the <paramref name="path"/></param>
         void OnGet(string path, Func<IHttpRequest, IHttpResponse, Task> listener);
 
         /// <summary>
         /// Adds a <paramref name="listener"/> executed when POST requests are received matching <paramref name="path"/>
         /// </summary>
-        /// <param name="path">Only execute the <paramref name="listener"/> when POST requests match this path. Can use tokens like <code>{id}</code> in the path with the values of these tokens available in <see cref="IHttpRequest.PathParams">IHttpRequest.PathParams</see>.</param>
-        /// <param name="listener">Execute this async handler when a POST request is received matching the <paramref name="path"/> (passes <see cref="IHttpRequest"/> and <see cref="IHttpResponse"/> instances to the handler)</param>
+        /// <example>
+        ///     webApi.OnPost("/api/todo", async(req, res) => {
+        ///         var row = await req.ParseAsJsonAsync&lt;Dict&gt;();
+        ///         await database.InsertAndCommitAsync&lt;string&gt;("todo", row);
+        ///     });
+        /// </example>
+        /// <param name="path">Only execute the <paramref name="listener"/> when POST requests match this path.</param>
+        /// <param name="listener">Execute this async handler when a POST request is received matching the <paramref name="path"/></param>
         void OnPost(string path, Func<IHttpRequest, IHttpResponse, Task> listener);
 
         /// <summary>
         /// Adds a <paramref name="listener"/> executed when PUT requests are received matching <paramref name="path"/>
         /// </summary>
-        /// <param name="path">Only execute the <paramref name="listener"/> when PUT requests match this path. Can use tokens like <code>{id}</code> in the path with the values of these tokens available in <see cref="IHttpRequest.PathParams">IHttpRequest.PathParams</see>.</param>
-        /// <param name="listener">Execute this async handler when a PUT request is received matching the <paramref name="path"/> (passes <see cref="IHttpRequest"/> and <see cref="IHttpResponse"/> instances to the handler)</param>
+        /// <example>
+        ///     webApi.OnPost("/api/todo", async(req, res) => {
+        ///         var row = await req.ParseAsJsonAsync&lt;Dict&gt;();
+        ///         await database.UpdateAndCommitAsync("todo", row);
+        ///     });
+        /// </example>
+        /// <param name="path">Only execute the <paramref name="listener"/> when PUT requests match this path.</param>
+        /// <param name="listener">Execute this async handler when a PUT request is received matching the <paramref name="path"/></param>
         void OnPut(string path, Func<IHttpRequest, IHttpResponse, Task> listener);
 
         /// <summary>

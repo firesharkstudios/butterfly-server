@@ -130,15 +130,26 @@ Adds a <code data-dev-comment-type="paramref" class="paramref">listener</code> e
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">path</span></td>
-        <td>Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when DELETE requests match this path. Can use tokens like <pre><code>{id}</code></pre> in the path with the values of these tokens available in <see cref="!:IHttpRequest.PathParams">IHttpRequest.PathParams</see>.</td>
+        <td>Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when DELETE requests match this path.</td>
       </tr>
       <tr>
         <td><span class="xref">Func</span>&lt;<a class="xref" href="Butterfly.Core.WebApi.IHttpRequest.html">IHttpRequest</a>, <a class="xref" href="Butterfly.Core.WebApi.IHttpResponse.html">IHttpResponse</a>, <span class="xref">Task</span>&gt;</td>
         <td><span class="parametername">listener</span></td>
-        <td>Execute this async handler when a DELETE request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code> (passes <a class="xref" href="Butterfly.Core.WebApi.IHttpRequest.html">IHttpRequest</a> and <a class="xref" href="Butterfly.Core.WebApi.IHttpResponse.html">IHttpResponse</a> instances to the handler)</td>
+        <td>Execute this async handler when a DELETE request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code></td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Butterfly_Core_WebApi_IWebApi_OnDelete_System_String_Func_Butterfly_Core_WebApi_IHttpRequest_Butterfly_Core_WebApi_IHttpResponse_Task___examples">Examples</h5>
+  
+webApi.OnDelete(&quot;/api/todo&quot;, async(req, res) => {
+var id = await req.ParseAsJsonAsync&lt;string>();
+await database.DeleteAndCommitAsync(&quot;todo&quot;, id);
+});
+webApi.OnDelete(&quot;/api/todo/{id}&quot;, async(req, res) => {
+var id = req.PathParams.GetAs(&quot;id&quot;, &quot;&quot;);
+await database.DeleteAndCommitAsync(&quot;todo&quot;, id);
+});
+
   <a id="Butterfly_Core_WebApi_IWebApi_OnGet_" data-uid="Butterfly.Core.WebApi.IWebApi.OnGet*"></a>
   <h4 id="Butterfly_Core_WebApi_IWebApi_OnGet_System_String_Func_Butterfly_Core_WebApi_IHttpRequest_Butterfly_Core_WebApi_IHttpResponse_Task__" data-uid="Butterfly.Core.WebApi.IWebApi.OnGet(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})">OnGet(String, Func&lt;IHttpRequest, IHttpResponse, Task&gt;)</h4>
   <div class="markdown level1 summary">
@@ -162,15 +173,27 @@ Adds a <code data-dev-comment-type="paramref" class="paramref">listener</code> e
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">path</span></td>
-        <td>Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when GET requests match this path. Can use tokens like <pre><code>{id}</code></pre> in the path with the values of these tokens available in <see cref="!:IHttpRequest.PathParams">IHttpRequest.PathParams</see>.</td>
+        <td>Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when GET requests match this path.</td>
       </tr>
       <tr>
         <td><span class="xref">Func</span>&lt;<a class="xref" href="Butterfly.Core.WebApi.IHttpRequest.html">IHttpRequest</a>, <a class="xref" href="Butterfly.Core.WebApi.IHttpResponse.html">IHttpResponse</a>, <span class="xref">Task</span>&gt;</td>
         <td><span class="parametername">listener</span></td>
-        <td>Execute this async handler when a GET request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code> (passes <a class="xref" href="Butterfly.Core.WebApi.IHttpRequest.html">IHttpRequest</a> and <a class="xref" href="Butterfly.Core.WebApi.IHttpResponse.html">IHttpResponse</a> instances to the handler)</td>
+        <td>Execute this async handler when a GET request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code></td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Butterfly_Core_WebApi_IWebApi_OnGet_System_String_Func_Butterfly_Core_WebApi_IHttpRequest_Butterfly_Core_WebApi_IHttpResponse_Task___examples">Examples</h5>
+  
+webApi.OnGet(&quot;/api/todos&quot;, async(req, res) => {
+Dict[] rows = await database.SelectRowsAsync(&quot;SELECT * FROM todo&quot;);
+await res.WriteAsJsonAsync(rows);
+});
+webApi.OnGet(&quot;/api/todo/{id}&quot;, async(req, res) => {
+var id = req.PathParams.GetAs(&quot;id&quot;, &quot;&quot;);
+Dict row = await database.SelectRowAsync(&quot;SELECT * FROM todo&quot;, id);
+await res.WriteAsJsonAsync(row);
+});
+
   <a id="Butterfly_Core_WebApi_IWebApi_OnPost_" data-uid="Butterfly.Core.WebApi.IWebApi.OnPost*"></a>
   <h4 id="Butterfly_Core_WebApi_IWebApi_OnPost_System_String_Func_Butterfly_Core_WebApi_IHttpRequest_Butterfly_Core_WebApi_IHttpResponse_Task__" data-uid="Butterfly.Core.WebApi.IWebApi.OnPost(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})">OnPost(String, Func&lt;IHttpRequest, IHttpResponse, Task&gt;)</h4>
   <div class="markdown level1 summary">
@@ -194,15 +217,22 @@ Adds a <code data-dev-comment-type="paramref" class="paramref">listener</code> e
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">path</span></td>
-        <td>Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when POST requests match this path. Can use tokens like <pre><code>{id}</code></pre> in the path with the values of these tokens available in <see cref="!:IHttpRequest.PathParams">IHttpRequest.PathParams</see>.</td>
+        <td>Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when POST requests match this path.</td>
       </tr>
       <tr>
         <td><span class="xref">Func</span>&lt;<a class="xref" href="Butterfly.Core.WebApi.IHttpRequest.html">IHttpRequest</a>, <a class="xref" href="Butterfly.Core.WebApi.IHttpResponse.html">IHttpResponse</a>, <span class="xref">Task</span>&gt;</td>
         <td><span class="parametername">listener</span></td>
-        <td>Execute this async handler when a POST request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code> (passes <a class="xref" href="Butterfly.Core.WebApi.IHttpRequest.html">IHttpRequest</a> and <a class="xref" href="Butterfly.Core.WebApi.IHttpResponse.html">IHttpResponse</a> instances to the handler)</td>
+        <td>Execute this async handler when a POST request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code></td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Butterfly_Core_WebApi_IWebApi_OnPost_System_String_Func_Butterfly_Core_WebApi_IHttpRequest_Butterfly_Core_WebApi_IHttpResponse_Task___examples">Examples</h5>
+  
+webApi.OnPost(&quot;/api/todo&quot;, async(req, res) => {
+var row = await req.ParseAsJsonAsync&lt;Dict>();
+await database.InsertAndCommitAsync&lt;string>(&quot;todo&quot;, row);
+});
+
   <a id="Butterfly_Core_WebApi_IWebApi_OnPut_" data-uid="Butterfly.Core.WebApi.IWebApi.OnPut*"></a>
   <h4 id="Butterfly_Core_WebApi_IWebApi_OnPut_System_String_Func_Butterfly_Core_WebApi_IHttpRequest_Butterfly_Core_WebApi_IHttpResponse_Task__" data-uid="Butterfly.Core.WebApi.IWebApi.OnPut(System.String,Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task})">OnPut(String, Func&lt;IHttpRequest, IHttpResponse, Task&gt;)</h4>
   <div class="markdown level1 summary">
@@ -226,15 +256,22 @@ Adds a <code data-dev-comment-type="paramref" class="paramref">listener</code> e
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">path</span></td>
-        <td>Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when PUT requests match this path. Can use tokens like <pre><code>{id}</code></pre> in the path with the values of these tokens available in <see cref="!:IHttpRequest.PathParams">IHttpRequest.PathParams</see>.</td>
+        <td>Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when PUT requests match this path.</td>
       </tr>
       <tr>
         <td><span class="xref">Func</span>&lt;<a class="xref" href="Butterfly.Core.WebApi.IHttpRequest.html">IHttpRequest</a>, <a class="xref" href="Butterfly.Core.WebApi.IHttpResponse.html">IHttpResponse</a>, <span class="xref">Task</span>&gt;</td>
         <td><span class="parametername">listener</span></td>
-        <td>Execute this async handler when a PUT request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code> (passes <a class="xref" href="Butterfly.Core.WebApi.IHttpRequest.html">IHttpRequest</a> and <a class="xref" href="Butterfly.Core.WebApi.IHttpResponse.html">IHttpResponse</a> instances to the handler)</td>
+        <td>Execute this async handler when a PUT request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code></td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Butterfly_Core_WebApi_IWebApi_OnPut_System_String_Func_Butterfly_Core_WebApi_IHttpRequest_Butterfly_Core_WebApi_IHttpResponse_Task___examples">Examples</h5>
+  
+webApi.OnPost(&quot;/api/todo&quot;, async(req, res) => {
+var row = await req.ParseAsJsonAsync&lt;Dict>();
+await database.UpdateAndCommitAsync(&quot;todo&quot;, row);
+});
+
 </article>
           </div>
           

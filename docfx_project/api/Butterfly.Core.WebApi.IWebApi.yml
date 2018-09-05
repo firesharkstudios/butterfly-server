@@ -60,21 +60,22 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnDelete
     path: ../Butterfly.Core/WebApi/IWebApi.cs
-    startLine: 30
+    startLine: 40
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
   summary: "\nAdds a <code data-dev-comment-type=\"paramref\" class=\"paramref\">listener</code> executed when DELETE requests are received matching <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>\n"
-  example: []
+  example:
+  - "\nwebApi.OnDelete(&quot;/api/todo&quot;, async(req, res) => {\nvar id = await req.ParseAsJsonAsync&lt;string>();\nawait database.DeleteAndCommitAsync(&quot;todo&quot;, id);\n});\nwebApi.OnDelete(&quot;/api/todo/{id}&quot;, async(req, res) => {\nvar id = req.PathParams.GetAs(&quot;id&quot;, &quot;&quot;);\nawait database.DeleteAndCommitAsync(&quot;todo&quot;, id);\n});\n"
   syntax:
     content: void OnDelete(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
     parameters:
     - id: path
       type: System.String
-      description: Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when DELETE requests match this path. Can use tokens like <pre><code>{id}</code></pre> in the path with the values of these tokens available in <see cref="!:IHttpRequest.PathParams">IHttpRequest.PathParams</see>.
+      description: Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when DELETE requests match this path.
     - id: listener
       type: Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}
-      description: Execute this async handler when a DELETE request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code> (passes <xref href="Butterfly.Core.WebApi.IHttpRequest" data-throw-if-not-resolved="false"></xref> and <xref href="Butterfly.Core.WebApi.IHttpResponse" data-throw-if-not-resolved="false"></xref> instances to the handler)
+      description: Execute this async handler when a DELETE request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code>
     content.vb: Sub OnDelete(path As String, listener As Func(Of IHttpRequest, IHttpResponse, Task))
   overload: Butterfly.Core.WebApi.IWebApi.OnDelete*
   nameWithType.vb: IWebApi.OnDelete(String, Func(Of IHttpRequest, IHttpResponse, Task))
@@ -98,21 +99,22 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnGet
     path: ../Butterfly.Core/WebApi/IWebApi.cs
-    startLine: 37
+    startLine: 58
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
   summary: "\nAdds a <code data-dev-comment-type=\"paramref\" class=\"paramref\">listener</code> executed when GET requests are received matching <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>\n"
-  example: []
+  example:
+  - "\nwebApi.OnGet(&quot;/api/todos&quot;, async(req, res) => {\nDict[] rows = await database.SelectRowsAsync(&quot;SELECT * FROM todo&quot;);\nawait res.WriteAsJsonAsync(rows);\n});\nwebApi.OnGet(&quot;/api/todo/{id}&quot;, async(req, res) => {\nvar id = req.PathParams.GetAs(&quot;id&quot;, &quot;&quot;);\nDict row = await database.SelectRowAsync(&quot;SELECT * FROM todo&quot;, id);\nawait res.WriteAsJsonAsync(row);\n});\n"
   syntax:
     content: void OnGet(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
     parameters:
     - id: path
       type: System.String
-      description: Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when GET requests match this path. Can use tokens like <pre><code>{id}</code></pre> in the path with the values of these tokens available in <see cref="!:IHttpRequest.PathParams">IHttpRequest.PathParams</see>.
+      description: Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when GET requests match this path.
     - id: listener
       type: Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}
-      description: Execute this async handler when a GET request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code> (passes <xref href="Butterfly.Core.WebApi.IHttpRequest" data-throw-if-not-resolved="false"></xref> and <xref href="Butterfly.Core.WebApi.IHttpResponse" data-throw-if-not-resolved="false"></xref> instances to the handler)
+      description: Execute this async handler when a GET request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code>
     content.vb: Sub OnGet(path As String, listener As Func(Of IHttpRequest, IHttpResponse, Task))
   overload: Butterfly.Core.WebApi.IWebApi.OnGet*
   nameWithType.vb: IWebApi.OnGet(String, Func(Of IHttpRequest, IHttpResponse, Task))
@@ -136,21 +138,22 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnPost
     path: ../Butterfly.Core/WebApi/IWebApi.cs
-    startLine: 44
+    startLine: 71
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
   summary: "\nAdds a <code data-dev-comment-type=\"paramref\" class=\"paramref\">listener</code> executed when POST requests are received matching <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>\n"
-  example: []
+  example:
+  - "\nwebApi.OnPost(&quot;/api/todo&quot;, async(req, res) => {\nvar row = await req.ParseAsJsonAsync&lt;Dict>();\nawait database.InsertAndCommitAsync&lt;string>(&quot;todo&quot;, row);\n});\n"
   syntax:
     content: void OnPost(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
     parameters:
     - id: path
       type: System.String
-      description: Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when POST requests match this path. Can use tokens like <pre><code>{id}</code></pre> in the path with the values of these tokens available in <see cref="!:IHttpRequest.PathParams">IHttpRequest.PathParams</see>.
+      description: Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when POST requests match this path.
     - id: listener
       type: Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}
-      description: Execute this async handler when a POST request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code> (passes <xref href="Butterfly.Core.WebApi.IHttpRequest" data-throw-if-not-resolved="false"></xref> and <xref href="Butterfly.Core.WebApi.IHttpResponse" data-throw-if-not-resolved="false"></xref> instances to the handler)
+      description: Execute this async handler when a POST request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code>
     content.vb: Sub OnPost(path As String, listener As Func(Of IHttpRequest, IHttpResponse, Task))
   overload: Butterfly.Core.WebApi.IWebApi.OnPost*
   nameWithType.vb: IWebApi.OnPost(String, Func(Of IHttpRequest, IHttpResponse, Task))
@@ -174,21 +177,22 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnPut
     path: ../Butterfly.Core/WebApi/IWebApi.cs
-    startLine: 51
+    startLine: 84
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
   summary: "\nAdds a <code data-dev-comment-type=\"paramref\" class=\"paramref\">listener</code> executed when PUT requests are received matching <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>\n"
-  example: []
+  example:
+  - "\nwebApi.OnPost(&quot;/api/todo&quot;, async(req, res) => {\nvar row = await req.ParseAsJsonAsync&lt;Dict>();\nawait database.UpdateAndCommitAsync(&quot;todo&quot;, row);\n});\n"
   syntax:
     content: void OnPut(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
     parameters:
     - id: path
       type: System.String
-      description: Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when PUT requests match this path. Can use tokens like <pre><code>{id}</code></pre> in the path with the values of these tokens available in <see cref="!:IHttpRequest.PathParams">IHttpRequest.PathParams</see>.
+      description: Only execute the <code data-dev-comment-type="paramref" class="paramref">listener</code> when PUT requests match this path.
     - id: listener
       type: Func{Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,Task}
-      description: Execute this async handler when a PUT request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code> (passes <xref href="Butterfly.Core.WebApi.IHttpRequest" data-throw-if-not-resolved="false"></xref> and <xref href="Butterfly.Core.WebApi.IHttpResponse" data-throw-if-not-resolved="false"></xref> instances to the handler)
+      description: Execute this async handler when a PUT request is received matching the <code data-dev-comment-type="paramref" class="paramref">path</code>
     content.vb: Sub OnPut(path As String, listener As Func(Of IHttpRequest, IHttpResponse, Task))
   overload: Butterfly.Core.WebApi.IWebApi.OnPut*
   nameWithType.vb: IWebApi.OnPut(String, Func(Of IHttpRequest, IHttpResponse, Task))
@@ -212,7 +216,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Compile
     path: ../Butterfly.Core/WebApi/IWebApi.cs
-    startLine: 56
+    startLine: 89
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
@@ -228,18 +232,6 @@ references:
   name: Butterfly.Core.WebApi
   nameWithType: Butterfly.Core.WebApi
   fullName: Butterfly.Core.WebApi
-- uid: Butterfly.Core.WebApi.IHttpRequest
-  commentId: T:Butterfly.Core.WebApi.IHttpRequest
-  parent: Butterfly.Core.WebApi
-  name: IHttpRequest
-  nameWithType: IHttpRequest
-  fullName: Butterfly.Core.WebApi.IHttpRequest
-- uid: Butterfly.Core.WebApi.IHttpResponse
-  commentId: T:Butterfly.Core.WebApi.IHttpResponse
-  parent: Butterfly.Core.WebApi
-  name: IHttpResponse
-  nameWithType: IHttpResponse
-  fullName: Butterfly.Core.WebApi.IHttpResponse
 - uid: Butterfly.Core.WebApi.IWebApi.OnDelete*
   commentId: Overload:Butterfly.Core.WebApi.IWebApi.OnDelete
   name: OnDelete
