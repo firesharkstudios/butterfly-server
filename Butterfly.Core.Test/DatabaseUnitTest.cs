@@ -49,12 +49,12 @@ namespace Butterfly.Core.Test {
             await TestDatabase(database);
         }
 
-        public static async Task TestDatabase(IDatabase database) {
-            await database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Core.Test.db.sql");
+        public static async Task TestDatabase(IDatabase database, Assembly assembly = null, string resourceFile = "Butterfly.Core.Test.db.sql") {						
+            await database.CreateFromResourceFileAsync(assembly ?? Assembly.GetExecutingAssembly(), resourceFile);
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString(), "employee");
             database.SetDefaultValue("created_at", tableName => DateTime.Now);
             database.SetDefaultValue("updated_at", tableName => DateTime.Now);
-
+			
             await TruncateData(database);
             await TestTransactions(database);
 

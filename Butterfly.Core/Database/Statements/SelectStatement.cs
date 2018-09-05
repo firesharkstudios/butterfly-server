@@ -17,7 +17,7 @@ namespace Butterfly.Core.Database {
     /// Internal class used to parse SELECT statements
     /// </summary>
     public class SelectStatement : BaseStatement {
-        protected readonly static Regex STATEMENT_REGEX = new Regex(@"^SELECT\s+(.+?)\s+FROM\s+(.+?)(?:\s+WHERE\s+(.+?))?(?:\s+ORDER\s+BY\s+(.+?))?(?:\s+LIMIT\s+(.+?))?$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        protected readonly static Regex STATEMENT_REGEX = new Regex(@"^SELECT\s+(.+?)\s+FROM\s+(.+?)(?:\s+WHERE\s+(.+?))?(?:\s+ORDER\s+BY\s+(.+?))?$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
         public readonly string selectClause;
         public readonly string fromClause;
@@ -25,7 +25,7 @@ namespace Butterfly.Core.Database {
         public readonly string orderByClause;
         public readonly int limit;
 
-        public SelectStatement(IDatabase database, string sql, int overrideLimit = -1) {
+        public SelectStatement(IDatabase database, string sql, int limit = -1) {
             this.Sql = sql;
 
             // Confirm the sql is valid
@@ -44,15 +44,8 @@ namespace Butterfly.Core.Database {
                 this.fromClause = match.Groups[2].Value.Trim();
                 this.whereClause = match.Groups[3].Value.Trim();
                 this.orderByClause = match.Groups[4].Value.Trim();
-
-                if (overrideLimit == -1) {
-                    string limitText = match.Groups[5].Value.Trim();
-                    this.limit = string.IsNullOrEmpty(limitText) ? -1 : int.Parse(limitText);
-                }
-                else {
-                    this.limit = overrideLimit;
-                }
             }
+            this.limit = limit;
 
             this.Compile(database);
         }
@@ -156,9 +149,11 @@ namespace Butterfly.Core.Database {
             if (!string.IsNullOrEmpty(this.orderByClause)) {
                 sb.Append($" ORDER BY {this.orderByClause}");
             }
+            /*
             if (this.limit>0) {
                 sb.Append($" LIMIT {this.limit}");
             }
+            */
             return (sb.ToString(), dataParams);
         }
 

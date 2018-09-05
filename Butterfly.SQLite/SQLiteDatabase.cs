@@ -82,23 +82,6 @@ namespace Butterfly.SQLite {
                 }
             }
             return fieldDefs.ToArray();
-            /*
-            string commandText = $"SELECT * FROM {tableName} WHERE 1 = 2";
-            using (var connection = new SqliteConnection(this.ConnectionString)) {
-                await connection.OpenAsync();
-                var command = new SqliteCommand(commandText, connection);
-                DataTable dataTable = new DataTable();
-                using (var reader = command.ExecuteReader()) {
-                    dataTable.Load(reader);
-                }
-                foreach (DataColumn dataColumn in dataTable.Columns) {
-                    bool isAutoIncrement = (dataColumn.DataType == typeof(long) || dataColumn.DataType == typeof(int)) && dataTable.PrimaryKey.Length==1 && dataTable.PrimaryKey[0].ColumnName == dataColumn.ColumnName;
-                    TableFieldDef fieldDef = new TableFieldDef(dataColumn.ColumnName, dataColumn.DataType, dataColumn.MaxLength, dataColumn.AllowDBNull, isAutoIncrement);
-                    fields.Add(fieldDef);
-                }
-            }
-            return fields.ToArray();
-            */
         }
 
         protected async Task<TableIndex[]> GetIndexes(string tableName, TableFieldDef[] fieldDefs) {
@@ -155,14 +138,15 @@ namespace Butterfly.SQLite {
             return new SQLiteTransaction(this);
         }
 
-        protected override async Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams) {
+        protected override async Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams, int limit) {
             SelectStatement statement = new SelectStatement(this, executableSql);
 
             List<Dict> rows = new List<Dict>();
             try {
                 using (var connection = new SqliteConnection(this.ConnectionString)) {
                     await connection.OpenAsync();
-                    var command = new SqliteCommand(executableSql, connection);
+                    var sql = limit > 0 ? $"{executableSql} LIMIT {limit}" : executableSql;
+                    var command = new SqliteCommand(sql, connection);
                     foreach (var keyValuePair in executableParams) {
                         command.Parameters.AddWithValue(keyValuePair.Key, keyValuePair.Value);
                     }

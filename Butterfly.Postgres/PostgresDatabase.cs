@@ -125,14 +125,15 @@ namespace Butterfly.Postgres {
             return new PostgresTransaction(this);
         }
 
-        protected override async Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams) {
+        protected override async Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams, int limit) {
             SelectStatement statement = new SelectStatement(this, executableSql);
 
             List<Dict> rows = new List<Dict>();
             try {
                 using (var connection = new NpgsqlConnection(this.ConnectionString)) {
                     await connection.OpenAsync();
-                    var command = new NpgsqlCommand(executableSql, connection);
+                    var sql = limit > 0 ? $"{executableSql} LIMIT {limit}" : executableSql;
+                    var command = new NpgsqlCommand(sql, connection);
                     foreach (var keyValuePair in executableParams) {
                         command.Parameters.AddWithValue(keyValuePair.Key, keyValuePair.Value);
                     }

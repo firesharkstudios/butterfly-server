@@ -36,7 +36,7 @@ namespace Butterfly.Core.Database.Memory {
             return new MemoryTransaction(this);
         }
 
-        protected override Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams) {
+        protected override Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams, int limit) {
             SelectStatement executableStatement = new SelectStatement(this, executableSql);
             if (executableStatement.StatementFromRefs.Length > 1) throw new Exception("MemoryTable does not support joins");
             if (!(executableStatement.StatementFromRefs[0].table is MemoryTable memoryTable)) throw new Exception("Table is not a MemoryTable");
@@ -53,6 +53,7 @@ namespace Butterfly.Core.Database.Memory {
                     row[fieldName] = dataRow[fieldName, DataRowVersion.Original];
                 }
                 rows.Add(row);
+                if (limit > 0 && rows.Count >= limit) break;
             }
             return Task.FromResult(rows.ToArray());
         }
