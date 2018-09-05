@@ -1365,7 +1365,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.WebApi.BaseWebApi.html",
-          "hash": "x60gOJfrGBpqtCNff5dTKA=="
+          "hash": "WU9OP6QiTkKFdzSuEX5xpw=="
         }
       },
       "is_incremental": false,
@@ -1401,7 +1401,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.WebApi.IWebApi.html",
-          "hash": "libOehRUnkky7qts16utPA=="
+          "hash": "2ulBKJ2L3MMvbrwCK1807Q=="
         }
       },
       "is_incremental": false,
@@ -1485,7 +1485,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.EmbedIO.EmbedIOWebApi.html",
-          "hash": "u2WgLcsiVKkV4zoDokhgXQ=="
+          "hash": "S8qEaeHXOZS36rYYSRUzHg=="
         }
       },
       "is_incremental": false,
@@ -1737,7 +1737,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.RHttpServer.RedHttpServerWebApi.html",
-          "hash": "ZuiDctwPUgRj/5o1Ag1TVw=="
+          "hash": "omnHjXIGA3xyaWyBZaFlnA=="
         }
       },
       "is_incremental": false,

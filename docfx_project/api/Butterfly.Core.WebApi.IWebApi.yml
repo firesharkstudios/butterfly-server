@@ -24,12 +24,12 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: IWebApi
     path: ../Butterfly.Core/WebApi/IWebApi.cs
-    startLine: 24
+    startLine: 23
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
   summary: "\nAllows receiving API requests via HTTP (inspired by Node.js&apos; Express)<p></p>\n"
-  remarks: "\nExample usage...<p></p>\n<pre><code>    var webApi = new SomeWebApi();\n    webApi.OnGet(&quot;/chat-messages&quot;, async(req, res) => {\n        // Handle the request and return any objects as needed (will be JSON encoded)\n    });\n    webApi.OnPost(&quot;/login&quot;, async(req, res) => {\n        // Handle the request and return any objects as needed (will be JSON encoded)\n    });\n    webApi.Compile();</code></pre>\n"
+  remarks: "\nExample usage...<p></p>\n<pre><code>    webApi.OnGet(&quot;/chat-messages&quot;, async(req, res) => {\n        // Handle the request and return any objects as needed (will be JSON encoded)\n    });\n    webApi.OnPost(&quot;/login&quot;, async(req, res) => {\n        // Handle the request and return any objects as needed (will be JSON encoded)\n    });\n    webApi.Compile();</code></pre>\n"
   example: []
   syntax:
     content: 'public interface IWebApi : IDisposable'
@@ -60,13 +60,13 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnDelete
     path: ../Butterfly.Core/WebApi/IWebApi.cs
-    startLine: 40
+    startLine: 41
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
   summary: "\nAdds a <code data-dev-comment-type=\"paramref\" class=\"paramref\">listener</code> executed when DELETE requests are received matching <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>\n"
-  example:
-  - "\nwebApi.OnDelete(&quot;/api/todo&quot;, async(req, res) => {\nvar id = await req.ParseAsJsonAsync&lt;string>();\nawait database.DeleteAndCommitAsync(&quot;todo&quot;, id);\n});\nwebApi.OnDelete(&quot;/api/todo/{id}&quot;, async(req, res) => {\nvar id = req.PathParams.GetAs(&quot;id&quot;, &quot;&quot;);\nawait database.DeleteAndCommitAsync(&quot;todo&quot;, id);\n});\n"
+  remarks: "\n<pre><code>    webApi.OnDelete(&quot;/api/todo&quot;, async(req, res) => {\n        var id = await req.ParseAsJsonAsync&lt;string>();\n        await database.DeleteAndCommitAsync(&quot;todo&quot;, id);\n    });\n    webApi.OnDelete(&quot;/api/todo/{id}&quot;, async(req, res) => {\n        var id = req.PathParams.GetAs(&quot;id&quot;, &quot;&quot;);\n        await database.DeleteAndCommitAsync(&quot;todo&quot;, id);\n    });</code></pre>    \n"
+  example: []
   syntax:
     content: void OnDelete(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
     parameters:
@@ -99,13 +99,13 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnGet
     path: ../Butterfly.Core/WebApi/IWebApi.cs
-    startLine: 58
+    startLine: 61
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
   summary: "\nAdds a <code data-dev-comment-type=\"paramref\" class=\"paramref\">listener</code> executed when GET requests are received matching <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>\n"
-  example:
-  - "\nwebApi.OnGet(&quot;/api/todos&quot;, async(req, res) => {\nDict[] rows = await database.SelectRowsAsync(&quot;SELECT * FROM todo&quot;);\nawait res.WriteAsJsonAsync(rows);\n});\nwebApi.OnGet(&quot;/api/todo/{id}&quot;, async(req, res) => {\nvar id = req.PathParams.GetAs(&quot;id&quot;, &quot;&quot;);\nDict row = await database.SelectRowAsync(&quot;SELECT * FROM todo&quot;, id);\nawait res.WriteAsJsonAsync(row);\n});\n"
+  remarks: "\n<pre><code>    webApi.OnGet(&quot;/api/todos&quot;, async(req, res) => {\n        Dict[] rows = await database.SelectRowsAsync(&quot;SELECT * FROM todo&quot;);\n        await res.WriteAsJsonAsync(rows);\n    });\n    webApi.OnGet(&quot;/api/todo/{id}&quot;, async(req, res) => {\n        var id = req.PathParams.GetAs(&quot;id&quot;, &quot;&quot;);\n        Dict row = await database.SelectRowAsync(&quot;SELECT * FROM todo&quot;, id);\n        await res.WriteAsJsonAsync(row);\n    });</code></pre>\n"
+  example: []
   syntax:
     content: void OnGet(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
     parameters:
@@ -138,13 +138,13 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnPost
     path: ../Butterfly.Core/WebApi/IWebApi.cs
-    startLine: 71
+    startLine: 76
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
   summary: "\nAdds a <code data-dev-comment-type=\"paramref\" class=\"paramref\">listener</code> executed when POST requests are received matching <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>\n"
-  example:
-  - "\nwebApi.OnPost(&quot;/api/todo&quot;, async(req, res) => {\nvar row = await req.ParseAsJsonAsync&lt;Dict>();\nawait database.InsertAndCommitAsync&lt;string>(&quot;todo&quot;, row);\n});\n"
+  remarks: "\n<pre><code>    webApi.OnPost(&quot;/api/todo&quot;, async(req, res) => {\n        var row = await req.ParseAsJsonAsync&lt;Dict>();\n        await database.InsertAndCommitAsync&lt;string>(&quot;todo&quot;, row);\n    });</code></pre>\n"
+  example: []
   syntax:
     content: void OnPost(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
     parameters:
@@ -177,13 +177,13 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnPut
     path: ../Butterfly.Core/WebApi/IWebApi.cs
-    startLine: 84
+    startLine: 91
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
   summary: "\nAdds a <code data-dev-comment-type=\"paramref\" class=\"paramref\">listener</code> executed when PUT requests are received matching <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>\n"
-  example:
-  - "\nwebApi.OnPost(&quot;/api/todo&quot;, async(req, res) => {\nvar row = await req.ParseAsJsonAsync&lt;Dict>();\nawait database.UpdateAndCommitAsync(&quot;todo&quot;, row);\n});\n"
+  remarks: "\n<pre><code>    webApi.OnPost(&quot;/api/todo&quot;, async(req, res) => {\n        var row = await req.ParseAsJsonAsync&lt;Dict>();\n        await database.UpdateAndCommitAsync(&quot;todo&quot;, row);\n    });</code></pre>\n"
+  example: []
   syntax:
     content: void OnPut(string path, Func<IHttpRequest, IHttpResponse, Task> listener)
     parameters:
@@ -216,11 +216,11 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Compile
     path: ../Butterfly.Core/WebApi/IWebApi.cs
-    startLine: 89
+    startLine: 96
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
-  summary: "\nCompile the web api\n"
+  summary: "\nCompile the web api (must call after adding all handlers)\n"
   example: []
   syntax:
     content: void Compile()

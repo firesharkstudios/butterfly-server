@@ -98,8 +98,7 @@ Base class implementing <a class="xref" href="Butterfly.Core.WebApi.IWebApi.html
   <h5 id="Butterfly_Core_WebApi_BaseWebApi_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks">
 Example usage...<p>
-<pre><code>    var webApi = new SomeWebApi();
-    webApi.OnGet(&quot;/chat-messages&quot;, async(req, res) => {
+<pre><code>    webApi.OnGet(&quot;/chat-messages&quot;, async(req, res) => {
         // Handle the request and return any objects as needed (will be JSON encoded)
     });
     webApi.OnPost(&quot;/login&quot;, async(req, res) => {
