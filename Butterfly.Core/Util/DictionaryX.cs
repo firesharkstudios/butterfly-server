@@ -31,9 +31,9 @@ namespace Butterfly.Core.Util {
         /// Console.WriteLine(new Dict{ ["number"] = "2" }.GetAs("number", -1));
         /// </code>
         /// </example>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="U"></typeparam>
-        /// <typeparam name="V"></typeparam>
+        /// <typeparam name="T">Dictionary key type</typeparam>
+        /// <typeparam name="U">Dictionary value type</typeparam>
+        /// <typeparam name="V">Return type</typeparam>
         /// <param name="me">Source dictionary</param>
         /// <param name="key">Key of the desired value in dictionary</param>
         /// <param name="defaultValue">Default value if value is null</param>
