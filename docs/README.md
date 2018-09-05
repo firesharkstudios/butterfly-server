@@ -232,7 +232,7 @@ See [IHttpResponse](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.I
 
 ### Overview
 
-An [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.ISubscriptionApi.html) instance allows defining a Subscription API that can push real-time data to clients like this...
+An [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html) instance allows defining a Subscription API that can push real-time data to clients like this...
 
 ```cs
 subscriptionApi.OnSubscribe("todos", (vars, channel) => {
@@ -249,7 +249,7 @@ Notes
 
 A common usecase is to return a *DynamicViewSet* instance that pushes initial data and data changes to the client over the channel.
 
-You need an implementation like [EmbedIO](#using-embedio) to get an instance of [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.ISubscriptionApi.html).
+You need an implementation like [EmbedIO](#using-embedio) to get an instance of [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html).
 
 ### Example Simple Subscription
 
