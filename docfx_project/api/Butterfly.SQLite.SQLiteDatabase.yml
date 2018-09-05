@@ -11,7 +11,7 @@ items:
   - Butterfly.SQLite.SQLiteDatabase.ConvertValue(System.Object)
   - Butterfly.SQLite.SQLiteDatabase.CreateTransaction
   - Butterfly.SQLite.SQLiteDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
   - Butterfly.SQLite.SQLiteDatabase.GetFieldDefs(System.String)
   - Butterfly.SQLite.SQLiteDatabase.GetIndexes(System.String,Butterfly.Core.Database.TableFieldDef[])
   - Butterfly.SQLite.SQLiteDatabase.GetIndexFieldNames(System.String)
@@ -73,7 +73,7 @@ items:
   - Butterfly.Core.Database.BaseDatabase.SelectRowAsync(System.String,System.Object)
   - Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)
   - Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(Butterfly.Core.Database.SelectStatement,System.Object)
-  - Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
+  - Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{`0,`1},System.Int32)
   - Butterfly.Core.Database.BaseDatabase.QueryValueAsync``1(System.String,System.Object,{T})
   - Butterfly.Core.Database.BaseDatabase.QueryRowAsync(System.String,System.Object)
   - Butterfly.Core.Database.BaseDatabase.QueryRowsAsync(System.String,System.Object)
@@ -337,7 +337,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: GetIndexes
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
-    startLine: 103
+    startLine: 86
   assemblies:
   - Butterfly.SQLite
   namespace: Butterfly.SQLite
@@ -377,7 +377,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: GetIndexFieldNames
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
-    startLine: 137
+    startLine: 120
   assemblies:
   - Butterfly.SQLite
   namespace: Butterfly.SQLite
@@ -412,7 +412,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateTransaction
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
-    startLine: 153
+    startLine: 136
   assemblies:
   - Butterfly.SQLite
   namespace: Butterfly.SQLite
@@ -429,16 +429,16 @@ items:
   modifiers.vb:
   - Protected
   - Overrides
-- uid: Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  commentId: M:Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  id: DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+- uid: Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  commentId: M:Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  id: DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
   parent: Butterfly.SQLite.SQLiteDatabase
   langs:
   - csharp
   - vb
-  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  nameWithType: SQLiteDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  fullName: Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  nameWithType: SQLiteDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  fullName: Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Int32)
   type: Method
   source:
     remote:
@@ -447,30 +447,32 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoSelectRowsAsync
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
-    startLine: 157
+    startLine: 140
   assemblies:
   - Butterfly.SQLite
   namespace: Butterfly.SQLite
   syntax:
-    content: protected override Task<System.Collections.Generic.Dictionary<string, object>[]> DoSelectRowsAsync(string executableSql, System.Collections.Generic.Dictionary<string, object> executableParams)
+    content: protected override Task<System.Collections.Generic.Dictionary<string, object>[]> DoSelectRowsAsync(string executableSql, System.Collections.Generic.Dictionary<string, object> executableParams, int limit)
     parameters:
     - id: executableSql
       type: System.String
     - id: executableParams
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    - id: limit
+      type: System.Int32
     return:
       type: Task{System.Collections.Generic.Dictionary{System.String,System.Object}[]}
-    content.vb: Protected Overrides Function DoSelectRowsAsync(executableSql As String, executableParams As System.Collections.Generic.Dictionary(Of String, Object)) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
+    content.vb: Protected Overrides Function DoSelectRowsAsync(executableSql As String, executableParams As System.Collections.Generic.Dictionary(Of String, Object), limit As Integer) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
   overload: Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync*
-  nameWithType.vb: SQLiteDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+  nameWithType.vb: SQLiteDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
   modifiers.csharp:
   - protected
   - override
   modifiers.vb:
   - Protected
   - Overrides
-  fullName.vb: Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+  fullName.vb: Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Int32)
+  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
 - uid: Butterfly.SQLite.SQLiteDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   commentId: M:Butterfly.SQLite.SQLiteDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   id: DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
@@ -489,7 +491,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoQueryRowsAsync
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
-    startLine: 189
+    startLine: 173
   assemblies:
   - Butterfly.SQLite
   namespace: Butterfly.SQLite
@@ -531,7 +533,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ConvertValue
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
-    startLine: 193
+    startLine: 177
   assemblies:
   - Butterfly.SQLite
   namespace: Butterfly.SQLite
@@ -1358,18 +1360,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
-  commentId: M:Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
+- uid: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{`0,`1},System.Int32)
+  commentId: M:Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{`0,`1},System.Int32)
   parent: Butterfly.Core.Database.BaseDatabase
   isExternal: true
-  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<, >)
-  nameWithType: BaseDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<, >)
-  fullName: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<, >)
-  nameWithType.vb: BaseDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of , ))
-  fullName.vb: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of , ))
-  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of , ))
+  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<, >, Int32)
+  nameWithType: BaseDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<, >, Int32)
+  fullName: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<, >, System.Int32)
+  nameWithType.vb: BaseDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of , ), Int32)
+  fullName.vb: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of , ), System.Int32)
+  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of , ), Int32)
   spec.csharp:
-  - uid: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
+  - uid: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{`0,`1},System.Int32)
     name: DoSelectRowsAsync
     nameWithType: BaseDatabase.DoSelectRowsAsync
     fullName: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync
@@ -1404,11 +1406,19 @@ references:
   - name: '>'
     nameWithType: '>'
     fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
+  - uid: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{`0,`1},System.Int32)
     name: DoSelectRowsAsync
     nameWithType: BaseDatabase.DoSelectRowsAsync
     fullName: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync
@@ -1443,6 +1453,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
@@ -3367,6 +3385,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
 - uid: Task{System.Collections.Generic.Dictionary{System.String,System.Object}[]}
   commentId: '!:Task{System.Collections.Generic.Dictionary{System.String,System.Object}[]}'
   definition: Task`1

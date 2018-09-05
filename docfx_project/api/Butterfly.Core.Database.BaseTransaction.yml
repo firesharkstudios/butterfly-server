@@ -70,6 +70,7 @@ items:
   - Butterfly.MySql.MySqlTransaction
   - Butterfly.Postgres.PostgresTransaction
   - Butterfly.SQLite.SQLiteTransaction
+  - Butterfly.SqlServer.SqlServerTransaction
   implements:
   - Butterfly.Core.Database.ITransaction
   - IDisposable

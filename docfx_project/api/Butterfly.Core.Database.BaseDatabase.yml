@@ -26,7 +26,7 @@ items:
   - Butterfly.Core.Database.BaseDatabase.DeleteAndCommitAsync(System.String,System.Object)
   - Butterfly.Core.Database.BaseDatabase.DeleteCount
   - Butterfly.Core.Database.BaseDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
   - Butterfly.Core.Database.BaseDatabase.getDefaultValueByFieldName
   - Butterfly.Core.Database.BaseDatabase.GetInitialDataEventsAsync(System.String,System.String[],Butterfly.Core.Database.SelectStatement,System.Object)
   - Butterfly.Core.Database.BaseDatabase.getOverrideValueByFieldName
@@ -92,6 +92,7 @@ items:
   - Butterfly.MySql.MySqlDatabase
   - Butterfly.Postgres.PostgresDatabase
   - Butterfly.SQLite.SQLiteDatabase
+  - Butterfly.SqlServer.SqlServerDatabase
   implements:
   - Butterfly.Core.Database.IDatabase
   modifiers.csharp:
@@ -1156,16 +1157,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  commentId: M:Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  id: DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+- uid: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  commentId: M:Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  id: DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
   parent: Butterfly.Core.Database.BaseDatabase
   langs:
   - csharp
   - vb
-  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  nameWithType: BaseDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  fullName: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  nameWithType: BaseDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  fullName: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Int32)
   type: Method
   source:
     remote:
@@ -1179,25 +1180,27 @@ items:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   syntax:
-    content: protected abstract Task<System.Collections.Generic.Dictionary<string, object>[]> DoSelectRowsAsync(string executableSql, System.Collections.Generic.Dictionary<string, object> executableParams)
+    content: protected abstract Task<System.Collections.Generic.Dictionary<string, object>[]> DoSelectRowsAsync(string executableSql, System.Collections.Generic.Dictionary<string, object> executableParams, int limit)
     parameters:
     - id: executableSql
       type: System.String
     - id: executableParams
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    - id: limit
+      type: System.Int32
     return:
       type: Task{System.Collections.Generic.Dictionary{System.String,System.Object}[]}
-    content.vb: Protected MustOverride Function DoSelectRowsAsync(executableSql As String, executableParams As System.Collections.Generic.Dictionary(Of String, Object)) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
+    content.vb: Protected MustOverride Function DoSelectRowsAsync(executableSql As String, executableParams As System.Collections.Generic.Dictionary(Of String, Object), limit As Integer) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
   overload: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync*
-  nameWithType.vb: BaseDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+  nameWithType.vb: BaseDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
   modifiers.csharp:
   - protected
   - abstract
   modifiers.vb:
   - Protected
   - MustOverride
-  fullName.vb: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+  fullName.vb: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Int32)
+  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
 - uid: Butterfly.Core.Database.BaseDatabase.QueryValueAsync``1(System.String,System.Object,``0)
   commentId: M:Butterfly.Core.Database.BaseDatabase.QueryValueAsync``1(System.String,System.Object,``0)
   id: QueryValueAsync``1(System.String,System.Object,``0)

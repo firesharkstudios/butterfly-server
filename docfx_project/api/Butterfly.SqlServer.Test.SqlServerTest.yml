@@ -1,0 +1,132 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.SqlServer.Test.SqlServerTest
+  commentId: T:Butterfly.SqlServer.Test.SqlServerTest
+  id: SqlServerTest
+  parent: Butterfly.SqlServer.Test
+  children:
+  - Butterfly.SqlServer.Test.SqlServerTest.TestDatabase
+  - Butterfly.SqlServer.Test.SqlServerTest.TestDynamic
+  langs:
+  - csharp
+  - vb
+  name: SqlServerTest
+  nameWithType: SqlServerTest
+  fullName: Butterfly.SqlServer.Test.SqlServerTest
+  type: Class
+  source:
+    remote:
+      path: Butterfly.SqlServer.Test/SqlServerTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: SqlServerTest
+    path: ../Butterfly.SqlServer.Test/SqlServerTest.cs
+    startLine: 8
+  assemblies:
+  - Butterfly.SqlServer.Test
+  namespace: Butterfly.SqlServer.Test
+  syntax:
+    content: 'public class SqlServerTest : object'
+    content.vb: >-
+      Public Class SqlServerTest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.SqlServer.Test.SqlServerTest.TestDatabase
+  commentId: M:Butterfly.SqlServer.Test.SqlServerTest.TestDatabase
+  id: TestDatabase
+  parent: Butterfly.SqlServer.Test.SqlServerTest
+  langs:
+  - csharp
+  - vb
+  name: TestDatabase()
+  nameWithType: SqlServerTest.TestDatabase()
+  fullName: Butterfly.SqlServer.Test.SqlServerTest.TestDatabase()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.SqlServer.Test/SqlServerTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TestDatabase
+    path: ../Butterfly.SqlServer.Test/SqlServerTest.cs
+    startLine: 23
+  assemblies:
+  - Butterfly.SqlServer.Test
+  namespace: Butterfly.SqlServer.Test
+  syntax:
+    content: public Task TestDatabase()
+    return:
+      type: Task
+    content.vb: Public Function TestDatabase As Task
+  overload: Butterfly.SqlServer.Test.SqlServerTest.TestDatabase*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.SqlServer.Test.SqlServerTest.TestDynamic
+  commentId: M:Butterfly.SqlServer.Test.SqlServerTest.TestDynamic
+  id: TestDynamic
+  parent: Butterfly.SqlServer.Test.SqlServerTest
+  langs:
+  - csharp
+  - vb
+  name: TestDynamic()
+  nameWithType: SqlServerTest.TestDynamic()
+  fullName: Butterfly.SqlServer.Test.SqlServerTest.TestDynamic()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.SqlServer.Test/SqlServerTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TestDynamic
+    path: ../Butterfly.SqlServer.Test/SqlServerTest.cs
+    startLine: 30
+  assemblies:
+  - Butterfly.SqlServer.Test
+  namespace: Butterfly.SqlServer.Test
+  syntax:
+    content: public Task TestDynamic()
+    return:
+      type: Task
+    content.vb: Public Function TestDynamic As Task
+  overload: Butterfly.SqlServer.Test.SqlServerTest.TestDynamic*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.SqlServer.Test
+  commentId: N:Butterfly.SqlServer.Test
+  name: Butterfly.SqlServer.Test
+  nameWithType: Butterfly.SqlServer.Test
+  fullName: Butterfly.SqlServer.Test
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.SqlServer.Test.SqlServerTest.TestDatabase*
+  commentId: Overload:Butterfly.SqlServer.Test.SqlServerTest.TestDatabase
+  name: TestDatabase
+  nameWithType: SqlServerTest.TestDatabase
+  fullName: Butterfly.SqlServer.Test.SqlServerTest.TestDatabase
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Butterfly.SqlServer.Test.SqlServerTest.TestDynamic*
+  commentId: Overload:Butterfly.SqlServer.Test.SqlServerTest.TestDynamic
+  name: TestDynamic
+  nameWithType: SqlServerTest.TestDynamic
+  fullName: Butterfly.SqlServer.Test.SqlServerTest.TestDynamic
+shouldSkipMarkup: true

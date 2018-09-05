@@ -1920,15 +1920,15 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Database.BaseDatabase.DoQueryRowsAsync
   nameWithType: BaseDatabase.DoQueryRowsAsync
-- uid: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
-  fullName: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: BaseDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  nameWithType.vb: BaseDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Int32_
+  commentId: M:Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
+  fullName: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Int32)
+  fullName.vb: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Int32)
+  nameWithType: BaseDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  nameWithType.vb: BaseDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
 - uid: Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync*
   name: DoSelectRowsAsync
   href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_DoSelectRowsAsync_
@@ -4879,15 +4879,15 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Database.Memory.MemoryDatabase.DoQueryRowsAsync
   nameWithType: MemoryDatabase.DoQueryRowsAsync
-- uid: Butterfly.Core.Database.Memory.MemoryDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  href: api/Butterfly.Core.Database.Memory.MemoryDatabase.html#Butterfly_Core_Database_Memory_MemoryDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:Butterfly.Core.Database.Memory.MemoryDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
-  fullName: Butterfly.Core.Database.Memory.MemoryDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: Butterfly.Core.Database.Memory.MemoryDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: MemoryDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  nameWithType.vb: MemoryDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.Core.Database.Memory.MemoryDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  href: api/Butterfly.Core.Database.Memory.MemoryDatabase.html#Butterfly_Core_Database_Memory_MemoryDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Int32_
+  commentId: M:Butterfly.Core.Database.Memory.MemoryDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
+  fullName: Butterfly.Core.Database.Memory.MemoryDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Int32)
+  fullName.vb: Butterfly.Core.Database.Memory.MemoryDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Int32)
+  nameWithType: MemoryDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  nameWithType.vb: MemoryDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
 - uid: Butterfly.Core.Database.Memory.MemoryDatabase.DoSelectRowsAsync*
   name: DoSelectRowsAsync
   href: api/Butterfly.Core.Database.Memory.MemoryDatabase.html#Butterfly_Core_Database_Memory_MemoryDatabase_DoSelectRowsAsync_
@@ -6596,12 +6596,12 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Test.DatabaseUnitTest.SelectBasicData
   nameWithType: DatabaseUnitTest.SelectBasicData
-- uid: Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
-  name: TestDatabase(IDatabase)
-  href: api/Butterfly.Core.Test.DatabaseUnitTest.html#Butterfly_Core_Test_DatabaseUnitTest_TestDatabase_Butterfly_Core_Database_IDatabase_
-  commentId: M:Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
-  fullName: Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
-  nameWithType: DatabaseUnitTest.TestDatabase(IDatabase)
+- uid: Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase,Assembly,System.String)
+  name: TestDatabase(IDatabase, Assembly, String)
+  href: api/Butterfly.Core.Test.DatabaseUnitTest.html#Butterfly_Core_Test_DatabaseUnitTest_TestDatabase_Butterfly_Core_Database_IDatabase_Assembly_System_String_
+  commentId: M:Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase,Assembly,System.String)
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase, Assembly, System.String)
+  nameWithType: DatabaseUnitTest.TestDatabase(IDatabase, Assembly, String)
 - uid: Butterfly.Core.Test.DatabaseUnitTest.TestDatabase*
   name: TestDatabase
   href: api/Butterfly.Core.Test.DatabaseUnitTest.html#Butterfly_Core_Test_DatabaseUnitTest_TestDatabase_
@@ -6654,12 +6654,12 @@ references:
   commentId: T:Butterfly.Core.Test.DynamicUnitTest
   fullName: Butterfly.Core.Test.DynamicUnitTest
   nameWithType: DynamicUnitTest
-- uid: Butterfly.Core.Test.DynamicUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
-  name: TestDatabase(IDatabase)
-  href: api/Butterfly.Core.Test.DynamicUnitTest.html#Butterfly_Core_Test_DynamicUnitTest_TestDatabase_Butterfly_Core_Database_IDatabase_
-  commentId: M:Butterfly.Core.Test.DynamicUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
-  fullName: Butterfly.Core.Test.DynamicUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
-  nameWithType: DynamicUnitTest.TestDatabase(IDatabase)
+- uid: Butterfly.Core.Test.DynamicUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase,Assembly,System.String)
+  name: TestDatabase(IDatabase, Assembly, String)
+  href: api/Butterfly.Core.Test.DynamicUnitTest.html#Butterfly_Core_Test_DynamicUnitTest_TestDatabase_Butterfly_Core_Database_IDatabase_Assembly_System_String_
+  commentId: M:Butterfly.Core.Test.DynamicUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase,Assembly,System.String)
+  fullName: Butterfly.Core.Test.DynamicUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase, Assembly, System.String)
+  nameWithType: DynamicUnitTest.TestDatabase(IDatabase, Assembly, String)
 - uid: Butterfly.Core.Test.DynamicUnitTest.TestDatabase*
   name: TestDatabase
   href: api/Butterfly.Core.Test.DynamicUnitTest.html#Butterfly_Core_Test_DynamicUnitTest_TestDatabase_
@@ -9573,15 +9573,15 @@ references:
   isSpec: "True"
   fullName: Butterfly.MySql.MySqlDatabase.DoQueryRowsAsync
   nameWithType: MySqlDatabase.DoQueryRowsAsync
-- uid: Butterfly.MySql.MySqlDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  href: api/Butterfly.MySql.MySqlDatabase.html#Butterfly_MySql_MySqlDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:Butterfly.MySql.MySqlDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
-  fullName: Butterfly.MySql.MySqlDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: Butterfly.MySql.MySqlDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: MySqlDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  nameWithType.vb: MySqlDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.MySql.MySqlDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  href: api/Butterfly.MySql.MySqlDatabase.html#Butterfly_MySql_MySqlDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Int32_
+  commentId: M:Butterfly.MySql.MySqlDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
+  fullName: Butterfly.MySql.MySqlDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Int32)
+  fullName.vb: Butterfly.MySql.MySqlDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Int32)
+  nameWithType: MySqlDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  nameWithType.vb: MySqlDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
 - uid: Butterfly.MySql.MySqlDatabase.DoSelectRowsAsync*
   name: DoSelectRowsAsync
   href: api/Butterfly.MySql.MySqlDatabase.html#Butterfly_MySql_MySqlDatabase_DoSelectRowsAsync_
@@ -10070,15 +10070,15 @@ references:
   isSpec: "True"
   fullName: Butterfly.Postgres.PostgresDatabase.DoQueryRowsAsync
   nameWithType: PostgresDatabase.DoQueryRowsAsync
-- uid: Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  href: api/Butterfly.Postgres.PostgresDatabase.html#Butterfly_Postgres_PostgresDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
-  fullName: Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: PostgresDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  nameWithType.vb: PostgresDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  href: api/Butterfly.Postgres.PostgresDatabase.html#Butterfly_Postgres_PostgresDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Int32_
+  commentId: M:Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
+  fullName: Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Int32)
+  fullName.vb: Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Int32)
+  nameWithType: PostgresDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  nameWithType.vb: PostgresDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
 - uid: Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync*
   name: DoSelectRowsAsync
   href: api/Butterfly.Postgres.PostgresDatabase.html#Butterfly_Postgres_PostgresDatabase_DoSelectRowsAsync_
@@ -10942,15 +10942,15 @@ references:
   isSpec: "True"
   fullName: Butterfly.SQLite.SQLiteDatabase.DoQueryRowsAsync
   nameWithType: SQLiteDatabase.DoQueryRowsAsync
-- uid: Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  href: api/Butterfly.SQLite.SQLiteDatabase.html#Butterfly_SQLite_SQLiteDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
-  fullName: Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: SQLiteDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  nameWithType.vb: SQLiteDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  href: api/Butterfly.SQLite.SQLiteDatabase.html#Butterfly_SQLite_SQLiteDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Int32_
+  commentId: M:Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
+  fullName: Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Int32)
+  fullName.vb: Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Int32)
+  nameWithType: SQLiteDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  nameWithType.vb: SQLiteDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
 - uid: Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync*
   name: DoSelectRowsAsync
   href: api/Butterfly.SQLite.SQLiteDatabase.html#Butterfly_SQLite_SQLiteDatabase_DoSelectRowsAsync_
@@ -11267,6 +11267,362 @@ references:
   commentId: F:Butterfly.SQLite.SQLiteTransaction.transaction
   fullName: Butterfly.SQLite.SQLiteTransaction.transaction
   nameWithType: SQLiteTransaction.transaction
+- uid: Butterfly.SqlServer
+  name: Butterfly.SqlServer
+  href: api/Butterfly.SqlServer.html
+  commentId: N:Butterfly.SqlServer
+  fullName: Butterfly.SqlServer
+  nameWithType: Butterfly.SqlServer
+- uid: Butterfly.SqlServer.SqlServerDatabase
+  name: SqlServerDatabase
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html
+  commentId: T:Butterfly.SqlServer.SqlServerDatabase
+  fullName: Butterfly.SqlServer.SqlServerDatabase
+  nameWithType: SqlServerDatabase
+- uid: Butterfly.SqlServer.SqlServerDatabase.#ctor(System.String,System.Boolean)
+  name: SqlServerDatabase(String, Boolean)
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase__ctor_System_String_System_Boolean_
+  commentId: M:Butterfly.SqlServer.SqlServerDatabase.#ctor(System.String,System.Boolean)
+  fullName: Butterfly.SqlServer.SqlServerDatabase.SqlServerDatabase(System.String, System.Boolean)
+  nameWithType: SqlServerDatabase.SqlServerDatabase(String, Boolean)
+- uid: Butterfly.SqlServer.SqlServerDatabase.#ctor*
+  name: SqlServerDatabase
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase__ctor_
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.#ctor
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerDatabase.SqlServerDatabase
+  nameWithType: SqlServerDatabase.SqlServerDatabase
+- uid: Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias
+  name: CanFieldAlias
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase_CanFieldAlias
+  commentId: P:Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias
+  fullName: Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias
+  nameWithType: SqlServerDatabase.CanFieldAlias
+- uid: Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias*
+  name: CanFieldAlias
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase_CanFieldAlias_
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias
+  nameWithType: SqlServerDatabase.CanFieldAlias
+- uid: Butterfly.SqlServer.SqlServerDatabase.CanJoin
+  name: CanJoin
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase_CanJoin
+  commentId: P:Butterfly.SqlServer.SqlServerDatabase.CanJoin
+  fullName: Butterfly.SqlServer.SqlServerDatabase.CanJoin
+  nameWithType: SqlServerDatabase.CanJoin
+- uid: Butterfly.SqlServer.SqlServerDatabase.CanJoin*
+  name: CanJoin
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase_CanJoin_
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.CanJoin
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerDatabase.CanJoin
+  nameWithType: SqlServerDatabase.CanJoin
+- uid: Butterfly.SqlServer.SqlServerDatabase.CreateTransaction
+  name: CreateTransaction()
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase_CreateTransaction
+  commentId: M:Butterfly.SqlServer.SqlServerDatabase.CreateTransaction
+  fullName: Butterfly.SqlServer.SqlServerDatabase.CreateTransaction()
+  nameWithType: SqlServerDatabase.CreateTransaction()
+- uid: Butterfly.SqlServer.SqlServerDatabase.CreateTransaction*
+  name: CreateTransaction
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase_CreateTransaction_
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.CreateTransaction
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerDatabase.CreateTransaction
+  nameWithType: SqlServerDatabase.CreateTransaction
+- uid: Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: DoQueryRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase_DoQueryRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: DoQueryRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+  fullName: Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: SqlServerDatabase.DoQueryRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
+  nameWithType.vb: SqlServerDatabase.DoQueryRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync*
+  name: DoQueryRowsAsync
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase_DoQueryRowsAsync_
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync
+  nameWithType: SqlServerDatabase.DoQueryRowsAsync
+- uid: Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Int32_
+  commentId: M:Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
+  fullName: Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Int32)
+  fullName.vb: Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Int32)
+  nameWithType: SqlServerDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  nameWithType.vb: SqlServerDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
+- uid: Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync*
+  name: DoSelectRowsAsync
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase_DoSelectRowsAsync_
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync
+  nameWithType: SqlServerDatabase.DoSelectRowsAsync
+- uid: Butterfly.SqlServer.SqlServerDatabase.forceIsolationLevelSnapshot
+  name: forceIsolationLevelSnapshot
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase_forceIsolationLevelSnapshot
+  commentId: F:Butterfly.SqlServer.SqlServerDatabase.forceIsolationLevelSnapshot
+  fullName: Butterfly.SqlServer.SqlServerDatabase.forceIsolationLevelSnapshot
+  nameWithType: SqlServerDatabase.forceIsolationLevelSnapshot
+- uid: Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync
+  name: LoadSchemaAsync()
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase_LoadSchemaAsync
+  commentId: M:Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync
+  fullName: Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync()
+  nameWithType: SqlServerDatabase.LoadSchemaAsync()
+- uid: Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync*
+  name: LoadSchemaAsync
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase_LoadSchemaAsync_
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync
+  nameWithType: SqlServerDatabase.LoadSchemaAsync
+- uid: Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync(System.String)
+  name: LoadTableSchemaAsync(String)
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase_LoadTableSchemaAsync_System_String_
+  commentId: M:Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync(System.String)
+  fullName: Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync(System.String)
+  nameWithType: SqlServerDatabase.LoadTableSchemaAsync(String)
+- uid: Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync*
+  name: LoadTableSchemaAsync
+  href: api/Butterfly.SqlServer.SqlServerDatabase.html#Butterfly_SqlServer_SqlServerDatabase_LoadTableSchemaAsync_
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync
+  nameWithType: SqlServerDatabase.LoadTableSchemaAsync
+- uid: Butterfly.SqlServer.SqlServerTransaction
+  name: SqlServerTransaction
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html
+  commentId: T:Butterfly.SqlServer.SqlServerTransaction
+  fullName: Butterfly.SqlServer.SqlServerTransaction
+  nameWithType: SqlServerTransaction
+- uid: Butterfly.SqlServer.SqlServerTransaction.#ctor(Butterfly.SqlServer.SqlServerDatabase)
+  name: SqlServerTransaction(SqlServerDatabase)
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction__ctor_Butterfly_SqlServer_SqlServerDatabase_
+  commentId: M:Butterfly.SqlServer.SqlServerTransaction.#ctor(Butterfly.SqlServer.SqlServerDatabase)
+  fullName: Butterfly.SqlServer.SqlServerTransaction.SqlServerTransaction(Butterfly.SqlServer.SqlServerDatabase)
+  nameWithType: SqlServerTransaction.SqlServerTransaction(SqlServerDatabase)
+- uid: Butterfly.SqlServer.SqlServerTransaction.#ctor*
+  name: SqlServerTransaction
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction__ctor_
+  commentId: Overload:Butterfly.SqlServer.SqlServerTransaction.#ctor
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerTransaction.SqlServerTransaction
+  nameWithType: SqlServerTransaction.SqlServerTransaction
+- uid: Butterfly.SqlServer.SqlServerTransaction.Begin
+  name: Begin()
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_Begin
+  commentId: M:Butterfly.SqlServer.SqlServerTransaction.Begin
+  fullName: Butterfly.SqlServer.SqlServerTransaction.Begin()
+  nameWithType: SqlServerTransaction.Begin()
+- uid: Butterfly.SqlServer.SqlServerTransaction.Begin*
+  name: Begin
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_Begin_
+  commentId: Overload:Butterfly.SqlServer.SqlServerTransaction.Begin
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerTransaction.Begin
+  nameWithType: SqlServerTransaction.Begin
+- uid: Butterfly.SqlServer.SqlServerTransaction.BeginAsync
+  name: BeginAsync()
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_BeginAsync
+  commentId: M:Butterfly.SqlServer.SqlServerTransaction.BeginAsync
+  fullName: Butterfly.SqlServer.SqlServerTransaction.BeginAsync()
+  nameWithType: SqlServerTransaction.BeginAsync()
+- uid: Butterfly.SqlServer.SqlServerTransaction.BeginAsync*
+  name: BeginAsync
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_BeginAsync_
+  commentId: Overload:Butterfly.SqlServer.SqlServerTransaction.BeginAsync
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerTransaction.BeginAsync
+  nameWithType: SqlServerTransaction.BeginAsync
+- uid: Butterfly.SqlServer.SqlServerTransaction.Dispose
+  name: Dispose()
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_Dispose
+  commentId: M:Butterfly.SqlServer.SqlServerTransaction.Dispose
+  fullName: Butterfly.SqlServer.SqlServerTransaction.Dispose()
+  nameWithType: SqlServerTransaction.Dispose()
+- uid: Butterfly.SqlServer.SqlServerTransaction.Dispose*
+  name: Dispose
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_Dispose_
+  commentId: Overload:Butterfly.SqlServer.SqlServerTransaction.Dispose
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerTransaction.Dispose
+  nameWithType: SqlServerTransaction.Dispose
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoCommit
+  name: DoCommit()
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoCommit
+  commentId: M:Butterfly.SqlServer.SqlServerTransaction.DoCommit
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoCommit()
+  nameWithType: SqlServerTransaction.DoCommit()
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoCommit*
+  name: DoCommit
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoCommit_
+  commentId: Overload:Butterfly.SqlServer.SqlServerTransaction.DoCommit
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoCommit
+  nameWithType: SqlServerTransaction.DoCommit
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoCommitAsync
+  name: DoCommitAsync()
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoCommitAsync
+  commentId: M:Butterfly.SqlServer.SqlServerTransaction.DoCommitAsync
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoCommitAsync()
+  nameWithType: SqlServerTransaction.DoCommitAsync()
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoCommitAsync*
+  name: DoCommitAsync
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoCommitAsync_
+  commentId: Overload:Butterfly.SqlServer.SqlServerTransaction.DoCommitAsync
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoCommitAsync
+  nameWithType: SqlServerTransaction.DoCommitAsync
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)
+  name: DoCreate(CreateStatement)
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoCreate_Butterfly_Core_Database_CreateStatement_
+  commentId: M:Butterfly.SqlServer.SqlServerTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)
+  nameWithType: SqlServerTransaction.DoCreate(CreateStatement)
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoCreate*
+  name: DoCreate
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoCreate_
+  commentId: Overload:Butterfly.SqlServer.SqlServerTransaction.DoCreate
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoCreate
+  nameWithType: SqlServerTransaction.DoCreate
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)
+  name: DoCreateAsync(CreateStatement)
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoCreateAsync_Butterfly_Core_Database_CreateStatement_
+  commentId: M:Butterfly.SqlServer.SqlServerTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)
+  nameWithType: SqlServerTransaction.DoCreateAsync(CreateStatement)
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoCreateAsync*
+  name: DoCreateAsync
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoCreateAsync_
+  commentId: Overload:Butterfly.SqlServer.SqlServerTransaction.DoCreateAsync
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoCreateAsync
+  nameWithType: SqlServerTransaction.DoCreateAsync
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoDeleteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name: DoDeleteAsync(String, System.Collections.Generic.Dictionary<String, Object>)
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoDeleteAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
+  commentId: M:Butterfly.SqlServer.SqlServerTransaction.DoDeleteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  name.vb: DoDeleteAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoDeleteAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  fullName.vb: Butterfly.SqlServer.SqlServerTransaction.DoDeleteAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  nameWithType: SqlServerTransaction.DoDeleteAsync(String, System.Collections.Generic.Dictionary<String, Object>)
+  nameWithType.vb: SqlServerTransaction.DoDeleteAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoDeleteAsync*
+  name: DoDeleteAsync
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoDeleteAsync_
+  commentId: Overload:Butterfly.SqlServer.SqlServerTransaction.DoDeleteAsync
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoDeleteAsync
+  nameWithType: SqlServerTransaction.DoDeleteAsync
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
+  name: DoInsertAsync(String, System.Collections.Generic.Dictionary<String, Object>, Boolean)
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoInsertAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_
+  commentId: M:Butterfly.SqlServer.SqlServerTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
+  name.vb: DoInsertAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Boolean)
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoInsertAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Boolean)
+  fullName.vb: Butterfly.SqlServer.SqlServerTransaction.DoInsertAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Boolean)
+  nameWithType: SqlServerTransaction.DoInsertAsync(String, System.Collections.Generic.Dictionary<String, Object>, Boolean)
+  nameWithType.vb: SqlServerTransaction.DoInsertAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Boolean)
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoInsertAsync*
+  name: DoInsertAsync
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoInsertAsync_
+  commentId: Overload:Butterfly.SqlServer.SqlServerTransaction.DoInsertAsync
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoInsertAsync
+  nameWithType: SqlServerTransaction.DoInsertAsync
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoRollback
+  name: DoRollback()
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoRollback
+  commentId: M:Butterfly.SqlServer.SqlServerTransaction.DoRollback
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoRollback()
+  nameWithType: SqlServerTransaction.DoRollback()
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoRollback*
+  name: DoRollback
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoRollback_
+  commentId: Overload:Butterfly.SqlServer.SqlServerTransaction.DoRollback
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoRollback
+  nameWithType: SqlServerTransaction.DoRollback
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoTruncateAsync(System.String)
+  name: DoTruncateAsync(String)
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoTruncateAsync_System_String_
+  commentId: M:Butterfly.SqlServer.SqlServerTransaction.DoTruncateAsync(System.String)
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoTruncateAsync(System.String)
+  nameWithType: SqlServerTransaction.DoTruncateAsync(String)
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoTruncateAsync*
+  name: DoTruncateAsync
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoTruncateAsync_
+  commentId: Overload:Butterfly.SqlServer.SqlServerTransaction.DoTruncateAsync
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoTruncateAsync
+  nameWithType: SqlServerTransaction.DoTruncateAsync
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoUpdateAsync(System.String,Dictionary{System.String,System.Object})
+  name: DoUpdateAsync(String, Dictionary<String, Object>)
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoUpdateAsync_System_String_Dictionary_System_String_System_Object__
+  commentId: M:Butterfly.SqlServer.SqlServerTransaction.DoUpdateAsync(System.String,Dictionary{System.String,System.Object})
+  name.vb: DoUpdateAsync(String, Dictionary(Of String, Object))
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoUpdateAsync(System.String, Dictionary<System.String, System.Object>)
+  fullName.vb: Butterfly.SqlServer.SqlServerTransaction.DoUpdateAsync(System.String, Dictionary(Of System.String, System.Object))
+  nameWithType: SqlServerTransaction.DoUpdateAsync(String, Dictionary<String, Object>)
+  nameWithType.vb: SqlServerTransaction.DoUpdateAsync(String, Dictionary(Of String, Object))
+- uid: Butterfly.SqlServer.SqlServerTransaction.DoUpdateAsync*
+  name: DoUpdateAsync
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_DoUpdateAsync_
+  commentId: Overload:Butterfly.SqlServer.SqlServerTransaction.DoUpdateAsync
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.SqlServerTransaction.DoUpdateAsync
+  nameWithType: SqlServerTransaction.DoUpdateAsync
+- uid: Butterfly.SqlServer.SqlServerTransaction.transaction
+  name: transaction
+  href: api/Butterfly.SqlServer.SqlServerTransaction.html#Butterfly_SqlServer_SqlServerTransaction_transaction
+  commentId: F:Butterfly.SqlServer.SqlServerTransaction.transaction
+  fullName: Butterfly.SqlServer.SqlServerTransaction.transaction
+  nameWithType: SqlServerTransaction.transaction
+- uid: Butterfly.SqlServer.Test
+  name: Butterfly.SqlServer.Test
+  href: api/Butterfly.SqlServer.Test.html
+  commentId: N:Butterfly.SqlServer.Test
+  fullName: Butterfly.SqlServer.Test
+  nameWithType: Butterfly.SqlServer.Test
+- uid: Butterfly.SqlServer.Test.SqlServerTest
+  name: SqlServerTest
+  href: api/Butterfly.SqlServer.Test.SqlServerTest.html
+  commentId: T:Butterfly.SqlServer.Test.SqlServerTest
+  fullName: Butterfly.SqlServer.Test.SqlServerTest
+  nameWithType: SqlServerTest
+- uid: Butterfly.SqlServer.Test.SqlServerTest.TestDatabase
+  name: TestDatabase()
+  href: api/Butterfly.SqlServer.Test.SqlServerTest.html#Butterfly_SqlServer_Test_SqlServerTest_TestDatabase
+  commentId: M:Butterfly.SqlServer.Test.SqlServerTest.TestDatabase
+  fullName: Butterfly.SqlServer.Test.SqlServerTest.TestDatabase()
+  nameWithType: SqlServerTest.TestDatabase()
+- uid: Butterfly.SqlServer.Test.SqlServerTest.TestDatabase*
+  name: TestDatabase
+  href: api/Butterfly.SqlServer.Test.SqlServerTest.html#Butterfly_SqlServer_Test_SqlServerTest_TestDatabase_
+  commentId: Overload:Butterfly.SqlServer.Test.SqlServerTest.TestDatabase
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.Test.SqlServerTest.TestDatabase
+  nameWithType: SqlServerTest.TestDatabase
+- uid: Butterfly.SqlServer.Test.SqlServerTest.TestDynamic
+  name: TestDynamic()
+  href: api/Butterfly.SqlServer.Test.SqlServerTest.html#Butterfly_SqlServer_Test_SqlServerTest_TestDynamic
+  commentId: M:Butterfly.SqlServer.Test.SqlServerTest.TestDynamic
+  fullName: Butterfly.SqlServer.Test.SqlServerTest.TestDynamic()
+  nameWithType: SqlServerTest.TestDynamic()
+- uid: Butterfly.SqlServer.Test.SqlServerTest.TestDynamic*
+  name: TestDynamic
+  href: api/Butterfly.SqlServer.Test.SqlServerTest.html#Butterfly_SqlServer_Test_SqlServerTest_TestDynamic_
+  commentId: Overload:Butterfly.SqlServer.Test.SqlServerTest.TestDynamic
+  isSpec: "True"
+  fullName: Butterfly.SqlServer.Test.SqlServerTest.TestDynamic
+  nameWithType: SqlServerTest.TestDynamic
 - uid: Butterfly.Twilio
   name: Butterfly.Twilio
   href: api/Butterfly.Twilio.html

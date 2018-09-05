@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class MemoryDatabase
+    <title>Class SqlServerDatabase
    | Butterfly Server .NET API Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class MemoryDatabase
+    <meta name="title" content="Class SqlServerDatabase
    | Butterfly Server .NET API Documentation ">
     <meta name="generator" content="docfx 2.38.1.0">
     
@@ -68,10 +68,10 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase">
+            <article class="content wrap" id="_content" data-uid="Butterfly.SqlServer.SqlServerDatabase">
   
   
-  <h1 id="Butterfly_Core_Database_Memory_MemoryDatabase" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase" class="text-break">Class MemoryDatabase
+  <h1 id="Butterfly_SqlServer_SqlServerDatabase" data-uid="Butterfly.SqlServer.SqlServerDatabase" class="text-break">Class SqlServerDatabase
   </h1>
   <div class="markdown level0 summary">
 Base class implementing <a class="xref" href="Butterfly.Core.Database.IDatabase.html">IDatabase</a>. New implementations will normally extend this class.
@@ -81,7 +81,7 @@ Base class implementing <a class="xref" href="Butterfly.Core.Database.IDatabase.
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><a class="xref" href="Butterfly.Core.Database.BaseDatabase.html">BaseDatabase</a></div>
-    <div class="level2"><span class="xref">MemoryDatabase</span></div>
+    <div class="level2"><span class="xref">SqlServerDatabase</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
@@ -129,19 +129,19 @@ Base class implementing <a class="xref" href="Butterfly.Core.Database.IDatabase.
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_uncommittedTransactionListeners">BaseDatabase.uncommittedTransactionListeners</a>
     </div>
     <div>
-      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_OnNewUncommittedTransaction_Action_Butterfly_Core_Database_Event_DataEventTransaction__">BaseDatabase.OnNewUncommittedTransaction(Action&lt;DataEventTransaction&gt;)</a>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.OnNewUncommittedTransaction(Action&lt;&gt;)</span>
     </div>
     <div>
-      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_OnNewUncommittedTransaction_Func_Butterfly_Core_Database_Event_DataEventTransaction_Task__">BaseDatabase.OnNewUncommittedTransaction(Func&lt;DataEventTransaction, Task&gt;)</a>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.OnNewUncommittedTransaction(Func&lt;, &gt;)</span>
     </div>
     <div>
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_committedTransactionListeners">BaseDatabase.committedTransactionListeners</a>
     </div>
     <div>
-      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_OnNewCommittedTransaction_Action_Butterfly_Core_Database_Event_DataEventTransaction__">BaseDatabase.OnNewCommittedTransaction(Action&lt;DataEventTransaction&gt;)</a>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.OnNewCommittedTransaction(Action&lt;&gt;)</span>
     </div>
     <div>
-      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_OnNewCommittedTransaction_Func_Butterfly_Core_Database_Event_DataEventTransaction_Task__">BaseDatabase.OnNewCommittedTransaction(Func&lt;DataEventTransaction, Task&gt;)</a>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.OnNewCommittedTransaction(Func&lt;, &gt;)</span>
     </div>
     <div>
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_GetInitialDataEventsAsync_System_String_System_String___Butterfly_Core_Database_SelectStatement_System_Object_">BaseDatabase.GetInitialDataEventsAsync(String, String[], SelectStatement, Object)</a>
@@ -159,6 +159,9 @@ Base class implementing <a class="xref" href="Butterfly.Core.Database.IDatabase.
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SelectRowsAsync_Butterfly_Core_Database_SelectStatement_System_Object_">BaseDatabase.SelectRowsAsync(SelectStatement, Object)</a>
     </div>
     <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary&lt;, &gt;, System.Int32)</span>
+    </div>
+    <div>
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_QueryValueAsync__1_System_String_System_Object___0_">BaseDatabase.QueryValueAsync&lt;T&gt;(String, Object, T)</a>
     </div>
     <div>
@@ -166,6 +169,9 @@ Base class implementing <a class="xref" href="Butterfly.Core.Database.IDatabase.
     </div>
     <div>
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_QueryRowsAsync_System_String_System_Object_">BaseDatabase.QueryRowsAsync(String, Object)</a>
+    </div>
+    <div>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.DoQueryRowsAsync(System.String, System.Collections.Generic.Dictionary&lt;, &gt;)</span>
     </div>
     <div>
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_InsertAndCommitAsync__1_System_String_System_Object_System_Boolean_">BaseDatabase.InsertAndCommitAsync&lt;T&gt;(String, Object, Boolean)</a>
@@ -186,22 +192,22 @@ Base class implementing <a class="xref" href="Butterfly.Core.Database.IDatabase.
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_getDefaultValueByFieldName">BaseDatabase.getDefaultValueByFieldName</a>
     </div>
     <div>
-      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SetDefaultValue_System_String_Func_System_String_System_Object__System_String_">BaseDatabase.SetDefaultValue(String, Func&lt;String, Object&gt;, String)</a>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.SetDefaultValue(System.String, Func&lt;, &gt;, System.String)</span>
     </div>
     <div>
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_getOverrideValueByFieldName">BaseDatabase.getOverrideValueByFieldName</a>
     </div>
     <div>
-      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SetOverrideValue_System_String_Func_System_String_System_Object__System_String_">BaseDatabase.SetOverrideValue(String, Func&lt;String, Object&gt;, String)</a>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.SetOverrideValue(System.String, Func&lt;, &gt;, System.String)</span>
     </div>
     <div>
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_inputPreprocessors">BaseDatabase.inputPreprocessors</a>
     </div>
     <div>
-      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_AddInputPreprocessor_Action_System_String_System_Collections_Generic_Dictionary_System_String_System_Object___">BaseDatabase.AddInputPreprocessor(Action&lt;String, System.Collections.Generic.Dictionary&lt;String, Object&gt;&gt;)</a>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.AddInputPreprocessor(Action&lt;, &gt;)</span>
     </div>
     <div>
-      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_RemapTypeInputPreprocessor__1_Func___0_System_Object__">BaseDatabase.RemapTypeInputPreprocessor&lt;T&gt;(Func&lt;T, Object&gt;)</a>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.RemapTypeInputPreprocessor&lt;T&gt;(Func&lt;, &gt;)</span>
     </div>
     <div>
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CopyFieldValueInputPreprocessor_System_String_System_String_">BaseDatabase.CopyFieldValueInputPreprocessor(String, String)</a>
@@ -213,25 +219,25 @@ Base class implementing <a class="xref" href="Butterfly.Core.Database.IDatabase.
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_ConvertMySqlType_System_String_">BaseDatabase.ConvertMySqlType(String)</a>
     </div>
     <div>
-      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateDynamicViewSet_Action_Butterfly_Core_Database_Event_DataEventTransaction__">BaseDatabase.CreateDynamicViewSet(Action&lt;DataEventTransaction&gt;)</a>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.CreateDynamicViewSet(Action&lt;&gt;)</span>
     </div>
     <div>
-      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateDynamicViewSet_Func_Butterfly_Core_Database_Event_DataEventTransaction_Task__">BaseDatabase.CreateDynamicViewSet(Func&lt;DataEventTransaction, Task&gt;)</a>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.CreateDynamicViewSet(Func&lt;, &gt;)</span>
     </div>
     <div>
-      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateAndStartDynamicViewAsync_System_String_Action_Butterfly_Core_Database_Event_DataEventTransaction__System_Object_System_String_System_String___">BaseDatabase.CreateAndStartDynamicViewAsync(String, Action&lt;DataEventTransaction&gt;, Object, String, String[])</a>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.CreateAndStartDynamicViewAsync(System.String, Action&lt;&gt;, System.Object, System.String, System.String[])</span>
     </div>
     <div>
-      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateAndStartDynamicViewAsync_System_String_Func_Butterfly_Core_Database_Event_DataEventTransaction_Task__System_Object_System_String_System_String___">BaseDatabase.CreateAndStartDynamicViewAsync(String, Func&lt;DataEventTransaction, Task&gt;, Object, String, String[])</a>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.CreateAndStartDynamicViewAsync(System.String, Func&lt;, &gt;, System.Object, System.String, System.String[])</span>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Butterfly.Core.Database.Memory.html">Butterfly.Core.Database.Memory</a></h6>
-  <h6><strong>Assembly</strong>: Butterfly.Core.dll</h6>
-  <h5 id="Butterfly_Core_Database_Memory_MemoryDatabase_syntax">Syntax</h5>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Butterfly.SqlServer.html">Butterfly.SqlServer</a></h6>
+  <h6><strong>Assembly</strong>: Butterfly.SqlServer.dll</h6>
+  <h5 id="Butterfly_SqlServer_SqlServerDatabase_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MemoryDatabase : BaseDatabase, IDatabase</code></pre>
+    <pre><code class="lang-csharp hljs">public class SqlServerDatabase : BaseDatabase, IDatabase</code></pre>
   </div>
-  <h5 id="Butterfly_Core_Database_Memory_MemoryDatabase_remarks"><strong>Remarks</strong></h5>
+  <h5 id="Butterfly_SqlServer_SqlServerDatabase_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks">
 Adding records and echoing all data change events to the console...<p>
 <pre><code>    // Create database instance (will also read the schema from the database)
@@ -287,44 +293,46 @@ Creating a DynamicView and echoing data change events on the DynamicView to the 
 </div>
   <h3 id="constructors">Constructors
   </h3>
-  <a id="Butterfly_Core_Database_Memory_MemoryDatabase__ctor_" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.#ctor*"></a>
-  <h4 id="Butterfly_Core_Database_Memory_MemoryDatabase__ctor" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.#ctor">MemoryDatabase()</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="Butterfly_SqlServer_SqlServerDatabase__ctor_" data-uid="Butterfly.SqlServer.SqlServerDatabase.#ctor*"></a>
+  <h4 id="Butterfly_SqlServer_SqlServerDatabase__ctor_System_String_System_Boolean_" data-uid="Butterfly.SqlServer.SqlServerDatabase.#ctor(System.String,System.Boolean)">SqlServerDatabase(String, Boolean)</h4>
+  <div class="markdown level1 summary">
+Creates an instance of IDatabase that works with a MS SQL Server database (or LocalDB in Visual Studio)
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MemoryDatabase()</code></pre>
+    <pre><code class="lang-csharp hljs">public SqlServerDatabase(string connectionString, bool forceIsolationLevelSnapshot = false)</code></pre>
   </div>
-  <h3 id="fields">Fields
-  </h3>
-  <h4 id="Butterfly_Core_Database_Memory_MemoryDatabase_IN_REPLACE" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.IN_REPLACE">IN_REPLACE</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static readonly Regex IN_REPLACE</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Regex</span></td>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">connectionString</span></td>
         <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">forceIsolationLevelSnapshot</span></td>
+        <td>Setting this to true prevents SELECTs that depend on unfinished transactions from hanging (requires executing ALTER DATABASE {database} SET ALLOW_SNAPSHOT_ISOLATION ON on the database)</td>
       </tr>
     </tbody>
   </table>
-  <h4 id="Butterfly_Core_Database_Memory_MemoryDatabase_SIMPLE_REPLACE" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.SIMPLE_REPLACE">SIMPLE_REPLACE</h4>
+  <h3 id="fields">Fields
+  </h3>
+  <h4 id="Butterfly_SqlServer_SqlServerDatabase_forceIsolationLevelSnapshot" data-uid="Butterfly.SqlServer.SqlServerDatabase.forceIsolationLevelSnapshot">forceIsolationLevelSnapshot</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static readonly Regex SIMPLE_REPLACE</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly bool forceIsolationLevelSnapshot</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -336,15 +344,15 @@ Creating a DynamicView and echoing data change events on the DynamicView to the 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Regex</span></td>
+        <td><span class="xref">System.Boolean</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="properties">Properties
   </h3>
-  <a id="Butterfly_Core_Database_Memory_MemoryDatabase_CanFieldAlias_" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.CanFieldAlias*"></a>
-  <h4 id="Butterfly_Core_Database_Memory_MemoryDatabase_CanFieldAlias" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.CanFieldAlias">CanFieldAlias</h4>
+  <a id="Butterfly_SqlServer_SqlServerDatabase_CanFieldAlias_" data-uid="Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias*"></a>
+  <h4 id="Butterfly_SqlServer_SqlServerDatabase_CanFieldAlias" data-uid="Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias">CanFieldAlias</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -368,8 +376,8 @@ Creating a DynamicView and echoing data change events on the DynamicView to the 
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CanFieldAlias">BaseDatabase.CanFieldAlias</a></div>
-  <a id="Butterfly_Core_Database_Memory_MemoryDatabase_CanJoin_" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.CanJoin*"></a>
-  <h4 id="Butterfly_Core_Database_Memory_MemoryDatabase_CanJoin" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.CanJoin">CanJoin</h4>
+  <a id="Butterfly_SqlServer_SqlServerDatabase_CanJoin_" data-uid="Butterfly.SqlServer.SqlServerDatabase.CanJoin*"></a>
+  <h4 id="Butterfly_SqlServer_SqlServerDatabase_CanJoin" data-uid="Butterfly.SqlServer.SqlServerDatabase.CanJoin">CanJoin</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -395,8 +403,8 @@ Creating a DynamicView and echoing data change events on the DynamicView to the 
   <div><a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CanJoin">BaseDatabase.CanJoin</a></div>
   <h3 id="methods">Methods
   </h3>
-  <a id="Butterfly_Core_Database_Memory_MemoryDatabase_CreateTransaction_" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.CreateTransaction*"></a>
-  <h4 id="Butterfly_Core_Database_Memory_MemoryDatabase_CreateTransaction" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.CreateTransaction">CreateTransaction()</h4>
+  <a id="Butterfly_SqlServer_SqlServerDatabase_CreateTransaction_" data-uid="Butterfly.SqlServer.SqlServerDatabase.CreateTransaction*"></a>
+  <h4 id="Butterfly_SqlServer_SqlServerDatabase_CreateTransaction" data-uid="Butterfly.SqlServer.SqlServerDatabase.CreateTransaction">CreateTransaction()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -420,13 +428,13 @@ Creating a DynamicView and echoing data change events on the DynamicView to the 
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateTransaction">BaseDatabase.CreateTransaction()</a></div>
-  <a id="Butterfly_Core_Database_Memory_MemoryDatabase_DoQueryRowsAsync_" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.DoQueryRowsAsync*"></a>
-  <h4 id="Butterfly_Core_Database_Memory_MemoryDatabase_DoQueryRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">DoQueryRowsAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <a id="Butterfly_SqlServer_SqlServerDatabase_DoQueryRowsAsync_" data-uid="Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync*"></a>
+  <h4 id="Butterfly_SqlServer_SqlServerDatabase_DoQueryRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">DoQueryRowsAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override Task&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;[]&gt; DoQueryRowsAsync(string storedProcedureName, System.Collections.Generic.Dictionary&lt;string, object&gt; vars = null)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override Task&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;[]&gt; DoQueryRowsAsync(string storedProcedureName, System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -445,7 +453,7 @@ Creating a DynamicView and echoing data change events on the DynamicView to the 
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
-        <td><span class="parametername">vars</span></td>
+        <td><span class="parametername">executableParams</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -465,10 +473,8 @@ Creating a DynamicView and echoing data change events on the DynamicView to the 
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_DoQueryRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__">BaseDatabase.DoQueryRowsAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</a></div>
-  <a id="Butterfly_Core_Database_Memory_MemoryDatabase_DoSelectRowsAsync_" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.DoSelectRowsAsync*"></a>
-  <h4 id="Butterfly_Core_Database_Memory_MemoryDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Int32_" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)">DoSelectRowsAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;, Int32)</h4>
+  <a id="Butterfly_SqlServer_SqlServerDatabase_DoSelectRowsAsync_" data-uid="Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync*"></a>
+  <h4 id="Butterfly_SqlServer_SqlServerDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Int32_" data-uid="Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)">DoSelectRowsAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;, Int32)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -517,120 +523,8 @@ Creating a DynamicView and echoing data change events on the DynamicView to the 
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Int32_">BaseDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;, Int32)</a></div>
-  <a id="Butterfly_Core_Database_Memory_MemoryDatabase_EvaluateWhereClause_" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.EvaluateWhereClause*"></a>
-  <h4 id="Butterfly_Core_Database_Memory_MemoryDatabase_EvaluateWhereClause_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__Butterfly_Core_Database_StatementFromRef___" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.EvaluateWhereClause(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},Butterfly.Core.Database.StatementFromRef[])">EvaluateWhereClause(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;, StatementFromRef[])</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string EvaluateWhereClause(string whereClause, System.Collections.Generic.Dictionary&lt;string, object&gt; sqlParams, StatementFromRef[] tableRefs)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">whereClause</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
-        <td><span class="parametername">sqlParams</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Butterfly.Core.Database.StatementFromRef.html">StatementFromRef</a>[]</td>
-        <td><span class="parametername">tableRefs</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="Butterfly_Core_Database_Memory_MemoryDatabase_EvaluateWhereClauseReplace_" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.EvaluateWhereClauseReplace*"></a>
-  <h4 id="Butterfly_Core_Database_Memory_MemoryDatabase_EvaluateWhereClauseReplace_System_String_Regex_System_Collections_Generic_Dictionary_System_String_System_Object__Butterfly_Core_Database_StatementFromRef___Func_System_String_System_String__" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.EvaluateWhereClauseReplace(System.String,Regex,System.Collections.Generic.Dictionary{System.String,System.Object},Butterfly.Core.Database.StatementFromRef[],Func{System.String,System.String})">EvaluateWhereClauseReplace(String, Regex, System.Collections.Generic.Dictionary&lt;String, Object&gt;, StatementFromRef[], Func&lt;String, String&gt;)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static string EvaluateWhereClauseReplace(string sql, Regex regex, System.Collections.Generic.Dictionary&lt;string, object&gt; sqlParams, StatementFromRef[] tableRefs, Func&lt;string, string&gt; remapOp = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sql</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Regex</span></td>
-        <td><span class="parametername">regex</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
-        <td><span class="parametername">sqlParams</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Butterfly.Core.Database.StatementFromRef.html">StatementFromRef</a>[]</td>
-        <td><span class="parametername">tableRefs</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Func</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
-        <td><span class="parametername">remapOp</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="Butterfly_Core_Database_Memory_MemoryDatabase_LoadSchemaAsync_" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.LoadSchemaAsync*"></a>
-  <h4 id="Butterfly_Core_Database_Memory_MemoryDatabase_LoadSchemaAsync" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.LoadSchemaAsync">LoadSchemaAsync()</h4>
+  <a id="Butterfly_SqlServer_SqlServerDatabase_LoadSchemaAsync_" data-uid="Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync*"></a>
+  <h4 id="Butterfly_SqlServer_SqlServerDatabase_LoadSchemaAsync" data-uid="Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync">LoadSchemaAsync()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -654,8 +548,8 @@ Creating a DynamicView and echoing data change events on the DynamicView to the 
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_LoadSchemaAsync">BaseDatabase.LoadSchemaAsync()</a></div>
-  <a id="Butterfly_Core_Database_Memory_MemoryDatabase_LoadTableSchemaAsync_" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.LoadTableSchemaAsync*"></a>
-  <h4 id="Butterfly_Core_Database_Memory_MemoryDatabase_LoadTableSchemaAsync_System_String_" data-uid="Butterfly.Core.Database.Memory.MemoryDatabase.LoadTableSchemaAsync(System.String)">LoadTableSchemaAsync(String)</h4>
+  <a id="Butterfly_SqlServer_SqlServerDatabase_LoadTableSchemaAsync_" data-uid="Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync*"></a>
+  <h4 id="Butterfly_SqlServer_SqlServerDatabase_LoadTableSchemaAsync_System_String_" data-uid="Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync(System.String)">LoadTableSchemaAsync(String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -694,8 +588,6 @@ Creating a DynamicView and echoing data change events on the DynamicView to the 
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_LoadTableSchemaAsync_System_String_">BaseDatabase.LoadTableSchemaAsync(String)</a></div>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="Butterfly.Core.Database.IDatabase.html">IDatabase</a>

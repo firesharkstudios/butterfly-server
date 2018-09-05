@@ -1,47 +1,44 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Butterfly.Postgres.PostgresDatabase
-  commentId: T:Butterfly.Postgres.PostgresDatabase
-  id: PostgresDatabase
-  parent: Butterfly.Postgres
+- uid: Butterfly.SqlServer.SqlServerDatabase
+  commentId: T:Butterfly.SqlServer.SqlServerDatabase
+  id: SqlServerDatabase
+  parent: Butterfly.SqlServer
   children:
-  - Butterfly.Postgres.PostgresDatabase.#ctor(System.String)
-  - Butterfly.Postgres.PostgresDatabase.CanFieldAlias
-  - Butterfly.Postgres.PostgresDatabase.CanJoin
-  - Butterfly.Postgres.PostgresDatabase.ConvertType(System.String)
-  - Butterfly.Postgres.PostgresDatabase.ConvertValue(System.Object)
-  - Butterfly.Postgres.PostgresDatabase.CreateTransaction
-  - Butterfly.Postgres.PostgresDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
-  - Butterfly.Postgres.PostgresDatabase.GetFieldDefs(System.String)
-  - Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes(System.String)
-  - Butterfly.Postgres.PostgresDatabase.LoadSchemaAsync
-  - Butterfly.Postgres.PostgresDatabase.LoadTableSchemaAsync(System.String)
+  - Butterfly.SqlServer.SqlServerDatabase.#ctor(System.String,System.Boolean)
+  - Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias
+  - Butterfly.SqlServer.SqlServerDatabase.CanJoin
+  - Butterfly.SqlServer.SqlServerDatabase.CreateTransaction
+  - Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  - Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  - Butterfly.SqlServer.SqlServerDatabase.forceIsolationLevelSnapshot
+  - Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync
+  - Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync(System.String)
   langs:
   - csharp
   - vb
-  name: PostgresDatabase
-  nameWithType: PostgresDatabase
-  fullName: Butterfly.Postgres.PostgresDatabase
+  name: SqlServerDatabase
+  nameWithType: SqlServerDatabase
+  fullName: Butterfly.SqlServer.SqlServerDatabase
   type: Class
   source:
     remote:
-      path: Butterfly.Postgres/PostgresDatabase.cs
+      path: Butterfly.SqlServer/SqlServerDatabase.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
-    id: PostgresDatabase
-    path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 21
+    id: SqlServerDatabase
+    path: ../Butterfly.SqlServer/SqlServerDatabase.cs
+    startLine: 18
   assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
+  - Butterfly.SqlServer
+  namespace: Butterfly.SqlServer
   summary: "\nBase class implementing <xref href=\"Butterfly.Core.Database.IDatabase\" data-throw-if-not-resolved=\"false\"></xref>. New implementations will normally extend this class.\n"
   remarks: "\nAdding records and echoing all data change events to the console...<p></p>\n<pre><code>    // Create database instance (will also read the schema from the database)\n    var database = new SomeDatabase();\n\n    // Listen for all database data events\n    var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {\n        console.WriteLine($&quot;Low Level DataEventTransaction={dataEventTransaction}&quot;);\n    });\n\n    // INSERT a couple of records (this will cause a single data even transaction with\n    // two INSERT data events to be written to the console above)\n    using (var transaction = database.BeginTransaction()) {\n        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n            department_id: 1,\n            name: &quot;SpongeBob&quot;\n        });\n        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n            department_id: 1,\n            name: &quot;Squidward&quot;\n        });\n        await database.CommitAsync();\n    );</code></pre>\n\nCreating a DynamicView and echoing data change events on the DynamicView to the console...<p></p>\n<pre><code>    // Create database instance (will also read the schema from the database)\n    var database = new SomeDatabase();\n\n    // Create a DynamicViewSet that print any data events to the console\n    // (this will immediately echo an INITIAL data event for each existing matching record)\n    var dynamicViewSet = database.CreateAndStartDynamicViewSet(\n        &quot;SELECT * FROM employee WHERE department_id=@departmentId&quot;, \n        new {\n            departmentId = 1\n        },\n        dataEventTransaction => {\n            Console.WriteLine(dataEventTransaction);\n        }\n    );\n\n    // This will cause the above DynamicViewSet to echo an INSERT data event\n    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n        department_id: 1\n        name: &quot;Mr Crabs&quot;\n    });\n\n    // This will NOT cause the above DynamicViewSet to echo an INSERT data event\n    // (because the department_id doesn&apos;t match)\n    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n        department_id: 2\n        name: &quot;Patrick Star&quot;\n    });</code></pre>\n"
   example: []
   syntax:
-    content: 'public class PostgresDatabase : BaseDatabase, IDatabase'
+    content: 'public class SqlServerDatabase : BaseDatabase, IDatabase'
     content.vb: >-
-      Public Class PostgresDatabase
+      Public Class SqlServerDatabase
           Inherits BaseDatabase
           Implements IDatabase
   inheritance:
@@ -103,61 +100,100 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: Butterfly.Postgres.PostgresDatabase.#ctor(System.String)
-  commentId: M:Butterfly.Postgres.PostgresDatabase.#ctor(System.String)
-  id: '#ctor(System.String)'
-  parent: Butterfly.Postgres.PostgresDatabase
+- uid: Butterfly.SqlServer.SqlServerDatabase.forceIsolationLevelSnapshot
+  commentId: F:Butterfly.SqlServer.SqlServerDatabase.forceIsolationLevelSnapshot
+  id: forceIsolationLevelSnapshot
+  parent: Butterfly.SqlServer.SqlServerDatabase
   langs:
   - csharp
   - vb
-  name: PostgresDatabase(String)
-  nameWithType: PostgresDatabase.PostgresDatabase(String)
-  fullName: Butterfly.Postgres.PostgresDatabase.PostgresDatabase(System.String)
+  name: forceIsolationLevelSnapshot
+  nameWithType: SqlServerDatabase.forceIsolationLevelSnapshot
+  fullName: Butterfly.SqlServer.SqlServerDatabase.forceIsolationLevelSnapshot
+  type: Field
+  source:
+    remote:
+      path: Butterfly.SqlServer/SqlServerDatabase.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: forceIsolationLevelSnapshot
+    path: ../Butterfly.SqlServer/SqlServerDatabase.cs
+    startLine: 24
+  assemblies:
+  - Butterfly.SqlServer
+  namespace: Butterfly.SqlServer
+  syntax:
+    content: protected readonly bool forceIsolationLevelSnapshot
+    return:
+      type: System.Boolean
+    content.vb: Protected ReadOnly forceIsolationLevelSnapshot As Boolean
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.SqlServer.SqlServerDatabase.#ctor(System.String,System.Boolean)
+  commentId: M:Butterfly.SqlServer.SqlServerDatabase.#ctor(System.String,System.Boolean)
+  id: '#ctor(System.String,System.Boolean)'
+  parent: Butterfly.SqlServer.SqlServerDatabase
+  langs:
+  - csharp
+  - vb
+  name: SqlServerDatabase(String, Boolean)
+  nameWithType: SqlServerDatabase.SqlServerDatabase(String, Boolean)
+  fullName: Butterfly.SqlServer.SqlServerDatabase.SqlServerDatabase(System.String, System.Boolean)
   type: Constructor
   source:
     remote:
-      path: Butterfly.Postgres/PostgresDatabase.cs
+      path: Butterfly.SqlServer/SqlServerDatabase.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
-    path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 25
+    path: ../Butterfly.SqlServer/SqlServerDatabase.cs
+    startLine: 31
   assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
+  - Butterfly.SqlServer
+  namespace: Butterfly.SqlServer
+  summary: "\nCreates an instance of IDatabase that works with a MS SQL Server database (or LocalDB in Visual Studio)\n"
+  example: []
   syntax:
-    content: public PostgresDatabase(string connectionString)
+    content: public SqlServerDatabase(string connectionString, bool forceIsolationLevelSnapshot = false)
     parameters:
     - id: connectionString
       type: System.String
-    content.vb: Public Sub New(connectionString As String)
-  overload: Butterfly.Postgres.PostgresDatabase.#ctor*
+      description: ''
+    - id: forceIsolationLevelSnapshot
+      type: System.Boolean
+      description: Setting this to true prevents SELECTs that depend on unfinished transactions from hanging (requires executing ALTER DATABASE {database} SET ALLOW_SNAPSHOT_ISOLATION ON on the database)
+    content.vb: Public Sub New(connectionString As String, forceIsolationLevelSnapshot As Boolean = False)
+  overload: Butterfly.SqlServer.SqlServerDatabase.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: Butterfly.Postgres.PostgresDatabase.CanJoin
-  commentId: P:Butterfly.Postgres.PostgresDatabase.CanJoin
+- uid: Butterfly.SqlServer.SqlServerDatabase.CanJoin
+  commentId: P:Butterfly.SqlServer.SqlServerDatabase.CanJoin
   id: CanJoin
-  parent: Butterfly.Postgres.PostgresDatabase
+  parent: Butterfly.SqlServer.SqlServerDatabase
   langs:
   - csharp
   - vb
   name: CanJoin
-  nameWithType: PostgresDatabase.CanJoin
-  fullName: Butterfly.Postgres.PostgresDatabase.CanJoin
+  nameWithType: SqlServerDatabase.CanJoin
+  fullName: Butterfly.SqlServer.SqlServerDatabase.CanJoin
   type: Property
   source:
     remote:
-      path: Butterfly.Postgres/PostgresDatabase.cs
+      path: Butterfly.SqlServer/SqlServerDatabase.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CanJoin
-    path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 28
+    path: ../Butterfly.SqlServer/SqlServerDatabase.cs
+    startLine: 36
   assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
+  - Butterfly.SqlServer
+  namespace: Butterfly.SqlServer
   syntax:
     content: public override bool CanJoin { get; }
     parameters: []
@@ -165,7 +201,7 @@ items:
       type: System.Boolean
     content.vb: Public Overrides ReadOnly Property CanJoin As Boolean
   overridden: Butterfly.Core.Database.BaseDatabase.CanJoin
-  overload: Butterfly.Postgres.PostgresDatabase.CanJoin*
+  overload: Butterfly.SqlServer.SqlServerDatabase.CanJoin*
   modifiers.csharp:
   - public
   - override
@@ -174,28 +210,28 @@ items:
   - Public
   - Overrides
   - ReadOnly
-- uid: Butterfly.Postgres.PostgresDatabase.CanFieldAlias
-  commentId: P:Butterfly.Postgres.PostgresDatabase.CanFieldAlias
+- uid: Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias
+  commentId: P:Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias
   id: CanFieldAlias
-  parent: Butterfly.Postgres.PostgresDatabase
+  parent: Butterfly.SqlServer.SqlServerDatabase
   langs:
   - csharp
   - vb
   name: CanFieldAlias
-  nameWithType: PostgresDatabase.CanFieldAlias
-  fullName: Butterfly.Postgres.PostgresDatabase.CanFieldAlias
+  nameWithType: SqlServerDatabase.CanFieldAlias
+  fullName: Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias
   type: Property
   source:
     remote:
-      path: Butterfly.Postgres/PostgresDatabase.cs
+      path: Butterfly.SqlServer/SqlServerDatabase.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CanFieldAlias
-    path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 30
+    path: ../Butterfly.SqlServer/SqlServerDatabase.cs
+    startLine: 38
   assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
+  - Butterfly.SqlServer
+  namespace: Butterfly.SqlServer
   syntax:
     content: public override bool CanFieldAlias { get; }
     parameters: []
@@ -203,7 +239,7 @@ items:
       type: System.Boolean
     content.vb: Public Overrides ReadOnly Property CanFieldAlias As Boolean
   overridden: Butterfly.Core.Database.BaseDatabase.CanFieldAlias
-  overload: Butterfly.Postgres.PostgresDatabase.CanFieldAlias*
+  overload: Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias*
   modifiers.csharp:
   - public
   - override
@@ -212,205 +248,105 @@ items:
   - Public
   - Overrides
   - ReadOnly
-- uid: Butterfly.Postgres.PostgresDatabase.LoadSchemaAsync
-  commentId: M:Butterfly.Postgres.PostgresDatabase.LoadSchemaAsync
-  id: LoadSchemaAsync
-  parent: Butterfly.Postgres.PostgresDatabase
-  langs:
-  - csharp
-  - vb
-  name: LoadSchemaAsync()
-  nameWithType: PostgresDatabase.LoadSchemaAsync()
-  fullName: Butterfly.Postgres.PostgresDatabase.LoadSchemaAsync()
-  type: Method
-  source:
-    remote:
-      path: Butterfly.Postgres/PostgresDatabase.cs
-      branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
-    id: LoadSchemaAsync
-    path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 32
-  assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
-  syntax:
-    content: protected override Task LoadSchemaAsync()
-    return:
-      type: Task
-    content.vb: Protected Overrides Function LoadSchemaAsync As Task
-  overridden: Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync
-  overload: Butterfly.Postgres.PostgresDatabase.LoadSchemaAsync*
-  modifiers.csharp:
-  - protected
-  - override
-  modifiers.vb:
-  - Protected
-  - Overrides
-- uid: Butterfly.Postgres.PostgresDatabase.LoadTableSchemaAsync(System.String)
-  commentId: M:Butterfly.Postgres.PostgresDatabase.LoadTableSchemaAsync(System.String)
-  id: LoadTableSchemaAsync(System.String)
-  parent: Butterfly.Postgres.PostgresDatabase
-  langs:
-  - csharp
-  - vb
-  name: LoadTableSchemaAsync(String)
-  nameWithType: PostgresDatabase.LoadTableSchemaAsync(String)
-  fullName: Butterfly.Postgres.PostgresDatabase.LoadTableSchemaAsync(System.String)
-  type: Method
-  source:
-    remote:
-      path: Butterfly.Postgres/PostgresDatabase.cs
-      branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
-    id: LoadTableSchemaAsync
-    path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 47
-  assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
-  syntax:
-    content: protected override Task<Table> LoadTableSchemaAsync(string tableName)
-    parameters:
-    - id: tableName
-      type: System.String
-    return:
-      type: Task{Butterfly.Core.Database.Table}
-    content.vb: Protected Overrides Function LoadTableSchemaAsync(tableName As String) As Task(Of Table)
-  overload: Butterfly.Postgres.PostgresDatabase.LoadTableSchemaAsync*
-  modifiers.csharp:
-  - protected
-  - override
-  modifiers.vb:
-  - Protected
-  - Overrides
-- uid: Butterfly.Postgres.PostgresDatabase.GetFieldDefs(System.String)
-  commentId: M:Butterfly.Postgres.PostgresDatabase.GetFieldDefs(System.String)
-  id: GetFieldDefs(System.String)
-  parent: Butterfly.Postgres.PostgresDatabase
-  langs:
-  - csharp
-  - vb
-  name: GetFieldDefs(String)
-  nameWithType: PostgresDatabase.GetFieldDefs(String)
-  fullName: Butterfly.Postgres.PostgresDatabase.GetFieldDefs(System.String)
-  type: Method
-  source:
-    remote:
-      path: Butterfly.Postgres/PostgresDatabase.cs
-      branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
-    id: GetFieldDefs
-    path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 53
-  assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
-  syntax:
-    content: protected Task<TableFieldDef[]> GetFieldDefs(string tableName)
-    parameters:
-    - id: tableName
-      type: System.String
-    return:
-      type: Task{Butterfly.Core.Database.TableFieldDef[]}
-    content.vb: Protected Function GetFieldDefs(tableName As String) As Task(Of TableFieldDef())
-  overload: Butterfly.Postgres.PostgresDatabase.GetFieldDefs*
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
-- uid: Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes(System.String)
-  commentId: M:Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes(System.String)
-  id: GetUniqueIndexes(System.String)
-  parent: Butterfly.Postgres.PostgresDatabase
-  langs:
-  - csharp
-  - vb
-  name: GetUniqueIndexes(String)
-  nameWithType: PostgresDatabase.GetUniqueIndexes(String)
-  fullName: Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes(System.String)
-  type: Method
-  source:
-    remote:
-      path: Butterfly.Postgres/PostgresDatabase.cs
-      branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
-    id: GetUniqueIndexes
-    path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 79
-  assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
-  syntax:
-    content: protected TableIndex[] GetUniqueIndexes(string tableName)
-    parameters:
-    - id: tableName
-      type: System.String
-    return:
-      type: Butterfly.Core.Database.TableIndex[]
-    content.vb: Protected Function GetUniqueIndexes(tableName As String) As TableIndex()
-  overload: Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes*
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
-- uid: Butterfly.Postgres.PostgresDatabase.CreateTransaction
-  commentId: M:Butterfly.Postgres.PostgresDatabase.CreateTransaction
+- uid: Butterfly.SqlServer.SqlServerDatabase.CreateTransaction
+  commentId: M:Butterfly.SqlServer.SqlServerDatabase.CreateTransaction
   id: CreateTransaction
-  parent: Butterfly.Postgres.PostgresDatabase
+  parent: Butterfly.SqlServer.SqlServerDatabase
   langs:
   - csharp
   - vb
   name: CreateTransaction()
-  nameWithType: PostgresDatabase.CreateTransaction()
-  fullName: Butterfly.Postgres.PostgresDatabase.CreateTransaction()
+  nameWithType: SqlServerDatabase.CreateTransaction()
+  fullName: Butterfly.SqlServer.SqlServerDatabase.CreateTransaction()
   type: Method
   source:
     remote:
-      path: Butterfly.Postgres/PostgresDatabase.cs
+      path: Butterfly.SqlServer/SqlServerDatabase.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateTransaction
-    path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 123
+    path: ../Butterfly.SqlServer/SqlServerDatabase.cs
+    startLine: 40
   assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
+  - Butterfly.SqlServer
+  namespace: Butterfly.SqlServer
   syntax:
     content: protected override BaseTransaction CreateTransaction()
     return:
       type: Butterfly.Core.Database.BaseTransaction
     content.vb: Protected Overrides Function CreateTransaction As BaseTransaction
   overridden: Butterfly.Core.Database.BaseDatabase.CreateTransaction
-  overload: Butterfly.Postgres.PostgresDatabase.CreateTransaction*
+  overload: Butterfly.SqlServer.SqlServerDatabase.CreateTransaction*
   modifiers.csharp:
   - protected
   - override
   modifiers.vb:
   - Protected
   - Overrides
-- uid: Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
-  commentId: M:Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+- uid: Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  id: DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
+  parent: Butterfly.SqlServer.SqlServerDatabase
+  langs:
+  - csharp
+  - vb
+  name: DoQueryRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
+  nameWithType: SqlServerDatabase.DoQueryRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
+  fullName: Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.SqlServer/SqlServerDatabase.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: DoQueryRowsAsync
+    path: ../Butterfly.SqlServer/SqlServerDatabase.cs
+    startLine: 45
+  assemblies:
+  - Butterfly.SqlServer
+  namespace: Butterfly.SqlServer
+  syntax:
+    content: protected override Task<System.Collections.Generic.Dictionary<string, object>[]> DoQueryRowsAsync(string storedProcedureName, System.Collections.Generic.Dictionary<string, object> executableParams)
+    parameters:
+    - id: storedProcedureName
+      type: System.String
+    - id: executableParams
+      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    return:
+      type: Task{System.Collections.Generic.Dictionary{System.String,System.Object}[]}
+    content.vb: Protected Overrides Function DoQueryRowsAsync(storedProcedureName As String, executableParams As System.Collections.Generic.Dictionary(Of String, Object)) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
+  overload: Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync*
+  nameWithType.vb: SqlServerDatabase.DoQueryRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+  fullName.vb: Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: DoQueryRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
+  commentId: M:Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
   id: DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
-  parent: Butterfly.Postgres.PostgresDatabase
+  parent: Butterfly.SqlServer.SqlServerDatabase
   langs:
   - csharp
   - vb
   name: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
-  nameWithType: PostgresDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
-  fullName: Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Int32)
+  nameWithType: SqlServerDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>, Int32)
+  fullName: Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>, System.Int32)
   type: Method
   source:
     remote:
-      path: Butterfly.Postgres/PostgresDatabase.cs
+      path: Butterfly.SqlServer/SqlServerDatabase.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoSelectRowsAsync
-    path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 127
+    path: ../Butterfly.SqlServer/SqlServerDatabase.cs
+    startLine: 68
   assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
+  - Butterfly.SqlServer
+  namespace: Butterfly.SqlServer
   syntax:
     content: protected override Task<System.Collections.Generic.Dictionary<string, object>[]> DoSelectRowsAsync(string executableSql, System.Collections.Generic.Dictionary<string, object> executableParams, int limit)
     parameters:
@@ -423,138 +359,94 @@ items:
     return:
       type: Task{System.Collections.Generic.Dictionary{System.String,System.Object}[]}
     content.vb: Protected Overrides Function DoSelectRowsAsync(executableSql As String, executableParams As System.Collections.Generic.Dictionary(Of String, Object), limit As Integer) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
-  overload: Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync*
-  nameWithType.vb: PostgresDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
+  overload: Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync*
+  nameWithType.vb: SqlServerDatabase.DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
   modifiers.csharp:
   - protected
   - override
   modifiers.vb:
   - Protected
   - Overrides
-  fullName.vb: Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Int32)
+  fullName.vb: Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Int32)
   name.vb: DoSelectRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object), Int32)
-- uid: Butterfly.Postgres.PostgresDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  commentId: M:Butterfly.Postgres.PostgresDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  id: DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  parent: Butterfly.Postgres.PostgresDatabase
+- uid: Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync
+  commentId: M:Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync
+  id: LoadSchemaAsync
+  parent: Butterfly.SqlServer.SqlServerDatabase
   langs:
   - csharp
   - vb
-  name: DoQueryRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  nameWithType: PostgresDatabase.DoQueryRowsAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  fullName: Butterfly.Postgres.PostgresDatabase.DoQueryRowsAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
+  name: LoadSchemaAsync()
+  nameWithType: SqlServerDatabase.LoadSchemaAsync()
+  fullName: Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync()
   type: Method
   source:
     remote:
-      path: Butterfly.Postgres/PostgresDatabase.cs
+      path: Butterfly.SqlServer/SqlServerDatabase.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
-    id: DoQueryRowsAsync
-    path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 165
+    id: LoadSchemaAsync
+    path: ../Butterfly.SqlServer/SqlServerDatabase.cs
+    startLine: 101
   assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
+  - Butterfly.SqlServer
+  namespace: Butterfly.SqlServer
   syntax:
-    content: protected override Task<System.Collections.Generic.Dictionary<string, object>[]> DoQueryRowsAsync(string storedProcedureName, System.Collections.Generic.Dictionary<string, object> vars = null)
-    parameters:
-    - id: storedProcedureName
-      type: System.String
-    - id: vars
-      type: System.Collections.Generic.Dictionary{System.String,System.Object}
+    content: protected override Task LoadSchemaAsync()
     return:
-      type: Task{System.Collections.Generic.Dictionary{System.String,System.Object}[]}
-    content.vb: Protected Overrides Function DoQueryRowsAsync(storedProcedureName As String, vars As System.Collections.Generic.Dictionary(Of String, Object) = Nothing) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
-  overload: Butterfly.Postgres.PostgresDatabase.DoQueryRowsAsync*
-  nameWithType.vb: PostgresDatabase.DoQueryRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
+      type: Task
+    content.vb: Protected Overrides Function LoadSchemaAsync As Task
+  overridden: Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync
+  overload: Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync*
   modifiers.csharp:
   - protected
   - override
   modifiers.vb:
   - Protected
   - Overrides
-  fullName.vb: Butterfly.Postgres.PostgresDatabase.DoQueryRowsAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  name.vb: DoQueryRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
-- uid: Butterfly.Postgres.PostgresDatabase.ConvertValue(System.Object)
-  commentId: M:Butterfly.Postgres.PostgresDatabase.ConvertValue(System.Object)
-  id: ConvertValue(System.Object)
-  parent: Butterfly.Postgres.PostgresDatabase
+- uid: Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync(System.String)
+  commentId: M:Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync(System.String)
+  id: LoadTableSchemaAsync(System.String)
+  parent: Butterfly.SqlServer.SqlServerDatabase
   langs:
   - csharp
   - vb
-  name: ConvertValue(Object)
-  nameWithType: PostgresDatabase.ConvertValue(Object)
-  fullName: Butterfly.Postgres.PostgresDatabase.ConvertValue(System.Object)
+  name: LoadTableSchemaAsync(String)
+  nameWithType: SqlServerDatabase.LoadTableSchemaAsync(String)
+  fullName: Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync(System.String)
   type: Method
   source:
     remote:
-      path: Butterfly.Postgres/PostgresDatabase.cs
+      path: Butterfly.SqlServer/SqlServerDatabase.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
-    id: ConvertValue
-    path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 169
+    id: LoadTableSchemaAsync
+    path: ../Butterfly.SqlServer/SqlServerDatabase.cs
+    startLine: 120
   assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
+  - Butterfly.SqlServer
+  namespace: Butterfly.SqlServer
   syntax:
-    content: protected static object ConvertValue(object value)
+    content: protected override Task<Table> LoadTableSchemaAsync(string tableName)
     parameters:
-    - id: value
-      type: System.Object
-    return:
-      type: System.Object
-    content.vb: Protected Shared Function ConvertValue(value As Object) As Object
-  overload: Butterfly.Postgres.PostgresDatabase.ConvertValue*
-  modifiers.csharp:
-  - protected
-  - static
-  modifiers.vb:
-  - Protected
-  - Shared
-- uid: Butterfly.Postgres.PostgresDatabase.ConvertType(System.String)
-  commentId: M:Butterfly.Postgres.PostgresDatabase.ConvertType(System.String)
-  id: ConvertType(System.String)
-  parent: Butterfly.Postgres.PostgresDatabase
-  langs:
-  - csharp
-  - vb
-  name: ConvertType(String)
-  nameWithType: PostgresDatabase.ConvertType(String)
-  fullName: Butterfly.Postgres.PostgresDatabase.ConvertType(System.String)
-  type: Method
-  source:
-    remote:
-      path: Butterfly.Postgres/PostgresDatabase.cs
-      branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
-    id: ConvertType
-    path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 178
-  assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
-  syntax:
-    content: public static ConvertType(string text)
-    parameters:
-    - id: text
+    - id: tableName
       type: System.String
     return:
-      type: System.ValueTuple{Type,System.Int32}
-    content.vb: 'Public Shared Function ConvertType(text As String) As '
-  overload: Butterfly.Postgres.PostgresDatabase.ConvertType*
+      type: Task{Butterfly.Core.Database.Table}
+    content.vb: Protected Overrides Function LoadTableSchemaAsync(tableName As String) As Task(Of Table)
+  overload: Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync*
   modifiers.csharp:
-  - public
-  - static
+  - protected
+  - override
   modifiers.vb:
-  - Public
-  - Shared
+  - Protected
+  - Overrides
 references:
-- uid: Butterfly.Postgres
-  commentId: N:Butterfly.Postgres
-  name: Butterfly.Postgres
-  nameWithType: Butterfly.Postgres
-  fullName: Butterfly.Postgres
+- uid: Butterfly.SqlServer
+  commentId: N:Butterfly.SqlServer
+  name: Butterfly.SqlServer
+  nameWithType: Butterfly.SqlServer
+  fullName: Butterfly.SqlServer
 - uid: System.Object
   commentId: T:System.Object
   isExternal: true
@@ -2938,11 +2830,16 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Butterfly.Postgres.PostgresDatabase.#ctor*
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.#ctor
-  name: PostgresDatabase
-  nameWithType: PostgresDatabase.PostgresDatabase
-  fullName: Butterfly.Postgres.PostgresDatabase.PostgresDatabase
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Butterfly.SqlServer.SqlServerDatabase.#ctor*
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.#ctor
+  name: SqlServerDatabase
+  nameWithType: SqlServerDatabase.SqlServerDatabase
+  fullName: Butterfly.SqlServer.SqlServerDatabase.SqlServerDatabase
 - uid: System.String
   isExternal: true
   name: String
@@ -2954,230 +2851,22 @@ references:
   name: CanJoin
   nameWithType: BaseDatabase.CanJoin
   fullName: Butterfly.Core.Database.BaseDatabase.CanJoin
-- uid: Butterfly.Postgres.PostgresDatabase.CanJoin*
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.CanJoin
+- uid: Butterfly.SqlServer.SqlServerDatabase.CanJoin*
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.CanJoin
   name: CanJoin
-  nameWithType: PostgresDatabase.CanJoin
-  fullName: Butterfly.Postgres.PostgresDatabase.CanJoin
-- uid: System.Boolean
-  isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
+  nameWithType: SqlServerDatabase.CanJoin
+  fullName: Butterfly.SqlServer.SqlServerDatabase.CanJoin
 - uid: Butterfly.Core.Database.BaseDatabase.CanFieldAlias
   commentId: P:Butterfly.Core.Database.BaseDatabase.CanFieldAlias
   parent: Butterfly.Core.Database.BaseDatabase
   name: CanFieldAlias
   nameWithType: BaseDatabase.CanFieldAlias
   fullName: Butterfly.Core.Database.BaseDatabase.CanFieldAlias
-- uid: Butterfly.Postgres.PostgresDatabase.CanFieldAlias*
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.CanFieldAlias
+- uid: Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias*
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias
   name: CanFieldAlias
-  nameWithType: PostgresDatabase.CanFieldAlias
-  fullName: Butterfly.Postgres.PostgresDatabase.CanFieldAlias
-- uid: Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync
-  commentId: M:Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync
-  parent: Butterfly.Core.Database.BaseDatabase
-  name: LoadSchemaAsync()
-  nameWithType: BaseDatabase.LoadSchemaAsync()
-  fullName: Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync()
-  spec.csharp:
-  - uid: Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync
-    name: LoadSchemaAsync
-    nameWithType: BaseDatabase.LoadSchemaAsync
-    fullName: Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync
-    name: LoadSchemaAsync
-    nameWithType: BaseDatabase.LoadSchemaAsync
-    fullName: Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Butterfly.Postgres.PostgresDatabase.LoadSchemaAsync*
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.LoadSchemaAsync
-  name: LoadSchemaAsync
-  nameWithType: PostgresDatabase.LoadSchemaAsync
-  fullName: Butterfly.Postgres.PostgresDatabase.LoadSchemaAsync
-- uid: Task
-  isExternal: true
-  name: Task
-  nameWithType: Task
-  fullName: Task
-- uid: Butterfly.Postgres.PostgresDatabase.LoadTableSchemaAsync*
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.LoadTableSchemaAsync
-  name: LoadTableSchemaAsync
-  nameWithType: PostgresDatabase.LoadTableSchemaAsync
-  fullName: Butterfly.Postgres.PostgresDatabase.LoadTableSchemaAsync
-- uid: Task{Butterfly.Core.Database.Table}
-  commentId: '!:Task{Butterfly.Core.Database.Table}'
-  definition: Task`1
-  name: Task<Table>
-  nameWithType: Task<Table>
-  fullName: Task<Butterfly.Core.Database.Table>
-  nameWithType.vb: Task(Of Table)
-  fullName.vb: Task(Of Butterfly.Core.Database.Table)
-  name.vb: Task(Of Table)
-  spec.csharp:
-  - uid: Task`1
-    name: Task
-    nameWithType: Task
-    fullName: Task
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Butterfly.Core.Database.Table
-    name: Table
-    nameWithType: Table
-    fullName: Butterfly.Core.Database.Table
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Task`1
-    name: Task
-    nameWithType: Task
-    fullName: Task
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Butterfly.Core.Database.Table
-    name: Table
-    nameWithType: Table
-    fullName: Butterfly.Core.Database.Table
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Task`1
-  isExternal: true
-  name: Task<>
-  nameWithType: Task<>
-  fullName: Task<>
-  nameWithType.vb: Task(Of )
-  fullName.vb: Task(Of )
-  name.vb: Task(Of )
-  spec.csharp:
-  - uid: Task`1
-    name: Task
-    nameWithType: Task
-    fullName: Task
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Task`1
-    name: Task
-    nameWithType: Task
-    fullName: Task
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Butterfly.Postgres.PostgresDatabase.GetFieldDefs*
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.GetFieldDefs
-  name: GetFieldDefs
-  nameWithType: PostgresDatabase.GetFieldDefs
-  fullName: Butterfly.Postgres.PostgresDatabase.GetFieldDefs
-- uid: Task{Butterfly.Core.Database.TableFieldDef[]}
-  commentId: '!:Task{Butterfly.Core.Database.TableFieldDef[]}'
-  definition: Task`1
-  name: Task<TableFieldDef[]>
-  nameWithType: Task<TableFieldDef[]>
-  fullName: Task<Butterfly.Core.Database.TableFieldDef[]>
-  nameWithType.vb: Task(Of TableFieldDef())
-  fullName.vb: Task(Of Butterfly.Core.Database.TableFieldDef())
-  name.vb: Task(Of TableFieldDef())
-  spec.csharp:
-  - uid: Task`1
-    name: Task
-    nameWithType: Task
-    fullName: Task
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Butterfly.Core.Database.TableFieldDef
-    name: TableFieldDef
-    nameWithType: TableFieldDef
-    fullName: Butterfly.Core.Database.TableFieldDef
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Task`1
-    name: Task
-    nameWithType: Task
-    fullName: Task
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Butterfly.Core.Database.TableFieldDef
-    name: TableFieldDef
-    nameWithType: TableFieldDef
-    fullName: Butterfly.Core.Database.TableFieldDef
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes*
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes
-  name: GetUniqueIndexes
-  nameWithType: PostgresDatabase.GetUniqueIndexes
-  fullName: Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes
-- uid: Butterfly.Core.Database.TableIndex[]
-  isExternal: true
-  name: TableIndex[]
-  nameWithType: TableIndex[]
-  fullName: Butterfly.Core.Database.TableIndex[]
-  nameWithType.vb: TableIndex()
-  fullName.vb: Butterfly.Core.Database.TableIndex()
-  name.vb: TableIndex()
-  spec.csharp:
-  - uid: Butterfly.Core.Database.TableIndex
-    name: TableIndex
-    nameWithType: TableIndex
-    fullName: Butterfly.Core.Database.TableIndex
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  spec.vb:
-  - uid: Butterfly.Core.Database.TableIndex
-    name: TableIndex
-    nameWithType: TableIndex
-    fullName: Butterfly.Core.Database.TableIndex
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  nameWithType: SqlServerDatabase.CanFieldAlias
+  fullName: Butterfly.SqlServer.SqlServerDatabase.CanFieldAlias
 - uid: Butterfly.Core.Database.BaseDatabase.CreateTransaction
   commentId: M:Butterfly.Core.Database.BaseDatabase.CreateTransaction
   parent: Butterfly.Core.Database.BaseDatabase
@@ -3206,22 +2895,22 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Butterfly.Postgres.PostgresDatabase.CreateTransaction*
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.CreateTransaction
+- uid: Butterfly.SqlServer.SqlServerDatabase.CreateTransaction*
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.CreateTransaction
   name: CreateTransaction
-  nameWithType: PostgresDatabase.CreateTransaction
-  fullName: Butterfly.Postgres.PostgresDatabase.CreateTransaction
+  nameWithType: SqlServerDatabase.CreateTransaction
+  fullName: Butterfly.SqlServer.SqlServerDatabase.CreateTransaction
 - uid: Butterfly.Core.Database.BaseTransaction
   commentId: T:Butterfly.Core.Database.BaseTransaction
   parent: Butterfly.Core.Database
   name: BaseTransaction
   nameWithType: BaseTransaction
   fullName: Butterfly.Core.Database.BaseTransaction
-- uid: Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync*
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync
-  name: DoSelectRowsAsync
-  nameWithType: PostgresDatabase.DoSelectRowsAsync
-  fullName: Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync
+- uid: Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync*
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync
+  name: DoQueryRowsAsync
+  nameWithType: SqlServerDatabase.DoQueryRowsAsync
+  fullName: Butterfly.SqlServer.SqlServerDatabase.DoQueryRowsAsync
 - uid: System.Collections.Generic.Dictionary{System.String,System.Object}
   commentId: '!:System.Collections.Generic.Dictionary{System.String,System.Object}'
   definition: System.Collections.Generic.Dictionary`2
@@ -3281,11 +2970,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Int32
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
 - uid: Task{System.Collections.Generic.Dictionary{System.String,System.Object}[]}
   commentId: '!:Task{System.Collections.Generic.Dictionary{System.String,System.Object}[]}'
   definition: Task`1
@@ -3423,31 +3107,136 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Butterfly.Postgres.PostgresDatabase.DoQueryRowsAsync*
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.DoQueryRowsAsync
-  name: DoQueryRowsAsync
-  nameWithType: PostgresDatabase.DoQueryRowsAsync
-  fullName: Butterfly.Postgres.PostgresDatabase.DoQueryRowsAsync
-- uid: Butterfly.Postgres.PostgresDatabase.ConvertValue*
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.ConvertValue
-  name: ConvertValue
-  nameWithType: PostgresDatabase.ConvertValue
-  fullName: Butterfly.Postgres.PostgresDatabase.ConvertValue
-- uid: Butterfly.Postgres.PostgresDatabase.ConvertType*
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.ConvertType
-  name: ConvertType
-  nameWithType: PostgresDatabase.ConvertType
-  fullName: Butterfly.Postgres.PostgresDatabase.ConvertType
-- uid: System.ValueTuple{Type,System.Int32}
-  commentId: T:System.ValueTuple{Type,System.Int32}
-  parent: System
-  name: ''
-  nameWithType: ''
-  fullName: System.
-- uid: System
-  commentId: N:System
+- uid: Task`1
   isExternal: true
-  name: System
-  nameWithType: System
-  fullName: System
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync*
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync
+  name: DoSelectRowsAsync
+  nameWithType: SqlServerDatabase.DoSelectRowsAsync
+  fullName: Butterfly.SqlServer.SqlServerDatabase.DoSelectRowsAsync
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync
+  commentId: M:Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync
+  parent: Butterfly.Core.Database.BaseDatabase
+  name: LoadSchemaAsync()
+  nameWithType: BaseDatabase.LoadSchemaAsync()
+  fullName: Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync()
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync
+    name: LoadSchemaAsync
+    nameWithType: BaseDatabase.LoadSchemaAsync
+    fullName: Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync
+    name: LoadSchemaAsync
+    nameWithType: BaseDatabase.LoadSchemaAsync
+    fullName: Butterfly.Core.Database.BaseDatabase.LoadSchemaAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync*
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync
+  name: LoadSchemaAsync
+  nameWithType: SqlServerDatabase.LoadSchemaAsync
+  fullName: Butterfly.SqlServer.SqlServerDatabase.LoadSchemaAsync
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync*
+  commentId: Overload:Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync
+  name: LoadTableSchemaAsync
+  nameWithType: SqlServerDatabase.LoadTableSchemaAsync
+  fullName: Butterfly.SqlServer.SqlServerDatabase.LoadTableSchemaAsync
+- uid: Task{Butterfly.Core.Database.Table}
+  commentId: '!:Task{Butterfly.Core.Database.Table}'
+  definition: Task`1
+  name: Task<Table>
+  nameWithType: Task<Table>
+  fullName: Task<Butterfly.Core.Database.Table>
+  nameWithType.vb: Task(Of Table)
+  fullName.vb: Task(Of Butterfly.Core.Database.Table)
+  name.vb: Task(Of Table)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Butterfly.Core.Database.Table
+    name: Table
+    nameWithType: Table
+    fullName: Butterfly.Core.Database.Table
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Butterfly.Core.Database.Table
+    name: Table
+    nameWithType: Table
+    fullName: Butterfly.Core.Database.Table
+  - name: )
+    nameWithType: )
+    fullName: )
 shouldSkipMarkup: true

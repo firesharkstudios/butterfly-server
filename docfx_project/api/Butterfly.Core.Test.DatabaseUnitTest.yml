@@ -9,7 +9,7 @@ items:
   - Butterfly.Core.Test.DatabaseUnitTest.InsertBasicData(Butterfly.Core.Database.IDatabase)
   - Butterfly.Core.Test.DatabaseUnitTest.Parse
   - Butterfly.Core.Test.DatabaseUnitTest.SelectBasicData(Butterfly.Core.Database.IDatabase,System.Object,System.Object,System.Object)
-  - Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
+  - Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase,Assembly,System.String)
   - Butterfly.Core.Test.DatabaseUnitTest.TestTransactions(Butterfly.Core.Database.IDatabase)
   - Butterfly.Core.Test.DatabaseUnitTest.TruncateData(Butterfly.Core.Database.IDatabase)
   - Butterfly.Core.Test.DatabaseUnitTest.UpdateAndDeleteBasicData(Butterfly.Core.Database.IDatabase,System.Object)
@@ -108,16 +108,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
-  commentId: M:Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
-  id: TestDatabase(Butterfly.Core.Database.IDatabase)
+- uid: Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase,Assembly,System.String)
+  commentId: M:Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase,Assembly,System.String)
+  id: TestDatabase(Butterfly.Core.Database.IDatabase,Assembly,System.String)
   parent: Butterfly.Core.Test.DatabaseUnitTest
   langs:
   - csharp
   - vb
-  name: TestDatabase(IDatabase)
-  nameWithType: DatabaseUnitTest.TestDatabase(IDatabase)
-  fullName: Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase)
+  name: TestDatabase(IDatabase, Assembly, String)
+  nameWithType: DatabaseUnitTest.TestDatabase(IDatabase, Assembly, String)
+  fullName: Butterfly.Core.Test.DatabaseUnitTest.TestDatabase(Butterfly.Core.Database.IDatabase, Assembly, System.String)
   type: Method
   source:
     remote:
@@ -131,13 +131,17 @@ items:
   - Butterfly.Core.Test
   namespace: Butterfly.Core.Test
   syntax:
-    content: public static Task TestDatabase(IDatabase database)
+    content: public static Task TestDatabase(IDatabase database, Assembly assembly = null, string resourceFile = "Butterfly.Core.Test.db.sql")
     parameters:
     - id: database
       type: Butterfly.Core.Database.IDatabase
+    - id: assembly
+      type: Assembly
+    - id: resourceFile
+      type: System.String
     return:
       type: Task
-    content.vb: Public Shared Function TestDatabase(database As IDatabase) As Task
+    content.vb: Public Shared Function TestDatabase(database As IDatabase, assembly As Assembly = Nothing, resourceFile As String = "Butterfly.Core.Test.db.sql") As Task
   overload: Butterfly.Core.Test.DatabaseUnitTest.TestDatabase*
   modifiers.csharp:
   - public
@@ -376,6 +380,16 @@ references:
   name: IDatabase
   nameWithType: IDatabase
   fullName: Butterfly.Core.Database.IDatabase
+- uid: Assembly
+  isExternal: true
+  name: Assembly
+  nameWithType: Assembly
+  fullName: Assembly
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
 - uid: Butterfly.Core.Database
   commentId: N:Butterfly.Core.Database
   name: Butterfly.Core.Database

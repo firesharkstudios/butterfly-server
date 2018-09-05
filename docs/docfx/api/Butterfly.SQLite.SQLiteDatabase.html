@@ -159,7 +159,7 @@ Base class implementing <a class="xref" href="Butterfly.Core.Database.IDatabase.
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SelectRowsAsync_Butterfly_Core_Database_SelectStatement_System_Object_">BaseDatabase.SelectRowsAsync(SelectStatement, Object)</a>
     </div>
     <div>
-      <span class="xref">Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary&lt;, &gt;)</span>
+      <span class="xref">Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String, System.Collections.Generic.Dictionary&lt;, &gt;, System.Int32)</span>
     </div>
     <div>
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_QueryValueAsync__1_System_String_System_Object___0_">BaseDatabase.QueryValueAsync&lt;T&gt;(String, Object, T)</a>
@@ -483,12 +483,12 @@ Creating a DynamicView and echoing data change events on the DynamicView to the 
     </tbody>
   </table>
   <a id="Butterfly_SQLite_SQLiteDatabase_DoSelectRowsAsync_" data-uid="Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync*"></a>
-  <h4 id="Butterfly_SQLite_SQLiteDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">DoSelectRowsAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
+  <h4 id="Butterfly_SQLite_SQLiteDatabase_DoSelectRowsAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Int32_" data-uid="Butterfly.SQLite.SQLiteDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)">DoSelectRowsAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;, Int32)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override Task&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;[]&gt; DoSelectRowsAsync(string executableSql, System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override Task&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;[]&gt; DoSelectRowsAsync(string executableSql, System.Collections.Generic.Dictionary&lt;string, object&gt; executableParams, int limit)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -508,6 +508,11 @@ Creating a DynamicView and echoing data change events on the DynamicView to the 
       <tr>
         <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
         <td><span class="parametername">executableParams</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">limit</span></td>
         <td></td>
       </tr>
     </tbody>

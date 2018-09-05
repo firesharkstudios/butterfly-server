@@ -16,14 +16,14 @@ items:
   type: Class
   source:
     remote:
-      path: Butterfly.RHttpServer.Test/RHttpServerTest.cs
+      path: Butterfly.EmbedIO.Test/EmbedIOTest.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: EmbedIOTest
-    path: ../Butterfly.RHttpServer.Test/RHttpServerTest.cs
-    startLine: 13
+    path: ../Butterfly.EmbedIO.Test/EmbedIOTest.cs
+    startLine: 10
   assemblies:
-  - Butterfly.RHttpServer.Test
+  - Butterfly.EmbedIO.Test
   namespace: Butterfly.EmbedIO.Test
   syntax:
     content: 'public class EmbedIOTest : object'
@@ -51,14 +51,14 @@ items:
   type: Method
   source:
     remote:
-      path: Butterfly.RHttpServer.Test/RHttpServerTest.cs
+      path: Butterfly.EmbedIO.Test/EmbedIOTest.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: EmbedIOChannel
-    path: ../Butterfly.RHttpServer.Test/RHttpServerTest.cs
-    startLine: 15
+    path: ../Butterfly.EmbedIO.Test/EmbedIOTest.cs
+    startLine: 12
   assemblies:
-  - Butterfly.RHttpServer.Test
+  - Butterfly.EmbedIO.Test
   namespace: Butterfly.EmbedIO.Test
   syntax:
     content: public Task EmbedIOChannel()
@@ -83,14 +83,14 @@ items:
   type: Method
   source:
     remote:
-      path: Butterfly.RHttpServer.Test/RHttpServerTest.cs
+      path: Butterfly.EmbedIO.Test/EmbedIOTest.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: EmbedIOWeb
-    path: ../Butterfly.RHttpServer.Test/RHttpServerTest.cs
-    startLine: 25
+    path: ../Butterfly.EmbedIO.Test/EmbedIOTest.cs
+    startLine: 22
   assemblies:
-  - Butterfly.RHttpServer.Test
+  - Butterfly.EmbedIO.Test
   namespace: Butterfly.EmbedIO.Test
   syntax:
     content: public Task EmbedIOWeb()

@@ -27,7 +27,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: StatementFieldRef
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
-    startLine: 182
+    startLine: 177
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -64,7 +64,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: tableAlias
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
-    startLine: 183
+    startLine: 178
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -97,7 +97,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: fieldExpression
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
-    startLine: 184
+    startLine: 179
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -130,7 +130,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: fieldAlias
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
-    startLine: 185
+    startLine: 180
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -163,7 +163,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
-    startLine: 187
+    startLine: 182
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -196,7 +196,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
-    startLine: 190
+    startLine: 185
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -233,7 +233,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: REGEX_WILDCARD
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
-    startLine: 196
+    startLine: 191
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -268,7 +268,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: REGEX
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
-    startLine: 197
+    startLine: 192
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -303,7 +303,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ParseFieldRefs
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
-    startLine: 198
+    startLine: 193
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database

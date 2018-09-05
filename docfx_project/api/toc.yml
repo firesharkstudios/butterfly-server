@@ -331,6 +331,18 @@
     name: SQLiteDatabase
   - uid: Butterfly.SQLite.SQLiteTransaction
     name: SQLiteTransaction
+- uid: Butterfly.SqlServer
+  name: Butterfly.SqlServer
+  items:
+  - uid: Butterfly.SqlServer.SqlServerDatabase
+    name: SqlServerDatabase
+  - uid: Butterfly.SqlServer.SqlServerTransaction
+    name: SqlServerTransaction
+- uid: Butterfly.SqlServer.Test
+  name: Butterfly.SqlServer.Test
+  items:
+  - uid: Butterfly.SqlServer.Test.SqlServerTest
+    name: SqlServerTest
 - uid: Butterfly.Twilio
   name: Butterfly.Twilio
   items:

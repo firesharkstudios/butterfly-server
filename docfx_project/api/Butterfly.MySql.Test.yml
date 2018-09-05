@@ -14,16 +14,16 @@ items:
   fullName: Butterfly.MySql.Test
   type: Namespace
   assemblies:
-  - Butterfly.SQLite.Test
+  - Butterfly.MySql.Test
 references:
-- uid: Butterfly.MySql.Test.SQLiteTest
-  commentId: T:Butterfly.MySql.Test.SQLiteTest
-  name: SQLiteTest
-  nameWithType: SQLiteTest
-  fullName: Butterfly.MySql.Test.SQLiteTest
 - uid: Butterfly.MySql.Test.MySqlDatabaseUnitTest
   commentId: T:Butterfly.MySql.Test.MySqlDatabaseUnitTest
   name: MySqlDatabaseUnitTest
   nameWithType: MySqlDatabaseUnitTest
   fullName: Butterfly.MySql.Test.MySqlDatabaseUnitTest
+- uid: Butterfly.MySql.Test.SQLiteTest
+  commentId: T:Butterfly.MySql.Test.SQLiteTest
+  name: SQLiteTest
+  nameWithType: SQLiteTest
+  fullName: Butterfly.MySql.Test.SQLiteTest
 shouldSkipMarkup: true

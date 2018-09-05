@@ -13,7 +13,7 @@ items:
   fullName: Butterfly.EmbedIO.Test
   type: Namespace
   assemblies:
-  - Butterfly.RHttpServer.Test
+  - Butterfly.EmbedIO.Test
 references:
 - uid: Butterfly.EmbedIO.Test.EmbedIOTest
   commentId: T:Butterfly.EmbedIO.Test.EmbedIOTest

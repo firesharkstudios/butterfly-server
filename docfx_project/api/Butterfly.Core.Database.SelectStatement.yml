@@ -285,15 +285,15 @@ items:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   syntax:
-    content: public SelectStatement(IDatabase database, string sql, int overrideLimit = null)
+    content: public SelectStatement(IDatabase database, string sql, int limit = null)
     parameters:
     - id: database
       type: Butterfly.Core.Database.IDatabase
     - id: sql
       type: System.String
-    - id: overrideLimit
+    - id: limit
       type: System.Int32
-    content.vb: Public Sub New(database As IDatabase, sql As String, overrideLimit As Integer = Nothing)
+    content.vb: Public Sub New(database As IDatabase, sql As String, limit As Integer = Nothing)
   overload: Butterfly.Core.Database.SelectStatement.#ctor*
   modifiers.csharp:
   - public
@@ -317,7 +317,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
-    startLine: 59
+    startLine: 52
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -360,7 +360,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Compile
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
-    startLine: 69
+    startLine: 62
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -393,7 +393,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
-    startLine: 73
+    startLine: 66
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -430,7 +430,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: GetExecutableSqlAndParams
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
-    startLine: 89
+    startLine: 82
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -468,7 +468,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ReplaceAll
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
-    startLine: 164
+    startLine: 159
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
