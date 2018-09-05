@@ -28,7 +28,6 @@ items:
   - Butterfly.RHttpServer
   namespace: Butterfly.RHttpServer
   summary: "\nBase class implementing <xref href=\"Butterfly.Core.WebApi.IWebApi\" data-throw-if-not-resolved=\"false\"></xref>. New implementations will normally extend this class.\n"
-  remarks: "\nExample usage...<p></p>\n<pre><code>    webApi.OnGet(&quot;/chat-messages&quot;, async(req, res) => {\n        // Handle the request and return any objects as needed (will be JSON encoded)\n    });\n    webApi.OnPost(&quot;/login&quot;, async(req, res) => {\n        // Handle the request and return any objects as needed (will be JSON encoded)\n    });\n    webApi.Compile();</code></pre>\n"
   example: []
   syntax:
     content: 'public class RedHttpServerWebApi : BaseWebApi, IWebApi, IDisposable'
