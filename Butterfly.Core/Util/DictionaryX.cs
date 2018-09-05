@@ -16,6 +16,28 @@ namespace Butterfly.Core.Util {
             return string.Join(itemDelim, me.Select(x => $"{x.Key}{keyValueDelim}{x.Value}"));
         }
 
+        /// <summary>
+        /// Retrieves a value from a <paramref name="me"/> (or return the <paramref name="defaultValue"/> if missing or null).<para/>
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// // Prints "test"
+        /// Console.WriteLine(new Dict{ ["text"] = "test" }.GetAs("text", ""));
+        /// 
+        /// // Prints "other"
+        /// Console.WriteLine(new Dict{ }.GetAs("text", "other"));
+        /// 
+        /// // Prints 2
+        /// Console.WriteLine(new Dict{ ["number"] = "2" }.GetAs("number", -1));
+        /// </code>
+        /// </example>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="U"></typeparam>
+        /// <typeparam name="V"></typeparam>
+        /// <param name="me">Source dictionary</param>
+        /// <param name="key">Key of the desired value in dictionary</param>
+        /// <param name="defaultValue">Default value if value is null</param>
+        /// <returns>A value of type V</returns>
         public static V GetAs<T, U, V>(this Dictionary<T, U> me, T key, V defaultValue) {
             if (me.TryGetValue(key, out U value) && value != null) {
                 Type vType = typeof(V);

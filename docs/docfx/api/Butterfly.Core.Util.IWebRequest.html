@@ -167,10 +167,10 @@ Retrieves the query string params
   </table>
   <h5 id="Butterfly_Core_Util_IWebRequest_QueryParams_examples">Examples</h5>
   
-<pre><code>    webApi.OnGet(&quot;/todo&quot;, (req, res) => {
-        // Opening /todo?id=123 would echo id=123 to the console below
-        Console.Writeline($&quot;id={req.QueryParams[&quot;id&quot;]}&quot;);
-    });</code></pre>
+<pre><code>webApi.OnGet(&quot;/todo&quot;, (req, res) => {
+    // Opening /todo?id=123 would echo id=123 to the console below
+    Console.Writeline($&quot;id={req.QueryParams[&quot;id&quot;]}&quot;);
+});</code></pre>
 
   <a id="Butterfly_Core_Util_IWebRequest_RequestUrl_" data-uid="Butterfly.Core.Util.IWebRequest.RequestUrl*"></a>
   <h4 id="Butterfly_Core_Util_IWebRequest_RequestUrl" data-uid="Butterfly.Core.Util.IWebRequest.RequestUrl">RequestUrl</h4>

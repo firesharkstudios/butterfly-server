@@ -35,10 +35,10 @@ namespace Butterfly.Core.Util {
         /// </summary>
         /// <example>
         /// <code>
-        ///     webApi.OnGet("/todo", (req, res) => {
-        ///         // Opening /todo?id=123 would echo id=123 to the console below
-        ///         Console.Writeline($"id={req.QueryParams["id"]}");
-        ///     });
+        /// webApi.OnGet("/todo", (req, res) => {
+        ///     // Opening /todo?id=123 would echo id=123 to the console below
+        ///     Console.Writeline($"id={req.QueryParams["id"]}");
+        /// });
         /// </code>
         /// </example>
         Dictionary<string, string> QueryParams { get; }

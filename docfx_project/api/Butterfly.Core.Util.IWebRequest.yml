@@ -168,7 +168,7 @@ items:
   namespace: Butterfly.Core.Util
   summary: "\nRetrieves the query string params\n"
   example:
-  - "\n<pre><code>    webApi.OnGet(&quot;/todo&quot;, (req, res) => {\n        // Opening /todo?id=123 would echo id=123 to the console below\n        Console.Writeline($&quot;id={req.QueryParams[&quot;id&quot;]}&quot;);\n    });</code></pre>\n"
+  - "\n<pre><code>webApi.OnGet(&quot;/todo&quot;, (req, res) => {\n    // Opening /todo?id=123 would echo id=123 to the console below\n    Console.Writeline($&quot;id={req.QueryParams[&quot;id&quot;]}&quot;);\n});</code></pre>\n"
   syntax:
     content: Dictionary<string, string> QueryParams { get; }
     parameters: []

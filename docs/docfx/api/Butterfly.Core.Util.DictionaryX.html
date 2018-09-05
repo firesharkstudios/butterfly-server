@@ -199,7 +199,9 @@
   </table>
   <a id="Butterfly_Core_Util_DictionaryX_GetAs_" data-uid="Butterfly.Core.Util.DictionaryX.GetAs*"></a>
   <h4 id="Butterfly_Core_Util_DictionaryX_GetAs__3_Dictionary___0___1____0___2_" data-uid="Butterfly.Core.Util.DictionaryX.GetAs``3(Dictionary{``0,``1},``0,``2)">GetAs&lt;T, U, V&gt;(Dictionary&lt;T, U&gt;, T, V)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Retrieves a value from a <code data-dev-comment-type="paramref" class="paramref">me</code> (or return the <code data-dev-comment-type="paramref" class="paramref">defaultValue</code> if missing or null).<p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -218,17 +220,17 @@
       <tr>
         <td><span class="xref">Dictionary</span>&lt;T, U&gt;</td>
         <td><span class="parametername">me</span></td>
-        <td></td>
+        <td>Source dictionary</td>
       </tr>
       <tr>
         <td><span class="xref">T</span></td>
         <td><span class="parametername">key</span></td>
-        <td></td>
+        <td>Key of the desired value in dictionary</td>
       </tr>
       <tr>
         <td><span class="xref">V</span></td>
         <td><span class="parametername">defaultValue</span></td>
-        <td></td>
+        <td>Default value if value is null</td>
       </tr>
     </tbody>
   </table>
@@ -243,7 +245,7 @@
     <tbody>
       <tr>
         <td><span class="xref">V</span></td>
-        <td></td>
+        <td>A value of type V</td>
       </tr>
     </tbody>
   </table>
@@ -270,6 +272,17 @@
       </tr>
     </tbody>
   </table>
+  <h5 id="Butterfly_Core_Util_DictionaryX_GetAs__3_Dictionary___0___1____0___2__examples">Examples</h5>
+  
+<pre><code>// Prints &quot;test&quot;
+Console.WriteLine(new Dict{ [&quot;text&quot;] = &quot;test&quot; }.GetAs(&quot;text&quot;, &quot;&quot;));
+
+// Prints &quot;other&quot;
+Console.WriteLine(new Dict{ }.GetAs(&quot;text&quot;, &quot;other&quot;));
+
+// Prints 2
+Console.WriteLine(new Dict{ [&quot;number&quot;] = &quot;2&quot; }.GetAs(&quot;number&quot;, -1));</code></pre>
+
   <a id="Butterfly_Core_Util_DictionaryX_IsSame_" data-uid="Butterfly.Core.Util.DictionaryX.IsSame*"></a>
   <h4 id="Butterfly_Core_Util_DictionaryX_IsSame__2_Dictionary___0___1__Dictionary___0___1__" data-uid="Butterfly.Core.Util.DictionaryX.IsSame``2(Dictionary{``0,``1},Dictionary{``0,``1})">IsSame&lt;T, U&gt;(Dictionary&lt;T, U&gt;, Dictionary&lt;T, U&gt;)</h4>
   <div class="markdown level1 summary"></div>

@@ -113,25 +113,35 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: GetAs
     path: ../Butterfly.Core/Util/DictionaryX.cs
-    startLine: 18
+    startLine: 40
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
+  summary: "\nRetrieves a value from a <code data-dev-comment-type=\"paramref\" class=\"paramref\">me</code> (or return the <code data-dev-comment-type=\"paramref\" class=\"paramref\">defaultValue</code> if missing or null).<p></p>\n"
+  example:
+  - "\n<pre><code>// Prints &quot;test&quot;\nConsole.WriteLine(new Dict{ [&quot;text&quot;] = &quot;test&quot; }.GetAs(&quot;text&quot;, &quot;&quot;));\n\n// Prints &quot;other&quot;\nConsole.WriteLine(new Dict{ }.GetAs(&quot;text&quot;, &quot;other&quot;));\n\n// Prints 2\nConsole.WriteLine(new Dict{ [&quot;number&quot;] = &quot;2&quot; }.GetAs(&quot;number&quot;, -1));</code></pre>\n"
   syntax:
     content: public static V GetAs<T, U, V>(this Dictionary<T, U> me, T key, V defaultValue)
     parameters:
     - id: me
       type: Dictionary{{T},{U}}
+      description: Source dictionary
     - id: key
       type: '{T}'
+      description: Key of the desired value in dictionary
     - id: defaultValue
       type: '{V}'
+      description: Default value if value is null
     typeParameters:
     - id: T
+      description: ''
     - id: U
+      description: ''
     - id: V
+      description: ''
     return:
       type: '{V}'
+      description: A value of type V
     content.vb: >-
       <ExtensionAttribute>
 
@@ -165,7 +175,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Deconstruct
     path: ../Butterfly.Core/Util/DictionaryX.cs
-    startLine: 53
+    startLine: 75
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -214,7 +224,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: UpdateFrom
     path: ../Butterfly.Core/Util/DictionaryX.cs
-    startLine: 58
+    startLine: 80
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -263,7 +273,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: IsSame
     path: ../Butterfly.Core/Util/DictionaryX.cs
-    startLine: 67
+    startLine: 89
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -312,7 +322,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Format
     path: ../Butterfly.Core/Util/DictionaryX.cs
-    startLine: 88
+    startLine: 110
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
