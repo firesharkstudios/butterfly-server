@@ -8,7 +8,7 @@
 * ![Star Us](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/yellow-star-16x16.png) Star us on [GitHub](https://github.com/firesharkstudios/butterfly-server-dotnet) now
 
 [GitHub](https://github.com/firesharkstudios/butterfly-server-dotnet)
-[API Docs](https://butterflyserver.io/docfx/api/)
+[API Docs](https://butterflyserver.io/docfx/)
 [Get Started](#overview)
 
 
