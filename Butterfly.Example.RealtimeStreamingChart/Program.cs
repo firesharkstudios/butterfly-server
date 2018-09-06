@@ -64,14 +64,12 @@ namespace Butterfly.Example.RealtimeStreamingChart {
             };
         }
 
-        /*
          * This would also work if...
-         * - database was instance of IDatabase
+         * - database was instance of Butterfly.Core.Database.IDatabase
          * - database contained a cpu table with a single row with fields timestamp, cpu_core_1, cpu_core_2
-        static Task<object> GetRow4() {
+        static Task<object> GetRow() {
             return database.SelectRowAsync("SELECT timestamp, cpu_core_1, cpu_core2 FROM cpu");
         }
-
         */
 
     }
