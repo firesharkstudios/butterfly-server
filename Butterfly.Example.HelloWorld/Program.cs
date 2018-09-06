@@ -2,7 +2,6 @@
  * http://creativecommons.org/publicdomain/zero/1.0/ */
 
 using System;
-using System.IO;
 using System.Threading.Tasks;
 
 using Butterfly.Core.Util;
@@ -11,9 +10,9 @@ namespace Butterfly.Example.HelloWorld {
     class Program {
         // Using async Task Main() requires adding <LangVersion>latest</LangVersion> to .csproj file
         static async Task Main(string[] args) {
-            const int port = 8080;
-
-            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext($"http://+:{port}/", staticPath: "../../../www")) {
+            const int port = 8000;
+            var wwwPath = args.Length > 0 ? args[0] : "../../../www";
+            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext($"http://+:{port}/", wwwPath)) {
                 // Create a MemoryDatabase (no persistence, limited features)
                 var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
                 await database.CreateFromSqlAsync(@"CREATE TABLE message (

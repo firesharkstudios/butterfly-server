@@ -10,7 +10,9 @@ namespace Butterfly.Example.RealtimeStreamingChart {
         static readonly Random random = new Random();
 
         static void Main(string[] args) {
-            using (var embedIOContext = new EmbedIOContext("http://+:8000/", "../../../www")) {
+            const int port = 8000;
+            var wwwPath = args.Length > 0 ? args[0] : "../../../www";
+            using (var embedIOContext = new EmbedIOContext($"http://+:{port}/", wwwPath)) {
                 // When a client subscribes to "data-feed", create an instance of RunEvery that pushes
                 // a new row over the channel every 1000ms
                 embedIOContext.SubscriptionApi.OnSubscribe("data-feed", (vars, channel) => {
@@ -24,7 +26,7 @@ namespace Butterfly.Example.RealtimeStreamingChart {
                 });
 
                 embedIOContext.Start();
-                ProcessX.OpenBrowser($"http://localhost:8000/");
+                ProcessX.OpenBrowser($"http://localhost:{port}/");
                 Console.ReadLine();
             }
         }
