@@ -32,12 +32,47 @@ namespace Butterfly.Example.RealtimeStreamingChart {
         }
 
         // Replace this implementation with something that reads your real-time data
-        static Dict GetRow() {
+        static object GetRow() {
             return new Dict {
                 ["timestamp"] = DateTime.Now.ToUnixTimestamp(),
                 ["cpu_core_1"] = random.Next(),
                 ["cpu_core_2"] = random.Next()
             };
         }
+
+        /*
+         * This would also work
+        static object GetRow() {
+            return new {
+                timestamp = DateTime.Now.ToUnixTimestamp(),
+                cpu_core_1 = random.Next(),
+                cpu_core_2 = random.Next()
+            };
+        }
+
+         * This would also work
+        public class MyRecord {
+            public long timestamp;
+            public double cpu_core_1;
+            public double cpu_core_2;
+        }
+        static object GetRow() {
+            return new MyRecord {
+                timestamp = DateTime.Now.ToUnixTimestamp(),
+                cpu_core_1 = random.Next(),
+                cpu_core_2 = random.Next()
+            };
+        }
+
+        /*
+         * This would also work if...
+         * - database was instance of IDatabase
+         * - database contained a cpu table with a single row with fields timestamp, cpu_core_1, cpu_core_2
+        static Task<object> GetRow4() {
+            return database.SelectRowAsync("SELECT timestamp, cpu_core_1, cpu_core2 FROM cpu");
+        }
+
+        */
+
     }
 }
