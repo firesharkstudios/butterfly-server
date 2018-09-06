@@ -18,7 +18,7 @@ Open a terminal or command prompt and run...
 
 ```
 cd butterfly-server-dotnet\Butterfly.Example.HelloWorld
-dotnet run -vm
+dotnet run -vm www
 ```
 
 # Result

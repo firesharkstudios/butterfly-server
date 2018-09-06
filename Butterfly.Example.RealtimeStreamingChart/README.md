@@ -21,7 +21,7 @@ To run in *Visual Studio*...
 To run in a terminal or command prompt...
 ```
 cd butterfly-server-dotnet\Butterfly.Example.RealtimeStreamingChart
-dotnet run -vm
+dotnet run -vm www
 ```
 
 You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Todo/Program.cs).
