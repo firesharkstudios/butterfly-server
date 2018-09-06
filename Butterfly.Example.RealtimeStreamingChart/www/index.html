@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-time Streaming Chart Example | Butterfly Server .NET</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body class="container">
+    <h1>Real-time Streaming Chart Example</h1>
+
+    <p>This demo combines the excellent <a href="http://smoothiecharts.org">Smoothie Charts</a> with <a href="https://butterflyserver.io">Butterfly Server .NET</a> to stream and chart real-time data from a server to a web browser</p>
+    <div style="text-align: center">
+        <canvas id="mycanvas" width="400" height="100"></canvas>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothie/1.34.0/smoothie.js"></script>
+    <script src="./node_modules/butterfly-client/lib/butterfly-client.js"></script>
+    <script>
+        var smoothie = new SmoothieChart({
+            grid: {
+                strokeStyle: 'rgb(125, 0, 0)', fillStyle: 'rgb(60, 0, 0)',
+                lineWidth: 1, millisPerLine: 250, verticalSections: 6,
+            },
+            labels: { fillStyle: 'rgb(60, 0, 0)' }
+        });
+
+        smoothie.streamTo(document.getElementById("mycanvas"), 1500);
+
+        // Data
+        var line1 = new TimeSeries();
+        var line2 = new TimeSeries();
+
+        // Add to SmoothieChart
+        smoothie.addTimeSeries(line1,
+            { strokeStyle: 'rgb(0, 255, 0)', fillStyle: 'rgba(0, 255, 0, 0.4)', lineWidth: 3 });
+        smoothie.addTimeSeries(line2,
+            { strokeStyle: 'rgb(255, 0, 255)', fillStyle: 'rgba(255, 0, 255, 0.3)', lineWidth: 3 });
+
+        // Generated random data locally
+        /*
+        setInterval(function () {
+            line1.append(new Date().getTime(), Math.random());
+            line2.append(new Date().getTime(), Math.random());
+        }, 1000);
+        */
+
+        // Get data from server
+        let butterflyClient = window['butterfly-client'];
+        let channelClient = new butterflyClient.WebSocketChannelClient({
+            url: '/ws'
+        });
+        channelClient.subscribe({
+            channel: 'data-feed',
+            handler: function (messageType, messageData) {
+                console.debug('messageType=' + messageType + ',cpu_core_1=' + messageData.cpu_core_1 + ',cpu_core_2=' + messageData.cpu_core_2);
+                line1.append(messageData.timestamp * 1000, messageData.cpu_core_1);
+                line2.append(messageData.timestamp * 1000, messageData.cpu_core_2);
+            }
+        });
+        channelClient.connect();
+    </script>
+</body>
+</html>

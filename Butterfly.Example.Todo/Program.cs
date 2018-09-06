@@ -58,6 +58,5 @@ namespace Butterfly.Example.Todo {
                 Console.ReadLine();
             }
         }
-
     }
 }
