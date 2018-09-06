@@ -1,4 +1,4 @@
-# Butterfly Server .NET - Hello World Example
+# Hello World Example as Web App
 
 > A simple Hello World app built using plain HTML/JS/CSS
 

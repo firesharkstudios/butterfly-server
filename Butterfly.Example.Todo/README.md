@@ -1,4 +1,4 @@
-# Butterfly Server .NET - Todo Example
+# Todo List Example as Web App, Cordova App, and Electron App
 
 > A simple Todo app built using Vue / Vuetify on the client
 

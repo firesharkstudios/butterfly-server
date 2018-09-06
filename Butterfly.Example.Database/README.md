@@ -1,4 +1,4 @@
-# Butterfly Server .NET - Database Example
+# Real-time Database Events Example as Console App
 
 > A simple console app that triggers data change events on a DynamicView
 
