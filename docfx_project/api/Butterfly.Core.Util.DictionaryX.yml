@@ -134,11 +134,11 @@ items:
       description: Default value if value is null
     typeParameters:
     - id: T
-      description: ''
+      description: Dictionary key type
     - id: U
-      description: ''
+      description: Dictionary value type
     - id: V
-      description: ''
+      description: Return type
     return:
       type: '{V}'
       description: A value of type V

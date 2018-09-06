@@ -12,10 +12,10 @@ namespace Butterfly.Core.WebApi {
     /// <example>
     /// <code>
     /// webApi.OnGet("/chat-messages", async(req, res) => {
-    ///     // Handle the request and return any objects as needed (will be JSON encoded)
+    ///     // Read the request and write the response here
     /// });
     /// webApi.OnPost("/login", async(req, res) => {
-    ///     // Handle the request and return any objects as needed (will be JSON encoded)
+    ///     // Read the request and write the response here
     /// });
     /// webApi.Compile();
     /// </code>

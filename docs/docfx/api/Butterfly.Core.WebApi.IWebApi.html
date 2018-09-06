@@ -86,10 +86,10 @@ Allows handling requests/responses to a Web API via HTTP (inspired by Node.js&ap
   <h5 id="Butterfly_Core_WebApi_IWebApi_examples"><strong>Examples</strong></h5>
   
 <pre><code>webApi.OnGet(&quot;/chat-messages&quot;, async(req, res) => {
-    // Handle the request and return any objects as needed (will be JSON encoded)
+    // Read the request and write the response here
 });
 webApi.OnPost(&quot;/login&quot;, async(req, res) => {
-    // Handle the request and return any objects as needed (will be JSON encoded)
+    // Read the request and write the response here
 });
 webApi.Compile();</code></pre>
 

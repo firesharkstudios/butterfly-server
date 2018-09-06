@@ -30,7 +30,7 @@ items:
   namespace: Butterfly.Core.WebApi
   summary: "\nAllows handling requests/responses to a Web API via HTTP (inspired by Node.js&apos; Express)<p></p>\n"
   example:
-  - "\n<pre><code>webApi.OnGet(&quot;/chat-messages&quot;, async(req, res) => {\n    // Handle the request and return any objects as needed (will be JSON encoded)\n});\nwebApi.OnPost(&quot;/login&quot;, async(req, res) => {\n    // Handle the request and return any objects as needed (will be JSON encoded)\n});\nwebApi.Compile();</code></pre>\n"
+  - "\n<pre><code>webApi.OnGet(&quot;/chat-messages&quot;, async(req, res) => {\n    // Read the request and write the response here\n});\nwebApi.OnPost(&quot;/login&quot;, async(req, res) => {\n    // Read the request and write the response here\n});\nwebApi.Compile();</code></pre>\n"
   syntax:
     content: 'public interface IWebApi : IDisposable'
     content.vb: >-

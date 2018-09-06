@@ -58,17 +58,21 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: GetHeader
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
-    startLine: 9
+    startLine: 14
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
+  summary: "\nRetrieve a response header\n"
+  example: []
   syntax:
     content: string GetHeader(string name)
     parameters:
     - id: name
       type: System.String
+      description: The name of the response header to retrieve
     return:
       type: System.String
+      description: The header value
     content.vb: Function GetHeader(name As String) As String
   overload: Butterfly.Core.WebApi.IHttpResponse.GetHeader*
 - uid: Butterfly.Core.WebApi.IHttpResponse.SetHeader(System.String,System.String)
@@ -89,17 +93,21 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SetHeader
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
-    startLine: 11
+    startLine: 21
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
+  summary: "\nSet a response header\n"
+  example: []
   syntax:
     content: void SetHeader(string name, string value)
     parameters:
     - id: name
       type: System.String
+      description: The name of the response header
     - id: value
       type: System.String
+      description: The value of the response header
     content.vb: Sub SetHeader(name As String, value As String)
   overload: Butterfly.Core.WebApi.IHttpResponse.SetHeader*
 - uid: Butterfly.Core.WebApi.IHttpResponse.StatusCode
@@ -120,10 +128,12 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: StatusCode
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
-    startLine: 13
+    startLine: 26
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
+  summary: "\nThe HTTP status code\n"
+  example: []
   syntax:
     content: int StatusCode { get; set; }
     parameters: []
@@ -152,10 +162,12 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: StatusText
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
-    startLine: 15
+    startLine: 31
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
+  summary: "\nThe HTTP status text\n"
+  example: []
   syntax:
     content: string StatusText { get; set; }
     parameters: []
@@ -184,15 +196,18 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SendRedirect
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
-    startLine: 17
+    startLine: 37
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
+  summary: "\nRedirect the response to the <code data-dev-comment-type=\"paramref\" class=\"paramref\">url</code>\n"
+  example: []
   syntax:
     content: void SendRedirect(string url)
     parameters:
     - id: url
       type: System.String
+      description: The redirect url
     content.vb: Sub SendRedirect(url As String)
   overload: Butterfly.Core.WebApi.IHttpResponse.SendRedirect*
 - uid: Butterfly.Core.WebApi.IHttpResponse.OutputStream
@@ -213,10 +228,12 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OutputStream
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
-    startLine: 19
+    startLine: 42
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
+  summary: "\nThe output stream\n"
+  example: []
   syntax:
     content: Stream OutputStream { get; }
     parameters: []
@@ -246,17 +263,21 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: WriteAsTextAsync
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
-    startLine: 21
+    startLine: 49
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
+  summary: "\nWrite the <code data-dev-comment-type=\"paramref\" class=\"paramref\">value</code> as plain text\n"
+  example: []
   syntax:
     content: Task WriteAsTextAsync(string value)
     parameters:
     - id: value
       type: System.String
+      description: ''
     return:
       type: Task
+      description: ''
     content.vb: Function WriteAsTextAsync(value As String) As Task
   overload: Butterfly.Core.WebApi.IHttpResponse.WriteAsTextAsync*
 - uid: Butterfly.Core.WebApi.IHttpResponse.WriteAsJsonAsync(System.Object)
@@ -277,17 +298,21 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: WriteAsJsonAsync
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
-    startLine: 23
+    startLine: 56
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
+  summary: "\nWrite the <code data-dev-comment-type=\"paramref\" class=\"paramref\">value</code> as JSON\n"
+  example: []
   syntax:
     content: Task WriteAsJsonAsync(object value)
     parameters:
     - id: value
       type: System.Object
+      description: ''
     return:
       type: Task
+      description: ''
     content.vb: Function WriteAsJsonAsync(value As Object) As Task
   overload: Butterfly.Core.WebApi.IHttpResponse.WriteAsJsonAsync*
 references:
