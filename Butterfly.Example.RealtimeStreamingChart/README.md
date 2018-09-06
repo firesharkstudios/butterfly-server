@@ -1,4 +1,8 @@
-# Butterfly Server .NET - Real-time Streaming Chart Example
+---
+title: "Real-time Streaming Chart Example Web App | Butterfly Server .NET"
+---
+
+# Real-time Streaming Chart Example Web App
 
 > A simple real-time streaming chart app built using Smoothie Charts on the client
 
