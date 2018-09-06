@@ -24,7 +24,7 @@ cd butterfly-server-dotnet\Butterfly.Example.RealtimeStreamingChart
 dotnet run -vm www
 ```
 
-You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Todo/Program.cs).
+You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.RealtimeStreamingChart/Program.cs).
 
 This will open a browser to http://localhost:8000/.
 
