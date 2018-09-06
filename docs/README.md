@@ -936,6 +936,11 @@ sudo dotnet run /opt/chat/www
 - [dotNetify](https://github.com/dsuryd/dotNetify)
 - [SignalR](https://github.com/SignalR/SignalR)
 - [SignalW](https://github.com/Spreads/SignalW)
+- [Cettia](https://cettia.io/)
+- [Firehose](http://firehose.io/)
+- [Pusher](https://pusher.com/)
+- [Meteor](https://www.meteor.com/)
+- [PubNub](https://www.pubnub.com/)
 
 # Wishlist
 
@@ -959,8 +964,11 @@ Add support for the following web servers...
 Add support for the following clients...
 
 - React
+- React Native
 - Angular
 - WinForms
+- Flutter
+- Swift
 
 ## More Examples
 
