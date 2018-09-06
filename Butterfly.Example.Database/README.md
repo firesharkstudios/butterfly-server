@@ -1,3 +1,8 @@
+---
+layout: default
+title: Real-time Database Events Example as Console App
+---
+
 # Real-time Database Events Example as Console App
 
 > A simple console app that triggers data change events on a DynamicView
