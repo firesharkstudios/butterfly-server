@@ -20,7 +20,7 @@ To run in *Visual Studio*...
 
 To run in a terminal or command prompt...
 ```
-cd butterfly-server-dotnet\Butterfly.Example.HelloWorld
+cd butterfly-server-dotnet\Butterfly.Example.Todo
 dotnet run -vm
 ```
 

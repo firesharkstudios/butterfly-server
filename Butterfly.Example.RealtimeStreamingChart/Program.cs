@@ -1,18 +1,16 @@
 ﻿using System;
 
 using Butterfly.Core.Util;
-using NLog;
+using Butterfly.EmbedIO;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Example.RealtimeStreamingChart {
     class Program {
-        static readonly Logger logger = LogManager.GetCurrentClassLogger();
         static readonly Random random = new Random();
 
         static void Main(string[] args) {
-            logger.Info("Main()");
-            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/", "../../../www")) {
+            using (var embedIOContext = new EmbedIOContext("http://+:8000/", "../../../www")) {
                 // When a client subscribes to "data-feed", create an instance of RunEvery that pushes
                 // a new row over the channel every 1000ms
                 embedIOContext.SubscriptionApi.OnSubscribe("data-feed", (vars, channel) => {
@@ -26,6 +24,7 @@ namespace Butterfly.Example.RealtimeStreamingChart {
                 });
 
                 embedIOContext.Start();
+                ProcessX.OpenBrowser($"http://localhost:8000/");
                 Console.ReadLine();
             }
         }

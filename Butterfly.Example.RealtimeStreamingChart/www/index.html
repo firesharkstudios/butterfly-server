@@ -49,8 +49,8 @@
         */
 
         // Get data from server
-        let butterflyClient = window['butterfly-client'];
-        let channelClient = new butterflyClient.WebSocketChannelClient({
+        var butterflyClient = window['butterfly-client'];
+        var channelClient = new butterflyClient.WebSocketChannelClient({
             url: '/ws'
         });
         channelClient.subscribe({
