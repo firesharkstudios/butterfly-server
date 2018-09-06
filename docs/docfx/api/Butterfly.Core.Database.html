@@ -157,7 +157,7 @@ Use to implement a parameter value that can change
       <h4><a class="xref" href="Butterfly.Core.Database.ITransaction.html">ITransaction</a></h4>
       <section>
 Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing 
-a single <see cref="!:DataEventTransaction"></see> on the underlying <a class="xref" href="Butterfly.Core.Database.IDatabase.html">IDatabase</a> instance
+a single <a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a> on the underlying <a class="xref" href="Butterfly.Core.Database.IDatabase.html">IDatabase</a> instance
 when the transaction is committed.<p>
 
 Must call <a class="xref" href="Butterfly.Core.Database.ITransaction.html#Butterfly_Core_Database_ITransaction_Commit">Commit()</a> or <a class="xref" href="Butterfly.Core.Database.ITransaction.html#Butterfly_Core_Database_ITransaction_CommitAsync">CommitAsync()</a> to have the changes committed.<p>

@@ -67,7 +67,7 @@ namespace Butterfly.Core.Database.Memory {
             dataTable.PrimaryKey = Array.ConvertAll(statement.Indexes[0].FieldNames, x => dataTable.Columns[x]);
 
             Table table = new MemoryTable(dataTable, statement.FieldDefs, statement.Indexes);
-            this.database.Tables.Add(table.Name, table);
+            this.database.TableByName.Add(table.Name, table);
 
             return true;
         }
@@ -138,7 +138,7 @@ namespace Butterfly.Core.Database.Memory {
         }
 
         protected override Task DoTruncateAsync(string tableName) {
-            if (!this.database.Tables.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
+            if (!this.database.TableByName.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
             if (!(table is MemoryTable memoryTable)) throw new Exception($"Invalid table type {table.GetType()}");            
             memoryTable.DataTable.Clear();
             return Task.FromResult(0);

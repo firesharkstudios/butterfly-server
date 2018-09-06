@@ -98,14 +98,13 @@ Base class implementing <a class="xref" href="Butterfly.Core.Channel.ISubscripti
   <h5 id="Butterfly_Core_Channel_BaseSubscriptionApi_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks">
 Listen for subscription requests to the todos channel...<p>
-<pre><code>    var subscriptionApi = new SomeSubscriptionApi();
-    // Listen for subscribe requests...
-    // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
-    // - The handler can push data to the client by calling channel.Queue()
-    subscriptionApi.OnSubscribe(&quot;todos&quot;, (vars, channel) => {
-        return database.CreateAndStartDynamicView(&quot;todo&quot;, dataEventTransaction => channel.Queue(dataEventTransaction));
-    });
-    subscriptionApi.Start();</code></pre>
+<pre><code>// Listen for subscribe requests...
+// - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
+// - The handler can push data to the client by calling channel.Queue()
+subscriptionApi.OnSubscribe(&quot;todos&quot;, (vars, channel) => {
+    return database.CreateAndStartDynamicView(&quot;todo&quot;, dataEventTransaction => channel.Queue(dataEventTransaction));
+});
+subscriptionApi.Start();</code></pre>
 </div>
   <h3 id="constructors">Constructors
   </h3>

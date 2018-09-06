@@ -84,65 +84,67 @@ creating dynamic views; and receiving data change events both on tables and dyna
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public interface IDatabase</code></pre>
   </div>
-  <h5 id="Butterfly_Core_Database_IDatabase_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks">
+  <h5 id="Butterfly_Core_Database_IDatabase_examples"><strong>Examples</strong></h5>
+  
 Adding records and echoing all data change events to the console...<p>
-<pre><code>    // Create database instance (will also read the schema from the database)
-    var database = new SomeDatabase();
+<pre><code>// Create database instance (will also read the schema from the database)
+var database = new SomeDatabase();
 
-    // Listen for all database data events
-    var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {
-        console.WriteLine($&quot;Low Level DataEventTransaction={dataEventTransaction}&quot;);
+// Listen for all database data events
+var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {
+    console.WriteLine($&quot;Low Level DataEventTransaction={dataEventTransaction}&quot;);
+});
+
+// INSERT a couple of records (this will cause a single data even transaction with
+// two INSERT data events to be written to the console above)
+using (var transaction = database.BeginTransaction()) {
+    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
+        department_id: 1,
+        name: &quot;SpongeBob&quot;
     });
-
-    // INSERT a couple of records (this will cause a single data even transaction with
-    // two INSERT data events to be written to the console above)
-    using (var transaction = database.BeginTransaction()) {
-        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-            department_id: 1,
-            name: &quot;SpongeBob&quot;
-        });
-        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-            department_id: 1,
-            name: &quot;Squidward&quot;
-        });
-        await database.CommitAsync();
-    );</code></pre>
+    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
+        department_id: 1,
+        name: &quot;Squidward&quot;
+    });
+    await database.CommitAsync();
+);</code></pre>
 
 Creating a DynamicView and echoing data change events on the DynamicView to the console...<p>
-<pre><code>    // Create database instance (will also read the schema from the database)
-    var database = new SomeDatabase();
+<pre><code>// Create database instance (will also read the schema from the database)
+var database = new SomeDatabase();
 
-    // Create a DynamicViewSet that print any data events to the console
-    // (this will immediately echo an INITIAL data event for each existing matching record)
-    var dynamicViewSet = database.CreateAndStartDynamicViewSet(
-        &quot;SELECT * FROM employee WHERE department_id=@departmentId&quot;, 
-        new {
-            departmentId = 1
-        },
-        dataEventTransaction => {
-            Console.WriteLine(dataEventTransaction);
-        }
-    );
+// Create a DynamicViewSet that print any data events to the console
+// (this will immediately echo an INITIAL data event for each existing matching record)
+var dynamicViewSet = database.CreateAndStartDynamicViewSet(
+    &quot;SELECT * FROM employee WHERE department_id=@departmentId&quot;, 
+    new {
+        departmentId = 1
+    },
+    dataEventTransaction => {
+        Console.WriteLine(dataEventTransaction);
+    }
+);
 
-    // This will cause the above DynamicViewSet to echo an INSERT data event
-    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-        department_id: 1
-        name: &quot;Mr Crabs&quot;
-    });
+// This will cause the above DynamicViewSet to echo an INSERT data event
+await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
+    department_id: 1
+    name: &quot;Mr Crabs&quot;
+});
 
-    // This will NOT cause the above DynamicViewSet to echo an INSERT data event
-    // (because the department_id doesn&apos;t match)
-    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-        department_id: 2
-        name: &quot;Patrick Star&quot;
-    });</code></pre>
-</div>
+// This will NOT cause the above DynamicViewSet to echo an INSERT data event
+// (because the department_id doesn&apos;t match)
+await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
+    department_id: 2
+    name: &quot;Patrick Star&quot;
+});</code></pre>
+
   <h3 id="properties">Properties
   </h3>
   <a id="Butterfly_Core_Database_IDatabase_CanFieldAlias_" data-uid="Butterfly.Core.Database.IDatabase.CanFieldAlias*"></a>
   <h4 id="Butterfly_Core_Database_IDatabase_CanFieldAlias" data-uid="Butterfly.Core.Database.IDatabase.CanFieldAlias">CanFieldAlias</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Can this database allow field aliases in SELECT statements
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -165,7 +167,9 @@ Creating a DynamicView and echoing data change events on the DynamicView to the 
   </table>
   <a id="Butterfly_Core_Database_IDatabase_CanJoin_" data-uid="Butterfly.Core.Database.IDatabase.CanJoin*"></a>
   <h4 id="Butterfly_Core_Database_IDatabase_CanJoin" data-uid="Butterfly.Core.Database.IDatabase.CanJoin">CanJoin</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Can this database perform JOINs
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -188,7 +192,9 @@ Creating a DynamicView and echoing data change events on the DynamicView to the 
   </table>
   <a id="Butterfly_Core_Database_IDatabase_SelectCount_" data-uid="Butterfly.Core.Database.IDatabase.SelectCount*"></a>
   <h4 id="Butterfly_Core_Database_IDatabase_SelectCount" data-uid="Butterfly.Core.Database.IDatabase.SelectCount">SelectCount</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Count of the number of SELECT statements executed
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -209,15 +215,15 @@ Creating a DynamicView and echoing data change events on the DynamicView to the 
       </tr>
     </tbody>
   </table>
-  <a id="Butterfly_Core_Database_IDatabase_Tables_" data-uid="Butterfly.Core.Database.IDatabase.Tables*"></a>
-  <h4 id="Butterfly_Core_Database_IDatabase_Tables" data-uid="Butterfly.Core.Database.IDatabase.Tables">Tables</h4>
+  <a id="Butterfly_Core_Database_IDatabase_TableByName_" data-uid="Butterfly.Core.Database.IDatabase.TableByName*"></a>
+  <h4 id="Butterfly_Core_Database_IDatabase_TableByName" data-uid="Butterfly.Core.Database.IDatabase.TableByName">TableByName</h4>
   <div class="markdown level1 summary">
 Dictionary of <a class="xref" href="Butterfly.Core.Database.Table.html">Table</a> instances keyed by name
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Dictionary&lt;string, Table&gt; Tables { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">Dictionary&lt;string, Table&gt; TableByName { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -238,7 +244,9 @@ Dictionary of <a class="xref" href="Butterfly.Core.Database.Table.html">Table</a
   </h3>
   <a id="Butterfly_Core_Database_IDatabase_AddInputPreprocessor_" data-uid="Butterfly.Core.Database.IDatabase.AddInputPreprocessor*"></a>
   <h4 id="Butterfly_Core_Database_IDatabase_AddInputPreprocessor_Action_System_String_System_Collections_Generic_Dictionary_System_String_System_Object___" data-uid="Butterfly.Core.Database.IDatabase.AddInputPreprocessor(Action{System.String,System.Collections.Generic.Dictionary{System.String,System.Object}})">AddInputPreprocessor(Action&lt;String, System.Collections.Generic.Dictionary&lt;String, Object&gt;&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Adds an input preprocessor that converts the values in the Dictionary as needed
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -516,7 +524,7 @@ Allows creating a set of <a class="xref" href="Butterfly.Core.Database.Dynamic.D
   <a id="Butterfly_Core_Database_IDatabase_CreateFromResourceFileAsync_" data-uid="Butterfly.Core.Database.IDatabase.CreateFromResourceFileAsync*"></a>
   <h4 id="Butterfly_Core_Database_IDatabase_CreateFromResourceFileAsync_Assembly_System_String_" data-uid="Butterfly.Core.Database.IDatabase.CreateFromResourceFileAsync(Assembly,System.String)">CreateFromResourceFileAsync(Assembly, String)</h4>
   <div class="markdown level1 summary">
-Creates database tables from an embedded resource file by internally calling <see cref="!:CreateFromText(string)"></see> with the contents of the embedded resource file&quot;
+Creates database tables from an embedded resource file by internally calling <a class="xref" href="Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromSqlAsync_System_String_">CreateFromSqlAsync(String)</a> with the contents of the embedded resource file&quot;
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -560,8 +568,8 @@ Creates database tables from an embedded resource file by internally calling <se
       </tr>
     </tbody>
   </table>
-  <a id="Butterfly_Core_Database_IDatabase_CreateFromTextAsync_" data-uid="Butterfly.Core.Database.IDatabase.CreateFromTextAsync*"></a>
-  <h4 id="Butterfly_Core_Database_IDatabase_CreateFromTextAsync_System_String_" data-uid="Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)">CreateFromTextAsync(String)</h4>
+  <a id="Butterfly_Core_Database_IDatabase_CreateFromSqlAsync_" data-uid="Butterfly.Core.Database.IDatabase.CreateFromSqlAsync*"></a>
+  <h4 id="Butterfly_Core_Database_IDatabase_CreateFromSqlAsync_System_String_" data-uid="Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)">CreateFromSqlAsync(String)</h4>
   <div class="markdown level1 summary">
 Creates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate).<p>
 Lines beginning with <pre><code>--</code></pre> will be ignored. Each CREATE statement must include a PRIMARY KEY definition. If the table already exists, the CREATE statement is ignored.<p>
@@ -570,7 +578,7 @@ Creating database tables with this method is not required (primarily done as a c
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task CreateFromTextAsync(string createStatements)</code></pre>
+    <pre><code class="lang-csharp hljs">Task CreateFromSqlAsync(string sql)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -584,7 +592,7 @@ Creating database tables with this method is not required (primarily done as a c
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">createStatements</span></td>
+        <td><span class="parametername">sql</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -670,7 +678,9 @@ Do a DELETE using a full statement and a Dictionary...
 </div>
   <a id="Butterfly_Core_Database_IDatabase_GetInitialDataEventsAsync_" data-uid="Butterfly.Core.Database.IDatabase.GetInitialDataEventsAsync*"></a>
   <h4 id="Butterfly_Core_Database_IDatabase_GetInitialDataEventsAsync_System_String_System_String___Butterfly_Core_Database_SelectStatement_System_Object_" data-uid="Butterfly.Core.Database.IDatabase.GetInitialDataEventsAsync(System.String,System.String[],Butterfly.Core.Database.SelectStatement,System.Object)">GetInitialDataEventsAsync(String, String[], SelectStatement, Object)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Executes the <code data-dev-comment-type="paramref" class="paramref">selectStatement</code> and returns the results as an array of <a class="xref" href="Butterfly.Core.Database.Event.DataEvent.html">DataEvent</a> instances
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -979,7 +989,9 @@ Adds a listener that is invoked when there is a new uncommitted transaction
   </table>
   <a id="Butterfly_Core_Database_IDatabase_QueryRowAsync_" data-uid="Butterfly.Core.Database.IDatabase.QueryRowAsync*"></a>
   <h4 id="Butterfly_Core_Database_IDatabase_QueryRowAsync_System_String_System_Object_" data-uid="Butterfly.Core.Database.IDatabase.QueryRowAsync(System.String,System.Object)">QueryRowAsync(String, Object)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Executes the stored procedure and returns a single row
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1024,7 +1036,9 @@ Adds a listener that is invoked when there is a new uncommitted transaction
   </table>
   <a id="Butterfly_Core_Database_IDatabase_QueryRowsAsync_" data-uid="Butterfly.Core.Database.IDatabase.QueryRowsAsync*"></a>
   <h4 id="Butterfly_Core_Database_IDatabase_QueryRowsAsync_System_String_System_Object_" data-uid="Butterfly.Core.Database.IDatabase.QueryRowsAsync(System.String,System.Object)">QueryRowsAsync(String, Object)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Executes the stored procedure and returns the rows
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1069,7 +1083,9 @@ Adds a listener that is invoked when there is a new uncommitted transaction
   </table>
   <a id="Butterfly_Core_Database_IDatabase_QueryValueAsync_" data-uid="Butterfly.Core.Database.IDatabase.QueryValueAsync*"></a>
   <h4 id="Butterfly_Core_Database_IDatabase_QueryValueAsync__1_System_String_System_Object___0_" data-uid="Butterfly.Core.Database.IDatabase.QueryValueAsync``1(System.String,System.Object,``0)">QueryValueAsync&lt;T&gt;(String, Object, T)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Executes the stored procedure and return a single value
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1140,7 +1156,7 @@ Executes the SELECT statement and return the first row (the SELECT statement may
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;&gt; SelectRowAsync(string selectStatement, dynamic vars = null)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;&gt; SelectRowAsync(string sql, dynamic vars = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1154,7 +1170,7 @@ Executes the SELECT statement and return the first row (the SELECT statement may
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">selectStatement</span></td>
+        <td><span class="parametername">sql</span></td>
         <td>The SELECT statement to execute (may contain vars like @name specified in <code data-dev-comment-type="paramref" class="paramref">vars</code>)</td>
       </tr>
       <tr>
@@ -1181,7 +1197,9 @@ Executes the SELECT statement and return the first row (the SELECT statement may
   </table>
   <a id="Butterfly_Core_Database_IDatabase_SelectRowsAsync_" data-uid="Butterfly.Core.Database.IDatabase.SelectRowsAsync*"></a>
   <h4 id="Butterfly_Core_Database_IDatabase_SelectRowsAsync_Butterfly_Core_Database_SelectStatement_System_Object_" data-uid="Butterfly.Core.Database.IDatabase.SelectRowsAsync(Butterfly.Core.Database.SelectStatement,System.Object)">SelectRowsAsync(SelectStatement, Object)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Executes the SELECT statement and returns the rows
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1232,7 +1250,7 @@ Executes the SELECT statement and return the rows (the SELECT statement may cont
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;[]&gt; SelectRowsAsync(string selectStatement, dynamic vars = null, int overrideLimit = null)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;[]&gt; SelectRowsAsync(string sql, dynamic vars = null, int limit = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1246,7 +1264,7 @@ Executes the SELECT statement and return the rows (the SELECT statement may cont
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">selectStatement</span></td>
+        <td><span class="parametername">sql</span></td>
         <td></td>
       </tr>
       <tr>
@@ -1256,7 +1274,7 @@ Executes the SELECT statement and return the rows (the SELECT statement may cont
       </tr>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">overrideLimit</span></td>
+        <td><span class="parametername">limit</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1288,7 +1306,7 @@ If a var is an array then references in the WHERE clause like <pre><code>name=@n
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;T&gt; SelectValueAsync&lt;T&gt;(string selectStatement, dynamic vars = null, T defaultValue = null)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;T&gt; SelectValueAsync&lt;T&gt;(string sql, dynamic vars = null, T defaultValue = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1302,7 +1320,7 @@ If a var is an array then references in the WHERE clause like <pre><code>name=@n
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">selectStatement</span></td>
+        <td><span class="parametername">sql</span></td>
         <td>The SELECT statement to execute (may contain vars like @name specified in <code data-dev-comment-type="paramref" class="paramref">vars</code>)</td>
       </tr>
       <tr>

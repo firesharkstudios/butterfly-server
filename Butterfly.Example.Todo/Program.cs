@@ -21,7 +21,7 @@ namespace Butterfly.Example.Todo {
             using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/")) {
                 // Create a MemoryDatabase (no persistence, limited features)
                 var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-                await database.CreateFromTextAsync(@"CREATE TABLE todo (
+                await database.CreateFromSqlAsync(@"CREATE TABLE todo (
 	                id VARCHAR(50) NOT NULL,
 	                name VARCHAR(40) NOT NULL,
 	                PRIMARY KEY(id)

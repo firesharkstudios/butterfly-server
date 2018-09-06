@@ -10,7 +10,7 @@ using Dict = System.Collections.Generic.Dictionary<string, object>;
 namespace Butterfly.Core.Database {
     /// <summary>
     /// Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing 
-    /// a single <see cref="DataEventTransaction"/> on the underlying <see cref="IDatabase"/> instance
+    /// a single <see cref="Butterfly.Core.Database.Event.DataEventTransaction"/> on the underlying <see cref="IDatabase"/> instance
     /// when the transaction is committed.<para/>
     /// 
     /// Must call <see cref="Commit"/> or <see cref="CommitAsync"/> to have the changes committed.<para/>
@@ -19,6 +19,9 @@ namespace Butterfly.Core.Database {
     /// </summary>
     public interface ITransaction : IDisposable {
 
+        /// <summary>
+        /// An instance of the database
+        /// </summary>
         IDatabase Database { get; }
 
         /// <summary>
@@ -114,6 +117,15 @@ namespace Butterfly.Core.Database {
         /// <returns>Number of records deleted</returns>
         Task<int> DeleteAsync(string deleteStatement, dynamic vars);
 
+        /// <summary>
+        /// Determines and executes the appropriate INSERT, UPDATE, and DELETE statements to synchronize the <paramref name="existingRecords"/> with the <paramref name="newRecords"/>
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="existingRecords"></param>
+        /// <param name="newRecords"></param>
+        /// <param name="getDeleteKey"></param>
+        /// <param name="keyFieldNames"></param>
+        /// <returns></returns>
         Task<bool> SynchronizeAsync(string tableName, Dict[] existingRecords, Dict[] newRecords, Func<Dict, dynamic> getDeleteKey, string[] keyFieldNames = null);
 
         /// <summary>
@@ -131,6 +143,10 @@ namespace Butterfly.Core.Database {
         /// <inheritdoc cref="Commit"/>
         Task CommitAsync();
 
+        /// <summary>
+        /// Register a callback that is invoked when the transaction is successfully committed
+        /// </summary>
+        /// <param name="onCommit"></param>
         void OnCommit(Func<Task> onCommit);
 
         /// <summary>

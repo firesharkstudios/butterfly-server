@@ -15,14 +15,13 @@ namespace Butterfly.Core.Channel {
     /// <remarks>
     /// Listen for subscription requests to the todos channel...<para/>
     /// <code>
-    ///     var subscriptionApi = new SomeSubscriptionApi();
-    ///     // Listen for subscribe requests...
-    ///     // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
-    ///     // - The handler can push data to the client by calling channel.Queue()
-    ///     subscriptionApi.OnSubscribe("todos", (vars, channel) => {
-    ///         return database.CreateAndStartDynamicView("todo", dataEventTransaction => channel.Queue(dataEventTransaction));
-    ///     });
-    ///     subscriptionApi.Start();
+    /// // Listen for subscribe requests...
+    /// // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
+    /// // - The handler can push data to the client by calling channel.Queue()
+    /// subscriptionApi.OnSubscribe("todos", (vars, channel) => {
+    ///     return database.CreateAndStartDynamicView("todo", dataEventTransaction => channel.Queue(dataEventTransaction));
+    /// });
+    /// subscriptionApi.Start();
     /// </code>
     /// </remarks>
     public interface ISubscriptionApi : IDisposable {

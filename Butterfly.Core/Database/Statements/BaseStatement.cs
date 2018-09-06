@@ -143,7 +143,7 @@ namespace Butterfly.Core.Database {
 
             List<StatementFromRef> statementFromRefs = new List<StatementFromRef>();
             string firstTableName = match.Groups["tableName"].Value.Trim();
-            if (!database.Tables.TryGetValue(firstTableName, out Table firstTable)) throw new Exception($"Invalid table name '{firstTableName}'");
+            if (!database.TableByName.TryGetValue(firstTableName, out Table firstTable)) throw new Exception($"Invalid table name '{firstTableName}'");
             statementFromRefs.Add(new StatementFromRef(JoinType.None, firstTable, match.Groups["tableAlias"].Value.Trim(), null));
 
             var joinMatches = JOIN_REGEX.Matches(fromClause, match.Index + match.Length);
@@ -152,7 +152,7 @@ namespace Butterfly.Core.Database {
                     if (joinType == JoinType.Right) throw new Exception("Right joins not supported");
 
                     string joinTableName = joinMatches[i].Groups["tableName"].Value.Trim();
-                    if (!database.Tables.TryGetValue(joinTableName, out Table joinTable)) throw new Exception($"Invalid table name '{joinTableName}'");
+                    if (!database.TableByName.TryGetValue(joinTableName, out Table joinTable)) throw new Exception($"Invalid table name '{joinTableName}'");
 
                     string joinTableAlias = joinMatches[i].Groups["tableAlias"].Value.Trim();
 

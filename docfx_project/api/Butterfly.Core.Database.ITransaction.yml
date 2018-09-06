@@ -33,7 +33,7 @@ items:
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
-  summary: "\nAllows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing \na single <see cref=\"!:DataEventTransaction\"></see> on the underlying <xref href=\"Butterfly.Core.Database.IDatabase\" data-throw-if-not-resolved=\"false\"></xref> instance\nwhen the transaction is committed.<p></p>\n\nMust call <xref href=\"Butterfly.Core.Database.ITransaction.Commit\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"Butterfly.Core.Database.ITransaction.CommitAsync\" data-throw-if-not-resolved=\"false\"></xref> to have the changes committed.<p></p>\n\nIf the transaction is disposed without calling <xref href=\"Butterfly.Core.Database.ITransaction.Commit\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"Butterfly.Core.Database.ITransaction.CommitAsync\" data-throw-if-not-resolved=\"false\"></xref> the transaction is automatically rolled back.\n"
+  summary: "\nAllows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing \na single <xref href=\"Butterfly.Core.Database.Event.DataEventTransaction\" data-throw-if-not-resolved=\"false\"></xref> on the underlying <xref href=\"Butterfly.Core.Database.IDatabase\" data-throw-if-not-resolved=\"false\"></xref> instance\nwhen the transaction is committed.<p></p>\n\nMust call <xref href=\"Butterfly.Core.Database.ITransaction.Commit\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"Butterfly.Core.Database.ITransaction.CommitAsync\" data-throw-if-not-resolved=\"false\"></xref> to have the changes committed.<p></p>\n\nIf the transaction is disposed without calling <xref href=\"Butterfly.Core.Database.ITransaction.Commit\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"Butterfly.Core.Database.ITransaction.CommitAsync\" data-throw-if-not-resolved=\"false\"></xref> the transaction is automatically rolled back.\n"
   example: []
   syntax:
     content: 'public interface ITransaction : IDisposable'
@@ -64,10 +64,12 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Database
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 21
+    startLine: 24
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
+  summary: "\nAn instance of the database\n"
+  example: []
   syntax:
     content: IDatabase Database { get; }
     parameters: []
@@ -97,7 +99,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: InsertAsync
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 56
+    startLine: 59
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -144,7 +146,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: UpdateAsync
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 86
+    startLine: 89
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -183,7 +185,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DeleteAsync
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 114
+    startLine: 117
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -222,25 +224,33 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SynchronizeAsync
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 116
+    startLine: 128
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
+  summary: "\nDetermines and executes the appropriate INSERT, UPDATE, and DELETE statements to synchronize the <code data-dev-comment-type=\"paramref\" class=\"paramref\">existingRecords</code> with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">newRecords</code>\n"
+  example: []
   syntax:
     content: Task<bool> SynchronizeAsync(string tableName, System.Collections.Generic.Dictionary<string, object>[] existingRecords, System.Collections.Generic.Dictionary<string, object>[] newRecords, Func<System.Collections.Generic.Dictionary<string, object>, dynamic> getDeleteKey, string[] keyFieldNames = null)
     parameters:
     - id: tableName
       type: System.String
+      description: ''
     - id: existingRecords
       type: System.Collections.Generic.Dictionary{System.String,System.Object}[]
+      description: ''
     - id: newRecords
       type: System.Collections.Generic.Dictionary{System.String,System.Object}[]
+      description: ''
     - id: getDeleteKey
       type: Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Object}
+      description: ''
     - id: keyFieldNames
       type: System.String[]
+      description: ''
     return:
       type: Task{System.Boolean}
+      description: ''
     content.vb: Function SynchronizeAsync(tableName As String, existingRecords As System.Collections.Generic.Dictionary(Of String, Object)(), newRecords As System.Collections.Generic.Dictionary(Of String, Object)(), getDeleteKey As Func(Of System.Collections.Generic.Dictionary(Of String, Object), Object), keyFieldNames As String() = Nothing) As Task(Of Boolean)
   overload: Butterfly.Core.Database.ITransaction.SynchronizeAsync*
   nameWithType.vb: ITransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of String, Object)(), System.Collections.Generic.Dictionary(Of String, Object)(), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Object), String())
@@ -264,7 +274,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: TruncateAsync
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 123
+    startLine: 135
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -299,7 +309,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Commit
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 128
+    startLine: 140
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -327,7 +337,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CommitAsync
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 131
+    startLine: 143
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -356,15 +366,18 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnCommit
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 133
+    startLine: 149
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
+  summary: "\nRegister a callback that is invoked when the transaction is successfully committed\n"
+  example: []
   syntax:
     content: void OnCommit(Func<Task> onCommit)
     parameters:
     - id: onCommit
       type: Func{Task}
+      description: ''
     content.vb: Sub OnCommit(onCommit As Func(Of Task))
   overload: Butterfly.Core.Database.ITransaction.OnCommit*
   nameWithType.vb: ITransaction.OnCommit(Func(Of Task))
@@ -388,7 +401,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Rollback
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 138
+    startLine: 154
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -399,6 +412,12 @@ items:
     content.vb: Sub Rollback
   overload: Butterfly.Core.Database.ITransaction.Rollback*
 references:
+- uid: Butterfly.Core.Database.Event.DataEventTransaction
+  commentId: T:Butterfly.Core.Database.Event.DataEventTransaction
+  parent: Butterfly.Core.Database.Event
+  name: DataEventTransaction
+  nameWithType: DataEventTransaction
+  fullName: Butterfly.Core.Database.Event.DataEventTransaction
 - uid: Butterfly.Core.Database.IDatabase
   commentId: T:Butterfly.Core.Database.IDatabase
   parent: Butterfly.Core.Database
@@ -466,6 +485,11 @@ references:
   name: Butterfly.Core.Database
   nameWithType: Butterfly.Core.Database
   fullName: Butterfly.Core.Database
+- uid: Butterfly.Core.Database.Event
+  commentId: N:Butterfly.Core.Database.Event
+  name: Butterfly.Core.Database.Event
+  nameWithType: Butterfly.Core.Database.Event
+  fullName: Butterfly.Core.Database.Event
 - uid: Butterfly.Core.Database.ITransaction
   commentId: T:Butterfly.Core.Database.ITransaction
   parent: Butterfly.Core.Database

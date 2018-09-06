@@ -20,7 +20,7 @@ items:
   - Butterfly.Core.Database.BaseDatabase.CreateDynamicViewSet(Action{Butterfly.Core.Database.Event.DataEventTransaction})
   - Butterfly.Core.Database.BaseDatabase.CreateDynamicViewSet(Func{Butterfly.Core.Database.Event.DataEventTransaction,Task})
   - Butterfly.Core.Database.BaseDatabase.CreateFromResourceFileAsync(Assembly,System.String)
-  - Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync(System.String)
+  - Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync(System.String)
   - Butterfly.Core.Database.BaseDatabase.CreateStatement(System.String)
   - Butterfly.Core.Database.BaseDatabase.CreateTransaction
   - Butterfly.Core.Database.BaseDatabase.DeleteAndCommitAsync(System.String,System.Object)
@@ -53,7 +53,7 @@ items:
   - Butterfly.Core.Database.BaseDatabase.SetOverrideValue(System.String,Func{System.String,System.Object},System.String)
   - Butterfly.Core.Database.BaseDatabase.SQL_COMMENT
   - Butterfly.Core.Database.BaseDatabase.tableByName
-  - Butterfly.Core.Database.BaseDatabase.Tables
+  - Butterfly.Core.Database.BaseDatabase.TableByName
   - Butterfly.Core.Database.BaseDatabase.TransactionCount
   - Butterfly.Core.Database.BaseDatabase.uncommittedTransactionListeners
   - Butterfly.Core.Database.BaseDatabase.UpdateAndCommitAsync(System.String,System.Object)
@@ -77,7 +77,6 @@ items:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   summary: "\nBase class implementing <xref href=\"Butterfly.Core.Database.IDatabase\" data-throw-if-not-resolved=\"false\"></xref>. New implementations will normally extend this class.\n"
-  remarks: "\nAdding records and echoing all data change events to the console...<p></p>\n<pre><code>    // Create database instance (will also read the schema from the database)\n    var database = new SomeDatabase();\n\n    // Listen for all database data events\n    var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {\n        console.WriteLine($&quot;Low Level DataEventTransaction={dataEventTransaction}&quot;);\n    });\n\n    // INSERT a couple of records (this will cause a single data even transaction with\n    // two INSERT data events to be written to the console above)\n    using (var transaction = database.BeginTransaction()) {\n        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n            department_id: 1,\n            name: &quot;SpongeBob&quot;\n        });\n        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n            department_id: 1,\n            name: &quot;Squidward&quot;\n        });\n        await database.CommitAsync();\n    );</code></pre>\n\nCreating a DynamicView and echoing data change events on the DynamicView to the console...<p></p>\n<pre><code>    // Create database instance (will also read the schema from the database)\n    var database = new SomeDatabase();\n\n    // Create a DynamicViewSet that print any data events to the console\n    // (this will immediately echo an INITIAL data event for each existing matching record)\n    var dynamicViewSet = database.CreateAndStartDynamicViewSet(\n        &quot;SELECT * FROM employee WHERE department_id=@departmentId&quot;, \n        new {\n            departmentId = 1\n        },\n        dataEventTransaction => {\n            Console.WriteLine(dataEventTransaction);\n        }\n    );\n\n    // This will cause the above DynamicViewSet to echo an INSERT data event\n    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n        department_id: 1\n        name: &quot;Mr Crabs&quot;\n    });\n\n    // This will NOT cause the above DynamicViewSet to echo an INSERT data event\n    // (because the department_id doesn&apos;t match)\n    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n        department_id: 2\n        name: &quot;Patrick Star&quot;\n    });</code></pre>\n"
   example: []
   syntax:
     content: 'public abstract class BaseDatabase : object, IDatabase'
@@ -244,37 +243,37 @@ items:
   - Public
   - Get
   - Protected Set
-- uid: Butterfly.Core.Database.BaseDatabase.Tables
-  commentId: P:Butterfly.Core.Database.BaseDatabase.Tables
-  id: Tables
+- uid: Butterfly.Core.Database.BaseDatabase.TableByName
+  commentId: P:Butterfly.Core.Database.BaseDatabase.TableByName
+  id: TableByName
   parent: Butterfly.Core.Database.BaseDatabase
   langs:
   - csharp
   - vb
-  name: Tables
-  nameWithType: BaseDatabase.Tables
-  fullName: Butterfly.Core.Database.BaseDatabase.Tables
+  name: TableByName
+  nameWithType: BaseDatabase.TableByName
+  fullName: Butterfly.Core.Database.BaseDatabase.TableByName
   type: Property
   source:
     remote:
       path: Butterfly.Core/Database/BaseDatabase.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
-    id: Tables
+    id: TableByName
     path: ../Butterfly.Core/Database/BaseDatabase.cs
     startLine: 49
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   syntax:
-    content: public Dictionary<string, Table> Tables { get; }
+    content: public Dictionary<string, Table> TableByName { get; }
     parameters: []
     return:
       type: Dictionary{System.String,Butterfly.Core.Database.Table}
-    content.vb: Public ReadOnly Property Tables As Dictionary(Of String, Table)
-  overload: Butterfly.Core.Database.BaseDatabase.Tables*
+    content.vb: Public ReadOnly Property TableByName As Dictionary(Of String, Table)
+  overload: Butterfly.Core.Database.BaseDatabase.TableByName*
   implements:
-  - Butterfly.Core.Database.IDatabase.Tables
+  - Butterfly.Core.Database.IDatabase.TableByName
   modifiers.csharp:
   - public
   - get
@@ -575,39 +574,39 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync(System.String)
-  commentId: M:Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync(System.String)
-  id: CreateFromTextAsync(System.String)
+- uid: Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync(System.String)
+  commentId: M:Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync(System.String)
+  id: CreateFromSqlAsync(System.String)
   parent: Butterfly.Core.Database.BaseDatabase
   langs:
   - csharp
   - vb
-  name: CreateFromTextAsync(String)
-  nameWithType: BaseDatabase.CreateFromTextAsync(String)
-  fullName: Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync(System.String)
+  name: CreateFromSqlAsync(String)
+  nameWithType: BaseDatabase.CreateFromSqlAsync(String)
+  fullName: Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync(System.String)
   type: Method
   source:
     remote:
       path: Butterfly.Core/Database/BaseDatabase.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
-    id: CreateFromTextAsync
+    id: CreateFromSqlAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
     startLine: 87
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   syntax:
-    content: public Task CreateFromTextAsync(string createStatements)
+    content: public Task CreateFromSqlAsync(string createStatements)
     parameters:
     - id: createStatements
       type: System.String
     return:
       type: Task
-    content.vb: Public Function CreateFromTextAsync(createStatements As String) As Task
-  overload: Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync*
+    content.vb: Public Function CreateFromSqlAsync(createStatements As String) As Task
+  overload: Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync*
   implements:
-  - Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)
+  - Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -2288,17 +2287,17 @@ references:
   name: ConnectionString
   nameWithType: BaseDatabase.ConnectionString
   fullName: Butterfly.Core.Database.BaseDatabase.ConnectionString
-- uid: Butterfly.Core.Database.BaseDatabase.Tables*
-  commentId: Overload:Butterfly.Core.Database.BaseDatabase.Tables
-  name: Tables
-  nameWithType: BaseDatabase.Tables
-  fullName: Butterfly.Core.Database.BaseDatabase.Tables
-- uid: Butterfly.Core.Database.IDatabase.Tables
-  commentId: P:Butterfly.Core.Database.IDatabase.Tables
+- uid: Butterfly.Core.Database.BaseDatabase.TableByName*
+  commentId: Overload:Butterfly.Core.Database.BaseDatabase.TableByName
+  name: TableByName
+  nameWithType: BaseDatabase.TableByName
+  fullName: Butterfly.Core.Database.BaseDatabase.TableByName
+- uid: Butterfly.Core.Database.IDatabase.TableByName
+  commentId: P:Butterfly.Core.Database.IDatabase.TableByName
   parent: Butterfly.Core.Database.IDatabase
-  name: Tables
-  nameWithType: IDatabase.Tables
-  fullName: Butterfly.Core.Database.IDatabase.Tables
+  name: TableByName
+  nameWithType: IDatabase.TableByName
+  fullName: Butterfly.Core.Database.IDatabase.TableByName
 - uid: Butterfly.Core.Database.BaseDatabase.CanJoin*
   commentId: Overload:Butterfly.Core.Database.BaseDatabase.CanJoin
   name: CanJoin
@@ -2432,23 +2431,23 @@ references:
   name: Task
   nameWithType: Task
   fullName: Task
-- uid: Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync*
-  commentId: Overload:Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync
-  name: CreateFromTextAsync
-  nameWithType: BaseDatabase.CreateFromTextAsync
-  fullName: Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync
-- uid: Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)
-  commentId: M:Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)
+- uid: Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync*
+  commentId: Overload:Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync
+  name: CreateFromSqlAsync
+  nameWithType: BaseDatabase.CreateFromSqlAsync
+  fullName: Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync
+- uid: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
+  commentId: M:Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
   parent: Butterfly.Core.Database.IDatabase
   isExternal: true
-  name: CreateFromTextAsync(String)
-  nameWithType: IDatabase.CreateFromTextAsync(String)
-  fullName: Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)
+  name: CreateFromSqlAsync(String)
+  nameWithType: IDatabase.CreateFromSqlAsync(String)
+  fullName: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
   spec.csharp:
-  - uid: Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)
-    name: CreateFromTextAsync
-    nameWithType: IDatabase.CreateFromTextAsync
-    fullName: Butterfly.Core.Database.IDatabase.CreateFromTextAsync
+  - uid: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
+    name: CreateFromSqlAsync
+    nameWithType: IDatabase.CreateFromSqlAsync
+    fullName: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync
   - name: (
     nameWithType: (
     fullName: (
@@ -2461,10 +2460,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)
-    name: CreateFromTextAsync
-    nameWithType: IDatabase.CreateFromTextAsync
-    fullName: Butterfly.Core.Database.IDatabase.CreateFromTextAsync
+  - uid: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
+    name: CreateFromSqlAsync
+    nameWithType: IDatabase.CreateFromSqlAsync
+    fullName: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync
   - name: (
     nameWithType: (
     fullName: (

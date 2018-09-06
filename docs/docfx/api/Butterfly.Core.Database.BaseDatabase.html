@@ -97,60 +97,6 @@ Base class implementing <a class="xref" href="Butterfly.Core.Database.IDatabase.
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public abstract class BaseDatabase : object, IDatabase</code></pre>
   </div>
-  <h5 id="Butterfly_Core_Database_BaseDatabase_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks">
-Adding records and echoing all data change events to the console...<p>
-<pre><code>    // Create database instance (will also read the schema from the database)
-    var database = new SomeDatabase();
-
-    // Listen for all database data events
-    var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {
-        console.WriteLine($&quot;Low Level DataEventTransaction={dataEventTransaction}&quot;);
-    });
-
-    // INSERT a couple of records (this will cause a single data even transaction with
-    // two INSERT data events to be written to the console above)
-    using (var transaction = database.BeginTransaction()) {
-        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-            department_id: 1,
-            name: &quot;SpongeBob&quot;
-        });
-        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-            department_id: 1,
-            name: &quot;Squidward&quot;
-        });
-        await database.CommitAsync();
-    );</code></pre>
-
-Creating a DynamicView and echoing data change events on the DynamicView to the console...<p>
-<pre><code>    // Create database instance (will also read the schema from the database)
-    var database = new SomeDatabase();
-
-    // Create a DynamicViewSet that print any data events to the console
-    // (this will immediately echo an INITIAL data event for each existing matching record)
-    var dynamicViewSet = database.CreateAndStartDynamicViewSet(
-        &quot;SELECT * FROM employee WHERE department_id=@departmentId&quot;, 
-        new {
-            departmentId = 1
-        },
-        dataEventTransaction => {
-            Console.WriteLine(dataEventTransaction);
-        }
-    );
-
-    // This will cause the above DynamicViewSet to echo an INSERT data event
-    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-        department_id: 1
-        name: &quot;Mr Crabs&quot;
-    });
-
-    // This will NOT cause the above DynamicViewSet to echo an INSERT data event
-    // (because the department_id doesn&apos;t match)
-    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-        department_id: 2
-        name: &quot;Patrick Star&quot;
-    });</code></pre>
-</div>
   <h3 id="constructors">Constructors
   </h3>
   <a id="Butterfly_Core_Database_BaseDatabase__ctor_" data-uid="Butterfly.Core.Database.BaseDatabase.#ctor*"></a>
@@ -500,13 +446,13 @@ The connection string
       </tr>
     </tbody>
   </table>
-  <a id="Butterfly_Core_Database_BaseDatabase_Tables_" data-uid="Butterfly.Core.Database.BaseDatabase.Tables*"></a>
-  <h4 id="Butterfly_Core_Database_BaseDatabase_Tables" data-uid="Butterfly.Core.Database.BaseDatabase.Tables">Tables</h4>
+  <a id="Butterfly_Core_Database_BaseDatabase_TableByName_" data-uid="Butterfly.Core.Database.BaseDatabase.TableByName*"></a>
+  <h4 id="Butterfly_Core_Database_BaseDatabase_TableByName" data-uid="Butterfly.Core.Database.BaseDatabase.TableByName">TableByName</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, Table&gt; Tables { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, Table&gt; TableByName { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -972,13 +918,13 @@ The connection string
       </tr>
     </tbody>
   </table>
-  <a id="Butterfly_Core_Database_BaseDatabase_CreateFromTextAsync_" data-uid="Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync*"></a>
-  <h4 id="Butterfly_Core_Database_BaseDatabase_CreateFromTextAsync_System_String_" data-uid="Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync(System.String)">CreateFromTextAsync(String)</h4>
+  <a id="Butterfly_Core_Database_BaseDatabase_CreateFromSqlAsync_" data-uid="Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync*"></a>
+  <h4 id="Butterfly_Core_Database_BaseDatabase_CreateFromSqlAsync_System_String_" data-uid="Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync(System.String)">CreateFromSqlAsync(String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task CreateFromTextAsync(string createStatements)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task CreateFromSqlAsync(string createStatements)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

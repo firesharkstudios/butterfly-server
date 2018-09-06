@@ -1839,19 +1839,19 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Database.BaseDatabase.CreateFromResourceFileAsync
   nameWithType: BaseDatabase.CreateFromResourceFileAsync
-- uid: Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync(System.String)
-  name: CreateFromTextAsync(String)
-  href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateFromTextAsync_System_String_
-  commentId: M:Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync(System.String)
-  fullName: Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync(System.String)
-  nameWithType: BaseDatabase.CreateFromTextAsync(String)
-- uid: Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync*
-  name: CreateFromTextAsync
-  href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateFromTextAsync_
-  commentId: Overload:Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync
+- uid: Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync(System.String)
+  name: CreateFromSqlAsync(String)
+  href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateFromSqlAsync_System_String_
+  commentId: M:Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync(System.String)
+  fullName: Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync(System.String)
+  nameWithType: BaseDatabase.CreateFromSqlAsync(String)
+- uid: Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync*
+  name: CreateFromSqlAsync
+  href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateFromSqlAsync_
+  commentId: Overload:Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync
   isSpec: "True"
-  fullName: Butterfly.Core.Database.BaseDatabase.CreateFromTextAsync
-  nameWithType: BaseDatabase.CreateFromTextAsync
+  fullName: Butterfly.Core.Database.BaseDatabase.CreateFromSqlAsync
+  nameWithType: BaseDatabase.CreateFromSqlAsync
 - uid: Butterfly.Core.Database.BaseDatabase.CreateStatement(System.String)
   name: CreateStatement(String)
   href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateStatement_System_String_
@@ -2244,19 +2244,19 @@ references:
   commentId: F:Butterfly.Core.Database.BaseDatabase.tableByName
   fullName: Butterfly.Core.Database.BaseDatabase.tableByName
   nameWithType: BaseDatabase.tableByName
-- uid: Butterfly.Core.Database.BaseDatabase.Tables
-  name: Tables
-  href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_Tables
-  commentId: P:Butterfly.Core.Database.BaseDatabase.Tables
-  fullName: Butterfly.Core.Database.BaseDatabase.Tables
-  nameWithType: BaseDatabase.Tables
-- uid: Butterfly.Core.Database.BaseDatabase.Tables*
-  name: Tables
-  href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_Tables_
-  commentId: Overload:Butterfly.Core.Database.BaseDatabase.Tables
+- uid: Butterfly.Core.Database.BaseDatabase.TableByName
+  name: TableByName
+  href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_TableByName
+  commentId: P:Butterfly.Core.Database.BaseDatabase.TableByName
+  fullName: Butterfly.Core.Database.BaseDatabase.TableByName
+  nameWithType: BaseDatabase.TableByName
+- uid: Butterfly.Core.Database.BaseDatabase.TableByName*
+  name: TableByName
+  href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_TableByName_
+  commentId: Overload:Butterfly.Core.Database.BaseDatabase.TableByName
   isSpec: "True"
-  fullName: Butterfly.Core.Database.BaseDatabase.Tables
-  nameWithType: BaseDatabase.Tables
+  fullName: Butterfly.Core.Database.BaseDatabase.TableByName
+  nameWithType: BaseDatabase.TableByName
 - uid: Butterfly.Core.Database.BaseDatabase.TransactionCount
   name: TransactionCount
   href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_TransactionCount
@@ -4219,19 +4219,19 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Database.IDatabase.CreateFromResourceFileAsync
   nameWithType: IDatabase.CreateFromResourceFileAsync
-- uid: Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)
-  name: CreateFromTextAsync(String)
-  href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromTextAsync_System_String_
-  commentId: M:Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)
-  fullName: Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)
-  nameWithType: IDatabase.CreateFromTextAsync(String)
-- uid: Butterfly.Core.Database.IDatabase.CreateFromTextAsync*
-  name: CreateFromTextAsync
-  href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromTextAsync_
-  commentId: Overload:Butterfly.Core.Database.IDatabase.CreateFromTextAsync
+- uid: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
+  name: CreateFromSqlAsync(String)
+  href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromSqlAsync_System_String_
+  commentId: M:Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
+  fullName: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
+  nameWithType: IDatabase.CreateFromSqlAsync(String)
+- uid: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync*
+  name: CreateFromSqlAsync
+  href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromSqlAsync_
+  commentId: Overload:Butterfly.Core.Database.IDatabase.CreateFromSqlAsync
   isSpec: "True"
-  fullName: Butterfly.Core.Database.IDatabase.CreateFromTextAsync
-  nameWithType: IDatabase.CreateFromTextAsync
+  fullName: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync
+  nameWithType: IDatabase.CreateFromSqlAsync
 - uid: Butterfly.Core.Database.IDatabase.DeleteAndCommitAsync(System.String,System.Object)
   name: DeleteAndCommitAsync(String, Object)
   href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_DeleteAndCommitAsync_System_String_System_Object_
@@ -4462,19 +4462,19 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Database.IDatabase.SetOverrideValue
   nameWithType: IDatabase.SetOverrideValue
-- uid: Butterfly.Core.Database.IDatabase.Tables
-  name: Tables
-  href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_Tables
-  commentId: P:Butterfly.Core.Database.IDatabase.Tables
-  fullName: Butterfly.Core.Database.IDatabase.Tables
-  nameWithType: IDatabase.Tables
-- uid: Butterfly.Core.Database.IDatabase.Tables*
-  name: Tables
-  href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_Tables_
-  commentId: Overload:Butterfly.Core.Database.IDatabase.Tables
+- uid: Butterfly.Core.Database.IDatabase.TableByName
+  name: TableByName
+  href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_TableByName
+  commentId: P:Butterfly.Core.Database.IDatabase.TableByName
+  fullName: Butterfly.Core.Database.IDatabase.TableByName
+  nameWithType: IDatabase.TableByName
+- uid: Butterfly.Core.Database.IDatabase.TableByName*
+  name: TableByName
+  href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_TableByName_
+  commentId: Overload:Butterfly.Core.Database.IDatabase.TableByName
   isSpec: "True"
-  fullName: Butterfly.Core.Database.IDatabase.Tables
-  nameWithType: IDatabase.Tables
+  fullName: Butterfly.Core.Database.IDatabase.TableByName
+  nameWithType: IDatabase.TableByName
 - uid: Butterfly.Core.Database.IDatabase.UpdateAndCommitAsync(System.String,System.Object)
   name: UpdateAndCommitAsync(String, Object)
   href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_UpdateAndCommitAsync_System_String_System_Object_

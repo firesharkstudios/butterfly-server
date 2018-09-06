@@ -16,7 +16,7 @@ namespace Butterfly.Example.HelloWorld {
             using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext($"http://+:{port}/", staticPath: "../../../www")) {
                 // Create a MemoryDatabase (no persistence, limited features)
                 var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
-                await database.CreateFromTextAsync(@"CREATE TABLE message (
+                await database.CreateFromSqlAsync(@"CREATE TABLE message (
 	                id INT NOT NULL AUTO_INCREMENT,
 	                text VARCHAR(40) NOT NULL,
 	                PRIMARY KEY (id)

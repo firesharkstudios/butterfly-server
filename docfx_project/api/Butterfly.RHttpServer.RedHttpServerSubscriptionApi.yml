@@ -28,7 +28,7 @@ items:
   - Butterfly.RHttpServer
   namespace: Butterfly.RHttpServer
   summary: "\nBase class implementing <xref href=\"Butterfly.Core.Channel.ISubscriptionApi\" data-throw-if-not-resolved=\"false\"></xref>. New implementations will normally extend this class.\n"
-  remarks: "\nListen for subscription requests to the todos channel...<p></p>\n<pre><code>    var subscriptionApi = new SomeSubscriptionApi();\n    // Listen for subscribe requests...\n    // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)\n    // - The handler can push data to the client by calling channel.Queue()\n    subscriptionApi.OnSubscribe(&quot;todos&quot;, (vars, channel) => {\n        return database.CreateAndStartDynamicView(&quot;todo&quot;, dataEventTransaction => channel.Queue(dataEventTransaction));\n    });\n    subscriptionApi.Start();</code></pre>\n"
+  remarks: "\nListen for subscription requests to the todos channel...<p></p>\n<pre><code>// Listen for subscribe requests...\n// - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)\n// - The handler can push data to the client by calling channel.Queue()\nsubscriptionApi.OnSubscribe(&quot;todos&quot;, (vars, channel) => {\n    return database.CreateAndStartDynamicView(&quot;todo&quot;, dataEventTransaction => channel.Queue(dataEventTransaction));\n});\nsubscriptionApi.Start();</code></pre>\n"
   example: []
   syntax:
     content: 'public class RedHttpServerSubscriptionApi : BaseSubscriptionApi, ISubscriptionApi, IDisposable'

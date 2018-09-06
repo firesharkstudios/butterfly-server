@@ -47,7 +47,7 @@ namespace Butterfly.Core.Database {
             protected set;
         }
 
-        public Dictionary<string, Table> Tables => this.tableByName;
+        public Dictionary<string, Table> TableByName => this.tableByName;
 
         public abstract bool CanJoin { get; }
 
@@ -82,10 +82,10 @@ namespace Butterfly.Core.Database {
         public async Task CreateFromResourceFileAsync(Assembly assembly, string resourceFile) {
             //logger.Debug($"CreateFromResourceFileAsync():resourceNames={string.Join(",", assembly.GetManifestResourceNames())}");
             string sql = await FileX.LoadResourceAsTextAsync(assembly, resourceFile);
-            await this.CreateFromTextAsync(sql);
+            await this.CreateFromSqlAsync(sql);
         }
 
-        public async Task CreateFromTextAsync(string createStatements) {
+        public async Task CreateFromSqlAsync(string createStatements) {
             logger.Trace($"CreateFromTextAsync():createStatements={createStatements}");
             var noCommentSql = SQL_COMMENT.Replace(createStatements, "");
             var sqlParts = noCommentSql.Split(';').Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x));
@@ -95,7 +95,7 @@ namespace Butterfly.Core.Database {
                 foreach (var sqlPart in sqlParts) {
                     if (!string.IsNullOrWhiteSpace(sqlPart)) {
                         CreateStatement statement = this.CreateStatement(sqlPart);
-                        if (!this.Tables.Keys.Contains(statement.TableName)) {
+                        if (!this.TableByName.Keys.Contains(statement.TableName)) {
                             bool tableSchemaLoaded = await transaction.CreateAsync(statement);
                             if (!tableSchemaLoaded) {
                                 tableSchemasToLoad.Add(statement.TableName);
@@ -279,7 +279,7 @@ namespace Butterfly.Core.Database {
                 this.getDefaultValueByFieldName[fieldName] = getValue;
             }
             else {
-                if (!this.Tables.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
+                if (!this.TableByName.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
                 table.SetDefaultValue(fieldName, getValue);
             }
         }
@@ -304,7 +304,7 @@ namespace Butterfly.Core.Database {
                 this.getOverrideValueByFieldName[fieldName] = getValue;
             }
             else {
-                if (!this.Tables.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
+                if (!this.TableByName.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
                 table.SetOverrideValue(fieldName, getValue);
             }
         }

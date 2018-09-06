@@ -66,7 +66,7 @@ namespace Butterfly.Core.Test {
 
         public static async Task TruncateData(IDatabase database) {
             using (ITransaction transaction = await database.BeginTransactionAsync()) {
-                foreach (var tableName in database.Tables.Keys) {
+                foreach (var tableName in database.TableByName.Keys) {
                     await transaction.TruncateAsync(tableName);
                 }
                 await transaction.CommitAsync();

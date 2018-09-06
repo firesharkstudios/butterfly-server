@@ -12,7 +12,7 @@
           "hash": "nDMllVNKwwkZ3AEAJn4SQQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -60,7 +60,7 @@
           "hash": "AFJAuzfCCJxjHS0VolKf6w=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -120,7 +120,7 @@
           "hash": "Cq/Nhpq0bEJ02MI52dcKjA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -144,7 +144,7 @@
           "hash": "3sUggxSzUpTU3X8UN+hE6g=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -165,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Channel.BaseSubscriptionApi.html",
-          "hash": "8DUJOPah+VkQrh77X5vqkQ=="
+          "hash": "IBQn0H/i8lGk0cL0gOXUtA=="
         }
       },
       "is_incremental": true,
@@ -213,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Channel.ISubscriptionApi.html",
-          "hash": "pCW2Oo6sS81IwG9Z1Zz0WQ=="
+          "hash": "w2W6xpwKJH7qKFT7WpwjXg=="
         }
       },
       "is_incremental": true,
@@ -237,10 +237,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Database.BaseDatabase.html",
-          "hash": "OQagVa9x1O+AQMWTkAQOtg=="
+          "hash": "VF1yScQluq15KqiioJosQg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -264,7 +264,7 @@
           "hash": "InrUvK95pAKXF5ZyC6IhMQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -525,10 +525,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Database.IDatabase.html",
-          "hash": "jkvOABEYZEXxmtZlloPorg=="
+          "hash": "y/tkmy32SXGZwkNdp25gIw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -549,10 +549,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Database.ITransaction.html",
-          "hash": "jIXUajIOHrMgwof8N98BNg=="
+          "hash": "N7RLYJuVIAuqTFq94uLkHA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -585,10 +585,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Database.Memory.MemoryDatabase.html",
-          "hash": "z4Kz4x8eZtoy9vJAx7RnNA=="
+          "hash": "7XEUtjyzAfnYQTkCyOSypA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -612,7 +612,7 @@
           "hash": "i19BYJBP+HdE0tJUa6WUWw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -624,7 +624,7 @@
           "hash": "MecrU+bjcR4JKtZRGfCtIQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -753,10 +753,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Database.html",
-          "hash": "tvJHyCYMpnvnsu31rHQfhQ=="
+          "hash": "TaQhCjQA4qBW2eAdFuFjqA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -792,7 +792,7 @@
           "hash": "uta6HrWWHssKmmYvoHtuoQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -936,7 +936,7 @@
           "hash": "I4oy6QsUM8fEug15nAFGAA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -948,7 +948,7 @@
           "hash": "Fu4GitCAwDzThFJb3KA8Zg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1020,7 +1020,7 @@
           "hash": "KgyWX55vM9WCvRKp94cuQA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1344,7 +1344,7 @@
           "hash": "1EQyh1dVvKWYam8B9xtwoA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1368,7 +1368,7 @@
           "hash": "0kdamvW9wUA6CUVpULqj9w=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1392,7 +1392,7 @@
           "hash": "SDTdGRMjKa+dVyzwyaJU2w=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1404,7 +1404,7 @@
           "hash": "G0EFdXHalDjX4tWhQjlUNA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1428,7 +1428,7 @@
           "hash": "gJOyBIryMhqbze2H3mtjmA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1440,7 +1440,7 @@
           "hash": "grl91a0rnYYZz/uqZ7s1qA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1461,7 +1461,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.EmbedIO.EmbedIOSubscriptionApi.html",
-          "hash": "nz/99MutWFyWFjrJd7+gbQ=="
+          "hash": "/5L1NnbfL+wnQOF1VhW4Kg=="
         }
       },
       "is_incremental": true,
@@ -1488,7 +1488,7 @@
           "hash": "rkeNllF4Oq7tabT3JMR4SQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1500,7 +1500,7 @@
           "hash": "7FeVoyksi0TKSUJarqCUuw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1572,7 +1572,7 @@
           "hash": "eU000EmGE0pzwb8Vjw4w2Q=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1581,10 +1581,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.MySql.MySqlDatabase.html",
-          "hash": "mjNpZ5c4oZuft1USw35Flg=="
+          "hash": "Fm/pXxtDtCmXT6CGi8l+tw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1596,7 +1596,7 @@
           "hash": "I0xNztGxt79DlwqH96p9Qw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1644,7 +1644,7 @@
           "hash": "5sssOTHv+XP5qITkoQMjzA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1677,10 +1677,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Postgres.PostgresDatabase.html",
-          "hash": "l/jM8KVUTxFWxkoJIeuAEw=="
+          "hash": "0GJavV2RgWGsYf5PB0URSg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1692,7 +1692,7 @@
           "hash": "WJfkprwlf+N+zl82jKmLNw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1704,7 +1704,7 @@
           "hash": "XXRlKYPChWWhawwT+8x3nw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1725,7 +1725,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.RHttpServer.RedHttpServerSubscriptionApi.html",
-          "hash": "QrKTGRKFbzM5WwpTit/5kw=="
+          "hash": "0NplMGRIWExa1GTTcZUw9g=="
         }
       },
       "is_incremental": true,
@@ -1740,7 +1740,7 @@
           "hash": "QmSajCTMsnKbu6nH90Ygpg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1764,7 +1764,7 @@
           "hash": "+6BRVShcMwPwEHt4VEDbVA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1800,7 +1800,7 @@
           "hash": "0bI+Oas5faLUFkGX1lt6hg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1809,10 +1809,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.SQLite.SQLiteDatabase.html",
-          "hash": "RCK5d5rV6TXf7sAcHcipbg=="
+          "hash": "QEPy9aJsKOOcHpOZtC1Scg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1824,7 +1824,7 @@
           "hash": "Gi0MEwUl0FPiT5/A/ps+Uw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1836,7 +1836,7 @@
           "hash": "KovuQW0Er+0NZzwBrnNk0g=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1845,10 +1845,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.SqlServer.SqlServerDatabase.html",
-          "hash": "SEc7oZfv8poh7CxS3vJrZw=="
+          "hash": "jkXheVj8hFLGgwOvQQv/xw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1860,7 +1860,7 @@
           "hash": "eu0CiRsYRDOWuKceNU/Oiw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1896,7 +1896,7 @@
           "hash": "cMDeIn5xgablZRQ1jcOQNg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -1908,7 +1908,7 @@
           "hash": "g3A29bd+0ZfHsT6aon06lw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -1932,7 +1932,7 @@
           "hash": "WXZE5/vPSA/iLs9rb6x7Sg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -2007,11 +2007,11 @@
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
-        "ManagedReferenceDocumentProcessor": {
+        "ConceptualDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build"
         },
-        "ConceptualDocumentProcessor": {
+        "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build"
         },

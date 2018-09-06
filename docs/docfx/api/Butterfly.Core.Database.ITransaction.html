@@ -75,7 +75,7 @@
   </h1>
   <div class="markdown level0 summary">
 Allows executing a series of INSERT, UPDATE, and DELETE actions atomically and publishing 
-a single <see cref="!:DataEventTransaction"></see> on the underlying <a class="xref" href="Butterfly.Core.Database.IDatabase.html">IDatabase</a> instance
+a single <a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a> on the underlying <a class="xref" href="Butterfly.Core.Database.IDatabase.html">IDatabase</a> instance
 when the transaction is committed.<p>
 
 Must call <a class="xref" href="Butterfly.Core.Database.ITransaction.html#Butterfly_Core_Database_ITransaction_Commit">Commit()</a> or <a class="xref" href="Butterfly.Core.Database.ITransaction.html#Butterfly_Core_Database_ITransaction_CommitAsync">CommitAsync()</a> to have the changes committed.<p>
@@ -93,7 +93,9 @@ If the transaction is disposed without calling <a class="xref" href="Butterfly.C
   </h3>
   <a id="Butterfly_Core_Database_ITransaction_Database_" data-uid="Butterfly.Core.Database.ITransaction.Database*"></a>
   <h4 id="Butterfly_Core_Database_ITransaction_Database" data-uid="Butterfly.Core.Database.ITransaction.Database">Database</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+An instance of the database
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -305,7 +307,9 @@ Do an INSERT using a full statement and a Dictionary...
 </div>
   <a id="Butterfly_Core_Database_ITransaction_OnCommit_" data-uid="Butterfly.Core.Database.ITransaction.OnCommit*"></a>
   <h4 id="Butterfly_Core_Database_ITransaction_OnCommit_Func_Task__" data-uid="Butterfly.Core.Database.ITransaction.OnCommit(Func{Task})">OnCommit(Func&lt;Task&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Register a callback that is invoked when the transaction is successfully committed
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -340,7 +344,9 @@ Rollback the transaction (called automatically if transaction is disposed withou
   </div>
   <a id="Butterfly_Core_Database_ITransaction_SynchronizeAsync_" data-uid="Butterfly.Core.Database.ITransaction.SynchronizeAsync*"></a>
   <h4 id="Butterfly_Core_Database_ITransaction_SynchronizeAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object____System_Collections_Generic_Dictionary_System_String_System_Object____Func_System_Collections_Generic_Dictionary_System_String_System_Object__System_Object__System_String___" data-uid="Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Object},System.String[])">SynchronizeAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;[], System.Collections.Generic.Dictionary&lt;String, Object&gt;[], Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, Object&gt;, String[])</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary">
+Determines and executes the appropriate INSERT, UPDATE, and DELETE statements to synchronize the <code data-dev-comment-type="paramref" class="paramref">existingRecords</code> with the <code data-dev-comment-type="paramref" class="paramref">newRecords</code>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">

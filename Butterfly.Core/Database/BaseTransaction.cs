@@ -176,7 +176,7 @@ namespace Butterfly.Core.Database {
         }
 
         public async Task<bool> SynchronizeAsync(string tableName, Dict[] existingRecords, Dict[] newRecords, Func<Dict, dynamic> getDeleteKey, string[] keyFieldNames = null) {
-            if (!this.database.Tables.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
+            if (!this.database.TableByName.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
 
             bool changed = false;
 

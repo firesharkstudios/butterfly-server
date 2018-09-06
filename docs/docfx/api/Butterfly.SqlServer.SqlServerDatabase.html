@@ -99,7 +99,7 @@ Base class implementing <a class="xref" href="Butterfly.Core.Database.IDatabase.
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_ConnectionString">BaseDatabase.ConnectionString</a>
     </div>
     <div>
-      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_Tables">BaseDatabase.Tables</a>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_TableByName">BaseDatabase.TableByName</a>
     </div>
     <div>
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SelectCount">BaseDatabase.SelectCount</a>
@@ -120,7 +120,7 @@ Base class implementing <a class="xref" href="Butterfly.Core.Database.IDatabase.
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateFromResourceFileAsync_Assembly_System_String_">BaseDatabase.CreateFromResourceFileAsync(Assembly, String)</a>
     </div>
     <div>
-      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateFromTextAsync_System_String_">BaseDatabase.CreateFromTextAsync(String)</a>
+      <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateFromSqlAsync_System_String_">BaseDatabase.CreateFromSqlAsync(String)</a>
     </div>
     <div>
       <a class="xref" href="Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_CreateStatement_System_String_">BaseDatabase.CreateStatement(String)</a>
@@ -237,60 +237,6 @@ Base class implementing <a class="xref" href="Butterfly.Core.Database.IDatabase.
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class SqlServerDatabase : BaseDatabase, IDatabase</code></pre>
   </div>
-  <h5 id="Butterfly_SqlServer_SqlServerDatabase_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks">
-Adding records and echoing all data change events to the console...<p>
-<pre><code>    // Create database instance (will also read the schema from the database)
-    var database = new SomeDatabase();
-
-    // Listen for all database data events
-    var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {
-        console.WriteLine($&quot;Low Level DataEventTransaction={dataEventTransaction}&quot;);
-    });
-
-    // INSERT a couple of records (this will cause a single data even transaction with
-    // two INSERT data events to be written to the console above)
-    using (var transaction = database.BeginTransaction()) {
-        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-            department_id: 1,
-            name: &quot;SpongeBob&quot;
-        });
-        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-            department_id: 1,
-            name: &quot;Squidward&quot;
-        });
-        await database.CommitAsync();
-    );</code></pre>
-
-Creating a DynamicView and echoing data change events on the DynamicView to the console...<p>
-<pre><code>    // Create database instance (will also read the schema from the database)
-    var database = new SomeDatabase();
-
-    // Create a DynamicViewSet that print any data events to the console
-    // (this will immediately echo an INITIAL data event for each existing matching record)
-    var dynamicViewSet = database.CreateAndStartDynamicViewSet(
-        &quot;SELECT * FROM employee WHERE department_id=@departmentId&quot;, 
-        new {
-            departmentId = 1
-        },
-        dataEventTransaction => {
-            Console.WriteLine(dataEventTransaction);
-        }
-    );
-
-    // This will cause the above DynamicViewSet to echo an INSERT data event
-    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-        department_id: 1
-        name: &quot;Mr Crabs&quot;
-    });
-
-    // This will NOT cause the above DynamicViewSet to echo an INSERT data event
-    // (because the department_id doesn&apos;t match)
-    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {
-        department_id: 2
-        name: &quot;Patrick Star&quot;
-    });</code></pre>
-</div>
   <h3 id="constructors">Constructors
   </h3>
   <a id="Butterfly_SqlServer_SqlServerDatabase__ctor_" data-uid="Butterfly.SqlServer.SqlServerDatabase.#ctor*"></a>

@@ -17,78 +17,87 @@ namespace Butterfly.Core.Database {
     /// Allows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; 
     /// creating dynamic views; and receiving data change events both on tables and dynamic views.
     /// </summary>
-    /// <remarks>
+    /// <example>
     /// Adding records and echoing all data change events to the console...<para/>
     /// <code>
-    ///     // Create database instance (will also read the schema from the database)
-    ///     var database = new SomeDatabase();
-    ///     
-    ///     // Listen for all database data events
-    ///     var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {
-    ///         console.WriteLine($"Low Level DataEventTransaction={dataEventTransaction}");
+    /// // Create database instance (will also read the schema from the database)
+    /// var database = new SomeDatabase();
+    /// 
+    /// // Listen for all database data events
+    /// var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {
+    ///     console.WriteLine($"Low Level DataEventTransaction={dataEventTransaction}");
+    /// });
+    /// 
+    /// // INSERT a couple of records (this will cause a single data even transaction with
+    /// // two INSERT data events to be written to the console above)
+    /// using (var transaction = database.BeginTransaction()) {
+    ///     await database.InsertAndCommitAsync("employee", values: new {
+    ///         department_id: 1,
+    ///         name: "SpongeBob"
     ///     });
-    ///     
-    ///     // INSERT a couple of records (this will cause a single data even transaction with
-    ///     // two INSERT data events to be written to the console above)
-    ///     using (var transaction = database.BeginTransaction()) {
-    ///         await database.InsertAndCommitAsync("employee", values: new {
-    ///             department_id: 1,
-    ///             name: "SpongeBob"
-    ///         });
-    ///         await database.InsertAndCommitAsync("employee", values: new {
-    ///             department_id: 1,
-    ///             name: "Squidward"
-    ///         });
-    ///         await database.CommitAsync();
-    ///     );
+    ///     await database.InsertAndCommitAsync("employee", values: new {
+    ///         department_id: 1,
+    ///         name: "Squidward"
+    ///     });
+    ///     await database.CommitAsync();
+    /// );
     /// </code>
     /// 
     /// Creating a DynamicView and echoing data change events on the DynamicView to the console...<para/>
     /// <code>
-    ///     // Create database instance (will also read the schema from the database)
-    ///     var database = new SomeDatabase();
-    ///     
-    ///     // Create a DynamicViewSet that print any data events to the console
-    ///     // (this will immediately echo an INITIAL data event for each existing matching record)
-    ///     var dynamicViewSet = database.CreateAndStartDynamicViewSet(
-    ///         "SELECT * FROM employee WHERE department_id=@departmentId", 
-    ///         new {
-    ///             departmentId = 1
-    ///         },
-    ///         dataEventTransaction => {
-    ///             Console.WriteLine(dataEventTransaction);
-    ///         }
-    ///     );
+    /// // Create database instance (will also read the schema from the database)
+    /// var database = new SomeDatabase();
     /// 
-    ///     // This will cause the above DynamicViewSet to echo an INSERT data event
-    ///     await database.InsertAndCommitAsync("employee", values: new {
-    ///         department_id: 1
-    ///         name: "Mr Crabs"
-    ///     });
-    ///     
-    ///     // This will NOT cause the above DynamicViewSet to echo an INSERT data event
-    ///     // (because the department_id doesn't match)
-    ///     await database.InsertAndCommitAsync("employee", values: new {
-    ///         department_id: 2
-    ///         name: "Patrick Star"
-    ///     });
+    /// // Create a DynamicViewSet that print any data events to the console
+    /// // (this will immediately echo an INITIAL data event for each existing matching record)
+    /// var dynamicViewSet = database.CreateAndStartDynamicViewSet(
+    ///     "SELECT * FROM employee WHERE department_id=@departmentId", 
+    ///     new {
+    ///         departmentId = 1
+    ///     },
+    ///     dataEventTransaction => {
+    ///         Console.WriteLine(dataEventTransaction);
+    ///     }
+    /// );
+    /// 
+    /// // This will cause the above DynamicViewSet to echo an INSERT data event
+    /// await database.InsertAndCommitAsync("employee", values: new {
+    ///     department_id: 1
+    ///     name: "Mr Crabs"
+    /// });
+    /// 
+    /// // This will NOT cause the above DynamicViewSet to echo an INSERT data event
+    /// // (because the department_id doesn't match)
+    /// await database.InsertAndCommitAsync("employee", values: new {
+    ///     department_id: 2
+    ///     name: "Patrick Star"
+    /// });
     /// </code>
-    /// </remarks>
+    /// </example>
     public interface IDatabase {
 
+        /// <summary>
+        /// Can this database perform JOINs
+        /// </summary>
         bool CanJoin { get;  }
 
+        /// <summary>
+        /// Can this database allow field aliases in SELECT statements
+        /// </summary>
         bool CanFieldAlias { get; }
 
+        /// <summary>
+        /// Count of the number of SELECT statements executed
+        /// </summary>
         int SelectCount { get; }
 
         /// <summary>
         /// Dictionary of <see cref="Table"/> instances keyed by name
         /// </summary>
-        Dictionary<string, Table> Tables { get; }
+        Dictionary<string, Table> TableByName { get; }
 
         /// <summary>
-        /// Creates database tables from an embedded resource file by internally calling <see cref="CreateFromText(string)"/> with the contents of the embedded resource file"
+        /// Creates database tables from an embedded resource file by internally calling <see cref="CreateFromSqlAsync(string)"/> with the contents of the embedded resource file"
         /// </summary>
         /// <param name="assembly"></param>
         /// <param name="resourceFile"></param>
@@ -100,8 +109,8 @@ namespace Butterfly.Core.Database {
         /// Lines beginning with <code>--</code> will be ignored. Each CREATE statement must include a PRIMARY KEY definition. If the table already exists, the CREATE statement is ignored.<para/>
         /// Creating database tables with this method is not required (primarily done as a convenience method for unit testing)"/>.
         /// </summary>
-        /// <param name="createStatements"></param>
-        Task CreateFromTextAsync(string createStatements);
+        /// <param name="sql"></param>
+        Task CreateFromSqlAsync(string sql);
 
         /// <summary>
         /// Adds a listener that is invoked when there is a new uncommitted transaction
@@ -131,35 +140,61 @@ namespace Butterfly.Core.Database {
         /// If a var is an array then references in the WHERE clause like <code>name=@name</code> will be rewritten as <code>1=2</code> when the array is empty, rewritten as <code>name='Bob'</code> when the array contains a single element 'Bob', and rewritten as <code>name IN ('Bob', 'Jim')</code> when the array contains elements 'Bob' and 'Jim'.<para/>
         /// </summary>
         /// <typeparam name="T">The return type of the single value returned</typeparam>
-        /// <param name="selectStatement">The SELECT statement to execute (may contain vars like @name specified in <paramref name="vars"/>)</param>
+        /// <param name="sql">The SELECT statement to execute (may contain vars like @name specified in <paramref name="vars"/>)</param>
         /// <param name="vars">Either an anonymous type or Dictionary with the vars used in the SELECT statement</param>
         /// <param name="defaultValue">The value to return if no rows were returned or the value of the first column of the first row is null</param>
         /// <returns>The value of the first column of the first row</returns>
-        Task<T> SelectValueAsync<T>(string selectStatement, dynamic vars = null, T defaultValue = default(T));
+        Task<T> SelectValueAsync<T>(string sql, dynamic vars = null, T defaultValue = default(T));
 
         /// <summary>
         /// Executes the SELECT statement and return the first row (the SELECT statement may contain vars like @name specified in <paramref name="vars"/>)
         /// </summary>
-        /// <param name="selectStatement">The SELECT statement to execute (may contain vars like @name specified in <paramref name="vars"/>)</param>
+        /// <param name="sql">The SELECT statement to execute (may contain vars like @name specified in <paramref name="vars"/>)</param>
         /// <param name="vars"></param>
         /// <returns></returns>
-        Task<Dict> SelectRowAsync(string selectStatement, dynamic vars = null);
+        Task<Dict> SelectRowAsync(string sql, dynamic vars = null);
 
         /// <summary>
         /// Executes the SELECT statement and return the rows (the SELECT statement may contain vars like @name specified in <paramref name="vars"/>)
         /// </summary>
-        /// <param name="selectStatement"></param>
+        /// <param name="sql"></param>
         /// <param name="vars"></param>
-        /// <param name="overrideLimit"></param>
+        /// <param name="limit"></param>
         /// <returns></returns>
-        Task<Dict[]> SelectRowsAsync(string selectStatement, dynamic vars = null, int overrideLimit = -1);
+        Task<Dict[]> SelectRowsAsync(string sql, dynamic vars = null, int limit = -1);
 
+        /// <summary>
+        /// Executes the SELECT statement and returns the rows
+        /// </summary>
+        /// <param name="statement"></param>
+        /// <param name="vars"></param>
+        /// <returns></returns>
         Task<Dict[]> SelectRowsAsync(SelectStatement statement, dynamic vars);
 
+        /// <summary>
+        /// Executes the stored procedure and return a single value
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="vars"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
         Task<T> QueryValueAsync<T>(string storedProcedureName, dynamic vars = null, T defaultValue = default(T));
 
+        /// <summary>
+        /// Executes the stored procedure and returns a single row
+        /// </summary>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="vars"></param>
+        /// <returns></returns>
         Task<Dict> QueryRowAsync(string storedProcedureName, dynamic vars = null);
 
+        /// <summary>
+        /// Executes the stored procedure and returns the rows
+        /// </summary>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="vars"></param>
+        /// <returns></returns>
         Task<Dict[]> QueryRowsAsync(string storedProcedureName, dynamic vars = null);
 
         /// <summary>
@@ -280,6 +315,10 @@ namespace Butterfly.Core.Database {
         /// <param name="tableName">An optional table name.  If not null, the getValue lambda is only applied to the specified table. If null, the getValue lambda is applied to all tables.</param>
         void SetOverrideValue(string fieldName, Func<string, object> getValue, string tableName = null);
 
+        /// <summary>
+        /// Adds an input preprocessor that converts the values in the Dictionary as needed
+        /// </summary>
+        /// <param name="inputPreprocessor"></param>
         void AddInputPreprocessor(Action<string, Dict> inputPreprocessor);
 
         /// <summary>
@@ -306,6 +345,14 @@ namespace Butterfly.Core.Database {
         /// <inheritdoc cref="CreateAndStartDynamicViewAsync(string, Action{DataEventTransaction}, dynamic, string, string[])"/>
         Task<DynamicViewSet> CreateAndStartDynamicViewAsync(string sql, Func<DataEventTransaction, Task> listener, dynamic values = null, string name = null, string[] keyFieldNames = null);
 
+        /// <summary>
+        /// Executes the <paramref name="selectStatement"/> and returns the results as an array of <see cref="DataEvent"/> instances
+        /// </summary>
+        /// <param name="dataEventName"></param>
+        /// <param name="keyFieldNames"></param>
+        /// <param name="selectStatement"></param>
+        /// <param name="statementParams"></param>
+        /// <returns></returns>
         Task<DataEvent[]> GetInitialDataEventsAsync(string dataEventName, string[] keyFieldNames, SelectStatement selectStatement, dynamic statementParams = null);
 
     }

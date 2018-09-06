@@ -213,9 +213,9 @@ namespace Butterfly.Core.Database.Dynamic {
             foreach (StatementFromRef statementFromRef in this.selectStatement.StatementFromRefs) {
                 StringBuilder sb = new StringBuilder();
                 if (statementFromRef == selectedStatementFromRef) {
-                    Dict primaryKeyValues = BaseDatabase.ParseKeyValue(keyValueDataEvent.keyValue, this.dynamicViewSet.Database.Tables[keyValueDataEvent.name].Indexes[0].FieldNames);
+                    Dict primaryKeyValues = BaseDatabase.ParseKeyValue(keyValueDataEvent.keyValue, this.dynamicViewSet.Database.TableByName[keyValueDataEvent.name].Indexes[0].FieldNames);
 
-                    foreach (var fieldName in this.dynamicViewSet.Database.Tables[keyValueDataEvent.name].Indexes[0].FieldNames) {
+                    foreach (var fieldName in this.dynamicViewSet.Database.TableByName[keyValueDataEvent.name].Indexes[0].FieldNames) {
                         logger.Trace($"GetImpactedRecordsAsync():tableName={statementFromRef.table.Name},fieldName={fieldName}");
 
                         string prefix;

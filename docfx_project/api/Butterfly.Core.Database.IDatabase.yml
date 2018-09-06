@@ -15,7 +15,7 @@ items:
   - Butterfly.Core.Database.IDatabase.CreateDynamicViewSet(Action{Butterfly.Core.Database.Event.DataEventTransaction})
   - Butterfly.Core.Database.IDatabase.CreateDynamicViewSet(Func{Butterfly.Core.Database.Event.DataEventTransaction,Task})
   - Butterfly.Core.Database.IDatabase.CreateFromResourceFileAsync(Assembly,System.String)
-  - Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)
+  - Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
   - Butterfly.Core.Database.IDatabase.DeleteAndCommitAsync(System.String,System.Object)
   - Butterfly.Core.Database.IDatabase.GetInitialDataEventsAsync(System.String,System.String[],Butterfly.Core.Database.SelectStatement,System.Object)
   - Butterfly.Core.Database.IDatabase.InsertAndCommitAsync``1(System.String,System.Object,System.Boolean)
@@ -33,7 +33,7 @@ items:
   - Butterfly.Core.Database.IDatabase.SelectValueAsync``1(System.String,System.Object,``0)
   - Butterfly.Core.Database.IDatabase.SetDefaultValue(System.String,Func{System.String,System.Object},System.String)
   - Butterfly.Core.Database.IDatabase.SetOverrideValue(System.String,Func{System.String,System.Object},System.String)
-  - Butterfly.Core.Database.IDatabase.Tables
+  - Butterfly.Core.Database.IDatabase.TableByName
   - Butterfly.Core.Database.IDatabase.UpdateAndCommitAsync(System.String,System.Object)
   langs:
   - csharp
@@ -54,8 +54,8 @@ items:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   summary: "\nAllows executing SELECT statements, creating transactions to execute INSERT, UPDATE, and DELETE statements; \ncreating dynamic views; and receiving data change events both on tables and dynamic views.\n"
-  remarks: "\nAdding records and echoing all data change events to the console...<p></p>\n<pre><code>    // Create database instance (will also read the schema from the database)\n    var database = new SomeDatabase();\n\n    // Listen for all database data events\n    var databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {\n        console.WriteLine($&quot;Low Level DataEventTransaction={dataEventTransaction}&quot;);\n    });\n\n    // INSERT a couple of records (this will cause a single data even transaction with\n    // two INSERT data events to be written to the console above)\n    using (var transaction = database.BeginTransaction()) {\n        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n            department_id: 1,\n            name: &quot;SpongeBob&quot;\n        });\n        await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n            department_id: 1,\n            name: &quot;Squidward&quot;\n        });\n        await database.CommitAsync();\n    );</code></pre>\n\nCreating a DynamicView and echoing data change events on the DynamicView to the console...<p></p>\n<pre><code>    // Create database instance (will also read the schema from the database)\n    var database = new SomeDatabase();\n\n    // Create a DynamicViewSet that print any data events to the console\n    // (this will immediately echo an INITIAL data event for each existing matching record)\n    var dynamicViewSet = database.CreateAndStartDynamicViewSet(\n        &quot;SELECT * FROM employee WHERE department_id=@departmentId&quot;, \n        new {\n            departmentId = 1\n        },\n        dataEventTransaction => {\n            Console.WriteLine(dataEventTransaction);\n        }\n    );\n\n    // This will cause the above DynamicViewSet to echo an INSERT data event\n    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n        department_id: 1\n        name: &quot;Mr Crabs&quot;\n    });\n\n    // This will NOT cause the above DynamicViewSet to echo an INSERT data event\n    // (because the department_id doesn&apos;t match)\n    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n        department_id: 2\n        name: &quot;Patrick Star&quot;\n    });</code></pre>\n"
-  example: []
+  example:
+  - "\nAdding records and echoing all data change events to the console...<p></p>\n<pre><code>// Create database instance (will also read the schema from the database)\nvar database = new SomeDatabase();\n\n// Listen for all database data events\nvar databaseListener = database.OnNewCommittedTransaction(dataEventTransaction => {\n    console.WriteLine($&quot;Low Level DataEventTransaction={dataEventTransaction}&quot;);\n});\n\n// INSERT a couple of records (this will cause a single data even transaction with\n// two INSERT data events to be written to the console above)\nusing (var transaction = database.BeginTransaction()) {\n    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n        department_id: 1,\n        name: &quot;SpongeBob&quot;\n    });\n    await database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n        department_id: 1,\n        name: &quot;Squidward&quot;\n    });\n    await database.CommitAsync();\n);</code></pre>\n\nCreating a DynamicView and echoing data change events on the DynamicView to the console...<p></p>\n<pre><code>// Create database instance (will also read the schema from the database)\nvar database = new SomeDatabase();\n\n// Create a DynamicViewSet that print any data events to the console\n// (this will immediately echo an INITIAL data event for each existing matching record)\nvar dynamicViewSet = database.CreateAndStartDynamicViewSet(\n    &quot;SELECT * FROM employee WHERE department_id=@departmentId&quot;, \n    new {\n        departmentId = 1\n    },\n    dataEventTransaction => {\n        Console.WriteLine(dataEventTransaction);\n    }\n);\n\n// This will cause the above DynamicViewSet to echo an INSERT data event\nawait database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n    department_id: 1\n    name: &quot;Mr Crabs&quot;\n});\n\n// This will NOT cause the above DynamicViewSet to echo an INSERT data event\n// (because the department_id doesn&apos;t match)\nawait database.InsertAndCommitAsync(&quot;employee&quot;, values: new {\n    department_id: 2\n    name: &quot;Patrick Star&quot;\n});</code></pre>\n"
   syntax:
     content: public interface IDatabase
     content.vb: Public Interface IDatabase
@@ -83,10 +83,12 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CanJoin
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 78
+    startLine: 81
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
+  summary: "\nCan this database perform JOINs\n"
+  example: []
   syntax:
     content: bool CanJoin { get; }
     parameters: []
@@ -116,10 +118,12 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CanFieldAlias
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 80
+    startLine: 86
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
+  summary: "\nCan this database allow field aliases in SELECT statements\n"
+  example: []
   syntax:
     content: bool CanFieldAlias { get; }
     parameters: []
@@ -149,10 +153,12 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SelectCount
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 82
+    startLine: 91
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
+  summary: "\nCount of the number of SELECT statements executed\n"
+  example: []
   syntax:
     content: int SelectCount { get; }
     parameters: []
@@ -164,37 +170,37 @@ items:
   - get
   modifiers.vb:
   - ReadOnly
-- uid: Butterfly.Core.Database.IDatabase.Tables
-  commentId: P:Butterfly.Core.Database.IDatabase.Tables
-  id: Tables
+- uid: Butterfly.Core.Database.IDatabase.TableByName
+  commentId: P:Butterfly.Core.Database.IDatabase.TableByName
+  id: TableByName
   parent: Butterfly.Core.Database.IDatabase
   langs:
   - csharp
   - vb
-  name: Tables
-  nameWithType: IDatabase.Tables
-  fullName: Butterfly.Core.Database.IDatabase.Tables
+  name: TableByName
+  nameWithType: IDatabase.TableByName
+  fullName: Butterfly.Core.Database.IDatabase.TableByName
   type: Property
   source:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
-    id: Tables
+    id: TableByName
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 87
+    startLine: 96
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   summary: "\nDictionary of <xref href=\"Butterfly.Core.Database.Table\" data-throw-if-not-resolved=\"false\"></xref> instances keyed by name\n"
   example: []
   syntax:
-    content: Dictionary<string, Table> Tables { get; }
+    content: Dictionary<string, Table> TableByName { get; }
     parameters: []
     return:
       type: Dictionary{System.String,Butterfly.Core.Database.Table}
-    content.vb: ReadOnly Property Tables As Dictionary(Of String, Table)
-  overload: Butterfly.Core.Database.IDatabase.Tables*
+    content.vb: ReadOnly Property TableByName As Dictionary(Of String, Table)
+  overload: Butterfly.Core.Database.IDatabase.TableByName*
   modifiers.csharp:
   - get
   modifiers.vb:
@@ -217,11 +223,11 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateFromResourceFileAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 95
+    startLine: 104
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
-  summary: "\nCreates database tables from an embedded resource file by internally calling <see cref=\"!:CreateFromText(string)\"></see> with the contents of the embedded resource file&quot;\n"
+  summary: "\nCreates database tables from an embedded resource file by internally calling <xref href=\"Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)\" data-throw-if-not-resolved=\"false\"></xref> with the contents of the embedded resource file&quot;\n"
   example: []
   syntax:
     content: Task CreateFromResourceFileAsync(Assembly assembly, string resourceFile)
@@ -237,40 +243,40 @@ items:
       description: ''
     content.vb: Function CreateFromResourceFileAsync(assembly As Assembly, resourceFile As String) As Task
   overload: Butterfly.Core.Database.IDatabase.CreateFromResourceFileAsync*
-- uid: Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)
-  commentId: M:Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)
-  id: CreateFromTextAsync(System.String)
+- uid: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
+  commentId: M:Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
+  id: CreateFromSqlAsync(System.String)
   parent: Butterfly.Core.Database.IDatabase
   langs:
   - csharp
   - vb
-  name: CreateFromTextAsync(String)
-  nameWithType: IDatabase.CreateFromTextAsync(String)
-  fullName: Butterfly.Core.Database.IDatabase.CreateFromTextAsync(System.String)
+  name: CreateFromSqlAsync(String)
+  nameWithType: IDatabase.CreateFromSqlAsync(String)
+  fullName: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
   type: Method
   source:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
-    id: CreateFromTextAsync
+    id: CreateFromSqlAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 103
+    startLine: 112
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   summary: "\nCreates database tables from a string containing a semicolon delimited series of CREATE statements in MySQL format (will be converted to native database format as appropriate).<p></p>\nLines beginning with <pre><code>--</code></pre> will be ignored. Each CREATE statement must include a PRIMARY KEY definition. If the table already exists, the CREATE statement is ignored.<p></p>\nCreating database tables with this method is not required (primarily done as a convenience method for unit testing)&quot;/>.\n"
   example: []
   syntax:
-    content: Task CreateFromTextAsync(string createStatements)
+    content: Task CreateFromSqlAsync(string sql)
     parameters:
-    - id: createStatements
+    - id: sql
       type: System.String
       description: ''
     return:
       type: Task
-    content.vb: Function CreateFromTextAsync(createStatements As String) As Task
-  overload: Butterfly.Core.Database.IDatabase.CreateFromTextAsync*
+    content.vb: Function CreateFromSqlAsync(sql As String) As Task
+  overload: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync*
 - uid: Butterfly.Core.Database.IDatabase.OnNewUncommittedTransaction(Action{Butterfly.Core.Database.Event.DataEventTransaction})
   commentId: M:Butterfly.Core.Database.IDatabase.OnNewUncommittedTransaction(Action{Butterfly.Core.Database.Event.DataEventTransaction})
   id: OnNewUncommittedTransaction(Action{Butterfly.Core.Database.Event.DataEventTransaction})
@@ -289,7 +295,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnNewUncommittedTransaction
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 110
+    startLine: 119
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -327,7 +333,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnNewUncommittedTransaction
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 113
+    startLine: 122
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -362,7 +368,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnNewCommittedTransaction
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 120
+    startLine: 129
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -400,7 +406,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnNewCommittedTransaction
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 123
+    startLine: 132
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -435,16 +441,16 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SelectValueAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 137
+    startLine: 146
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   summary: "\nExecutes the SELECT statement and return the value of the first column of the first row (the SELECT statement may contain vars like @name specified in <code data-dev-comment-type=\"paramref\" class=\"paramref\">vars</code>).<p></p>\n<p></p>\nIf a var is null then references in the WHERE clause like <pre><code>name=@name</code></pre> will be rewritten as <pre><code>name IS NULL</code></pre> and references in the WHERE clause like <pre><code>name!=@name</code></pre> will be rewritten as <pre><code>name IS NOT NULL</code></pre>.<p></p>\n<p></p>\nIf a var is an array then references in the WHERE clause like <pre><code>name=@name</code></pre> will be rewritten as <pre><code>1=2</code></pre> when the array is empty, rewritten as <pre><code>name=&apos;Bob&apos;</code></pre> when the array contains a single element &apos;Bob&apos;, and rewritten as <pre><code>name IN (&apos;Bob&apos;, &apos;Jim&apos;)</code></pre> when the array contains elements &apos;Bob&apos; and &apos;Jim&apos;.<p></p>\n"
   example: []
   syntax:
-    content: Task<T> SelectValueAsync<T>(string selectStatement, dynamic vars = null, T defaultValue = null)
+    content: Task<T> SelectValueAsync<T>(string sql, dynamic vars = null, T defaultValue = null)
     parameters:
-    - id: selectStatement
+    - id: sql
       type: System.String
       description: The SELECT statement to execute (may contain vars like @name specified in <code data-dev-comment-type="paramref" class="paramref">vars</code>)
     - id: vars
@@ -459,7 +465,7 @@ items:
     return:
       type: Task{{T}}
       description: The value of the first column of the first row
-    content.vb: Function SelectValueAsync(Of T)(selectStatement As String, vars As Object = Nothing, defaultValue As T = Nothing) As Task(Of T)
+    content.vb: Function SelectValueAsync(Of T)(sql As String, vars As Object = Nothing, defaultValue As T = Nothing) As Task(Of T)
   overload: Butterfly.Core.Database.IDatabase.SelectValueAsync*
   nameWithType.vb: IDatabase.SelectValueAsync(Of T)(String, Object, T)
   fullName.vb: Butterfly.Core.Database.IDatabase.SelectValueAsync(Of T)(System.String, System.Object, T)
@@ -482,16 +488,16 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SelectRowAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 145
+    startLine: 154
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   summary: "\nExecutes the SELECT statement and return the first row (the SELECT statement may contain vars like @name specified in <code data-dev-comment-type=\"paramref\" class=\"paramref\">vars</code>)\n"
   example: []
   syntax:
-    content: Task<System.Collections.Generic.Dictionary<string, object>> SelectRowAsync(string selectStatement, dynamic vars = null)
+    content: Task<System.Collections.Generic.Dictionary<string, object>> SelectRowAsync(string sql, dynamic vars = null)
     parameters:
-    - id: selectStatement
+    - id: sql
       type: System.String
       description: The SELECT statement to execute (may contain vars like @name specified in <code data-dev-comment-type="paramref" class="paramref">vars</code>)
     - id: vars
@@ -500,7 +506,7 @@ items:
     return:
       type: Task{System.Collections.Generic.Dictionary{System.String,System.Object}}
       description: ''
-    content.vb: Function SelectRowAsync(selectStatement As String, vars As Object = Nothing) As Task(Of System.Collections.Generic.Dictionary(Of String, Object))
+    content.vb: Function SelectRowAsync(sql As String, vars As Object = Nothing) As Task(Of System.Collections.Generic.Dictionary(Of String, Object))
   overload: Butterfly.Core.Database.IDatabase.SelectRowAsync*
 - uid: Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)
   commentId: M:Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)
@@ -520,28 +526,28 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SelectRowsAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 154
+    startLine: 163
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   summary: "\nExecutes the SELECT statement and return the rows (the SELECT statement may contain vars like @name specified in <code data-dev-comment-type=\"paramref\" class=\"paramref\">vars</code>)\n"
   example: []
   syntax:
-    content: Task<System.Collections.Generic.Dictionary<string, object>[]> SelectRowsAsync(string selectStatement, dynamic vars = null, int overrideLimit = null)
+    content: Task<System.Collections.Generic.Dictionary<string, object>[]> SelectRowsAsync(string sql, dynamic vars = null, int limit = null)
     parameters:
-    - id: selectStatement
+    - id: sql
       type: System.String
       description: ''
     - id: vars
       type: System.Object
       description: ''
-    - id: overrideLimit
+    - id: limit
       type: System.Int32
       description: ''
     return:
       type: Task{System.Collections.Generic.Dictionary{System.String,System.Object}[]}
       description: ''
-    content.vb: Function SelectRowsAsync(selectStatement As String, vars As Object = Nothing, overrideLimit As Integer = Nothing) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
+    content.vb: Function SelectRowsAsync(sql As String, vars As Object = Nothing, limit As Integer = Nothing) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
   overload: Butterfly.Core.Database.IDatabase.SelectRowsAsync*
 - uid: Butterfly.Core.Database.IDatabase.SelectRowsAsync(Butterfly.Core.Database.SelectStatement,System.Object)
   commentId: M:Butterfly.Core.Database.IDatabase.SelectRowsAsync(Butterfly.Core.Database.SelectStatement,System.Object)
@@ -561,19 +567,24 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SelectRowsAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 156
+    startLine: 171
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
+  summary: "\nExecutes the SELECT statement and returns the rows\n"
+  example: []
   syntax:
     content: Task<System.Collections.Generic.Dictionary<string, object>[]> SelectRowsAsync(SelectStatement statement, dynamic vars)
     parameters:
     - id: statement
       type: Butterfly.Core.Database.SelectStatement
+      description: ''
     - id: vars
       type: System.Object
+      description: ''
     return:
       type: Task{System.Collections.Generic.Dictionary{System.String,System.Object}[]}
+      description: ''
     content.vb: Function SelectRowsAsync(statement As SelectStatement, vars As Object) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
   overload: Butterfly.Core.Database.IDatabase.SelectRowsAsync*
 - uid: Butterfly.Core.Database.IDatabase.QueryValueAsync``1(System.String,System.Object,``0)
@@ -594,23 +605,30 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: QueryValueAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 158
+    startLine: 181
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
+  summary: "\nExecutes the stored procedure and return a single value\n"
+  example: []
   syntax:
     content: Task<T> QueryValueAsync<T>(string storedProcedureName, dynamic vars = null, T defaultValue = null)
     parameters:
     - id: storedProcedureName
       type: System.String
+      description: ''
     - id: vars
       type: System.Object
+      description: ''
     - id: defaultValue
       type: '{T}'
+      description: ''
     typeParameters:
     - id: T
+      description: ''
     return:
       type: Task{{T}}
+      description: ''
     content.vb: Function QueryValueAsync(Of T)(storedProcedureName As String, vars As Object = Nothing, defaultValue As T = Nothing) As Task(Of T)
   overload: Butterfly.Core.Database.IDatabase.QueryValueAsync*
   nameWithType.vb: IDatabase.QueryValueAsync(Of T)(String, Object, T)
@@ -634,19 +652,24 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: QueryRowAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 160
+    startLine: 189
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
+  summary: "\nExecutes the stored procedure and returns a single row\n"
+  example: []
   syntax:
     content: Task<System.Collections.Generic.Dictionary<string, object>> QueryRowAsync(string storedProcedureName, dynamic vars = null)
     parameters:
     - id: storedProcedureName
       type: System.String
+      description: ''
     - id: vars
       type: System.Object
+      description: ''
     return:
       type: Task{System.Collections.Generic.Dictionary{System.String,System.Object}}
+      description: ''
     content.vb: Function QueryRowAsync(storedProcedureName As String, vars As Object = Nothing) As Task(Of System.Collections.Generic.Dictionary(Of String, Object))
   overload: Butterfly.Core.Database.IDatabase.QueryRowAsync*
 - uid: Butterfly.Core.Database.IDatabase.QueryRowsAsync(System.String,System.Object)
@@ -667,19 +690,24 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: QueryRowsAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 162
+    startLine: 197
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
+  summary: "\nExecutes the stored procedure and returns the rows\n"
+  example: []
   syntax:
     content: Task<System.Collections.Generic.Dictionary<string, object>[]> QueryRowsAsync(string storedProcedureName, dynamic vars = null)
     parameters:
     - id: storedProcedureName
       type: System.String
+      description: ''
     - id: vars
       type: System.Object
+      description: ''
     return:
       type: Task{System.Collections.Generic.Dictionary{System.String,System.Object}[]}
+      description: ''
     content.vb: Function QueryRowsAsync(storedProcedureName As String, vars As Object = Nothing) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
   overload: Butterfly.Core.Database.IDatabase.QueryRowsAsync*
 - uid: Butterfly.Core.Database.IDatabase.InsertAndCommitAsync``1(System.String,System.Object,System.Boolean)
@@ -700,7 +728,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: InsertAndCommitAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 197
+    startLine: 232
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -747,7 +775,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: UpdateAndCommitAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 227
+    startLine: 262
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -786,7 +814,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DeleteAndCommitAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 255
+    startLine: 290
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -825,7 +853,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: BeginTransaction
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 261
+    startLine: 296
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -856,7 +884,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: BeginTransactionAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 264
+    startLine: 299
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -885,7 +913,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SetDefaultValue
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 272
+    startLine: 307
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -926,7 +954,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SetOverrideValue
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 280
+    startLine: 315
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -967,15 +995,18 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: AddInputPreprocessor
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 282
+    startLine: 321
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
+  summary: "\nAdds an input preprocessor that converts the values in the Dictionary as needed\n"
+  example: []
   syntax:
     content: void AddInputPreprocessor(Action<string, System.Collections.Generic.Dictionary<string, object>> inputPreprocessor)
     parameters:
     - id: inputPreprocessor
       type: Action{System.String,System.Collections.Generic.Dictionary{System.String,System.Object}}
+      description: ''
     content.vb: Sub AddInputPreprocessor(inputPreprocessor As Action(Of String, System.Collections.Generic.Dictionary(Of String, Object)))
   overload: Butterfly.Core.Database.IDatabase.AddInputPreprocessor*
   nameWithType.vb: IDatabase.AddInputPreprocessor(Action(Of String, System.Collections.Generic.Dictionary(Of String, Object)))
@@ -999,7 +1030,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateDynamicViewSet
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 289
+    startLine: 328
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1037,7 +1068,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateDynamicViewSet
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 292
+    startLine: 331
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1072,7 +1103,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateAndStartDynamicViewAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 303
+    startLine: 342
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1122,7 +1153,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateAndStartDynamicViewAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 306
+    startLine: 345
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1165,23 +1196,30 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: GetInitialDataEventsAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 308
+    startLine: 355
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
+  summary: "\nExecutes the <code data-dev-comment-type=\"paramref\" class=\"paramref\">selectStatement</code> and returns the results as an array of <xref href=\"Butterfly.Core.Database.Event.DataEvent\" data-throw-if-not-resolved=\"false\"></xref> instances\n"
+  example: []
   syntax:
     content: Task<DataEvent[]> GetInitialDataEventsAsync(string dataEventName, string[] keyFieldNames, SelectStatement selectStatement, dynamic statementParams = null)
     parameters:
     - id: dataEventName
       type: System.String
+      description: ''
     - id: keyFieldNames
       type: System.String[]
+      description: ''
     - id: selectStatement
       type: Butterfly.Core.Database.SelectStatement
+      description: ''
     - id: statementParams
       type: System.Object
+      description: ''
     return:
       type: Task{Butterfly.Core.Database.Event.DataEvent[]}
+      description: ''
     content.vb: Function GetInitialDataEventsAsync(dataEventName As String, keyFieldNames As String(), selectStatement As SelectStatement, statementParams As Object = Nothing) As Task(Of DataEvent())
   overload: Butterfly.Core.Database.IDatabase.GetInitialDataEventsAsync*
   nameWithType.vb: IDatabase.GetInitialDataEventsAsync(String, String(), SelectStatement, Object)
@@ -1224,11 +1262,11 @@ references:
   name: Table
   nameWithType: Table
   fullName: Butterfly.Core.Database.Table
-- uid: Butterfly.Core.Database.IDatabase.Tables*
-  commentId: Overload:Butterfly.Core.Database.IDatabase.Tables
-  name: Tables
-  nameWithType: IDatabase.Tables
-  fullName: Butterfly.Core.Database.IDatabase.Tables
+- uid: Butterfly.Core.Database.IDatabase.TableByName*
+  commentId: Overload:Butterfly.Core.Database.IDatabase.TableByName
+  name: TableByName
+  nameWithType: IDatabase.TableByName
+  fullName: Butterfly.Core.Database.IDatabase.TableByName
 - uid: Dictionary{System.String,Butterfly.Core.Database.Table}
   commentId: '!:Dictionary{System.String,Butterfly.Core.Database.Table}'
   definition: Dictionary`2
@@ -1336,6 +1374,45 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
+  commentId: M:Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
+  parent: Butterfly.Core.Database.IDatabase
+  isExternal: true
+  name: CreateFromSqlAsync(String)
+  nameWithType: IDatabase.CreateFromSqlAsync(String)
+  fullName: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
+  spec.csharp:
+  - uid: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
+    name: CreateFromSqlAsync
+    nameWithType: IDatabase.CreateFromSqlAsync
+    fullName: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync(System.String)
+    name: CreateFromSqlAsync
+    nameWithType: IDatabase.CreateFromSqlAsync
+    fullName: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Butterfly.Core.Database.IDatabase.CreateFromResourceFileAsync*
   commentId: Overload:Butterfly.Core.Database.IDatabase.CreateFromResourceFileAsync
   name: CreateFromResourceFileAsync
@@ -1356,11 +1433,17 @@ references:
   name: Task
   nameWithType: Task
   fullName: Task
-- uid: Butterfly.Core.Database.IDatabase.CreateFromTextAsync*
-  commentId: Overload:Butterfly.Core.Database.IDatabase.CreateFromTextAsync
-  name: CreateFromTextAsync
-  nameWithType: IDatabase.CreateFromTextAsync
-  fullName: Butterfly.Core.Database.IDatabase.CreateFromTextAsync
+- uid: Butterfly.Core.Database.IDatabase
+  commentId: T:Butterfly.Core.Database.IDatabase
+  parent: Butterfly.Core.Database
+  name: IDatabase
+  nameWithType: IDatabase
+  fullName: Butterfly.Core.Database.IDatabase
+- uid: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync*
+  commentId: Overload:Butterfly.Core.Database.IDatabase.CreateFromSqlAsync
+  name: CreateFromSqlAsync
+  nameWithType: IDatabase.CreateFromSqlAsync
+  fullName: Butterfly.Core.Database.IDatabase.CreateFromSqlAsync
 - uid: Butterfly.Core.Database.Event.DataEventTransaction
   commentId: T:Butterfly.Core.Database.Event.DataEventTransaction
   parent: Butterfly.Core.Database.Event
@@ -2333,6 +2416,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Butterfly.Core.Database.Event.DataEvent
+  commentId: T:Butterfly.Core.Database.Event.DataEvent
+  parent: Butterfly.Core.Database.Event
+  name: DataEvent
+  nameWithType: DataEvent
+  fullName: Butterfly.Core.Database.Event.DataEvent
 - uid: Butterfly.Core.Database.IDatabase.GetInitialDataEventsAsync*
   commentId: Overload:Butterfly.Core.Database.IDatabase.GetInitialDataEventsAsync
   name: GetInitialDataEventsAsync
