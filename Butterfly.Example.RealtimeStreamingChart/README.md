@@ -1,6 +1,6 @@
-# Butterfly Server .NET - Todo Example
+# Butterfly Server .NET - Real-time Streaming Chart Example
 
-> A simple Todo app built using Vue / Vuetify on the client
+> A simple real-time streaming chart app built using Smoothie Charts on the client
 
 # Demo
 
@@ -12,7 +12,7 @@
 git clone https://github.com/firesharkstudios/butterfly-server-dotnet
 ```
 
-# Run the Server
+# Run It
 
 To run in *Visual Studio*...
 - Open *Butterfly.sln*
@@ -27,4 +27,6 @@ dotnet run -vm
 You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Todo/Program.cs).
 
 This will open a browser to http://localhost:8000/.
+
+This is based on [Smoothie Charts Tutorial](http://smoothiecharts.org/tutorial.html) but changes the example to receive the real-time data from [Butterfly Server .NET](https://butterflyserver.io).
 
