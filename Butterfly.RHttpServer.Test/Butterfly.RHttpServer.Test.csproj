@@ -10,11 +10,13 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.3.2" />
     <PackageReference Include="MSTest.TestFramework" Version="1.3.2" />
+    <PackageReference Include="RHttpServer" Version="3.5.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Butterfly.Core.Test\Butterfly.Core.Test.csproj" />
     <ProjectReference Include="..\Butterfly.Core\Butterfly.Core.csproj" />
+    <ProjectReference Include="..\Butterfly.RHttpServer\Butterfly.RHttpServer.csproj" />
   </ItemGroup>
 
 </Project>

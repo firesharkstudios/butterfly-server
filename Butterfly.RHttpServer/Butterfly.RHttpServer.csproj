@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="RHttpServer" Version="3.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Butterfly.Core\Butterfly.Core.csproj" />
-    <ProjectReference Include="..\Red\src\RedHttpServer\RedHttpServer.csproj" />
   </ItemGroup>
 
 </Project>

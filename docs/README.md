@@ -933,14 +933,15 @@ sudo dotnet run /opt/chat/www
 
 # Similar Projects
 
-- [dotNetify](https://github.com/dsuryd/dotNetify)
-- [SignalR](https://github.com/SignalR/SignalR)
-- [SignalW](https://github.com/Spreads/SignalW)
 - [Cettia](https://cettia.io/)
+- [dotNetify](https://github.com/dsuryd/dotNetify)
+- [FeatherJS](https://feathersjs.com/)
 - [Firehose](http://firehose.io/)
-- [Pusher](https://pusher.com/)
 - [Meteor](https://www.meteor.com/)
 - [PubNub](https://www.pubnub.com/)
+- [Pusher](https://pusher.com/)
+- [SignalR](https://github.com/SignalR/SignalR)
+- [SignalW](https://github.com/Spreads/SignalW)
 
 # Wishlist
 
@@ -966,7 +967,9 @@ Add support for the following clients...
 - React
 - React Native
 - Angular
+- UWP
 - WinForms
+- Android
 - Flutter
 - Swift
 
@@ -974,11 +977,12 @@ Add support for the following clients...
 
 Add examples that show...
 
-- How to install on *Raspberry Pi*
-- How to do authentication
+- Getting real-time data from a  *Raspberry Pi*
 
 ## Other Stuff
 
+- Rework custom transactions to use System.Transactions namespace
+- Splitout transport (WebSocket, long polling, etc) from subscription logic in Butterfly.Core.Channel
 - Add performance benchmarks
 - Add documentation for *Butterfly.Auth*
 - Add documentation for *Butterfly.Notify*
