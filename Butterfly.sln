@@ -114,6 +114,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Todo", "B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.RealtimeStreamingChart", "Butterfly.Example.RealtimeStreamingChart\Butterfly.Example.RealtimeStreamingChart.csproj", "{9EE371DF-481C-4403-8EB4-D2F49490A9BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Postgres.Test", "Butterfly.Postgres.Test\Butterfly.Postgres.Test.csproj", "{13E7A3B0-1413-49BC-A7BB-646D4029C5D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -206,13 +208,17 @@ Global
 		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13E7A3B0-1413-49BC-A7BB-646D4029C5D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13E7A3B0-1413-49BC-A7BB-646D4029C5D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13E7A3B0-1413-49BC-A7BB-646D4029C5D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13E7A3B0-1413-49BC-A7BB-646D4029C5D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_BuildVersioningStyle = None.None.None.Increment
-		BuildVersion_StartDate = 2000/1/1
 		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
+		BuildVersion_StartDate = 2000/1/1
+		BuildVersion_BuildVersioningStyle = None.None.None.Increment
 	EndGlobalSection
 EndGlobal
