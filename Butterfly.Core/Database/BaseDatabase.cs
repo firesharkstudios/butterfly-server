@@ -385,7 +385,8 @@ namespace Butterfly.Core.Database {
             else if (typeText.Equals("DOUBLE", StringComparison.OrdinalIgnoreCase)) {
                 type = typeof(double);
             }
-            else if (typeText.Equals("DATETIME", StringComparison.OrdinalIgnoreCase)) {
+            else if ((typeText.Equals("DATETIME", StringComparison.OrdinalIgnoreCase)) ||
+										 (typeText.Equals("TIMESTAMP", StringComparison.OrdinalIgnoreCase))) {
                 type = typeof(DateTime);
             }
             else {

@@ -15,71 +15,92 @@ using NLog;
 using Butterfly.Core.Database;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
+using NpgsqlTypes;
 
-namespace Butterfly.Postgres {
+namespace Butterfly.Postgres
+{
+		/// <inheritdoc/>
+		public class PostgresDatabase : BaseDatabase
+		{
 
-    /// <inheritdoc/>
-    public class PostgresDatabase : BaseDatabase {
+				private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+				public PostgresDatabase(string connectionString) : base(connectionString)
+				{
+				}
 
-        public PostgresDatabase(string connectionString) : base(connectionString) {
-        }
+				public override bool CanJoin => true;
 
-        public override bool CanJoin => true;
+				public override bool CanFieldAlias => true;
 
-        public override bool CanFieldAlias => true;
+				protected override async Task LoadSchemaAsync()
+				{
+						string commandText = "SELECT table_name FROM information_schema.tables WHERE table_schema='public'";
 
-        protected override async Task LoadSchemaAsync() {
-            string commandText = "SELECT table_name FROM information_schema.tables WHERE table_schema='public'";
-            using (var connection = new NpgsqlConnection(this.ConnectionString)) {
-                connection.Open();
-                var command = new NpgsqlCommand(commandText, connection);
-                using (var reader = command.ExecuteReader()) {
-                    while (reader.Read()) {
-                        string tableName = reader[0].ToString();
-                        Table table = await this.LoadTableSchemaAsync(tableName);
-                        this.tableByName[table.Name] = table;
-                    }
-                }
-            }
-        }
+						var result = await ExecuteCommandAsync<int>(async c =>
+						{
+								using (var reader = await c.ExecuteReaderAsync())
+								{
+										while (reader.Read())
+										{
+												string tableName = reader[0].ToString();
+												Table table = await this.LoadTableSchemaAsync(tableName);
+												this.tableByName[table.Name] = table;
+										}
+								}
 
-        protected override async Task<Table> LoadTableSchemaAsync(string tableName) {
-            TableFieldDef[] fieldDefs = await this.GetFieldDefs(tableName);
-            TableIndex[] uniqueIndexes = this.GetUniqueIndexes(tableName);
-            return new Table(tableName, fieldDefs, uniqueIndexes);
-        }
+								return tableByName.Count;
+						}, commandText);
+				}
 
-        protected async Task<TableFieldDef[]> GetFieldDefs(string tableName) {
-            List<TableFieldDef> fields = new List<TableFieldDef>();
-            string commandText = $"select column_name, data_type, character_maximum_length, is_nullable, column_default from INFORMATION_SCHEMA.COLUMNS where table_name = @tableName";
-            using (var connection = new NpgsqlConnection(this.ConnectionString)) {
-                connection.Open();
-                var command = new NpgsqlCommand(commandText, connection);
-                command.Parameters.AddWithValue("tableName", tableName);
-                using (var reader = await command.ExecuteReaderAsync()) {
-                    while (reader.Read()) {
-                        string name = reader[0].ToString();
-                        string typeText = reader[1].ToString();
-                        string maxLengthText = reader[2].ToString();
-                        string allowNullText = reader[3].ToString();
-                        string defaultText = reader[4].ToString();
+				protected override async Task<Table> LoadTableSchemaAsync(string tableName)
+				{
+						TableFieldDef[] fieldDefs = await this.GetFieldDefsAsync(tableName);
+						TableIndex[] uniqueIndexes = await this.GetUniqueIndexesAsync(tableName);
+						return new Table(tableName, fieldDefs, uniqueIndexes);
+				}
 
-                        if (!int.TryParse(maxLengthText, out int maxLength)) maxLength = -1;
-                        bool allowNull = allowNullText.Equals("YES", StringComparison.OrdinalIgnoreCase);
-                        bool isAutoIncrement = defaultText.StartsWith("NEXTVAL(", StringComparison.OrdinalIgnoreCase);
-                        (Type type, _) = ConvertType(typeText);
-                        fields.Add(new TableFieldDef(name, type, maxLength, allowNull, isAutoIncrement));
-                    }
-                }
-            }
-            return fields.ToArray();
-        }
+				private async Task<TableFieldDef[]> GetFieldDefsAsync(string tableName)
+				{
+						string commandText = $@"select column_name, data_type, character_maximum_length, is_nullable, column_default, is_identity 
+						                        from INFORMATION_SCHEMA.COLUMNS where table_name = @tableName";
+						var parms = new Dict
+						{
+								{ "tableName", tableName }
+						};
 
-        protected TableIndex[] GetUniqueIndexes(string tableName) {
-            List<TableIndex> uniqueIndexes = new List<TableIndex>();
-            string commandText = @"SELECT
+						var result = await ExecuteCommandAsync<List<TableFieldDef>>(async c =>
+						{
+								var fields = new List<TableFieldDef>();
+
+								using (var reader = await c.ExecuteReaderAsync())
+								{
+										while (reader.Read())
+										{
+												var name = reader["column_name"].ToString();
+												var typeText = reader["data_type"].ToString();
+												var maxLengthText = reader["character_maximum_length"].ToString();
+												var allowNullText = reader["is_nullable"].ToString();
+												var defaultText = reader["column_default"].ToString();
+												var isIdentity = reader["is_identity"].ToString();
+
+												if (!int.TryParse(maxLengthText, out int maxLength)) maxLength = -1;
+												bool allowNull = allowNullText.Equals("YES", StringComparison.OrdinalIgnoreCase);
+												bool isAutoIncrement = isIdentity.Equals("YES", StringComparison.OrdinalIgnoreCase);
+												(Type type, _) = ConvertType(typeText);
+												fields.Add(new TableFieldDef(name, type, maxLength, allowNull, isAutoIncrement));
+										}
+								}
+
+								return fields;
+						}, commandText, parms);
+						
+						return result.ToArray();
+				}
+
+				private async Task<TableIndex[]> GetUniqueIndexesAsync(string tableName)
+				{
+						string commandText = @"SELECT
                   trel.relname AS table_name,
                   irel.relname AS index_name,
                   i.indisunique AS is_unique,
@@ -93,123 +114,210 @@ namespace Butterfly.Postgres {
                 JOIN pg_attribute AS a ON trel.oid = a.attrelid AND a.attnum = c.colnum
                 WHERE trel.relname=@tableName AND i.indisunique='True'
                 GROUP BY tnsp.nspname, trel.relname, irel.relname, i.indisunique, i.indisprimary";
-            using (var connection = new NpgsqlConnection(this.ConnectionString)) {
-                connection.OpenAsync();
-                var command = new NpgsqlCommand(commandText, connection);
-                command.Parameters.AddWithValue("tableName", tableName);
-                using (var reader = command.ExecuteReader()) {
-                    while (reader.Read()) {
-                        string indexName = reader[1].ToString();
-                        string isUniqueText = reader[2].ToString();
-                        string isPrimaryText = reader[3].ToString();
-                        string[] fieldNames = (string[])reader[4];
 
-                        TableIndexType tableIndexType;
-                        if (isPrimaryText=="True") {
-                            tableIndexType = TableIndexType.Primary;
-                        }
-                        else if (isUniqueText=="True") {
-                            tableIndexType = TableIndexType.Unique;
-                        }
-                        else {
-                            tableIndexType = TableIndexType.Other;
-                        }
-                        uniqueIndexes.Add(new TableIndex(tableIndexType, fieldNames));
-                    }
-                }
-            }
-            return uniqueIndexes.ToArray();
-        }
+						var parms = new Dict
+						{
+								{ "tableName", tableName }
+						};
 
-        protected override BaseTransaction CreateTransaction() {
-            return new PostgresTransaction(this);
-        }
+						var result = await ExecuteCommandAsync<List<TableIndex>>(async c =>
+						{
+								var uniqueIndexes = new List<TableIndex>();
 
-        protected override async Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams, int limit) {
-            SelectStatement statement = new SelectStatement(this, executableSql);
+								using (var reader = await c.ExecuteReaderAsync())
+								{
+										while (reader.Read())
+										{
+												var indexName = reader["index_name"].ToString();
+												var isUnique = bool.Parse(reader["is_unique"].ToString());
+												var isPrimaryKey = bool.Parse(reader["is_primary"].ToString());
+												var fieldNames = (string[])reader["columns"];
 
-            List<Dict> rows = new List<Dict>();
-            try {
-                using (var connection = new NpgsqlConnection(this.ConnectionString)) {
-                    await connection.OpenAsync();
-                    var sql = limit > 0 ? $"{executableSql} LIMIT {limit}" : executableSql;
-                    var command = new NpgsqlCommand(sql, connection);
-                    foreach (var keyValuePair in executableParams) {
-                        command.Parameters.AddWithValue(keyValuePair.Key, keyValuePair.Value);
-                    }
-                    using (var reader = await command.ExecuteReaderAsync()) {
-                        ReadOnlyCollection<DbColumn> columns = null;
-                        while (await reader.ReadAsync()) {
-                            if (columns == null) columns = reader.GetColumnSchema();
-                            Dict row = new Dictionary<string, object>();
-                            /*
-                            for (int i = 0; i < statement.FieldRefs.Length; i++) {
-                                row[statement.FieldRefs[i].fieldAlias] = ConvertValue(statement.FieldRefs[i].fieldAlias, reader[i]);
-                            }
-                            */
-                            foreach (var column in columns) {
-                                row[column.ColumnName] = ConvertValue(reader[column.ColumnName]);
-                            }
-                            rows.Add(row);
-                        }
-                    }
-                }
-            }
-            catch (Exception e) {
-                logger.Error(e, $"Error executing {statement.Sql}...");
-                throw;
-            }
+												var tableIndexType = isPrimaryKey ? TableIndexType.Primary :
+															isUnique ? TableIndexType.Unique :
+															TableIndexType.Other;
+												
+												uniqueIndexes.Add(new TableIndex(tableIndexType, fieldNames));
+										}
+								}
 
-            return rows.ToArray();
-        }
+								return uniqueIndexes;
+						}, commandText, parms);
 
-        protected override Task<Dict[]> DoQueryRowsAsync(string storedProcedureName, Dict vars = null) {
-            throw new NotImplementedException();
-        }
+						return result.ToArray();
+				}
 
-        protected static object ConvertValue(object value) {
-            if (value == null || value == DBNull.Value) {
-                return null;
-            }
-            else {
-                return value;
-            }
-        }
+				protected override BaseTransaction CreateTransaction()
+				{
+						return new PostgresTransaction(this);
+				}
 
-        public static (Type, int) ConvertType(string text) {
-            Match match = PARSE_TYPE.Match(text);
-            if (!match.Success) throw new Exception($"Could not parse SQL type '{text}'");
+				protected override async Task<Dict[]> DoSelectRowsAsync(string executableSql, Dict executableParams, int limit)
+				{
+						var sql = limit > 0 ? $"{executableSql} LIMIT {limit}" : executableSql;
+						var result = await ExecuteCommandAsync<Dict[]>(async c =>
+						{
+								var rows = new List<Dict>();
+								using (var reader = await c.ExecuteReaderAsync())
+								{
+										ReadOnlyCollection<DbColumn> columns = null;
+										while (await reader.ReadAsync())
+										{
+												if (columns == null) columns = reader.GetColumnSchema();
+												var row = new Dict();
+												
+												foreach (var column in columns)
+												{
+														row[column.ColumnName] = ConvertValue(reader[column.ColumnName]);
+												}
+												rows.Add(row);
+										}
+								}
 
-            string typeText = match.Groups["type"].Value;
+								return rows.ToArray();
+						}, sql, executableParams);
+						
 
-            Type type;
-            if (typeText.StartsWith("CHARACTER", StringComparison.OrdinalIgnoreCase)) {
-                type = typeof(string);
-            }
-            else if (typeText.Equals("INTEGER", StringComparison.OrdinalIgnoreCase)) {
-                type = typeof(long);
-            }
-            else if (typeText.Equals("BIGINT", StringComparison.OrdinalIgnoreCase)) {
-                type = typeof(long);
-            }
-            else if (typeText.Equals("REAL", StringComparison.OrdinalIgnoreCase)) {
-                type = typeof(float);
-            }
-            else if (typeText.Equals("DOUBLE PRECISION", StringComparison.OrdinalIgnoreCase)) {
-                type = typeof(double);
-            }
-            else if (typeText.StartsWith("TIMESTAMP", StringComparison.OrdinalIgnoreCase)) {
-                type = typeof(DateTime);
-            }
-            else {
-                throw new Exception($"Unknown field type '{text}'");
-            }
+						return result;
+				}
 
-            string maxLengthText = match.Groups["maxLengthWithParens"].Value.Replace("(", "").Replace(")", "");
-            if (!int.TryParse(maxLengthText, out int maxLength)) maxLength = -1;
+				protected override async Task<Dict[]> DoQueryRowsAsync(string storedProcedureName, Dict executableParams)
+				{
+						var result = await ExecuteCommandAsync<Dict[]>(async c =>
+						{
+								var rows = new List<Dict>();
+								using (var reader = await c.ExecuteReaderAsync())
+								{
+										while (await reader.ReadAsync())
+										{
+												var row = new Dict();
+												for (int i = 0; i < reader.FieldCount; i++)
+												{
+														row[reader.GetName(i)] = reader[i];
+												}
+										}
+								}
 
-            return (type, maxLength);
-        }
+								return rows.ToArray();
+						}, storedProcedureName, executableParams);
 
-    }
+						return result;
+				}
+
+				protected static object ConvertValue(object value)
+				{
+						if (value == null || value == DBNull.Value)
+						{
+								return null;
+						}
+						else
+						{
+								return value;
+						}
+				}
+
+				public static (Type, int) ConvertType(string text)
+				{
+						Match match = PARSE_TYPE.Match(text);
+						if (!match.Success) throw new Exception($"Could not parse SQL type '{text}'");
+
+						string typeText = match.Groups["type"].Value;
+
+						Type type;
+						if (typeText.StartsWith("CHARACTER", StringComparison.OrdinalIgnoreCase))
+						{
+								type = typeof(string);
+						}
+						else if (typeText.Equals("INTEGER", StringComparison.OrdinalIgnoreCase))
+						{
+								type = typeof(long);
+						}
+						else if (typeText.Equals("BIGINT", StringComparison.OrdinalIgnoreCase))
+						{
+								type = typeof(long);
+						}
+						else if (typeText.Equals("REAL", StringComparison.OrdinalIgnoreCase))
+						{
+								type = typeof(float);
+						}
+						else if (typeText.Equals("DOUBLE PRECISION", StringComparison.OrdinalIgnoreCase))
+						{
+								type = typeof(double);
+						}
+						else if (typeText.StartsWith("TIMESTAMP", StringComparison.OrdinalIgnoreCase))
+						{
+								type = typeof(DateTime);
+						}
+						else
+						{
+								throw new Exception($"Unknown field type '{text}'");
+						}
+
+						string maxLengthText = match.Groups["maxLengthWithParens"].Value.Replace("(", "").Replace(")", "");
+						if (!int.TryParse(maxLengthText, out int maxLength)) maxLength = -1;
+
+						return (type, maxLength);
+				}
+
+
+				private T ExecuteCommand<T>(Func<NpgsqlCommand, T> query, string executableSql, Dict executableParams = null)
+				{
+						try
+						{
+								using (var connection = new NpgsqlConnection(this.ConnectionString))
+								using (var command = new NpgsqlCommand(executableSql, connection))
+								{
+										connection.Open();
+
+										if (executableParams != null)
+												foreach (var param in executableParams)
+														command.Parameters.AddWithValue(param.Key, NpgsqlDbType.Unknown, param.Value);
+
+										return query(command);
+								}
+						}
+						catch (PostgresException ex)
+						{
+								if (ex.Message.StartsWith("Duplicate entry"))
+										throw new DuplicateKeyDatabaseException(ex.Message);
+
+								throw new DatabaseException(ex.Message);
+						}
+						catch (Exception e)
+						{
+								logger.Error(e, $"Error executing {executableSql}...");
+								throw e;
+						}
+				}
+
+				private async Task<T> ExecuteCommandAsync<T>(Func<NpgsqlCommand, Task<T>> query, string executableSql, Dict executableParams = null)
+				{
+						try
+						{
+								using (var connection = new NpgsqlConnection(this.ConnectionString))
+								using (var command = new NpgsqlCommand(executableSql, connection))
+								{
+										await connection.OpenAsync();
+
+										if (executableParams != null)
+												foreach (var param in executableParams)
+														command.Parameters.AddWithValue(param.Key, NpgsqlDbType.Unknown, param.Value);
+
+										return await query(command);
+								}
+						}
+						catch (PostgresException ex)
+						{
+								if (ex.Message.StartsWith("Duplicate entry"))
+										throw new DuplicateKeyDatabaseException(ex.Message);
+
+								throw new DatabaseException(ex.Message);
+						}
+						catch (Exception e)
+						{
+								logger.Error(e, $"Error executing {executableSql}...");
+								throw e;
+						}
+				}
+		}
 }
