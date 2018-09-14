@@ -8,10 +8,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "aurelia-bootstrapper": "^2.2.0",
     "aurelia-animator-css": "^1.0.4",
+    "aurelia-bootstrapper": "^2.2.0",
+    "aurelia-polyfills": "^1.3.0",
     "bluebird": "^3.5.1",
-    "aurelia-polyfills": "^1.3.0"
+    "butterfly-client": "^2.0.2"
   },
   "peerDependencies": {},
   "devDependencies": {
