@@ -62,7 +62,8 @@ namespace Butterfly.Postgres
 
 				private async Task<TableFieldDef[]> GetFieldDefsAsync(string tableName)
 				{
-						string commandText = $"select column_name, data_type, character_maximum_length, is_nullable, column_default from INFORMATION_SCHEMA.COLUMNS where table_name = @tableName";
+						string commandText = $@"select column_name, data_type, character_maximum_length, is_nullable, column_default, is_identity 
+						                        from INFORMATION_SCHEMA.COLUMNS where table_name = @tableName";
 						var parms = new Dict
 						{
 								{ "tableName", tableName }
@@ -76,15 +77,16 @@ namespace Butterfly.Postgres
 								{
 										while (reader.Read())
 										{
-												string name = reader[0].ToString();
-												string typeText = reader[1].ToString();
-												string maxLengthText = reader[2].ToString();
-												string allowNullText = reader[3].ToString();
-												string defaultText = reader[4].ToString();
+												var name = reader["column_name"].ToString();
+												var typeText = reader["data_type"].ToString();
+												var maxLengthText = reader["character_maximum_length"].ToString();
+												var allowNullText = reader["is_nullable"].ToString();
+												var defaultText = reader["column_default"].ToString();
+												var isIdentity = reader["is_identity"].ToString();
 
 												if (!int.TryParse(maxLengthText, out int maxLength)) maxLength = -1;
 												bool allowNull = allowNullText.Equals("YES", StringComparison.OrdinalIgnoreCase);
-												bool isAutoIncrement = defaultText.StartsWith("NEXTVAL(", StringComparison.OrdinalIgnoreCase);
+												bool isAutoIncrement = isIdentity.Equals("YES", StringComparison.OrdinalIgnoreCase);
 												(Type type, _) = ConvertType(typeText);
 												fields.Add(new TableFieldDef(name, type, maxLength, allowNull, isAutoIncrement));
 										}

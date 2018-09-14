@@ -69,78 +69,22 @@ namespace Butterfly.Postgres
 
 		protected override bool DoCreate(CreateStatement statement)
 		{
-			string sql = BuildCreate(statement);
 			var result = ExecuteCommand<int>(c =>
 			{
 				return c.ExecuteNonQuery();
-			}, sql);
+			}, statement.Sql);
 			return false;
 		}
 
 		protected override async Task<bool> DoCreateAsync(CreateStatement statement)
 		{
-			string sql = BuildCreate(statement);			
 			var result = await ExecuteCommandAsync<int>(async c =>
 			{
 				return await c.ExecuteNonQueryAsync();
-			}, sql);
+			}, statement.Sql);
 			return false;
 		}
-
-		/*
-		 * Example...
-		 * CREATE TABLE distributors (
-		 *  did    integer PRIMARY KEY DEFAULT nextval('serial'),
-		 *  name   varchar(40) NOT NULL CHECK (name <> '')
-		 * );
-		 */
-		protected static string BuildCreate(CreateStatement statement)
-		{
-			StringBuilder sb = new StringBuilder();
-			sb.Append($"CREATE TABLE {statement.TableName} (\r\n");
-			foreach (var fieldDef in statement.FieldDefs)
-			{
-				sb.Append(fieldDef.name);
-
-				if (fieldDef.isAutoIncrement)
-				{
-					sb.Append($" SERIAL");
-				}
-				else if (fieldDef.type == typeof(string))
-				{
-					sb.Append($" VARCHAR({fieldDef.maxLength})");
-				}
-				else if (fieldDef.type == typeof(int))
-				{
-					sb.Append($" INTEGER");
-				}
-				else if (fieldDef.type == typeof(long))
-				{
-					sb.Append($" BIGINT");
-				}
-				else if (fieldDef.type == typeof(float))
-				{
-					sb.Append($" REAL");
-				}
-				else if (fieldDef.type == typeof(double))
-				{
-					sb.Append($" DOUBLE PRECISION");
-				}
-				else if (fieldDef.type == typeof(DateTime))
-				{
-					sb.Append($" TIMESTAMP");
-				}
-
-				if (!fieldDef.allowNull) sb.Append(" NOT");
-				sb.Append(" NULL");
-
-				sb.Append(",\r\n");
-			}
-			sb.Append($" PRIMARY KEY ({string.Join(",", statement.Indexes[0].FieldNames)})");
-			sb.Append(")");
-			return sb.ToString();
-		}
-
+		
 		protected override async Task<Func<object>> DoInsertAsync(string executableSql, Dict executableParams, bool ignoreIfDuplicate)
 		{
 			InsertStatement statement = new InsertStatement(this.database, executableSql);
