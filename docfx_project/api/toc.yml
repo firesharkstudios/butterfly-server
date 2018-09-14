@@ -307,6 +307,11 @@
     name: PostgresDatabase
   - uid: Butterfly.Postgres.PostgresTransaction
     name: PostgresTransaction
+- uid: Butterfly.Postgres.Test
+  name: Butterfly.Postgres.Test
+  items:
+  - uid: Butterfly.Postgres.Test.PostgresTest
+    name: PostgresTest
 - uid: Butterfly.RHttpServer
   name: Butterfly.RHttpServer
   items:

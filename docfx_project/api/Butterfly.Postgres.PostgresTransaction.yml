@@ -8,7 +8,6 @@ items:
   - Butterfly.Postgres.PostgresTransaction.#ctor(Butterfly.Postgres.PostgresDatabase)
   - Butterfly.Postgres.PostgresTransaction.Begin
   - Butterfly.Postgres.PostgresTransaction.BeginAsync
-  - Butterfly.Postgres.PostgresTransaction.BuildCreate(Butterfly.Core.Database.CreateStatement)
   - Butterfly.Postgres.PostgresTransaction.connection
   - Butterfly.Postgres.PostgresTransaction.Dispose
   - Butterfly.Postgres.PostgresTransaction.DoCommit
@@ -16,8 +15,6 @@ items:
   - Butterfly.Postgres.PostgresTransaction.DoCreate(Butterfly.Core.Database.CreateStatement)
   - Butterfly.Postgres.PostgresTransaction.DoCreateAsync(Butterfly.Core.Database.CreateStatement)
   - Butterfly.Postgres.PostgresTransaction.DoDeleteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - Butterfly.Postgres.PostgresTransaction.DoExecute(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  - Butterfly.Postgres.PostgresTransaction.DoExecuteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - Butterfly.Postgres.PostgresTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   - Butterfly.Postgres.PostgresTransaction.DoRollback
   - Butterfly.Postgres.PostgresTransaction.DoTruncateAsync(System.String)
@@ -37,7 +34,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: PostgresTransaction
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 18
+    startLine: 20
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -102,7 +99,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: connection
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 22
+    startLine: 25
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -133,7 +130,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: transaction
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 23
+    startLine: 26
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -164,7 +161,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 25
+    startLine: 28
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -197,7 +194,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Begin
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 28
+    startLine: 32
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -230,7 +227,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: BeginAsync
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 35
+    startLine: 40
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -265,7 +262,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoCommit
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 42
+    startLine: 48
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -298,7 +295,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoCommitAsync
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 46
+    startLine: 53
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -333,7 +330,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoRollback
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 50
+    startLine: 58
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -366,7 +363,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Dispose
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 54
+    startLine: 63
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -399,7 +396,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoCreate
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 59
+    startLine: 69
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -437,7 +434,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoCreateAsync
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 65
+    startLine: 78
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -457,43 +454,6 @@ items:
   modifiers.vb:
   - Protected
   - Overrides
-- uid: Butterfly.Postgres.PostgresTransaction.BuildCreate(Butterfly.Core.Database.CreateStatement)
-  commentId: M:Butterfly.Postgres.PostgresTransaction.BuildCreate(Butterfly.Core.Database.CreateStatement)
-  id: BuildCreate(Butterfly.Core.Database.CreateStatement)
-  parent: Butterfly.Postgres.PostgresTransaction
-  langs:
-  - csharp
-  - vb
-  name: BuildCreate(CreateStatement)
-  nameWithType: PostgresTransaction.BuildCreate(CreateStatement)
-  fullName: Butterfly.Postgres.PostgresTransaction.BuildCreate(Butterfly.Core.Database.CreateStatement)
-  type: Method
-  source:
-    remote:
-      path: Butterfly.Postgres/PostgresTransaction.cs
-      branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
-    id: BuildCreate
-    path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 78
-  assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
-  syntax:
-    content: protected static string BuildCreate(CreateStatement statement)
-    parameters:
-    - id: statement
-      type: Butterfly.Core.Database.CreateStatement
-    return:
-      type: System.String
-    content.vb: Protected Shared Function BuildCreate(statement As CreateStatement) As String
-  overload: Butterfly.Postgres.PostgresTransaction.BuildCreate*
-  modifiers.csharp:
-  - protected
-  - static
-  modifiers.vb:
-  - Protected
-  - Shared
 - uid: Butterfly.Postgres.PostgresTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   commentId: M:Butterfly.Postgres.PostgresTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   id: DoInsertAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
@@ -512,7 +472,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoInsertAsync
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 116
+    startLine: 87
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -556,7 +516,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoUpdateAsync
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 152
+    startLine: 112
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -598,7 +558,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoDeleteAsync
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 156
+    startLine: 122
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -640,7 +600,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoTruncateAsync
     path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 160
+    startLine: 132
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -659,86 +619,6 @@ items:
   modifiers.vb:
   - Protected
   - Overrides
-- uid: Butterfly.Postgres.PostgresTransaction.DoExecute(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  commentId: M:Butterfly.Postgres.PostgresTransaction.DoExecute(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  id: DoExecute(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  parent: Butterfly.Postgres.PostgresTransaction
-  langs:
-  - csharp
-  - vb
-  name: DoExecute(String, System.Collections.Generic.Dictionary<String, Object>)
-  nameWithType: PostgresTransaction.DoExecute(String, System.Collections.Generic.Dictionary<String, Object>)
-  fullName: Butterfly.Postgres.PostgresTransaction.DoExecute(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  type: Method
-  source:
-    remote:
-      path: Butterfly.Postgres/PostgresTransaction.cs
-      branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
-    id: DoExecute
-    path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 164
-  assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
-  syntax:
-    content: protected int DoExecute(string executableSql, System.Collections.Generic.Dictionary<string, object> executableParams = null)
-    parameters:
-    - id: executableSql
-      type: System.String
-    - id: executableParams
-      type: System.Collections.Generic.Dictionary{System.String,System.Object}
-    return:
-      type: System.Int32
-    content.vb: Protected Function DoExecute(executableSql As String, executableParams As System.Collections.Generic.Dictionary(Of String, Object) = Nothing) As Integer
-  overload: Butterfly.Postgres.PostgresTransaction.DoExecute*
-  nameWithType.vb: PostgresTransaction.DoExecute(String, System.Collections.Generic.Dictionary(Of String, Object))
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
-  fullName.vb: Butterfly.Postgres.PostgresTransaction.DoExecute(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  name.vb: DoExecute(String, System.Collections.Generic.Dictionary(Of String, Object))
-- uid: Butterfly.Postgres.PostgresTransaction.DoExecuteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  commentId: M:Butterfly.Postgres.PostgresTransaction.DoExecuteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  id: DoExecuteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  parent: Butterfly.Postgres.PostgresTransaction
-  langs:
-  - csharp
-  - vb
-  name: DoExecuteAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  nameWithType: PostgresTransaction.DoExecuteAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  fullName: Butterfly.Postgres.PostgresTransaction.DoExecuteAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  type: Method
-  source:
-    remote:
-      path: Butterfly.Postgres/PostgresTransaction.cs
-      branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
-    id: DoExecuteAsync
-    path: ../Butterfly.Postgres/PostgresTransaction.cs
-    startLine: 179
-  assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
-  syntax:
-    content: protected Task<int> DoExecuteAsync(string executableSql, System.Collections.Generic.Dictionary<string, object> executableParams = null)
-    parameters:
-    - id: executableSql
-      type: System.String
-    - id: executableParams
-      type: System.Collections.Generic.Dictionary{System.String,System.Object}
-    return:
-      type: Task{System.Int32}
-    content.vb: Protected Function DoExecuteAsync(executableSql As String, executableParams As System.Collections.Generic.Dictionary(Of String, Object) = Nothing) As Task(Of Integer)
-  overload: Butterfly.Postgres.PostgresTransaction.DoExecuteAsync*
-  nameWithType.vb: PostgresTransaction.DoExecuteAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
-  fullName.vb: Butterfly.Postgres.PostgresTransaction.DoExecuteAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  name.vb: DoExecuteAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
 references:
 - uid: Butterfly.Postgres
   commentId: N:Butterfly.Postgres
@@ -2464,21 +2344,16 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Butterfly.Postgres.PostgresTransaction.BuildCreate*
-  commentId: Overload:Butterfly.Postgres.PostgresTransaction.BuildCreate
-  name: BuildCreate
-  nameWithType: PostgresTransaction.BuildCreate
-  fullName: Butterfly.Postgres.PostgresTransaction.BuildCreate
-- uid: System.String
-  isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
 - uid: Butterfly.Postgres.PostgresTransaction.DoInsertAsync*
   commentId: Overload:Butterfly.Postgres.PostgresTransaction.DoInsertAsync
   name: DoInsertAsync
   nameWithType: PostgresTransaction.DoInsertAsync
   fullName: Butterfly.Postgres.PostgresTransaction.DoInsertAsync
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
 - uid: System.Collections.Generic.Dictionary{System.String,System.Object}
   commentId: '!:System.Collections.Generic.Dictionary{System.String,System.Object}'
   definition: System.Collections.Generic.Dictionary`2
@@ -2711,19 +2586,4 @@ references:
   name: DoTruncateAsync
   nameWithType: PostgresTransaction.DoTruncateAsync
   fullName: Butterfly.Postgres.PostgresTransaction.DoTruncateAsync
-- uid: Butterfly.Postgres.PostgresTransaction.DoExecute*
-  commentId: Overload:Butterfly.Postgres.PostgresTransaction.DoExecute
-  name: DoExecute
-  nameWithType: PostgresTransaction.DoExecute
-  fullName: Butterfly.Postgres.PostgresTransaction.DoExecute
-- uid: System.Int32
-  isExternal: true
-  name: Int32
-  nameWithType: Int32
-  fullName: System.Int32
-- uid: Butterfly.Postgres.PostgresTransaction.DoExecuteAsync*
-  commentId: Overload:Butterfly.Postgres.PostgresTransaction.DoExecuteAsync
-  name: DoExecuteAsync
-  nameWithType: PostgresTransaction.DoExecuteAsync
-  fullName: Butterfly.Postgres.PostgresTransaction.DoExecuteAsync
 shouldSkipMarkup: true

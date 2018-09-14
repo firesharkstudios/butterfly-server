@@ -13,8 +13,6 @@ items:
   - Butterfly.Postgres.PostgresDatabase.CreateTransaction
   - Butterfly.Postgres.PostgresDatabase.DoQueryRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
   - Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)
-  - Butterfly.Postgres.PostgresDatabase.GetFieldDefs(System.String)
-  - Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes(System.String)
   - Butterfly.Postgres.PostgresDatabase.LoadSchemaAsync
   - Butterfly.Postgres.PostgresDatabase.LoadTableSchemaAsync(System.String)
   langs:
@@ -31,7 +29,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: PostgresDatabase
     path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 21
+    startLine: 22
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -120,7 +118,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 25
+    startLine: 27
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -153,7 +151,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CanJoin
     path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 28
+    startLine: 31
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -191,7 +189,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CanFieldAlias
     path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 30
+    startLine: 33
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -229,7 +227,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: LoadSchemaAsync
     path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 32
+    startLine: 35
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -264,7 +262,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: LoadTableSchemaAsync
     path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 47
+    startLine: 55
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -283,76 +281,6 @@ items:
   modifiers.vb:
   - Protected
   - Overrides
-- uid: Butterfly.Postgres.PostgresDatabase.GetFieldDefs(System.String)
-  commentId: M:Butterfly.Postgres.PostgresDatabase.GetFieldDefs(System.String)
-  id: GetFieldDefs(System.String)
-  parent: Butterfly.Postgres.PostgresDatabase
-  langs:
-  - csharp
-  - vb
-  name: GetFieldDefs(String)
-  nameWithType: PostgresDatabase.GetFieldDefs(String)
-  fullName: Butterfly.Postgres.PostgresDatabase.GetFieldDefs(System.String)
-  type: Method
-  source:
-    remote:
-      path: Butterfly.Postgres/PostgresDatabase.cs
-      branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
-    id: GetFieldDefs
-    path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 53
-  assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
-  syntax:
-    content: protected Task<TableFieldDef[]> GetFieldDefs(string tableName)
-    parameters:
-    - id: tableName
-      type: System.String
-    return:
-      type: Task{Butterfly.Core.Database.TableFieldDef[]}
-    content.vb: Protected Function GetFieldDefs(tableName As String) As Task(Of TableFieldDef())
-  overload: Butterfly.Postgres.PostgresDatabase.GetFieldDefs*
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
-- uid: Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes(System.String)
-  commentId: M:Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes(System.String)
-  id: GetUniqueIndexes(System.String)
-  parent: Butterfly.Postgres.PostgresDatabase
-  langs:
-  - csharp
-  - vb
-  name: GetUniqueIndexes(String)
-  nameWithType: PostgresDatabase.GetUniqueIndexes(String)
-  fullName: Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes(System.String)
-  type: Method
-  source:
-    remote:
-      path: Butterfly.Postgres/PostgresDatabase.cs
-      branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
-    id: GetUniqueIndexes
-    path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 79
-  assemblies:
-  - Butterfly.Postgres
-  namespace: Butterfly.Postgres
-  syntax:
-    content: protected TableIndex[] GetUniqueIndexes(string tableName)
-    parameters:
-    - id: tableName
-      type: System.String
-    return:
-      type: Butterfly.Core.Database.TableIndex[]
-    content.vb: Protected Function GetUniqueIndexes(tableName As String) As TableIndex()
-  overload: Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes*
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
 - uid: Butterfly.Postgres.PostgresDatabase.CreateTransaction
   commentId: M:Butterfly.Postgres.PostgresDatabase.CreateTransaction
   id: CreateTransaction
@@ -371,7 +299,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateTransaction
     path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 123
+    startLine: 149
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -406,7 +334,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoSelectRowsAsync
     path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 127
+    startLine: 154
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -450,20 +378,20 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoQueryRowsAsync
     path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 165
+    startLine: 183
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
   syntax:
-    content: protected override Task<System.Collections.Generic.Dictionary<string, object>[]> DoQueryRowsAsync(string storedProcedureName, System.Collections.Generic.Dictionary<string, object> vars = null)
+    content: protected override Task<System.Collections.Generic.Dictionary<string, object>[]> DoQueryRowsAsync(string storedProcedureName, System.Collections.Generic.Dictionary<string, object> executableParams)
     parameters:
     - id: storedProcedureName
       type: System.String
-    - id: vars
+    - id: executableParams
       type: System.Collections.Generic.Dictionary{System.String,System.Object}
     return:
       type: Task{System.Collections.Generic.Dictionary{System.String,System.Object}[]}
-    content.vb: Protected Overrides Function DoQueryRowsAsync(storedProcedureName As String, vars As System.Collections.Generic.Dictionary(Of String, Object) = Nothing) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
+    content.vb: Protected Overrides Function DoQueryRowsAsync(storedProcedureName As String, executableParams As System.Collections.Generic.Dictionary(Of String, Object)) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
   overload: Butterfly.Postgres.PostgresDatabase.DoQueryRowsAsync*
   nameWithType.vb: PostgresDatabase.DoQueryRowsAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
   modifiers.csharp:
@@ -492,7 +420,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ConvertValue
     path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 169
+    startLine: 206
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -529,7 +457,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ConvertType
     path: ../Butterfly.Postgres/PostgresDatabase.cs
-    startLine: 178
+    startLine: 218
   assemblies:
   - Butterfly.Postgres
   namespace: Butterfly.Postgres
@@ -3096,87 +3024,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Butterfly.Postgres.PostgresDatabase.GetFieldDefs*
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.GetFieldDefs
-  name: GetFieldDefs
-  nameWithType: PostgresDatabase.GetFieldDefs
-  fullName: Butterfly.Postgres.PostgresDatabase.GetFieldDefs
-- uid: Task{Butterfly.Core.Database.TableFieldDef[]}
-  commentId: '!:Task{Butterfly.Core.Database.TableFieldDef[]}'
-  definition: Task`1
-  name: Task<TableFieldDef[]>
-  nameWithType: Task<TableFieldDef[]>
-  fullName: Task<Butterfly.Core.Database.TableFieldDef[]>
-  nameWithType.vb: Task(Of TableFieldDef())
-  fullName.vb: Task(Of Butterfly.Core.Database.TableFieldDef())
-  name.vb: Task(Of TableFieldDef())
-  spec.csharp:
-  - uid: Task`1
-    name: Task
-    nameWithType: Task
-    fullName: Task
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Butterfly.Core.Database.TableFieldDef
-    name: TableFieldDef
-    nameWithType: TableFieldDef
-    fullName: Butterfly.Core.Database.TableFieldDef
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: Task`1
-    name: Task
-    nameWithType: Task
-    fullName: Task
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Butterfly.Core.Database.TableFieldDef
-    name: TableFieldDef
-    nameWithType: TableFieldDef
-    fullName: Butterfly.Core.Database.TableFieldDef
-  - name: ()
-    nameWithType: ()
-    fullName: ()
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes*
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes
-  name: GetUniqueIndexes
-  nameWithType: PostgresDatabase.GetUniqueIndexes
-  fullName: Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes
-- uid: Butterfly.Core.Database.TableIndex[]
-  isExternal: true
-  name: TableIndex[]
-  nameWithType: TableIndex[]
-  fullName: Butterfly.Core.Database.TableIndex[]
-  nameWithType.vb: TableIndex()
-  fullName.vb: Butterfly.Core.Database.TableIndex()
-  name.vb: TableIndex()
-  spec.csharp:
-  - uid: Butterfly.Core.Database.TableIndex
-    name: TableIndex
-    nameWithType: TableIndex
-    fullName: Butterfly.Core.Database.TableIndex
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
-  spec.vb:
-  - uid: Butterfly.Core.Database.TableIndex
-    name: TableIndex
-    nameWithType: TableIndex
-    fullName: Butterfly.Core.Database.TableIndex
-  - name: ()
-    nameWithType: ()
-    fullName: ()
 - uid: Butterfly.Core.Database.BaseDatabase.CreateTransaction
   commentId: M:Butterfly.Core.Database.BaseDatabase.CreateTransaction
   parent: Butterfly.Core.Database.BaseDatabase

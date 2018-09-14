@@ -8,7 +8,8 @@ namespace Butterfly.Postgres.Test
 	[TestClass]
 	public class PostgresTest
 	{
-		const string connectionString = "User ID=test;Password=test!123;Host=localhost;Port=5432;Database=test;";
+        // CREATE USER test WITH PASSWORD 'test!123';
+        const string connectionString = "User ID=test;Password=test!123;Host=localhost;Port=5432;Database=test;";
 		const string dbSql = "Butterfly.Postgres.Test.db.sql";
 
 		[TestMethod]

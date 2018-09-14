@@ -10086,32 +10086,6 @@ references:
   isSpec: "True"
   fullName: Butterfly.Postgres.PostgresDatabase.DoSelectRowsAsync
   nameWithType: PostgresDatabase.DoSelectRowsAsync
-- uid: Butterfly.Postgres.PostgresDatabase.GetFieldDefs(System.String)
-  name: GetFieldDefs(String)
-  href: api/Butterfly.Postgres.PostgresDatabase.html#Butterfly_Postgres_PostgresDatabase_GetFieldDefs_System_String_
-  commentId: M:Butterfly.Postgres.PostgresDatabase.GetFieldDefs(System.String)
-  fullName: Butterfly.Postgres.PostgresDatabase.GetFieldDefs(System.String)
-  nameWithType: PostgresDatabase.GetFieldDefs(String)
-- uid: Butterfly.Postgres.PostgresDatabase.GetFieldDefs*
-  name: GetFieldDefs
-  href: api/Butterfly.Postgres.PostgresDatabase.html#Butterfly_Postgres_PostgresDatabase_GetFieldDefs_
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.GetFieldDefs
-  isSpec: "True"
-  fullName: Butterfly.Postgres.PostgresDatabase.GetFieldDefs
-  nameWithType: PostgresDatabase.GetFieldDefs
-- uid: Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes(System.String)
-  name: GetUniqueIndexes(String)
-  href: api/Butterfly.Postgres.PostgresDatabase.html#Butterfly_Postgres_PostgresDatabase_GetUniqueIndexes_System_String_
-  commentId: M:Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes(System.String)
-  fullName: Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes(System.String)
-  nameWithType: PostgresDatabase.GetUniqueIndexes(String)
-- uid: Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes*
-  name: GetUniqueIndexes
-  href: api/Butterfly.Postgres.PostgresDatabase.html#Butterfly_Postgres_PostgresDatabase_GetUniqueIndexes_
-  commentId: Overload:Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes
-  isSpec: "True"
-  fullName: Butterfly.Postgres.PostgresDatabase.GetUniqueIndexes
-  nameWithType: PostgresDatabase.GetUniqueIndexes
 - uid: Butterfly.Postgres.PostgresDatabase.LoadSchemaAsync
   name: LoadSchemaAsync()
   href: api/Butterfly.Postgres.PostgresDatabase.html#Butterfly_Postgres_PostgresDatabase_LoadSchemaAsync
@@ -10183,19 +10157,6 @@ references:
   isSpec: "True"
   fullName: Butterfly.Postgres.PostgresTransaction.BeginAsync
   nameWithType: PostgresTransaction.BeginAsync
-- uid: Butterfly.Postgres.PostgresTransaction.BuildCreate(Butterfly.Core.Database.CreateStatement)
-  name: BuildCreate(CreateStatement)
-  href: api/Butterfly.Postgres.PostgresTransaction.html#Butterfly_Postgres_PostgresTransaction_BuildCreate_Butterfly_Core_Database_CreateStatement_
-  commentId: M:Butterfly.Postgres.PostgresTransaction.BuildCreate(Butterfly.Core.Database.CreateStatement)
-  fullName: Butterfly.Postgres.PostgresTransaction.BuildCreate(Butterfly.Core.Database.CreateStatement)
-  nameWithType: PostgresTransaction.BuildCreate(CreateStatement)
-- uid: Butterfly.Postgres.PostgresTransaction.BuildCreate*
-  name: BuildCreate
-  href: api/Butterfly.Postgres.PostgresTransaction.html#Butterfly_Postgres_PostgresTransaction_BuildCreate_
-  commentId: Overload:Butterfly.Postgres.PostgresTransaction.BuildCreate
-  isSpec: "True"
-  fullName: Butterfly.Postgres.PostgresTransaction.BuildCreate
-  nameWithType: PostgresTransaction.BuildCreate
 - uid: Butterfly.Postgres.PostgresTransaction.connection
   name: connection
   href: api/Butterfly.Postgres.PostgresTransaction.html#Butterfly_Postgres_PostgresTransaction_connection
@@ -10283,38 +10244,6 @@ references:
   isSpec: "True"
   fullName: Butterfly.Postgres.PostgresTransaction.DoDeleteAsync
   nameWithType: PostgresTransaction.DoDeleteAsync
-- uid: Butterfly.Postgres.PostgresTransaction.DoExecute(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: DoExecute(String, System.Collections.Generic.Dictionary<String, Object>)
-  href: api/Butterfly.Postgres.PostgresTransaction.html#Butterfly_Postgres_PostgresTransaction_DoExecute_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:Butterfly.Postgres.PostgresTransaction.DoExecute(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: DoExecute(String, System.Collections.Generic.Dictionary(Of String, Object))
-  fullName: Butterfly.Postgres.PostgresTransaction.DoExecute(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: Butterfly.Postgres.PostgresTransaction.DoExecute(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: PostgresTransaction.DoExecute(String, System.Collections.Generic.Dictionary<String, Object>)
-  nameWithType.vb: PostgresTransaction.DoExecute(String, System.Collections.Generic.Dictionary(Of String, Object))
-- uid: Butterfly.Postgres.PostgresTransaction.DoExecute*
-  name: DoExecute
-  href: api/Butterfly.Postgres.PostgresTransaction.html#Butterfly_Postgres_PostgresTransaction_DoExecute_
-  commentId: Overload:Butterfly.Postgres.PostgresTransaction.DoExecute
-  isSpec: "True"
-  fullName: Butterfly.Postgres.PostgresTransaction.DoExecute
-  nameWithType: PostgresTransaction.DoExecute
-- uid: Butterfly.Postgres.PostgresTransaction.DoExecuteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: DoExecuteAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  href: api/Butterfly.Postgres.PostgresTransaction.html#Butterfly_Postgres_PostgresTransaction_DoExecuteAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:Butterfly.Postgres.PostgresTransaction.DoExecuteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: DoExecuteAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
-  fullName: Butterfly.Postgres.PostgresTransaction.DoExecuteAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: Butterfly.Postgres.PostgresTransaction.DoExecuteAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: PostgresTransaction.DoExecuteAsync(String, System.Collections.Generic.Dictionary<String, Object>)
-  nameWithType.vb: PostgresTransaction.DoExecuteAsync(String, System.Collections.Generic.Dictionary(Of String, Object))
-- uid: Butterfly.Postgres.PostgresTransaction.DoExecuteAsync*
-  name: DoExecuteAsync
-  href: api/Butterfly.Postgres.PostgresTransaction.html#Butterfly_Postgres_PostgresTransaction_DoExecuteAsync_
-  commentId: Overload:Butterfly.Postgres.PostgresTransaction.DoExecuteAsync
-  isSpec: "True"
-  fullName: Butterfly.Postgres.PostgresTransaction.DoExecuteAsync
-  nameWithType: PostgresTransaction.DoExecuteAsync
 - uid: Butterfly.Postgres.PostgresTransaction.DoInsertAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)
   name: DoInsertAsync(String, System.Collections.Generic.Dictionary<String, Object>, Boolean)
   href: api/Butterfly.Postgres.PostgresTransaction.html#Butterfly_Postgres_PostgresTransaction_DoInsertAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object__System_Boolean_
@@ -10379,6 +10308,44 @@ references:
   commentId: F:Butterfly.Postgres.PostgresTransaction.transaction
   fullName: Butterfly.Postgres.PostgresTransaction.transaction
   nameWithType: PostgresTransaction.transaction
+- uid: Butterfly.Postgres.Test
+  name: Butterfly.Postgres.Test
+  href: api/Butterfly.Postgres.Test.html
+  commentId: N:Butterfly.Postgres.Test
+  fullName: Butterfly.Postgres.Test
+  nameWithType: Butterfly.Postgres.Test
+- uid: Butterfly.Postgres.Test.PostgresTest
+  name: PostgresTest
+  href: api/Butterfly.Postgres.Test.PostgresTest.html
+  commentId: T:Butterfly.Postgres.Test.PostgresTest
+  fullName: Butterfly.Postgres.Test.PostgresTest
+  nameWithType: PostgresTest
+- uid: Butterfly.Postgres.Test.PostgresTest.TestDatabase
+  name: TestDatabase()
+  href: api/Butterfly.Postgres.Test.PostgresTest.html#Butterfly_Postgres_Test_PostgresTest_TestDatabase
+  commentId: M:Butterfly.Postgres.Test.PostgresTest.TestDatabase
+  fullName: Butterfly.Postgres.Test.PostgresTest.TestDatabase()
+  nameWithType: PostgresTest.TestDatabase()
+- uid: Butterfly.Postgres.Test.PostgresTest.TestDatabase*
+  name: TestDatabase
+  href: api/Butterfly.Postgres.Test.PostgresTest.html#Butterfly_Postgres_Test_PostgresTest_TestDatabase_
+  commentId: Overload:Butterfly.Postgres.Test.PostgresTest.TestDatabase
+  isSpec: "True"
+  fullName: Butterfly.Postgres.Test.PostgresTest.TestDatabase
+  nameWithType: PostgresTest.TestDatabase
+- uid: Butterfly.Postgres.Test.PostgresTest.TestDynamic
+  name: TestDynamic()
+  href: api/Butterfly.Postgres.Test.PostgresTest.html#Butterfly_Postgres_Test_PostgresTest_TestDynamic
+  commentId: M:Butterfly.Postgres.Test.PostgresTest.TestDynamic
+  fullName: Butterfly.Postgres.Test.PostgresTest.TestDynamic()
+  nameWithType: PostgresTest.TestDynamic()
+- uid: Butterfly.Postgres.Test.PostgresTest.TestDynamic*
+  name: TestDynamic
+  href: api/Butterfly.Postgres.Test.PostgresTest.html#Butterfly_Postgres_Test_PostgresTest_TestDynamic_
+  commentId: Overload:Butterfly.Postgres.Test.PostgresTest.TestDynamic
+  isSpec: "True"
+  fullName: Butterfly.Postgres.Test.PostgresTest.TestDynamic
+  nameWithType: PostgresTest.TestDynamic
 - uid: Butterfly.RHttpServer
   name: Butterfly.RHttpServer
   href: api/Butterfly.RHttpServer.html

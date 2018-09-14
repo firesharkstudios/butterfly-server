@@ -1984,7 +1984,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateDynamicViewSet
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 400
+    startLine: 401
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -2024,7 +2024,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateDynamicViewSet
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 404
+    startLine: 405
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -2064,7 +2064,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateAndStartDynamicViewAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 408
+    startLine: 409
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -2112,7 +2112,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateAndStartDynamicViewAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 414
+    startLine: 415
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database

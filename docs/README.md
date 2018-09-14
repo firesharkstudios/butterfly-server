@@ -27,6 +27,7 @@ An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/
 | Butterfly.Core | [![nuget](https://img.shields.io/nuget/v/Butterfly.Core.svg)](https://www.nuget.org/packages/Butterfly.Core/) | `nuget install Butterfly.Core` |
 | Butterfly.EmbedIO | [![nuget](https://img.shields.io/nuget/v/Butterfly.EmbedIO.svg)](https://www.nuget.org/packages/Butterfly.EmbedIO/) | `nuget install Butterfly.EmbedIO` |
 | Butterfly.MySQL | [![nuget](https://img.shields.io/nuget/v/Butterfly.MySQL.svg)](https://www.nuget.org/packages/Butterfly.MySQL/) | `nuget install Butterfly.MySQL` |
+| Butterfly.Postgres | [![nuget](https://img.shields.io/nuget/v/Butterfly.Postgres.svg)](https://www.nuget.org/packages/Butterfly.Postgres/) | `nuget install Butterfly.Postgres` |
 | Butterfly.SQLite | [![nuget](https://img.shields.io/nuget/v/Butterfly.SQLite.svg)](https://www.nuget.org/packages/Butterfly.SQLite/) | `nuget install Butterfly.SQLite` |
 | Butterfly.SqlServer | [![nuget](https://img.shields.io/nuget/v/Butterfly.SqlServer.svg)](https://www.nuget.org/packages/Butterfly.SqlServer/) | `nuget install Butterfly.SqlServer` |
 
@@ -784,6 +785,20 @@ In your application...
 var database = new Butterfly.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_db_demo");
 ```
 
+### Using Postgres
+
+In the *Package Manager Console*...
+
+```
+Install-Package Butterfly.Postgres
+```
+
+In your application...
+
+```csharp
+var database = new Butterfly.Postgres.PostgresDatabase("User ID=test;Password=test!123;Host=localhost;Port=5432;Database=test;");
+```
+
 ### Using SQLite
 
 In the *Package Manager Console*...
@@ -951,7 +966,6 @@ Here is an unprioritized wish list going forward...
 
 Add support for the following databases...
 
-- Postgres (in progress)
 - Mongo DB
 
 ## More Web Servers
