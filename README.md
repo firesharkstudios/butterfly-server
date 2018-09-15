@@ -9,7 +9,7 @@
 # Examples...
 
 - [Real-time Streaming Charts](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.RealtimeStreamingChart) - Shows a client with a real-time streaming chart updated from a server (uses [Smoothie Charts](http://smoothiecharts.org/))
-- [Todo List Manager](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) - Shows multiple clients synchronized to the same todo list (uses [Vue.js](https://vuejs.org/), [Vuetify](https://vuetifyjs.com), [Cordova](https://cordova.apache.org/), and [Electron](https://electronjs.org/))
+- [Todo List Manager](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) - Shows different types of clients synchronized to the same server (a [Vue.js](https://vuejs.org/) client, a [Cordova](https://cordova.apache.org/) client, an [Electron](https://electronjs.org/) client, and an [Aurelia](https://aurelia.io/) client)
 - [Hello World](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.HelloWorld) - Shows a "Hello World" alert box in a client
 
 # Key Components...
