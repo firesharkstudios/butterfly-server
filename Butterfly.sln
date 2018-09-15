@@ -110,11 +110,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Database"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.HelloWorld", "Butterfly.Example.HelloWorld\Butterfly.Example.HelloWorld.csproj", "{EFD1260F-AFAA-4128-965E-7E0D2CF83703}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Todo", "Butterfly.Example.Todo\Butterfly.Example.Todo.csproj", "{8BE5BE15-ED6B-4B7F-A7C0-C382665316B4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.RealtimeStreamingChart", "Butterfly.Example.RealtimeStreamingChart\Butterfly.Example.RealtimeStreamingChart.csproj", "{9EE371DF-481C-4403-8EB4-D2F49490A9BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Postgres.Test", "Butterfly.Postgres.Test\Butterfly.Postgres.Test.csproj", "{13E7A3B0-1413-49BC-A7BB-646D4029C5D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Postgres.Test", "Butterfly.Postgres.Test\Butterfly.Postgres.Test.csproj", "{13E7A3B0-1413-49BC-A7BB-646D4029C5D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Todo", "Butterfly.Example.Todo\Butterfly.Example.Todo.csproj", "{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -200,10 +200,6 @@ Global
 		{EFD1260F-AFAA-4128-965E-7E0D2CF83703}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFD1260F-AFAA-4128-965E-7E0D2CF83703}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFD1260F-AFAA-4128-965E-7E0D2CF83703}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8BE5BE15-ED6B-4B7F-A7C0-C382665316B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8BE5BE15-ED6B-4B7F-A7C0-C382665316B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8BE5BE15-ED6B-4B7F-A7C0-C382665316B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8BE5BE15-ED6B-4B7F-A7C0-C382665316B4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -212,6 +208,10 @@ Global
 		{13E7A3B0-1413-49BC-A7BB-646D4029C5D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13E7A3B0-1413-49BC-A7BB-646D4029C5D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13E7A3B0-1413-49BC-A7BB-646D4029C5D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
