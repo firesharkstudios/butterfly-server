@@ -1,11 +1,3 @@
-# Todo List Examples using:
-* [Vue](#run-the-web-client)  
-* [Cordova](#run-the-cordova-client)  
-* [Electron](#run-the-electron-client)  
-* [Aurelia](#run-the-aurelia-client)  
-
-> **The above client examples require [running the demo server](#run-the-server).**
-
 # Demo
 
 ![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/demo.gif) 
@@ -30,9 +22,18 @@ dotnet run -vm
 
 You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Todo/Program.cs).
 
-# Run the [Vue](https://vuejs.org/) Client
+# Run a Client
 
-> A simple Todo app built using Vue / Vuetify on the client
+Try any of these clients...
+
+* [Vue](#run-the-vue-client)
+* [Cordova](#run-the-cordova-client) (also uses Vue) 
+* [Electron](#run-the-electron-client) (also uses Vue)
+* [Aurelia](#run-the-aurelia-client)
+
+## Run the [Vue](https://vuejs.org/) Client
+
+This assumes you have the [demo server](#run-the-server) running.
 
 ```
 cd butterfly-server-dotnet\Butterfly.Example.Todo\vue
@@ -46,9 +47,9 @@ Now, open as many other browser instances to http://localhost:8080/ as you wish 
 
 **Note:** The server process is listening for API requests on port 8000 and the node dev server is listening on port 8080 and proxying API requests to port 8000.
 
-# Run the [Cordova](https://cordova.apache.org/) Client
+## Run the [Cordova](https://cordova.apache.org/) Client
 
-This assumes you have [Cordova](https://cordova.apache.org/) and [Android Studio](https://developer.android.com/studio/) installed.
+This assumes you have the [demo server](#run-the-server) running, [Cordova](https://cordova.apache.org/) installed, and [Android Studio](https://developer.android.com/studio/) installed.
 
 Run this in a terminal or command prompt...
 
@@ -69,9 +70,9 @@ cordova platform add android
 cordova run android
 ```
 
-# Run the [Electron](https://electronjs.org/) Client
+## Run the [Electron](https://electronjs.org/) Client
 
-This assumes you have [Electron](https://electronjs.org/) installed.
+This assumes you have the [demo server](#run-the-server) running and [Electron](https://electronjs.org/) installed.
 
 Run this in a terminal or command prompt...
 
@@ -81,9 +82,9 @@ npm install
 npm run dev
 ```
 
-# Run the [Aurelia](https://aurelia.io/) Client  
+## Run the [Aurelia](https://aurelia.io/) Client  
 
-This assumes you have [Aurelia-CLI](https://aurelia.io/docs/build-systems/aurelia-cli/) installed: `npm install aurelia-cli -g`
+This assumes you have the [demo server](#run-the-server) running and [Aurelia-CLI](https://aurelia.io/docs/build-systems/aurelia-cli/) installed: `npm install aurelia-cli -g`
 
 ```
 cd butterfly-server-dotnet\Butterfly.Example.Todo\aurelia
