@@ -1,0 +1,16 @@
+<template>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Todo Items</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr repeat.for="todo of todoList">
+        <td>${todo.name}</td>
+        <td><button click.delegate="$parent.removeTodo(todo)" class="btn btn-danger">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</template>
