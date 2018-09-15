@@ -197,4 +197,4 @@ $.ajax('/api/todo/insert', {
 
 After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be sychronized from the server to the client's local *todosList* array.
 
-See [Butterfly.Example.Todo](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo/www) for a full working client based on [Vuetify](https://vuetifyjs.com) and [Vue.js](https://vuejs.org/).
+See [Butterfly.Example.Todo](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo/vue) for a full working client based on [Vuetify](https://vuetifyjs.com) and [Vue.js](https://vuejs.org/).
