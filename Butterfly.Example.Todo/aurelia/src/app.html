@@ -1,3 +1,10 @@
 <template>
   <h1>${message}</h1>
+
+  <form submit.delegate="addTodo()">
+    <input type="text" value.bind="todoName" />
+    <button type="submit">Add Todo</button>
+  </form>
+  
+  <compose view-model="todo/todo" />
 </template>
