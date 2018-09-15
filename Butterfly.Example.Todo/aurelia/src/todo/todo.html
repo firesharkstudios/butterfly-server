@@ -2,10 +2,12 @@
   <table>
     <thead>
       <td>Todo Items</td>
+      <td></td>
     </thead>
     <tbody>
       <tr repeat.for="todo of todoList">
         <td>${todo.name}</td>
+        <td><button click.delegate="$parent.removeTodo(todo)">Delete</button></td>
       </tr>
     </tbody>
   </table>

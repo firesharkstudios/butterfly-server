@@ -39,4 +39,12 @@ export class Todo {
   unsubscribe() {
     this.channelClient.unsubscribe(this.channel);
   }
+
+  removeTodo(todo) {
+    return fetch("http://localhost:8000/api/todo/delete", {
+      method: "POST",
+      body: JSON.stringify(todo.id),
+      mode: "no-cors"
+    });
+  }
 }
