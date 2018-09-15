@@ -1,6 +1,10 @@
-# Todo List Example as Web App, Cordova App, and Electron App
+# Todo List Examples using:
+* [Vue]("#run-the-web-client")  
+* [Cordova]("#run-the-cordova-client")  
+* [Electron]("#run-the-electron-client")  
+* [Aurelia]("#run-the-aurelia-client")  
 
-> A simple Todo app built using Vue / Vuetify on the client
+> **The above client examples require [running the demo server](#run-the-server).**
 
 # Demo
 
@@ -27,6 +31,8 @@ dotnet run -vm
 You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Todo/Program.cs).
 
 # Run the Web Client
+
+> A simple Todo app built using Vue / Vuetify on the client
 
 ```
 cd butterfly-server-dotnet\Butterfly.Example.Todo\www
@@ -74,6 +80,18 @@ cd butterfly-server-dotnet\Butterfly.Example.Todo\electron
 npm install
 npm run dev
 ```
+
+# Run the [Aurelia](https://aurelia.io/) Client  
+
+This assumes you have [Aurelia-CLI](https://aurelia.io/docs/build-systems/aurelia-cli/) installed: `npm install aurelia-cli -g`
+
+```
+cd butterfly-server-dotnet\Butterfly.Example.Todo\aurelia
+npm install
+au run
+```
+
+Browse to http://localhost:8080
 
 # Understanding The Server
 
