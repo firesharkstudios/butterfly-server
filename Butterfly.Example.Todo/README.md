@@ -1,8 +1,8 @@
 # Todo List Examples using:
-* [Vue]("#run-the-web-client")  
-* [Cordova]("#run-the-cordova-client")  
-* [Electron]("#run-the-electron-client")  
-* [Aurelia]("#run-the-aurelia-client")  
+* [Vue](#run-the-web-client)  
+* [Cordova](#run-the-cordova-client)  
+* [Electron](#run-the-electron-client)  
+* [Aurelia](#run-the-aurelia-client)  
 
 > **The above client examples require [running the demo server](#run-the-server).**
 
