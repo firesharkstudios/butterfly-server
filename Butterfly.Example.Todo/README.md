@@ -30,7 +30,7 @@ dotnet run -vm
 
 You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Todo/Program.cs).
 
-# Run the Web Client
+# Run the [Vue](https://vuejs.org/) Web Client
 
 > A simple Todo app built using Vue / Vuetify on the client
 
@@ -46,7 +46,7 @@ Now, open as many other browser instances to http://localhost:8080/ as you wish 
 
 **Note:** The server process is listening for API requests on port 8000 and the node dev server is listening on port 8080 and proxying API requests to port 8000.
 
-# Run the Cordova Client
+# Run the [Vue](https://vuejs.org/) [Cordova](https://cordova.apache.org/) Client
 
 This assumes you have [Cordova](https://cordova.apache.org/) and [Android Studio](https://developer.android.com/studio/) installed.
 
@@ -69,7 +69,7 @@ cordova platform add android
 cordova run android
 ```
 
-# Run the Electron Client
+# Run the [Vue](https://vuejs.org/) [Electron](https://electronjs.org/) Client
 
 This assumes you have [Electron](https://electronjs.org/) installed.
 
@@ -81,7 +81,7 @@ npm install
 npm run dev
 ```
 
-# Run the [Aurelia](https://aurelia.io/) Client  
+# Run the [Aurelia](https://aurelia.io/) Web Client  
 
 This assumes you have [Aurelia-CLI](https://aurelia.io/docs/build-systems/aurelia-cli/) installed: `npm install aurelia-cli -g`
 

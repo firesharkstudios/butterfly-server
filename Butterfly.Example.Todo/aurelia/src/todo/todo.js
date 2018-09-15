@@ -3,7 +3,7 @@ import { ArrayDataEventHandler, WebSocketChannelClient } from 'butterfly-client'
 export class Todo {
   constructor() {
     this.todoList = [];
-    this.channel = "todos";
+    this.channel = 'todos';
     this.channelClient = null;
     this.channelClientState = null;
     this.connect();
@@ -11,7 +11,7 @@ export class Todo {
   }
   
   connect() {
-    let url = `ws://localhost:8000/ws`;
+    let url = 'ws://localhost:8000/ws';
     this.channelClient = new WebSocketChannelClient({
       url,
       onStateChange(value) {
@@ -26,7 +26,7 @@ export class Todo {
     this.channelClient.subscribe({
       channel: this.channel,
       vars: {
-        clientName: "AureliaWebClient"
+        clientName: 'AureliaWebClient'
       },
       handler: new ArrayDataEventHandler({
         arrayMapping: {
@@ -41,10 +41,10 @@ export class Todo {
   }
 
   removeTodo(todo) {
-    return fetch("http://localhost:8000/api/todo/delete", {
-      method: "POST",
+    return fetch('http://localhost:8000/api/todo/delete', {
+      method: 'POST',
       body: JSON.stringify(todo.id),
-      mode: "no-cors"
+      mode: 'no-cors'
     });
   }
 }
