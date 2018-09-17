@@ -53,7 +53,6 @@
   },
   "dependencies": {
     "butterfly-client": "^2.0.2",
-    "reqwest": "^2.0.5",
     "vue": "^2.4.2",
     "vue-electron": "^1.0.6",
     "vue-router": "^2.5.3",

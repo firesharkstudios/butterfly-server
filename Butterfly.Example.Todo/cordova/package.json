@@ -20,7 +20,6 @@
     "cordova-android": "^7.1.1",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-whitelist": "^1.3.3",
-    "reqwest": "^2.0.5",
     "uuid": "^3.2.1",
     "vue": "^2.5.16",
     "vue-cordova": "^0.1.2",

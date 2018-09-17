@@ -6,7 +6,6 @@ import App from './App'
 import router from './router'
 
 import { ArrayDataEventHandler, WebSocketChannelClient } from 'butterfly-client'
-import reqwest from 'reqwest'
 
 Vue.use(Vuetify)
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
@@ -26,10 +25,10 @@ new Vue({
     methods: {
         callApi(url, rawData) {
             let fullUrl = `http://localhost:8000${url}`;
-            return reqwest({
-                url: fullUrl,
+            return fetch(fullUrl, {
                 method: 'POST',
-                data: JSON.stringify(rawData),
+                body: JSON.stringify(rawData),
+                mode: 'no-cors'
             });
         },
         subscribe(options) {

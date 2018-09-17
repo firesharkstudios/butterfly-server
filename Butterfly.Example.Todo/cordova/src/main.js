@@ -10,7 +10,6 @@ import App from './App'
 import router from './router'
 
 import { ArrayDataEventHandler, WebSocketChannelClient } from 'butterfly-client'
-import reqwest from 'reqwest'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
@@ -50,10 +49,10 @@ new Vue({
     // (localhost and 127.0.0.1 do not work in Android emulator)
     callApi(url, rawData) {
       let fullUrl = `http://localhost:8000${url}`;
-      return reqwest({
-        url: fullUrl,
+      return fetch(fullUrl, {
         method: 'POST',
-        data: JSON.stringify(rawData),
+        body: JSON.stringify(rawData),
+        mode: 'no-cors'
       });
     },
     subscribe(options) {
