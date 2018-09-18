@@ -1593,7 +1593,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: AuthenticateAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 441
+    startLine: 446
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1632,7 +1632,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: LookupUsernameAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 468
+    startLine: 473
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1674,7 +1674,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateAnonymousUserAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 481
+    startLine: 486
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1709,7 +1709,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateAuthTokenAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 516
+    startLine: 521
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1748,7 +1748,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: LoginAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 543
+    startLine: 548
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1790,7 +1790,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ForgotPasswordAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 565
+    startLine: 570
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1829,7 +1829,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ResetPasswordAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 581
+    startLine: 586
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1871,7 +1871,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateResetCodeAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 609
+    startLine: 614
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1906,7 +1906,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ConvertInputToDict
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 625
+    startLine: 630
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth

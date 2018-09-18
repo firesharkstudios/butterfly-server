@@ -420,15 +420,20 @@ namespace Butterfly.Core.Auth {
             }
 
             if (this.onRegister != null) {
-                var registerData = new Dict {
-                    { this.userTableUsernameFieldName, username },
-                    { this.userTableEmailFieldName, email },
-                    { this.userTablePhoneFieldName, phone },
-                    { this.userTableFirstNameFieldName, firstName  },
-                    { this.userTableLastNameFieldName, lastName },
-                };
-                if (notifyData != null) registerData.UpdateFrom(notifyData);
-                this.onRegister(registerData);
+                try {
+                    var registerData = new Dict {
+                        { this.userTableUsernameFieldName, username },
+                        { this.userTableEmailFieldName, email },
+                        { this.userTablePhoneFieldName, phone },
+                        { this.userTableFirstNameFieldName, firstName  },
+                        { this.userTableLastNameFieldName, lastName },
+                    };
+                    if (notifyData != null) registerData.UpdateFrom(notifyData);
+                    await this.onRegister(registerData);
+                }
+                catch (Exception e) {
+                    logger.Debug(e);
+                }
             }
 
             return await this.CreateAuthTokenAsync(userId);
