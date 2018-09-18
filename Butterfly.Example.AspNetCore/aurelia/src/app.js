@@ -5,7 +5,7 @@ export class App {
   }
 
   addTodo() {
-    return fetch('http://localhost:8000/api/todo/insert', {
+    return fetch('http://localhost:8000/api/todo', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'

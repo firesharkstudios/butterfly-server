@@ -41,8 +41,8 @@ export class Todo {
   }
 
   removeTodo(todo) {
-    return fetch('http://localhost:8000/api/todo/delete', {
-      method: 'POST',
+    return fetch('http://localhost:8000/api/todo', {
+      method: 'DELETE',
       headers:{
         'Content-Type': 'application/json'
       },
