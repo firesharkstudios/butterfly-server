@@ -116,6 +116,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Postgres.Test", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Todo", "Butterfly.Example.Todo\Butterfly.Example.Todo.csproj", "{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly.Example.AspNetCore", "Butterfly.Example.AspNetCore\Butterfly.Example.AspNetCore.csproj", "{A545FD1C-772E-4E8B-B7D0-68341502567F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -212,13 +214,17 @@ Global
 		{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A545FD1C-772E-4E8B-B7D0-68341502567F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A545FD1C-772E-4E8B-B7D0-68341502567F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A545FD1C-772E-4E8B-B7D0-68341502567F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A545FD1C-772E-4E8B-B7D0-68341502567F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
-		BuildVersion_StartDate = 2000/1/1
 		BuildVersion_BuildVersioningStyle = None.None.None.Increment
+		BuildVersion_StartDate = 2000/1/1
+		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
 	EndGlobalSection
 EndGlobal
