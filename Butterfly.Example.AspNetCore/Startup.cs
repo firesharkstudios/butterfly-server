@@ -4,6 +4,7 @@ using Butterfly.Core.Database.Memory;
 using Butterfly.Example.AspNetCore.WebSockets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,10 +13,6 @@ namespace Butterfly.Example.AspNetCore
 {
 	public class Startup
 	{
-		private WebSocketsSubscriptionApi WebSocketsSubscriptionApi { get; set; } = new WebSocketsSubscriptionApi();
-		private WebSocketsChannelConnection WebSocketsChannelConnection { get; set; }
-		private MemoryDatabase MemoryDatabase { get; set; }
-
 		public Startup(IConfiguration configuration)
 		{
 			Configuration = configuration;
@@ -35,21 +32,28 @@ namespace Butterfly.Example.AspNetCore
 						.AllowCredentials());
 			});
 
-			MemoryDatabase = new MemoryDatabase();
-			Task.WaitAll(MemoryDatabase.CreateFromSqlAsync(@"CREATE TABLE todo (
+			ConfigureButterflyServices(services);
+
+			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+		}
+
+		private void ConfigureButterflyServices(IServiceCollection services)
+		{
+			var memoryDatabase = new MemoryDatabase();
+			Task.WaitAll(memoryDatabase.CreateFromSqlAsync(@"CREATE TABLE todo (
 	                id VARCHAR(50) NOT NULL,
 	                name VARCHAR(40) NOT NULL,
 	                PRIMARY KEY(id)
                 );"));
-			MemoryDatabase.SetDefaultValue("id", (tableName) =>
+			memoryDatabase.SetDefaultValue("id", (tableName) =>
 			{
 				return $"{tableName}_{Guid.NewGuid().ToString()}";
 			});
 
-			// register in IoC
-			services.AddSingleton(MemoryDatabase);
-
-			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+			// register for IoC
+			services.AddSingleton(memoryDatabase);
+			services.AddSingleton<WebSocketsSubscriptionApi>();
+			services.AddSingleton<WebSocketsChannelConnection>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,27 +74,7 @@ namespace Butterfly.Example.AspNetCore
 				ReceiveBufferSize = 4 * 1024
 			};
 			app.UseWebSockets(webSocketOptions);
-
-			// https://docs.microsoft.com/en-us/aspnet/core/fundamentals/websockets?view=aspnetcore-2.1#how-to-use-websockets
-			app.Use(async (context, next) =>
-			{
-				if (context.Request.Path != "/ws"){
-					await next();
-					return;
-				}
-
-				if (!context.WebSockets.IsWebSocketRequest) {
-					context.Response.StatusCode = 400;
-					return;
-				}
-				
-				var webSocket = await context.WebSockets.AcceptWebSocketAsync();
-
-				if (WebSocketsChannelConnection == null)
-					WebSocketsChannelConnection = new WebSocketsChannelConnection(MemoryDatabase, WebSocketsSubscriptionApi);
-
-				await WebSocketsChannelConnection.ReceiveAsync(context, webSocket);
-			});
+			app.Map("/ws", WebSocketsMiddleware.WebSocketHandler);			
 		}
 	}
 }
