@@ -4,7 +4,7 @@
 
 # Demo
 
-![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/real-time-chart-demo.gif) 
+![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/contact-demo.gif) 
 
 # Get the Code
 
