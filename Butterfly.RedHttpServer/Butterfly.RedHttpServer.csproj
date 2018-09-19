@@ -2,28 +2,27 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>1.0.4</Version>
+    <Authors>Kent Johnson</Authors>
+    <Company>Fireshark Studios, LLC</Company>
+    <Product>Butterfly Server .NET</Product>
+    <Description>Implementation of IWebApi and ISubscriptionApi for RedHttpServer (see https://github.com/rosenbjerg/Red)</Description>
+    <Copyright>Copyright 2017-2018 Fireshark Studios, LLC</Copyright>
     <PackageLicenseUrl>https://www.mozilla.org/en-US/MPL/2.0/</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/firesharkstudios/butterfly-server-dotnet</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/logo-40x40.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/firesharkstudios/butterfly-server-dotnet</RepositoryUrl>
-    <PackageTags>butterfly server api websocket webserver embedio</PackageTags>
-    <Product>Butterfly Server .NET</Product>
-    <Company>Fireshark Studios, LLC</Company>
-    <Authors>Kent Johnson</Authors>
-    <Copyright>Copyright 2017-2018 Fireshark Studios, LLC</Copyright>
-    <Description>Implementation of IWebApi and ISubscriptionApi for EmbedIO (see https://github.com/unosquare/embedio)</Description>
-    <Version>1.0.4</Version>
-    <PackageReleaseNotes>Various improvements and bug fixes</PackageReleaseNotes>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
+    <PackageTags>butterfly server api websocket webserver redhttpserver</PackageTags>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;1591</NoWarn>
+    <DocumentationFile>bin\Debug\netstandard2.0\Butterfly.RedHttpServer.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EmbedIO" Version="1.16.0" />
-    <PackageReference Include="NLog" Version="4.5.9" />
+    <PackageReference Include="RHttpServer" Version="3.5.2" />
   </ItemGroup>
 
   <ItemGroup>

@@ -11,7 +11,7 @@ namespace Butterfly.EmbedIO.Test {
     [TestClass]
     public class EmbedIOTest {
         [TestMethod]
-        public async Task EmbedIOChannel() {
+        public async Task ChannelTest() {
             using (var webServer = new Unosquare.Labs.EmbedIO.WebServer("http://+:8000/", Unosquare.Labs.EmbedIO.Constants.RoutingStrategy.Regex))
             using (var subscriptionApi = new EmbedIOSubscriptionApi(webServer, path: "/ws", mustReceiveHeartbeatMillis: 2000, getAuthToken: (authType, authValue) => authValue, getId: authToken => authToken.ToString())) {
                 await ChannelUnitTest.TestChannel(subscriptionApi, "ws://localhost:8000/ws", () => {
@@ -21,7 +21,7 @@ namespace Butterfly.EmbedIO.Test {
         }
 
         [TestMethod]
-        public async Task EmbedIOWeb() {
+        public async Task WebTest() {
             using (var webServer = new Unosquare.Labs.EmbedIO.WebServer("http://+:8000/", Unosquare.Labs.EmbedIO.Constants.RoutingStrategy.Regex))
             using (var webApi = new EmbedIOWebApi(webServer)) {
                 await WebApiUnitTest.TestWeb(webApi, "http://localhost:8000/", () => {

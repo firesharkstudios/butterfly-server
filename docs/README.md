@@ -743,9 +743,9 @@ var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
 
 ### Using EmbedIO
 
-[EmbedIO](https://github.com/unosquare/embedio) is a capable low footprint web server that can be used to implement both the *IWebApi* and *ISubscriptionApi* interfaces. 
+[EmbedIO](https://github.com/unosquare/embedio) is a capable low footprint web server that can be used to implement both the [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and *ISubscriptionApi* interfaces. 
 
-The *EmbedIOContext* class is a convenience class that creates IWebApi and ISubscriptionApi instances from a running EmbedIO web server.
+The *EmbedIOContext* class is a convenience class that creates [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and ISubscriptionApi instances using an EmbedIO web server.
 
 In the *Package Manager Console*...
 
@@ -756,20 +756,51 @@ Install-Package Butterfly.EmbedIO
 In your application...
 
 ```csharp
-var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/");
+var context = new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/");
 
 // Declare your Web API and Subscription API like...
-embedIOContext.WebApi.OnPost("/api/todo/insert", async (req, res) => {
+context.WebApi.OnPost("/api/todo/insert", async (req, res) => {
    // Do something
 });
-embedIOContext.WebApi.OnPost("/api/todo/delete", async (req, res) => {
+context.WebApi.OnPost("/api/todo/delete", async (req, res) => {
    // Do something
 });
-embedIOContext.SubscriptionApi.OnSubscribe("todos", (vars, channel) => {
+context.SubscriptionApi.OnSubscribe("todos", (vars, channel) => {
    // Do something
 });
 
-embedIOContext.Start();
+context.Start();
+```
+
+### Using RedHttpServer
+
+[RedHttpServer](https://github.com/rosenbjerg/Red) is a Kestrel/ASP.NET Core based web server that can be used to implement both the [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html) interfaces. 
+
+The *RedHttpServerContext* class is a convenience class that creates [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html) instances using RedHttpServer.
+
+In the *Package Manager Console*...
+
+```
+Install-Package Butterfly.RedHttpServer
+```
+
+In your application...
+
+```csharp
+var context = new Butterfly.RedHttpServer.RedHttpServerContext("http://+:8000/");
+
+// Declare your Web API and Subscription API like...
+context.WebApi.OnPost("/api/todo/insert", async (req, res) => {
+   // Do something
+});
+context.WebApi.OnPost("/api/todo/delete", async (req, res) => {
+   // Do something
+});
+context.SubscriptionApi.OnSubscribe("todos", (vars, channel) => {
+   // Do something
+});
+
+context.Start();
 ```
 
 ### Using MySQL
@@ -968,12 +999,6 @@ Here is an unprioritized wish list going forward...
 Add support for the following databases...
 
 - Mongo DB
-
-## More Web Servers
-
-Add support for the following web servers...
-
-- Kestrel
 
 ## More Client Bindings
 

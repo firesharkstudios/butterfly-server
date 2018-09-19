@@ -8754,12 +8754,6 @@ references:
   isSpec: "True"
   fullName: Butterfly.EmbedIO.EmbedIOContext.Dispose
   nameWithType: EmbedIOContext.Dispose
-- uid: Butterfly.EmbedIO.EmbedIOContext.embedIOWebServer
-  name: embedIOWebServer
-  href: api/Butterfly.EmbedIO.EmbedIOContext.html#Butterfly_EmbedIO_EmbedIOContext_embedIOWebServer
-  commentId: F:Butterfly.EmbedIO.EmbedIOContext.embedIOWebServer
-  fullName: Butterfly.EmbedIO.EmbedIOContext.embedIOWebServer
-  nameWithType: EmbedIOContext.embedIOWebServer
 - uid: Butterfly.EmbedIO.EmbedIOContext.Start
   name: Start()
   href: api/Butterfly.EmbedIO.EmbedIOContext.html#Butterfly_EmbedIO_EmbedIOContext_Start
@@ -8811,6 +8805,12 @@ references:
   isSpec: "True"
   fullName: Butterfly.EmbedIO.EmbedIOContext.WebApi
   nameWithType: EmbedIOContext.WebApi
+- uid: Butterfly.EmbedIO.EmbedIOContext.webServer
+  name: webServer
+  href: api/Butterfly.EmbedIO.EmbedIOContext.html#Butterfly_EmbedIO_EmbedIOContext_webServer
+  commentId: F:Butterfly.EmbedIO.EmbedIOContext.webServer
+  fullName: Butterfly.EmbedIO.EmbedIOContext.webServer
+  nameWithType: EmbedIOContext.webServer
 - uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest
   name: EmbedIOHttpWebRequest
   href: api/Butterfly.EmbedIO.EmbedIOHttpWebRequest.html
@@ -9454,32 +9454,32 @@ references:
   commentId: T:Butterfly.EmbedIO.Test.EmbedIOTest
   fullName: Butterfly.EmbedIO.Test.EmbedIOTest
   nameWithType: EmbedIOTest
-- uid: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel
-  name: EmbedIOChannel()
-  href: api/Butterfly.EmbedIO.Test.EmbedIOTest.html#Butterfly_EmbedIO_Test_EmbedIOTest_EmbedIOChannel
-  commentId: M:Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel
-  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel()
-  nameWithType: EmbedIOTest.EmbedIOChannel()
-- uid: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel*
-  name: EmbedIOChannel
-  href: api/Butterfly.EmbedIO.Test.EmbedIOTest.html#Butterfly_EmbedIO_Test_EmbedIOTest_EmbedIOChannel_
-  commentId: Overload:Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel
+- uid: Butterfly.EmbedIO.Test.EmbedIOTest.ChannelTest
+  name: ChannelTest()
+  href: api/Butterfly.EmbedIO.Test.EmbedIOTest.html#Butterfly_EmbedIO_Test_EmbedIOTest_ChannelTest
+  commentId: M:Butterfly.EmbedIO.Test.EmbedIOTest.ChannelTest
+  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.ChannelTest()
+  nameWithType: EmbedIOTest.ChannelTest()
+- uid: Butterfly.EmbedIO.Test.EmbedIOTest.ChannelTest*
+  name: ChannelTest
+  href: api/Butterfly.EmbedIO.Test.EmbedIOTest.html#Butterfly_EmbedIO_Test_EmbedIOTest_ChannelTest_
+  commentId: Overload:Butterfly.EmbedIO.Test.EmbedIOTest.ChannelTest
   isSpec: "True"
-  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel
-  nameWithType: EmbedIOTest.EmbedIOChannel
-- uid: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb
-  name: EmbedIOWeb()
-  href: api/Butterfly.EmbedIO.Test.EmbedIOTest.html#Butterfly_EmbedIO_Test_EmbedIOTest_EmbedIOWeb
-  commentId: M:Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb
-  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb()
-  nameWithType: EmbedIOTest.EmbedIOWeb()
-- uid: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb*
-  name: EmbedIOWeb
-  href: api/Butterfly.EmbedIO.Test.EmbedIOTest.html#Butterfly_EmbedIO_Test_EmbedIOTest_EmbedIOWeb_
-  commentId: Overload:Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb
+  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.ChannelTest
+  nameWithType: EmbedIOTest.ChannelTest
+- uid: Butterfly.EmbedIO.Test.EmbedIOTest.WebTest
+  name: WebTest()
+  href: api/Butterfly.EmbedIO.Test.EmbedIOTest.html#Butterfly_EmbedIO_Test_EmbedIOTest_WebTest
+  commentId: M:Butterfly.EmbedIO.Test.EmbedIOTest.WebTest
+  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.WebTest()
+  nameWithType: EmbedIOTest.WebTest()
+- uid: Butterfly.EmbedIO.Test.EmbedIOTest.WebTest*
+  name: WebTest
+  href: api/Butterfly.EmbedIO.Test.EmbedIOTest.html#Butterfly_EmbedIO_Test_EmbedIOTest_WebTest_
+  commentId: Overload:Butterfly.EmbedIO.Test.EmbedIOTest.WebTest
   isSpec: "True"
-  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb
-  nameWithType: EmbedIOTest.EmbedIOWeb
+  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.WebTest
+  nameWithType: EmbedIOTest.WebTest
 - uid: Butterfly.MySql
   name: Butterfly.MySql
   href: api/Butterfly.MySql.html
@@ -10371,6 +10371,95 @@ references:
   isSpec: "True"
   fullName: Butterfly.RHttpServer.HttpRequestX.ToUri
   nameWithType: HttpRequestX.ToUri
+- uid: Butterfly.RHttpServer.RedHttpServerContext
+  name: RedHttpServerContext
+  href: api/Butterfly.RHttpServer.RedHttpServerContext.html
+  commentId: T:Butterfly.RHttpServer.RedHttpServerContext
+  fullName: Butterfly.RHttpServer.RedHttpServerContext
+  nameWithType: RedHttpServerContext
+- uid: Butterfly.RHttpServer.RedHttpServerContext.#ctor(System.String,System.String)
+  name: RedHttpServerContext(String, String)
+  href: api/Butterfly.RHttpServer.RedHttpServerContext.html#Butterfly_RHttpServer_RedHttpServerContext__ctor_System_String_System_String_
+  commentId: M:Butterfly.RHttpServer.RedHttpServerContext.#ctor(System.String,System.String)
+  fullName: Butterfly.RHttpServer.RedHttpServerContext.RedHttpServerContext(System.String, System.String)
+  nameWithType: RedHttpServerContext.RedHttpServerContext(String, String)
+- uid: Butterfly.RHttpServer.RedHttpServerContext.#ctor*
+  name: RedHttpServerContext
+  href: api/Butterfly.RHttpServer.RedHttpServerContext.html#Butterfly_RHttpServer_RedHttpServerContext__ctor_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerContext.#ctor
+  isSpec: "True"
+  fullName: Butterfly.RHttpServer.RedHttpServerContext.RedHttpServerContext
+  nameWithType: RedHttpServerContext.RedHttpServerContext
+- uid: Butterfly.RHttpServer.RedHttpServerContext.Dispose
+  name: Dispose()
+  href: api/Butterfly.RHttpServer.RedHttpServerContext.html#Butterfly_RHttpServer_RedHttpServerContext_Dispose
+  commentId: M:Butterfly.RHttpServer.RedHttpServerContext.Dispose
+  fullName: Butterfly.RHttpServer.RedHttpServerContext.Dispose()
+  nameWithType: RedHttpServerContext.Dispose()
+- uid: Butterfly.RHttpServer.RedHttpServerContext.Dispose*
+  name: Dispose
+  href: api/Butterfly.RHttpServer.RedHttpServerContext.html#Butterfly_RHttpServer_RedHttpServerContext_Dispose_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerContext.Dispose
+  isSpec: "True"
+  fullName: Butterfly.RHttpServer.RedHttpServerContext.Dispose
+  nameWithType: RedHttpServerContext.Dispose
+- uid: Butterfly.RHttpServer.RedHttpServerContext.Start
+  name: Start()
+  href: api/Butterfly.RHttpServer.RedHttpServerContext.html#Butterfly_RHttpServer_RedHttpServerContext_Start
+  commentId: M:Butterfly.RHttpServer.RedHttpServerContext.Start
+  fullName: Butterfly.RHttpServer.RedHttpServerContext.Start()
+  nameWithType: RedHttpServerContext.Start()
+- uid: Butterfly.RHttpServer.RedHttpServerContext.Start*
+  name: Start
+  href: api/Butterfly.RHttpServer.RedHttpServerContext.html#Butterfly_RHttpServer_RedHttpServerContext_Start_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerContext.Start
+  isSpec: "True"
+  fullName: Butterfly.RHttpServer.RedHttpServerContext.Start
+  nameWithType: RedHttpServerContext.Start
+- uid: Butterfly.RHttpServer.RedHttpServerContext.subscriptionApi
+  name: subscriptionApi
+  href: api/Butterfly.RHttpServer.RedHttpServerContext.html#Butterfly_RHttpServer_RedHttpServerContext_subscriptionApi
+  commentId: F:Butterfly.RHttpServer.RedHttpServerContext.subscriptionApi
+  fullName: Butterfly.RHttpServer.RedHttpServerContext.subscriptionApi
+  nameWithType: RedHttpServerContext.subscriptionApi
+- uid: Butterfly.RHttpServer.RedHttpServerContext.SubscriptionApi
+  name: SubscriptionApi
+  href: api/Butterfly.RHttpServer.RedHttpServerContext.html#Butterfly_RHttpServer_RedHttpServerContext_SubscriptionApi
+  commentId: P:Butterfly.RHttpServer.RedHttpServerContext.SubscriptionApi
+  fullName: Butterfly.RHttpServer.RedHttpServerContext.SubscriptionApi
+  nameWithType: RedHttpServerContext.SubscriptionApi
+- uid: Butterfly.RHttpServer.RedHttpServerContext.SubscriptionApi*
+  name: SubscriptionApi
+  href: api/Butterfly.RHttpServer.RedHttpServerContext.html#Butterfly_RHttpServer_RedHttpServerContext_SubscriptionApi_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerContext.SubscriptionApi
+  isSpec: "True"
+  fullName: Butterfly.RHttpServer.RedHttpServerContext.SubscriptionApi
+  nameWithType: RedHttpServerContext.SubscriptionApi
+- uid: Butterfly.RHttpServer.RedHttpServerContext.webApi
+  name: webApi
+  href: api/Butterfly.RHttpServer.RedHttpServerContext.html#Butterfly_RHttpServer_RedHttpServerContext_webApi
+  commentId: F:Butterfly.RHttpServer.RedHttpServerContext.webApi
+  fullName: Butterfly.RHttpServer.RedHttpServerContext.webApi
+  nameWithType: RedHttpServerContext.webApi
+- uid: Butterfly.RHttpServer.RedHttpServerContext.WebApi
+  name: WebApi
+  href: api/Butterfly.RHttpServer.RedHttpServerContext.html#Butterfly_RHttpServer_RedHttpServerContext_WebApi
+  commentId: P:Butterfly.RHttpServer.RedHttpServerContext.WebApi
+  fullName: Butterfly.RHttpServer.RedHttpServerContext.WebApi
+  nameWithType: RedHttpServerContext.WebApi
+- uid: Butterfly.RHttpServer.RedHttpServerContext.WebApi*
+  name: WebApi
+  href: api/Butterfly.RHttpServer.RedHttpServerContext.html#Butterfly_RHttpServer_RedHttpServerContext_WebApi_
+  commentId: Overload:Butterfly.RHttpServer.RedHttpServerContext.WebApi
+  isSpec: "True"
+  fullName: Butterfly.RHttpServer.RedHttpServerContext.WebApi
+  nameWithType: RedHttpServerContext.WebApi
+- uid: Butterfly.RHttpServer.RedHttpServerContext.webServer
+  name: webServer
+  href: api/Butterfly.RHttpServer.RedHttpServerContext.html#Butterfly_RHttpServer_RedHttpServerContext_webServer
+  commentId: F:Butterfly.RHttpServer.RedHttpServerContext.webServer
+  fullName: Butterfly.RHttpServer.RedHttpServerContext.webServer
+  nameWithType: RedHttpServerContext.webServer
 - uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi
   name: RedHttpServerSubscriptionApi
   href: api/Butterfly.RHttpServer.RedHttpServerSubscriptionApi.html
@@ -10688,6 +10777,44 @@ references:
   isSpec: "True"
   fullName: Butterfly.RHttpServer.RedHttpServerWebResponse.WriteAsTextAsync
   nameWithType: RedHttpServerWebResponse.WriteAsTextAsync
+- uid: Butterfly.RHttpServer.Test
+  name: Butterfly.RHttpServer.Test
+  href: api/Butterfly.RHttpServer.Test.html
+  commentId: N:Butterfly.RHttpServer.Test
+  fullName: Butterfly.RHttpServer.Test
+  nameWithType: Butterfly.RHttpServer.Test
+- uid: Butterfly.RHttpServer.Test.RHttpServerTest
+  name: RHttpServerTest
+  href: api/Butterfly.RHttpServer.Test.RHttpServerTest.html
+  commentId: T:Butterfly.RHttpServer.Test.RHttpServerTest
+  fullName: Butterfly.RHttpServer.Test.RHttpServerTest
+  nameWithType: RHttpServerTest
+- uid: Butterfly.RHttpServer.Test.RHttpServerTest.ChannelTest
+  name: ChannelTest()
+  href: api/Butterfly.RHttpServer.Test.RHttpServerTest.html#Butterfly_RHttpServer_Test_RHttpServerTest_ChannelTest
+  commentId: M:Butterfly.RHttpServer.Test.RHttpServerTest.ChannelTest
+  fullName: Butterfly.RHttpServer.Test.RHttpServerTest.ChannelTest()
+  nameWithType: RHttpServerTest.ChannelTest()
+- uid: Butterfly.RHttpServer.Test.RHttpServerTest.ChannelTest*
+  name: ChannelTest
+  href: api/Butterfly.RHttpServer.Test.RHttpServerTest.html#Butterfly_RHttpServer_Test_RHttpServerTest_ChannelTest_
+  commentId: Overload:Butterfly.RHttpServer.Test.RHttpServerTest.ChannelTest
+  isSpec: "True"
+  fullName: Butterfly.RHttpServer.Test.RHttpServerTest.ChannelTest
+  nameWithType: RHttpServerTest.ChannelTest
+- uid: Butterfly.RHttpServer.Test.RHttpServerTest.WebTest
+  name: WebTest()
+  href: api/Butterfly.RHttpServer.Test.RHttpServerTest.html#Butterfly_RHttpServer_Test_RHttpServerTest_WebTest
+  commentId: M:Butterfly.RHttpServer.Test.RHttpServerTest.WebTest
+  fullName: Butterfly.RHttpServer.Test.RHttpServerTest.WebTest()
+  nameWithType: RHttpServerTest.WebTest()
+- uid: Butterfly.RHttpServer.Test.RHttpServerTest.WebTest*
+  name: WebTest
+  href: api/Butterfly.RHttpServer.Test.RHttpServerTest.html#Butterfly_RHttpServer_Test_RHttpServerTest_WebTest_
+  commentId: Overload:Butterfly.RHttpServer.Test.RHttpServerTest.WebTest
+  isSpec: "True"
+  fullName: Butterfly.RHttpServer.Test.RHttpServerTest.WebTest
+  nameWithType: RHttpServerTest.WebTest
 - uid: Butterfly.RHttpServer.WebSocketDialogChannelConnection
   name: WebSocketDialogChannelConnection
   href: api/Butterfly.RHttpServer.WebSocketDialogChannelConnection.html

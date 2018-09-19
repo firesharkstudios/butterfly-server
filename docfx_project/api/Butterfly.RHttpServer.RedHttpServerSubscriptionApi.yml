@@ -18,14 +18,14 @@ items:
   type: Class
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: RedHttpServerSubscriptionApi
-    path: ../Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 17
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   summary: "\nBase class implementing <xref href=\"Butterfly.Core.Channel.ISubscriptionApi\" data-throw-if-not-resolved=\"false\"></xref>. New implementations will normally extend this class.\n"
   remarks: "\nListen for subscription requests to the todos channel...<p></p>\n<pre><code>// Listen for subscribe requests...\n// - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)\n// - The handler can push data to the client by calling channel.Queue()\nsubscriptionApi.OnSubscribe(&quot;todos&quot;, (vars, channel) => {\n    return database.CreateAndStartDynamicView(&quot;todo&quot;, dataEventTransaction => channel.Queue(dataEventTransaction));\n});\nsubscriptionApi.Start();</code></pre>\n"
@@ -81,14 +81,14 @@ items:
   type: Field
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: server
-    path: ../Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 18
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: public readonly RedHttpServer server
@@ -114,14 +114,14 @@ items:
   type: Field
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: path
-    path: ../Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 19
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: public readonly string path
@@ -147,14 +147,14 @@ items:
   type: Constructor
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
-    path: ../Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 21
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: public RedHttpServerSubscriptionApi(RedHttpServer server, int mustReceiveHeartbeatMillis = 5000, string path = "/ws", Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null)
@@ -195,14 +195,14 @@ items:
   type: Method
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoStart
-    path: ../Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 27
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: protected override void DoStart()

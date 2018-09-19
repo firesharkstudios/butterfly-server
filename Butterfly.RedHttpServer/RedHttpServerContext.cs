@@ -5,43 +5,35 @@
 using System;
 
 using NLog;
-using Unosquare.Labs.EmbedIO.Modules;
+using Red;
 
 using Butterfly.Core.Channel;
 using Butterfly.Core.WebApi;
 using Butterfly.Core.Util;
 
-namespace Butterfly.EmbedIO {
+namespace Butterfly.RHttpServer {
+
     /// <summary>
-    /// Convenient class to initialize IWebApi and ISubscriptionApi instances using EmbedIO (see https://github.com/unosquare/embedio)
+    /// Convenient class to initialize IWebApi and ISubscriptionApi instances using RedHttpServer (see https://github.com/rosenbjerg/Red)
     /// </summary>
-    public class EmbedIOContext : IDisposable {
+    public class RedHttpServerContext : IDisposable {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected readonly Unosquare.Labs.EmbedIO.WebServer webServer;
+        protected readonly RedHttpServer webServer;
         protected readonly IWebApi webApi;
         protected readonly ISubscriptionApi subscriptionApi;
 
-        public EmbedIOContext(string url, string staticPath = null) {
+        public RedHttpServerContext(string url, string staticPath = null) {
             // Binding to all local IP addresses requires adding an HTTP URL ACL rule
             // This may prompt to "allow app to modify your device"
             ProcessX.AddHttpUrlAclIfNeeded(url);
 
-            // Create the underlying EmbedIOWebServer (see https://github.com/unosquare/embedio)
-            this.webServer = new Unosquare.Labs.EmbedIO.WebServer(url);
-            if (!string.IsNullOrEmpty(staticPath)) {
-                logger.Debug($"EmbedIOContext():staticPath={staticPath}");
-                this.webServer.RegisterModule(new StaticFilesModule(staticPath, headers: new System.Collections.Generic.Dictionary<string, string> {
-                    ["Cache-Control"] = "no-cache, no-store, must-revalidate",
-                    ["Pragma"] = "no-cache",
-                    ["Expires"] = "0"
-                }));
-            }
-            //Unosquare.Swan.Terminal.Settings.DisplayLoggingMessageType = Unosquare.Swan.LogMessageType.Trace;
+            // Create the underlying RedHttpServer (see https://github.com/rosenbjerg/Red)
+            this.webServer = new RedHttpServer(8000, staticPath);
 
             // Create the IWebApi and ISubscriptionApi wrappers
-            this.webApi = new EmbedIOWebApi(webServer);
-            this.subscriptionApi = new EmbedIOSubscriptionApi(webServer, path: "/ws");
+            this.webApi = new RedHttpServerWebApi(webServer);
+            this.subscriptionApi = new RedHttpServerSubscriptionApi(webServer, path: "/ws");
         }
 
         public IWebApi WebApi => this.webApi;

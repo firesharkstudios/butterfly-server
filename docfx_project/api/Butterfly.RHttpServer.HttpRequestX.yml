@@ -15,14 +15,14 @@ items:
   type: Class
   source:
     remote:
-      path: Butterfly.RHttpServer/HttpRequestX.cs
+      path: Butterfly.RedHttpServer/HttpRequestX.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: HttpRequestX
-    path: ../Butterfly.RHttpServer/HttpRequestX.cs
+    path: ../Butterfly.RedHttpServer/HttpRequestX.cs
     startLine: 5
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: 'public static class HttpRequestX : object'
@@ -52,14 +52,14 @@ items:
   type: Method
   source:
     remote:
-      path: Butterfly.RHttpServer/HttpRequestX.cs
+      path: Butterfly.RedHttpServer/HttpRequestX.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ToUri
-    path: ../Butterfly.RHttpServer/HttpRequestX.cs
+    path: ../Butterfly.RedHttpServer/HttpRequestX.cs
     startLine: 6
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: public static Uri ToUri(this HttpRequest me)

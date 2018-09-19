@@ -24,12 +24,11 @@
 Each component above can have multiple implementations...
 
 - [Database](https://butterflyserver.io/#/?id=accessing-a-database) currently has implementations for [MySQL](https://butterflyserver.io/#/?id=using-mysql), [SQLite](https://butterflyserver.io/#/?id=using-sqlite), and [MS SQL Server](https://butterflyserver.io/#/?id=using-ms-sql-server)
-- [Subscription Api](https://butterflyserver.io/#/?id=creating-a-subscription-api) and [Web Api](https://butterflyserver.io/#/?id=creating-a-web-api) currently has an [EmbedIO](https://butterflyserver.io/#/?id=using-embedio) web server implementation
+- [Subscription Api](https://butterflyserver.io/#/?id=creating-a-subscription-api) and [Web Api](https://butterflyserver.io/#/?id=creating-a-web-api) currently have implementations for [EmbedIO](https://butterflyserver.io/#/?id=using-embedio) and [RedHttpServer](https://butterflyserver.io/#/?id=using-redhttpserver)
 
 # FAQ
 
 - Targets *.NET Standard 2.0*
-- Does **not** depend on ASP.NET
 - Does **not** use polling
 
 See https://butterflyserver.io for more details.
