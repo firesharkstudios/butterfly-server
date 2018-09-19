@@ -744,9 +744,9 @@ var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
 
 ### Using EmbedIO
 
-[EmbedIO](https://github.com/unosquare/embedio) is a capable low footprint web server that can be used to implement both the [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and *ISubscriptionApi* interfaces. 
+[EmbedIO](https://github.com/unosquare/embedio) is a capable low footprint web server that can be used to implement both the [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html) interfaces. 
 
-The [EmbedIOContext](https://butterflyserver.io/docfx/api/Butterfly.EmbedIO.EmbedIOContext.html) class is a convenience class that creates [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and ISubscriptionApi instances using an EmbedIO web server.
+The [EmbedIOContext](https://butterflyserver.io/docfx/api/Butterfly.EmbedIO.EmbedIOContext.html) class is a convenience class that creates [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html) instances using an [EmbedIO](https://github.com/unosquare/embedio) web server.
 
 In the *Package Manager Console*...
 
@@ -777,7 +777,7 @@ context.Start();
 
 [RedHttpServer](https://github.com/rosenbjerg/Red) is a Kestrel/ASP.NET Core based web server that can be used to implement both the [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html) interfaces. 
 
-The [RedHttpServerContext](https://butterflyserver.io/docfx/api/Butterfly.RedHttpServer.RedHttpServerContext.html) class is a convenience class that creates [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html) instances using RedHttpServer.
+The [RedHttpServerContext](https://butterflyserver.io/docfx/api/Butterfly.RedHttpServer.RedHttpServerContext.html) class is a convenience class that creates [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html) instances using [RedHttpServer](https://github.com/rosenbjerg/Red).
 
 In the *Package Manager Console*...
 
