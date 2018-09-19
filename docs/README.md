@@ -26,6 +26,7 @@ An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/
 | --- | --- | --- |
 | Butterfly.Core | [![nuget](https://img.shields.io/nuget/v/Butterfly.Core.svg)](https://www.nuget.org/packages/Butterfly.Core/) | `nuget install Butterfly.Core` |
 | Butterfly.EmbedIO | [![nuget](https://img.shields.io/nuget/v/Butterfly.EmbedIO.svg)](https://www.nuget.org/packages/Butterfly.EmbedIO/) | `nuget install Butterfly.EmbedIO` |
+| Butterfly.RedHttpServer | [![nuget](https://img.shields.io/nuget/v/Butterfly.RedHttpServer.svg)](https://www.nuget.org/packages/Butterfly.RedHttpServer/) | `nuget install Butterfly.RedHttpServer` |
 | Butterfly.MySQL | [![nuget](https://img.shields.io/nuget/v/Butterfly.MySQL.svg)](https://www.nuget.org/packages/Butterfly.MySQL/) | `nuget install Butterfly.MySQL` |
 | Butterfly.Postgres | [![nuget](https://img.shields.io/nuget/v/Butterfly.Postgres.svg)](https://www.nuget.org/packages/Butterfly.Postgres/) | `nuget install Butterfly.Postgres` |
 | Butterfly.SQLite | [![nuget](https://img.shields.io/nuget/v/Butterfly.SQLite.svg)](https://www.nuget.org/packages/Butterfly.SQLite/) | `nuget install Butterfly.SQLite` |
@@ -132,7 +133,7 @@ webApi.OnPost("/api/todo/delete", async (req, res) => {
 webApi.Compile();
 ```
 
-You need an implementation like [EmbedIO](#using-embedio) to get an instance of [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html).
+You need an implementation like [EmbedIO](#using-embedio) or [RedHttpServer](#using-redhttpserver) to get an instance of [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html).
 
 ### Example Request Handling
 
@@ -745,7 +746,7 @@ var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
 
 [EmbedIO](https://github.com/unosquare/embedio) is a capable low footprint web server that can be used to implement both the [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and *ISubscriptionApi* interfaces. 
 
-The *EmbedIOContext* class is a convenience class that creates [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and ISubscriptionApi instances using an EmbedIO web server.
+The [EmbedIOContext](https://butterflyserver.io/docfx/api/Butterfly.EmbedIO.EmbedIOContext.html) class is a convenience class that creates [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and ISubscriptionApi instances using an EmbedIO web server.
 
 In the *Package Manager Console*...
 
@@ -776,7 +777,7 @@ context.Start();
 
 [RedHttpServer](https://github.com/rosenbjerg/Red) is a Kestrel/ASP.NET Core based web server that can be used to implement both the [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html) interfaces. 
 
-The *RedHttpServerContext* class is a convenience class that creates [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html) instances using RedHttpServer.
+The [RedHttpServerContext](https://butterflyserver.io/docfx/api/Butterfly.RedHttpServer.RedHttpServerContext.html) class is a convenience class that creates [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html) instances using RedHttpServer.
 
 In the *Package Manager Console*...
 
