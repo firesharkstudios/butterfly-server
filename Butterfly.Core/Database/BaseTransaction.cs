@@ -175,12 +175,19 @@ namespace Butterfly.Core.Database {
             }
         }
 
-        public async Task<bool> SynchronizeAsync(string tableName, Dict[] existingRecords, Dict[] newRecords, Func<Dict, dynamic> getDeleteKey, string[] keyFieldNames = null) {
+        public async Task<bool> SynchronizeAsync(string tableName, Dict[] existingRecords, Dict[] newRecords, string[] keyFieldNames = null) {
             if (!this.database.TableByName.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
 
             bool changed = false;
 
-            if (keyFieldNames == null) keyFieldNames = table.Indexes[0].FieldNames;
+            if (existingRecords.Length == 0 && newRecords.Length == 0) return changed;
+
+            if (keyFieldNames == null) {
+                var record = existingRecords.Length > 0 ? existingRecords[0] : newRecords[0];
+                var uniqueIndex = table.FindUniqueIndex(record.Keys.ToArray());
+                if (uniqueIndex == null) throw new Exception("Could not determine unique index");
+                keyFieldNames = uniqueIndex.FieldNames;
+            }
 
             List<object> existingIds = existingRecords.Select(x => BaseDatabase.GetKeyValue(keyFieldNames, x)).ToList();
             List<object> newIds = newRecords.Select(x => BaseDatabase.GetKeyValue(keyFieldNames, x, throwErrorIfMissingKeyField: false)).ToList();
@@ -189,8 +196,8 @@ namespace Butterfly.Core.Database {
                 int newIndex = newIds.IndexOf(existingIds[i]);
                 int count = 0;
                 if (newIndex == -1) {
-                    var deleteKey = getDeleteKey(existingRecords[i]);
-                    count = await this.DeleteAsync(table.Name, deleteKey);
+                    var vars = keyFieldNames.ToDictionary(x => x, x => existingRecords[i][x]);
+                    count = await this.DeleteAsync(table.Name, vars);
                 }
                 else if (!newRecords[newIndex].IsSame(existingRecords[i])) {
                     count = await this.UpdateAsync(table.Name, newRecords[newIndex]);

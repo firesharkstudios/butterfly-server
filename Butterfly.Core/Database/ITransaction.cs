@@ -123,10 +123,9 @@ namespace Butterfly.Core.Database {
         /// <param name="tableName"></param>
         /// <param name="existingRecords"></param>
         /// <param name="newRecords"></param>
-        /// <param name="getDeleteKey"></param>
-        /// <param name="keyFieldNames"></param>
+        /// <param name="keyFieldNames">Leave blank to auto-determine key field names from existing and new records</param>
         /// <returns></returns>
-        Task<bool> SynchronizeAsync(string tableName, Dict[] existingRecords, Dict[] newRecords, Func<Dict, dynamic> getDeleteKey, string[] keyFieldNames = null);
+        Task<bool> SynchronizeAsync(string tableName, Dict[] existingRecords, Dict[] newRecords, string[] keyFieldNames = null);
 
         /// <summary>
         /// Truncate a table (deletes all records)
