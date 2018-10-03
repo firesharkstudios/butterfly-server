@@ -11,14 +11,18 @@
     <Company>Fireshark Studios, LLC</Company>
     <Authors>Kent Johnson</Authors>
     <Copyright>Copyright 2017-2018 Fireshark Studios, LLC</Copyright>
-    <Description>Implementation of Butterfly.Core.ChannelIChannelServer and Butterfly.Core.WebApi.IWebApiServer for Embed IO</Description>
-    <Version>1.0.3</Version>
+    <Description>Implementation of IWebApi and ISubscriptionApi for EmbedIO (see https://github.com/unosquare/embedio)</Description>
+    <Version>1.0.5</Version>
     <PackageReleaseNotes>Various improvements and bug fixes</PackageReleaseNotes>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>

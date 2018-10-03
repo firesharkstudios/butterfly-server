@@ -21,14 +21,14 @@ items:
   type: Class
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerWebApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: RedHttpServerWebRequest
-    path: ../Butterfly.RHttpServer/RedHttpServerWebApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 59
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: 'public class RedHttpServerWebRequest : BaseHttpRequest, IHttpRequest, IWebRequest'
@@ -66,14 +66,14 @@ items:
   type: Field
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerWebApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: request
-    path: ../Butterfly.RHttpServer/RedHttpServerWebApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 61
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: public readonly Request request
@@ -99,14 +99,14 @@ items:
   type: Constructor
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerWebApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
-    path: ../Butterfly.RHttpServer/RedHttpServerWebApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 63
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: public RedHttpServerWebRequest(Request request)
@@ -132,14 +132,14 @@ items:
   type: Property
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerWebApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: InputStream
-    path: ../Butterfly.RHttpServer/RedHttpServerWebApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 67
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: protected override Stream InputStream { get; }
@@ -170,14 +170,14 @@ items:
   type: Property
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerWebApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: RequestUrl
-    path: ../Butterfly.RHttpServer/RedHttpServerWebApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 69
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: public override Uri RequestUrl { get; }
@@ -208,14 +208,14 @@ items:
   type: Property
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerWebApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Headers
-    path: ../Butterfly.RHttpServer/RedHttpServerWebApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 71
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: public override Dictionary<string, string> Headers { get; }
@@ -246,14 +246,14 @@ items:
   type: Property
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerWebApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: PathParams
-    path: ../Butterfly.RHttpServer/RedHttpServerWebApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 73
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: public override Dictionary<string, string> PathParams { get; }
@@ -284,14 +284,14 @@ items:
   type: Property
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerWebApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: QueryParams
-    path: ../Butterfly.RHttpServer/RedHttpServerWebApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 75
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: public override Dictionary<string, string> QueryParams { get; }

@@ -5,8 +5,8 @@ items:
   id: EmbedIOTest
   parent: Butterfly.EmbedIO.Test
   children:
-  - Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel
-  - Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb
+  - Butterfly.EmbedIO.Test.EmbedIOTest.ChannelTest
+  - Butterfly.EmbedIO.Test.EmbedIOTest.WebTest
   langs:
   - csharp
   - vb
@@ -38,66 +38,66 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel
-  commentId: M:Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel
-  id: EmbedIOChannel
+- uid: Butterfly.EmbedIO.Test.EmbedIOTest.ChannelTest
+  commentId: M:Butterfly.EmbedIO.Test.EmbedIOTest.ChannelTest
+  id: ChannelTest
   parent: Butterfly.EmbedIO.Test.EmbedIOTest
   langs:
   - csharp
   - vb
-  name: EmbedIOChannel()
-  nameWithType: EmbedIOTest.EmbedIOChannel()
-  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel()
+  name: ChannelTest()
+  nameWithType: EmbedIOTest.ChannelTest()
+  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.ChannelTest()
   type: Method
   source:
     remote:
       path: Butterfly.EmbedIO.Test/EmbedIOTest.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
-    id: EmbedIOChannel
+    id: ChannelTest
     path: ../Butterfly.EmbedIO.Test/EmbedIOTest.cs
     startLine: 12
   assemblies:
   - Butterfly.EmbedIO.Test
   namespace: Butterfly.EmbedIO.Test
   syntax:
-    content: public Task EmbedIOChannel()
+    content: public Task ChannelTest()
     return:
       type: Task
-    content.vb: Public Function EmbedIOChannel As Task
-  overload: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel*
+    content.vb: Public Function ChannelTest As Task
+  overload: Butterfly.EmbedIO.Test.EmbedIOTest.ChannelTest*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb
-  commentId: M:Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb
-  id: EmbedIOWeb
+- uid: Butterfly.EmbedIO.Test.EmbedIOTest.WebTest
+  commentId: M:Butterfly.EmbedIO.Test.EmbedIOTest.WebTest
+  id: WebTest
   parent: Butterfly.EmbedIO.Test.EmbedIOTest
   langs:
   - csharp
   - vb
-  name: EmbedIOWeb()
-  nameWithType: EmbedIOTest.EmbedIOWeb()
-  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb()
+  name: WebTest()
+  nameWithType: EmbedIOTest.WebTest()
+  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.WebTest()
   type: Method
   source:
     remote:
       path: Butterfly.EmbedIO.Test/EmbedIOTest.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
-    id: EmbedIOWeb
+    id: WebTest
     path: ../Butterfly.EmbedIO.Test/EmbedIOTest.cs
     startLine: 22
   assemblies:
   - Butterfly.EmbedIO.Test
   namespace: Butterfly.EmbedIO.Test
   syntax:
-    content: public Task EmbedIOWeb()
+    content: public Task WebTest()
     return:
       type: Task
-    content.vb: Public Function EmbedIOWeb As Task
-  overload: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb*
+    content.vb: Public Function WebTest As Task
+  overload: Butterfly.EmbedIO.Test.EmbedIOTest.WebTest*
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -114,19 +114,19 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel*
-  commentId: Overload:Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel
-  name: EmbedIOChannel
-  nameWithType: EmbedIOTest.EmbedIOChannel
-  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOChannel
+- uid: Butterfly.EmbedIO.Test.EmbedIOTest.ChannelTest*
+  commentId: Overload:Butterfly.EmbedIO.Test.EmbedIOTest.ChannelTest
+  name: ChannelTest
+  nameWithType: EmbedIOTest.ChannelTest
+  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.ChannelTest
 - uid: Task
   isExternal: true
   name: Task
   nameWithType: Task
   fullName: Task
-- uid: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb*
-  commentId: Overload:Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb
-  name: EmbedIOWeb
-  nameWithType: EmbedIOTest.EmbedIOWeb
-  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.EmbedIOWeb
+- uid: Butterfly.EmbedIO.Test.EmbedIOTest.WebTest*
+  commentId: Overload:Butterfly.EmbedIO.Test.EmbedIOTest.WebTest
+  name: WebTest
+  nameWithType: EmbedIOTest.WebTest
+  fullName: Butterfly.EmbedIO.Test.EmbedIOTest.WebTest
 shouldSkipMarkup: true

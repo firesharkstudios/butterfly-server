@@ -18,14 +18,14 @@ items:
   type: Class
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: WebSocketDialogChannelConnection
-    path: ../Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 37
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: 'public class WebSocketDialogChannelConnection : BaseChannelConnection, IChannelConnection, IDisposable'
@@ -82,14 +82,14 @@ items:
   type: Field
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: webSocketDialog
-    path: ../Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 39
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: protected readonly WebSocketDialog webSocketDialog
@@ -115,14 +115,14 @@ items:
   type: Constructor
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
-    path: ../Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 41
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: public WebSocketDialogChannelConnection(BaseSubscriptionApi subscriptionApi, WebSocketDialog webSocketDialog)
@@ -150,14 +150,14 @@ items:
   type: Method
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SendAsync
-    path: ../Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 56
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: protected override Task SendAsync(string text)
@@ -187,14 +187,14 @@ items:
   type: Method
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoDispose
-    path: ../Butterfly.RHttpServer/RedHttpServerSubscriptionApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 61
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: protected override void DoDispose()

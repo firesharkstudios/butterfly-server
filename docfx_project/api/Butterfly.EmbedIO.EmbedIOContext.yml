@@ -7,12 +7,12 @@ items:
   children:
   - Butterfly.EmbedIO.EmbedIOContext.#ctor(System.String,System.String)
   - Butterfly.EmbedIO.EmbedIOContext.Dispose
-  - Butterfly.EmbedIO.EmbedIOContext.embedIOWebServer
   - Butterfly.EmbedIO.EmbedIOContext.Start
   - Butterfly.EmbedIO.EmbedIOContext.subscriptionApi
   - Butterfly.EmbedIO.EmbedIOContext.SubscriptionApi
   - Butterfly.EmbedIO.EmbedIOContext.webApi
   - Butterfly.EmbedIO.EmbedIOContext.WebApi
+  - Butterfly.EmbedIO.EmbedIOContext.webServer
   langs:
   - csharp
   - vb
@@ -27,11 +27,11 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: EmbedIOContext
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
-    startLine: 18
+    startLine: 17
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
-  summary: "\nConvenient class to initialize an IWebApi and ISubscriptionApi instance from a running EmbedIO.WebServer instance\n"
+  summary: "\nConvenient class to initialize IWebApi and ISubscriptionApi instances using EmbedIO (see https://github.com/unosquare/embedio)\n"
   example: []
   syntax:
     content: 'public class EmbedIOContext : IDisposable'
@@ -46,33 +46,33 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: Butterfly.EmbedIO.EmbedIOContext.embedIOWebServer
-  commentId: F:Butterfly.EmbedIO.EmbedIOContext.embedIOWebServer
-  id: embedIOWebServer
+- uid: Butterfly.EmbedIO.EmbedIOContext.webServer
+  commentId: F:Butterfly.EmbedIO.EmbedIOContext.webServer
+  id: webServer
   parent: Butterfly.EmbedIO.EmbedIOContext
   langs:
   - csharp
   - vb
-  name: embedIOWebServer
-  nameWithType: EmbedIOContext.embedIOWebServer
-  fullName: Butterfly.EmbedIO.EmbedIOContext.embedIOWebServer
+  name: webServer
+  nameWithType: EmbedIOContext.webServer
+  fullName: Butterfly.EmbedIO.EmbedIOContext.webServer
   type: Field
   source:
     remote:
       path: Butterfly.EmbedIO/EmbedIOContext.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
-    id: embedIOWebServer
+    id: webServer
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
-    startLine: 21
+    startLine: 20
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
   syntax:
-    content: protected readonly Unosquare.Labs.EmbedIO.WebServer embedIOWebServer
+    content: protected readonly Unosquare.Labs.EmbedIO.WebServer webServer
     return:
       type: Unosquare.Labs.EmbedIO.WebServer
-    content.vb: Protected ReadOnly embedIOWebServer As Unosquare.Labs.EmbedIO.WebServer
+    content.vb: Protected ReadOnly webServer As Unosquare.Labs.EmbedIO.WebServer
   modifiers.csharp:
   - protected
   - readonly
@@ -97,7 +97,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: webApi
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
-    startLine: 22
+    startLine: 21
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -130,7 +130,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: subscriptionApi
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
-    startLine: 23
+    startLine: 22
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -163,7 +163,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
-    startLine: 25
+    startLine: 24
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -198,7 +198,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: WebApi
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
-    startLine: 47
+    startLine: 46
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -233,7 +233,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SubscriptionApi
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
-    startLine: 48
+    startLine: 47
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -268,7 +268,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Start
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
-    startLine: 50
+    startLine: 49
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -298,7 +298,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Dispose
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
-    startLine: 59
+    startLine: 58
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO

@@ -26,6 +26,7 @@ An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/
 | --- | --- | --- |
 | Butterfly.Core | [![nuget](https://img.shields.io/nuget/v/Butterfly.Core.svg)](https://www.nuget.org/packages/Butterfly.Core/) | `nuget install Butterfly.Core` |
 | Butterfly.EmbedIO | [![nuget](https://img.shields.io/nuget/v/Butterfly.EmbedIO.svg)](https://www.nuget.org/packages/Butterfly.EmbedIO/) | `nuget install Butterfly.EmbedIO` |
+| Butterfly.RedHttpServer | [![nuget](https://img.shields.io/nuget/v/Butterfly.RedHttpServer.svg)](https://www.nuget.org/packages/Butterfly.RedHttpServer/) | `nuget install Butterfly.RedHttpServer` |
 | Butterfly.MySQL | [![nuget](https://img.shields.io/nuget/v/Butterfly.MySQL.svg)](https://www.nuget.org/packages/Butterfly.MySQL/) | `nuget install Butterfly.MySQL` |
 | Butterfly.Postgres | [![nuget](https://img.shields.io/nuget/v/Butterfly.Postgres.svg)](https://www.nuget.org/packages/Butterfly.Postgres/) | `nuget install Butterfly.Postgres` |
 | Butterfly.SQLite | [![nuget](https://img.shields.io/nuget/v/Butterfly.SQLite.svg)](https://www.nuget.org/packages/Butterfly.SQLite/) | `nuget install Butterfly.SQLite` |
@@ -41,6 +42,7 @@ You can try these examples...
 
 - [Hello World](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.HelloWorld) - Shows *Hello World* in an alert box on the client
 - [Database](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Database) - Shows data change events on a [Dynamic View](#using-dynamic-views) in a console
+- [Contact Manager](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Crud) - Shows a simple CRUD web app using [Vuetify](https://vuetifyjs.com) on the client
 - [Todo Manager](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) - Shows a simple *Todo* web app using [Vuetify](https://vuetifyjs.com) on the client
 
 ## Try It
@@ -131,7 +133,7 @@ webApi.OnPost("/api/todo/delete", async (req, res) => {
 webApi.Compile();
 ```
 
-You need an implementation like [EmbedIO](#using-embedio) to get an instance of [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html).
+You need an implementation like [EmbedIO](#using-embedio) or [RedHttpServer](#using-redhttpserver) to get an instance of [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html).
 
 ### Example Request Handling
 
@@ -742,9 +744,9 @@ var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
 
 ### Using EmbedIO
 
-[EmbedIO](https://github.com/unosquare/embedio) is a capable low footprint web server that can be used to implement both the *IWebApi* and *ISubscriptionApi* interfaces. 
+[EmbedIO](https://github.com/unosquare/embedio) is a capable low footprint web server that can be used to implement both the [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html) interfaces. 
 
-The *EmbedIOContext* class is a convenience class that creates IWebApi and ISubscriptionApi instances from a running EmbedIO web server.
+The [EmbedIOContext](https://butterflyserver.io/docfx/api/Butterfly.EmbedIO.EmbedIOContext.html) class is a convenience class that creates [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html) instances using an [EmbedIO](https://github.com/unosquare/embedio) web server.
 
 In the *Package Manager Console*...
 
@@ -755,20 +757,51 @@ Install-Package Butterfly.EmbedIO
 In your application...
 
 ```csharp
-var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/");
+var context = new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/");
 
 // Declare your Web API and Subscription API like...
-embedIOContext.WebApi.OnPost("/api/todo/insert", async (req, res) => {
+context.WebApi.OnPost("/api/todo/insert", async (req, res) => {
    // Do something
 });
-embedIOContext.WebApi.OnPost("/api/todo/delete", async (req, res) => {
+context.WebApi.OnPost("/api/todo/delete", async (req, res) => {
    // Do something
 });
-embedIOContext.SubscriptionApi.OnSubscribe("todos", (vars, channel) => {
+context.SubscriptionApi.OnSubscribe("todos", (vars, channel) => {
    // Do something
 });
 
-embedIOContext.Start();
+context.Start();
+```
+
+### Using RedHttpServer
+
+[RedHttpServer](https://github.com/rosenbjerg/Red) is a Kestrel/ASP.NET Core based web server that can be used to implement both the [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html) interfaces. 
+
+The [RedHttpServerContext](https://butterflyserver.io/docfx/api/Butterfly.RedHttpServer.RedHttpServerContext.html) class is a convenience class that creates [IWebApi](https://butterflyserver.io/docfx/api/Butterfly.Core.WebApi.IWebApi.html) and [ISubscriptionApi](https://butterflyserver.io/docfx/api/Butterfly.Core.Channel.ISubscriptionApi.html) instances using [RedHttpServer](https://github.com/rosenbjerg/Red).
+
+In the *Package Manager Console*...
+
+```
+Install-Package Butterfly.RedHttpServer
+```
+
+In your application...
+
+```csharp
+var context = new Butterfly.RedHttpServer.RedHttpServerContext("http://+:8000/");
+
+// Declare your Web API and Subscription API like...
+context.WebApi.OnPost("/api/todo/insert", async (req, res) => {
+   // Do something
+});
+context.WebApi.OnPost("/api/todo/delete", async (req, res) => {
+   // Do something
+});
+context.SubscriptionApi.OnSubscribe("todos", (vars, channel) => {
+   // Do something
+});
+
+context.Start();
 ```
 
 ### Using MySQL
@@ -967,12 +1000,6 @@ Here is an unprioritized wish list going forward...
 Add support for the following databases...
 
 - Mongo DB
-
-## More Web Servers
-
-Add support for the following web servers...
-
-- Kestrel
 
 ## More Client Bindings
 

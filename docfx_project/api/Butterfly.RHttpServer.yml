@@ -5,6 +5,7 @@ items:
   id: Butterfly.RHttpServer
   children:
   - Butterfly.RHttpServer.HttpRequestX
+  - Butterfly.RHttpServer.RedHttpServerContext
   - Butterfly.RHttpServer.RedHttpServerSubscriptionApi
   - Butterfly.RHttpServer.RedHttpServerWebApi
   - Butterfly.RHttpServer.RedHttpServerWebRequest
@@ -19,13 +20,18 @@ items:
   fullName: Butterfly.RHttpServer
   type: Namespace
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
 references:
 - uid: Butterfly.RHttpServer.HttpRequestX
   commentId: T:Butterfly.RHttpServer.HttpRequestX
   name: HttpRequestX
   nameWithType: HttpRequestX
   fullName: Butterfly.RHttpServer.HttpRequestX
+- uid: Butterfly.RHttpServer.RedHttpServerContext
+  commentId: T:Butterfly.RHttpServer.RedHttpServerContext
+  name: RedHttpServerContext
+  nameWithType: RedHttpServerContext
+  fullName: Butterfly.RHttpServer.RedHttpServerContext
 - uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi
   commentId: T:Butterfly.RHttpServer.RedHttpServerSubscriptionApi
   name: RedHttpServerSubscriptionApi

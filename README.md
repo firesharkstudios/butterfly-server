@@ -9,6 +9,7 @@
 # Examples...
 
 - [Real-time Streaming Charts](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.RealtimeStreamingChart) - Shows a client with a real-time streaming chart updated from a server (uses [Smoothie Charts](http://smoothiecharts.org/))
+- [Contact Manager](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Crud) - Shows basic CRUD operations where all changes synchronized to connected clients
 - [Todo List Manager](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) - Shows different types of clients synchronized to the same server (a [Vue.js](https://vuejs.org/) client, a [Cordova](https://cordova.apache.org/) client, an [Electron](https://electronjs.org/) client, and an [Aurelia](https://aurelia.io/) client)
 - [Hello World](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.HelloWorld) - Shows a "Hello World" alert box in a client
 
@@ -23,12 +24,11 @@
 Each component above can have multiple implementations...
 
 - [Database](https://butterflyserver.io/#/?id=accessing-a-database) currently has implementations for [MySQL](https://butterflyserver.io/#/?id=using-mysql), [SQLite](https://butterflyserver.io/#/?id=using-sqlite), and [MS SQL Server](https://butterflyserver.io/#/?id=using-ms-sql-server)
-- [Subscription Api](https://butterflyserver.io/#/?id=creating-a-subscription-api) and [Web Api](https://butterflyserver.io/#/?id=creating-a-web-api) currently has an [EmbedIO](https://butterflyserver.io/#/?id=using-embedio) web server implementation
+- [Subscription Api](https://butterflyserver.io/#/?id=creating-a-subscription-api) and [Web Api](https://butterflyserver.io/#/?id=creating-a-web-api) currently have implementations for [EmbedIO](https://butterflyserver.io/#/?id=using-embedio) and [RedHttpServer](https://butterflyserver.io/#/?id=using-redhttpserver)
 
 # FAQ
 
 - Targets *.NET Standard 2.0*
-- Does **not** depend on ASP.NET
 - Does **not** use polling
 
 See https://butterflyserver.io for more details.

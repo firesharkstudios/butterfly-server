@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
-    <Version>1.0.3</Version>
+    <Version>1.0.5</Version>
     <Authors>Johan van Rensburg, Kent Johnson</Authors>
     <Company>Fireshark Studios, LLC</Company>
     <Product>Butterfly Server .NET</Product>
@@ -14,7 +14,7 @@
     <PackageIconUrl>https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/logo-40x40.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/firesharkstudios/butterfly-server-dotnet</RepositoryUrl>
     <PackageTags>butterfly server database sqlserver</PackageTags>
-    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <PackageReleaseNotes>Various improvements and bug fixes</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

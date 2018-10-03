@@ -4,22 +4,21 @@
 
 using System;
 
+using NLog;
 using Unosquare.Labs.EmbedIO.Modules;
 
 using Butterfly.Core.Channel;
 using Butterfly.Core.WebApi;
 using Butterfly.Core.Util;
 
-using NLog;
-
 namespace Butterfly.EmbedIO {
     /// <summary>
-    /// Convenient class to initialize an IWebApi and ISubscriptionApi instance from a running EmbedIO.WebServer instance
+    /// Convenient class to initialize IWebApi and ISubscriptionApi instances using EmbedIO (see https://github.com/unosquare/embedio)
     /// </summary>
     public class EmbedIOContext : IDisposable {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected readonly Unosquare.Labs.EmbedIO.WebServer embedIOWebServer;
+        protected readonly Unosquare.Labs.EmbedIO.WebServer webServer;
         protected readonly IWebApi webApi;
         protected readonly ISubscriptionApi subscriptionApi;
 
@@ -29,10 +28,10 @@ namespace Butterfly.EmbedIO {
             ProcessX.AddHttpUrlAclIfNeeded(url);
 
             // Create the underlying EmbedIOWebServer (see https://github.com/unosquare/embedio)
-            this.embedIOWebServer = new Unosquare.Labs.EmbedIO.WebServer(url);
+            this.webServer = new Unosquare.Labs.EmbedIO.WebServer(url);
             if (!string.IsNullOrEmpty(staticPath)) {
                 logger.Debug($"EmbedIOContext():staticPath={staticPath}");
-                this.embedIOWebServer.RegisterModule(new StaticFilesModule(staticPath, headers: new System.Collections.Generic.Dictionary<string, string> {
+                this.webServer.RegisterModule(new StaticFilesModule(staticPath, headers: new System.Collections.Generic.Dictionary<string, string> {
                     ["Cache-Control"] = "no-cache, no-store, must-revalidate",
                     ["Pragma"] = "no-cache",
                     ["Expires"] = "0"
@@ -40,9 +39,9 @@ namespace Butterfly.EmbedIO {
             }
             //Unosquare.Swan.Terminal.Settings.DisplayLoggingMessageType = Unosquare.Swan.LogMessageType.Trace;
 
-            // Setup and start a webApi and subscriptionApi using embedIOWebServer
-            this.webApi = new EmbedIOWebApi(embedIOWebServer);
-            this.subscriptionApi = new EmbedIOSubscriptionApi(embedIOWebServer, path: "/ws");
+            // Create the IWebApi and ISubscriptionApi wrappers
+            this.webApi = new EmbedIOWebApi(webServer);
+            this.subscriptionApi = new EmbedIOSubscriptionApi(webServer, path: "/ws");
         }
 
         public IWebApi WebApi => this.webApi;
@@ -54,7 +53,7 @@ namespace Butterfly.EmbedIO {
             this.subscriptionApi.Start();
 
             // Start the underlying EmbedIOServer
-            this.embedIOWebServer.RunAsync();
+            this.webServer.RunAsync();
         }
 
         public void Dispose() {

@@ -18,14 +18,14 @@ items:
   type: Class
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerWebApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: RedHttpServerWebApi
-    path: ../Butterfly.RHttpServer/RedHttpServerWebApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 20
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   summary: "\nBase class implementing <xref href=\"Butterfly.Core.WebApi.IWebApi\" data-throw-if-not-resolved=\"false\"></xref>. New implementations will normally extend this class.\n"
   example: []
@@ -69,14 +69,14 @@ items:
   type: Field
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerWebApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: server
-    path: ../Butterfly.RHttpServer/RedHttpServerWebApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 22
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: public readonly RedHttpServer server
@@ -102,14 +102,14 @@ items:
   type: Constructor
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerWebApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
-    path: ../Butterfly.RHttpServer/RedHttpServerWebApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 24
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: public RedHttpServerWebApi(RedHttpServer server)
@@ -135,14 +135,14 @@ items:
   type: Method
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerWebApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Compile
-    path: ../Butterfly.RHttpServer/RedHttpServerWebApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 29
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: public override void Compile()
@@ -168,14 +168,14 @@ items:
   type: Method
   source:
     remote:
-      path: Butterfly.RHttpServer/RedHttpServerWebApi.cs
+      path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Dispose
-    path: ../Butterfly.RHttpServer/RedHttpServerWebApi.cs
+    path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 55
   assemblies:
-  - Butterfly.RHttpServer
+  - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
   syntax:
     content: public override void Dispose()

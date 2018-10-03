@@ -27,7 +27,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: AuthToken
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 647
+    startLine: 652
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -64,7 +64,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: id
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 648
+    startLine: 653
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -97,7 +97,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: userId
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 649
+    startLine: 654
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -130,7 +130,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: username
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 650
+    startLine: 655
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -163,7 +163,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: role
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 651
+    startLine: 656
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -196,7 +196,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: accountId
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 652
+    startLine: 657
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -229,7 +229,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: expiresAt
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 653
+    startLine: 658
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -262,7 +262,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 655
+    startLine: 660
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -305,7 +305,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: FromDict
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 664
+    startLine: 669
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth

@@ -71,7 +71,7 @@ items:
   - Butterfly.Core.Database.BaseTransaction.DeleteAsync(Butterfly.Core.Database.DeleteStatement,System.Object)
   - Butterfly.Core.Database.BaseTransaction.DoDeleteAsync(System.String,System.Collections.Generic.Dictionary{`0,`1})
   - Butterfly.Core.Database.BaseTransaction.GetKeyValue(Butterfly.Core.Database.TableIndex,System.Collections.Generic.Dictionary{`0,`1},System.Collections.Generic.Dictionary{`0,`1},Butterfly.Core.Database.StatementEqualsRef[],Butterfly.Core.Database.TableIndex,System.String)
-  - Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{`0,`1}[],System.Collections.Generic.Dictionary{`0,`1}[],Func{`0,`1},System.String[])
+  - Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{`0,`1}[],System.Collections.Generic.Dictionary{`0,`1}[],System.String[])
   - Butterfly.Core.Database.BaseTransaction.TruncateAsync(System.String)
   - Butterfly.Core.Database.BaseTransaction.Commit
   - Butterfly.Core.Database.BaseTransaction.CommitAsync
@@ -1624,18 +1624,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{`0,`1}[],System.Collections.Generic.Dictionary{`0,`1}[],Func{`0,`1},System.String[])
-  commentId: M:Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{`0,`1}[],System.Collections.Generic.Dictionary{`0,`1}[],Func{`0,`1},System.String[])
+- uid: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{`0,`1}[],System.Collections.Generic.Dictionary{`0,`1}[],System.String[])
+  commentId: M:Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{`0,`1}[],System.Collections.Generic.Dictionary{`0,`1}[],System.String[])
   parent: Butterfly.Core.Database.BaseTransaction
   isExternal: true
-  name: SynchronizeAsync(String, System.Collections.Generic.Dictionary<, >[], System.Collections.Generic.Dictionary<, >[], Func<, >, String[])
-  nameWithType: BaseTransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary<, >[], System.Collections.Generic.Dictionary<, >[], Func<, >, String[])
-  fullName: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary<, >[], System.Collections.Generic.Dictionary<, >[], Func<, >, System.String[])
-  nameWithType.vb: BaseTransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of , )(), System.Collections.Generic.Dictionary(Of , )(), Func(Of , ), String())
-  fullName.vb: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary(Of , )(), System.Collections.Generic.Dictionary(Of , )(), Func(Of , ), System.String())
-  name.vb: SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of , )(), System.Collections.Generic.Dictionary(Of , )(), Func(Of , ), String())
+  name: SynchronizeAsync(String, System.Collections.Generic.Dictionary<, >[], System.Collections.Generic.Dictionary<, >[], String[])
+  nameWithType: BaseTransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary<, >[], System.Collections.Generic.Dictionary<, >[], String[])
+  fullName: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary<, >[], System.Collections.Generic.Dictionary<, >[], System.String[])
+  nameWithType.vb: BaseTransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of , )(), System.Collections.Generic.Dictionary(Of , )(), String())
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary(Of , )(), System.Collections.Generic.Dictionary(Of , )(), System.String())
+  name.vb: SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of , )(), System.Collections.Generic.Dictionary(Of , )(), String())
   spec.csharp:
-  - uid: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{`0,`1}[],System.Collections.Generic.Dictionary{`0,`1}[],Func{`0,`1},System.String[])
+  - uid: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{`0,`1}[],System.Collections.Generic.Dictionary{`0,`1}[],System.String[])
     name: SynchronizeAsync
     nameWithType: BaseTransaction.SynchronizeAsync
     fullName: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync
@@ -1699,29 +1699,6 @@ references:
   - name: '[]'
     nameWithType: '[]'
     fullName: '[]'
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Func`2
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -1737,7 +1714,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{`0,`1}[],System.Collections.Generic.Dictionary{`0,`1}[],Func{`0,`1},System.String[])
+  - uid: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{`0,`1}[],System.Collections.Generic.Dictionary{`0,`1}[],System.String[])
     name: SynchronizeAsync
     nameWithType: BaseTransaction.SynchronizeAsync
     fullName: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync
@@ -1801,29 +1778,6 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Func`2
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: ''
-    nameWithType: ''
-    fullName: ''
-  - name: )
-    nameWithType: )
-    fullName: )
   - name: ', '
     nameWithType: ', '
     fullName: ', '

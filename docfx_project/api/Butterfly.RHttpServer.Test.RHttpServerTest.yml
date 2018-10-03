@@ -1,0 +1,132 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.RHttpServer.Test.RHttpServerTest
+  commentId: T:Butterfly.RHttpServer.Test.RHttpServerTest
+  id: RHttpServerTest
+  parent: Butterfly.RHttpServer.Test
+  children:
+  - Butterfly.RHttpServer.Test.RHttpServerTest.ChannelTest
+  - Butterfly.RHttpServer.Test.RHttpServerTest.WebTest
+  langs:
+  - csharp
+  - vb
+  name: RHttpServerTest
+  nameWithType: RHttpServerTest
+  fullName: Butterfly.RHttpServer.Test.RHttpServerTest
+  type: Class
+  source:
+    remote:
+      path: Butterfly.RedHttpServer.Test/RHttpServerTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: RHttpServerTest
+    path: ../Butterfly.RedHttpServer.Test/RHttpServerTest.cs
+    startLine: 12
+  assemblies:
+  - Butterfly.RedHttpServer.Test
+  namespace: Butterfly.RHttpServer.Test
+  syntax:
+    content: 'public class RHttpServerTest : object'
+    content.vb: >-
+      Public Class RHttpServerTest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.RHttpServer.Test.RHttpServerTest.ChannelTest
+  commentId: M:Butterfly.RHttpServer.Test.RHttpServerTest.ChannelTest
+  id: ChannelTest
+  parent: Butterfly.RHttpServer.Test.RHttpServerTest
+  langs:
+  - csharp
+  - vb
+  name: ChannelTest()
+  nameWithType: RHttpServerTest.ChannelTest()
+  fullName: Butterfly.RHttpServer.Test.RHttpServerTest.ChannelTest()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.RedHttpServer.Test/RHttpServerTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ChannelTest
+    path: ../Butterfly.RedHttpServer.Test/RHttpServerTest.cs
+    startLine: 14
+  assemblies:
+  - Butterfly.RedHttpServer.Test
+  namespace: Butterfly.RHttpServer.Test
+  syntax:
+    content: public Task ChannelTest()
+    return:
+      type: Task
+    content.vb: Public Function ChannelTest As Task
+  overload: Butterfly.RHttpServer.Test.RHttpServerTest.ChannelTest*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.RHttpServer.Test.RHttpServerTest.WebTest
+  commentId: M:Butterfly.RHttpServer.Test.RHttpServerTest.WebTest
+  id: WebTest
+  parent: Butterfly.RHttpServer.Test.RHttpServerTest
+  langs:
+  - csharp
+  - vb
+  name: WebTest()
+  nameWithType: RHttpServerTest.WebTest()
+  fullName: Butterfly.RHttpServer.Test.RHttpServerTest.WebTest()
+  type: Method
+  source:
+    remote:
+      path: Butterfly.RedHttpServer.Test/RHttpServerTest.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: WebTest
+    path: ../Butterfly.RedHttpServer.Test/RHttpServerTest.cs
+    startLine: 24
+  assemblies:
+  - Butterfly.RedHttpServer.Test
+  namespace: Butterfly.RHttpServer.Test
+  syntax:
+    content: public Task WebTest()
+    return:
+      type: Task
+    content.vb: Public Function WebTest As Task
+  overload: Butterfly.RHttpServer.Test.RHttpServerTest.WebTest*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.RHttpServer.Test
+  commentId: N:Butterfly.RHttpServer.Test
+  name: Butterfly.RHttpServer.Test
+  nameWithType: Butterfly.RHttpServer.Test
+  fullName: Butterfly.RHttpServer.Test
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.RHttpServer.Test.RHttpServerTest.ChannelTest*
+  commentId: Overload:Butterfly.RHttpServer.Test.RHttpServerTest.ChannelTest
+  name: ChannelTest
+  nameWithType: RHttpServerTest.ChannelTest
+  fullName: Butterfly.RHttpServer.Test.RHttpServerTest.ChannelTest
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Butterfly.RHttpServer.Test.RHttpServerTest.WebTest*
+  commentId: Overload:Butterfly.RHttpServer.Test.RHttpServerTest.WebTest
+  name: WebTest
+  nameWithType: RHttpServerTest.WebTest
+  fullName: Butterfly.RHttpServer.Test.RHttpServerTest.WebTest
+shouldSkipMarkup: true

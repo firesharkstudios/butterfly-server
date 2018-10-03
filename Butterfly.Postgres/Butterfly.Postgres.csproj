@@ -9,11 +9,11 @@
     <PackageTags>butterfly server database postgres</PackageTags>
     <Product>Butterfly Server .NET</Product>
     <Company>Fireshark Studios, LLC</Company>
-    <Authors>Kent Johnson</Authors>
+    <Authors>Johan van Rensburg, Kent Johnson</Authors>
     <Copyright>Copyright 2017-2018 Fireshark Studios, LLC</Copyright>
     <Description>Implementation of Butterfly.Core.Database for Postgres</Description>
     <PackageReleaseNotes>Various improvements and bug fixes</PackageReleaseNotes>
-    <Version>1.0.3</Version>
+    <Version>1.0.5</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
   </PropertyGroup>
 

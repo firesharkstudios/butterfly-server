@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.RHttpServer.Test
+  commentId: N:Butterfly.RHttpServer.Test
+  id: Butterfly.RHttpServer.Test
+  children:
+  - Butterfly.RHttpServer.Test.RHttpServerTest
+  langs:
+  - csharp
+  - vb
+  name: Butterfly.RHttpServer.Test
+  nameWithType: Butterfly.RHttpServer.Test
+  fullName: Butterfly.RHttpServer.Test
+  type: Namespace
+  assemblies:
+  - Butterfly.RedHttpServer.Test
+references:
+- uid: Butterfly.RHttpServer.Test.RHttpServerTest
+  commentId: T:Butterfly.RHttpServer.Test.RHttpServerTest
+  name: RHttpServerTest
+  nameWithType: RHttpServerTest
+  fullName: Butterfly.RHttpServer.Test.RHttpServerTest
+shouldSkipMarkup: true

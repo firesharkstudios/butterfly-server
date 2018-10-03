@@ -7,7 +7,6 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 
 import { ArrayDataEventHandler, WebSocketChannelClient } from 'butterfly-client'
-import reqwest from 'reqwest'
 
 Vue.use(Vuetify)
 
@@ -27,10 +26,10 @@ new Vue({
   },
   methods: {
     callApi(url, rawData) {
-      return reqwest({
-        url,
+      return fetch(url, {
         method: 'POST',
-        data: JSON.stringify(rawData),
+        body: JSON.stringify(rawData),
+        mode: 'no-cors'
       });
     },
     subscribe(options) {

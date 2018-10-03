@@ -317,6 +317,8 @@
   items:
   - uid: Butterfly.RHttpServer.HttpRequestX
     name: HttpRequestX
+  - uid: Butterfly.RHttpServer.RedHttpServerContext
+    name: RedHttpServerContext
   - uid: Butterfly.RHttpServer.RedHttpServerSubscriptionApi
     name: RedHttpServerSubscriptionApi
   - uid: Butterfly.RHttpServer.RedHttpServerWebApi
@@ -329,6 +331,11 @@
     name: WebSocketDialogChannelConnection
   - uid: Butterfly.RHttpServer.WebSocketDialogWebRequest
     name: WebSocketDialogWebRequest
+- uid: Butterfly.RHttpServer.Test
+  name: Butterfly.RHttpServer.Test
+  items:
+  - uid: Butterfly.RHttpServer.Test.RHttpServerTest
+    name: RHttpServerTest
 - uid: Butterfly.SQLite
   name: Butterfly.SQLite
   items:
