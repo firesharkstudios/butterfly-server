@@ -191,6 +191,8 @@
     name: EnvironmentX
   - uid: Butterfly.Core.Util.FileX
     name: FileX
+  - uid: Butterfly.Core.Util.IHttpResponseX
+    name: IHttpResponseX
   - uid: Butterfly.Core.Util.IWebRequest
     name: IWebRequest
   - uid: Butterfly.Core.Util.IWebRequestX

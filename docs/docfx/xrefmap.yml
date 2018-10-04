@@ -2200,6 +2200,22 @@ references:
   fullName.vb: Butterfly.Core.Database.BaseDatabase.SelectValueAsync(Of T)(System.String, System.Object, T)
   nameWithType: BaseDatabase.SelectValueAsync<T>(String, Object, T)
   nameWithType.vb: BaseDatabase.SelectValueAsync(Of T)(String, Object, T)
+- uid: Butterfly.Core.Database.BaseDatabase.SelectValuesAsync*
+  name: SelectValuesAsync
+  href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SelectValuesAsync_
+  commentId: Overload:Butterfly.Core.Database.BaseDatabase.SelectValuesAsync
+  isSpec: "True"
+  fullName: Butterfly.Core.Database.BaseDatabase.SelectValuesAsync
+  nameWithType: BaseDatabase.SelectValuesAsync
+- uid: Butterfly.Core.Database.BaseDatabase.SelectValuesAsync``1(System.String,System.Object)
+  name: SelectValuesAsync<T>(String, Object)
+  href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SelectValuesAsync__1_System_String_System_Object_
+  commentId: M:Butterfly.Core.Database.BaseDatabase.SelectValuesAsync``1(System.String,System.Object)
+  name.vb: SelectValuesAsync(Of T)(String, Object)
+  fullName: Butterfly.Core.Database.BaseDatabase.SelectValuesAsync<T>(System.String, System.Object)
+  fullName.vb: Butterfly.Core.Database.BaseDatabase.SelectValuesAsync(Of T)(System.String, System.Object)
+  nameWithType: BaseDatabase.SelectValuesAsync<T>(String, Object)
+  nameWithType.vb: BaseDatabase.SelectValuesAsync(Of T)(String, Object)
 - uid: Butterfly.Core.Database.BaseDatabase.SetDefaultValue(System.String,Func{System.String,System.Object},System.String)
   name: SetDefaultValue(String, Func<String, Object>, String)
   href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SetDefaultValue_System_String_Func_System_String_System_Object__System_String_
@@ -4430,6 +4446,22 @@ references:
   fullName.vb: Butterfly.Core.Database.IDatabase.SelectValueAsync(Of T)(System.String, System.Object, T)
   nameWithType: IDatabase.SelectValueAsync<T>(String, Object, T)
   nameWithType.vb: IDatabase.SelectValueAsync(Of T)(String, Object, T)
+- uid: Butterfly.Core.Database.IDatabase.SelectValuesAsync*
+  name: SelectValuesAsync
+  href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectValuesAsync_
+  commentId: Overload:Butterfly.Core.Database.IDatabase.SelectValuesAsync
+  isSpec: "True"
+  fullName: Butterfly.Core.Database.IDatabase.SelectValuesAsync
+  nameWithType: IDatabase.SelectValuesAsync
+- uid: Butterfly.Core.Database.IDatabase.SelectValuesAsync``1(System.String,System.Object)
+  name: SelectValuesAsync<T>(String, Object)
+  href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectValuesAsync__1_System_String_System_Object_
+  commentId: M:Butterfly.Core.Database.IDatabase.SelectValuesAsync``1(System.String,System.Object)
+  name.vb: SelectValuesAsync(Of T)(String, Object)
+  fullName: Butterfly.Core.Database.IDatabase.SelectValuesAsync<T>(System.String, System.Object)
+  fullName.vb: Butterfly.Core.Database.IDatabase.SelectValuesAsync(Of T)(System.String, System.Object)
+  nameWithType: IDatabase.SelectValuesAsync<T>(String, Object)
+  nameWithType.vb: IDatabase.SelectValuesAsync(Of T)(String, Object)
 - uid: Butterfly.Core.Database.IDatabase.SetDefaultValue(System.String,Func{System.String,System.Object},System.String)
   name: SetDefaultValue(String, Func<String, Object>, String)
   href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SetDefaultValue_System_String_Func_System_String_System_Object__System_String_
@@ -7472,6 +7504,41 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Util.FileX.WriteTextAsync
   nameWithType: FileX.WriteTextAsync
+- uid: Butterfly.Core.Util.IHttpResponseX
+  name: IHttpResponseX
+  href: api/Butterfly.Core.Util.IHttpResponseX.html
+  commentId: T:Butterfly.Core.Util.IHttpResponseX
+  fullName: Butterfly.Core.Util.IHttpResponseX
+  nameWithType: IHttpResponseX
+- uid: Butterfly.Core.Util.IHttpResponseX.WriteAsCsvAsync(Butterfly.Core.WebApi.IHttpResponse,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[],System.String[])
+  name: WriteAsCsvAsync(IHttpResponse, System.Collections.Generic.Dictionary<String, Object>[], String[], String[])
+  href: api/Butterfly.Core.Util.IHttpResponseX.html#Butterfly_Core_Util_IHttpResponseX_WriteAsCsvAsync_Butterfly_Core_WebApi_IHttpResponse_System_Collections_Generic_Dictionary_System_String_System_Object____System_String___System_String___
+  commentId: M:Butterfly.Core.Util.IHttpResponseX.WriteAsCsvAsync(Butterfly.Core.WebApi.IHttpResponse,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[],System.String[])
+  name.vb: WriteAsCsvAsync(IHttpResponse, System.Collections.Generic.Dictionary(Of String, Object)(), String(), String())
+  fullName: Butterfly.Core.Util.IHttpResponseX.WriteAsCsvAsync(Butterfly.Core.WebApi.IHttpResponse, System.Collections.Generic.Dictionary<System.String, System.Object>[], System.String[], System.String[])
+  fullName.vb: Butterfly.Core.Util.IHttpResponseX.WriteAsCsvAsync(Butterfly.Core.WebApi.IHttpResponse, System.Collections.Generic.Dictionary(Of System.String, System.Object)(), System.String(), System.String())
+  nameWithType: IHttpResponseX.WriteAsCsvAsync(IHttpResponse, System.Collections.Generic.Dictionary<String, Object>[], String[], String[])
+  nameWithType.vb: IHttpResponseX.WriteAsCsvAsync(IHttpResponse, System.Collections.Generic.Dictionary(Of String, Object)(), String(), String())
+- uid: Butterfly.Core.Util.IHttpResponseX.WriteAsCsvAsync*
+  name: WriteAsCsvAsync
+  href: api/Butterfly.Core.Util.IHttpResponseX.html#Butterfly_Core_Util_IHttpResponseX_WriteAsCsvAsync_
+  commentId: Overload:Butterfly.Core.Util.IHttpResponseX.WriteAsCsvAsync
+  isSpec: "True"
+  fullName: Butterfly.Core.Util.IHttpResponseX.WriteAsCsvAsync
+  nameWithType: IHttpResponseX.WriteAsCsvAsync
+- uid: Butterfly.Core.Util.IHttpResponseX.WriteAsJsonAsync(Butterfly.Core.WebApi.IHttpResponse,System.Object)
+  name: WriteAsJsonAsync(IHttpResponse, Object)
+  href: api/Butterfly.Core.Util.IHttpResponseX.html#Butterfly_Core_Util_IHttpResponseX_WriteAsJsonAsync_Butterfly_Core_WebApi_IHttpResponse_System_Object_
+  commentId: M:Butterfly.Core.Util.IHttpResponseX.WriteAsJsonAsync(Butterfly.Core.WebApi.IHttpResponse,System.Object)
+  fullName: Butterfly.Core.Util.IHttpResponseX.WriteAsJsonAsync(Butterfly.Core.WebApi.IHttpResponse, System.Object)
+  nameWithType: IHttpResponseX.WriteAsJsonAsync(IHttpResponse, Object)
+- uid: Butterfly.Core.Util.IHttpResponseX.WriteAsJsonAsync*
+  name: WriteAsJsonAsync
+  href: api/Butterfly.Core.Util.IHttpResponseX.html#Butterfly_Core_Util_IHttpResponseX_WriteAsJsonAsync_
+  commentId: Overload:Butterfly.Core.Util.IHttpResponseX.WriteAsJsonAsync
+  isSpec: "True"
+  fullName: Butterfly.Core.Util.IHttpResponseX.WriteAsJsonAsync
+  nameWithType: IHttpResponseX.WriteAsJsonAsync
 - uid: Butterfly.Core.Util.IWebRequest
   name: IWebRequest
   href: api/Butterfly.Core.Util.IWebRequest.html
@@ -8583,19 +8650,6 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.WebApi.IHttpResponse.StatusText
   nameWithType: IHttpResponse.StatusText
-- uid: Butterfly.Core.WebApi.IHttpResponse.WriteAsJsonAsync(System.Object)
-  name: WriteAsJsonAsync(Object)
-  href: api/Butterfly.Core.WebApi.IHttpResponse.html#Butterfly_Core_WebApi_IHttpResponse_WriteAsJsonAsync_System_Object_
-  commentId: M:Butterfly.Core.WebApi.IHttpResponse.WriteAsJsonAsync(System.Object)
-  fullName: Butterfly.Core.WebApi.IHttpResponse.WriteAsJsonAsync(System.Object)
-  nameWithType: IHttpResponse.WriteAsJsonAsync(Object)
-- uid: Butterfly.Core.WebApi.IHttpResponse.WriteAsJsonAsync*
-  name: WriteAsJsonAsync
-  href: api/Butterfly.Core.WebApi.IHttpResponse.html#Butterfly_Core_WebApi_IHttpResponse_WriteAsJsonAsync_
-  commentId: Overload:Butterfly.Core.WebApi.IHttpResponse.WriteAsJsonAsync
-  isSpec: "True"
-  fullName: Butterfly.Core.WebApi.IHttpResponse.WriteAsJsonAsync
-  nameWithType: IHttpResponse.WriteAsJsonAsync
 - uid: Butterfly.Core.WebApi.IHttpResponse.WriteAsTextAsync(System.String)
   name: WriteAsTextAsync(String)
   href: api/Butterfly.Core.WebApi.IHttpResponse.html#Butterfly_Core_WebApi_IHttpResponse_WriteAsTextAsync_System_String_
@@ -9168,19 +9222,6 @@ references:
   isSpec: "True"
   fullName: Butterfly.EmbedIO.EmbedIOWebResponse.StatusText
   nameWithType: EmbedIOWebResponse.StatusText
-- uid: Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsJsonAsync(System.Object)
-  name: WriteAsJsonAsync(Object)
-  href: api/Butterfly.EmbedIO.EmbedIOWebResponse.html#Butterfly_EmbedIO_EmbedIOWebResponse_WriteAsJsonAsync_System_Object_
-  commentId: M:Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsJsonAsync(System.Object)
-  fullName: Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsJsonAsync(System.Object)
-  nameWithType: EmbedIOWebResponse.WriteAsJsonAsync(Object)
-- uid: Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsJsonAsync*
-  name: WriteAsJsonAsync
-  href: api/Butterfly.EmbedIO.EmbedIOWebResponse.html#Butterfly_EmbedIO_EmbedIOWebResponse_WriteAsJsonAsync_
-  commentId: Overload:Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsJsonAsync
-  isSpec: "True"
-  fullName: Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsJsonAsync
-  nameWithType: EmbedIOWebResponse.WriteAsJsonAsync
 - uid: Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsTextAsync(System.String)
   name: WriteAsTextAsync(String)
   href: api/Butterfly.EmbedIO.EmbedIOWebResponse.html#Butterfly_EmbedIO_EmbedIOWebResponse_WriteAsTextAsync_System_String_

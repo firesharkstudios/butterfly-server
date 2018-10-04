@@ -20,7 +20,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DatabaseException
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 457
+    startLine: 465
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -58,7 +58,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 458
+    startLine: 466
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database

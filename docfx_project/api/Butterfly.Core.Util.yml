@@ -13,6 +13,7 @@ items:
   - Butterfly.Core.Util.DynamicX
   - Butterfly.Core.Util.EnvironmentX
   - Butterfly.Core.Util.FileX
+  - Butterfly.Core.Util.IHttpResponseX
   - Butterfly.Core.Util.IWebRequest
   - Butterfly.Core.Util.IWebRequestX
   - Butterfly.Core.Util.JsonUtil
@@ -124,6 +125,12 @@ references:
   name: FileX
   nameWithType: FileX
   fullName: Butterfly.Core.Util.FileX
+- uid: Butterfly.Core.Util.IHttpResponseX
+  commentId: T:Butterfly.Core.Util.IHttpResponseX
+  parent: Butterfly.Core.Util
+  name: IHttpResponseX
+  nameWithType: IHttpResponseX
+  fullName: Butterfly.Core.Util.IHttpResponseX
 - uid: Butterfly.Core.Util.IWebRequest
   commentId: T:Butterfly.Core.Util.IWebRequest
   parent: Butterfly.Core.Util
