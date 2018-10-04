@@ -160,10 +160,10 @@ namespace Butterfly.EmbedIO {
             }
         }
 
+        /*
         public Task WriteAsJsonAsync(object value) {
-            var json = JsonUtil.Serialize(value);
-            return this.WriteAsTextAsync(json);
         }
+        */
 
     }
 }

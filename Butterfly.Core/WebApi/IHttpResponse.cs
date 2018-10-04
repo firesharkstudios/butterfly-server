@@ -48,12 +48,5 @@ namespace Butterfly.Core.WebApi {
         /// <param name="value"></param>
         /// <returns></returns>
         Task WriteAsTextAsync(string value);
-
-        /// <summary>
-        /// Write the <paramref name="value"/> as JSON
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        Task WriteAsJsonAsync(object value);
     }
 }

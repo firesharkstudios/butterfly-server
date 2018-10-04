@@ -173,6 +173,14 @@ namespace Butterfly.Core.Database {
             return (T)Convert.ChangeType(value, typeof(T));
         }
 
+        public async Task<T[]> SelectValuesAsync<T>(string sql, dynamic vars = null) {
+            Dict[] rows = await this.SelectRowsAsync(sql, vars);
+            return rows.Select(row => {
+                row.TryGetValue(row.Keys.First(), out object value);
+                return (T)Convert.ChangeType(value, typeof(T));
+            }).ToArray();
+        }
+
         public async Task<Dict> SelectRowAsync(string statementSql, dynamic vars = null) {
             Dict[] rows = await this.SelectRowsAsync(statementSql, vars: vars, overrideLimit: 1);
             if (rows.Length == 0) return null;

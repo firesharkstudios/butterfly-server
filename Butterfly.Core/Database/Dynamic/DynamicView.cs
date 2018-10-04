@@ -128,53 +128,29 @@ namespace Butterfly.Core.Database.Dynamic {
             if (!this.selectStatement.HasTableInFrom(keyValueDataEvent.name)) return null;
 
             List<RecordDataEvent> recordDataEvents = new List<RecordDataEvent>();
-            /*
-            switch (keyValueDataEvent.dataEventType) {
-                case DataEventType.Insert:
-                    if (postCommitImpactedRecords != null) {
-                        foreach (var impactedRecord in postCommitImpactedRecords) {
-                            object keyValue = BaseDatabase.GetKeyValue(this.keyFieldNames, impactedRecord);
-                            recordDataEvents.Add(new RecordDataEvent(DataEventType.Insert, this.name, keyValue, impactedRecord));
-                        }
-                    }
-                    break;
-                case DataEventType.Update:
-                */
-                    var preCommitKeyValues = preCommitImpactedRecords==null ? new object[] { } : preCommitImpactedRecords.Select(x => BaseDatabase.GetKeyValue(this.keyFieldNames, x)).ToArray();
-                    var postCommitKeyValues = postCommitImpactedRecords==null ? new object[] { } : postCommitImpactedRecords.Select(x => BaseDatabase.GetKeyValue(this.keyFieldNames, x)).ToArray();
+            var preCommitKeyValues = preCommitImpactedRecords==null ? new object[] { } : preCommitImpactedRecords.Select(x => BaseDatabase.GetKeyValue(this.keyFieldNames, x)).ToArray();
+            var postCommitKeyValues = postCommitImpactedRecords==null ? new object[] { } : postCommitImpactedRecords.Select(x => BaseDatabase.GetKeyValue(this.keyFieldNames, x)).ToArray();
 
-                    // Find updates and deletes
-                    for (int i=0; i<preCommitKeyValues.Length; i++) {
-                        int postCommitIndex = Array.IndexOf(postCommitKeyValues, preCommitKeyValues[i]);
-                        if (postCommitIndex>=0) {
-                            if (!preCommitImpactedRecords[i].IsSame(postCommitImpactedRecords[postCommitIndex])) {
-                                recordDataEvents.Add(new RecordDataEvent(DataEventType.Update, this.name, preCommitKeyValues[i], postCommitImpactedRecords[postCommitIndex]));
-                            }
-                        }
-                        else {
-                            recordDataEvents.Add(new RecordDataEvent(DataEventType.Delete, this.name, preCommitKeyValues[i], preCommitImpactedRecords[i]));
-                        }
+            // Find updates and deletes
+            for (int i=0; i<preCommitKeyValues.Length; i++) {
+                int postCommitIndex = Array.IndexOf(postCommitKeyValues, preCommitKeyValues[i]);
+                if (postCommitIndex>=0) {
+                    if (!preCommitImpactedRecords[i].IsSame(postCommitImpactedRecords[postCommitIndex])) {
+                        recordDataEvents.Add(new RecordDataEvent(DataEventType.Update, this.name, preCommitKeyValues[i], postCommitImpactedRecords[postCommitIndex]));
                     }
-
-                    // Find inserts
-                    for (int i = 0; i < postCommitKeyValues.Length; i++) {
-                        int preCommitIndex = Array.IndexOf(preCommitKeyValues, postCommitKeyValues[i]);
-                        if (preCommitIndex==-1) {
-                            recordDataEvents.Add(new RecordDataEvent(DataEventType.Insert, this.name, postCommitKeyValues[i], postCommitImpactedRecords[i]));
-                        }
-                    }
-            /*
-            break;
-        case DataEventType.Delete:
-            if (preCommitImpactedRecords != null) {
-                foreach (var impactedRecord in preCommitImpactedRecords) {
-                    object keyValue = BaseDatabase.GetKeyValue(this.keyFieldNames, impactedRecord);
-                    recordDataEvents.Add(new RecordDataEvent(DataEventType.Delete, this.name, keyValue, impactedRecord));
+                }
+                else {
+                    recordDataEvents.Add(new RecordDataEvent(DataEventType.Delete, this.name, preCommitKeyValues[i], preCommitImpactedRecords[i]));
                 }
             }
-            break;
-    }
-            */
+
+            // Find inserts
+            for (int i = 0; i < postCommitKeyValues.Length; i++) {
+                int preCommitIndex = Array.IndexOf(preCommitKeyValues, postCommitKeyValues[i]);
+                if (preCommitIndex==-1) {
+                    recordDataEvents.Add(new RecordDataEvent(DataEventType.Insert, this.name, postCommitKeyValues[i], postCommitImpactedRecords[i]));
+                }
+            }
             logger.Trace($"ProcessDataChange():recordDataEvents={string.Join(",", recordDataEvents)}");
             return recordDataEvents.ToArray();
         }
