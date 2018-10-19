@@ -48,7 +48,7 @@ items:
   - Butterfly.Core.WebApi.BaseWebApi.OnGet(System.String,Func{`0,`1,`2})
   - Butterfly.Core.WebApi.BaseWebApi.OnPost(System.String,Func{`0,`1,`2})
   - Butterfly.Core.WebApi.BaseWebApi.OnPut(System.String,Func{`0,`1,`2})
-  - Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,System.String,System.String,Func{`0,`1},System.Int32)
+  - Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest,System.String,System.String,Func{`0,`1},System.Int32)
   - Butterfly.Core.WebApi.BaseWebApi.WebHandlers
   modifiers.csharp:
   - public
@@ -629,18 +629,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,System.String,System.String,Func{`0,`1},System.Int32)
-  commentId: M:Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,System.String,System.String,Func{`0,`1},System.Int32)
+- uid: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest,System.String,System.String,Func{`0,`1},System.Int32)
+  commentId: M:Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest,System.String,System.String,Func{`0,`1},System.Int32)
   parent: Butterfly.Core.WebApi.BaseWebApi
   isExternal: true
-  name: FileUploadHandlerAsync(IHttpRequest, IHttpResponse, String, String, Func<, >, Int32)
-  nameWithType: BaseWebApi.FileUploadHandlerAsync(IHttpRequest, IHttpResponse, String, String, Func<, >, Int32)
-  fullName: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, System.String, System.String, Func<, >, System.Int32)
-  nameWithType.vb: BaseWebApi.FileUploadHandlerAsync(IHttpRequest, IHttpResponse, String, String, Func(Of , ), Int32)
-  fullName.vb: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, System.String, System.String, Func(Of , ), System.Int32)
-  name.vb: FileUploadHandlerAsync(IHttpRequest, IHttpResponse, String, String, Func(Of , ), Int32)
+  name: FileUploadHandlerAsync(IHttpRequest, String, String, Func<, >, Int32)
+  nameWithType: BaseWebApi.FileUploadHandlerAsync(IHttpRequest, String, String, Func<, >, Int32)
+  fullName: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest, System.String, System.String, Func<, >, System.Int32)
+  nameWithType.vb: BaseWebApi.FileUploadHandlerAsync(IHttpRequest, String, String, Func(Of , ), Int32)
+  fullName.vb: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest, System.String, System.String, Func(Of , ), System.Int32)
+  name.vb: FileUploadHandlerAsync(IHttpRequest, String, String, Func(Of , ), Int32)
   spec.csharp:
-  - uid: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,System.String,System.String,Func{`0,`1},System.Int32)
+  - uid: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest,System.String,System.String,Func{`0,`1},System.Int32)
     name: FileUploadHandlerAsync
     nameWithType: BaseWebApi.FileUploadHandlerAsync
     fullName: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync
@@ -651,13 +651,6 @@ references:
     name: IHttpRequest
     nameWithType: IHttpRequest
     fullName: Butterfly.Core.WebApi.IHttpRequest
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Butterfly.Core.WebApi.IHttpResponse
-    name: IHttpResponse
-    nameWithType: IHttpResponse
-    fullName: Butterfly.Core.WebApi.IHttpResponse
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -709,7 +702,7 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,System.String,System.String,Func{`0,`1},System.Int32)
+  - uid: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest,System.String,System.String,Func{`0,`1},System.Int32)
     name: FileUploadHandlerAsync
     nameWithType: BaseWebApi.FileUploadHandlerAsync
     fullName: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync
@@ -720,13 +713,6 @@ references:
     name: IHttpRequest
     nameWithType: IHttpRequest
     fullName: Butterfly.Core.WebApi.IHttpRequest
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Butterfly.Core.WebApi.IHttpResponse
-    name: IHttpResponse
-    nameWithType: IHttpResponse
-    fullName: Butterfly.Core.WebApi.IHttpResponse
   - name: ', '
     nameWithType: ', '
     fullName: ', '

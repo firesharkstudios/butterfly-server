@@ -17,21 +17,15 @@ namespace Butterfly.Core.Database.Event {
     }
 
     /// <summary>
-    /// Represents the initial data or a change in the data.  The <see cref="dataEventType"/> indicates 
-    /// the type of change and the <see cref="name"/> indicates the table or view name.<para/>
+    /// Represents a data event (see <see cref="DataEventType"/>)
     /// </summary>
     public class DataEvent {
-
+        public readonly string id;
         public readonly DataEventType dataEventType;
 
         public DataEvent(DataEventType dataEventType) {
             this.id = Guid.NewGuid().ToString();
             this.dataEventType = dataEventType;
-        }
-
-        public string id {
-            get;
-            protected set;
         }
 
         public override string ToString() {

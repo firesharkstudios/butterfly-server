@@ -3240,15 +3240,15 @@ references:
   commentId: T:Butterfly.Core.Database.Dynamic.DynamicView
   fullName: Butterfly.Core.Database.Dynamic.DynamicView
   nameWithType: DynamicView
-- uid: Butterfly.Core.Database.Dynamic.DynamicView.#ctor(Butterfly.Core.Database.Dynamic.DynamicViewSet,System.String,System.Object,System.String,System.String[],System.String[])
-  name: DynamicView(DynamicViewSet, String, Object, String, String[], String[])
-  href: api/Butterfly.Core.Database.Dynamic.DynamicView.html#Butterfly_Core_Database_Dynamic_DynamicView__ctor_Butterfly_Core_Database_Dynamic_DynamicViewSet_System_String_System_Object_System_String_System_String___System_String___
-  commentId: M:Butterfly.Core.Database.Dynamic.DynamicView.#ctor(Butterfly.Core.Database.Dynamic.DynamicViewSet,System.String,System.Object,System.String,System.String[],System.String[])
-  name.vb: DynamicView(DynamicViewSet, String, Object, String, String(), String())
-  fullName: Butterfly.Core.Database.Dynamic.DynamicView.DynamicView(Butterfly.Core.Database.Dynamic.DynamicViewSet, System.String, System.Object, System.String, System.String[], System.String[])
-  fullName.vb: Butterfly.Core.Database.Dynamic.DynamicView.DynamicView(Butterfly.Core.Database.Dynamic.DynamicViewSet, System.String, System.Object, System.String, System.String(), System.String())
-  nameWithType: DynamicView.DynamicView(DynamicViewSet, String, Object, String, String[], String[])
-  nameWithType.vb: DynamicView.DynamicView(DynamicViewSet, String, Object, String, String(), String())
+- uid: Butterfly.Core.Database.Dynamic.DynamicView.#ctor(Butterfly.Core.Database.Dynamic.DynamicViewSet,System.String,System.Object,System.String,System.String[],System.String[],System.Int32)
+  name: DynamicView(DynamicViewSet, String, Object, String, String[], String[], Int32)
+  href: api/Butterfly.Core.Database.Dynamic.DynamicView.html#Butterfly_Core_Database_Dynamic_DynamicView__ctor_Butterfly_Core_Database_Dynamic_DynamicViewSet_System_String_System_Object_System_String_System_String___System_String___System_Int32_
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicView.#ctor(Butterfly.Core.Database.Dynamic.DynamicViewSet,System.String,System.Object,System.String,System.String[],System.String[],System.Int32)
+  name.vb: DynamicView(DynamicViewSet, String, Object, String, String(), String(), Int32)
+  fullName: Butterfly.Core.Database.Dynamic.DynamicView.DynamicView(Butterfly.Core.Database.Dynamic.DynamicViewSet, System.String, System.Object, System.String, System.String[], System.String[], System.Int32)
+  fullName.vb: Butterfly.Core.Database.Dynamic.DynamicView.DynamicView(Butterfly.Core.Database.Dynamic.DynamicViewSet, System.String, System.Object, System.String, System.String(), System.String(), System.Int32)
+  nameWithType: DynamicView.DynamicView(DynamicViewSet, String, Object, String, String[], String[], Int32)
+  nameWithType.vb: DynamicView.DynamicView(DynamicViewSet, String, Object, String, String(), String(), Int32)
 - uid: Butterfly.Core.Database.Dynamic.DynamicView.#ctor*
   name: DynamicView
   href: api/Butterfly.Core.Database.Dynamic.DynamicView.html#Butterfly_Core_Database_Dynamic_DynamicView__ctor_
@@ -3377,15 +3377,15 @@ references:
   commentId: F:Butterfly.Core.Database.Dynamic.DynamicViewSet.asyncListener
   fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.asyncListener
   nameWithType: DynamicViewSet.asyncListener
-- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[])
-  name: CreateDynamicView(String, Object, String, String[])
-  href: api/Butterfly.Core.Database.Dynamic.DynamicViewSet.html#Butterfly_Core_Database_Dynamic_DynamicViewSet_CreateDynamicView_System_String_System_Object_System_String_System_String___
-  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[])
-  name.vb: CreateDynamicView(String, Object, String, String())
-  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String, System.Object, System.String, System.String[])
-  fullName.vb: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String, System.Object, System.String, System.String())
-  nameWithType: DynamicViewSet.CreateDynamicView(String, Object, String, String[])
-  nameWithType.vb: DynamicViewSet.CreateDynamicView(String, Object, String, String())
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[],System.Int32)
+  name: CreateDynamicView(String, Object, String, String[], Int32)
+  href: api/Butterfly.Core.Database.Dynamic.DynamicViewSet.html#Butterfly_Core_Database_Dynamic_DynamicViewSet_CreateDynamicView_System_String_System_Object_System_String_System_String___System_Int32_
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[],System.Int32)
+  name.vb: CreateDynamicView(String, Object, String, String(), Int32)
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String, System.Object, System.String, System.String[], System.Int32)
+  fullName.vb: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String, System.Object, System.String, System.String(), System.Int32)
+  nameWithType: DynamicViewSet.CreateDynamicView(String, Object, String, String[], Int32)
+  nameWithType.vb: DynamicViewSet.CreateDynamicView(String, Object, String, String(), Int32)
 - uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView*
   name: CreateDynamicView
   href: api/Butterfly.Core.Database.Dynamic.DynamicViewSet.html#Butterfly_Core_Database_Dynamic_DynamicViewSet_CreateDynamicView_
@@ -3769,14 +3769,7 @@ references:
 - uid: Butterfly.Core.Database.Event.DataEvent.id
   name: id
   href: api/Butterfly.Core.Database.Event.DataEvent.html#Butterfly_Core_Database_Event_DataEvent_id
-  commentId: P:Butterfly.Core.Database.Event.DataEvent.id
-  fullName: Butterfly.Core.Database.Event.DataEvent.id
-  nameWithType: DataEvent.id
-- uid: Butterfly.Core.Database.Event.DataEvent.id*
-  name: id
-  href: api/Butterfly.Core.Database.Event.DataEvent.html#Butterfly_Core_Database_Event_DataEvent_id_
-  commentId: Overload:Butterfly.Core.Database.Event.DataEvent.id
-  isSpec: "True"
+  commentId: F:Butterfly.Core.Database.Event.DataEvent.id
   fullName: Butterfly.Core.Database.Event.DataEvent.id
   nameWithType: DataEvent.id
 - uid: Butterfly.Core.Database.Event.DataEvent.ToString
@@ -8167,6 +8160,25 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Util.SafeUtil.ToSafeBase
   nameWithType: SafeUtil.ToSafeBase
+- uid: Butterfly.Core.Util.SecureUtil
+  name: SecureUtil
+  href: api/Butterfly.Core.Util.SecureUtil.html
+  commentId: T:Butterfly.Core.Util.SecureUtil
+  fullName: Butterfly.Core.Util.SecureUtil
+  nameWithType: SecureUtil
+- uid: Butterfly.Core.Util.SecureUtil.CreateFromFiles(System.String,System.String)
+  name: CreateFromFiles(String, String)
+  href: api/Butterfly.Core.Util.SecureUtil.html#Butterfly_Core_Util_SecureUtil_CreateFromFiles_System_String_System_String_
+  commentId: M:Butterfly.Core.Util.SecureUtil.CreateFromFiles(System.String,System.String)
+  fullName: Butterfly.Core.Util.SecureUtil.CreateFromFiles(System.String, System.String)
+  nameWithType: SecureUtil.CreateFromFiles(String, String)
+- uid: Butterfly.Core.Util.SecureUtil.CreateFromFiles*
+  name: CreateFromFiles
+  href: api/Butterfly.Core.Util.SecureUtil.html#Butterfly_Core_Util_SecureUtil_CreateFromFiles_
+  commentId: Overload:Butterfly.Core.Util.SecureUtil.CreateFromFiles
+  isSpec: "True"
+  fullName: Butterfly.Core.Util.SecureUtil.CreateFromFiles
+  nameWithType: SecureUtil.CreateFromFiles
 - uid: Butterfly.Core.Util.StringX
   name: StringX
   href: api/Butterfly.Core.Util.StringX.html
@@ -8410,15 +8422,15 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.WebApi.BaseWebApi.Dispose
   nameWithType: BaseWebApi.Dispose
-- uid: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,System.String,System.String,Func{System.String,System.String},System.Int32)
-  name: FileUploadHandlerAsync(IHttpRequest, IHttpResponse, String, String, Func<String, String>, Int32)
-  href: api/Butterfly.Core.WebApi.BaseWebApi.html#Butterfly_Core_WebApi_BaseWebApi_FileUploadHandlerAsync_Butterfly_Core_WebApi_IHttpRequest_Butterfly_Core_WebApi_IHttpResponse_System_String_System_String_Func_System_String_System_String__System_Int32_
-  commentId: M:Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest,Butterfly.Core.WebApi.IHttpResponse,System.String,System.String,Func{System.String,System.String},System.Int32)
-  name.vb: FileUploadHandlerAsync(IHttpRequest, IHttpResponse, String, String, Func(Of String, String), Int32)
-  fullName: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, System.String, System.String, Func<System.String, System.String>, System.Int32)
-  fullName.vb: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest, Butterfly.Core.WebApi.IHttpResponse, System.String, System.String, Func(Of System.String, System.String), System.Int32)
-  nameWithType: BaseWebApi.FileUploadHandlerAsync(IHttpRequest, IHttpResponse, String, String, Func<String, String>, Int32)
-  nameWithType.vb: BaseWebApi.FileUploadHandlerAsync(IHttpRequest, IHttpResponse, String, String, Func(Of String, String), Int32)
+- uid: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest,System.String,System.String,Func{System.String,System.String},System.Int32)
+  name: FileUploadHandlerAsync(IHttpRequest, String, String, Func<String, String>, Int32)
+  href: api/Butterfly.Core.WebApi.BaseWebApi.html#Butterfly_Core_WebApi_BaseWebApi_FileUploadHandlerAsync_Butterfly_Core_WebApi_IHttpRequest_System_String_System_String_Func_System_String_System_String__System_Int32_
+  commentId: M:Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest,System.String,System.String,Func{System.String,System.String},System.Int32)
+  name.vb: FileUploadHandlerAsync(IHttpRequest, String, String, Func(Of String, String), Int32)
+  fullName: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest, System.String, System.String, Func<System.String, System.String>, System.Int32)
+  fullName.vb: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync(Butterfly.Core.WebApi.IHttpRequest, System.String, System.String, Func(Of System.String, System.String), System.Int32)
+  nameWithType: BaseWebApi.FileUploadHandlerAsync(IHttpRequest, String, String, Func<String, String>, Int32)
+  nameWithType.vb: BaseWebApi.FileUploadHandlerAsync(IHttpRequest, String, String, Func(Of String, String), Int32)
 - uid: Butterfly.Core.WebApi.BaseWebApi.FileUploadHandlerAsync*
   name: FileUploadHandlerAsync
   href: api/Butterfly.Core.WebApi.BaseWebApi.html#Butterfly_Core_WebApi_BaseWebApi_FileUploadHandlerAsync_

@@ -1144,17 +1144,17 @@ items:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   syntax:
-    content: public Task<System.Collections.Generic.Dictionary<string, object>[]> SelectRowsAsync(string statementSql, dynamic vars = null, int overrideLimit = null)
+    content: public Task<System.Collections.Generic.Dictionary<string, object>[]> SelectRowsAsync(string statementSql, dynamic vars = null, int limit = null)
     parameters:
     - id: statementSql
       type: System.String
     - id: vars
       type: System.Object
-    - id: overrideLimit
+    - id: limit
       type: System.Int32
     return:
       type: Task{System.Collections.Generic.Dictionary{System.String,System.Object}[]}
-    content.vb: Public Function SelectRowsAsync(statementSql As String, vars As Object = Nothing, overrideLimit As Integer = Nothing) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
+    content.vb: Public Function SelectRowsAsync(statementSql As String, vars As Object = Nothing, limit As Integer = Nothing) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
   overload: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync*
   implements:
   - Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)

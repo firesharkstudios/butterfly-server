@@ -24,6 +24,7 @@ items:
   - Butterfly.Core.Util.RandomUtil
   - Butterfly.Core.Util.RunEvery
   - Butterfly.Core.Util.SafeUtil
+  - Butterfly.Core.Util.SecureUtil
   - Butterfly.Core.Util.StringX
   - Butterfly.Core.Util.UnauthorizedException
   - Butterfly.Core.Util.UriX
@@ -209,6 +210,11 @@ references:
   name: SafeUtil
   nameWithType: SafeUtil
   fullName: Butterfly.Core.Util.SafeUtil
+- uid: Butterfly.Core.Util.SecureUtil
+  commentId: T:Butterfly.Core.Util.SecureUtil
+  name: SecureUtil
+  nameWithType: SecureUtil
+  fullName: Butterfly.Core.Util.SecureUtil
 - uid: Butterfly.Core.Util.StringX
   commentId: T:Butterfly.Core.Util.StringX
   name: StringX

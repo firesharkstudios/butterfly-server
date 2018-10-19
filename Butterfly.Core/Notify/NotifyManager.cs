@@ -163,8 +163,8 @@ namespace Butterfly.Core.Notify {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="priority">Higher number indicates higher priority</param>
-        /// <param name="notifyMessage"></param>
+        /// <param name="transaction"></param>
+        /// <param name="notifyMessages"></param>
         /// <returns></returns>
         public async Task Queue(ITransaction transaction, params NotifyMessage[] notifyMessages) {
             bool emailQueued = false;

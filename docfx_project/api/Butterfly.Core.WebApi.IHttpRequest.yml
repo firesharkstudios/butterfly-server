@@ -100,7 +100,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ParseAsUrlEncodedAsync
     path: ../Butterfly.Core/WebApi/IHttpRequest.cs
-    startLine: 25
+    startLine: 23
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi
@@ -110,7 +110,6 @@ items:
     content: Task<Dictionary<string, string>> ParseAsUrlEncodedAsync()
     return:
       type: Task{Dictionary{System.String,System.String}}
-      description: Returns an instance of <code data-dev-comment-type="typeparamref" class="typeparamref">T</code>
     content.vb: Function ParseAsUrlEncodedAsync As Task(Of Dictionary(Of String, String))
   overload: Butterfly.Core.WebApi.IHttpRequest.ParseAsUrlEncodedAsync*
 - uid: Butterfly.Core.WebApi.IHttpRequest.ParseAsMultipartStream(Action{System.String,System.String,System.String,System.String,System.Byte[],System.Int32},Action{System.String,System.String})
@@ -131,7 +130,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ParseAsMultipartStream
     path: ../Butterfly.Core/WebApi/IHttpRequest.cs
-    startLine: 32
+    startLine: 30
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.WebApi

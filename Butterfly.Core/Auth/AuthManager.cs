@@ -161,6 +161,7 @@ namespace Butterfly.Core.Auth {
         /// <param name="onPhoneVerify">Callback when <see cref="AuthManager.VerifyAsync(Dict, string, string, Func{string, int, Task})"/> is called with a phone number</param>
         /// <param name="onRegister">Callback when <see cref="AuthManager.RegisterAsync(dynamic, Dict)"/> is called</param>
         /// <param name="onForgotPassword">Callback when <see cref="AuthManager.ForgotPasswordAsync(string)"/> is called</param>
+        /// <param name="onCheckVersion"></param>
         public AuthManager(
             IDatabase database,
             int authTokenDurationDays = 90,

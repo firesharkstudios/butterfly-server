@@ -214,6 +214,8 @@
     name: RunEvery
   - uid: Butterfly.Core.Util.SafeUtil
     name: SafeUtil
+  - uid: Butterfly.Core.Util.SecureUtil
+    name: SecureUtil
   - uid: Butterfly.Core.Util.StringX
     name: StringX
   - uid: Butterfly.Core.Util.UnauthorizedException

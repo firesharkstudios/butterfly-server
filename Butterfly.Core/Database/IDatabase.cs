@@ -156,7 +156,6 @@ namespace Butterfly.Core.Database {
         /// <typeparam name="T">The return type of the single value returned</typeparam>
         /// <param name="sql">The SELECT statement to execute (may contain vars like @name specified in <paramref name="vars"/>)</param>
         /// <param name="vars">Either an anonymous type or Dictionary with the vars used in the SELECT statement</param>
-        /// <param name="defaultValue">The value to return if no rows were returned or the value of the first column of the first row is null</param>
         /// <returns>The value of the first column of the first row</returns>
         Task<T[]> SelectValuesAsync<T>(string sql, dynamic vars = null);
 

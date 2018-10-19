@@ -21,8 +21,6 @@ namespace Butterfly.Core.WebApi {
         /// <summary>
         /// Parses the body of a POST as URL encoded data (like from a form)
         /// </summary>
-        /// <typeparam name="T">The type of object to return</typeparam>
-        /// <returns>Returns an instance of <typeparamref name="T"/></returns>
         Task<Dictionary<string, string>> ParseAsUrlEncodedAsync();
 
         /// <summary>

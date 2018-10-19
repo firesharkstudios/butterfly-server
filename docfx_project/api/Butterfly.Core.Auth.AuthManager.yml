@@ -1297,7 +1297,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 163
+    startLine: 164
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1395,6 +1395,7 @@ items:
       description: Callback when <xref href="Butterfly.Core.Auth.AuthManager.ForgotPasswordAsync(System.String)" data-throw-if-not-resolved="false"></xref> is called
     - id: onCheckVersion
       type: Action{Version}
+      description: ''
     content.vb: Public Sub New(database As IDatabase, authTokenDurationDays As Integer = 90, resetCodeLength As Integer = 6, resetTokenDurationMinutes As Integer = 90, accountTableName As String = "account", userTableName As String = "user", userTableIdFieldName As String = "id", userTableUsernameFieldName As String = "username", userTableEmailFieldName As String = "email", userTableEmailVerifiedAtFieldName As String = "email_verified_at", userTablePhoneFieldName As String = "phone", userTablePhoneVerifiedAtFieldName As String = "phone_verified_at", userTableSaltFieldName As String = "salt", userTablePasswordHashFieldName As String = "password_hash", userTableFirstNameFieldName As String = "first_name", userTableLastNameFieldName As String = "last_name", userTableResetCodeFieldName As String = "reset_code", userTableResetCodeExpiresAtFieldName As String = "reset_code_expires_at", userTableAccountIdFieldName As String = "account_id", userTableRoleFieldName As String = "role", authTokenTableName As String = "auth_token", authTokenIdFieldName As String = "id", authTokenTableUserIdFieldName As String = "user_id", authTokenTableExpiresAtFieldName As String = "expires_at", defaultRole As String = Nothing, onEmailVerify As Func(Of String, Integer, Task) = Nothing, onPhoneVerify As Func(Of String, Integer, Task) = Nothing, onRegister As Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task) = Nothing, onForgotPassword As Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task) = Nothing, onCheckVersion As Action(Of Version) = Nothing)
   overload: Butterfly.Core.Auth.AuthManager.#ctor*
   nameWithType.vb: AuthManager.AuthManager(IDatabase, Int32, Int32, Int32, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, Func(Of String, Int32, Task), Func(Of String, Int32, Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Action(Of Version))
@@ -1422,7 +1423,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: VERSION_CLEAN_REGEX
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 239
+    startLine: 240
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1457,7 +1458,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SetupWebApi
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 260
+    startLine: 261
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1497,7 +1498,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: VerifyAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 333
+    startLine: 334
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1548,7 +1549,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: RegisterAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 363
+    startLine: 364
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1593,7 +1594,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: AuthenticateAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 446
+    startLine: 447
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1632,7 +1633,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: LookupUsernameAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 473
+    startLine: 474
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1674,7 +1675,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateAnonymousUserAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 486
+    startLine: 487
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1709,7 +1710,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateAuthTokenAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 521
+    startLine: 522
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1748,7 +1749,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: LoginAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 548
+    startLine: 549
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1790,7 +1791,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ForgotPasswordAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 570
+    startLine: 571
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1829,7 +1830,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ResetPasswordAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 586
+    startLine: 587
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1871,7 +1872,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateResetCodeAsync
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 614
+    startLine: 615
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -1906,7 +1907,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ConvertInputToDict
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 630
+    startLine: 631
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth

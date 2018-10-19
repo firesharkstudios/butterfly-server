@@ -62,8 +62,8 @@ namespace Butterfly.Core.Database.Dynamic {
         /// Creates an instance of a DynamicView. Must call <see cref="StartAsync"/> to send 
         /// initial <see cref="DataEventTransaction"/> instance and listen for new <see cref="DataEventTransaction"/>instances.
         /// </summary>
-        public DynamicView CreateDynamicView(string sql, dynamic values = null, string name = null, string[] keyFieldNames = null) {
-            DynamicView dynamicQuery = new DynamicView(this, sql, values, name, keyFieldNames);
+        public DynamicView CreateDynamicView(string sql, dynamic values = null, string name = null, string[] keyFieldNames = null, int limit = -1) {
+            DynamicView dynamicQuery = new DynamicView(this, sql, values, name, keyFieldNames, limit: limit);
             this.dynamicViews.Add(dynamicQuery);
             return dynamicQuery;
         }

@@ -182,14 +182,14 @@ namespace Butterfly.Core.Database {
         }
 
         public async Task<Dict> SelectRowAsync(string statementSql, dynamic vars = null) {
-            Dict[] rows = await this.SelectRowsAsync(statementSql, vars: vars, overrideLimit: 1);
+            Dict[] rows = await this.SelectRowsAsync(statementSql, vars: vars, limit: 1);
             if (rows.Length == 0) return null;
             else if (rows.Length > 1) throw new Exception("SelectRow returned more than one row");
             return rows.First();
         }
 
-        public async Task<Dict[]> SelectRowsAsync(string statementSql, dynamic vars = null, int overrideLimit = -1) {
-            SelectStatement statement = new SelectStatement(this, statementSql, overrideLimit);
+        public async Task<Dict[]> SelectRowsAsync(string statementSql, dynamic vars = null, int limit = -1) {
+            SelectStatement statement = new SelectStatement(this, statementSql, limit);
             return await this.SelectRowsAsync(statement, vars);
         }
 

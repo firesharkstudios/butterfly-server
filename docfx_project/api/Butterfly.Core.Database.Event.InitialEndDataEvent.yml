@@ -20,7 +20,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: InitialEndDataEvent
     path: ../Butterfly.Core/Database/Event/DataEvent.cs
-    startLine: 55
+    startLine: 49
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Event
@@ -33,8 +33,8 @@ items:
   - System.Object
   - Butterfly.Core.Database.Event.DataEvent
   inheritedMembers:
-  - Butterfly.Core.Database.Event.DataEvent.dataEventType
   - Butterfly.Core.Database.Event.DataEvent.id
+  - Butterfly.Core.Database.Event.DataEvent.dataEventType
   - Butterfly.Core.Database.Event.DataEvent.ToString
   modifiers.csharp:
   - public
@@ -60,7 +60,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Core/Database/Event/DataEvent.cs
-    startLine: 56
+    startLine: 50
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Event
@@ -90,18 +90,18 @@ references:
   name: DataEvent
   nameWithType: DataEvent
   fullName: Butterfly.Core.Database.Event.DataEvent
+- uid: Butterfly.Core.Database.Event.DataEvent.id
+  commentId: F:Butterfly.Core.Database.Event.DataEvent.id
+  parent: Butterfly.Core.Database.Event.DataEvent
+  name: id
+  nameWithType: DataEvent.id
+  fullName: Butterfly.Core.Database.Event.DataEvent.id
 - uid: Butterfly.Core.Database.Event.DataEvent.dataEventType
   commentId: F:Butterfly.Core.Database.Event.DataEvent.dataEventType
   parent: Butterfly.Core.Database.Event.DataEvent
   name: dataEventType
   nameWithType: DataEvent.dataEventType
   fullName: Butterfly.Core.Database.Event.DataEvent.dataEventType
-- uid: Butterfly.Core.Database.Event.DataEvent.id
-  commentId: P:Butterfly.Core.Database.Event.DataEvent.id
-  parent: Butterfly.Core.Database.Event.DataEvent
-  name: id
-  nameWithType: DataEvent.id
-  fullName: Butterfly.Core.Database.Event.DataEvent.id
 - uid: Butterfly.Core.Database.Event.DataEvent.ToString
   commentId: M:Butterfly.Core.Database.Event.DataEvent.ToString
   parent: Butterfly.Core.Database.Event.DataEvent

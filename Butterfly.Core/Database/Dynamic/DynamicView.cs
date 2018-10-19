@@ -34,10 +34,10 @@ namespace Butterfly.Core.Database.Dynamic {
 
         protected readonly List<ChildDynamicParam> childDynamicParams = new List<ChildDynamicParam>();
 
-        public DynamicView(DynamicViewSet dynamicQuerySet, string sql, dynamic vars = null, string name = null, string[] keyFieldNames = null, string[] dynamicTableAliases = null) {
+        public DynamicView(DynamicViewSet dynamicQuerySet, string sql, dynamic vars = null, string name = null, string[] keyFieldNames = null, string[] dynamicTableAliases = null, int limit = -1) {
             this.Id = Guid.NewGuid().ToString();
             this.dynamicViewSet = dynamicQuerySet; 
-            this.selectStatement = new SelectStatement(dynamicQuerySet.Database, sql);
+            this.selectStatement = new SelectStatement(dynamicQuerySet.Database, sql, limit);
             this.varsDict = this.selectStatement.ConvertParamsToDict(vars);
 
             if (string.IsNullOrEmpty(name)) {

@@ -777,8 +777,10 @@ items:
     parameters:
     - id: transaction
       type: Butterfly.Core.Database.ITransaction
+      description: ''
     - id: notifyMessages
       type: Butterfly.Core.Notify.NotifyMessage[]
+      description: ''
     return:
       type: Task
       description: ''

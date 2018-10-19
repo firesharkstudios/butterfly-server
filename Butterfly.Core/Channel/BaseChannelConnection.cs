@@ -120,7 +120,7 @@ namespace Butterfly.Core.Channel {
         protected abstract Task SendAsync(string text);
 
         public async Task ReceiveMessageAsync(string text) {
-            logger.Debug($"ReceiveMessage():text={text}");
+            logger.Trace($"ReceiveMessage():text={text}");
             this.Heartbeat();
             if (text != "!") {
                 int pos = text.IndexOf(':');
