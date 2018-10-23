@@ -20,7 +20,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DuplicateKeyDatabaseException
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 470
+    startLine: 471
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -56,7 +56,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 471
+    startLine: 472
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database

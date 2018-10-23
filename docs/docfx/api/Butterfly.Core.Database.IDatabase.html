@@ -1243,14 +1243,14 @@ Executes the SELECT statement and returns the rows
     </tbody>
   </table>
   <a id="Butterfly_Core_Database_IDatabase_SelectRowsAsync_" data-uid="Butterfly.Core.Database.IDatabase.SelectRowsAsync*"></a>
-  <h4 id="Butterfly_Core_Database_IDatabase_SelectRowsAsync_System_String_System_Object_System_Int32_" data-uid="Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)">SelectRowsAsync(String, Object, Int32)</h4>
+  <h4 id="Butterfly_Core_Database_IDatabase_SelectRowsAsync_System_String_System_Object_" data-uid="Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object)">SelectRowsAsync(String, Object)</h4>
   <div class="markdown level1 summary">
 Executes the SELECT statement and return the rows (the SELECT statement may contain vars like @name specified in <code data-dev-comment-type="paramref" class="paramref">vars</code>)
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;[]&gt; SelectRowsAsync(string sql, dynamic vars = null, int limit = null)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;[]&gt; SelectRowsAsync(string sql, dynamic vars = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1270,11 +1270,6 @@ Executes the SELECT statement and return the rows (the SELECT statement may cont
       <tr>
         <td><span class="xref">System.Object</span></td>
         <td><span class="parametername">vars</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">limit</span></td>
         <td></td>
       </tr>
     </tbody>

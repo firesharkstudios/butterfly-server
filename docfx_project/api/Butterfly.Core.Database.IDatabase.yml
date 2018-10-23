@@ -29,7 +29,7 @@ items:
   - Butterfly.Core.Database.IDatabase.SelectCount
   - Butterfly.Core.Database.IDatabase.SelectRowAsync(System.String,System.Object)
   - Butterfly.Core.Database.IDatabase.SelectRowsAsync(Butterfly.Core.Database.SelectStatement,System.Object)
-  - Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)
+  - Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object)
   - Butterfly.Core.Database.IDatabase.SelectValueAsync``1(System.String,System.Object,``0)
   - Butterfly.Core.Database.IDatabase.SelectValuesAsync``1(System.String,System.Object)
   - Butterfly.Core.Database.IDatabase.SetDefaultValue(System.String,Func{System.String,System.Object},System.String)
@@ -553,16 +553,16 @@ items:
       description: ''
     content.vb: Function SelectRowAsync(sql As String, vars As Object = Nothing) As Task(Of System.Collections.Generic.Dictionary(Of String, Object))
   overload: Butterfly.Core.Database.IDatabase.SelectRowAsync*
-- uid: Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)
-  commentId: M:Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)
-  id: SelectRowsAsync(System.String,System.Object,System.Int32)
+- uid: Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object)
+  commentId: M:Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object)
+  id: SelectRowsAsync(System.String,System.Object)
   parent: Butterfly.Core.Database.IDatabase
   langs:
   - csharp
   - vb
-  name: SelectRowsAsync(String, Object, Int32)
-  nameWithType: IDatabase.SelectRowsAsync(String, Object, Int32)
-  fullName: Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String, System.Object, System.Int32)
+  name: SelectRowsAsync(String, Object)
+  nameWithType: IDatabase.SelectRowsAsync(String, Object)
+  fullName: Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String, System.Object)
   type: Method
   source:
     remote:
@@ -571,14 +571,14 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SelectRowsAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 176
+    startLine: 175
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   summary: "\nExecutes the SELECT statement and return the rows (the SELECT statement may contain vars like @name specified in <code data-dev-comment-type=\"paramref\" class=\"paramref\">vars</code>)\n"
   example: []
   syntax:
-    content: Task<System.Collections.Generic.Dictionary<string, object>[]> SelectRowsAsync(string sql, dynamic vars = null, int limit = null)
+    content: Task<System.Collections.Generic.Dictionary<string, object>[]> SelectRowsAsync(string sql, dynamic vars = null)
     parameters:
     - id: sql
       type: System.String
@@ -586,13 +586,10 @@ items:
     - id: vars
       type: System.Object
       description: ''
-    - id: limit
-      type: System.Int32
-      description: ''
     return:
       type: Task{System.Collections.Generic.Dictionary{System.String,System.Object}[]}
       description: ''
-    content.vb: Function SelectRowsAsync(sql As String, vars As Object = Nothing, limit As Integer = Nothing) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
+    content.vb: Function SelectRowsAsync(sql As String, vars As Object = Nothing) As Task(Of System.Collections.Generic.Dictionary(Of String, Object)())
   overload: Butterfly.Core.Database.IDatabase.SelectRowsAsync*
 - uid: Butterfly.Core.Database.IDatabase.SelectRowsAsync(Butterfly.Core.Database.SelectStatement,System.Object)
   commentId: M:Butterfly.Core.Database.IDatabase.SelectRowsAsync(Butterfly.Core.Database.SelectStatement,System.Object)
@@ -612,7 +609,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SelectRowsAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 184
+    startLine: 183
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -650,7 +647,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: QueryValueAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 194
+    startLine: 193
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -697,7 +694,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: QueryRowAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 202
+    startLine: 201
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -735,7 +732,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: QueryRowsAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 210
+    startLine: 209
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -773,7 +770,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: InsertAndCommitAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 245
+    startLine: 244
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -820,7 +817,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: UpdateAndCommitAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 275
+    startLine: 274
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -859,7 +856,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DeleteAndCommitAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 303
+    startLine: 302
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -898,7 +895,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: BeginTransaction
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 309
+    startLine: 308
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -929,7 +926,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: BeginTransactionAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 312
+    startLine: 311
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -958,7 +955,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SetDefaultValue
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 320
+    startLine: 319
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -999,7 +996,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SetOverrideValue
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 328
+    startLine: 327
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1040,7 +1037,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: AddInputPreprocessor
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 334
+    startLine: 333
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1075,7 +1072,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateDynamicViewSet
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 341
+    startLine: 340
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1113,7 +1110,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateDynamicViewSet
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 344
+    startLine: 343
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1148,7 +1145,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateAndStartDynamicViewAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 355
+    startLine: 354
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1198,7 +1195,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateAndStartDynamicViewAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 358
+    startLine: 357
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1241,7 +1238,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: GetInitialDataEventsAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
-    startLine: 368
+    startLine: 367
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database

@@ -2171,12 +2171,12 @@ references:
   commentId: M:Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(Butterfly.Core.Database.SelectStatement,System.Object)
   fullName: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(Butterfly.Core.Database.SelectStatement, System.Object)
   nameWithType: BaseDatabase.SelectRowsAsync(SelectStatement, Object)
-- uid: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)
-  name: SelectRowsAsync(String, Object, Int32)
-  href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SelectRowsAsync_System_String_System_Object_System_Int32_
-  commentId: M:Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)
-  fullName: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String, System.Object, System.Int32)
-  nameWithType: BaseDatabase.SelectRowsAsync(String, Object, Int32)
+- uid: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String,System.Object)
+  name: SelectRowsAsync(String, Object)
+  href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SelectRowsAsync_System_String_System_Object_
+  commentId: M:Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String,System.Object)
+  fullName: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String, System.Object)
+  nameWithType: BaseDatabase.SelectRowsAsync(String, Object)
 - uid: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync*
   name: SelectRowsAsync
   href: api/Butterfly.Core.Database.BaseDatabase.html#Butterfly_Core_Database_BaseDatabase_SelectRowsAsync_
@@ -4410,12 +4410,12 @@ references:
   commentId: M:Butterfly.Core.Database.IDatabase.SelectRowsAsync(Butterfly.Core.Database.SelectStatement,System.Object)
   fullName: Butterfly.Core.Database.IDatabase.SelectRowsAsync(Butterfly.Core.Database.SelectStatement, System.Object)
   nameWithType: IDatabase.SelectRowsAsync(SelectStatement, Object)
-- uid: Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)
-  name: SelectRowsAsync(String, Object, Int32)
-  href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectRowsAsync_System_String_System_Object_System_Int32_
-  commentId: M:Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)
-  fullName: Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String, System.Object, System.Int32)
-  nameWithType: IDatabase.SelectRowsAsync(String, Object, Int32)
+- uid: Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object)
+  name: SelectRowsAsync(String, Object)
+  href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectRowsAsync_System_String_System_Object_
+  commentId: M:Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object)
+  fullName: Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String, System.Object)
+  nameWithType: IDatabase.SelectRowsAsync(String, Object)
 - uid: Butterfly.Core.Database.IDatabase.SelectRowsAsync*
   name: SelectRowsAsync
   href: api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_SelectRowsAsync_

@@ -20,7 +20,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: UnableToConnectDatabaseException
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 475
+    startLine: 476
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -56,7 +56,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 476
+    startLine: 477
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
