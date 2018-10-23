@@ -172,9 +172,8 @@ namespace Butterfly.Core.Database {
         /// </summary>
         /// <param name="sql"></param>
         /// <param name="vars"></param>
-        /// <param name="limit"></param>
         /// <returns></returns>
-        Task<Dict[]> SelectRowsAsync(string sql, dynamic vars = null, int limit = -1);
+        Task<Dict[]> SelectRowsAsync(string sql, dynamic vars = null);
 
         /// <summary>
         /// Executes the SELECT statement and returns the rows
