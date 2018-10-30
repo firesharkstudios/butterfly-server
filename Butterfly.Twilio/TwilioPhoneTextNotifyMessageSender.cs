@@ -2,7 +2,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using NLog;
 
@@ -29,16 +31,14 @@ namespace Butterfly.Twilio
         protected override async Task<string> DoSendAsync(string from, string to, string subject, string bodyText, string bodyHtml) {
             TwilioClient.Init(this.twilioAccountSid, this.twilioAuthToken);
 
-            //try {
-                MessageResource messageResource = await MessageResource.CreateAsync(
-                    to: new PhoneNumber(to),
-                    from: new PhoneNumber(from),
-                    body: bodyText);
-                return messageResource.Sid;
-            //}
-            //catch (Exception e) {
-            //    logger.Error(e);
-            //}
+            var mediaUris = string.IsNullOrEmpty(bodyHtml) ? new List<Uri> { new Uri(bodyHtml) } : null;
+            MessageResource messageResource = await MessageResource.CreateAsync(
+                to: new PhoneNumber(to),
+                from: new PhoneNumber(from),
+                body: bodyText,
+                mediaUrl: mediaUris
+            );
+            return messageResource.Sid;
         }
 
         /*
