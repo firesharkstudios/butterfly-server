@@ -28,6 +28,7 @@ items:
     content: 'public static class RandomUtil : object'
     content.vb: >-
       Public Module RandomUtil
+
           Inherits Object
   inheritance:
   - System.Object

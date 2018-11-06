@@ -30,6 +30,7 @@ items:
     content: 'public class JobData : object'
     content.vb: >-
       Public Class JobData
+
           Inherits Object
   inheritance:
   - System.Object

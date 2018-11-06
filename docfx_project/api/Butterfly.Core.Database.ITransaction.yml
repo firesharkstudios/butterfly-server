@@ -10,7 +10,7 @@ items:
   - Butterfly.Core.Database.ITransaction.Database
   - Butterfly.Core.Database.ITransaction.DeleteAsync(System.String,System.Object)
   - Butterfly.Core.Database.ITransaction.InsertAsync``1(System.String,System.Object,System.Boolean)
-  - Butterfly.Core.Database.ITransaction.OnCommit(Func{Task})
+  - Butterfly.Core.Database.ITransaction.OnCommit(Func{Task},System.String)
   - Butterfly.Core.Database.ITransaction.Rollback
   - Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[])
   - Butterfly.Core.Database.ITransaction.TruncateAsync(System.String)
@@ -39,6 +39,7 @@ items:
     content: 'public interface ITransaction : IDisposable'
     content.vb: >-
       Public Interface ITransaction
+
           Inherits IDisposable
   modifiers.csharp:
   - public
@@ -345,16 +346,16 @@ items:
       type: Task
     content.vb: Function CommitAsync As Task
   overload: Butterfly.Core.Database.ITransaction.CommitAsync*
-- uid: Butterfly.Core.Database.ITransaction.OnCommit(Func{Task})
-  commentId: M:Butterfly.Core.Database.ITransaction.OnCommit(Func{Task})
-  id: OnCommit(Func{Task})
+- uid: Butterfly.Core.Database.ITransaction.OnCommit(Func{Task},System.String)
+  commentId: M:Butterfly.Core.Database.ITransaction.OnCommit(Func{Task},System.String)
+  id: OnCommit(Func{Task},System.String)
   parent: Butterfly.Core.Database.ITransaction
   langs:
   - csharp
   - vb
-  name: OnCommit(Func<Task>)
-  nameWithType: ITransaction.OnCommit(Func<Task>)
-  fullName: Butterfly.Core.Database.ITransaction.OnCommit(Func<Task>)
+  name: OnCommit(Func<Task>, String)
+  nameWithType: ITransaction.OnCommit(Func<Task>, String)
+  fullName: Butterfly.Core.Database.ITransaction.OnCommit(Func<Task>, System.String)
   type: Method
   source:
     remote:
@@ -363,23 +364,26 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnCommit
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 148
+    startLine: 149
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   summary: "\nRegister a callback that is invoked when the transaction is successfully committed\n"
   example: []
   syntax:
-    content: void OnCommit(Func<Task> onCommit)
+    content: void OnCommit(Func<Task> onCommit, string key = null)
     parameters:
     - id: onCommit
       type: Func{Task}
       description: ''
-    content.vb: Sub OnCommit(onCommit As Func(Of Task))
+    - id: key
+      type: System.String
+      description: Provide a key if you need to ensure only one onCommit instance is executed with that key
+    content.vb: Sub OnCommit(onCommit As Func(Of Task), key As String = Nothing)
   overload: Butterfly.Core.Database.ITransaction.OnCommit*
-  nameWithType.vb: ITransaction.OnCommit(Func(Of Task))
-  fullName.vb: Butterfly.Core.Database.ITransaction.OnCommit(Func(Of Task))
-  name.vb: OnCommit(Func(Of Task))
+  nameWithType.vb: ITransaction.OnCommit(Func(Of Task), String)
+  fullName.vb: Butterfly.Core.Database.ITransaction.OnCommit(Func(Of Task), System.String)
+  name.vb: OnCommit(Func(Of Task), String)
 - uid: Butterfly.Core.Database.ITransaction.Rollback
   commentId: M:Butterfly.Core.Database.ITransaction.Rollback
   id: Rollback
@@ -398,7 +402,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Rollback
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 153
+    startLine: 154
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database

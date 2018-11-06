@@ -655,6 +655,7 @@ function () {
 
         this._subscribing();
       } else if (message.messageType === 'UNAUTHENTICATED') {
+        if (this._options.onUnauthenticated) this._options.onUnauthenticated(message.data);
         this.disconnect();
       }
     }

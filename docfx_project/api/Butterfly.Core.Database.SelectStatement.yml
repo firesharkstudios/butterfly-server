@@ -41,6 +41,7 @@ items:
     content: 'public class SelectStatement : BaseStatement'
     content.vb: >-
       Public Class SelectStatement
+
           Inherits BaseStatement
   inheritance:
   - System.Object

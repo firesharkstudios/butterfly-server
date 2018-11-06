@@ -30,6 +30,7 @@ items:
     content: 'public class RecordDataEvent : KeyValueDataEvent'
     content.vb: >-
       Public Class RecordDataEvent
+
           Inherits KeyValueDataEvent
   inheritance:
   - System.Object

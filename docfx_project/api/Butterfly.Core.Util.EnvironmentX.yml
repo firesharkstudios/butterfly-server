@@ -28,6 +28,7 @@ items:
     content: 'public static class EnvironmentX : object'
     content.vb: >-
       Public Module EnvironmentX
+
           Inherits Object
   inheritance:
   - System.Object

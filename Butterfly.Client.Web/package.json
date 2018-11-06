@@ -1,6 +1,6 @@
 {
   "name": "butterfly-client",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Client library for Butterfly Realtime Web App Server",
   "main": "lib/butterfly-client.js",
   "scripts": {

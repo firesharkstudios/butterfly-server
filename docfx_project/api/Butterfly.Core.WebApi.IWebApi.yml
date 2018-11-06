@@ -35,6 +35,7 @@ items:
     content: 'public interface IWebApi : IDisposable'
     content.vb: >-
       Public Interface IWebApi
+
           Inherits IDisposable
   modifiers.csharp:
   - public

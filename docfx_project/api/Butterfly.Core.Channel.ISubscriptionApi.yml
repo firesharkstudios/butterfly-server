@@ -35,6 +35,7 @@ items:
     content: 'public interface ISubscriptionApi : IDisposable'
     content.vb: >-
       Public Interface ISubscriptionApi
+
           Inherits IDisposable
   modifiers.csharp:
   - public

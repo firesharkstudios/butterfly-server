@@ -83,7 +83,9 @@ items:
     content: 'public abstract class BaseDatabase : object, IDatabase'
     content.vb: >-
       Public MustInherit Class BaseDatabase
+
           Inherits Object
+
           Implements IDatabase
   inheritance:
   - System.Object
@@ -1056,7 +1058,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SelectValuesAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 175
+    startLine: 177
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1100,7 +1102,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SelectRowAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 183
+    startLine: 184
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1139,7 +1141,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SelectRowsAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 191
+    startLine: 192
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1178,7 +1180,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SelectRowsAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 196
+    startLine: 197
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1217,7 +1219,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoSelectRowsAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 203
+    startLine: 204
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1261,7 +1263,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: QueryValueAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 205
+    startLine: 206
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1307,7 +1309,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: QueryRowAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 212
+    startLine: 213
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1346,7 +1348,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: QueryRowsAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 219
+    startLine: 220
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1385,7 +1387,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoQueryRowsAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 240
+    startLine: 241
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1427,7 +1429,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: InsertAndCommitAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 242
+    startLine: 243
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1473,7 +1475,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: UpdateAndCommitAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 251
+    startLine: 252
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1512,7 +1514,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DeleteAndCommitAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 260
+    startLine: 261
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1551,7 +1553,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: BeginTransaction
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 269
+    startLine: 270
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1585,7 +1587,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: BeginTransactionAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 275
+    startLine: 276
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1619,7 +1621,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateTransaction
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 281
+    startLine: 282
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1653,7 +1655,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: getDefaultValueByFieldName
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 283
+    startLine: 284
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1686,7 +1688,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SetDefaultValue
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 285
+    startLine: 286
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1728,7 +1730,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: getOverrideValueByFieldName
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 308
+    startLine: 309
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1761,7 +1763,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SetOverrideValue
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 310
+    startLine: 311
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1803,7 +1805,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: inputPreprocessors
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 333
+    startLine: 334
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1836,7 +1838,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: AddInputPreprocessor
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 335
+    startLine: 336
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1874,7 +1876,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: RemapTypeInputPreprocessor
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 345
+    startLine: 346
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1916,7 +1918,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CopyFieldValueInputPreprocessor
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 355
+    startLine: 356
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1955,7 +1957,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: PARSE_TYPE
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 366
+    startLine: 367
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1990,7 +1992,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ConvertMySqlType
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 368
+    startLine: 369
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -2027,7 +2029,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateDynamicViewSet
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 410
+    startLine: 411
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -2067,7 +2069,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateDynamicViewSet
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 414
+    startLine: 415
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -2107,7 +2109,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateAndStartDynamicViewAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 418
+    startLine: 419
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -2155,7 +2157,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CreateAndStartDynamicViewAsync
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 424
+    startLine: 425
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database

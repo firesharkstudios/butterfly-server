@@ -30,6 +30,7 @@ items:
     content: 'public class DynamicUnitTest : object'
     content.vb: >-
       Public Class DynamicUnitTest
+
           Inherits Object
   inheritance:
   - System.Object

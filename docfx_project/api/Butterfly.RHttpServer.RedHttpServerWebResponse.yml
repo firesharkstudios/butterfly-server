@@ -37,7 +37,9 @@ items:
     content: 'public class RedHttpServerWebResponse : object, IHttpResponse'
     content.vb: >-
       Public Class RedHttpServerWebResponse
+
           Inherits Object
+
           Implements IHttpResponse
   inheritance:
   - System.Object

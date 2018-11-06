@@ -35,6 +35,7 @@ items:
     content: 'public static class FileX : object'
     content.vb: >-
       Public Module FileX
+
           Inherits Object
   inheritance:
   - System.Object

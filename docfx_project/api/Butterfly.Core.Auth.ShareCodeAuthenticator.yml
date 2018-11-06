@@ -1,0 +1,530 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Auth.ShareCodeAuthenticator
+  commentId: T:Butterfly.Core.Auth.ShareCodeAuthenticator
+  id: ShareCodeAuthenticator
+  parent: Butterfly.Core.Auth
+  children:
+  - Butterfly.Core.Auth.ShareCodeAuthenticator.#ctor(Butterfly.Core.Database.IDatabase,System.String,System.String,System.String)
+  - Butterfly.Core.Auth.ShareCodeAuthenticator.accountTableIdFieldName
+  - Butterfly.Core.Auth.ShareCodeAuthenticator.accountTableName
+  - Butterfly.Core.Auth.ShareCodeAuthenticator.accountTableShareCodeFieldName
+  - Butterfly.Core.Auth.ShareCodeAuthenticator.AUTH_TYPE
+  - Butterfly.Core.Auth.ShareCodeAuthenticator.AuthenticateAsync(System.String,System.String)
+  - Butterfly.Core.Auth.ShareCodeAuthenticator.database
+  - Butterfly.Core.Auth.ShareCodeAuthenticator.logger
+  langs:
+  - csharp
+  - vb
+  name: ShareCodeAuthenticator
+  nameWithType: ShareCodeAuthenticator
+  fullName: Butterfly.Core.Auth.ShareCodeAuthenticator
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ShareCodeAuthenticator
+    path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+    startLine: 10
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Auth
+  syntax:
+    content: 'public class ShareCodeAuthenticator : object, IAuthenticator'
+    content.vb: >-
+      Public Class ShareCodeAuthenticator
+
+          Inherits Object
+
+          Implements IAuthenticator
+  inheritance:
+  - System.Object
+  implements:
+  - Butterfly.Core.Auth.IAuthenticator
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Auth.ShareCodeAuthenticator.logger
+  commentId: F:Butterfly.Core.Auth.ShareCodeAuthenticator.logger
+  id: logger
+  parent: Butterfly.Core.Auth.ShareCodeAuthenticator
+  langs:
+  - csharp
+  - vb
+  name: logger
+  nameWithType: ShareCodeAuthenticator.logger
+  fullName: Butterfly.Core.Auth.ShareCodeAuthenticator.logger
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: logger
+    path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+    startLine: 11
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Auth
+  syntax:
+    content: protected static readonly Logger logger
+    return:
+      type: Logger
+    content.vb: Protected Shared ReadOnly logger As Logger
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Core.Auth.ShareCodeAuthenticator.AUTH_TYPE
+  commentId: F:Butterfly.Core.Auth.ShareCodeAuthenticator.AUTH_TYPE
+  id: AUTH_TYPE
+  parent: Butterfly.Core.Auth.ShareCodeAuthenticator
+  langs:
+  - csharp
+  - vb
+  name: AUTH_TYPE
+  nameWithType: ShareCodeAuthenticator.AUTH_TYPE
+  fullName: Butterfly.Core.Auth.ShareCodeAuthenticator.AUTH_TYPE
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: AUTH_TYPE
+    path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+    startLine: 13
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Auth
+  syntax:
+    content: public const string AUTH_TYPE = null
+    return:
+      type: System.String
+    content.vb: Public Const AUTH_TYPE As String = Nothing
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Butterfly.Core.Auth.ShareCodeAuthenticator.database
+  commentId: F:Butterfly.Core.Auth.ShareCodeAuthenticator.database
+  id: database
+  parent: Butterfly.Core.Auth.ShareCodeAuthenticator
+  langs:
+  - csharp
+  - vb
+  name: database
+  nameWithType: ShareCodeAuthenticator.database
+  fullName: Butterfly.Core.Auth.ShareCodeAuthenticator.database
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: database
+    path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+    startLine: 15
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Auth
+  syntax:
+    content: protected readonly IDatabase database
+    return:
+      type: Butterfly.Core.Database.IDatabase
+    content.vb: Protected ReadOnly database As IDatabase
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Auth.ShareCodeAuthenticator.accountTableName
+  commentId: F:Butterfly.Core.Auth.ShareCodeAuthenticator.accountTableName
+  id: accountTableName
+  parent: Butterfly.Core.Auth.ShareCodeAuthenticator
+  langs:
+  - csharp
+  - vb
+  name: accountTableName
+  nameWithType: ShareCodeAuthenticator.accountTableName
+  fullName: Butterfly.Core.Auth.ShareCodeAuthenticator.accountTableName
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: accountTableName
+    path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+    startLine: 17
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Auth
+  syntax:
+    content: protected readonly string accountTableName
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly accountTableName As String
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Auth.ShareCodeAuthenticator.accountTableIdFieldName
+  commentId: F:Butterfly.Core.Auth.ShareCodeAuthenticator.accountTableIdFieldName
+  id: accountTableIdFieldName
+  parent: Butterfly.Core.Auth.ShareCodeAuthenticator
+  langs:
+  - csharp
+  - vb
+  name: accountTableIdFieldName
+  nameWithType: ShareCodeAuthenticator.accountTableIdFieldName
+  fullName: Butterfly.Core.Auth.ShareCodeAuthenticator.accountTableIdFieldName
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: accountTableIdFieldName
+    path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+    startLine: 18
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Auth
+  syntax:
+    content: protected readonly string accountTableIdFieldName
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly accountTableIdFieldName As String
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Auth.ShareCodeAuthenticator.accountTableShareCodeFieldName
+  commentId: F:Butterfly.Core.Auth.ShareCodeAuthenticator.accountTableShareCodeFieldName
+  id: accountTableShareCodeFieldName
+  parent: Butterfly.Core.Auth.ShareCodeAuthenticator
+  langs:
+  - csharp
+  - vb
+  name: accountTableShareCodeFieldName
+  nameWithType: ShareCodeAuthenticator.accountTableShareCodeFieldName
+  fullName: Butterfly.Core.Auth.ShareCodeAuthenticator.accountTableShareCodeFieldName
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: accountTableShareCodeFieldName
+    path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+    startLine: 19
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Auth
+  syntax:
+    content: protected readonly string accountTableShareCodeFieldName
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly accountTableShareCodeFieldName As String
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Auth.ShareCodeAuthenticator.#ctor(Butterfly.Core.Database.IDatabase,System.String,System.String,System.String)
+  commentId: M:Butterfly.Core.Auth.ShareCodeAuthenticator.#ctor(Butterfly.Core.Database.IDatabase,System.String,System.String,System.String)
+  id: '#ctor(Butterfly.Core.Database.IDatabase,System.String,System.String,System.String)'
+  parent: Butterfly.Core.Auth.ShareCodeAuthenticator
+  langs:
+  - csharp
+  - vb
+  name: ShareCodeAuthenticator(IDatabase, String, String, String)
+  nameWithType: ShareCodeAuthenticator.ShareCodeAuthenticator(IDatabase, String, String, String)
+  fullName: Butterfly.Core.Auth.ShareCodeAuthenticator.ShareCodeAuthenticator(Butterfly.Core.Database.IDatabase, System.String, System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+    startLine: 28
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Auth
+  summary: "\n\n"
+  example: []
+  syntax:
+    content: public ShareCodeAuthenticator(IDatabase database, string accountTableName = "account", string accountTableIdFieldName = "id", string accountTableShareCodeFieldName = "share_code")
+    parameters:
+    - id: database
+      type: Butterfly.Core.Database.IDatabase
+      description: ''
+    - id: accountTableName
+      type: System.String
+      description: Table name of the auth token table (default is &quot;auth_token&quot;)
+    - id: accountTableIdFieldName
+      type: System.String
+      description: Field name of the id field on the auth token table (default is &quot;id&quot;)
+    - id: accountTableShareCodeFieldName
+      type: System.String
+      description: Field name of the user id field on the auth token table (default is &quot;user_id&quot;)
+    content.vb: Public Sub New(database As IDatabase, accountTableName As String = "account", accountTableIdFieldName As String = "id", accountTableShareCodeFieldName As String = "share_code")
+  overload: Butterfly.Core.Auth.ShareCodeAuthenticator.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Auth.ShareCodeAuthenticator.AuthenticateAsync(System.String,System.String)
+  commentId: M:Butterfly.Core.Auth.ShareCodeAuthenticator.AuthenticateAsync(System.String,System.String)
+  id: AuthenticateAsync(System.String,System.String)
+  parent: Butterfly.Core.Auth.ShareCodeAuthenticator
+  langs:
+  - csharp
+  - vb
+  name: AuthenticateAsync(String, String)
+  nameWithType: ShareCodeAuthenticator.AuthenticateAsync(String, String)
+  fullName: Butterfly.Core.Auth.ShareCodeAuthenticator.AuthenticateAsync(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: AuthenticateAsync
+    path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+    startLine: 46
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Auth
+  summary: "\nValidates the auth token id returning an <xref href=\"Butterfly.Core.Auth.AuthToken\" data-throw-if-not-resolved=\"false\"></xref> instance\n"
+  example: []
+  syntax:
+    content: public Task<AuthToken> AuthenticateAsync(string authType, string authValue)
+    parameters:
+    - id: authType
+      type: System.String
+      description: ''
+    - id: authValue
+      type: System.String
+      description: ''
+    return:
+      type: Task{Butterfly.Core.Auth.AuthToken}
+      description: An <xref href="Butterfly.Core.Auth.AuthToken" data-throw-if-not-resolved="false"></xref> instance
+    content.vb: Public Function AuthenticateAsync(authType As String, authValue As String) As Task(Of AuthToken)
+  overload: Butterfly.Core.Auth.ShareCodeAuthenticator.AuthenticateAsync*
+  implements:
+  - Butterfly.Core.Auth.IAuthenticator.AuthenticateAsync(System.String,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.Core.Auth
+  commentId: N:Butterfly.Core.Auth
+  name: Butterfly.Core.Auth
+  nameWithType: Butterfly.Core.Auth
+  fullName: Butterfly.Core.Auth
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Auth.IAuthenticator
+  commentId: T:Butterfly.Core.Auth.IAuthenticator
+  parent: Butterfly.Core.Auth
+  name: IAuthenticator
+  nameWithType: IAuthenticator
+  fullName: Butterfly.Core.Auth.IAuthenticator
+- uid: Logger
+  isExternal: true
+  name: Logger
+  nameWithType: Logger
+  fullName: Logger
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Butterfly.Core.Database.IDatabase
+  commentId: T:Butterfly.Core.Database.IDatabase
+  parent: Butterfly.Core.Database
+  name: IDatabase
+  nameWithType: IDatabase
+  fullName: Butterfly.Core.Database.IDatabase
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: Butterfly.Core.Auth.ShareCodeAuthenticator.#ctor*
+  commentId: Overload:Butterfly.Core.Auth.ShareCodeAuthenticator.#ctor
+  name: ShareCodeAuthenticator
+  nameWithType: ShareCodeAuthenticator.ShareCodeAuthenticator
+  fullName: Butterfly.Core.Auth.ShareCodeAuthenticator.ShareCodeAuthenticator
+- uid: Butterfly.Core.Auth.AuthToken
+  commentId: T:Butterfly.Core.Auth.AuthToken
+  parent: Butterfly.Core.Auth
+  name: AuthToken
+  nameWithType: AuthToken
+  fullName: Butterfly.Core.Auth.AuthToken
+- uid: Butterfly.Core.Auth.ShareCodeAuthenticator.AuthenticateAsync*
+  commentId: Overload:Butterfly.Core.Auth.ShareCodeAuthenticator.AuthenticateAsync
+  name: AuthenticateAsync
+  nameWithType: ShareCodeAuthenticator.AuthenticateAsync
+  fullName: Butterfly.Core.Auth.ShareCodeAuthenticator.AuthenticateAsync
+- uid: Butterfly.Core.Auth.IAuthenticator.AuthenticateAsync(System.String,System.String)
+  commentId: M:Butterfly.Core.Auth.IAuthenticator.AuthenticateAsync(System.String,System.String)
+  parent: Butterfly.Core.Auth.IAuthenticator
+  isExternal: true
+  name: AuthenticateAsync(String, String)
+  nameWithType: IAuthenticator.AuthenticateAsync(String, String)
+  fullName: Butterfly.Core.Auth.IAuthenticator.AuthenticateAsync(System.String, System.String)
+  spec.csharp:
+  - uid: Butterfly.Core.Auth.IAuthenticator.AuthenticateAsync(System.String,System.String)
+    name: AuthenticateAsync
+    nameWithType: IAuthenticator.AuthenticateAsync
+    fullName: Butterfly.Core.Auth.IAuthenticator.AuthenticateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Auth.IAuthenticator.AuthenticateAsync(System.String,System.String)
+    name: AuthenticateAsync
+    nameWithType: IAuthenticator.AuthenticateAsync
+    fullName: Butterfly.Core.Auth.IAuthenticator.AuthenticateAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task{Butterfly.Core.Auth.AuthToken}
+  commentId: '!:Task{Butterfly.Core.Auth.AuthToken}'
+  definition: Task`1
+  name: Task<AuthToken>
+  nameWithType: Task<AuthToken>
+  fullName: Task<Butterfly.Core.Auth.AuthToken>
+  nameWithType.vb: Task(Of AuthToken)
+  fullName.vb: Task(Of Butterfly.Core.Auth.AuthToken)
+  name.vb: Task(Of AuthToken)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Butterfly.Core.Auth.AuthToken
+    name: AuthToken
+    nameWithType: AuthToken
+    fullName: Butterfly.Core.Auth.AuthToken
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Butterfly.Core.Auth.AuthToken
+    name: AuthToken
+    nameWithType: AuthToken
+    fullName: Butterfly.Core.Auth.AuthToken
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
+  isExternal: true
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+shouldSkipMarkup: true

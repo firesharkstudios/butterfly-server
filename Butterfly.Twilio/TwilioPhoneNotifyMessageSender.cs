@@ -16,14 +16,14 @@ using Butterfly.Core.Notify;
 
 namespace Butterfly.Twilio
 {
-    public class TwilioPhoneTextNotifyMessageSender : BaseNotifyMessageSender {
+    public class TwilioPhoneNotifyMessageSender : BaseNotifyMessageSender {
 
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         protected readonly string twilioAccountSid;
         protected readonly string twilioAuthToken;
 
-        public TwilioPhoneTextNotifyMessageSender(string twilioAccountSid, string twilioAuthToken) {
+        public TwilioPhoneNotifyMessageSender(string twilioAccountSid, string twilioAuthToken) {
             this.twilioAccountSid = twilioAccountSid;
             this.twilioAuthToken = twilioAuthToken;
         }
@@ -31,7 +31,7 @@ namespace Butterfly.Twilio
         protected override async Task<string> DoSendAsync(string from, string to, string subject, string bodyText, string bodyHtml) {
             TwilioClient.Init(this.twilioAccountSid, this.twilioAuthToken);
 
-            var mediaUris = string.IsNullOrEmpty(bodyHtml) ? new List<Uri> { new Uri(bodyHtml) } : null;
+            var mediaUris = string.IsNullOrWhiteSpace(bodyHtml) ? null: new List<Uri> { new Uri(bodyHtml.Trim()) };
             MessageResource messageResource = await MessageResource.CreateAsync(
                 to: new PhoneNumber(to),
                 from: new PhoneNumber(from),

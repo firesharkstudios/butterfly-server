@@ -30,8 +30,8 @@ items:
   - Butterfly.Core.Database.BaseTransaction.GetKeyValue(Butterfly.Core.Database.TableIndex,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Object},Butterfly.Core.Database.StatementEqualsRef[],Butterfly.Core.Database.TableIndex,System.String)
   - Butterfly.Core.Database.BaseTransaction.InsertAsync(Butterfly.Core.Database.InsertStatement,System.Object,System.Boolean)
   - Butterfly.Core.Database.BaseTransaction.InsertAsync``1(System.String,System.Object,System.Boolean)
-  - Butterfly.Core.Database.BaseTransaction.OnCommit(Func{Task})
-  - Butterfly.Core.Database.BaseTransaction.onCommits
+  - Butterfly.Core.Database.BaseTransaction.OnCommit(Func{Task},System.String)
+  - Butterfly.Core.Database.BaseTransaction.onCommitRefs
   - Butterfly.Core.Database.BaseTransaction.Rollback
   - Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[])
   - Butterfly.Core.Database.BaseTransaction.TruncateAsync(System.String)
@@ -61,7 +61,9 @@ items:
     content: 'public abstract class BaseTransaction : object, ITransaction, IDisposable'
     content.vb: >-
       Public MustInherit Class BaseTransaction
+
           Inherits Object
+
           Implements ITransaction, IDisposable
   inheritance:
   - System.Object
@@ -148,33 +150,33 @@ items:
   modifiers.vb:
   - Protected
   - ReadOnly
-- uid: Butterfly.Core.Database.BaseTransaction.onCommits
-  commentId: F:Butterfly.Core.Database.BaseTransaction.onCommits
-  id: onCommits
+- uid: Butterfly.Core.Database.BaseTransaction.onCommitRefs
+  commentId: F:Butterfly.Core.Database.BaseTransaction.onCommitRefs
+  id: onCommitRefs
   parent: Butterfly.Core.Database.BaseTransaction
   langs:
   - csharp
   - vb
-  name: onCommits
-  nameWithType: BaseTransaction.onCommits
-  fullName: Butterfly.Core.Database.BaseTransaction.onCommits
+  name: onCommitRefs
+  nameWithType: BaseTransaction.onCommitRefs
+  fullName: Butterfly.Core.Database.BaseTransaction.onCommitRefs
   type: Field
   source:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
-    id: onCommits
+    id: onCommitRefs
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 24
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   syntax:
-    content: protected readonly List<Func<Task>> onCommits
+    content: protected readonly List<OnCommitRef> onCommitRefs
     return:
-      type: List{Func{Task}}
-    content.vb: Protected ReadOnly onCommits As List(Of Func(Of Task))
+      type: List{Butterfly.Core.Database.OnCommitRef}
+    content.vb: Protected ReadOnly onCommitRefs As List(Of OnCommitRef)
   modifiers.csharp:
   - protected
   - readonly
@@ -1092,16 +1094,16 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: Butterfly.Core.Database.BaseTransaction.OnCommit(Func{Task})
-  commentId: M:Butterfly.Core.Database.BaseTransaction.OnCommit(Func{Task})
-  id: OnCommit(Func{Task})
+- uid: Butterfly.Core.Database.BaseTransaction.OnCommit(Func{Task},System.String)
+  commentId: M:Butterfly.Core.Database.BaseTransaction.OnCommit(Func{Task},System.String)
+  id: OnCommit(Func{Task},System.String)
   parent: Butterfly.Core.Database.BaseTransaction
   langs:
   - csharp
   - vb
-  name: OnCommit(Func<Task>)
-  nameWithType: BaseTransaction.OnCommit(Func<Task>)
-  fullName: Butterfly.Core.Database.BaseTransaction.OnCommit(Func<Task>)
+  name: OnCommit(Func<Task>, String)
+  nameWithType: BaseTransaction.OnCommit(Func<Task>, String)
+  fullName: Butterfly.Core.Database.BaseTransaction.OnCommit(Func<Task>, System.String)
   type: Method
   source:
     remote:
@@ -1110,26 +1112,28 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnCommit
     path: ../Butterfly.Core/Database/BaseTransaction.cs
-    startLine: 259
+    startLine: 263
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   syntax:
-    content: public void OnCommit(Func<Task> onCommit)
+    content: public void OnCommit(Func<Task> onCommit, string key = null)
     parameters:
     - id: onCommit
       type: Func{Task}
-    content.vb: Public Sub OnCommit(onCommit As Func(Of Task))
+    - id: key
+      type: System.String
+    content.vb: Public Sub OnCommit(onCommit As Func(Of Task), key As String = Nothing)
   overload: Butterfly.Core.Database.BaseTransaction.OnCommit*
   implements:
-  - Butterfly.Core.Database.ITransaction.OnCommit(Func{Task})
-  nameWithType.vb: BaseTransaction.OnCommit(Func(Of Task))
+  - Butterfly.Core.Database.ITransaction.OnCommit(Func{Task},System.String)
+  nameWithType.vb: BaseTransaction.OnCommit(Func(Of Task), String)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: Butterfly.Core.Database.BaseTransaction.OnCommit(Func(Of Task))
-  name.vb: OnCommit(Func(Of Task))
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.OnCommit(Func(Of Task), System.String)
+  name.vb: OnCommit(Func(Of Task), String)
 - uid: Butterfly.Core.Database.BaseTransaction.DoCommitAsync
   commentId: M:Butterfly.Core.Database.BaseTransaction.DoCommitAsync
   id: DoCommitAsync
@@ -1148,7 +1152,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoCommitAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
-    startLine: 263
+    startLine: 267
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1182,7 +1186,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Rollback
     path: ../Butterfly.Core/Database/BaseTransaction.cs
-    startLine: 266
+    startLine: 270
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1214,7 +1218,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoRollback
     path: ../Butterfly.Core/Database/BaseTransaction.cs
-    startLine: 270
+    startLine: 274
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1246,7 +1250,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Dispose
     path: ../Butterfly.Core/Database/BaseTransaction.cs
-    startLine: 274
+    startLine: 278
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -1368,15 +1372,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: List{Func{Task}}
-  commentId: '!:List{Func{Task}}'
+- uid: List{Butterfly.Core.Database.OnCommitRef}
+  commentId: '!:List{Butterfly.Core.Database.OnCommitRef}'
   definition: List`1
-  name: List<Func<Task>>
-  nameWithType: List<Func<Task>>
-  fullName: List<Func<Task>>
-  nameWithType.vb: List(Of Func(Of Task))
-  fullName.vb: List(Of Func(Of Task))
-  name.vb: List(Of Func(Of Task))
+  name: List<OnCommitRef>
+  nameWithType: List<OnCommitRef>
+  fullName: List<Butterfly.Core.Database.OnCommitRef>
+  nameWithType.vb: List(Of OnCommitRef)
+  fullName.vb: List(Of Butterfly.Core.Database.OnCommitRef)
+  name.vb: List(Of OnCommitRef)
   spec.csharp:
   - uid: List`1
     name: List
@@ -1386,22 +1390,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Func`1
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: Task
-    name: Task
-    nameWithType: Task
-    fullName: Task
-    isExternal: true
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
+  - uid: Butterfly.Core.Database.OnCommitRef
+    name: OnCommitRef
+    nameWithType: OnCommitRef
+    fullName: Butterfly.Core.Database.OnCommitRef
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1414,22 +1406,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Func`1
-    name: Func
-    nameWithType: Func
-    fullName: Func
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: Task
-    name: Task
-    nameWithType: Task
-    fullName: Task
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
+  - uid: Butterfly.Core.Database.OnCommitRef
+    name: OnCommitRef
+    nameWithType: OnCommitRef
+    fullName: Butterfly.Core.Database.OnCommitRef
   - name: )
     nameWithType: )
     fullName: )
@@ -2545,18 +2525,18 @@ references:
   name: OnCommit
   nameWithType: BaseTransaction.OnCommit
   fullName: Butterfly.Core.Database.BaseTransaction.OnCommit
-- uid: Butterfly.Core.Database.ITransaction.OnCommit(Func{Task})
-  commentId: M:Butterfly.Core.Database.ITransaction.OnCommit(Func{Task})
+- uid: Butterfly.Core.Database.ITransaction.OnCommit(Func{Task},System.String)
+  commentId: M:Butterfly.Core.Database.ITransaction.OnCommit(Func{Task},System.String)
   parent: Butterfly.Core.Database.ITransaction
   isExternal: true
-  name: OnCommit(Func<Task>)
-  nameWithType: ITransaction.OnCommit(Func<Task>)
-  fullName: Butterfly.Core.Database.ITransaction.OnCommit(Func<Task>)
-  nameWithType.vb: ITransaction.OnCommit(Func(Of Task))
-  fullName.vb: Butterfly.Core.Database.ITransaction.OnCommit(Func(Of Task))
-  name.vb: OnCommit(Func(Of Task))
+  name: OnCommit(Func<Task>, String)
+  nameWithType: ITransaction.OnCommit(Func<Task>, String)
+  fullName: Butterfly.Core.Database.ITransaction.OnCommit(Func<Task>, System.String)
+  nameWithType.vb: ITransaction.OnCommit(Func(Of Task), String)
+  fullName.vb: Butterfly.Core.Database.ITransaction.OnCommit(Func(Of Task), System.String)
+  name.vb: OnCommit(Func(Of Task), String)
   spec.csharp:
-  - uid: Butterfly.Core.Database.ITransaction.OnCommit(Func{Task})
+  - uid: Butterfly.Core.Database.ITransaction.OnCommit(Func{Task},System.String)
     name: OnCommit
     nameWithType: ITransaction.OnCommit
     fullName: Butterfly.Core.Database.ITransaction.OnCommit
@@ -2579,11 +2559,19 @@ references:
   - name: '>'
     nameWithType: '>'
     fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Butterfly.Core.Database.ITransaction.OnCommit(Func{Task})
+  - uid: Butterfly.Core.Database.ITransaction.OnCommit(Func{Task},System.String)
     name: OnCommit
     nameWithType: ITransaction.OnCommit
     fullName: Butterfly.Core.Database.ITransaction.OnCommit
@@ -2606,6 +2594,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )

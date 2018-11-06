@@ -73,15 +73,20 @@ namespace Butterfly.Core.Channel {
         /// <param name="channelKey">The value to be sent to the client (will be converted to JSON)</param>
         /// <param name="messageType">The value to be sent to the client (will be converted to JSON)</param>
         /// <param name="data">The value to be sent to the client (will be converted to JSON)</param>
-        public void QueueMessage(string channelKey = null, string messageType = null, object data = null) {
+        public void QueueMessage(string channelKey = null, string messageType = null, object data = null, bool immediate = false) {
             Dict payload = new Dict();
             if (!string.IsNullOrEmpty(channelKey)) payload["channelKey"] = channelKey;
             if (!string.IsNullOrEmpty(messageType)) payload["messageType"] = messageType;
             if (data!=null) payload["data"] = data;
 
             string text = JsonUtil.Serialize(payload);
-            this.buffer.Enqueue(text);
-            this.monitor.PulseAll();
+            if (immediate) {
+                this.SendAsync(text);
+            }
+            else {
+                this.buffer.Enqueue(text);
+                this.monitor.PulseAll();
+            }
         }
 
         protected bool started = false;
@@ -133,10 +138,10 @@ namespace Butterfly.Core.Channel {
                         try {
                             var authenticationHeaderValue = string.IsNullOrWhiteSpace(value) ? null : AuthenticationHeaderValue.Parse(value);
                             await this.subscriptionApi.AuthenticateAsync(authenticationHeaderValue?.Scheme, authenticationHeaderValue?.Parameter, this);
-                            this.QueueMessage(messageType: "AUTHENTICATED");
+                            this.QueueMessage(messageType: "AUTHENTICATED", immediate: true);
                         }
                         catch (Exception e) {
-                            this.QueueMessage(messageType: "UNAUTHENTICATED", data: e.Message);
+                            this.QueueMessage(messageType: "UNAUTHENTICATED", data: e.Message, immediate: true);
                         }
                     }
                     else if (name == "Subscribe") {
@@ -216,10 +221,10 @@ namespace Butterfly.Core.Channel {
 
         protected void Unsubscribe(ICollection<string> channelKeys) {
             try {
-                logger.Debug($"UnsubscribeAsync()");
+                logger.Debug($"Unsubscribe()");
                 foreach (var channelKey in channelKeys) {
                     if (this.channelByKey.TryGetValue(channelKey, out Channel existingChannel)) {
-                        logger.Debug($"SubscribeAsync():Removing channel key '{channelKey}'");
+                        logger.Debug($"Unsubscribe():Removing channel key '{channelKey}'");
                         existingChannel.Dispose();
                         this.channelByKey.Remove(channelKey);
                     }

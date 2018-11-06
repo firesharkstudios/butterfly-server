@@ -34,13 +34,14 @@ items:
   assemblies:
   - Butterfly.MySql
   namespace: Butterfly.MySql
-  summary: "\nBase class implementing <xref href=\"Butterfly.Core.Database.IDatabase\" data-throw-if-not-resolved=\"false\"></xref>. New implementations will normally extend this class.\n"
   example: []
   syntax:
     content: 'public class MySqlDatabase : BaseDatabase, IDatabase'
     content.vb: >-
       Public Class MySqlDatabase
+
           Inherits BaseDatabase
+
           Implements IDatabase
   inheritance:
   - System.Object

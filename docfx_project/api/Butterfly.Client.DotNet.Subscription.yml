@@ -30,6 +30,7 @@ items:
     content: 'public class Subscription : object'
     content.vb: >-
       Public Class Subscription
+
           Inherits Object
   inheritance:
   - System.Object

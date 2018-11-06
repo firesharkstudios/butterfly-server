@@ -39,6 +39,7 @@ items:
     content: 'public class Table : object'
     content.vb: >-
       Public Class Table
+
           Inherits Object
   inheritance:
   - System.Object

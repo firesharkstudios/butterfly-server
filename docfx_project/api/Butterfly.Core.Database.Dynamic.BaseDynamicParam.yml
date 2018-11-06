@@ -37,7 +37,9 @@ items:
     content: 'public abstract class BaseDynamicParam : object, IDynamicParam'
     content.vb: >-
       Public MustInherit Class BaseDynamicParam
+
           Inherits Object
+
           Implements IDynamicParam
   inheritance:
   - System.Object

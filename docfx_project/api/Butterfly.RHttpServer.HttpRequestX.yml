@@ -28,6 +28,7 @@ items:
     content: 'public static class HttpRequestX : object'
     content.vb: >-
       Public Module HttpRequestX
+
           Inherits Object
   inheritance:
   - System.Object

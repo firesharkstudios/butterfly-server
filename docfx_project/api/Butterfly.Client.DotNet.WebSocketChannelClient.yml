@@ -45,6 +45,7 @@ items:
     content: 'public class WebSocketChannelClient : IDisposable'
     content.vb: >-
       Public Class WebSocketChannelClient
+
           Inherits IDisposable
   inheritance:
   - System.Object

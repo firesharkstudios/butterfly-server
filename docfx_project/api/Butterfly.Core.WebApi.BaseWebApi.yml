@@ -39,7 +39,9 @@ items:
     content: 'public abstract class BaseWebApi : object, IWebApi, IDisposable'
     content.vb: >-
       Public MustInherit Class BaseWebApi
+
           Inherits Object
+
           Implements IWebApi, IDisposable
   inheritance:
   - System.Object

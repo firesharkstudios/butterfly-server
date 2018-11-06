@@ -29,6 +29,7 @@ items:
     content: 'public class SQLiteTest : object'
     content.vb: >-
       Public Class SQLiteTest
+
           Inherits Object
   inheritance:
   - System.Object

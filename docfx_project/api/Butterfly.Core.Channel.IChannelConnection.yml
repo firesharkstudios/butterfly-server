@@ -9,7 +9,7 @@ items:
   - Butterfly.Core.Channel.IChannelConnection.Created
   - Butterfly.Core.Channel.IChannelConnection.Id
   - Butterfly.Core.Channel.IChannelConnection.LastHeartbeat
-  - Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object)
+  - Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
   - Butterfly.Core.Channel.IChannelConnection.Start(System.Object,System.String)
   langs:
   - csharp
@@ -35,6 +35,7 @@ items:
     content: 'public interface IChannelConnection : IDisposable'
     content.vb: >-
       Public Interface IChannelConnection
+
           Inherits IDisposable
   modifiers.csharp:
   - public
@@ -205,16 +206,16 @@ items:
       type: System.String
     content.vb: Sub Start(authToken As Object, id As String)
   overload: Butterfly.Core.Channel.IChannelConnection.Start*
-- uid: Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object)
-  commentId: M:Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object)
-  id: QueueMessage(System.String,System.String,System.Object)
+- uid: Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
+  commentId: M:Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
+  id: QueueMessage(System.String,System.String,System.Object,System.Boolean)
   parent: Butterfly.Core.Channel.IChannelConnection
   langs:
   - csharp
   - vb
-  name: QueueMessage(String, String, Object)
-  nameWithType: IChannelConnection.QueueMessage(String, String, Object)
-  fullName: Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String, System.String, System.Object)
+  name: QueueMessage(String, String, Object, Boolean)
+  nameWithType: IChannelConnection.QueueMessage(String, String, Object, Boolean)
+  fullName: Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String, System.String, System.Object, System.Boolean)
   type: Method
   source:
     remote:
@@ -228,7 +229,7 @@ items:
   - Butterfly.Core
   namespace: Butterfly.Core.Channel
   syntax:
-    content: void QueueMessage(string channelKey = null, string messageType = null, object data = null)
+    content: void QueueMessage(string channelKey = null, string messageType = null, object data = null, bool immediate = false)
     parameters:
     - id: channelKey
       type: System.String
@@ -236,7 +237,9 @@ items:
       type: System.String
     - id: data
       type: System.Object
-    content.vb: Sub QueueMessage(channelKey As String = Nothing, messageType As String = Nothing, data As Object = Nothing)
+    - id: immediate
+      type: System.Boolean
+    content.vb: Sub QueueMessage(channelKey As String = Nothing, messageType As String = Nothing, data As Object = Nothing, immediate As Boolean = False)
   overload: Butterfly.Core.Channel.IChannelConnection.QueueMessage*
 references:
 - uid: Butterfly.Core.Channel
@@ -290,4 +293,9 @@ references:
   name: QueueMessage
   nameWithType: IChannelConnection.QueueMessage
   fullName: Butterfly.Core.Channel.IChannelConnection.QueueMessage
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
 shouldSkipMarkup: true

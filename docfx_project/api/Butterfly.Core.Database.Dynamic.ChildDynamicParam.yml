@@ -32,6 +32,7 @@ items:
     content: 'public class ChildDynamicParam : object'
     content.vb: >-
       Public Class ChildDynamicParam
+
           Inherits Object
   inheritance:
   - System.Object

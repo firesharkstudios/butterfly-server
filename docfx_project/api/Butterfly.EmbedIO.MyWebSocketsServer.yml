@@ -38,6 +38,7 @@ items:
     content: 'public class MyWebSocketsServer : WebSocketsServer'
     content.vb: >-
       Public Class MyWebSocketsServer
+
           Inherits WebSocketsServer
   inheritance:
   - System.Object

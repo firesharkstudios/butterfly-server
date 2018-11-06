@@ -29,6 +29,7 @@ items:
     content: 'public class TestDisposable : IDisposable'
     content.vb: >-
       Public Class TestDisposable
+
           Inherits IDisposable
   inheritance:
   - System.Object

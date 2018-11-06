@@ -37,6 +37,7 @@ items:
     content: 'public class StatementFieldRef : object'
     content.vb: >-
       Public Class StatementFieldRef
+
           Inherits Object
   inheritance:
   - System.Object

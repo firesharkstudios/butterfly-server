@@ -30,6 +30,7 @@ items:
     content: 'public static class StringX : object'
     content.vb: >-
       Public Module StringX
+
           Inherits Object
   inheritance:
   - System.Object

@@ -20,7 +20,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DuplicateKeyDatabaseException
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 471
+    startLine: 472
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -28,6 +28,7 @@ items:
     content: 'public class DuplicateKeyDatabaseException : DatabaseException'
     content.vb: >-
       Public Class DuplicateKeyDatabaseException
+
           Inherits DatabaseException
   inheritance:
   - System.Object
@@ -56,7 +57,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Core/Database/BaseDatabase.cs
-    startLine: 472
+    startLine: 473
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database

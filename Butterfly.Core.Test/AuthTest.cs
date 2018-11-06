@@ -33,14 +33,14 @@ namespace Butterfly.Core.Test {
                 logger.Debug($"onForgotPassword():user={user}");
                 return Task.FromResult(0);
             });
-            AuthToken registerAuthToken = await authManager.RegisterAsync(new {
+            UserRefToken registerAuthToken = await authManager.RegisterAsync(new {
                 username = "johnsmith",
                 first_name = "John",
                 last_name = "Smith",
                 email = "john@fireshark.com",
                 password = "test123"
             });
-            AuthToken authenticateAuthToken = await authManager.AuthenticateAsync(registerAuthToken.id);
+            AuthToken authToken = await authManager.AuthenticateAsync(UserRefTokenAuthenticator.AUTH_TYPE, registerAuthToken.id);
 
             await authManager.ForgotPasswordAsync("johnsmith");
 

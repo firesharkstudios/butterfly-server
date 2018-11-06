@@ -1,0 +1,184 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.WebClientWithTimeout
+  commentId: T:Butterfly.Core.Util.WebClientWithTimeout
+  id: WebClientWithTimeout
+  parent: Butterfly.Core.Util
+  children:
+  - Butterfly.Core.Util.WebClientWithTimeout.#ctor(System.Int32)
+  - Butterfly.Core.Util.WebClientWithTimeout.GetWebRequest(Uri)
+  - Butterfly.Core.Util.WebClientWithTimeout.timeoutMillis
+  langs:
+  - csharp
+  - vb
+  name: WebClientWithTimeout
+  nameWithType: WebClientWithTimeout
+  fullName: Butterfly.Core.Util.WebClientWithTimeout
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/WebClientWithTimeout.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: WebClientWithTimeout
+    path: ../Butterfly.Core/Util/WebClientWithTimeout.cs
+    startLine: 4
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: 'public class WebClientWithTimeout : WebClient'
+    content.vb: >-
+      Public Class WebClientWithTimeout
+
+          Inherits WebClient
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Util.WebClientWithTimeout.timeoutMillis
+  commentId: F:Butterfly.Core.Util.WebClientWithTimeout.timeoutMillis
+  id: timeoutMillis
+  parent: Butterfly.Core.Util.WebClientWithTimeout
+  langs:
+  - csharp
+  - vb
+  name: timeoutMillis
+  nameWithType: WebClientWithTimeout.timeoutMillis
+  fullName: Butterfly.Core.Util.WebClientWithTimeout.timeoutMillis
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/WebClientWithTimeout.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: timeoutMillis
+    path: ../Butterfly.Core/Util/WebClientWithTimeout.cs
+    startLine: 6
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: protected readonly int timeoutMillis
+    return:
+      type: System.Int32
+    content.vb: Protected ReadOnly timeoutMillis As Integer
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Util.WebClientWithTimeout.#ctor(System.Int32)
+  commentId: M:Butterfly.Core.Util.WebClientWithTimeout.#ctor(System.Int32)
+  id: '#ctor(System.Int32)'
+  parent: Butterfly.Core.Util.WebClientWithTimeout
+  langs:
+  - csharp
+  - vb
+  name: WebClientWithTimeout(Int32)
+  nameWithType: WebClientWithTimeout.WebClientWithTimeout(Int32)
+  fullName: Butterfly.Core.Util.WebClientWithTimeout.WebClientWithTimeout(System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Util/WebClientWithTimeout.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Util/WebClientWithTimeout.cs
+    startLine: 8
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public WebClientWithTimeout(int timeoutMillis)
+    parameters:
+    - id: timeoutMillis
+      type: System.Int32
+    content.vb: Public Sub New(timeoutMillis As Integer)
+  overload: Butterfly.Core.Util.WebClientWithTimeout.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Util.WebClientWithTimeout.GetWebRequest(Uri)
+  commentId: M:Butterfly.Core.Util.WebClientWithTimeout.GetWebRequest(Uri)
+  id: GetWebRequest(Uri)
+  parent: Butterfly.Core.Util.WebClientWithTimeout
+  langs:
+  - csharp
+  - vb
+  name: GetWebRequest(Uri)
+  nameWithType: WebClientWithTimeout.GetWebRequest(Uri)
+  fullName: Butterfly.Core.Util.WebClientWithTimeout.GetWebRequest(Uri)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/WebClientWithTimeout.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: GetWebRequest
+    path: ../Butterfly.Core/Util/WebClientWithTimeout.cs
+    startLine: 12
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: protected override WebRequest GetWebRequest(Uri uri)
+    parameters:
+    - id: uri
+      type: Uri
+    return:
+      type: WebRequest
+    content.vb: Protected Overrides Function GetWebRequest(uri As Uri) As WebRequest
+  overload: Butterfly.Core.Util.WebClientWithTimeout.GetWebRequest*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+references:
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Butterfly.Core.Util.WebClientWithTimeout.#ctor*
+  commentId: Overload:Butterfly.Core.Util.WebClientWithTimeout.#ctor
+  name: WebClientWithTimeout
+  nameWithType: WebClientWithTimeout.WebClientWithTimeout
+  fullName: Butterfly.Core.Util.WebClientWithTimeout.WebClientWithTimeout
+- uid: Butterfly.Core.Util.WebClientWithTimeout.GetWebRequest*
+  commentId: Overload:Butterfly.Core.Util.WebClientWithTimeout.GetWebRequest
+  name: GetWebRequest
+  nameWithType: WebClientWithTimeout.GetWebRequest
+  fullName: Butterfly.Core.Util.WebClientWithTimeout.GetWebRequest
+- uid: Uri
+  isExternal: true
+  name: Uri
+  nameWithType: Uri
+  fullName: Uri
+- uid: WebRequest
+  commentId: '!:WebRequest'
+  isExternal: true
+  name: WebRequest
+  nameWithType: WebRequest
+  fullName: WebRequest
+shouldSkipMarkup: true

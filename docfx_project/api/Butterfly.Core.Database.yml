@@ -17,6 +17,7 @@ items:
   - Butterfly.Core.Database.InsertStatement
   - Butterfly.Core.Database.ITransaction
   - Butterfly.Core.Database.JoinType
+  - Butterfly.Core.Database.OnCommitRef
   - Butterfly.Core.Database.SelectStatement
   - Butterfly.Core.Database.StatementEqualsRef
   - Butterfly.Core.Database.StatementFieldRef
@@ -88,6 +89,11 @@ references:
   name: ITransaction
   nameWithType: ITransaction
   fullName: Butterfly.Core.Database.ITransaction
+- uid: Butterfly.Core.Database.OnCommitRef
+  commentId: T:Butterfly.Core.Database.OnCommitRef
+  name: OnCommitRef
+  nameWithType: OnCommitRef
+  fullName: Butterfly.Core.Database.OnCommitRef
 - uid: Butterfly.Core.Database.BaseStatement
   commentId: T:Butterfly.Core.Database.BaseStatement
   parent: Butterfly.Core.Database

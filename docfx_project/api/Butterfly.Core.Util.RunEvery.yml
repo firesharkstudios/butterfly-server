@@ -29,6 +29,7 @@ items:
     content: 'public class RunEvery : IDisposable'
     content.vb: >-
       Public Class RunEvery
+
           Inherits IDisposable
   inheritance:
   - System.Object

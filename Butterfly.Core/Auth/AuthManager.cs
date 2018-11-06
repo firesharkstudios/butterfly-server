@@ -91,6 +91,8 @@ namespace Butterfly.Core.Auth {
         protected readonly int resetTokenDurationMinutes;
 
         protected readonly string accountTableName;
+        protected readonly string accountTableIdFieldName;
+        protected readonly string accountTableShareCodeFieldName;
 
         protected readonly string userTableName;
         protected readonly string userTableIdFieldName;
@@ -108,11 +110,6 @@ namespace Butterfly.Core.Auth {
         protected readonly string userTableAccountIdFieldName;
         protected readonly string userTableRoleFieldName;
 
-        protected readonly string authTokenTableName;
-        protected readonly string authTokenIdFieldName;
-        protected readonly string authTokenTableUserIdFieldName;
-        protected readonly string authTokenTableExpiresAtFieldName;
-
         protected readonly string defaultRole;
 
         protected readonly Func<string, int, Task> onEmailVerify;
@@ -128,6 +125,10 @@ namespace Butterfly.Core.Auth {
         protected readonly IFieldValidator emailFieldValidator;
         protected readonly IFieldValidator phoneFieldValidator;
 
+        protected readonly Dictionary<string, IAuthenticator> authenticatorByType;
+
+        protected readonly UserRefTokenAuthenticator userRefTokenAuthenticator;
+        protected readonly ShareCodeAuthenticator shareCodeAuthenticator;
 
         /// <summary>
         /// Create an instance of AuthManager
@@ -137,6 +138,8 @@ namespace Butterfly.Core.Auth {
         /// <param name="resetCodeLength">How many digits should a reset code be</param>
         /// <param name="resetTokenDurationMinutes">How long new reset codes are valid for</param>
         /// <param name="accountTableName">Table name of the account table (default is "account")</param>
+        /// <param name="accountTableIdFieldName">Field name of the id field on the account table (default is "id")</param>
+        /// <param name="accountTableShareCodeFieldName">Field name of the share code field on the account table (default is "share_code")</param>
         /// <param name="userTableName">Table name of the user table (default is "user")</param>
         /// <param name="userTableIdFieldName">Field name of the id field on the user table (default is "id")</param>
         /// <param name="userTableUsernameFieldName">Field name of the username field on the user table (default is "username")</param>
@@ -152,10 +155,6 @@ namespace Butterfly.Core.Auth {
         /// <param name="userTableResetCodeExpiresAtFieldName">Field name of the reset code expires at field on the user table (default is "reset_code_expires_at")</param>
         /// <param name="userTableAccountIdFieldName">Field name of the account id field on the user table (default is "account_id")</param>
         /// <param name="userTableRoleFieldName">Field name of the role field on the user table (default is "role")</param>
-        /// <param name="authTokenTableName">Table name of the auth token table (default is "auth_token")</param>
-        /// <param name="authTokenIdFieldName">Field name of the id field on the auth token table (default is "id")</param>
-        /// <param name="authTokenTableUserIdFieldName">Field name of the user id field on the auth token table (default is "user_id")</param>
-        /// <param name="authTokenTableExpiresAtFieldName">Field name of the expires at field on the auth token table (default is "expires_at")</param>
         /// <param name="defaultRole">Default value for the role field on a new user</param>
         /// <param name="onEmailVerify">Callback when <see cref="AuthManager.VerifyAsync(Dict, string, string, Func{string, int, Task})"/> is called with an email address</param>
         /// <param name="onPhoneVerify">Callback when <see cref="AuthManager.VerifyAsync(Dict, string, string, Func{string, int, Task})"/> is called with a phone number</param>
@@ -168,6 +167,8 @@ namespace Butterfly.Core.Auth {
             int resetCodeLength = 6,
             int resetTokenDurationMinutes = 90,
             string accountTableName = "account",
+            string accountTableIdFieldName = "id",
+            string accountTableShareCodeFieldName = "share_code",
             string userTableName = "user",
             string userTableIdFieldName = "id",
             string userTableUsernameFieldName = "username",
@@ -183,10 +184,6 @@ namespace Butterfly.Core.Auth {
             string userTableResetCodeExpiresAtFieldName = "reset_code_expires_at",
             string userTableAccountIdFieldName = "account_id",
             string userTableRoleFieldName = "role",
-            string authTokenTableName = "auth_token",
-            string authTokenIdFieldName = "id",
-            string authTokenTableUserIdFieldName = "user_id",
-            string authTokenTableExpiresAtFieldName = "expires_at",
             string defaultRole = null,
             Func<string, int, Task> onEmailVerify = null,
             Func<string, int, Task> onPhoneVerify = null,
@@ -201,6 +198,8 @@ namespace Butterfly.Core.Auth {
             this.resetTokenDurationMinutes = resetTokenDurationMinutes;
 
             this.accountTableName = accountTableName;
+            this.accountTableIdFieldName = accountTableIdFieldName;
+            this.accountTableShareCodeFieldName = accountTableShareCodeFieldName;
 
             this.userTableName = userTableName;
             this.userTableIdFieldName = userTableIdFieldName;
@@ -218,11 +217,6 @@ namespace Butterfly.Core.Auth {
             this.userTableAccountIdFieldName = userTableAccountIdFieldName;
             this.userTableRoleFieldName = userTableRoleFieldName;
 
-            this.authTokenTableName = authTokenTableName;
-            this.authTokenIdFieldName = authTokenIdFieldName;
-            this.authTokenTableUserIdFieldName = authTokenTableUserIdFieldName;
-            this.authTokenTableExpiresAtFieldName = authTokenTableExpiresAtFieldName;
-
             this.defaultRole = defaultRole;
 
             this.onEmailVerify = onEmailVerify;
@@ -236,6 +230,26 @@ namespace Butterfly.Core.Auth {
             this.nameFieldValidator = new NameFieldValidator(this.userTableLastNameFieldName, allowNull: false, maxLength: 25);
             this.emailFieldValidator = new EmailFieldValidator(this.userTableEmailFieldName, allowNull: true);
             this.phoneFieldValidator = new PhoneFieldValidator(this.userTableEmailFieldName, allowNull: false);
+
+            this.userRefTokenAuthenticator = new UserRefTokenAuthenticator(
+                database,
+                userTableName: this.userTableName,
+                userTableUsernameFieldName: this.userTableUsernameFieldName,
+                userTableAccountIdFieldName: this.userTableAccountIdFieldName,
+                userTableRoleFieldName: this.userTableRoleFieldName
+            );
+
+            this.shareCodeAuthenticator = new ShareCodeAuthenticator(
+                database,
+                accountTableName: this.accountTableName,
+                accountTableIdFieldName: this.accountTableIdFieldName,
+                accountTableShareCodeFieldName: this.accountTableShareCodeFieldName
+            );
+
+            this.authenticatorByType = new Dictionary<string, IAuthenticator> {
+                [UserRefTokenAuthenticator.AUTH_TYPE] = this.userRefTokenAuthenticator,
+                [ShareCodeAuthenticator.AUTH_TYPE] = this.shareCodeAuthenticator
+            };
         }
 
         protected readonly static Regex VERSION_CLEAN_REGEX = new Regex(@"[^\d\.]+");
@@ -268,14 +282,14 @@ namespace Butterfly.Core.Auth {
                 await res.WriteAsJsonAsync(available);
             });
 
-            webApi.OnGet($"{pathPrefix}/check-auth-token/{{id}}", async (req, res) => {
+            webApi.OnGet($"{pathPrefix}/check-user-ref-token/{{id}}", async (req, res) => {
                 string id = req.PathParams.GetAs("id", (string)null);
                 string rawVersionText = req.QueryParams.GetAs("v", "");
                 string versionText = VERSION_CLEAN_REGEX.Replace(rawVersionText, "");
                 Version version = string.IsNullOrEmpty(versionText) ? null : Version.Parse(versionText);
                 logger.Debug($"/check-auth-token/{id}?v={version}"); //?join_code={joinCode}");
                 if (this.onCheckVersion != null) this.onCheckVersion(version);
-                AuthToken authToken = await this.AuthenticateAsync(id);
+                AuthToken authToken = await this.AuthenticateAsync(UserRefTokenAuthenticator.AUTH_TYPE, id);
                 await res.WriteAsJsonAsync(authToken);
             });
 
@@ -362,11 +376,11 @@ namespace Butterfly.Core.Auth {
         /// <param name="input"></param>
         /// <param name="notifyData"></param>
         /// <returns></returns>
-        public async Task<AuthToken> RegisterAsync(dynamic input, Dict notifyData = null) {
+        public async Task<UserRefToken> RegisterAsync(dynamic input, Dict notifyData = null) {
             Dict registration = this.ConvertInputToDict(input);
 
             // Handle registering an anonymous user
-            string userId = registration.GetAs(this.authTokenTableUserIdFieldName, (string)null);
+            string userId = registration.GetAs("user_id", (string)null);
             string accountId = null;
             logger.Trace($"RegisterAsync():userId={userId}");
             if (!string.IsNullOrEmpty(userId)) {
@@ -437,33 +451,18 @@ namespace Butterfly.Core.Auth {
                 }
             }
 
-            return await this.CreateAuthTokenAsync(userId);
+            return await this.CreateUserRefTokenAsync(userId);
         }
 
         /// <summary>
         /// Validates the auth token id returning an <see cref="AuthToken"/> instance
         /// </summary>
-        /// <param name="authTokenId"></param>
+        /// <param name="authType"></param>
+        /// <param name="authValue"></param>
         /// <returns>An <see cref="AuthToken"/> instance</returns>
-        public async Task<AuthToken> AuthenticateAsync(string authTokenId) {
-            List<string> fieldList = new List<string>();
-            if (!string.IsNullOrEmpty(this.authTokenIdFieldName)) fieldList.Add($"at.{ this.authTokenIdFieldName}");
-            if (!string.IsNullOrEmpty(this.authTokenTableUserIdFieldName)) fieldList.Add($"at.{ this.authTokenTableUserIdFieldName}");
-            if (!string.IsNullOrEmpty(this.userTableAccountIdFieldName)) fieldList.Add($"u.{ this.userTableAccountIdFieldName}");
-            if (!string.IsNullOrEmpty(this.userTableUsernameFieldName)) fieldList.Add($"u.{ this.userTableUsernameFieldName}");
-            if (!string.IsNullOrEmpty(this.userTableRoleFieldName)) fieldList.Add($"u.{ this.userTableRoleFieldName}");
-            if (!string.IsNullOrEmpty(this.authTokenTableExpiresAtFieldName)) fieldList.Add($"at.{ this.authTokenTableExpiresAtFieldName}");
-            Dict authTokenDict = await this.database.SelectRowAsync($"SELECT {string.Join(",", fieldList)} FROM {this.authTokenTableName} at INNER JOIN {this.userTableName} u ON at.user_id=u.id WHERE at.id=@authTokenId", new {
-                authTokenId
-            });
-            logger.Debug($"Authenticate():authTokenDict={authTokenDict}");
-            if (authTokenDict == null) throw new UnauthorizedException();
-
-            var authToken = AuthToken.FromDict(authTokenDict, this.authTokenIdFieldName, this.authTokenTableUserIdFieldName, this.userTableUsernameFieldName, this.userTableRoleFieldName, this.userTableAccountIdFieldName, this.authTokenTableExpiresAtFieldName);
-            logger.Debug($"Authenticate():authToken.expiresAt={authToken.expiresAt}");
-            if (authToken.expiresAt == DateTime.MinValue || authToken.expiresAt < DateTime.Now) throw new UnauthorizedException();
-
-            return authToken;
+        public Task<AuthToken> AuthenticateAsync(string authType, string authValue) {
+            if (!this.authenticatorByType.TryGetValue(authType, out IAuthenticator authenticator)) throw new Exception($"Unknown auth type {authType}");
+            return authenticator.AuthenticateAsync(authType, authValue);
         }
 
         /// <summary>
@@ -504,14 +503,11 @@ namespace Butterfly.Core.Auth {
                 string userId = await transaction.InsertAsync<string>(this.userTableName, user);
 
                 DateTime expiresAt = DateTime.Now.AddDays(this.authTokenDurationDays);
-                string id = await transaction.InsertAsync<string>(this.authTokenTableName, new Dict {
-                    { this.authTokenTableUserIdFieldName, userId },
-                    { this.authTokenTableExpiresAtFieldName, expiresAt },
-                });
+                string id = await this.userRefTokenAuthenticator.InsertAsync(transaction, userId, expiresAt);
 
                 await transaction.CommitAsync();
 
-                return new AuthToken(id, userId, null, role, accountId, expiresAt);
+                return new UserRefToken(id, userId, null, role, accountId, expiresAt);
             }
         }
 
@@ -520,7 +516,7 @@ namespace Butterfly.Core.Auth {
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>The AuthToken instance created</returns>
-        public async Task<AuthToken> CreateAuthTokenAsync(string userId) {
+        public async Task<UserRefToken> CreateUserRefTokenAsync(string userId) {
             List<string> fieldNames = new List<string>();
             if (!string.IsNullOrEmpty(this.userTableUsernameFieldName)) fieldNames.Add(this.userTableUsernameFieldName);
             if (!string.IsNullOrEmpty(this.userTableRoleFieldName)) fieldNames.Add(this.userTableRoleFieldName);
@@ -530,16 +526,17 @@ namespace Butterfly.Core.Auth {
             });
             if (user==null) throw new Exception("Invalid user");
 
+            string id;
             DateTime expiresAt = DateTime.Now.AddDays(this.authTokenDurationDays);
-            string id = await this.database.InsertAndCommitAsync<string>(this.authTokenTableName, new Dict {
-                { this.authTokenTableUserIdFieldName, userId },
-                { this.authTokenTableExpiresAtFieldName, expiresAt },
-            });
+            using (ITransaction transaction = await this.database.BeginTransactionAsync()) {
+                id = await this.userRefTokenAuthenticator.InsertAsync(transaction, userId, expiresAt);
+                await transaction.CommitAsync();
+            }
 
             string username = string.IsNullOrEmpty(this.userTableUsernameFieldName) ? null : user.GetAs(this.userTableUsernameFieldName, (string)null);
             string role = string.IsNullOrEmpty(this.userTableRoleFieldName) ? null : user.GetAs(this.userTableRoleFieldName, (string)null);
             string accountId = string.IsNullOrEmpty(this.userTableAccountIdFieldName) ? null : user.GetAs(this.userTableAccountIdFieldName, (string)null);
-            return new AuthToken(id, userId, username, role, accountId, expiresAt);
+            return new UserRefToken(id, userId, username, role, accountId, expiresAt);
         }
 
         /// <summary>
@@ -547,7 +544,7 @@ namespace Butterfly.Core.Auth {
         /// </summary>
         /// <param name="login"></param>
         /// <returns></returns>
-        public async Task<AuthToken> LoginAsync(Dict login) {
+        public async Task<UserRefToken> LoginAsync(Dict login) {
             string username = login?.GetAs(this.userTableUsernameFieldName, (string)null);
             Dict user = await this.LookupUsernameAsync(username, string.Join(",", new string[] { this.userTableIdFieldName, this.userTableSaltFieldName, this.userTablePasswordHashFieldName }));
             if (user == null) throw new Exception("Invalid username '" + username + "'");
@@ -561,7 +558,7 @@ namespace Butterfly.Core.Auth {
             if (newPasswordHash != passwordHash) throw new Exception("Incorrect password");
 
             string userId = user.GetAs(this.userTableIdFieldName, (string)null);
-            return await this.CreateAuthTokenAsync(userId);
+            return await this.CreateUserRefTokenAsync(userId);
         }
 
         /// <summary>
@@ -610,7 +607,7 @@ namespace Butterfly.Core.Auth {
             };
             await this.database.UpdateAndCommitAsync(this.userTableName, update);
 
-            return await this.CreateAuthTokenAsync(userId);
+            return await this.CreateUserRefTokenAsync(userId);
         }
 
         protected async Task<string> CreateResetCodeAsync(string userId) {
@@ -651,31 +648,15 @@ namespace Butterfly.Core.Auth {
     /// <summary>
     /// Represents the result of a successful <see cref="AuthManager.LoginAsync(Dict)"/> or <see cref="AuthManager.RegisterAsync(dynamic, Dict)"/>
     /// </summary>
-    public class AuthToken {
-        public readonly string id;
-        public readonly string userId;
-        public readonly string username;
-        public readonly string role;
+    public abstract class AuthToken {
+        public readonly string type;
         public readonly string accountId;
-        public readonly DateTime expiresAt;
+        public readonly string role;
 
-        public AuthToken(string id, string userId, string username, string role, string accountId, DateTime expiresAt) {
-            this.id = id;
-            this.userId = userId;
-            this.username = username;
-            this.role = role;
+        public AuthToken(string type, string accountId, string role) {
+            this.type = type;
             this.accountId = accountId;
-            this.expiresAt = expiresAt;
-        }
-
-        public static AuthToken FromDict(Dict dict, string idFieldName, string userIdFieldName, string usernameFieldName, string roleFieldName, string accountIdFieldName, string expiresAtFieldName) {
-            string id = string.IsNullOrEmpty(idFieldName) ? null : dict.GetAs(idFieldName, (string)null);
-            string userId = string.IsNullOrEmpty(userIdFieldName) ? null : dict.GetAs(userIdFieldName, (string)null);
-            string username = string.IsNullOrEmpty(usernameFieldName) ? null : dict.GetAs(usernameFieldName, (string)null);
-            string role = string.IsNullOrEmpty(roleFieldName) ? null : dict.GetAs(roleFieldName, (string)null);
-            string accountId = string.IsNullOrEmpty(accountIdFieldName) ? null : dict.GetAs(accountIdFieldName, (string)null);
-            DateTime expiresAt = string.IsNullOrEmpty(expiresAtFieldName) ? DateTime.MaxValue : dict.GetAs(expiresAtFieldName, DateTime.MinValue);
-            return new AuthToken(id, userId, username, role, accountId, expiresAt);
+            this.role = role;
         }
     }
 

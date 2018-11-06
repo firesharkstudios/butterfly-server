@@ -27,6 +27,16 @@
     name: AuthManager
   - uid: Butterfly.Core.Auth.AuthToken
     name: AuthToken
+  - uid: Butterfly.Core.Auth.IAuthenticator
+    name: IAuthenticator
+  - uid: Butterfly.Core.Auth.ShareCodeAuthenticator
+    name: ShareCodeAuthenticator
+  - uid: Butterfly.Core.Auth.ShareCodeToken
+    name: ShareCodeToken
+  - uid: Butterfly.Core.Auth.UserRefToken
+    name: UserRefToken
+  - uid: Butterfly.Core.Auth.UserRefTokenAuthenticator
+    name: UserRefTokenAuthenticator
 - uid: Butterfly.Core.Channel
   name: Butterfly.Core.Channel
   items:
@@ -71,6 +81,8 @@
     name: ITransaction
   - uid: Butterfly.Core.Database.JoinType
     name: JoinType
+  - uid: Butterfly.Core.Database.OnCommitRef
+    name: OnCommitRef
   - uid: Butterfly.Core.Database.SelectStatement
     name: SelectStatement
   - uid: Butterfly.Core.Database.StatementEqualsRef
@@ -222,6 +234,8 @@
     name: UnauthorizedException
   - uid: Butterfly.Core.Util.UriX
     name: UriX
+  - uid: Butterfly.Core.Util.WebClientWithTimeout
+    name: WebClientWithTimeout
 - uid: Butterfly.Core.Util.Field
   name: Butterfly.Core.Util.Field
   items:
@@ -364,5 +378,5 @@
   items:
   - uid: Butterfly.Twilio.TwilioModule
     name: TwilioModule
-  - uid: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender
-    name: TwilioPhoneTextNotifyMessageSender
+  - uid: Butterfly.Twilio.TwilioPhoneNotifyMessageSender
+    name: TwilioPhoneNotifyMessageSender

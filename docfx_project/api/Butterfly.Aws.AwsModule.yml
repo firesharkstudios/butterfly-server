@@ -28,6 +28,7 @@ items:
     content: 'public static class AwsModule : object'
     content.vb: >-
       Public Module AwsModule
+
           Inherits Object
   inheritance:
   - System.Object

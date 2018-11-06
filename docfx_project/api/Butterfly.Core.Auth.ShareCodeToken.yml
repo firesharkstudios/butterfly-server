@@ -1,0 +1,135 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Auth.ShareCodeToken
+  commentId: T:Butterfly.Core.Auth.ShareCodeToken
+  id: ShareCodeToken
+  parent: Butterfly.Core.Auth
+  children:
+  - Butterfly.Core.Auth.ShareCodeToken.#ctor(System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: ShareCodeToken
+  nameWithType: ShareCodeToken
+  fullName: Butterfly.Core.Auth.ShareCodeToken
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: ShareCodeToken
+    path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+    startLine: 59
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Auth
+  summary: "\nRepresents the result of a successful <xref href=\"Butterfly.Core.Auth.AuthManager.LoginAsync(System.Collections.Generic.Dictionary%7bSystem.String%2cSystem.Object%7d)\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"Butterfly.Core.Auth.AuthManager.RegisterAsync(System.Object%2cSystem.Collections.Generic.Dictionary%7bSystem.String%2cSystem.Object%7d)\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: 'public class ShareCodeToken : AuthToken'
+    content.vb: >-
+      Public Class ShareCodeToken
+
+          Inherits AuthToken
+  inheritance:
+  - System.Object
+  - Butterfly.Core.Auth.AuthToken
+  inheritedMembers:
+  - Butterfly.Core.Auth.AuthToken.type
+  - Butterfly.Core.Auth.AuthToken.accountId
+  - Butterfly.Core.Auth.AuthToken.role
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Auth.ShareCodeToken.#ctor(System.String,System.String)
+  commentId: M:Butterfly.Core.Auth.ShareCodeToken.#ctor(System.String,System.String)
+  id: '#ctor(System.String,System.String)'
+  parent: Butterfly.Core.Auth.ShareCodeToken
+  langs:
+  - csharp
+  - vb
+  name: ShareCodeToken(String, String)
+  nameWithType: ShareCodeToken.ShareCodeToken(String, String)
+  fullName: Butterfly.Core.Auth.ShareCodeToken.ShareCodeToken(System.String, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
+    startLine: 60
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Auth
+  syntax:
+    content: public ShareCodeToken(string accountId, string role)
+    parameters:
+    - id: accountId
+      type: System.String
+    - id: role
+      type: System.String
+    content.vb: Public Sub New(accountId As String, role As String)
+  overload: Butterfly.Core.Auth.ShareCodeToken.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.Core.Auth.AuthManager.LoginAsync(System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:Butterfly.Core.Auth.AuthManager.LoginAsync(System.Collections.Generic.Dictionary{System.String,System.Object})
+  isExternal: true
+- uid: Butterfly.Core.Auth.AuthManager.RegisterAsync(System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
+  commentId: M:Butterfly.Core.Auth.AuthManager.RegisterAsync(System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})
+  isExternal: true
+- uid: Butterfly.Core.Auth
+  commentId: N:Butterfly.Core.Auth
+  name: Butterfly.Core.Auth
+  nameWithType: Butterfly.Core.Auth
+  fullName: Butterfly.Core.Auth
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Auth.AuthToken
+  commentId: T:Butterfly.Core.Auth.AuthToken
+  parent: Butterfly.Core.Auth
+  name: AuthToken
+  nameWithType: AuthToken
+  fullName: Butterfly.Core.Auth.AuthToken
+- uid: Butterfly.Core.Auth.AuthToken.type
+  commentId: F:Butterfly.Core.Auth.AuthToken.type
+  parent: Butterfly.Core.Auth.AuthToken
+  name: type
+  nameWithType: AuthToken.type
+  fullName: Butterfly.Core.Auth.AuthToken.type
+- uid: Butterfly.Core.Auth.AuthToken.accountId
+  commentId: F:Butterfly.Core.Auth.AuthToken.accountId
+  parent: Butterfly.Core.Auth.AuthToken
+  name: accountId
+  nameWithType: AuthToken.accountId
+  fullName: Butterfly.Core.Auth.AuthToken.accountId
+- uid: Butterfly.Core.Auth.AuthToken.role
+  commentId: F:Butterfly.Core.Auth.AuthToken.role
+  parent: Butterfly.Core.Auth.AuthToken
+  name: role
+  nameWithType: AuthToken.role
+  fullName: Butterfly.Core.Auth.AuthToken.role
+- uid: Butterfly.Core.Auth.ShareCodeToken.#ctor*
+  commentId: Overload:Butterfly.Core.Auth.ShareCodeToken.#ctor
+  name: ShareCodeToken
+  nameWithType: ShareCodeToken.ShareCodeToken
+  fullName: Butterfly.Core.Auth.ShareCodeToken.ShareCodeToken
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+shouldSkipMarkup: true

@@ -38,6 +38,7 @@ items:
     content: 'public class StatementFromRef : object'
     content.vb: >-
       Public Class StatementFromRef
+
           Inherits Object
   inheritance:
   - System.Object

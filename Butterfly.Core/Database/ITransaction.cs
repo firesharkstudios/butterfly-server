@@ -146,7 +146,8 @@ namespace Butterfly.Core.Database {
         /// Register a callback that is invoked when the transaction is successfully committed
         /// </summary>
         /// <param name="onCommit"></param>
-        void OnCommit(Func<Task> onCommit);
+        /// <param name="key">Provide a key if you need to ensure only one onCommit instance is executed with that key</param>
+        void OnCommit(Func<Task> onCommit, string key = null);
 
         /// <summary>
         /// Rollback the transaction (called automatically if transaction is disposed without calling <see cref="Commit"/> or <see cref="CommitAsync"/>)

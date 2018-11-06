@@ -29,6 +29,7 @@ items:
     content: 'public static class DateTimeX : object'
     content.vb: >-
       Public Module DateTimeX
+
           Inherits Object
   inheritance:
   - System.Object

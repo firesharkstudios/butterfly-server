@@ -33,7 +33,9 @@ items:
     content: 'public class WebSocketDialogWebRequest : object, IWebRequest'
     content.vb: >-
       Public Class WebSocketDialogWebRequest
+
           Inherits Object
+
           Implements IWebRequest
   inheritance:
   - System.Object

@@ -38,6 +38,7 @@ items:
     content: 'public class JobManager : object'
     content.vb: >-
       Public Class JobManager
+
           Inherits Object
   inheritance:
   - System.Object

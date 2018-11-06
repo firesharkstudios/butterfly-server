@@ -36,7 +36,9 @@ items:
     content: 'public abstract class BaseHttpRequest : object, IHttpRequest, IWebRequest'
     content.vb: >-
       Public MustInherit Class BaseHttpRequest
+
           Inherits Object
+
           Implements IHttpRequest, IWebRequest
   inheritance:
   - System.Object

@@ -35,6 +35,7 @@ items:
     content: 'public class DeleteStatement : BaseStatement'
     content.vb: >-
       Public Class DeleteStatement
+
           Inherits BaseStatement
   inheritance:
   - System.Object

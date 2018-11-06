@@ -22,7 +22,7 @@ namespace Butterfly.Core.Database {
         protected readonly BaseDatabase database;
 
         protected readonly List<KeyValueDataEvent> dataEvents = new List<KeyValueDataEvent>();
-        protected readonly List<Func<Task>> onCommits = new List<Func<Task>>();
+        protected readonly List<OnCommitRef> onCommitRefs = new List<OnCommitRef>();
 
         public BaseTransaction(BaseDatabase database) {
             this.database = database;
@@ -252,13 +252,17 @@ namespace Butterfly.Core.Database {
                 await this.database.PostDataEventTransactionAsync(TransactionState.Committed, dataEventTransaction);
             }
 
-            foreach (var onCommit in this.onCommits) {
-                await onCommit();
+            HashSet<string> onCommitKeys = new HashSet<string>();
+            foreach (var onCommitRef in this.onCommitRefs) {
+                if (onCommitRef.key == null || !onCommitKeys.Contains(onCommitRef.key)) {
+                    await onCommitRef.onCommit();
+                    if (onCommitRef.key != null) onCommitKeys.Add(onCommitRef.key);
+                }
             }
         }
 
-        public void OnCommit(Func<Task> onCommit) {
-            this.onCommits.Add(onCommit);
+        public void OnCommit(Func<Task> onCommit, string key = null) {
+            this.onCommitRefs.Add(new OnCommitRef(onCommit, key));
         }
 
         protected abstract Task DoCommitAsync();

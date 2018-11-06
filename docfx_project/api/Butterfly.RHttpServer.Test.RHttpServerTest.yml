@@ -29,6 +29,7 @@ items:
     content: 'public class RHttpServerTest : object'
     content.vb: >-
       Public Class RHttpServerTest
+
           Inherits Object
   inheritance:
   - System.Object

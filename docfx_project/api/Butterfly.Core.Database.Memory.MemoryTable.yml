@@ -29,6 +29,7 @@ items:
     content: 'public class MemoryTable : Table'
     content.vb: >-
       Public Class MemoryTable
+
           Inherits Table
   inheritance:
   - System.Object

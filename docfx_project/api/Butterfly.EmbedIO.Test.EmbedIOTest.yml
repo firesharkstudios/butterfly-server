@@ -29,6 +29,7 @@ items:
     content: 'public class EmbedIOTest : object'
     content.vb: >-
       Public Class EmbedIOTest
+
           Inherits Object
   inheritance:
   - System.Object

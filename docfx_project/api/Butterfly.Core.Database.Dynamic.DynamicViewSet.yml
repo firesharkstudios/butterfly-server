@@ -53,6 +53,7 @@ items:
     content: 'public class DynamicViewSet : IDisposable'
     content.vb: >-
       Public Class DynamicViewSet
+
           Inherits IDisposable
   inheritance:
   - System.Object

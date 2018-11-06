@@ -33,6 +33,7 @@ items:
     content: 'public static class SafeUtil : object'
     content.vb: >-
       Public Module SafeUtil
+
           Inherits Object
   inheritance:
   - System.Object

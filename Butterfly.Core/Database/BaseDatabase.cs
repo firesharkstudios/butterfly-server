@@ -168,16 +168,17 @@ namespace Butterfly.Core.Database {
 
         public async Task<T> SelectValueAsync<T>(string sql, dynamic vars = null, T defaultValue = default(T)) {
             Dict row = await this.SelectRowAsync(sql, vars);
-            if (row == null || !row.TryGetValue(row.Keys.First(), out object value) || value==null) return defaultValue;
+            if (row == null) return defaultValue;
+            else return row.GetAs(row.Keys.First(), defaultValue);
 
-            return (T)Convert.ChangeType(value, typeof(T));
+            //if (row == null || !row.TryGetValue(row.Keys.First(), out object value) || value==null) return defaultValue;
+            //return (T)Convert.ChangeType(value, typeof(T));
         }
 
         public async Task<T[]> SelectValuesAsync<T>(string sql, dynamic vars = null) {
             Dict[] rows = await this.SelectRowsAsync(sql, vars);
             return rows.Select(row => {
-                row.TryGetValue(row.Keys.First(), out object value);
-                return (T)Convert.ChangeType(value, typeof(T));
+                return row.GetAs(row.Keys.First(), default(T));
             }).ToArray();
         }
 

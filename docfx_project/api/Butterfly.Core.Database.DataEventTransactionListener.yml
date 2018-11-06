@@ -33,6 +33,7 @@ items:
     content: 'public class DataEventTransactionListener : object'
     content.vb: >-
       Public Class DataEventTransactionListener
+
           Inherits Object
   inheritance:
   - System.Object

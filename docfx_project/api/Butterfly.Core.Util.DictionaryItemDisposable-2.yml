@@ -34,6 +34,7 @@ items:
     - id: U
     content.vb: >-
       Public Class DictionaryItemDisposable(Of T, U)
+
           Inherits IDisposable
   inheritance:
   - System.Object

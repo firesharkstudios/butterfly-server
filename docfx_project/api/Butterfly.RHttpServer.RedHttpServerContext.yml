@@ -37,6 +37,7 @@ items:
     content: 'public class RedHttpServerContext : IDisposable'
     content.vb: >-
       Public Class RedHttpServerContext
+
           Inherits IDisposable
   inheritance:
   - System.Object

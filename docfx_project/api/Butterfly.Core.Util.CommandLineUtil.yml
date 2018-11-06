@@ -29,6 +29,7 @@ items:
     content: 'public static class CommandLineUtil : object'
     content.vb: >-
       Public Module CommandLineUtil
+
           Inherits Object
   inheritance:
   - System.Object

@@ -1,37 +1,37 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender
-  commentId: T:Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender
-  id: TwilioPhoneTextNotifyMessageSender
+- uid: Butterfly.Twilio.TwilioPhoneNotifyMessageSender
+  commentId: T:Butterfly.Twilio.TwilioPhoneNotifyMessageSender
+  id: TwilioPhoneNotifyMessageSender
   parent: Butterfly.Twilio
   children:
-  - Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.#ctor(System.String,System.String)
-  - Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.DoSendAsync(System.String,System.String,System.String,System.String,System.String)
-  - Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.logger
-  - Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.twilioAccountSid
-  - Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.twilioAuthToken
+  - Butterfly.Twilio.TwilioPhoneNotifyMessageSender.#ctor(System.String,System.String)
+  - Butterfly.Twilio.TwilioPhoneNotifyMessageSender.DoSendAsync(System.String,System.String,System.String,System.String,System.String)
+  - Butterfly.Twilio.TwilioPhoneNotifyMessageSender.logger
+  - Butterfly.Twilio.TwilioPhoneNotifyMessageSender.twilioAccountSid
+  - Butterfly.Twilio.TwilioPhoneNotifyMessageSender.twilioAuthToken
   langs:
   - csharp
   - vb
-  name: TwilioPhoneTextNotifyMessageSender
-  nameWithType: TwilioPhoneTextNotifyMessageSender
-  fullName: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender
+  name: TwilioPhoneNotifyMessageSender
+  nameWithType: TwilioPhoneNotifyMessageSender
+  fullName: Butterfly.Twilio.TwilioPhoneNotifyMessageSender
   type: Class
   source:
     remote:
-      path: Butterfly.Twilio/TwilioPhoneTextNotifyMessageSender.cs
+      path: Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
-    id: TwilioPhoneTextNotifyMessageSender
-    path: ../Butterfly.Twilio/TwilioPhoneTextNotifyMessageSender.cs
-    startLine: 16
+    id: TwilioPhoneNotifyMessageSender
+    path: ../Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
+    startLine: 18
   assemblies:
   - Butterfly.Twilio
   namespace: Butterfly.Twilio
   syntax:
-    content: 'public class TwilioPhoneTextNotifyMessageSender : BaseNotifyMessageSender, INotifyMessageSender'
+    content: 'public class TwilioPhoneNotifyMessageSender : BaseNotifyMessageSender, INotifyMessageSender'
     content.vb: >-
-      Public Class TwilioPhoneTextNotifyMessageSender
+      Public Class TwilioPhoneNotifyMessageSender
           Inherits BaseNotifyMessageSender
           Implements INotifyMessageSender
   inheritance:
@@ -50,25 +50,25 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.logger
-  commentId: F:Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.logger
+- uid: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.logger
+  commentId: F:Butterfly.Twilio.TwilioPhoneNotifyMessageSender.logger
   id: logger
-  parent: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender
+  parent: Butterfly.Twilio.TwilioPhoneNotifyMessageSender
   langs:
   - csharp
   - vb
   name: logger
-  nameWithType: TwilioPhoneTextNotifyMessageSender.logger
-  fullName: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.logger
+  nameWithType: TwilioPhoneNotifyMessageSender.logger
+  fullName: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.logger
   type: Field
   source:
     remote:
-      path: Butterfly.Twilio/TwilioPhoneTextNotifyMessageSender.cs
+      path: Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: logger
-    path: ../Butterfly.Twilio/TwilioPhoneTextNotifyMessageSender.cs
-    startLine: 18
+    path: ../Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
+    startLine: 20
   assemblies:
   - Butterfly.Twilio
   namespace: Butterfly.Twilio
@@ -85,25 +85,25 @@ items:
   - Protected
   - Shared
   - ReadOnly
-- uid: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.twilioAccountSid
-  commentId: F:Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.twilioAccountSid
+- uid: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.twilioAccountSid
+  commentId: F:Butterfly.Twilio.TwilioPhoneNotifyMessageSender.twilioAccountSid
   id: twilioAccountSid
-  parent: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender
+  parent: Butterfly.Twilio.TwilioPhoneNotifyMessageSender
   langs:
   - csharp
   - vb
   name: twilioAccountSid
-  nameWithType: TwilioPhoneTextNotifyMessageSender.twilioAccountSid
-  fullName: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.twilioAccountSid
+  nameWithType: TwilioPhoneNotifyMessageSender.twilioAccountSid
+  fullName: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.twilioAccountSid
   type: Field
   source:
     remote:
-      path: Butterfly.Twilio/TwilioPhoneTextNotifyMessageSender.cs
+      path: Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: twilioAccountSid
-    path: ../Butterfly.Twilio/TwilioPhoneTextNotifyMessageSender.cs
-    startLine: 20
+    path: ../Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
+    startLine: 22
   assemblies:
   - Butterfly.Twilio
   namespace: Butterfly.Twilio
@@ -118,25 +118,25 @@ items:
   modifiers.vb:
   - Protected
   - ReadOnly
-- uid: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.twilioAuthToken
-  commentId: F:Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.twilioAuthToken
+- uid: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.twilioAuthToken
+  commentId: F:Butterfly.Twilio.TwilioPhoneNotifyMessageSender.twilioAuthToken
   id: twilioAuthToken
-  parent: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender
+  parent: Butterfly.Twilio.TwilioPhoneNotifyMessageSender
   langs:
   - csharp
   - vb
   name: twilioAuthToken
-  nameWithType: TwilioPhoneTextNotifyMessageSender.twilioAuthToken
-  fullName: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.twilioAuthToken
+  nameWithType: TwilioPhoneNotifyMessageSender.twilioAuthToken
+  fullName: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.twilioAuthToken
   type: Field
   source:
     remote:
-      path: Butterfly.Twilio/TwilioPhoneTextNotifyMessageSender.cs
+      path: Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: twilioAuthToken
-    path: ../Butterfly.Twilio/TwilioPhoneTextNotifyMessageSender.cs
-    startLine: 21
+    path: ../Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
+    startLine: 23
   assemblies:
   - Butterfly.Twilio
   namespace: Butterfly.Twilio
@@ -151,60 +151,60 @@ items:
   modifiers.vb:
   - Protected
   - ReadOnly
-- uid: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.#ctor(System.String,System.String)
-  commentId: M:Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.#ctor(System.String,System.String)
+- uid: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.#ctor(System.String,System.String)
+  commentId: M:Butterfly.Twilio.TwilioPhoneNotifyMessageSender.#ctor(System.String,System.String)
   id: '#ctor(System.String,System.String)'
-  parent: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender
+  parent: Butterfly.Twilio.TwilioPhoneNotifyMessageSender
   langs:
   - csharp
   - vb
-  name: TwilioPhoneTextNotifyMessageSender(String, String)
-  nameWithType: TwilioPhoneTextNotifyMessageSender.TwilioPhoneTextNotifyMessageSender(String, String)
-  fullName: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.TwilioPhoneTextNotifyMessageSender(System.String, System.String)
+  name: TwilioPhoneNotifyMessageSender(String, String)
+  nameWithType: TwilioPhoneNotifyMessageSender.TwilioPhoneNotifyMessageSender(String, String)
+  fullName: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.TwilioPhoneNotifyMessageSender(System.String, System.String)
   type: Constructor
   source:
     remote:
-      path: Butterfly.Twilio/TwilioPhoneTextNotifyMessageSender.cs
+      path: Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
-    path: ../Butterfly.Twilio/TwilioPhoneTextNotifyMessageSender.cs
-    startLine: 23
+    path: ../Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
+    startLine: 25
   assemblies:
   - Butterfly.Twilio
   namespace: Butterfly.Twilio
   syntax:
-    content: public TwilioPhoneTextNotifyMessageSender(string twilioAccountSid, string twilioAuthToken)
+    content: public TwilioPhoneNotifyMessageSender(string twilioAccountSid, string twilioAuthToken)
     parameters:
     - id: twilioAccountSid
       type: System.String
     - id: twilioAuthToken
       type: System.String
     content.vb: Public Sub New(twilioAccountSid As String, twilioAuthToken As String)
-  overload: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.#ctor*
+  overload: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.DoSendAsync(System.String,System.String,System.String,System.String,System.String)
-  commentId: M:Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.DoSendAsync(System.String,System.String,System.String,System.String,System.String)
+- uid: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.DoSendAsync(System.String,System.String,System.String,System.String,System.String)
+  commentId: M:Butterfly.Twilio.TwilioPhoneNotifyMessageSender.DoSendAsync(System.String,System.String,System.String,System.String,System.String)
   id: DoSendAsync(System.String,System.String,System.String,System.String,System.String)
-  parent: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender
+  parent: Butterfly.Twilio.TwilioPhoneNotifyMessageSender
   langs:
   - csharp
   - vb
   name: DoSendAsync(String, String, String, String, String)
-  nameWithType: TwilioPhoneTextNotifyMessageSender.DoSendAsync(String, String, String, String, String)
-  fullName: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.DoSendAsync(System.String, System.String, System.String, System.String, System.String)
+  nameWithType: TwilioPhoneNotifyMessageSender.DoSendAsync(String, String, String, String, String)
+  fullName: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.DoSendAsync(System.String, System.String, System.String, System.String, System.String)
   type: Method
   source:
     remote:
-      path: Butterfly.Twilio/TwilioPhoneTextNotifyMessageSender.cs
+      path: Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoSendAsync
-    path: ../Butterfly.Twilio/TwilioPhoneTextNotifyMessageSender.cs
-    startLine: 28
+    path: ../Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
+    startLine: 30
   assemblies:
   - Butterfly.Twilio
   namespace: Butterfly.Twilio
@@ -224,7 +224,7 @@ items:
     return:
       type: Task{System.String}
     content.vb: Protected Overrides Function DoSendAsync(from As String, to As String, subject As String, bodyText As String, bodyHtml As String) As Task(Of String)
-  overload: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.DoSendAsync*
+  overload: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.DoSendAsync*
   modifiers.csharp:
   - protected
   - override
@@ -391,16 +391,16 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.#ctor*
-  commentId: Overload:Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.#ctor
-  name: TwilioPhoneTextNotifyMessageSender
-  nameWithType: TwilioPhoneTextNotifyMessageSender.TwilioPhoneTextNotifyMessageSender
-  fullName: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.TwilioPhoneTextNotifyMessageSender
-- uid: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.DoSendAsync*
-  commentId: Overload:Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.DoSendAsync
+- uid: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.#ctor*
+  commentId: Overload:Butterfly.Twilio.TwilioPhoneNotifyMessageSender.#ctor
+  name: TwilioPhoneNotifyMessageSender
+  nameWithType: TwilioPhoneNotifyMessageSender.TwilioPhoneNotifyMessageSender
+  fullName: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.TwilioPhoneNotifyMessageSender
+- uid: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.DoSendAsync*
+  commentId: Overload:Butterfly.Twilio.TwilioPhoneNotifyMessageSender.DoSendAsync
   name: DoSendAsync
-  nameWithType: TwilioPhoneTextNotifyMessageSender.DoSendAsync
-  fullName: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender.DoSendAsync
+  nameWithType: TwilioPhoneNotifyMessageSender.DoSendAsync
+  fullName: Butterfly.Twilio.TwilioPhoneNotifyMessageSender.DoSendAsync
 - uid: Task{System.String}
   commentId: '!:Task{System.String}'
   definition: Task`1

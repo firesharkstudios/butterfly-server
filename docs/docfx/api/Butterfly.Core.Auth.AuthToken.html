@@ -81,22 +81,24 @@ Represents the result of a successful <a class="xref" href="Butterfly.Core.Auth.
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">AuthToken</span></div>
+      <div class="level2"><a class="xref" href="Butterfly.Core.Auth.ShareCodeToken.html">ShareCodeToken</a></div>
+      <div class="level2"><a class="xref" href="Butterfly.Core.Auth.UserRefToken.html">UserRefToken</a></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Butterfly.Core.Auth.html">Butterfly.Core.Auth</a></h6>
   <h6><strong>Assembly</strong>: Butterfly.Core.dll</h6>
   <h5 id="Butterfly_Core_Auth_AuthToken_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AuthToken : object</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class AuthToken : object</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <a id="Butterfly_Core_Auth_AuthToken__ctor_" data-uid="Butterfly.Core.Auth.AuthToken.#ctor*"></a>
-  <h4 id="Butterfly_Core_Auth_AuthToken__ctor_System_String_System_String_System_String_System_String_System_String_DateTime_" data-uid="Butterfly.Core.Auth.AuthToken.#ctor(System.String,System.String,System.String,System.String,System.String,DateTime)">AuthToken(String, String, String, String, String, DateTime)</h4>
+  <h4 id="Butterfly_Core_Auth_AuthToken__ctor_System_String_System_String_System_String_" data-uid="Butterfly.Core.Auth.AuthToken.#ctor(System.String,System.String,System.String)">AuthToken(String, String, String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AuthToken(string id, string userId, string username, string role, string accountId, DateTime expiresAt)</code></pre>
+    <pre><code class="lang-csharp hljs">public AuthToken(string type, string accountId, string role)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -110,22 +112,7 @@ Represents the result of a successful <a class="xref" href="Butterfly.Core.Auth.
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">id</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">userId</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">username</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">role</span></td>
+        <td><span class="parametername">type</span></td>
         <td></td>
       </tr>
       <tr>
@@ -134,8 +121,8 @@ Represents the result of a successful <a class="xref" href="Butterfly.Core.Auth.
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">DateTime</span></td>
-        <td><span class="parametername">expiresAt</span></td>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">role</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -148,50 +135,6 @@ Represents the result of a successful <a class="xref" href="Butterfly.Core.Auth.
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public readonly string accountId</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="Butterfly_Core_Auth_AuthToken_expiresAt" data-uid="Butterfly.Core.Auth.AuthToken.expiresAt">expiresAt</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly DateTime expiresAt</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">DateTime</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="Butterfly_Core_Auth_AuthToken_id" data-uid="Butterfly.Core.Auth.AuthToken.id">id</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly string id</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -230,12 +173,12 @@ Represents the result of a successful <a class="xref" href="Butterfly.Core.Auth.
       </tr>
     </tbody>
   </table>
-  <h4 id="Butterfly_Core_Auth_AuthToken_userId" data-uid="Butterfly.Core.Auth.AuthToken.userId">userId</h4>
+  <h4 id="Butterfly_Core_Auth_AuthToken_type" data-uid="Butterfly.Core.Auth.AuthToken.type">type</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly string userId</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly string type</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -248,100 +191,6 @@ Represents the result of a successful <a class="xref" href="Butterfly.Core.Auth.
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="Butterfly_Core_Auth_AuthToken_username" data-uid="Butterfly.Core.Auth.AuthToken.username">username</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly string username</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-  </h3>
-  <a id="Butterfly_Core_Auth_AuthToken_FromDict_" data-uid="Butterfly.Core.Auth.AuthToken.FromDict*"></a>
-  <h4 id="Butterfly_Core_Auth_AuthToken_FromDict_System_Collections_Generic_Dictionary_System_String_System_Object__System_String_System_String_System_String_System_String_System_String_System_String_" data-uid="Butterfly.Core.Auth.AuthToken.FromDict(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String,System.String,System.String,System.String,System.String)">FromDict(System.Collections.Generic.Dictionary&lt;String, Object&gt;, String, String, String, String, String, String)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static AuthToken FromDict(System.Collections.Generic.Dictionary&lt;string, object&gt; dict, string idFieldName, string userIdFieldName, string usernameFieldName, string roleFieldName, string accountIdFieldName, string expiresAtFieldName)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
-        <td><span class="parametername">dict</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">idFieldName</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">userIdFieldName</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">usernameFieldName</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">roleFieldName</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">accountIdFieldName</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">expiresAtFieldName</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a></td>
         <td></td>
       </tr>
     </tbody>

@@ -14,6 +14,6 @@ namespace Butterfly.Core.Channel {
         DateTime Created { get;  }
         DateTime LastHeartbeat { get; }
         void Start(object authToken, string id);
-        void QueueMessage(string channelKey = null, string messageType = null, object data = null);
+        void QueueMessage(string channelKey = null, string messageType = null, object data = null, bool immediate = false);
     }
 }

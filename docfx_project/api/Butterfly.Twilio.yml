@@ -5,7 +5,7 @@ items:
   id: Butterfly.Twilio
   children:
   - Butterfly.Twilio.TwilioModule
-  - Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender
+  - Butterfly.Twilio.TwilioPhoneNotifyMessageSender
   langs:
   - csharp
   - vb
@@ -21,9 +21,9 @@ references:
   name: TwilioModule
   nameWithType: TwilioModule
   fullName: Butterfly.Twilio.TwilioModule
-- uid: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender
-  commentId: T:Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender
-  name: TwilioPhoneTextNotifyMessageSender
-  nameWithType: TwilioPhoneTextNotifyMessageSender
-  fullName: Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender
+- uid: Butterfly.Twilio.TwilioPhoneNotifyMessageSender
+  commentId: T:Butterfly.Twilio.TwilioPhoneNotifyMessageSender
+  name: TwilioPhoneNotifyMessageSender
+  nameWithType: TwilioPhoneNotifyMessageSender
+  fullName: Butterfly.Twilio.TwilioPhoneNotifyMessageSender
 shouldSkipMarkup: true

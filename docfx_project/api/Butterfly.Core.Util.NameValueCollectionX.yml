@@ -28,6 +28,7 @@ items:
     content: 'public static class NameValueCollectionX : object'
     content.vb: >-
       Public Module NameValueCollectionX
+
           Inherits Object
   inheritance:
   - System.Object

@@ -32,7 +32,9 @@ items:
     content: 'public class EmbedIOSubscriptionApiConnection : BaseChannelConnection, IChannelConnection, IDisposable'
     content.vb: >-
       Public Class EmbedIOSubscriptionApiConnection
+
           Inherits BaseChannelConnection
+
           Implements IChannelConnection, IDisposable
   inheritance:
   - System.Object
@@ -53,7 +55,7 @@ items:
   - Butterfly.Core.Channel.BaseChannelConnection.Id
   - Butterfly.Core.Channel.BaseChannelConnection.Created
   - Butterfly.Core.Channel.BaseChannelConnection.LastHeartbeat
-  - Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object)
+  - Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
   - Butterfly.Core.Channel.BaseChannelConnection.started
   - Butterfly.Core.Channel.BaseChannelConnection.Start(System.Object,System.String)
   - Butterfly.Core.Channel.BaseChannelConnection.channelByKey
@@ -347,15 +349,15 @@ references:
   name: LastHeartbeat
   nameWithType: BaseChannelConnection.LastHeartbeat
   fullName: Butterfly.Core.Channel.BaseChannelConnection.LastHeartbeat
-- uid: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object)
-  commentId: M:Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object)
+- uid: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
+  commentId: M:Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
   parent: Butterfly.Core.Channel.BaseChannelConnection
   isExternal: true
-  name: QueueMessage(String, String, Object)
-  nameWithType: BaseChannelConnection.QueueMessage(String, String, Object)
-  fullName: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String, System.String, System.Object)
+  name: QueueMessage(String, String, Object, Boolean)
+  nameWithType: BaseChannelConnection.QueueMessage(String, String, Object, Boolean)
+  fullName: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String, System.String, System.Object, System.Boolean)
   spec.csharp:
-  - uid: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object)
+  - uid: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
     name: QueueMessage
     nameWithType: BaseChannelConnection.QueueMessage
     fullName: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage
@@ -382,12 +384,20 @@ references:
     name: Object
     nameWithType: Object
     fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object)
+  - uid: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
     name: QueueMessage
     nameWithType: BaseChannelConnection.QueueMessage
     fullName: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage
@@ -414,6 +424,14 @@ references:
     name: Object
     nameWithType: Object
     fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
     isExternal: true
   - name: )
     nameWithType: )

@@ -37,6 +37,7 @@ items:
     content: 'public class EmbedIOContext : IDisposable'
     content.vb: >-
       Public Class EmbedIOContext
+
           Inherits IDisposable
   inheritance:
   - System.Object

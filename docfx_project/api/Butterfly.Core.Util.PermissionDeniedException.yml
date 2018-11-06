@@ -28,6 +28,7 @@ items:
     content: 'public class PermissionDeniedException : Exception'
     content.vb: >-
       Public Class PermissionDeniedException
+
           Inherits Exception
   inheritance:
   - System.Object

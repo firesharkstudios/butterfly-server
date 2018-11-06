@@ -94,7 +94,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public NotifyManager(IDatabase database, INotifyMessageSender emailNotifyMessageSender = null, INotifyMessageSender phoneTextNotifyMessageSender = null, string notifyMessageTableName = &quot;notify_message&quot;, string notifyVerifyTableName = &quot;notify_verify&quot;, int verifyCodeExpiresSeconds = 3600, string verifyEmailFile = null, string verifyPhoneTextFile = null, string verifyCodeFormat = &quot;###-###&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">public NotifyManager(IDatabase database, INotifyMessageSender emailNotifyMessageSender = null, INotifyMessageSender phoneNotifyMessageSender = null, string notifyMessageTableName = &quot;notify_message&quot;, string notifyVerifyTableName = &quot;notify_verify&quot;, int verifyCodeExpiresSeconds = 3600, string verifyEmailFile = null, string verifyPhoneTextFile = null, string verifyCodeFormat = &quot;###-###&quot;)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -118,7 +118,7 @@
       </tr>
       <tr>
         <td><a class="xref" href="Butterfly.Core.Notify.INotifyMessageSender.html">INotifyMessageSender</a></td>
-        <td><span class="parametername">phoneTextNotifyMessageSender</span></td>
+        <td><span class="parametername">phoneNotifyMessageSender</span></td>
         <td></td>
       </tr>
       <tr>
@@ -309,12 +309,12 @@
       </tr>
     </tbody>
   </table>
-  <h4 id="Butterfly_Core_Notify_NotifyManager_phoneTextNotifyMessageEngine" data-uid="Butterfly.Core.Notify.NotifyManager.phoneTextNotifyMessageEngine">phoneTextNotifyMessageEngine</h4>
+  <h4 id="Butterfly_Core_Notify_NotifyManager_phoneNotifyMessageEngine" data-uid="Butterfly.Core.Notify.NotifyManager.phoneNotifyMessageEngine">phoneNotifyMessageEngine</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly NotifyManager.NotifyMessageEngine phoneTextNotifyMessageEngine</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly NotifyManager.NotifyMessageEngine phoneNotifyMessageEngine</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -419,12 +419,12 @@
       </tr>
     </tbody>
   </table>
-  <h4 id="Butterfly_Core_Notify_NotifyManager_verifyPhoneTextNotifyMessage" data-uid="Butterfly.Core.Notify.NotifyManager.verifyPhoneTextNotifyMessage">verifyPhoneTextNotifyMessage</h4>
+  <h4 id="Butterfly_Core_Notify_NotifyManager_verifyPhoneNotifyMessage" data-uid="Butterfly.Core.Notify.NotifyManager.verifyPhoneNotifyMessage">verifyPhoneNotifyMessage</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly NotifyMessage verifyPhoneTextNotifyMessage</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly NotifyMessage verifyPhoneNotifyMessage</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -566,36 +566,6 @@
     <tbody>
       <tr>
         <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="Butterfly_Core_Notify_NotifyManager_SetupWebApi_" data-uid="Butterfly.Core.Notify.NotifyManager.SetupWebApi*"></a>
-  <h4 id="Butterfly_Core_Notify_NotifyManager_SetupWebApi_Butterfly_Core_WebApi_IWebApi_System_String_" data-uid="Butterfly.Core.Notify.NotifyManager.SetupWebApi(Butterfly.Core.WebApi.IWebApi,System.String)">SetupWebApi(IWebApi, String)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetupWebApi(IWebApi webApi, string pathPrefix = &quot;/api/notify&quot;)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Butterfly.Core.WebApi.IWebApi.html">IWebApi</a></td>
-        <td><span class="parametername">webApi</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">pathPrefix</span></td>
         <td></td>
       </tr>
     </tbody>

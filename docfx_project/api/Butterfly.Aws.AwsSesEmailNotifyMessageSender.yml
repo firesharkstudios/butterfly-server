@@ -29,7 +29,9 @@ items:
     content: 'public class AwsSesEmailNotifyMessageSender : BaseNotifyMessageSender, INotifyMessageSender'
     content.vb: >-
       Public Class AwsSesEmailNotifyMessageSender
+
           Inherits BaseNotifyMessageSender
+
           Implements INotifyMessageSender
   inheritance:
   - System.Object

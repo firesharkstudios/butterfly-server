@@ -28,6 +28,7 @@ items:
   - Butterfly.Core.Util.StringX
   - Butterfly.Core.Util.UnauthorizedException
   - Butterfly.Core.Util.UriX
+  - Butterfly.Core.Util.WebClientWithTimeout
   langs:
   - csharp
   - vb
@@ -235,6 +236,11 @@ references:
   name: UriX
   nameWithType: UriX
   fullName: Butterfly.Core.Util.UriX
+- uid: Butterfly.Core.Util.WebClientWithTimeout
+  commentId: T:Butterfly.Core.Util.WebClientWithTimeout
+  name: WebClientWithTimeout
+  nameWithType: WebClientWithTimeout
+  fullName: Butterfly.Core.Util.WebClientWithTimeout
 - uid: Butterfly.Core.Util
   commentId: N:Butterfly.Core.Util
   name: Butterfly.Core.Util

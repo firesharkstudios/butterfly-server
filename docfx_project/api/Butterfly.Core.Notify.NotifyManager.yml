@@ -14,11 +14,10 @@ items:
   - Butterfly.Core.Notify.NotifyManager.notifyMessageTableName
   - Butterfly.Core.Notify.NotifyManager.notifyVerifyTableName
   - Butterfly.Core.Notify.NotifyManager.PHONE_FIELD_VALIDATOR
-  - Butterfly.Core.Notify.NotifyManager.phoneTextNotifyMessageEngine
+  - Butterfly.Core.Notify.NotifyManager.phoneNotifyMessageEngine
   - Butterfly.Core.Notify.NotifyManager.Queue(Butterfly.Core.Database.ITransaction,Butterfly.Core.Notify.NotifyMessage[])
   - Butterfly.Core.Notify.NotifyManager.RANDOM
   - Butterfly.Core.Notify.NotifyManager.SendVerifyCodeAsync(System.String)
-  - Butterfly.Core.Notify.NotifyManager.SetupWebApi(Butterfly.Core.WebApi.IWebApi,System.String)
   - Butterfly.Core.Notify.NotifyManager.Start
   - Butterfly.Core.Notify.NotifyManager.Stop
   - Butterfly.Core.Notify.NotifyManager.Validate(System.String)
@@ -26,7 +25,7 @@ items:
   - Butterfly.Core.Notify.NotifyManager.verifyCodeExpiresSeconds
   - Butterfly.Core.Notify.NotifyManager.verifyCodeFormat
   - Butterfly.Core.Notify.NotifyManager.verifyEmailNotifyMessage
-  - Butterfly.Core.Notify.NotifyManager.verifyPhoneTextNotifyMessage
+  - Butterfly.Core.Notify.NotifyManager.verifyPhoneNotifyMessage
   langs:
   - csharp
   - vb
@@ -49,6 +48,7 @@ items:
     content: 'public class NotifyManager : object'
     content.vb: >-
       Public Class NotifyManager
+
           Inherits Object
   inheritance:
   - System.Object
@@ -159,33 +159,33 @@ items:
   modifiers.vb:
   - Protected
   - ReadOnly
-- uid: Butterfly.Core.Notify.NotifyManager.phoneTextNotifyMessageEngine
-  commentId: F:Butterfly.Core.Notify.NotifyManager.phoneTextNotifyMessageEngine
-  id: phoneTextNotifyMessageEngine
+- uid: Butterfly.Core.Notify.NotifyManager.phoneNotifyMessageEngine
+  commentId: F:Butterfly.Core.Notify.NotifyManager.phoneNotifyMessageEngine
+  id: phoneNotifyMessageEngine
   parent: Butterfly.Core.Notify.NotifyManager
   langs:
   - csharp
   - vb
-  name: phoneTextNotifyMessageEngine
-  nameWithType: NotifyManager.phoneTextNotifyMessageEngine
-  fullName: Butterfly.Core.Notify.NotifyManager.phoneTextNotifyMessageEngine
+  name: phoneNotifyMessageEngine
+  nameWithType: NotifyManager.phoneNotifyMessageEngine
+  fullName: Butterfly.Core.Notify.NotifyManager.phoneNotifyMessageEngine
   type: Field
   source:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
-    id: phoneTextNotifyMessageEngine
+    id: phoneNotifyMessageEngine
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 32
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
   syntax:
-    content: protected readonly NotifyManager.NotifyMessageEngine phoneTextNotifyMessageEngine
+    content: protected readonly NotifyManager.NotifyMessageEngine phoneNotifyMessageEngine
     return:
       type: Butterfly.Core.Notify.NotifyManager.NotifyMessageEngine
-    content.vb: Protected ReadOnly phoneTextNotifyMessageEngine As NotifyManager.NotifyMessageEngine
+    content.vb: Protected ReadOnly phoneNotifyMessageEngine As NotifyManager.NotifyMessageEngine
   modifiers.csharp:
   - protected
   - readonly
@@ -324,33 +324,33 @@ items:
   modifiers.vb:
   - Protected
   - ReadOnly
-- uid: Butterfly.Core.Notify.NotifyManager.verifyPhoneTextNotifyMessage
-  commentId: F:Butterfly.Core.Notify.NotifyManager.verifyPhoneTextNotifyMessage
-  id: verifyPhoneTextNotifyMessage
+- uid: Butterfly.Core.Notify.NotifyManager.verifyPhoneNotifyMessage
+  commentId: F:Butterfly.Core.Notify.NotifyManager.verifyPhoneNotifyMessage
+  id: verifyPhoneNotifyMessage
   parent: Butterfly.Core.Notify.NotifyManager
   langs:
   - csharp
   - vb
-  name: verifyPhoneTextNotifyMessage
-  nameWithType: NotifyManager.verifyPhoneTextNotifyMessage
-  fullName: Butterfly.Core.Notify.NotifyManager.verifyPhoneTextNotifyMessage
+  name: verifyPhoneNotifyMessage
+  nameWithType: NotifyManager.verifyPhoneNotifyMessage
+  fullName: Butterfly.Core.Notify.NotifyManager.verifyPhoneNotifyMessage
   type: Field
   source:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
-    id: verifyPhoneTextNotifyMessage
+    id: verifyPhoneNotifyMessage
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 39
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
   syntax:
-    content: protected readonly NotifyMessage verifyPhoneTextNotifyMessage
+    content: protected readonly NotifyMessage verifyPhoneNotifyMessage
     return:
       type: Butterfly.Core.Notify.NotifyMessage
-    content.vb: Protected ReadOnly verifyPhoneTextNotifyMessage As NotifyMessage
+    content.vb: Protected ReadOnly verifyPhoneNotifyMessage As NotifyMessage
   modifiers.csharp:
   - protected
   - readonly
@@ -518,13 +518,13 @@ items:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
   syntax:
-    content: public NotifyManager(IDatabase database, INotifyMessageSender emailNotifyMessageSender = null, INotifyMessageSender phoneTextNotifyMessageSender = null, string notifyMessageTableName = "notify_message", string notifyVerifyTableName = "notify_verify", int verifyCodeExpiresSeconds = 3600, string verifyEmailFile = null, string verifyPhoneTextFile = null, string verifyCodeFormat = "###-###")
+    content: public NotifyManager(IDatabase database, INotifyMessageSender emailNotifyMessageSender = null, INotifyMessageSender phoneNotifyMessageSender = null, string notifyMessageTableName = "notify_message", string notifyVerifyTableName = "notify_verify", int verifyCodeExpiresSeconds = 3600, string verifyEmailFile = null, string verifyPhoneTextFile = null, string verifyCodeFormat = "###-###")
     parameters:
     - id: database
       type: Butterfly.Core.Database.IDatabase
     - id: emailNotifyMessageSender
       type: Butterfly.Core.Notify.INotifyMessageSender
-    - id: phoneTextNotifyMessageSender
+    - id: phoneNotifyMessageSender
       type: Butterfly.Core.Notify.INotifyMessageSender
     - id: notifyMessageTableName
       type: System.String
@@ -538,7 +538,7 @@ items:
       type: System.String
     - id: verifyCodeFormat
       type: System.String
-    content.vb: Public Sub New(database As IDatabase, emailNotifyMessageSender As INotifyMessageSender = Nothing, phoneTextNotifyMessageSender As INotifyMessageSender = Nothing, notifyMessageTableName As String = "notify_message", notifyVerifyTableName As String = "notify_verify", verifyCodeExpiresSeconds As Integer = 3600, verifyEmailFile As String = Nothing, verifyPhoneTextFile As String = Nothing, verifyCodeFormat As String = "###-###")
+    content.vb: Public Sub New(database As IDatabase, emailNotifyMessageSender As INotifyMessageSender = Nothing, phoneNotifyMessageSender As INotifyMessageSender = Nothing, notifyMessageTableName As String = "notify_message", notifyVerifyTableName As String = "notify_verify", verifyCodeExpiresSeconds As Integer = 3600, verifyEmailFile As String = Nothing, verifyPhoneTextFile As String = Nothing, verifyCodeFormat As String = "###-###")
   overload: Butterfly.Core.Notify.NotifyManager.#ctor*
   modifiers.csharp:
   - public
@@ -604,41 +604,6 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: Butterfly.Core.Notify.NotifyManager.SetupWebApi(Butterfly.Core.WebApi.IWebApi,System.String)
-  commentId: M:Butterfly.Core.Notify.NotifyManager.SetupWebApi(Butterfly.Core.WebApi.IWebApi,System.String)
-  id: SetupWebApi(Butterfly.Core.WebApi.IWebApi,System.String)
-  parent: Butterfly.Core.Notify.NotifyManager
-  langs:
-  - csharp
-  - vb
-  name: SetupWebApi(IWebApi, String)
-  nameWithType: NotifyManager.SetupWebApi(IWebApi, String)
-  fullName: Butterfly.Core.Notify.NotifyManager.SetupWebApi(Butterfly.Core.WebApi.IWebApi, System.String)
-  type: Method
-  source:
-    remote:
-      path: Butterfly.Core/Notify/NotifyManager.cs
-      branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
-    id: SetupWebApi
-    path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 70
-  assemblies:
-  - Butterfly.Core
-  namespace: Butterfly.Core.Notify
-  syntax:
-    content: public void SetupWebApi(IWebApi webApi, string pathPrefix = "/api/notify")
-    parameters:
-    - id: webApi
-      type: Butterfly.Core.WebApi.IWebApi
-    - id: pathPrefix
-      type: System.String
-    content.vb: Public Sub SetupWebApi(webApi As IWebApi, pathPrefix As String = "/api/notify")
-  overload: Butterfly.Core.Notify.NotifyManager.SetupWebApi*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
 - uid: Butterfly.Core.Notify.NotifyManager.SendVerifyCodeAsync(System.String)
   commentId: M:Butterfly.Core.Notify.NotifyManager.SendVerifyCodeAsync(System.String)
   id: SendVerifyCodeAsync(System.String)
@@ -657,7 +622,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SendVerifyCodeAsync
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 78
+    startLine: 70
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -692,7 +657,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: VerifyAsync
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 137
+    startLine: 129
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -729,7 +694,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Validate
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 152
+    startLine: 144
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -766,7 +731,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Queue
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 168
+    startLine: 160
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -811,7 +776,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DetectNotifyMessageType
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 202
+    startLine: 194
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -922,22 +887,6 @@ references:
   name: Stop
   nameWithType: NotifyManager.Stop
   fullName: Butterfly.Core.Notify.NotifyManager.Stop
-- uid: Butterfly.Core.Notify.NotifyManager.SetupWebApi*
-  commentId: Overload:Butterfly.Core.Notify.NotifyManager.SetupWebApi
-  name: SetupWebApi
-  nameWithType: NotifyManager.SetupWebApi
-  fullName: Butterfly.Core.Notify.NotifyManager.SetupWebApi
-- uid: Butterfly.Core.WebApi.IWebApi
-  commentId: T:Butterfly.Core.WebApi.IWebApi
-  parent: Butterfly.Core.WebApi
-  name: IWebApi
-  nameWithType: IWebApi
-  fullName: Butterfly.Core.WebApi.IWebApi
-- uid: Butterfly.Core.WebApi
-  commentId: N:Butterfly.Core.WebApi
-  name: Butterfly.Core.WebApi
-  nameWithType: Butterfly.Core.WebApi
-  fullName: Butterfly.Core.WebApi
 - uid: Butterfly.Core.Notify.NotifyManager.SendVerifyCodeAsync*
   commentId: Overload:Butterfly.Core.Notify.NotifyManager.SendVerifyCodeAsync
   name: SendVerifyCodeAsync

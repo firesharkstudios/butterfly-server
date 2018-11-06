@@ -30,6 +30,7 @@ items:
     content: 'public static class DynamicX : object'
     content.vb: >-
       Public Module DynamicX
+
           Inherits Object
   inheritance:
   - System.Object

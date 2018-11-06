@@ -40,13 +40,14 @@ items:
   assemblies:
   - Butterfly.MySql
   namespace: Butterfly.MySql
-  summary: "\nBase class implementing <xref href=\"Butterfly.Core.Database.ITransaction\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: 'public class MySqlTransaction : BaseTransaction, ITransaction, IDisposable'
     content.vb: >-
       Public Class MySqlTransaction
+
           Inherits BaseTransaction
+
           Implements ITransaction, IDisposable
   inheritance:
   - System.Object
@@ -57,7 +58,7 @@ items:
   inheritedMembers:
   - Butterfly.Core.Database.BaseTransaction.database
   - Butterfly.Core.Database.BaseTransaction.dataEvents
-  - Butterfly.Core.Database.BaseTransaction.onCommits
+  - Butterfly.Core.Database.BaseTransaction.onCommitRefs
   - Butterfly.Core.Database.BaseTransaction.Database
   - Butterfly.Core.Database.BaseTransaction.Create(Butterfly.Core.Database.CreateStatement)
   - Butterfly.Core.Database.BaseTransaction.CreateAsync(Butterfly.Core.Database.CreateStatement)
@@ -75,7 +76,7 @@ items:
   - Butterfly.Core.Database.BaseTransaction.TruncateAsync(System.String)
   - Butterfly.Core.Database.BaseTransaction.Commit
   - Butterfly.Core.Database.BaseTransaction.CommitAsync
-  - Butterfly.Core.Database.BaseTransaction.OnCommit(Func{`0})
+  - Butterfly.Core.Database.BaseTransaction.OnCommit(Func{`0},System.String)
   - Butterfly.Core.Database.BaseTransaction.Rollback
   modifiers.csharp:
   - public
@@ -742,12 +743,12 @@ references:
   name: dataEvents
   nameWithType: BaseTransaction.dataEvents
   fullName: Butterfly.Core.Database.BaseTransaction.dataEvents
-- uid: Butterfly.Core.Database.BaseTransaction.onCommits
-  commentId: F:Butterfly.Core.Database.BaseTransaction.onCommits
+- uid: Butterfly.Core.Database.BaseTransaction.onCommitRefs
+  commentId: F:Butterfly.Core.Database.BaseTransaction.onCommitRefs
   parent: Butterfly.Core.Database.BaseTransaction
-  name: onCommits
-  nameWithType: BaseTransaction.onCommits
-  fullName: Butterfly.Core.Database.BaseTransaction.onCommits
+  name: onCommitRefs
+  nameWithType: BaseTransaction.onCommitRefs
+  fullName: Butterfly.Core.Database.BaseTransaction.onCommitRefs
 - uid: Butterfly.Core.Database.BaseTransaction.Database
   commentId: P:Butterfly.Core.Database.BaseTransaction.Database
   parent: Butterfly.Core.Database.BaseTransaction
@@ -1887,18 +1888,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Butterfly.Core.Database.BaseTransaction.OnCommit(Func{`0})
-  commentId: M:Butterfly.Core.Database.BaseTransaction.OnCommit(Func{`0})
+- uid: Butterfly.Core.Database.BaseTransaction.OnCommit(Func{`0},System.String)
+  commentId: M:Butterfly.Core.Database.BaseTransaction.OnCommit(Func{`0},System.String)
   parent: Butterfly.Core.Database.BaseTransaction
   isExternal: true
-  name: OnCommit(Func<>)
-  nameWithType: BaseTransaction.OnCommit(Func<>)
-  fullName: Butterfly.Core.Database.BaseTransaction.OnCommit(Func<>)
-  nameWithType.vb: BaseTransaction.OnCommit(Func(Of ))
-  fullName.vb: Butterfly.Core.Database.BaseTransaction.OnCommit(Func(Of ))
-  name.vb: OnCommit(Func(Of ))
+  name: OnCommit(Func<>, String)
+  nameWithType: BaseTransaction.OnCommit(Func<>, String)
+  fullName: Butterfly.Core.Database.BaseTransaction.OnCommit(Func<>, System.String)
+  nameWithType.vb: BaseTransaction.OnCommit(Func(Of ), String)
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.OnCommit(Func(Of ), System.String)
+  name.vb: OnCommit(Func(Of ), String)
   spec.csharp:
-  - uid: Butterfly.Core.Database.BaseTransaction.OnCommit(Func{`0})
+  - uid: Butterfly.Core.Database.BaseTransaction.OnCommit(Func{`0},System.String)
     name: OnCommit
     nameWithType: BaseTransaction.OnCommit
     fullName: Butterfly.Core.Database.BaseTransaction.OnCommit
@@ -1919,11 +1920,19 @@ references:
   - name: '>'
     nameWithType: '>'
     fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Butterfly.Core.Database.BaseTransaction.OnCommit(Func{`0})
+  - uid: Butterfly.Core.Database.BaseTransaction.OnCommit(Func{`0},System.String)
     name: OnCommit
     nameWithType: BaseTransaction.OnCommit
     fullName: Butterfly.Core.Database.BaseTransaction.OnCommit
@@ -1944,6 +1953,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
   - name: )
     nameWithType: )
     fullName: )

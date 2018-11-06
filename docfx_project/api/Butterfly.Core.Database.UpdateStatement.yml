@@ -36,6 +36,7 @@ items:
     content: 'public class UpdateStatement : BaseStatement'
     content.vb: >-
       Public Class UpdateStatement
+
           Inherits BaseStatement
   inheritance:
   - System.Object
