@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <PackageReference Include="HttpMultipartParser" Version="2.2.4" />
+    <PackageReference Include="libphonenumber-csharp" Version="8.9.16" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Nito.AsyncEx.Coordination" Version="5.0.0-pre-05" />

@@ -175,7 +175,7 @@ namespace Butterfly.Core.Database {
             }
         }
 
-        public async Task<bool> SynchronizeAsync(string tableName, Dict[] existingRecords, Dict[] newRecords, string[] keyFieldNames = null) {
+        public async Task<bool> SynchronizeAsync(string tableName, Dict[] existingRecords, Dict[] newRecords, string[] keyFieldNames = null, Func<Dict, Task> insertFunc = null, Func<Dict, Task<int>> deleteFunc = null) {
             if (!this.database.TableByName.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
 
             bool changed = false;
@@ -197,7 +197,12 @@ namespace Butterfly.Core.Database {
                 int count = 0;
                 if (newIndex == -1) {
                     var vars = keyFieldNames.ToDictionary(x => x, x => existingRecords[i][x]);
-                    count = await this.DeleteAsync(table.Name, vars);
+                    if (deleteFunc == null) {
+                        count = await this.DeleteAsync(table.Name, vars);
+                    }
+                    else {
+                        count = await deleteFunc(vars);
+                    }
                 }
                 else if (!newRecords[newIndex].IsSame(existingRecords[i])) {
                     count = await this.UpdateAsync(table.Name, newRecords[newIndex]);
@@ -208,7 +213,12 @@ namespace Butterfly.Core.Database {
             for (int i = 0; i < newIds.Count; i++) {
                 int existingIndex = newIds[i]==null ? -1 : existingIds.IndexOf(newIds[i]);
                 if (existingIndex == -1) {
-                    await this.InsertAsync<object>(table.Name, newRecords[i]);
+                    if (insertFunc == null) {
+                        await this.InsertAsync<object>(table.Name, newRecords[i]);
+                    }
+                    else {
+                        await insertFunc(newRecords[i]);
+                    }
                     changed = true;
                 }
             }

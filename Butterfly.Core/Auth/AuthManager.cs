@@ -229,7 +229,7 @@ namespace Butterfly.Core.Auth {
             this.passwordFieldValidator = new GenericFieldValidator("password", "^.{6,255}$", allowNull: false, forceLowerCase: false, includeValueInError: false);
             this.nameFieldValidator = new NameFieldValidator(this.userTableLastNameFieldName, allowNull: false, maxLength: 25);
             this.emailFieldValidator = new EmailFieldValidator(this.userTableEmailFieldName, allowNull: true);
-            this.phoneFieldValidator = new PhoneFieldValidator(this.userTableEmailFieldName, allowNull: false);
+            this.phoneFieldValidator = new PhoneFieldValidator(this.userTablePhoneFieldName, allowNull: false);
 
             this.userRefTokenAuthenticator = new UserRefTokenAuthenticator(
                 database,

@@ -124,8 +124,10 @@ namespace Butterfly.Core.Database {
         /// <param name="existingRecords"></param>
         /// <param name="newRecords"></param>
         /// <param name="keyFieldNames">Leave blank to auto-determine key field names from existing and new records</param>
+        /// <param name="insertFunc">Leave blank to perform a <see cref="ITransaction.InsertAsync{T}(string, dynamic, bool)"/></param>
+        /// <param name="deleteFunc">Leave blank to perform a <see cref="ITransaction.DeleteAsync{T}(string, dynamic, bool)"/></param>
         /// <returns></returns>
-        Task<bool> SynchronizeAsync(string tableName, Dict[] existingRecords, Dict[] newRecords, string[] keyFieldNames = null);
+        Task<bool> SynchronizeAsync(string tableName, Dict[] existingRecords, Dict[] newRecords, string[] keyFieldNames = null, Func<Dict, Task> insertFunc = null, Func<Dict, Task<int>> deleteFunc = null);
 
         /// <summary>
         /// Truncate a table (deletes all records)
