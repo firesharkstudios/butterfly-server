@@ -112,6 +112,8 @@ namespace Butterfly.Core.Auth {
 
         protected readonly string defaultRole;
 
+        protected readonly Func<Dict, Dict> getExtraAccountInfo;
+        protected readonly Func<Dict, Dict> getExtraUserInfo;
         protected readonly Func<string, int, Task> onEmailVerify;
         protected readonly Func<string, int, Task> onPhoneVerify;
 
@@ -185,6 +187,8 @@ namespace Butterfly.Core.Auth {
             string userTableAccountIdFieldName = "account_id",
             string userTableRoleFieldName = "role",
             string defaultRole = null,
+            Func<Dict, Dict> getExtraAccountInfo = null,
+            Func<Dict, Dict> getExtraUserInfo = null,
             Func<string, int, Task> onEmailVerify = null,
             Func<string, int, Task> onPhoneVerify = null,
             Func<Dict, Task> onRegister = null,
@@ -219,6 +223,8 @@ namespace Butterfly.Core.Auth {
 
             this.defaultRole = defaultRole;
 
+            this.getExtraAccountInfo = getExtraAccountInfo;
+            this.getExtraUserInfo = getExtraUserInfo;
             this.onEmailVerify = onEmailVerify;
             this.onPhoneVerify = onPhoneVerify;
             this.onRegister = onRegister;
@@ -227,7 +233,7 @@ namespace Butterfly.Core.Auth {
 
             this.usernameFieldValidator = new GenericFieldValidator(this.userTableUsernameFieldName, @"^[_A-z0-9\-\.]{3,25}$", allowNull: false, forceLowerCase: true, includeValueInError: true);
             this.passwordFieldValidator = new GenericFieldValidator("password", "^.{6,255}$", allowNull: false, forceLowerCase: false, includeValueInError: false);
-            this.nameFieldValidator = new NameFieldValidator(this.userTableLastNameFieldName, allowNull: false, maxLength: 25);
+            this.nameFieldValidator = new TextFieldValidator(this.userTableLastNameFieldName, allowNull: false, maxLength: 25);
             this.emailFieldValidator = new EmailFieldValidator(this.userTableEmailFieldName, allowNull: true);
             this.phoneFieldValidator = new PhoneFieldValidator(this.userTablePhoneFieldName, allowNull: false);
 
@@ -390,7 +396,7 @@ namespace Butterfly.Core.Auth {
                 userId = null;
             }
 
-            // Check if username is available
+            // Validate username
             string username = this.usernameFieldValidator.Validate(registration?.GetAs(this.userTableUsernameFieldName, (string)null));
             logger.Trace($"RegisterAsync():username={username}");
             Dict existingUserByUsername = await this.database.SelectRowAsync(this.userTableName, new Dict {
@@ -398,21 +404,28 @@ namespace Butterfly.Core.Auth {
             });
             if (existingUserByUsername != null) throw new Exception("Username '" + username + "' is unavailable");
 
+            // Validate password
             string password = this.passwordFieldValidator.Validate(registration?.GetAs("password", (string)null));
 
+            // Validate email and phone
             string email = this.emailFieldValidator.Validate(registration?.GetAs(this.userTableEmailFieldName, (string)null));
             string phone = this.phoneFieldValidator.Validate(registration?.GetAs(this.userTablePhoneFieldName, (string)null));
 
+            // Validate first and last name
             string firstName = this.nameFieldValidator.Validate(registration?.GetAs(this.userTableFirstNameFieldName, (string)null));
             string lastName = this.nameFieldValidator.Validate(registration?.GetAs(this.userTableLastNameFieldName, (string)null));
 
+            // Create salt and password hash
             string salt = Guid.NewGuid().ToString();
             string passwordHash = $"{salt} {password}".Hash();
 
+            // Create account
             if (string.IsNullOrEmpty(accountId)) {
-                accountId = await this.database.InsertAndCommitAsync<string>(this.accountTableName);
+                Dict extraAccountInfo = this.getExtraAccountInfo == null ? null : this.getExtraAccountInfo(registration);
+                accountId = await this.database.InsertAndCommitAsync<string>(this.accountTableName, extraAccountInfo);
             }
 
+            // Create user record
             Dict user = new Dict {
                 { this.userTableAccountIdFieldName, accountId },
                 { this.userTableUsernameFieldName, username },
@@ -425,6 +438,10 @@ namespace Butterfly.Core.Auth {
             };
             if (!string.IsNullOrEmpty(this.userTableRoleFieldName) && !string.IsNullOrEmpty(this.defaultRole)) {
                 user[this.userTableRoleFieldName] = this.defaultRole;
+            }
+            Dict extraUserInfo = this.getExtraUserInfo == null ? null : this.getExtraUserInfo(registration);
+            if (extraUserInfo != null) {
+                user.UpdateFrom(extraUserInfo);
             }
             if (string.IsNullOrEmpty(userId)) {
                 userId = await this.database.InsertAndCommitAsync<string>(this.userTableName, user);
