@@ -978,12 +978,12 @@ Base class implementing <a class="xref" href="Butterfly.Core.Database.ITransacti
     <pre><code class="lang-csharp hljs">public void Rollback()</code></pre>
   </div>
   <a id="Butterfly_Core_Database_BaseTransaction_SynchronizeAsync_" data-uid="Butterfly.Core.Database.BaseTransaction.SynchronizeAsync*"></a>
-  <h4 id="Butterfly_Core_Database_BaseTransaction_SynchronizeAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object____System_Collections_Generic_Dictionary_System_String_System_Object____System_String___" data-uid="Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[])">SynchronizeAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;[], System.Collections.Generic.Dictionary&lt;String, Object&gt;[], String[])</h4>
+  <h4 id="Butterfly_Core_Database_BaseTransaction_SynchronizeAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object____System_Collections_Generic_Dictionary_System_String_System_Object____System_String___Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task_System_Int32___" data-uid="Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[],Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task{System.Int32}})">SynchronizeAsync(String, System.Collections.Generic.Dictionary&lt;String, Object&gt;[], System.Collections.Generic.Dictionary&lt;String, Object&gt;[], String[], Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, Task&gt;, Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, Task&lt;Int32&gt;&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; SynchronizeAsync(string tableName, System.Collections.Generic.Dictionary&lt;string, object&gt;[] existingRecords, System.Collections.Generic.Dictionary&lt;string, object&gt;[] newRecords, string[] keyFieldNames = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; SynchronizeAsync(string tableName, System.Collections.Generic.Dictionary&lt;string, object&gt;[] existingRecords, System.Collections.Generic.Dictionary&lt;string, object&gt;[] newRecords, string[] keyFieldNames = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, Task&gt; insertFunc = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, Task&lt;int&gt;&gt; deleteFunc = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1013,6 +1013,16 @@ Base class implementing <a class="xref" href="Butterfly.Core.Database.ITransacti
       <tr>
         <td><span class="xref">System.String</span>[]</td>
         <td><span class="parametername">keyFieldNames</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;, <span class="xref">Task</span>&gt;</td>
+        <td><span class="parametername">insertFunc</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;, <span class="xref">Task</span>&lt;<span class="xref">System.Int32</span>&gt;&gt;</td>
+        <td><span class="parametername">deleteFunc</span></td>
         <td></td>
       </tr>
     </tbody>

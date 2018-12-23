@@ -28,7 +28,6 @@ items:
     content: 'public class InitialEndDataEvent : DataEvent'
     content.vb: >-
       Public Class InitialEndDataEvent
-
           Inherits DataEvent
   inheritance:
   - System.Object

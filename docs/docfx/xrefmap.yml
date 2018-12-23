@@ -324,15 +324,15 @@ references:
   commentId: T:Butterfly.Core.Auth.AuthManager
   fullName: Butterfly.Core.Auth.AuthManager
   nameWithType: AuthManager
-- uid: Butterfly.Core.Auth.AuthManager.#ctor(Butterfly.Core.Database.IDatabase,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,Func{System.String,System.Int32,Task},Func{System.String,System.Int32,Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Action{Version})
-  name: AuthManager(IDatabase, Int32, Int32, Int32, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, Func<String, Int32, Task>, Func<String, Int32, Task>, Func<System.Collections.Generic.Dictionary<String, Object>, Task>, Func<System.Collections.Generic.Dictionary<String, Object>, Task>, Action<Version>)
-  href: api/Butterfly.Core.Auth.AuthManager.html#Butterfly_Core_Auth_AuthManager__ctor_Butterfly_Core_Database_IDatabase_System_Int32_System_Int32_System_Int32_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_Func_System_String_System_Int32_Task__Func_System_String_System_Int32_Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Action_Version__
-  commentId: M:Butterfly.Core.Auth.AuthManager.#ctor(Butterfly.Core.Database.IDatabase,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,Func{System.String,System.Int32,Task},Func{System.String,System.Int32,Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Action{Version})
-  name.vb: AuthManager(IDatabase, Int32, Int32, Int32, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, Func(Of String, Int32, Task), Func(Of String, Int32, Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Action(Of Version))
-  fullName: Butterfly.Core.Auth.AuthManager.AuthManager(Butterfly.Core.Database.IDatabase, System.Int32, System.Int32, System.Int32, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, Func<System.String, System.Int32, Task>, Func<System.String, System.Int32, Task>, Func<System.Collections.Generic.Dictionary<System.String, System.Object>, Task>, Func<System.Collections.Generic.Dictionary<System.String, System.Object>, Task>, Action<Version>)
-  fullName.vb: Butterfly.Core.Auth.AuthManager.AuthManager(Butterfly.Core.Database.IDatabase, System.Int32, System.Int32, System.Int32, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, Func(Of System.String, System.Int32, Task), Func(Of System.String, System.Int32, Task), Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), Task), Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), Task), Action(Of Version))
-  nameWithType: AuthManager.AuthManager(IDatabase, Int32, Int32, Int32, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, Func<String, Int32, Task>, Func<String, Int32, Task>, Func<System.Collections.Generic.Dictionary<String, Object>, Task>, Func<System.Collections.Generic.Dictionary<String, Object>, Task>, Action<Version>)
-  nameWithType.vb: AuthManager.AuthManager(IDatabase, Int32, Int32, Int32, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, Func(Of String, Int32, Task), Func(Of String, Int32, Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Action(Of Version))
+- uid: Butterfly.Core.Auth.AuthManager.#ctor(Butterfly.Core.Database.IDatabase,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Object}},Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Object}},Func{System.String,System.Int32,Task},Func{System.String,System.Int32,Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Action{Version})
+  name: AuthManager(IDatabase, Int32, Int32, Int32, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, Func<System.Collections.Generic.Dictionary<String, Object>, System.Collections.Generic.Dictionary<String, Object>>, Func<System.Collections.Generic.Dictionary<String, Object>, System.Collections.Generic.Dictionary<String, Object>>, Func<String, Int32, Task>, Func<String, Int32, Task>, Func<System.Collections.Generic.Dictionary<String, Object>, Task>, Func<System.Collections.Generic.Dictionary<String, Object>, Task>, Action<Version>)
+  href: api/Butterfly.Core.Auth.AuthManager.html#Butterfly_Core_Auth_AuthManager__ctor_Butterfly_Core_Database_IDatabase_System_Int32_System_Int32_System_Int32_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_Func_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Object___Func_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Object___Func_System_String_System_Int32_Task__Func_System_String_System_Int32_Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Action_Version__
+  commentId: M:Butterfly.Core.Auth.AuthManager.#ctor(Butterfly.Core.Database.IDatabase,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Object}},Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Object}},Func{System.String,System.Int32,Task},Func{System.String,System.Int32,Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Action{Version})
+  name.vb: AuthManager(IDatabase, Int32, Int32, Int32, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, Func(Of System.Collections.Generic.Dictionary(Of String, Object), System.Collections.Generic.Dictionary(Of String, Object)), Func(Of System.Collections.Generic.Dictionary(Of String, Object), System.Collections.Generic.Dictionary(Of String, Object)), Func(Of String, Int32, Task), Func(Of String, Int32, Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Action(Of Version))
+  fullName: Butterfly.Core.Auth.AuthManager.AuthManager(Butterfly.Core.Database.IDatabase, System.Int32, System.Int32, System.Int32, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, Func<System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String, System.Object>>, Func<System.Collections.Generic.Dictionary<System.String, System.Object>, System.Collections.Generic.Dictionary<System.String, System.Object>>, Func<System.String, System.Int32, Task>, Func<System.String, System.Int32, Task>, Func<System.Collections.Generic.Dictionary<System.String, System.Object>, Task>, Func<System.Collections.Generic.Dictionary<System.String, System.Object>, Task>, Action<Version>)
+  fullName.vb: Butterfly.Core.Auth.AuthManager.AuthManager(Butterfly.Core.Database.IDatabase, System.Int32, System.Int32, System.Int32, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, System.String, Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String, System.Object)), Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), System.Collections.Generic.Dictionary(Of System.String, System.Object)), Func(Of System.String, System.Int32, Task), Func(Of System.String, System.Int32, Task), Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), Task), Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), Task), Action(Of Version))
+  nameWithType: AuthManager.AuthManager(IDatabase, Int32, Int32, Int32, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, Func<System.Collections.Generic.Dictionary<String, Object>, System.Collections.Generic.Dictionary<String, Object>>, Func<System.Collections.Generic.Dictionary<String, Object>, System.Collections.Generic.Dictionary<String, Object>>, Func<String, Int32, Task>, Func<String, Int32, Task>, Func<System.Collections.Generic.Dictionary<String, Object>, Task>, Func<System.Collections.Generic.Dictionary<String, Object>, Task>, Action<Version>)
+  nameWithType.vb: AuthManager.AuthManager(IDatabase, Int32, Int32, Int32, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, Func(Of System.Collections.Generic.Dictionary(Of String, Object), System.Collections.Generic.Dictionary(Of String, Object)), Func(Of System.Collections.Generic.Dictionary(Of String, Object), System.Collections.Generic.Dictionary(Of String, Object)), Func(Of String, Int32, Task), Func(Of String, Int32, Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Action(Of Version))
 - uid: Butterfly.Core.Auth.AuthManager.#ctor*
   name: AuthManager
   href: api/Butterfly.Core.Auth.AuthManager.html#Butterfly_Core_Auth_AuthManager__ctor_
@@ -466,6 +466,31 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Auth.AuthManager.ForgotPasswordAsync
   nameWithType: AuthManager.ForgotPasswordAsync
+- uid: Butterfly.Core.Auth.AuthManager.getExtraAccountInfo
+  name: getExtraAccountInfo
+  href: api/Butterfly.Core.Auth.AuthManager.html#Butterfly_Core_Auth_AuthManager_getExtraAccountInfo
+  commentId: F:Butterfly.Core.Auth.AuthManager.getExtraAccountInfo
+  fullName: Butterfly.Core.Auth.AuthManager.getExtraAccountInfo
+  nameWithType: AuthManager.getExtraAccountInfo
+- uid: Butterfly.Core.Auth.AuthManager.getExtraUserInfo
+  name: getExtraUserInfo
+  href: api/Butterfly.Core.Auth.AuthManager.html#Butterfly_Core_Auth_AuthManager_getExtraUserInfo
+  commentId: F:Butterfly.Core.Auth.AuthManager.getExtraUserInfo
+  fullName: Butterfly.Core.Auth.AuthManager.getExtraUserInfo
+  nameWithType: AuthManager.getExtraUserInfo
+- uid: Butterfly.Core.Auth.AuthManager.GetUserRefToken(Butterfly.Core.Util.IWebRequest)
+  name: GetUserRefToken(IWebRequest)
+  href: api/Butterfly.Core.Auth.AuthManager.html#Butterfly_Core_Auth_AuthManager_GetUserRefToken_Butterfly_Core_Util_IWebRequest_
+  commentId: M:Butterfly.Core.Auth.AuthManager.GetUserRefToken(Butterfly.Core.Util.IWebRequest)
+  fullName: Butterfly.Core.Auth.AuthManager.GetUserRefToken(Butterfly.Core.Util.IWebRequest)
+  nameWithType: AuthManager.GetUserRefToken(IWebRequest)
+- uid: Butterfly.Core.Auth.AuthManager.GetUserRefToken*
+  name: GetUserRefToken
+  href: api/Butterfly.Core.Auth.AuthManager.html#Butterfly_Core_Auth_AuthManager_GetUserRefToken_
+  commentId: Overload:Butterfly.Core.Auth.AuthManager.GetUserRefToken
+  isSpec: "True"
+  fullName: Butterfly.Core.Auth.AuthManager.GetUserRefToken
+  nameWithType: AuthManager.GetUserRefToken
 - uid: Butterfly.Core.Auth.AuthManager.logger
   name: logger
   href: api/Butterfly.Core.Auth.AuthManager.html#Butterfly_Core_Auth_AuthManager_logger
@@ -3047,15 +3072,15 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Database.BaseTransaction.Rollback
   nameWithType: BaseTransaction.Rollback
-- uid: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[])
-  name: SynchronizeAsync(String, System.Collections.Generic.Dictionary<String, Object>[], System.Collections.Generic.Dictionary<String, Object>[], String[])
-  href: api/Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_SynchronizeAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object____System_Collections_Generic_Dictionary_System_String_System_Object____System_String___
-  commentId: M:Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[])
-  name.vb: SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of String, Object)(), System.Collections.Generic.Dictionary(Of String, Object)(), String())
-  fullName: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>[], System.Collections.Generic.Dictionary<System.String, System.Object>[], System.String[])
-  fullName.vb: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object)(), System.Collections.Generic.Dictionary(Of System.String, System.Object)(), System.String())
-  nameWithType: BaseTransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary<String, Object>[], System.Collections.Generic.Dictionary<String, Object>[], String[])
-  nameWithType.vb: BaseTransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of String, Object)(), System.Collections.Generic.Dictionary(Of String, Object)(), String())
+- uid: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[],Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task{System.Int32}})
+  name: SynchronizeAsync(String, System.Collections.Generic.Dictionary<String, Object>[], System.Collections.Generic.Dictionary<String, Object>[], String[], Func<System.Collections.Generic.Dictionary<String, Object>, Task>, Func<System.Collections.Generic.Dictionary<String, Object>, Task<Int32>>)
+  href: api/Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_SynchronizeAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object____System_Collections_Generic_Dictionary_System_String_System_Object____System_String___Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task_System_Int32___
+  commentId: M:Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[],Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task{System.Int32}})
+  name.vb: SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of String, Object)(), System.Collections.Generic.Dictionary(Of String, Object)(), String(), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task(Of Int32)))
+  fullName: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>[], System.Collections.Generic.Dictionary<System.String, System.Object>[], System.String[], Func<System.Collections.Generic.Dictionary<System.String, System.Object>, Task>, Func<System.Collections.Generic.Dictionary<System.String, System.Object>, Task<System.Int32>>)
+  fullName.vb: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object)(), System.Collections.Generic.Dictionary(Of System.String, System.Object)(), System.String(), Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), Task), Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), Task(Of System.Int32)))
+  nameWithType: BaseTransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary<String, Object>[], System.Collections.Generic.Dictionary<String, Object>[], String[], Func<System.Collections.Generic.Dictionary<String, Object>, Task>, Func<System.Collections.Generic.Dictionary<String, Object>, Task<Int32>>)
+  nameWithType.vb: BaseTransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of String, Object)(), System.Collections.Generic.Dictionary(Of String, Object)(), String(), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task(Of Int32)))
 - uid: Butterfly.Core.Database.BaseTransaction.SynchronizeAsync*
   name: SynchronizeAsync
   href: api/Butterfly.Core.Database.BaseTransaction.html#Butterfly_Core_Database_BaseTransaction_SynchronizeAsync_
@@ -5000,15 +5025,15 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Database.ITransaction.Rollback
   nameWithType: ITransaction.Rollback
-- uid: Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[])
-  name: SynchronizeAsync(String, System.Collections.Generic.Dictionary<String, Object>[], System.Collections.Generic.Dictionary<String, Object>[], String[])
-  href: api/Butterfly.Core.Database.ITransaction.html#Butterfly_Core_Database_ITransaction_SynchronizeAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object____System_Collections_Generic_Dictionary_System_String_System_Object____System_String___
-  commentId: M:Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[])
-  name.vb: SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of String, Object)(), System.Collections.Generic.Dictionary(Of String, Object)(), String())
-  fullName: Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>[], System.Collections.Generic.Dictionary<System.String, System.Object>[], System.String[])
-  fullName.vb: Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object)(), System.Collections.Generic.Dictionary(Of System.String, System.Object)(), System.String())
-  nameWithType: ITransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary<String, Object>[], System.Collections.Generic.Dictionary<String, Object>[], String[])
-  nameWithType.vb: ITransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of String, Object)(), System.Collections.Generic.Dictionary(Of String, Object)(), String())
+- uid: Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[],Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task{System.Int32}})
+  name: SynchronizeAsync(String, System.Collections.Generic.Dictionary<String, Object>[], System.Collections.Generic.Dictionary<String, Object>[], String[], Func<System.Collections.Generic.Dictionary<String, Object>, Task>, Func<System.Collections.Generic.Dictionary<String, Object>, Task<Int32>>)
+  href: api/Butterfly.Core.Database.ITransaction.html#Butterfly_Core_Database_ITransaction_SynchronizeAsync_System_String_System_Collections_Generic_Dictionary_System_String_System_Object____System_Collections_Generic_Dictionary_System_String_System_Object____System_String___Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task_System_Int32___
+  commentId: M:Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[],Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task{System.Int32}})
+  name.vb: SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of String, Object)(), System.Collections.Generic.Dictionary(Of String, Object)(), String(), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task(Of Int32)))
+  fullName: Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>[], System.Collections.Generic.Dictionary<System.String, System.Object>[], System.String[], Func<System.Collections.Generic.Dictionary<System.String, System.Object>, Task>, Func<System.Collections.Generic.Dictionary<System.String, System.Object>, Task<System.Int32>>)
+  fullName.vb: Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object)(), System.Collections.Generic.Dictionary(Of System.String, System.Object)(), System.String(), Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), Task), Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), Task(Of System.Int32)))
+  nameWithType: ITransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary<String, Object>[], System.Collections.Generic.Dictionary<String, Object>[], String[], Func<System.Collections.Generic.Dictionary<String, Object>, Task>, Func<System.Collections.Generic.Dictionary<String, Object>, Task<Int32>>)
+  nameWithType.vb: ITransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of String, Object)(), System.Collections.Generic.Dictionary(Of String, Object)(), String(), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task(Of Int32)))
 - uid: Butterfly.Core.Database.ITransaction.SynchronizeAsync*
   name: SynchronizeAsync
   href: api/Butterfly.Core.Database.ITransaction.html#Butterfly_Core_Database_ITransaction_SynchronizeAsync_
@@ -7538,68 +7563,6 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Util.Field.IFieldValidator.Validate
   nameWithType: IFieldValidator.Validate
-- uid: Butterfly.Core.Util.Field.NameFieldValidator
-  name: NameFieldValidator
-  href: api/Butterfly.Core.Util.Field.NameFieldValidator.html
-  commentId: T:Butterfly.Core.Util.Field.NameFieldValidator
-  fullName: Butterfly.Core.Util.Field.NameFieldValidator
-  nameWithType: NameFieldValidator
-- uid: Butterfly.Core.Util.Field.NameFieldValidator.#ctor(System.String,System.Boolean,System.Boolean,System.Int32)
-  name: NameFieldValidator(String, Boolean, Boolean, Int32)
-  href: api/Butterfly.Core.Util.Field.NameFieldValidator.html#Butterfly_Core_Util_Field_NameFieldValidator__ctor_System_String_System_Boolean_System_Boolean_System_Int32_
-  commentId: M:Butterfly.Core.Util.Field.NameFieldValidator.#ctor(System.String,System.Boolean,System.Boolean,System.Int32)
-  fullName: Butterfly.Core.Util.Field.NameFieldValidator.NameFieldValidator(System.String, System.Boolean, System.Boolean, System.Int32)
-  nameWithType: NameFieldValidator.NameFieldValidator(String, Boolean, Boolean, Int32)
-- uid: Butterfly.Core.Util.Field.NameFieldValidator.#ctor*
-  name: NameFieldValidator
-  href: api/Butterfly.Core.Util.Field.NameFieldValidator.html#Butterfly_Core_Util_Field_NameFieldValidator__ctor_
-  commentId: Overload:Butterfly.Core.Util.Field.NameFieldValidator.#ctor
-  isSpec: "True"
-  fullName: Butterfly.Core.Util.Field.NameFieldValidator.NameFieldValidator
-  nameWithType: NameFieldValidator.NameFieldValidator
-- uid: Butterfly.Core.Util.Field.NameFieldValidator.allowNull
-  name: allowNull
-  href: api/Butterfly.Core.Util.Field.NameFieldValidator.html#Butterfly_Core_Util_Field_NameFieldValidator_allowNull
-  commentId: F:Butterfly.Core.Util.Field.NameFieldValidator.allowNull
-  fullName: Butterfly.Core.Util.Field.NameFieldValidator.allowNull
-  nameWithType: NameFieldValidator.allowNull
-- uid: Butterfly.Core.Util.Field.NameFieldValidator.logger
-  name: logger
-  href: api/Butterfly.Core.Util.Field.NameFieldValidator.html#Butterfly_Core_Util_Field_NameFieldValidator_logger
-  commentId: F:Butterfly.Core.Util.Field.NameFieldValidator.logger
-  fullName: Butterfly.Core.Util.Field.NameFieldValidator.logger
-  nameWithType: NameFieldValidator.logger
-- uid: Butterfly.Core.Util.Field.NameFieldValidator.maxLength
-  name: maxLength
-  href: api/Butterfly.Core.Util.Field.NameFieldValidator.html#Butterfly_Core_Util_Field_NameFieldValidator_maxLength
-  commentId: F:Butterfly.Core.Util.Field.NameFieldValidator.maxLength
-  fullName: Butterfly.Core.Util.Field.NameFieldValidator.maxLength
-  nameWithType: NameFieldValidator.maxLength
-- uid: Butterfly.Core.Util.Field.NameFieldValidator.name
-  name: name
-  href: api/Butterfly.Core.Util.Field.NameFieldValidator.html#Butterfly_Core_Util_Field_NameFieldValidator_name
-  commentId: F:Butterfly.Core.Util.Field.NameFieldValidator.name
-  fullName: Butterfly.Core.Util.Field.NameFieldValidator.name
-  nameWithType: NameFieldValidator.name
-- uid: Butterfly.Core.Util.Field.NameFieldValidator.trim
-  name: trim
-  href: api/Butterfly.Core.Util.Field.NameFieldValidator.html#Butterfly_Core_Util_Field_NameFieldValidator_trim
-  commentId: F:Butterfly.Core.Util.Field.NameFieldValidator.trim
-  fullName: Butterfly.Core.Util.Field.NameFieldValidator.trim
-  nameWithType: NameFieldValidator.trim
-- uid: Butterfly.Core.Util.Field.NameFieldValidator.Validate(System.String)
-  name: Validate(String)
-  href: api/Butterfly.Core.Util.Field.NameFieldValidator.html#Butterfly_Core_Util_Field_NameFieldValidator_Validate_System_String_
-  commentId: M:Butterfly.Core.Util.Field.NameFieldValidator.Validate(System.String)
-  fullName: Butterfly.Core.Util.Field.NameFieldValidator.Validate(System.String)
-  nameWithType: NameFieldValidator.Validate(String)
-- uid: Butterfly.Core.Util.Field.NameFieldValidator.Validate*
-  name: Validate
-  href: api/Butterfly.Core.Util.Field.NameFieldValidator.html#Butterfly_Core_Util_Field_NameFieldValidator_Validate_
-  commentId: Overload:Butterfly.Core.Util.Field.NameFieldValidator.Validate
-  isSpec: "True"
-  fullName: Butterfly.Core.Util.Field.NameFieldValidator.Validate
-  nameWithType: NameFieldValidator.Validate
 - uid: Butterfly.Core.Util.Field.PhoneFieldValidator
   name: PhoneFieldValidator
   href: api/Butterfly.Core.Util.Field.PhoneFieldValidator.html
@@ -7625,6 +7588,19 @@ references:
   commentId: F:Butterfly.Core.Util.Field.PhoneFieldValidator.allowNull
   fullName: Butterfly.Core.Util.Field.PhoneFieldValidator.allowNull
   nameWithType: PhoneFieldValidator.allowNull
+- uid: Butterfly.Core.Util.Field.PhoneFieldValidator.Format(System.String)
+  name: Format(String)
+  href: api/Butterfly.Core.Util.Field.PhoneFieldValidator.html#Butterfly_Core_Util_Field_PhoneFieldValidator_Format_System_String_
+  commentId: M:Butterfly.Core.Util.Field.PhoneFieldValidator.Format(System.String)
+  fullName: Butterfly.Core.Util.Field.PhoneFieldValidator.Format(System.String)
+  nameWithType: PhoneFieldValidator.Format(String)
+- uid: Butterfly.Core.Util.Field.PhoneFieldValidator.Format*
+  name: Format
+  href: api/Butterfly.Core.Util.Field.PhoneFieldValidator.html#Butterfly_Core_Util_Field_PhoneFieldValidator_Format_
+  commentId: Overload:Butterfly.Core.Util.Field.PhoneFieldValidator.Format
+  isSpec: "True"
+  fullName: Butterfly.Core.Util.Field.PhoneFieldValidator.Format
+  nameWithType: PhoneFieldValidator.Format
 - uid: Butterfly.Core.Util.Field.PhoneFieldValidator.logger
   name: logger
   href: api/Butterfly.Core.Util.Field.PhoneFieldValidator.html#Butterfly_Core_Util_Field_PhoneFieldValidator_logger
@@ -7643,6 +7619,12 @@ references:
   commentId: F:Butterfly.Core.Util.Field.PhoneFieldValidator.NON_PHONE_CHARS
   fullName: Butterfly.Core.Util.Field.PhoneFieldValidator.NON_PHONE_CHARS
   nameWithType: PhoneFieldValidator.NON_PHONE_CHARS
+- uid: Butterfly.Core.Util.Field.PhoneFieldValidator.PHONE_NUMBER_UTIL
+  name: PHONE_NUMBER_UTIL
+  href: api/Butterfly.Core.Util.Field.PhoneFieldValidator.html#Butterfly_Core_Util_Field_PhoneFieldValidator_PHONE_NUMBER_UTIL
+  commentId: F:Butterfly.Core.Util.Field.PhoneFieldValidator.PHONE_NUMBER_UTIL
+  fullName: Butterfly.Core.Util.Field.PhoneFieldValidator.PHONE_NUMBER_UTIL
+  nameWithType: PhoneFieldValidator.PHONE_NUMBER_UTIL
 - uid: Butterfly.Core.Util.Field.PhoneFieldValidator.Validate(System.String)
   name: Validate(String)
   href: api/Butterfly.Core.Util.Field.PhoneFieldValidator.html#Butterfly_Core_Util_Field_PhoneFieldValidator_Validate_System_String_
@@ -7656,6 +7638,86 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Util.Field.PhoneFieldValidator.Validate
   nameWithType: PhoneFieldValidator.Validate
+- uid: Butterfly.Core.Util.Field.TextFieldValidator
+  name: TextFieldValidator
+  href: api/Butterfly.Core.Util.Field.TextFieldValidator.html
+  commentId: T:Butterfly.Core.Util.Field.TextFieldValidator
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator
+  nameWithType: TextFieldValidator
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.String)
+  name: TextFieldValidator(String, Boolean, Boolean, Boolean, Boolean, Int32, String)
+  href: api/Butterfly.Core.Util.Field.TextFieldValidator.html#Butterfly_Core_Util_Field_TextFieldValidator__ctor_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_System_String_
+  commentId: M:Butterfly.Core.Util.Field.TextFieldValidator.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.String)
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.TextFieldValidator(System.String, System.Boolean, System.Boolean, System.Boolean, System.Boolean, System.Int32, System.String)
+  nameWithType: TextFieldValidator.TextFieldValidator(String, Boolean, Boolean, Boolean, Boolean, Int32, String)
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.#ctor*
+  name: TextFieldValidator
+  href: api/Butterfly.Core.Util.Field.TextFieldValidator.html#Butterfly_Core_Util_Field_TextFieldValidator__ctor_
+  commentId: Overload:Butterfly.Core.Util.Field.TextFieldValidator.#ctor
+  isSpec: "True"
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.TextFieldValidator
+  nameWithType: TextFieldValidator.TextFieldValidator
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.allowNull
+  name: allowNull
+  href: api/Butterfly.Core.Util.Field.TextFieldValidator.html#Butterfly_Core_Util_Field_TextFieldValidator_allowNull
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.allowNull
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.allowNull
+  nameWithType: TextFieldValidator.allowNull
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.forceLower
+  name: forceLower
+  href: api/Butterfly.Core.Util.Field.TextFieldValidator.html#Butterfly_Core_Util_Field_TextFieldValidator_forceLower
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.forceLower
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.forceLower
+  nameWithType: TextFieldValidator.forceLower
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.forceUpper
+  name: forceUpper
+  href: api/Butterfly.Core.Util.Field.TextFieldValidator.html#Butterfly_Core_Util_Field_TextFieldValidator_forceUpper
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.forceUpper
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.forceUpper
+  nameWithType: TextFieldValidator.forceUpper
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.logger
+  name: logger
+  href: api/Butterfly.Core.Util.Field.TextFieldValidator.html#Butterfly_Core_Util_Field_TextFieldValidator_logger
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.logger
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.logger
+  nameWithType: TextFieldValidator.logger
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.maxLength
+  name: maxLength
+  href: api/Butterfly.Core.Util.Field.TextFieldValidator.html#Butterfly_Core_Util_Field_TextFieldValidator_maxLength
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.maxLength
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.maxLength
+  nameWithType: TextFieldValidator.maxLength
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.name
+  name: name
+  href: api/Butterfly.Core.Util.Field.TextFieldValidator.html#Butterfly_Core_Util_Field_TextFieldValidator_name
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.name
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.name
+  nameWithType: TextFieldValidator.name
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.trim
+  name: trim
+  href: api/Butterfly.Core.Util.Field.TextFieldValidator.html#Butterfly_Core_Util_Field_TextFieldValidator_trim
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.trim
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.trim
+  nameWithType: TextFieldValidator.trim
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.Validate(System.String)
+  name: Validate(String)
+  href: api/Butterfly.Core.Util.Field.TextFieldValidator.html#Butterfly_Core_Util_Field_TextFieldValidator_Validate_System_String_
+  commentId: M:Butterfly.Core.Util.Field.TextFieldValidator.Validate(System.String)
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.Validate(System.String)
+  nameWithType: TextFieldValidator.Validate(String)
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.Validate*
+  name: Validate
+  href: api/Butterfly.Core.Util.Field.TextFieldValidator.html#Butterfly_Core_Util_Field_TextFieldValidator_Validate_
+  commentId: Overload:Butterfly.Core.Util.Field.TextFieldValidator.Validate
+  isSpec: "True"
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.Validate
+  nameWithType: TextFieldValidator.Validate
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.validRegex
+  name: validRegex
+  href: api/Butterfly.Core.Util.Field.TextFieldValidator.html#Butterfly_Core_Util_Field_TextFieldValidator_validRegex
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.validRegex
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.validRegex
+  nameWithType: TextFieldValidator.validRegex
 - uid: Butterfly.Core.Util.FileX
   name: FileX
   href: api/Butterfly.Core.Util.FileX.html
@@ -8448,6 +8510,25 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Util.SecureUtil.CreateFromFiles
   nameWithType: SecureUtil.CreateFromFiles
+- uid: Butterfly.Core.Util.SlugUtil
+  name: SlugUtil
+  href: api/Butterfly.Core.Util.SlugUtil.html
+  commentId: T:Butterfly.Core.Util.SlugUtil
+  fullName: Butterfly.Core.Util.SlugUtil
+  nameWithType: SlugUtil
+- uid: Butterfly.Core.Util.SlugUtil.Slugify(System.String,System.Boolean)
+  name: Slugify(String, Boolean)
+  href: api/Butterfly.Core.Util.SlugUtil.html#Butterfly_Core_Util_SlugUtil_Slugify_System_String_System_Boolean_
+  commentId: M:Butterfly.Core.Util.SlugUtil.Slugify(System.String,System.Boolean)
+  fullName: Butterfly.Core.Util.SlugUtil.Slugify(System.String, System.Boolean)
+  nameWithType: SlugUtil.Slugify(String, Boolean)
+- uid: Butterfly.Core.Util.SlugUtil.Slugify*
+  name: Slugify
+  href: api/Butterfly.Core.Util.SlugUtil.html#Butterfly_Core_Util_SlugUtil_Slugify_
+  commentId: Overload:Butterfly.Core.Util.SlugUtil.Slugify
+  isSpec: "True"
+  fullName: Butterfly.Core.Util.SlugUtil.Slugify
+  nameWithType: SlugUtil.Slugify
 - uid: Butterfly.Core.Util.StringX
   name: StringX
   href: api/Butterfly.Core.Util.StringX.html

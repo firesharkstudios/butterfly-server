@@ -35,7 +35,6 @@ items:
     content: 'public class UserRefToken : AuthToken'
     content.vb: >-
       Public Class UserRefToken
-
           Inherits AuthToken
   inheritance:
   - System.Object

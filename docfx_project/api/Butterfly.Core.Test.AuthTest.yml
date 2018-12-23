@@ -30,7 +30,6 @@ items:
     content: 'public class AuthTest : object'
     content.vb: >-
       Public Class AuthTest
-
           Inherits Object
   inheritance:
   - System.Object

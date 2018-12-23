@@ -34,9 +34,7 @@ items:
     content: 'public class RedHttpServerWebRequest : BaseHttpRequest, IHttpRequest, IWebRequest'
     content.vb: >-
       Public Class RedHttpServerWebRequest
-
           Inherits BaseHttpRequest
-
           Implements IHttpRequest, IWebRequest
   inheritance:
   - System.Object

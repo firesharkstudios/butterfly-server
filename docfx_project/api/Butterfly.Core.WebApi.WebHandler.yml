@@ -32,7 +32,6 @@ items:
     content: 'public class WebHandler : object'
     content.vb: >-
       Public Class WebHandler
-
           Inherits Object
   inheritance:
   - System.Object

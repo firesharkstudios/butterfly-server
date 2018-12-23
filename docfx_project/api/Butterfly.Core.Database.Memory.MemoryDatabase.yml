@@ -35,14 +35,13 @@ items:
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Memory
+  summary: "\nBase class implementing <xref href=\"Butterfly.Core.Database.IDatabase\" data-throw-if-not-resolved=\"false\"></xref>. New implementations will normally extend this class.\n"
   example: []
   syntax:
     content: 'public class MemoryDatabase : BaseDatabase, IDatabase'
     content.vb: >-
       Public Class MemoryDatabase
-
           Inherits BaseDatabase
-
           Implements IDatabase
   inheritance:
   - System.Object

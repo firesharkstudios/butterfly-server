@@ -29,7 +29,6 @@ items:
     content: 'public static class IHttpResponseX : object'
     content.vb: >-
       Public Module IHttpResponseX
-
           Inherits Object
   inheritance:
   - System.Object

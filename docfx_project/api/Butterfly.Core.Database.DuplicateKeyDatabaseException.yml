@@ -28,7 +28,6 @@ items:
     content: 'public class DuplicateKeyDatabaseException : DatabaseException'
     content.vb: >-
       Public Class DuplicateKeyDatabaseException
-
           Inherits DatabaseException
   inheritance:
   - System.Object

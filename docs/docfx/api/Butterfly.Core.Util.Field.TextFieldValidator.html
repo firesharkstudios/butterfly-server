@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class PhoneFieldValidator
+    <title>Class TextFieldValidator
    | Butterfly Server .NET API Documentation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class PhoneFieldValidator
+    <meta name="title" content="Class TextFieldValidator
    | Butterfly Server .NET API Documentation ">
     <meta name="generator" content="docfx 2.38.1.0">
     
@@ -68,17 +68,17 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Butterfly.Core.Util.Field.PhoneFieldValidator">
+            <article class="content wrap" id="_content" data-uid="Butterfly.Core.Util.Field.TextFieldValidator">
   
   
-  <h1 id="Butterfly_Core_Util_Field_PhoneFieldValidator" data-uid="Butterfly.Core.Util.Field.PhoneFieldValidator" class="text-break">Class PhoneFieldValidator
+  <h1 id="Butterfly_Core_Util_Field_TextFieldValidator" data-uid="Butterfly.Core.Util.Field.TextFieldValidator" class="text-break">Class TextFieldValidator
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">PhoneFieldValidator</span></div>
+    <div class="level1"><span class="xref">TextFieldValidator</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
@@ -86,19 +86,19 @@
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Butterfly.Core.Util.Field.html">Butterfly.Core.Util.Field</a></h6>
   <h6><strong>Assembly</strong>: Butterfly.Core.dll</h6>
-  <h5 id="Butterfly_Core_Util_Field_PhoneFieldValidator_syntax">Syntax</h5>
+  <h5 id="Butterfly_Core_Util_Field_TextFieldValidator_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PhoneFieldValidator : object, IFieldValidator</code></pre>
+    <pre><code class="lang-csharp hljs">public class TextFieldValidator : object, IFieldValidator</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
-  <a id="Butterfly_Core_Util_Field_PhoneFieldValidator__ctor_" data-uid="Butterfly.Core.Util.Field.PhoneFieldValidator.#ctor*"></a>
-  <h4 id="Butterfly_Core_Util_Field_PhoneFieldValidator__ctor_System_String_System_Boolean_" data-uid="Butterfly.Core.Util.Field.PhoneFieldValidator.#ctor(System.String,System.Boolean)">PhoneFieldValidator(String, Boolean)</h4>
+  <a id="Butterfly_Core_Util_Field_TextFieldValidator__ctor_" data-uid="Butterfly.Core.Util.Field.TextFieldValidator.#ctor*"></a>
+  <h4 id="Butterfly_Core_Util_Field_TextFieldValidator__ctor_System_String_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Int32_System_String_" data-uid="Butterfly.Core.Util.Field.TextFieldValidator.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.String)">TextFieldValidator(String, Boolean, Boolean, Boolean, Boolean, Int32, String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PhoneFieldValidator(string name, bool allowNull = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public TextFieldValidator(string name, bool allowNull = true, bool trim = true, bool forceLower = false, bool forceUpper = false, int maxLength = 25, string validRegex = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -120,11 +120,36 @@
         <td><span class="parametername">allowNull</span></td>
         <td></td>
       </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">trim</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">forceLower</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">forceUpper</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">maxLength</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">validRegex</span></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
   <h3 id="fields">Fields
   </h3>
-  <h4 id="Butterfly_Core_Util_Field_PhoneFieldValidator_allowNull" data-uid="Butterfly.Core.Util.Field.PhoneFieldValidator.allowNull">allowNull</h4>
+  <h4 id="Butterfly_Core_Util_Field_TextFieldValidator_allowNull" data-uid="Butterfly.Core.Util.Field.TextFieldValidator.allowNull">allowNull</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -146,7 +171,51 @@
       </tr>
     </tbody>
   </table>
-  <h4 id="Butterfly_Core_Util_Field_PhoneFieldValidator_logger" data-uid="Butterfly.Core.Util.Field.PhoneFieldValidator.logger">logger</h4>
+  <h4 id="Butterfly_Core_Util_Field_TextFieldValidator_forceLower" data-uid="Butterfly.Core.Util.Field.TextFieldValidator.forceLower">forceLower</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly bool forceLower</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Util_Field_TextFieldValidator_forceUpper" data-uid="Butterfly.Core.Util.Field.TextFieldValidator.forceUpper">forceUpper</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly bool forceUpper</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Util_Field_TextFieldValidator_logger" data-uid="Butterfly.Core.Util.Field.TextFieldValidator.logger">logger</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -168,7 +237,29 @@
       </tr>
     </tbody>
   </table>
-  <h4 id="Butterfly_Core_Util_Field_PhoneFieldValidator_name" data-uid="Butterfly.Core.Util.Field.PhoneFieldValidator.name">name</h4>
+  <h4 id="Butterfly_Core_Util_Field_TextFieldValidator_maxLength" data-uid="Butterfly.Core.Util.Field.TextFieldValidator.maxLength">maxLength</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly int maxLength</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Util_Field_TextFieldValidator_name" data-uid="Butterfly.Core.Util.Field.TextFieldValidator.name">name</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -190,12 +281,34 @@
       </tr>
     </tbody>
   </table>
-  <h4 id="Butterfly_Core_Util_Field_PhoneFieldValidator_NON_PHONE_CHARS" data-uid="Butterfly.Core.Util.Field.PhoneFieldValidator.NON_PHONE_CHARS">NON_PHONE_CHARS</h4>
+  <h4 id="Butterfly_Core_Util_Field_TextFieldValidator_trim" data-uid="Butterfly.Core.Util.Field.TextFieldValidator.trim">trim</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static readonly Regex NON_PHONE_CHARS</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly bool trim</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Util_Field_TextFieldValidator_validRegex" data-uid="Butterfly.Core.Util.Field.TextFieldValidator.validRegex">validRegex</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Regex validRegex</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -212,72 +325,10 @@
       </tr>
     </tbody>
   </table>
-  <h4 id="Butterfly_Core_Util_Field_PhoneFieldValidator_PHONE_NUMBER_UTIL" data-uid="Butterfly.Core.Util.Field.PhoneFieldValidator.PHONE_NUMBER_UTIL">PHONE_NUMBER_UTIL</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static readonly PhoneNumberUtil PHONE_NUMBER_UTIL</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">PhoneNumberUtil</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="methods">Methods
   </h3>
-  <a id="Butterfly_Core_Util_Field_PhoneFieldValidator_Format_" data-uid="Butterfly.Core.Util.Field.PhoneFieldValidator.Format*"></a>
-  <h4 id="Butterfly_Core_Util_Field_PhoneFieldValidator_Format_System_String_" data-uid="Butterfly.Core.Util.Field.PhoneFieldValidator.Format(System.String)">Format(String)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string Format(string value)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">value</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <a id="Butterfly_Core_Util_Field_PhoneFieldValidator_Validate_" data-uid="Butterfly.Core.Util.Field.PhoneFieldValidator.Validate*"></a>
-  <h4 id="Butterfly_Core_Util_Field_PhoneFieldValidator_Validate_System_String_" data-uid="Butterfly.Core.Util.Field.PhoneFieldValidator.Validate(System.String)">Validate(String)</h4>
+  <a id="Butterfly_Core_Util_Field_TextFieldValidator_Validate_" data-uid="Butterfly.Core.Util.Field.TextFieldValidator.Validate*"></a>
+  <h4 id="Butterfly_Core_Util_Field_TextFieldValidator_Validate_System_String_" data-uid="Butterfly.Core.Util.Field.TextFieldValidator.Validate(System.String)">Validate(String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>

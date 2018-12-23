@@ -28,7 +28,6 @@ items:
     content: 'public class ChannelUnitTest : object'
     content.vb: >-
       Public Class ChannelUnitTest
-
           Inherits Object
   inheritance:
   - System.Object

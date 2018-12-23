@@ -28,7 +28,6 @@ items:
     content: 'public class WebApiUnitTest : object'
     content.vb: >-
       Public Class WebApiUnitTest
-
           Inherits Object
   inheritance:
   - System.Object

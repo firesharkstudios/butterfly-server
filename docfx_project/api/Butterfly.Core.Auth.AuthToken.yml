@@ -23,7 +23,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: AuthToken
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 650
+    startLine: 676
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -33,7 +33,6 @@ items:
     content: 'public abstract class AuthToken : object'
     content.vb: >-
       Public MustInherit Class AuthToken
-
           Inherits Object
   inheritance:
   - System.Object
@@ -66,7 +65,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: type
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 651
+    startLine: 677
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -99,7 +98,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: accountId
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 652
+    startLine: 678
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -132,7 +131,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: role
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 653
+    startLine: 679
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth
@@ -165,7 +164,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Core/Auth/AuthManager.cs
-    startLine: 655
+    startLine: 681
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Auth

@@ -31,9 +31,7 @@ items:
     content: 'public class WebSocketDialogChannelConnection : BaseChannelConnection, IChannelConnection, IDisposable'
     content.vb: >-
       Public Class WebSocketDialogChannelConnection
-
           Inherits BaseChannelConnection
-
           Implements IChannelConnection, IDisposable
   inheritance:
   - System.Object

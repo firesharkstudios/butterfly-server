@@ -31,7 +31,6 @@ items:
     content: 'public interface IHttpRequest : IWebRequest'
     content.vb: >-
       Public Interface IHttpRequest
-
           Inherits IWebRequest
   inheritedMembers:
   - Butterfly.Core.Util.IWebRequest.RequestUrl

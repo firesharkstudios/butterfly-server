@@ -34,7 +34,6 @@ items:
     content: 'public class ChannelSubscription : object'
     content.vb: >-
       Public Class ChannelSubscription
-
           Inherits Object
   inheritance:
   - System.Object

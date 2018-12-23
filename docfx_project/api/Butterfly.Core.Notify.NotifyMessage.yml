@@ -42,7 +42,6 @@ items:
     content: 'public class NotifyMessage : object'
     content.vb: >-
       Public Class NotifyMessage
-
           Inherits Object
   inheritance:
   - System.Object

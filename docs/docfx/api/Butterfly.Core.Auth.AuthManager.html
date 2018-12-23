@@ -147,14 +147,14 @@ CREATE TABLE auth_token(
   <h3 id="constructors">Constructors
   </h3>
   <a id="Butterfly_Core_Auth_AuthManager__ctor_" data-uid="Butterfly.Core.Auth.AuthManager.#ctor*"></a>
-  <h4 id="Butterfly_Core_Auth_AuthManager__ctor_Butterfly_Core_Database_IDatabase_System_Int32_System_Int32_System_Int32_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_Func_System_String_System_Int32_Task__Func_System_String_System_Int32_Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Action_Version__" data-uid="Butterfly.Core.Auth.AuthManager.#ctor(Butterfly.Core.Database.IDatabase,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,Func{System.String,System.Int32,Task},Func{System.String,System.Int32,Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Action{Version})">AuthManager(IDatabase, Int32, Int32, Int32, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, Func&lt;String, Int32, Task&gt;, Func&lt;String, Int32, Task&gt;, Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, Task&gt;, Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, Task&gt;, Action&lt;Version&gt;)</h4>
+  <h4 id="Butterfly_Core_Auth_AuthManager__ctor_Butterfly_Core_Database_IDatabase_System_Int32_System_Int32_System_Int32_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_Func_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Object___Func_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Object___Func_System_String_System_Int32_Task__Func_System_String_System_Int32_Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Action_Version__" data-uid="Butterfly.Core.Auth.AuthManager.#ctor(Butterfly.Core.Database.IDatabase,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Object}},Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Object}},Func{System.String,System.Int32,Task},Func{System.String,System.Int32,Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Action{Version})">AuthManager(IDatabase, Int32, Int32, Int32, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, System.Collections.Generic.Dictionary&lt;String, Object&gt;&gt;, Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, System.Collections.Generic.Dictionary&lt;String, Object&gt;&gt;, Func&lt;String, Int32, Task&gt;, Func&lt;String, Int32, Task&gt;, Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, Task&gt;, Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, Task&gt;, Action&lt;Version&gt;)</h4>
   <div class="markdown level1 summary">
 Create an instance of AuthManager
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AuthManager(IDatabase database, int authTokenDurationDays = 90, int resetCodeLength = 6, int resetTokenDurationMinutes = 90, string accountTableName = &quot;account&quot;, string accountTableIdFieldName = &quot;id&quot;, string accountTableShareCodeFieldName = &quot;share_code&quot;, string userTableName = &quot;user&quot;, string userTableIdFieldName = &quot;id&quot;, string userTableUsernameFieldName = &quot;username&quot;, string userTableEmailFieldName = &quot;email&quot;, string userTableEmailVerifiedAtFieldName = &quot;email_verified_at&quot;, string userTablePhoneFieldName = &quot;phone&quot;, string userTablePhoneVerifiedAtFieldName = &quot;phone_verified_at&quot;, string userTableSaltFieldName = &quot;salt&quot;, string userTablePasswordHashFieldName = &quot;password_hash&quot;, string userTableFirstNameFieldName = &quot;first_name&quot;, string userTableLastNameFieldName = &quot;last_name&quot;, string userTableResetCodeFieldName = &quot;reset_code&quot;, string userTableResetCodeExpiresAtFieldName = &quot;reset_code_expires_at&quot;, string userTableAccountIdFieldName = &quot;account_id&quot;, string userTableRoleFieldName = &quot;role&quot;, string defaultRole = null, Func&lt;string, int, Task&gt; onEmailVerify = null, Func&lt;string, int, Task&gt; onPhoneVerify = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, Task&gt; onRegister = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, Task&gt; onForgotPassword = null, Action&lt;Version&gt; onCheckVersion = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public AuthManager(IDatabase database, int authTokenDurationDays = 90, int resetCodeLength = 6, int resetTokenDurationMinutes = 90, string accountTableName = &quot;account&quot;, string accountTableIdFieldName = &quot;id&quot;, string accountTableShareCodeFieldName = &quot;share_code&quot;, string userTableName = &quot;user&quot;, string userTableIdFieldName = &quot;id&quot;, string userTableUsernameFieldName = &quot;username&quot;, string userTableEmailFieldName = &quot;email&quot;, string userTableEmailVerifiedAtFieldName = &quot;email_verified_at&quot;, string userTablePhoneFieldName = &quot;phone&quot;, string userTablePhoneVerifiedAtFieldName = &quot;phone_verified_at&quot;, string userTableSaltFieldName = &quot;salt&quot;, string userTablePasswordHashFieldName = &quot;password_hash&quot;, string userTableFirstNameFieldName = &quot;first_name&quot;, string userTableLastNameFieldName = &quot;last_name&quot;, string userTableResetCodeFieldName = &quot;reset_code&quot;, string userTableResetCodeExpiresAtFieldName = &quot;reset_code_expires_at&quot;, string userTableAccountIdFieldName = &quot;account_id&quot;, string userTableRoleFieldName = &quot;role&quot;, string defaultRole = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, System.Collections.Generic.Dictionary&lt;string, object&gt;&gt; getExtraAccountInfo = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, System.Collections.Generic.Dictionary&lt;string, object&gt;&gt; getExtraUserInfo = null, Func&lt;string, int, Task&gt; onEmailVerify = null, Func&lt;string, int, Task&gt; onPhoneVerify = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, Task&gt; onRegister = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, Task&gt; onForgotPassword = null, Action&lt;Version&gt; onCheckVersion = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -280,6 +280,16 @@ Create an instance of AuthManager
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">defaultRole</span></td>
         <td>Default value for the role field on a new user</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;, <span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">getExtraAccountInfo</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;, <span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">getExtraUserInfo</span></td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">Func</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>, <span class="xref">Task</span>&gt;</td>
@@ -482,6 +492,50 @@ Create an instance of AuthManager
     <tbody>
       <tr>
         <td><a class="xref" href="Butterfly.Core.Util.Field.IFieldValidator.html">IFieldValidator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Auth_AuthManager_getExtraAccountInfo" data-uid="Butterfly.Core.Auth.AuthManager.getExtraAccountInfo">getExtraAccountInfo</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, System.Collections.Generic.Dictionary&lt;string, object&gt;&gt; getExtraAccountInfo</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;, <span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Auth_AuthManager_getExtraUserInfo" data-uid="Butterfly.Core.Auth.AuthManager.getExtraUserInfo">getExtraUserInfo</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, System.Collections.Generic.Dictionary&lt;string, object&gt;&gt; getExtraUserInfo</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;, <span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1380,6 +1434,46 @@ Creates a reset code and invokes <a class="xref" href="Butterfly.Core.Auth.AuthM
     <tbody>
       <tr>
         <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Auth_AuthManager_GetUserRefToken_" data-uid="Butterfly.Core.Auth.AuthManager.GetUserRefToken*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager_GetUserRefToken_Butterfly_Core_Util_IWebRequest_" data-uid="Butterfly.Core.Auth.AuthManager.GetUserRefToken(Butterfly.Core.Util.IWebRequest)">GetUserRefToken(IWebRequest)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;UserRefToken&gt; GetUserRefToken(IWebRequest req)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Util.IWebRequest.html">IWebRequest</a></td>
+        <td><span class="parametername">req</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Auth.UserRefToken.html">UserRefToken</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

@@ -228,6 +228,8 @@
     name: SafeUtil
   - uid: Butterfly.Core.Util.SecureUtil
     name: SecureUtil
+  - uid: Butterfly.Core.Util.SlugUtil
+    name: SlugUtil
   - uid: Butterfly.Core.Util.StringX
     name: StringX
   - uid: Butterfly.Core.Util.UnauthorizedException
@@ -245,10 +247,10 @@
     name: GenericFieldValidator
   - uid: Butterfly.Core.Util.Field.IFieldValidator
     name: IFieldValidator
-  - uid: Butterfly.Core.Util.Field.NameFieldValidator
-    name: NameFieldValidator
   - uid: Butterfly.Core.Util.Field.PhoneFieldValidator
     name: PhoneFieldValidator
+  - uid: Butterfly.Core.Util.Field.TextFieldValidator
+    name: TextFieldValidator
 - uid: Butterfly.Core.Util.Job
   name: Butterfly.Core.Util.Job
   items:

@@ -28,7 +28,6 @@ items:
     content: 'public class UnauthorizedException : Exception'
     content.vb: >-
       Public Class UnauthorizedException
-
           Inherits Exception
   inheritance:
   - System.Object

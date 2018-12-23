@@ -34,9 +34,7 @@ items:
     content: 'public class MultiValueDynamicParam : BaseDynamicParam, IDynamicParam'
     content.vb: >-
       Public Class MultiValueDynamicParam
-
           Inherits BaseDynamicParam
-
           Implements IDynamicParam
   inheritance:
   - System.Object

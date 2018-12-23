@@ -33,7 +33,6 @@ items:
     content: 'public class DataEvent : object'
     content.vb: >-
       Public Class DataEvent
-
           Inherits Object
   inheritance:
   - System.Object

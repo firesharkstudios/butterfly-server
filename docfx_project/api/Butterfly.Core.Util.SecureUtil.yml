@@ -28,7 +28,6 @@ items:
     content: 'public static class SecureUtil : object'
     content.vb: >-
       Public Module SecureUtil
-
           Inherits Object
   inheritance:
   - System.Object

@@ -35,9 +35,7 @@ items:
     content: 'public class ShareCodeAuthenticator : object, IAuthenticator'
     content.vb: >-
       Public Class ShareCodeAuthenticator
-
           Inherits Object
-
           Implements IAuthenticator
   inheritance:
   - System.Object

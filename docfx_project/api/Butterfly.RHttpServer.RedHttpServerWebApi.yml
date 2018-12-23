@@ -27,14 +27,13 @@ items:
   assemblies:
   - Butterfly.RedHttpServer
   namespace: Butterfly.RHttpServer
+  summary: "\nBase class implementing <xref href=\"Butterfly.Core.WebApi.IWebApi\" data-throw-if-not-resolved=\"false\"></xref>. New implementations will normally extend this class.\n"
   example: []
   syntax:
     content: 'public class RedHttpServerWebApi : BaseWebApi, IWebApi, IDisposable'
     content.vb: >-
       Public Class RedHttpServerWebApi
-
           Inherits BaseWebApi
-
           Implements IWebApi, IDisposable
   inheritance:
   - System.Object

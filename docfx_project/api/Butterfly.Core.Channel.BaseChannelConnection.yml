@@ -55,9 +55,7 @@ items:
     content: 'public abstract class BaseChannelConnection : object, IChannelConnection, IDisposable'
     content.vb: >-
       Public MustInherit Class BaseChannelConnection
-
           Inherits Object
-
           Implements IChannelConnection, IDisposable
   inheritance:
   - System.Object

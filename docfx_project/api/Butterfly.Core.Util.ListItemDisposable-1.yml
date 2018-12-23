@@ -34,7 +34,6 @@ items:
     - id: T
     content.vb: >-
       Public Class ListItemDisposable(Of T)
-
           Inherits IDisposable
   inheritance:
   - System.Object

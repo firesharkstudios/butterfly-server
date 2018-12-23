@@ -30,7 +30,6 @@ items:
     content: 'public class NotifyTest : object'
     content.vb: >-
       Public Class NotifyTest
-
           Inherits Object
   inheritance:
   - System.Object

@@ -42,7 +42,6 @@ items:
     content: 'public class Channel : IDisposable'
     content.vb: >-
       Public Class Channel
-
           Inherits IDisposable
   inheritance:
   - System.Object

@@ -28,7 +28,6 @@ items:
     content: 'public class DatabaseException : Exception'
     content.vb: >-
       Public Class DatabaseException
-
           Inherits Exception
   inheritance:
   - System.Object

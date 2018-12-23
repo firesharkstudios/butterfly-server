@@ -35,7 +35,6 @@ items:
     content: 'public interface IChannelConnection : IDisposable'
     content.vb: >-
       Public Interface IChannelConnection
-
           Inherits IDisposable
   modifiers.csharp:
   - public

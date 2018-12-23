@@ -30,7 +30,6 @@ items:
     content: 'public class OnCommitRef : object'
     content.vb: >-
       Public Class OnCommitRef
-
           Inherits Object
   inheritance:
   - System.Object

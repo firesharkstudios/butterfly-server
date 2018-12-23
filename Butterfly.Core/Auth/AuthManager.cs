@@ -158,6 +158,8 @@ namespace Butterfly.Core.Auth {
         /// <param name="userTableAccountIdFieldName">Field name of the account id field on the user table (default is "account_id")</param>
         /// <param name="userTableRoleFieldName">Field name of the role field on the user table (default is "role")</param>
         /// <param name="defaultRole">Default value for the role field on a new user</param>
+        /// <param name="getExtraAccountInfo"></param>
+        /// <param name="getExtraUserInfo"></param>
         /// <param name="onEmailVerify">Callback when <see cref="AuthManager.VerifyAsync(Dict, string, string, Func{string, int, Task})"/> is called with an email address</param>
         /// <param name="onPhoneVerify">Callback when <see cref="AuthManager.VerifyAsync(Dict, string, string, Func{string, int, Task})"/> is called with a phone number</param>
         /// <param name="onRegister">Callback when <see cref="AuthManager.RegisterAsync(dynamic, Dict)"/> is called</param>
@@ -231,7 +233,7 @@ namespace Butterfly.Core.Auth {
             this.onForgotPassword = onForgotPassword;
             this.onCheckVersion = onCheckVersion;
 
-            this.usernameFieldValidator = new GenericFieldValidator(this.userTableUsernameFieldName, @"^[_A-z0-9\-\.]{3,25}$", allowNull: false, forceLowerCase: true, includeValueInError: true);
+            this.usernameFieldValidator = new GenericFieldValidator(this.userTableUsernameFieldName, @"^[_A-z0-9\-\.\@\+]{3,25}$", allowNull: false, forceLowerCase: true, includeValueInError: true);
             this.passwordFieldValidator = new GenericFieldValidator("password", "^.{6,255}$", allowNull: false, forceLowerCase: false, includeValueInError: false);
             this.nameFieldValidator = new TextFieldValidator(this.userTableLastNameFieldName, allowNull: false, maxLength: 25);
             this.emailFieldValidator = new EmailFieldValidator(this.userTableEmailFieldName, allowNull: true);
@@ -454,6 +456,7 @@ namespace Butterfly.Core.Auth {
             if (this.onRegister != null) {
                 try {
                     var registerData = new Dict {
+                        { this.userTableAccountIdFieldName, accountId },
                         { this.userTableUsernameFieldName, username },
                         { this.userTableEmailFieldName, email },
                         { this.userTablePhoneFieldName, phone },
@@ -660,6 +663,12 @@ namespace Butterfly.Core.Auth {
             }
         }
 
+        public async Task<UserRefToken> GetUserRefToken(IWebRequest req) {
+            var authentication = req.GetAuthenticationHeaderValue();
+            UserRefToken userRefToken = await this.AuthenticateAsync(authentication?.Scheme, authentication?.Parameter) as UserRefToken;
+            if (userRefToken == null) throw new UnauthorizedException();
+            return userRefToken;
+        }
     }
 
     /// <summary>

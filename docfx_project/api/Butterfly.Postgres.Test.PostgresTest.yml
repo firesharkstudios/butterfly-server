@@ -29,7 +29,6 @@ items:
     content: 'public class PostgresTest : object'
     content.vb: >-
       Public Class PostgresTest
-
           Inherits Object
   inheritance:
   - System.Object

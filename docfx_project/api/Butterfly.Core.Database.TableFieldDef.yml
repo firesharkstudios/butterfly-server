@@ -36,7 +36,6 @@ items:
     content: 'public class TableFieldDef : object'
     content.vb: >-
       Public Class TableFieldDef
-
           Inherits Object
   inheritance:
   - System.Object

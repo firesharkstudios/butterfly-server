@@ -29,7 +29,6 @@ items:
     content: 'public class MySqlDatabaseUnitTest : object'
     content.vb: >-
       Public Class MySqlDatabaseUnitTest
-
           Inherits Object
   inheritance:
   - System.Object

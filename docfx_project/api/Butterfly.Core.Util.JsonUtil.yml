@@ -33,7 +33,6 @@ items:
     content: 'public static class JsonUtil : object'
     content.vb: >-
       Public Module JsonUtil
-
           Inherits Object
   inheritance:
   - System.Object

@@ -35,7 +35,6 @@ items:
     content: 'public class DatabaseUnitTest : object'
     content.vb: >-
       Public Class DatabaseUnitTest
-
           Inherits Object
   inheritance:
   - System.Object

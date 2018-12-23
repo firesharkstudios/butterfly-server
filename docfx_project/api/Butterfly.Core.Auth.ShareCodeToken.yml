@@ -30,7 +30,6 @@ items:
     content: 'public class ShareCodeToken : AuthToken'
     content.vb: >-
       Public Class ShareCodeToken
-
           Inherits AuthToken
   inheritance:
   - System.Object

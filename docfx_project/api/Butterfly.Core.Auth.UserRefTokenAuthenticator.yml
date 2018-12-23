@@ -41,9 +41,7 @@ items:
     content: 'public class UserRefTokenAuthenticator : object, IAuthenticator'
     content.vb: >-
       Public Class UserRefTokenAuthenticator
-
           Inherits Object
-
           Implements IAuthenticator
   inheritance:
   - System.Object

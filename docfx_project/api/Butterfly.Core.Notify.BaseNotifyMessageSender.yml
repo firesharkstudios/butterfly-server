@@ -33,9 +33,7 @@ items:
     content: 'public abstract class BaseNotifyMessageSender : object, INotifyMessageSender'
     content.vb: >-
       Public MustInherit Class BaseNotifyMessageSender
-
           Inherits Object
-
           Implements INotifyMessageSender
   inheritance:
   - System.Object
