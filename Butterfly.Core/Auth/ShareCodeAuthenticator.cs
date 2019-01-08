@@ -45,7 +45,7 @@ namespace Butterfly.Core.Auth {
         /// <param name="authValue"></param>
         /// <returns>An <see cref="AuthToken"/> instance</returns>
         public async Task<AuthToken> AuthenticateAsync(string authType, string authValue) {
-            string accountId = await this.database.SelectValueAsync<string>($"SELECT {this.accountTableIdFieldName} FROM {this.accountTableName} WHERE {this.accountTableShareCodeFieldName}=@shareCode", new {
+            string accountId = await this.database.SelectValueAsync<string>($"SELECT {this.accountTableIdFieldName} FROM {this.accountTableName} WHERE {this.accountTableShareCodeFieldName}=@view-shared-withCode", new {
                 shareCode = authValue
             });
             logger.Debug($"Authenticate():accountId={accountId}");

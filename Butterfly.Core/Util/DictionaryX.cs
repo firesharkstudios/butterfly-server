@@ -12,6 +12,20 @@ using Newtonsoft.Json.Linq;
 namespace Butterfly.Core.Util {
     public static class DictionaryX {
 
+        public static bool ContainsAnyKey<T, U>(this Dictionary<T, U> me, T[] keys) {
+            foreach (var key in keys) {
+                if (me.ContainsKey(key)) return true;
+            }
+            return false;
+        }
+
+        public static bool ContainsAllKeys<T, U>(this Dictionary<T, U> me, T[] keys) {
+            foreach (var key in keys) {
+                if (!me.ContainsKey(key)) return false;
+            }
+            return true;
+        }
+
         public static string ToString<T, U>(this Dictionary<T, U> me, string keyValueDelim, string itemDelim) {
             return string.Join(itemDelim, me.Select(x => $"{x.Key}{keyValueDelim}{x.Value}"));
         }

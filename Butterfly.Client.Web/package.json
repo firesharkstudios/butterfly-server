@@ -1,6 +1,6 @@
 {
   "name": "butterfly-client",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Client library for Butterfly Realtime Web App Server",
   "main": "lib/butterfly-client.js",
   "scripts": {
@@ -29,23 +29,23 @@
   },
   "homepage": "https://github.com/firesharkstudios/butterfly-server-dotnet",
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.51",
-    "@babel/core": "^7.0.0-beta.51",
-    "@babel/preset-env": "^7.0.0-beta.51",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
     "babel-eslint": "^8.0.3",
-    "babel-loader": "^8.0.0-beta.4",
+    "babel-loader": "^8.0.5",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^7.0.0-beta.3",
     "babel-register": "^7.0.0-beta.3",
-    "chai": "^4.1.2",
-    "eslint": "^5.0.1",
-    "eslint-loader": "^2.0.0",
+    "chai": "^4.2.0",
+    "eslint": "^5.12.0",
+    "eslint-loader": "^2.1.1",
     "jsdom": "11.11.0",
     "jsdom-global": "3.0.2",
     "mocha": "^4.0.1",
-    "uglifyjs-webpack-plugin": "^1.2.7",
-    "webpack": "^4.12.2",
-    "webpack-cli": "^3.0.8",
+    "uglifyjs-webpack-plugin": "^1.3.0",
+    "webpack": "^4.28.1",
+    "webpack-cli": "^3.2.1",
     "yargs": "^10.0.3"
   }
 }

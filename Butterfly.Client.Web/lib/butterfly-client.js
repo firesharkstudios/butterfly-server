@@ -667,11 +667,31 @@ function () {
       }
     }
   }, {
+    key: "_isVarsSame",
+    value: function _isVarsSame(varsOld, varsNew) {
+      if (!varsOld && !varsNew) return true;else if (!varsOld && varsNew) return false;else if (varsOld && !varsNew) return false;else if (varsOld.length !== varsNew.length) return false;else {
+        for (var key in varsOld) {
+          if (varsOld[key] !== varsNew[key]) return false;
+        }
+
+        return true;
+      }
+    }
+  }, {
     key: "subscribe",
     value: function subscribe(options) {
       var channelKey = options.channel || 'default';
       var handlers = Array.isArray(options.handler) ? options.handler : [options.handler];
-      var vars = options.vars; // console.debug(`WebSocketChannelClient.subscribe():channelKey=${channelKey}`);
+      var vars = options.vars;
+      console.debug("WebSocketChannelClient.subscribe():channelKey=".concat(channelKey));
+      var existingSubscription = this._subscriptionByChannelKey[channelKey];
+
+      if (existingSubscription) {
+        var isVarsSame = this._isVarsSame(existingSubscription.vars, vars);
+
+        console.debug("WebSocketChannelClient.subscribe():isVarsSame=".concat(isVarsSame));
+        if (isVarsSame) return;
+      }
 
       this._removeSubscription(channelKey);
 
@@ -690,7 +710,7 @@ function () {
   }, {
     key: "unsubscribe",
     value: function unsubscribe(channelKey) {
-      // console.debug(`WebSocketChannelClient.unsubscribe():channelKey=${channelKey}`);
+      console.debug("WebSocketChannelClient.unsubscribe():channelKey=".concat(channelKey));
       if (!channelKey) channelKey = 'default';
 
       this._removeSubscription(channelKey);
