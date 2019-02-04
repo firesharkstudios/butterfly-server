@@ -13,6 +13,7 @@ items:
   - Butterfly.Core.Util.DynamicX
   - Butterfly.Core.Util.EnvironmentX
   - Butterfly.Core.Util.FileX
+  - Butterfly.Core.Util.IHttpResponseX
   - Butterfly.Core.Util.IWebRequest
   - Butterfly.Core.Util.IWebRequestX
   - Butterfly.Core.Util.JsonUtil
@@ -23,9 +24,12 @@ items:
   - Butterfly.Core.Util.RandomUtil
   - Butterfly.Core.Util.RunEvery
   - Butterfly.Core.Util.SafeUtil
+  - Butterfly.Core.Util.SecureUtil
+  - Butterfly.Core.Util.SlugUtil
   - Butterfly.Core.Util.StringX
   - Butterfly.Core.Util.UnauthorizedException
   - Butterfly.Core.Util.UriX
+  - Butterfly.Core.Util.WebClientWithTimeout
   langs:
   - csharp
   - vb
@@ -124,6 +128,12 @@ references:
   name: FileX
   nameWithType: FileX
   fullName: Butterfly.Core.Util.FileX
+- uid: Butterfly.Core.Util.IHttpResponseX
+  commentId: T:Butterfly.Core.Util.IHttpResponseX
+  parent: Butterfly.Core.Util
+  name: IHttpResponseX
+  nameWithType: IHttpResponseX
+  fullName: Butterfly.Core.Util.IHttpResponseX
 - uid: Butterfly.Core.Util.IWebRequest
   commentId: T:Butterfly.Core.Util.IWebRequest
   parent: Butterfly.Core.Util
@@ -202,6 +212,16 @@ references:
   name: SafeUtil
   nameWithType: SafeUtil
   fullName: Butterfly.Core.Util.SafeUtil
+- uid: Butterfly.Core.Util.SecureUtil
+  commentId: T:Butterfly.Core.Util.SecureUtil
+  name: SecureUtil
+  nameWithType: SecureUtil
+  fullName: Butterfly.Core.Util.SecureUtil
+- uid: Butterfly.Core.Util.SlugUtil
+  commentId: T:Butterfly.Core.Util.SlugUtil
+  name: SlugUtil
+  nameWithType: SlugUtil
+  fullName: Butterfly.Core.Util.SlugUtil
 - uid: Butterfly.Core.Util.StringX
   commentId: T:Butterfly.Core.Util.StringX
   name: StringX
@@ -222,6 +242,11 @@ references:
   name: UriX
   nameWithType: UriX
   fullName: Butterfly.Core.Util.UriX
+- uid: Butterfly.Core.Util.WebClientWithTimeout
+  commentId: T:Butterfly.Core.Util.WebClientWithTimeout
+  name: WebClientWithTimeout
+  nameWithType: WebClientWithTimeout
+  fullName: Butterfly.Core.Util.WebClientWithTimeout
 - uid: Butterfly.Core.Util
   commentId: N:Butterfly.Core.Util
   name: Butterfly.Core.Util

@@ -73,7 +73,7 @@ namespace Butterfly.EmbedIO {
 
         protected override void OnMessageReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult) {
             var text = System.Text.Encoding.UTF8.GetString(rxBuffer);
-            logger.Debug($"OnMessageReceived():text={text}");
+            logger.Trace($"OnMessageReceived():text={text}");
             if (this.channelByWebSocketContext.TryGetValue(context, out EmbedIOSubscriptionApiConnection embedIOChannel)) {
                 try {
                     embedIOChannel.ReceiveMessageAsync(text).Wait();

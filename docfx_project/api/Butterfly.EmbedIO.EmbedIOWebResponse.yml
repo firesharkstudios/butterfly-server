@@ -13,7 +13,6 @@ items:
   - Butterfly.EmbedIO.EmbedIOWebResponse.SetHeader(System.String,System.String)
   - Butterfly.EmbedIO.EmbedIOWebResponse.StatusCode
   - Butterfly.EmbedIO.EmbedIOWebResponse.StatusText
-  - Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsJsonAsync(System.Object)
   - Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsTextAsync(System.String)
   langs:
   - csharp
@@ -358,41 +357,6 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsJsonAsync(System.Object)
-  commentId: M:Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsJsonAsync(System.Object)
-  id: WriteAsJsonAsync(System.Object)
-  parent: Butterfly.EmbedIO.EmbedIOWebResponse
-  langs:
-  - csharp
-  - vb
-  name: WriteAsJsonAsync(Object)
-  nameWithType: EmbedIOWebResponse.WriteAsJsonAsync(Object)
-  fullName: Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsJsonAsync(System.Object)
-  type: Method
-  source:
-    remote:
-      path: Butterfly.EmbedIO/EmbedIOWebApi.cs
-      branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
-    id: WriteAsJsonAsync
-    path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
-    startLine: 162
-  assemblies:
-  - Butterfly.EmbedIO
-  namespace: Butterfly.EmbedIO
-  syntax:
-    content: public Task WriteAsJsonAsync(object value)
-    parameters:
-    - id: value
-      type: System.Object
-    return:
-      type: Task
-    content.vb: Public Function WriteAsJsonAsync(value As Object) As Task
-  overload: Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsJsonAsync*
-  modifiers.csharp:
-  - public
-  modifiers.vb:
-  - Public
 references:
 - uid: Butterfly.EmbedIO
   commentId: N:Butterfly.EmbedIO
@@ -481,9 +445,4 @@ references:
   name: Task
   nameWithType: Task
   fullName: Task
-- uid: Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsJsonAsync*
-  commentId: Overload:Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsJsonAsync
-  name: WriteAsJsonAsync
-  nameWithType: EmbedIOWebResponse.WriteAsJsonAsync
-  fullName: Butterfly.EmbedIO.EmbedIOWebResponse.WriteAsJsonAsync
 shouldSkipMarkup: true

@@ -24,7 +24,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ChildDynamicParam
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
-    startLine: 287
+    startLine: 263
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Dynamic
@@ -59,7 +59,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: dynamicParam
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
-    startLine: 290
+    startLine: 266
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Dynamic
@@ -92,7 +92,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: fieldName
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
-    startLine: 291
+    startLine: 267
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Dynamic
@@ -125,7 +125,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: valueByKeyValue
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
-    startLine: 293
+    startLine: 269
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Dynamic
@@ -158,7 +158,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
-    startLine: 295
+    startLine: 271
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Dynamic
@@ -193,7 +193,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: UpdateFrom
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
-    startLine: 300
+    startLine: 276
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Dynamic

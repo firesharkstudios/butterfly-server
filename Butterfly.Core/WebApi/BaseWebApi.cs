@@ -58,7 +58,7 @@ namespace Butterfly.Core.WebApi {
             });
         }
 
-        public static async Task<string[]> FileUploadHandlerAsync(IHttpRequest req, IHttpResponse res, string tempPath, string finalPath, Func<string, string> getFileName, int chunkDelayInMillis = 0) {
+        public static async Task<string[]> FileUploadHandlerAsync(IHttpRequest req, string tempPath, string finalPath, Func<string, string> getFileName, int chunkDelayInMillis = 0) {
             var fileStreamByName = new Dictionary<string, FileStream>();
             var uploadFileNameByName = new Dictionary<string, string>();
 

@@ -1,0 +1,492 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.Field.TextFieldValidator
+  commentId: T:Butterfly.Core.Util.Field.TextFieldValidator
+  id: TextFieldValidator
+  parent: Butterfly.Core.Util.Field
+  children:
+  - Butterfly.Core.Util.Field.TextFieldValidator.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.String)
+  - Butterfly.Core.Util.Field.TextFieldValidator.allowNull
+  - Butterfly.Core.Util.Field.TextFieldValidator.forceLower
+  - Butterfly.Core.Util.Field.TextFieldValidator.forceUpper
+  - Butterfly.Core.Util.Field.TextFieldValidator.logger
+  - Butterfly.Core.Util.Field.TextFieldValidator.maxLength
+  - Butterfly.Core.Util.Field.TextFieldValidator.name
+  - Butterfly.Core.Util.Field.TextFieldValidator.trim
+  - Butterfly.Core.Util.Field.TextFieldValidator.Validate(System.String)
+  - Butterfly.Core.Util.Field.TextFieldValidator.validRegex
+  langs:
+  - csharp
+  - vb
+  name: TextFieldValidator
+  nameWithType: TextFieldValidator
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/TextFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: TextFieldValidator
+    path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
+    startLine: 10
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: 'public class TextFieldValidator : object, IFieldValidator'
+    content.vb: >-
+      Public Class TextFieldValidator
+          Inherits Object
+          Implements IFieldValidator
+  inheritance:
+  - System.Object
+  implements:
+  - Butterfly.Core.Util.Field.IFieldValidator
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.logger
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.logger
+  id: logger
+  parent: Butterfly.Core.Util.Field.TextFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: logger
+  nameWithType: TextFieldValidator.logger
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.logger
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/TextFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: logger
+    path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
+    startLine: 11
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected static readonly Logger logger
+    return:
+      type: Logger
+    content.vb: Protected Shared ReadOnly logger As Logger
+  modifiers.csharp:
+  - protected
+  - static
+  - readonly
+  modifiers.vb:
+  - Protected
+  - Shared
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.name
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.name
+  id: name
+  parent: Butterfly.Core.Util.Field.TextFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: name
+  nameWithType: TextFieldValidator.name
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.name
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/TextFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: name
+    path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
+    startLine: 13
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected readonly string name
+    return:
+      type: System.String
+    content.vb: Protected ReadOnly name As String
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.allowNull
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.allowNull
+  id: allowNull
+  parent: Butterfly.Core.Util.Field.TextFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: allowNull
+  nameWithType: TextFieldValidator.allowNull
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.allowNull
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/TextFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: allowNull
+    path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
+    startLine: 14
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected readonly bool allowNull
+    return:
+      type: System.Boolean
+    content.vb: Protected ReadOnly allowNull As Boolean
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.trim
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.trim
+  id: trim
+  parent: Butterfly.Core.Util.Field.TextFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: trim
+  nameWithType: TextFieldValidator.trim
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.trim
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/TextFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: trim
+    path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
+    startLine: 15
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected readonly bool trim
+    return:
+      type: System.Boolean
+    content.vb: Protected ReadOnly trim As Boolean
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.forceLower
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.forceLower
+  id: forceLower
+  parent: Butterfly.Core.Util.Field.TextFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: forceLower
+  nameWithType: TextFieldValidator.forceLower
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.forceLower
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/TextFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: forceLower
+    path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
+    startLine: 16
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected readonly bool forceLower
+    return:
+      type: System.Boolean
+    content.vb: Protected ReadOnly forceLower As Boolean
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.forceUpper
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.forceUpper
+  id: forceUpper
+  parent: Butterfly.Core.Util.Field.TextFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: forceUpper
+  nameWithType: TextFieldValidator.forceUpper
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.forceUpper
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/TextFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: forceUpper
+    path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
+    startLine: 17
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected readonly bool forceUpper
+    return:
+      type: System.Boolean
+    content.vb: Protected ReadOnly forceUpper As Boolean
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.maxLength
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.maxLength
+  id: maxLength
+  parent: Butterfly.Core.Util.Field.TextFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: maxLength
+  nameWithType: TextFieldValidator.maxLength
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.maxLength
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/TextFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: maxLength
+    path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
+    startLine: 18
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected readonly int maxLength
+    return:
+      type: System.Int32
+    content.vb: Protected ReadOnly maxLength As Integer
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.validRegex
+  commentId: F:Butterfly.Core.Util.Field.TextFieldValidator.validRegex
+  id: validRegex
+  parent: Butterfly.Core.Util.Field.TextFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: validRegex
+  nameWithType: TextFieldValidator.validRegex
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.validRegex
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/TextFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: validRegex
+    path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
+    startLine: 19
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: protected readonly Regex validRegex
+    return:
+      type: Regex
+    content.vb: Protected ReadOnly validRegex As Regex
+  modifiers.csharp:
+  - protected
+  - readonly
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.String)
+  commentId: M:Butterfly.Core.Util.Field.TextFieldValidator.#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.String)
+  id: '#ctor(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.String)'
+  parent: Butterfly.Core.Util.Field.TextFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: TextFieldValidator(String, Boolean, Boolean, Boolean, Boolean, Int32, String)
+  nameWithType: TextFieldValidator.TextFieldValidator(String, Boolean, Boolean, Boolean, Boolean, Int32, String)
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.TextFieldValidator(System.String, System.Boolean, System.Boolean, System.Boolean, System.Boolean, System.Int32, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/TextFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
+    startLine: 21
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: public TextFieldValidator(string name, bool allowNull = true, bool trim = true, bool forceLower = false, bool forceUpper = false, int maxLength = 25, string validRegex = null)
+    parameters:
+    - id: name
+      type: System.String
+    - id: allowNull
+      type: System.Boolean
+    - id: trim
+      type: System.Boolean
+    - id: forceLower
+      type: System.Boolean
+    - id: forceUpper
+      type: System.Boolean
+    - id: maxLength
+      type: System.Int32
+    - id: validRegex
+      type: System.String
+    content.vb: Public Sub New(name As String, allowNull As Boolean = True, trim As Boolean = True, forceLower As Boolean = False, forceUpper As Boolean = False, maxLength As Integer = 25, validRegex As String = Nothing)
+  overload: Butterfly.Core.Util.Field.TextFieldValidator.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.Validate(System.String)
+  commentId: M:Butterfly.Core.Util.Field.TextFieldValidator.Validate(System.String)
+  id: Validate(System.String)
+  parent: Butterfly.Core.Util.Field.TextFieldValidator
+  langs:
+  - csharp
+  - vb
+  name: Validate(String)
+  nameWithType: TextFieldValidator.Validate(String)
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.Validate(System.String)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/Field/TextFieldValidator.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Validate
+    path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
+    startLine: 31
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util.Field
+  syntax:
+    content: public string Validate(string value)
+    parameters:
+    - id: value
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Function Validate(value As String) As String
+  overload: Butterfly.Core.Util.Field.TextFieldValidator.Validate*
+  implements:
+  - Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Butterfly.Core.Util.Field
+  commentId: N:Butterfly.Core.Util.Field
+  name: Butterfly.Core.Util.Field
+  nameWithType: Butterfly.Core.Util.Field
+  fullName: Butterfly.Core.Util.Field
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Util.Field.IFieldValidator
+  commentId: T:Butterfly.Core.Util.Field.IFieldValidator
+  parent: Butterfly.Core.Util.Field
+  name: IFieldValidator
+  nameWithType: IFieldValidator
+  fullName: Butterfly.Core.Util.Field.IFieldValidator
+- uid: Logger
+  isExternal: true
+  name: Logger
+  nameWithType: Logger
+  fullName: Logger
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Regex
+  isExternal: true
+  name: Regex
+  nameWithType: Regex
+  fullName: Regex
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.#ctor*
+  commentId: Overload:Butterfly.Core.Util.Field.TextFieldValidator.#ctor
+  name: TextFieldValidator
+  nameWithType: TextFieldValidator.TextFieldValidator
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.TextFieldValidator
+- uid: Butterfly.Core.Util.Field.TextFieldValidator.Validate*
+  commentId: Overload:Butterfly.Core.Util.Field.TextFieldValidator.Validate
+  name: Validate
+  nameWithType: TextFieldValidator.Validate
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator.Validate
+- uid: Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  commentId: M:Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  parent: Butterfly.Core.Util.Field.IFieldValidator
+  isExternal: true
+  name: Validate(String)
+  nameWithType: IFieldValidator.Validate(String)
+  fullName: Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+  spec.csharp:
+  - uid: Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+    name: Validate
+    nameWithType: IFieldValidator.Validate
+    fullName: Butterfly.Core.Util.Field.IFieldValidator.Validate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Util.Field.IFieldValidator.Validate(System.String)
+    name: Validate
+    nameWithType: IFieldValidator.Validate
+    fullName: Butterfly.Core.Util.Field.IFieldValidator.Validate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+shouldSkipMarkup: true

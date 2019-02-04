@@ -1,0 +1,107 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Util.SlugUtil
+  commentId: T:Butterfly.Core.Util.SlugUtil
+  id: SlugUtil
+  parent: Butterfly.Core.Util
+  children:
+  - Butterfly.Core.Util.SlugUtil.Slugify(System.String,System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: SlugUtil
+  nameWithType: SlugUtil
+  fullName: Butterfly.Core.Util.SlugUtil
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Util/SlugUtil.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: SlugUtil
+    path: ../Butterfly.Core/Util/SlugUtil.cs
+    startLine: 3
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: 'public static class SlugUtil : object'
+    content.vb: >-
+      Public Module SlugUtil
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Butterfly.Core.Util.SlugUtil.Slugify(System.String,System.Boolean)
+  commentId: M:Butterfly.Core.Util.SlugUtil.Slugify(System.String,System.Boolean)
+  id: Slugify(System.String,System.Boolean)
+  parent: Butterfly.Core.Util.SlugUtil
+  langs:
+  - csharp
+  - vb
+  name: Slugify(String, Boolean)
+  nameWithType: SlugUtil.Slugify(String, Boolean)
+  fullName: Butterfly.Core.Util.SlugUtil.Slugify(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/SlugUtil.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: Slugify
+    path: ../Butterfly.Core/Util/SlugUtil.cs
+    startLine: 7
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static string Slugify(string name, bool throwExceptionIfEmpty = true)
+    parameters:
+    - id: name
+      type: System.String
+    - id: throwExceptionIfEmpty
+      type: System.Boolean
+    return:
+      type: System.String
+    content.vb: Public Shared Function Slugify(name As String, throwExceptionIfEmpty As Boolean = True) As String
+  overload: Butterfly.Core.Util.SlugUtil.Slugify*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Butterfly.Core.Util
+  commentId: N:Butterfly.Core.Util
+  name: Butterfly.Core.Util
+  nameWithType: Butterfly.Core.Util
+  fullName: Butterfly.Core.Util
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Butterfly.Core.Util.SlugUtil.Slugify*
+  commentId: Overload:Butterfly.Core.Util.SlugUtil.Slugify
+  name: Slugify
+  nameWithType: SlugUtil.Slugify
+  fullName: Butterfly.Core.Util.SlugUtil.Slugify
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+shouldSkipMarkup: true

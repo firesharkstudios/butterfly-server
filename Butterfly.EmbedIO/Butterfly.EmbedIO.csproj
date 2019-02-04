@@ -12,7 +12,7 @@
     <Authors>Kent Johnson</Authors>
     <Copyright>Copyright 2017-2018 Fireshark Studios, LLC</Copyright>
     <Description>Implementation of IWebApi and ISubscriptionApi for EmbedIO (see https://github.com/unosquare/embedio)</Description>
-    <Version>1.0.5</Version>
+    <Version>1.1.0</Version>
     <PackageReleaseNotes>Various improvements and bug fixes</PackageReleaseNotes>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
   </PropertyGroup>
@@ -26,8 +26,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EmbedIO" Version="1.16.0" />
-    <PackageReference Include="NLog" Version="4.5.9" />
+    <PackageReference Include="EmbedIO" Version="1.16.1" />
+    <PackageReference Include="NLog" Version="4.5.10" />
   </ItemGroup>
 
   <ItemGroup>

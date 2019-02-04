@@ -224,6 +224,7 @@ export default class {
       this._subscribing();
     }
     else if (message.messageType === 'UNAUTHENTICATED') {
+      if (this._options.onUnauthenticated) this._options.onUnauthenticated(message.data);
       this.disconnect();
     }
   }
@@ -234,12 +235,33 @@ export default class {
     }
   }
 
+  _isVarsSame(varsOld, varsNew) {
+    if (!varsOld && !varsNew) return true;
+    else if (!varsOld && varsNew) return false;
+    else if (varsOld && !varsNew) return false;
+    else if (varsOld.length !== varsNew.length) return false;
+    else {
+      for (let key in varsOld) {
+        if (varsOld[key] !== varsNew[key]) return false;
+      }
+      return true;
+    }
+  }
+
   subscribe(options) {
     let channelKey = options.channel || 'default';
     let handlers = Array.isArray(options.handler) ? options.handler : [options.handler];
     let vars = options.vars;
 
-    // console.debug(`WebSocketChannelClient.subscribe():channelKey=${channelKey}`);
+    console.debug(`WebSocketChannelClient.subscribe():channelKey=${channelKey}`);
+
+    let existingSubscription = this._subscriptionByChannelKey[channelKey];
+    if (existingSubscription) {
+      let isVarsSame = this._isVarsSame(existingSubscription.vars, vars);
+      console.debug(`WebSocketChannelClient.subscribe():isVarsSame=${isVarsSame}`);
+      if (isVarsSame) return;
+    }
+
     this._removeSubscription(channelKey);
     this._addSubscription(channelKey, {
       vars,
@@ -253,8 +275,9 @@ export default class {
   }
 
   unsubscribe(channelKey) {
-    // console.debug(`WebSocketChannelClient.unsubscribe():channelKey=${channelKey}`);
+    console.debug(`WebSocketChannelClient.unsubscribe():channelKey=${channelKey}`);
     if (!channelKey) channelKey = 'default';
+
     this._removeSubscription(channelKey);
     this._unsubscribing(channelKey);
     if (this._options.onSubscriptionsUpdated) this._options.onSubscriptionsUpdated();

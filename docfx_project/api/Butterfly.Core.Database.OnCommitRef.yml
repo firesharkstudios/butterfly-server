@@ -1,0 +1,249 @@
+### YamlMime:ManagedReference
+items:
+- uid: Butterfly.Core.Database.OnCommitRef
+  commentId: T:Butterfly.Core.Database.OnCommitRef
+  id: OnCommitRef
+  parent: Butterfly.Core.Database
+  children:
+  - Butterfly.Core.Database.OnCommitRef.#ctor(Func{Task},System.String)
+  - Butterfly.Core.Database.OnCommitRef.key
+  - Butterfly.Core.Database.OnCommitRef.onCommit
+  langs:
+  - csharp
+  - vb
+  name: OnCommitRef
+  nameWithType: OnCommitRef
+  fullName: Butterfly.Core.Database.OnCommitRef
+  type: Class
+  source:
+    remote:
+      path: Butterfly.Core/Database/OnCommitRef.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: OnCommitRef
+    path: ../Butterfly.Core/Database/OnCommitRef.cs
+    startLine: 4
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: 'public class OnCommitRef : object'
+    content.vb: >-
+      Public Class OnCommitRef
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Butterfly.Core.Database.OnCommitRef.onCommit
+  commentId: F:Butterfly.Core.Database.OnCommitRef.onCommit
+  id: onCommit
+  parent: Butterfly.Core.Database.OnCommitRef
+  langs:
+  - csharp
+  - vb
+  name: onCommit
+  nameWithType: OnCommitRef.onCommit
+  fullName: Butterfly.Core.Database.OnCommitRef.onCommit
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/OnCommitRef.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: onCommit
+    path: ../Butterfly.Core/Database/OnCommitRef.cs
+    startLine: 5
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public readonly Func<Task> onCommit
+    return:
+      type: Func{Task}
+    content.vb: Public ReadOnly onCommit As Func(Of Task)
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Database.OnCommitRef.key
+  commentId: F:Butterfly.Core.Database.OnCommitRef.key
+  id: key
+  parent: Butterfly.Core.Database.OnCommitRef
+  langs:
+  - csharp
+  - vb
+  name: key
+  nameWithType: OnCommitRef.key
+  fullName: Butterfly.Core.Database.OnCommitRef.key
+  type: Field
+  source:
+    remote:
+      path: Butterfly.Core/Database/OnCommitRef.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: key
+    path: ../Butterfly.Core/Database/OnCommitRef.cs
+    startLine: 6
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public readonly string key
+    return:
+      type: System.String
+    content.vb: Public ReadOnly key As String
+  modifiers.csharp:
+  - public
+  - readonly
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Butterfly.Core.Database.OnCommitRef.#ctor(Func{Task},System.String)
+  commentId: M:Butterfly.Core.Database.OnCommitRef.#ctor(Func{Task},System.String)
+  id: '#ctor(Func{Task},System.String)'
+  parent: Butterfly.Core.Database.OnCommitRef
+  langs:
+  - csharp
+  - vb
+  name: OnCommitRef(Func<Task>, String)
+  nameWithType: OnCommitRef.OnCommitRef(Func<Task>, String)
+  fullName: Butterfly.Core.Database.OnCommitRef.OnCommitRef(Func<Task>, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: Butterfly.Core/Database/OnCommitRef.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/Butterfly.git
+    id: .ctor
+    path: ../Butterfly.Core/Database/OnCommitRef.cs
+    startLine: 7
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Database
+  syntax:
+    content: public OnCommitRef(Func<Task> onCommit, string key)
+    parameters:
+    - id: onCommit
+      type: Func{Task}
+    - id: key
+      type: System.String
+    content.vb: Public Sub New(onCommit As Func(Of Task), key As String)
+  overload: Butterfly.Core.Database.OnCommitRef.#ctor*
+  nameWithType.vb: OnCommitRef.OnCommitRef(Func(Of Task), String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Butterfly.Core.Database.OnCommitRef.OnCommitRef(Func(Of Task), System.String)
+  name.vb: OnCommitRef(Func(Of Task), String)
+references:
+- uid: Butterfly.Core.Database
+  commentId: N:Butterfly.Core.Database
+  name: Butterfly.Core.Database
+  nameWithType: Butterfly.Core.Database
+  fullName: Butterfly.Core.Database
+- uid: System.Object
+  commentId: T:System.Object
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Func{Task}
+  commentId: '!:Func{Task}'
+  definition: Func`1
+  name: Func<Task>
+  nameWithType: Func<Task>
+  fullName: Func<Task>
+  nameWithType.vb: Func(Of Task)
+  fullName.vb: Func(Of Task)
+  name.vb: Func(Of Task)
+  spec.csharp:
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func`1
+  isExternal: true
+  name: Func<>
+  nameWithType: Func<>
+  fullName: Func<>
+  nameWithType.vb: Func(Of )
+  fullName.vb: Func(Of )
+  name.vb: Func(Of )
+  spec.csharp:
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`1
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Butterfly.Core.Database.OnCommitRef.#ctor*
+  commentId: Overload:Butterfly.Core.Database.OnCommitRef.#ctor
+  name: OnCommitRef
+  nameWithType: OnCommitRef.OnCommitRef
+  fullName: Butterfly.Core.Database.OnCommitRef.OnCommitRef
+shouldSkipMarkup: true

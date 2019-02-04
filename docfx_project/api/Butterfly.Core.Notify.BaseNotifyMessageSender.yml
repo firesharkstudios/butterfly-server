@@ -39,7 +39,7 @@ items:
   - System.Object
   derivedClasses:
   - Butterfly.Aws.AwsSesEmailNotifyMessageSender
-  - Butterfly.Twilio.TwilioPhoneTextNotifyMessageSender
+  - Butterfly.Twilio.TwilioPhoneNotifyMessageSender
   implements:
   - Butterfly.Core.Notify.INotifyMessageSender
   modifiers.csharp:

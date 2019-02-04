@@ -94,12 +94,12 @@ view changes
   <h3 id="constructors">Constructors
   </h3>
   <a id="Butterfly_Core_Database_Dynamic_DynamicView__ctor_" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.#ctor*"></a>
-  <h4 id="Butterfly_Core_Database_Dynamic_DynamicView__ctor_Butterfly_Core_Database_Dynamic_DynamicViewSet_System_String_System_Object_System_String_System_String___System_String___" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.#ctor(Butterfly.Core.Database.Dynamic.DynamicViewSet,System.String,System.Object,System.String,System.String[],System.String[])">DynamicView(DynamicViewSet, String, Object, String, String[], String[])</h4>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicView__ctor_Butterfly_Core_Database_Dynamic_DynamicViewSet_System_String_System_Object_System_String_System_String___System_String___System_Int32_" data-uid="Butterfly.Core.Database.Dynamic.DynamicView.#ctor(Butterfly.Core.Database.Dynamic.DynamicViewSet,System.String,System.Object,System.String,System.String[],System.String[],System.Int32)">DynamicView(DynamicViewSet, String, Object, String, String[], String[], Int32)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DynamicView(DynamicViewSet dynamicQuerySet, string sql, dynamic vars = null, string name = null, string[] keyFieldNames = null, string[] dynamicTableAliases = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public DynamicView(DynamicViewSet dynamicQuerySet, string sql, dynamic vars = null, string name = null, string[] keyFieldNames = null, string[] dynamicTableAliases = null, int limit = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -139,6 +139,11 @@ view changes
       <tr>
         <td><span class="xref">System.String</span>[]</td>
         <td><span class="parametername">dynamicTableAliases</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">limit</span></td>
         <td></td>
       </tr>
     </tbody>

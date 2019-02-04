@@ -168,20 +168,30 @@ namespace Butterfly.Core.Database {
 
         public async Task<T> SelectValueAsync<T>(string sql, dynamic vars = null, T defaultValue = default(T)) {
             Dict row = await this.SelectRowAsync(sql, vars);
-            if (row == null || !row.TryGetValue(row.Keys.First(), out object value) || value==null) return defaultValue;
+            if (row == null) return defaultValue;
+            else return row.GetAs(row.Keys.First(), defaultValue);
 
-            return (T)Convert.ChangeType(value, typeof(T));
+            //if (row == null || !row.TryGetValue(row.Keys.First(), out object value) || value==null) return defaultValue;
+            //return (T)Convert.ChangeType(value, typeof(T));
+        }
+
+        public async Task<T[]> SelectValuesAsync<T>(string sql, dynamic vars = null) {
+            Dict[] rows = await this.SelectRowsAsync(sql, vars);
+            return rows.Select(row => {
+                return row.GetAs(row.Keys.First(), default(T));
+            }).ToArray();
         }
 
         public async Task<Dict> SelectRowAsync(string statementSql, dynamic vars = null) {
-            Dict[] rows = await this.SelectRowsAsync(statementSql, vars: vars, overrideLimit: 1);
+            SelectStatement statement = new SelectStatement(this, statementSql, limit: 1);
+            Dict[] rows = await this.SelectRowsAsync(statement, vars: vars);
             if (rows.Length == 0) return null;
             else if (rows.Length > 1) throw new Exception("SelectRow returned more than one row");
             return rows.First();
         }
 
-        public async Task<Dict[]> SelectRowsAsync(string statementSql, dynamic vars = null, int overrideLimit = -1) {
-            SelectStatement statement = new SelectStatement(this, statementSql, overrideLimit);
+        public async Task<Dict[]> SelectRowsAsync(string statementSql, dynamic vars = null) {
+            SelectStatement statement = new SelectStatement(this, statementSql);
             return await this.SelectRowsAsync(statement, vars);
         }
 

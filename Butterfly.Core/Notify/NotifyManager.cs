@@ -30,14 +30,14 @@ namespace Butterfly.Core.Notify {
         protected readonly IDatabase database;
 
         protected readonly NotifyMessageEngine emailNotifyMessageEngine;
-        protected readonly NotifyMessageEngine phoneTextNotifyMessageEngine;
+        protected readonly NotifyMessageEngine phoneNotifyMessageEngine;
 
         protected readonly string notifyMessageTableName;
         protected readonly string notifyVerifyTableName;
         protected readonly int verifyCodeExpiresSeconds;
 
         protected readonly NotifyMessage verifyEmailNotifyMessage;
-        protected readonly NotifyMessage verifyPhoneTextNotifyMessage;
+        protected readonly NotifyMessage verifyPhoneNotifyMessage;
         protected readonly string verifyCodeFormat;
 
         protected readonly static EmailFieldValidator EMAIL_FIELD_VALIDATOR = new EmailFieldValidator("email", false, true);
@@ -45,35 +45,27 @@ namespace Butterfly.Core.Notify {
 
         protected readonly static Random RANDOM = new Random();
 
-        public NotifyManager(IDatabase database, INotifyMessageSender emailNotifyMessageSender = null, INotifyMessageSender phoneTextNotifyMessageSender = null, string notifyMessageTableName = "notify_message", string notifyVerifyTableName = "notify_verify", int verifyCodeExpiresSeconds = 3600, string verifyEmailFile = null, string verifyPhoneTextFile = null, string verifyCodeFormat = "###-###") {
+        public NotifyManager(IDatabase database, INotifyMessageSender emailNotifyMessageSender = null, INotifyMessageSender phoneNotifyMessageSender = null, string notifyMessageTableName = "notify_message", string notifyVerifyTableName = "notify_verify", int verifyCodeExpiresSeconds = 3600, string verifyEmailFile = null, string verifyPhoneTextFile = null, string verifyCodeFormat = "###-###") {
             this.database = database;
             this.emailNotifyMessageEngine = emailNotifyMessageSender == null ? null : new NotifyMessageEngine(NotifyMessageType.Email, emailNotifyMessageSender, database, notifyMessageTableName);
-            this.phoneTextNotifyMessageEngine = phoneTextNotifyMessageSender == null ? null : new NotifyMessageEngine(NotifyMessageType.PhoneText, phoneTextNotifyMessageSender, database, notifyMessageTableName);
+            this.phoneNotifyMessageEngine = phoneNotifyMessageSender == null ? null : new NotifyMessageEngine(NotifyMessageType.PhoneText, phoneNotifyMessageSender, database, notifyMessageTableName);
             this.notifyMessageTableName = notifyMessageTableName;
             this.notifyVerifyTableName = notifyVerifyTableName;
             this.verifyCodeExpiresSeconds = verifyCodeExpiresSeconds;
 
             this.verifyEmailNotifyMessage = verifyEmailFile!=null ? NotifyMessage.ParseFile(verifyEmailFile) : null;
-            this.verifyPhoneTextNotifyMessage = verifyPhoneTextFile!=null ? NotifyMessage.ParseFile(verifyPhoneTextFile) : null;
+            this.verifyPhoneNotifyMessage = verifyPhoneTextFile!=null ? NotifyMessage.ParseFile(verifyPhoneTextFile) : null;
             this.verifyCodeFormat = verifyCodeFormat;
         }
 
         public void Start() {
             this.emailNotifyMessageEngine?.Start();
-            this.phoneTextNotifyMessageEngine?.Start();
+            this.phoneNotifyMessageEngine?.Start();
         }
 
         public void Stop() {
             this.emailNotifyMessageEngine?.Stop();
-            this.phoneTextNotifyMessageEngine?.Stop();
-        }
-
-        public void SetupWebApi(IWebApi webApi, string pathPrefix = "/api/notify") {
-            webApi.OnPost($"{pathPrefix}/send-verify-code", async (req, res) => {
-                Dict values = await req.ParseAsJsonAsync<Dict>();
-                string contact = values.GetAs("contact", (string)null);
-                await this.SendVerifyCodeAsync(contact);
-            });
+            this.phoneNotifyMessageEngine?.Stop();
         }
 
         public async Task SendVerifyCodeAsync(string contact) {
@@ -121,8 +113,8 @@ namespace Butterfly.Core.Notify {
                         notifyMessage = this.verifyEmailNotifyMessage;
                         break;
                     case NotifyMessageType.PhoneText:
-                        if (this.verifyPhoneTextNotifyMessage == null) throw new Exception("Server must be configured with verify phone text notify message");
-                        notifyMessage = this.verifyPhoneTextNotifyMessage;
+                        if (this.verifyPhoneNotifyMessage == null) throw new Exception("Server must be configured with verify phone text notify message");
+                        notifyMessage = this.verifyPhoneNotifyMessage;
                         break;
                 }
                 var evaluatedNotifyMessage = notifyMessage.Evaluate(new {
@@ -163,8 +155,8 @@ namespace Butterfly.Core.Notify {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="priority">Higher number indicates higher priority</param>
-        /// <param name="notifyMessage"></param>
+        /// <param name="transaction"></param>
+        /// <param name="notifyMessages"></param>
         /// <returns></returns>
         public async Task Queue(ITransaction transaction, params NotifyMessage[] notifyMessages) {
             bool emailQueued = false;
@@ -186,8 +178,8 @@ namespace Butterfly.Core.Notify {
                         emailQueued = true;
                         break;
                     case NotifyMessageType.PhoneText:
-                        if (this.phoneTextNotifyMessageEngine == null) throw new Exception("No phone text message sender configured");
-                        await this.phoneTextNotifyMessageEngine.Queue(transaction, scrubbedFrom, scrubbedTo, notifyMessage.subject, notifyMessage.bodyText, notifyMessage.bodyHtml, notifyMessage.priority, notifyMessage.extraData);
+                        if (this.phoneNotifyMessageEngine == null) throw new Exception("No phone text message sender configured");
+                        await this.phoneNotifyMessageEngine.Queue(transaction, scrubbedFrom, scrubbedTo, notifyMessage.subject, notifyMessage.bodyText, notifyMessage.bodyHtml, notifyMessage.priority, notifyMessage.extraData);
                         phoneTextQueued = true;
                         break;
                 }
@@ -195,7 +187,7 @@ namespace Butterfly.Core.Notify {
 
             transaction.OnCommit(() => {
                 if (emailQueued) this.emailNotifyMessageEngine.Pulse();
-                if (phoneTextQueued) this.phoneTextNotifyMessageEngine.Pulse();
+                if (phoneTextQueued) this.phoneNotifyMessageEngine.Pulse();
                 return Task.FromResult(0);
             });
         }
@@ -267,7 +259,7 @@ namespace Butterfly.Core.Notify {
                             messageType = (byte)this.notifyMessageType
                         });
                     if (message == null) {
-                        logger.Debug("Run():Waiting indefinitely");
+                        logger.Trace("Run():Waiting indefinitely");
                         try {
                             this.cancellationTokenSource = new CancellationTokenSource();
                             await Task.Delay(60000, cancellationTokenSource.Token);
@@ -275,7 +267,7 @@ namespace Butterfly.Core.Notify {
                         catch (TaskCanceledException) {
                             this.cancellationTokenSource = null;
                         }
-                        logger.Debug("Run():Waking up");
+                        logger.Trace("Run():Waking up");
                     }
                     else {
                         NotifyMessageType notifyMessageType = message.GetAs("type", NotifyMessageType.Email);
@@ -306,7 +298,7 @@ namespace Butterfly.Core.Notify {
 
                         int totalMillis = (int)(this.notifyMessageSender.CanSendNextAt - DateTime.Now).TotalMilliseconds;
                         if (totalMillis>0) {
-                            logger.Debug("Run():Sleeping for " + totalMillis + "ms");
+                            logger.Trace("Run():Sleeping for " + totalMillis + "ms");
                             await Task.Delay(totalMillis);
                         }
                     }

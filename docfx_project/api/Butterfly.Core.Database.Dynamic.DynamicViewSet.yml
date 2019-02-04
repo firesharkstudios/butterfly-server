@@ -8,7 +8,7 @@ items:
   - Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor(Butterfly.Core.Database.IDatabase,Action{Butterfly.Core.Database.Event.DataEventTransaction})
   - Butterfly.Core.Database.Dynamic.DynamicViewSet.#ctor(Butterfly.Core.Database.IDatabase,Func{Butterfly.Core.Database.Event.DataEventTransaction,Task})
   - Butterfly.Core.Database.Dynamic.DynamicViewSet.asyncListener
-  - Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[])
+  - Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[],System.Int32)
   - Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicViewDataEvents(Butterfly.Core.Database.Event.DataEventTransaction,Butterfly.Core.Database.Dynamic.DynamicView)
   - Butterfly.Core.Database.Dynamic.DynamicViewSet.disposables
   - Butterfly.Core.Database.Dynamic.DynamicViewSet.Dispose
@@ -406,16 +406,16 @@ items:
   - Public
   - Get
   - Protected Set
-- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[])
-  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[])
-  id: CreateDynamicView(System.String,System.Object,System.String,System.String[])
+- uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[],System.Int32)
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[],System.Int32)
+  id: CreateDynamicView(System.String,System.Object,System.String,System.String[],System.Int32)
   parent: Butterfly.Core.Database.Dynamic.DynamicViewSet
   langs:
   - csharp
   - vb
-  name: CreateDynamicView(String, Object, String, String[])
-  nameWithType: DynamicViewSet.CreateDynamicView(String, Object, String, String[])
-  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String, System.Object, System.String, System.String[])
+  name: CreateDynamicView(String, Object, String, String[], Int32)
+  nameWithType: DynamicViewSet.CreateDynamicView(String, Object, String, String[], Int32)
+  fullName: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String, System.Object, System.String, System.String[], System.Int32)
   type: Method
   source:
     remote:
@@ -431,7 +431,7 @@ items:
   summary: "\nCreates an instance of a DynamicView. Must call <xref href=\"Butterfly.Core.Database.Dynamic.DynamicViewSet.StartAsync\" data-throw-if-not-resolved=\"false\"></xref> to send \ninitial <xref href=\"Butterfly.Core.Database.Event.DataEventTransaction\" data-throw-if-not-resolved=\"false\"></xref> instance and listen for new <xref href=\"Butterfly.Core.Database.Event.DataEventTransaction\" data-throw-if-not-resolved=\"false\"></xref>instances.\n"
   example: []
   syntax:
-    content: public DynamicView CreateDynamicView(string sql, dynamic values = null, string name = null, string[] keyFieldNames = null)
+    content: public DynamicView CreateDynamicView(string sql, dynamic values = null, string name = null, string[] keyFieldNames = null, int limit = null)
     parameters:
     - id: sql
       type: System.String
@@ -441,17 +441,19 @@ items:
       type: System.String
     - id: keyFieldNames
       type: System.String[]
+    - id: limit
+      type: System.Int32
     return:
       type: Butterfly.Core.Database.Dynamic.DynamicView
-    content.vb: Public Function CreateDynamicView(sql As String, values As Object = Nothing, name As String = Nothing, keyFieldNames As String() = Nothing) As DynamicView
+    content.vb: Public Function CreateDynamicView(sql As String, values As Object = Nothing, name As String = Nothing, keyFieldNames As String() = Nothing, limit As Integer = Nothing) As DynamicView
   overload: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView*
-  nameWithType.vb: DynamicViewSet.CreateDynamicView(String, Object, String, String())
+  nameWithType.vb: DynamicViewSet.CreateDynamicView(String, Object, String, String(), Int32)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String, System.Object, System.String, System.String())
-  name.vb: CreateDynamicView(String, Object, String, String())
+  fullName.vb: Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String, System.Object, System.String, System.String(), System.Int32)
+  name.vb: CreateDynamicView(String, Object, String, String(), Int32)
 - uid: Butterfly.Core.Database.Dynamic.DynamicViewSet.isStarted
   commentId: F:Butterfly.Core.Database.Dynamic.DynamicViewSet.isStarted
   id: isStarted
@@ -1401,6 +1403,11 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
 - uid: Butterfly.Core.Database.Event
   commentId: N:Butterfly.Core.Database.Event
   name: Butterfly.Core.Database.Event

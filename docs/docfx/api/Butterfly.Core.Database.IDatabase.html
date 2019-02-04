@@ -1243,14 +1243,14 @@ Executes the SELECT statement and returns the rows
     </tbody>
   </table>
   <a id="Butterfly_Core_Database_IDatabase_SelectRowsAsync_" data-uid="Butterfly.Core.Database.IDatabase.SelectRowsAsync*"></a>
-  <h4 id="Butterfly_Core_Database_IDatabase_SelectRowsAsync_System_String_System_Object_System_Int32_" data-uid="Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)">SelectRowsAsync(String, Object, Int32)</h4>
+  <h4 id="Butterfly_Core_Database_IDatabase_SelectRowsAsync_System_String_System_Object_" data-uid="Butterfly.Core.Database.IDatabase.SelectRowsAsync(System.String,System.Object)">SelectRowsAsync(String, Object)</h4>
   <div class="markdown level1 summary">
 Executes the SELECT statement and return the rows (the SELECT statement may contain vars like @name specified in <code data-dev-comment-type="paramref" class="paramref">vars</code>)
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;[]&gt; SelectRowsAsync(string sql, dynamic vars = null, int limit = null)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;[]&gt; SelectRowsAsync(string sql, dynamic vars = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1270,11 +1270,6 @@ Executes the SELECT statement and return the rows (the SELECT statement may cont
       <tr>
         <td><span class="xref">System.Object</span></td>
         <td><span class="parametername">vars</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">limit</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1346,6 +1341,72 @@ If a var is an array then references in the WHERE clause like <pre><code>name=@n
     <tbody>
       <tr>
         <td><span class="xref">Task</span>&lt;T&gt;</td>
+        <td>The value of the first column of the first row</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td>The return type of the single value returned</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Database_IDatabase_SelectValuesAsync_" data-uid="Butterfly.Core.Database.IDatabase.SelectValuesAsync*"></a>
+  <h4 id="Butterfly_Core_Database_IDatabase_SelectValuesAsync__1_System_String_System_Object_" data-uid="Butterfly.Core.Database.IDatabase.SelectValuesAsync``1(System.String,System.Object)">SelectValuesAsync&lt;T&gt;(String, Object)</h4>
+  <div class="markdown level1 summary">
+Executes the SELECT statement and return the value of the first column of the first row (the SELECT statement may contain vars like @name specified in <code data-dev-comment-type="paramref" class="paramref">vars</code>).<p>
+<p>
+If a var is null then references in the WHERE clause like <pre><code>name=@name</code></pre> will be rewritten as <pre><code>name IS NULL</code></pre> and references in the WHERE clause like <pre><code>name!=@name</code></pre> will be rewritten as <pre><code>name IS NOT NULL</code></pre>.<p>
+<p>
+If a var is an array then references in the WHERE clause like <pre><code>name=@name</code></pre> will be rewritten as <pre><code>1=2</code></pre> when the array is empty, rewritten as <pre><code>name=&apos;Bob&apos;</code></pre> when the array contains a single element &apos;Bob&apos;, and rewritten as <pre><code>name IN (&apos;Bob&apos;, &apos;Jim&apos;)</code></pre> when the array contains elements &apos;Bob&apos; and &apos;Jim&apos;.<p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;T[]&gt; SelectValuesAsync&lt;T&gt;(string sql, dynamic vars = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">sql</span></td>
+        <td>The SELECT statement to execute (may contain vars like @name specified in <code data-dev-comment-type="paramref" class="paramref">vars</code>)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">vars</span></td>
+        <td>Either an anonymous type or Dictionary with the vars used in the SELECT statement</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;T[]&gt;</td>
         <td>The value of the first column of the first row</td>
       </tr>
     </tbody>

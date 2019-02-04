@@ -147,6 +147,19 @@ namespace Butterfly.Core.Database {
         Task<T> SelectValueAsync<T>(string sql, dynamic vars = null, T defaultValue = default(T));
 
         /// <summary>
+        /// Executes the SELECT statement and return the value of the first column of the first row (the SELECT statement may contain vars like @name specified in <paramref name="vars"/>).<para/>
+        /// <para/>
+        /// If a var is null then references in the WHERE clause like <code>name=@name</code> will be rewritten as <code>name IS NULL</code> and references in the WHERE clause like <code>name!=@name</code> will be rewritten as <code>name IS NOT NULL</code>.<para/>
+        /// <para/>
+        /// If a var is an array then references in the WHERE clause like <code>name=@name</code> will be rewritten as <code>1=2</code> when the array is empty, rewritten as <code>name='Bob'</code> when the array contains a single element 'Bob', and rewritten as <code>name IN ('Bob', 'Jim')</code> when the array contains elements 'Bob' and 'Jim'.<para/>
+        /// </summary>
+        /// <typeparam name="T">The return type of the single value returned</typeparam>
+        /// <param name="sql">The SELECT statement to execute (may contain vars like @name specified in <paramref name="vars"/>)</param>
+        /// <param name="vars">Either an anonymous type or Dictionary with the vars used in the SELECT statement</param>
+        /// <returns>The value of the first column of the first row</returns>
+        Task<T[]> SelectValuesAsync<T>(string sql, dynamic vars = null);
+
+        /// <summary>
         /// Executes the SELECT statement and return the first row (the SELECT statement may contain vars like @name specified in <paramref name="vars"/>)
         /// </summary>
         /// <param name="sql">The SELECT statement to execute (may contain vars like @name specified in <paramref name="vars"/>)</param>
@@ -159,9 +172,8 @@ namespace Butterfly.Core.Database {
         /// </summary>
         /// <param name="sql"></param>
         /// <param name="vars"></param>
-        /// <param name="limit"></param>
         /// <returns></returns>
-        Task<Dict[]> SelectRowsAsync(string sql, dynamic vars = null, int limit = -1);
+        Task<Dict[]> SelectRowsAsync(string sql, dynamic vars = null);
 
         /// <summary>
         /// Executes the SELECT statement and returns the rows

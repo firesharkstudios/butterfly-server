@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EmbedIO" Version="1.16.0" />
-    <PackageReference Include="NLog" Version="4.5.9" />
+    <PackageReference Include="EmbedIO" Version="1.16.1" />
+    <PackageReference Include="NLog" Version="4.5.10" />
   </ItemGroup>
 
   <ItemGroup>

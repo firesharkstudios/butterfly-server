@@ -7,7 +7,7 @@ items:
   children:
   - Butterfly.Core.Notify.Test.NotifyTest.ParseNotifyMessage
   - Butterfly.Core.Notify.Test.NotifyTest.SendEmailNotifyMessage(Butterfly.Core.Notify.INotifyMessageSender)
-  - Butterfly.Core.Notify.Test.NotifyTest.SendPhoneTextNotifyMessage(Butterfly.Core.Notify.INotifyMessageSender)
+  - Butterfly.Core.Notify.Test.NotifyTest.SendPhoneNotifyMessage(Butterfly.Core.Notify.INotifyMessageSender)
   langs:
   - csharp
   - vb
@@ -106,37 +106,37 @@ items:
   modifiers.vb:
   - Public
   - Shared
-- uid: Butterfly.Core.Notify.Test.NotifyTest.SendPhoneTextNotifyMessage(Butterfly.Core.Notify.INotifyMessageSender)
-  commentId: M:Butterfly.Core.Notify.Test.NotifyTest.SendPhoneTextNotifyMessage(Butterfly.Core.Notify.INotifyMessageSender)
-  id: SendPhoneTextNotifyMessage(Butterfly.Core.Notify.INotifyMessageSender)
+- uid: Butterfly.Core.Notify.Test.NotifyTest.SendPhoneNotifyMessage(Butterfly.Core.Notify.INotifyMessageSender)
+  commentId: M:Butterfly.Core.Notify.Test.NotifyTest.SendPhoneNotifyMessage(Butterfly.Core.Notify.INotifyMessageSender)
+  id: SendPhoneNotifyMessage(Butterfly.Core.Notify.INotifyMessageSender)
   parent: Butterfly.Core.Notify.Test.NotifyTest
   langs:
   - csharp
   - vb
-  name: SendPhoneTextNotifyMessage(INotifyMessageSender)
-  nameWithType: NotifyTest.SendPhoneTextNotifyMessage(INotifyMessageSender)
-  fullName: Butterfly.Core.Notify.Test.NotifyTest.SendPhoneTextNotifyMessage(Butterfly.Core.Notify.INotifyMessageSender)
+  name: SendPhoneNotifyMessage(INotifyMessageSender)
+  nameWithType: NotifyTest.SendPhoneNotifyMessage(INotifyMessageSender)
+  fullName: Butterfly.Core.Notify.Test.NotifyTest.SendPhoneNotifyMessage(Butterfly.Core.Notify.INotifyMessageSender)
   type: Method
   source:
     remote:
       path: Butterfly.Core.Test/NotifyTest.cs
       branch: master
       repo: https://github.com/firesharkstudios/Butterfly.git
-    id: SendPhoneTextNotifyMessage
+    id: SendPhoneNotifyMessage
     path: ../Butterfly.Core.Test/NotifyTest.cs
     startLine: 42
   assemblies:
   - Butterfly.Core.Test
   namespace: Butterfly.Core.Notify.Test
   syntax:
-    content: public static Task SendPhoneTextNotifyMessage(INotifyMessageSender notifyMessageSender)
+    content: public static Task SendPhoneNotifyMessage(INotifyMessageSender notifyMessageSender)
     parameters:
     - id: notifyMessageSender
       type: Butterfly.Core.Notify.INotifyMessageSender
     return:
       type: Task
-    content.vb: Public Shared Function SendPhoneTextNotifyMessage(notifyMessageSender As INotifyMessageSender) As Task
-  overload: Butterfly.Core.Notify.Test.NotifyTest.SendPhoneTextNotifyMessage*
+    content.vb: Public Shared Function SendPhoneNotifyMessage(notifyMessageSender As INotifyMessageSender) As Task
+  overload: Butterfly.Core.Notify.Test.NotifyTest.SendPhoneNotifyMessage*
   modifiers.csharp:
   - public
   - static
@@ -181,9 +181,9 @@ references:
   name: Butterfly.Core.Notify
   nameWithType: Butterfly.Core.Notify
   fullName: Butterfly.Core.Notify
-- uid: Butterfly.Core.Notify.Test.NotifyTest.SendPhoneTextNotifyMessage*
-  commentId: Overload:Butterfly.Core.Notify.Test.NotifyTest.SendPhoneTextNotifyMessage
-  name: SendPhoneTextNotifyMessage
-  nameWithType: NotifyTest.SendPhoneTextNotifyMessage
-  fullName: Butterfly.Core.Notify.Test.NotifyTest.SendPhoneTextNotifyMessage
+- uid: Butterfly.Core.Notify.Test.NotifyTest.SendPhoneNotifyMessage*
+  commentId: Overload:Butterfly.Core.Notify.Test.NotifyTest.SendPhoneNotifyMessage
+  name: SendPhoneNotifyMessage
+  nameWithType: NotifyTest.SendPhoneNotifyMessage
+  fullName: Butterfly.Core.Notify.Test.NotifyTest.SendPhoneNotifyMessage
 shouldSkipMarkup: true

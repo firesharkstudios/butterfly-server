@@ -30,7 +30,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: NotifyMessageEngine
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 209
+    startLine: 201
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -65,7 +65,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: notifyMessageType
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 210
+    startLine: 202
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -98,7 +98,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: notifyMessageSender
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 211
+    startLine: 203
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -131,7 +131,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: database
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 212
+    startLine: 204
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -164,7 +164,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: notifyMessageTableName
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 213
+    startLine: 205
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -197,7 +197,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: cancellationTokenSource
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 215
+    startLine: 207
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -228,7 +228,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 217
+    startLine: 209
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -267,7 +267,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: started
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 224
+    startLine: 216
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -298,7 +298,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Start
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 226
+    startLine: 218
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -328,7 +328,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Stop
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 232
+    startLine: 224
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -358,7 +358,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Queue
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 237
+    startLine: 229
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify
@@ -410,7 +410,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Pulse
     path: ../Butterfly.Core/Notify/NotifyManager.cs
-    startLine: 252
+    startLine: 244
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Notify

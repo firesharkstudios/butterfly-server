@@ -7,8 +7,8 @@ items:
   - Butterfly.Core.Util.Field.EmailFieldValidator
   - Butterfly.Core.Util.Field.GenericFieldValidator
   - Butterfly.Core.Util.Field.IFieldValidator
-  - Butterfly.Core.Util.Field.NameFieldValidator
   - Butterfly.Core.Util.Field.PhoneFieldValidator
+  - Butterfly.Core.Util.Field.TextFieldValidator
   langs:
   - csharp
   - vb
@@ -36,17 +36,17 @@ references:
   name: IFieldValidator
   nameWithType: IFieldValidator
   fullName: Butterfly.Core.Util.Field.IFieldValidator
-- uid: Butterfly.Core.Util.Field.NameFieldValidator
-  commentId: T:Butterfly.Core.Util.Field.NameFieldValidator
-  name: NameFieldValidator
-  nameWithType: NameFieldValidator
-  fullName: Butterfly.Core.Util.Field.NameFieldValidator
 - uid: Butterfly.Core.Util.Field.PhoneFieldValidator
   commentId: T:Butterfly.Core.Util.Field.PhoneFieldValidator
   parent: Butterfly.Core.Util.Field
   name: PhoneFieldValidator
   nameWithType: PhoneFieldValidator
   fullName: Butterfly.Core.Util.Field.PhoneFieldValidator
+- uid: Butterfly.Core.Util.Field.TextFieldValidator
+  commentId: T:Butterfly.Core.Util.Field.TextFieldValidator
+  name: TextFieldValidator
+  nameWithType: TextFieldValidator
+  fullName: Butterfly.Core.Util.Field.TextFieldValidator
 - uid: Butterfly.Core.Util.Field
   commentId: N:Butterfly.Core.Util.Field
   name: Butterfly.Core.Util.Field

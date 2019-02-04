@@ -5,7 +5,7 @@ items:
   id: DynamicView
   parent: Butterfly.Core.Database.Dynamic
   children:
-  - Butterfly.Core.Database.Dynamic.DynamicView.#ctor(Butterfly.Core.Database.Dynamic.DynamicViewSet,System.String,System.Object,System.String,System.String[],System.String[])
+  - Butterfly.Core.Database.Dynamic.DynamicView.#ctor(Butterfly.Core.Database.Dynamic.DynamicViewSet,System.String,System.Object,System.String,System.String[],System.String[],System.Int32)
   - Butterfly.Core.Database.Dynamic.DynamicView.childDynamicParams
   - Butterfly.Core.Database.Dynamic.DynamicView.dynamicStatementFromRefByTableName
   - Butterfly.Core.Database.Dynamic.DynamicView.dynamicViewSet
@@ -280,16 +280,16 @@ items:
   modifiers.vb:
   - Protected
   - ReadOnly
-- uid: Butterfly.Core.Database.Dynamic.DynamicView.#ctor(Butterfly.Core.Database.Dynamic.DynamicViewSet,System.String,System.Object,System.String,System.String[],System.String[])
-  commentId: M:Butterfly.Core.Database.Dynamic.DynamicView.#ctor(Butterfly.Core.Database.Dynamic.DynamicViewSet,System.String,System.Object,System.String,System.String[],System.String[])
-  id: '#ctor(Butterfly.Core.Database.Dynamic.DynamicViewSet,System.String,System.Object,System.String,System.String[],System.String[])'
+- uid: Butterfly.Core.Database.Dynamic.DynamicView.#ctor(Butterfly.Core.Database.Dynamic.DynamicViewSet,System.String,System.Object,System.String,System.String[],System.String[],System.Int32)
+  commentId: M:Butterfly.Core.Database.Dynamic.DynamicView.#ctor(Butterfly.Core.Database.Dynamic.DynamicViewSet,System.String,System.Object,System.String,System.String[],System.String[],System.Int32)
+  id: '#ctor(Butterfly.Core.Database.Dynamic.DynamicViewSet,System.String,System.Object,System.String,System.String[],System.String[],System.Int32)'
   parent: Butterfly.Core.Database.Dynamic.DynamicView
   langs:
   - csharp
   - vb
-  name: DynamicView(DynamicViewSet, String, Object, String, String[], String[])
-  nameWithType: DynamicView.DynamicView(DynamicViewSet, String, Object, String, String[], String[])
-  fullName: Butterfly.Core.Database.Dynamic.DynamicView.DynamicView(Butterfly.Core.Database.Dynamic.DynamicViewSet, System.String, System.Object, System.String, System.String[], System.String[])
+  name: DynamicView(DynamicViewSet, String, Object, String, String[], String[], Int32)
+  nameWithType: DynamicView.DynamicView(DynamicViewSet, String, Object, String, String[], String[], Int32)
+  fullName: Butterfly.Core.Database.Dynamic.DynamicView.DynamicView(Butterfly.Core.Database.Dynamic.DynamicViewSet, System.String, System.Object, System.String, System.String[], System.String[], System.Int32)
   type: Constructor
   source:
     remote:
@@ -303,7 +303,7 @@ items:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Dynamic
   syntax:
-    content: public DynamicView(DynamicViewSet dynamicQuerySet, string sql, dynamic vars = null, string name = null, string[] keyFieldNames = null, string[] dynamicTableAliases = null)
+    content: public DynamicView(DynamicViewSet dynamicQuerySet, string sql, dynamic vars = null, string name = null, string[] keyFieldNames = null, string[] dynamicTableAliases = null, int limit = null)
     parameters:
     - id: dynamicQuerySet
       type: Butterfly.Core.Database.Dynamic.DynamicViewSet
@@ -317,15 +317,17 @@ items:
       type: System.String[]
     - id: dynamicTableAliases
       type: System.String[]
-    content.vb: Public Sub New(dynamicQuerySet As DynamicViewSet, sql As String, vars As Object = Nothing, name As String = Nothing, keyFieldNames As String() = Nothing, dynamicTableAliases As String() = Nothing)
+    - id: limit
+      type: System.Int32
+    content.vb: Public Sub New(dynamicQuerySet As DynamicViewSet, sql As String, vars As Object = Nothing, name As String = Nothing, keyFieldNames As String() = Nothing, dynamicTableAliases As String() = Nothing, limit As Integer = Nothing)
   overload: Butterfly.Core.Database.Dynamic.DynamicView.#ctor*
-  nameWithType.vb: DynamicView.DynamicView(DynamicViewSet, String, Object, String, String(), String())
+  nameWithType.vb: DynamicView.DynamicView(DynamicViewSet, String, Object, String, String(), String(), Int32)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: Butterfly.Core.Database.Dynamic.DynamicView.DynamicView(Butterfly.Core.Database.Dynamic.DynamicViewSet, System.String, System.Object, System.String, System.String(), System.String())
-  name.vb: DynamicView(DynamicViewSet, String, Object, String, String(), String())
+  fullName.vb: Butterfly.Core.Database.Dynamic.DynamicView.DynamicView(Butterfly.Core.Database.Dynamic.DynamicViewSet, System.String, System.Object, System.String, System.String(), System.String(), System.Int32)
+  name.vb: DynamicView(DynamicViewSet, String, Object, String, String(), String(), Int32)
 - uid: Butterfly.Core.Database.Dynamic.DynamicView.Id
   commentId: P:Butterfly.Core.Database.Dynamic.DynamicView.Id
   id: Id
@@ -809,6 +811,11 @@ references:
   name: DynamicView
   nameWithType: DynamicView.DynamicView
   fullName: Butterfly.Core.Database.Dynamic.DynamicView.DynamicView
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
 - uid: Butterfly.Core.Database.Dynamic.DynamicView.Id*
   commentId: Overload:Butterfly.Core.Database.Dynamic.DynamicView.Id
   name: Id

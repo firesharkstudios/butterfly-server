@@ -358,7 +358,7 @@ replicated to a specific client.
   <h3 id="methods">Methods
   </h3>
   <a id="Butterfly_Core_Database_Dynamic_DynamicViewSet_CreateDynamicView_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView*"></a>
-  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_CreateDynamicView_System_String_System_Object_System_String_System_String___" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[])">CreateDynamicView(String, Object, String, String[])</h4>
+  <h4 id="Butterfly_Core_Database_Dynamic_DynamicViewSet_CreateDynamicView_System_String_System_Object_System_String_System_String___System_Int32_" data-uid="Butterfly.Core.Database.Dynamic.DynamicViewSet.CreateDynamicView(System.String,System.Object,System.String,System.String[],System.Int32)">CreateDynamicView(String, Object, String, String[], Int32)</h4>
   <div class="markdown level1 summary">
 Creates an instance of a DynamicView. Must call <a class="xref" href="Butterfly.Core.Database.Dynamic.DynamicViewSet.html#Butterfly_Core_Database_Dynamic_DynamicViewSet_StartAsync">StartAsync()</a> to send 
 initial <a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a> instance and listen for new <a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction.html">DataEventTransaction</a>instances.
@@ -366,7 +366,7 @@ initial <a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DynamicView CreateDynamicView(string sql, dynamic values = null, string name = null, string[] keyFieldNames = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public DynamicView CreateDynamicView(string sql, dynamic values = null, string name = null, string[] keyFieldNames = null, int limit = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -396,6 +396,11 @@ initial <a class="xref" href="Butterfly.Core.Database.Event.DataEventTransaction
       <tr>
         <td><span class="xref">System.String</span>[]</td>
         <td><span class="parametername">keyFieldNames</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">limit</span></td>
         <td></td>
       </tr>
     </tbody>

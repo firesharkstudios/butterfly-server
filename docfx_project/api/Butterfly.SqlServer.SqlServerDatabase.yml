@@ -66,8 +66,9 @@ items:
   - Butterfly.Core.Database.BaseDatabase.OnNewCommittedTransaction(Func{`0,`1})
   - Butterfly.Core.Database.BaseDatabase.GetInitialDataEventsAsync(System.String,System.String[],Butterfly.Core.Database.SelectStatement,System.Object)
   - Butterfly.Core.Database.BaseDatabase.SelectValueAsync``1(System.String,System.Object,{T})
+  - Butterfly.Core.Database.BaseDatabase.SelectValuesAsync``1(System.String,System.Object)
   - Butterfly.Core.Database.BaseDatabase.SelectRowAsync(System.String,System.Object)
-  - Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)
+  - Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String,System.Object)
   - Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(Butterfly.Core.Database.SelectStatement,System.Object)
   - Butterfly.Core.Database.BaseDatabase.DoSelectRowsAsync(System.String,System.Collections.Generic.Dictionary{`0,`1},System.Int32)
   - Butterfly.Core.Database.BaseDatabase.QueryValueAsync``1(System.String,System.Object,{T})
@@ -1079,6 +1080,58 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Butterfly.Core.Database.BaseDatabase.SelectValuesAsync``1(System.String,System.Object)
+  commentId: M:Butterfly.Core.Database.BaseDatabase.SelectValuesAsync``1(System.String,System.Object)
+  parent: Butterfly.Core.Database.BaseDatabase
+  isExternal: true
+  name: SelectValuesAsync<T>(String, Object)
+  nameWithType: BaseDatabase.SelectValuesAsync<T>(String, Object)
+  fullName: Butterfly.Core.Database.BaseDatabase.SelectValuesAsync<T>(System.String, System.Object)
+  nameWithType.vb: BaseDatabase.SelectValuesAsync(Of T)(String, )
+  fullName.vb: Butterfly.Core.Database.BaseDatabase.SelectValuesAsync(Of T)(System.String, )
+  name.vb: SelectValuesAsync(Of T)(String, )
+  spec.csharp:
+  - uid: Butterfly.Core.Database.BaseDatabase.SelectValuesAsync``1(System.String,System.Object)
+    name: SelectValuesAsync<T>
+    nameWithType: BaseDatabase.SelectValuesAsync<T>
+    fullName: Butterfly.Core.Database.BaseDatabase.SelectValuesAsync<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.BaseDatabase.SelectValuesAsync``1(System.String,System.Object)
+    name: SelectValuesAsync(Of T)
+    nameWithType: BaseDatabase.SelectValuesAsync(Of T)
+    fullName: Butterfly.Core.Database.BaseDatabase.SelectValuesAsync(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Butterfly.Core.Database.BaseDatabase.SelectRowAsync(System.String,System.Object)
   commentId: M:Butterfly.Core.Database.BaseDatabase.SelectRowAsync(System.String,System.Object)
   parent: Butterfly.Core.Database.BaseDatabase
@@ -1131,18 +1184,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)
-  commentId: M:Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)
+- uid: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String,System.Object)
+  commentId: M:Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String,System.Object)
   parent: Butterfly.Core.Database.BaseDatabase
   isExternal: true
-  name: SelectRowsAsync(String, Object, Int32)
-  nameWithType: BaseDatabase.SelectRowsAsync(String, Object, Int32)
-  fullName: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String, System.Object, System.Int32)
-  nameWithType.vb: BaseDatabase.SelectRowsAsync(String, , Int32)
-  fullName.vb: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String, , System.Int32)
-  name.vb: SelectRowsAsync(String, , Int32)
+  name: SelectRowsAsync(String, Object)
+  nameWithType: BaseDatabase.SelectRowsAsync(String, Object)
+  fullName: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String, System.Object)
+  nameWithType.vb: BaseDatabase.SelectRowsAsync(String, )
+  fullName.vb: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String, )
+  name.vb: SelectRowsAsync(String, )
   spec.csharp:
-  - uid: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)
+  - uid: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String,System.Object)
     name: SelectRowsAsync
     nameWithType: BaseDatabase.SelectRowsAsync
     fullName: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync
@@ -1161,19 +1214,11 @@ references:
     name: Object
     nameWithType: Object
     fullName: System.Object
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String,System.Object,System.Int32)
+  - uid: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync(System.String,System.Object)
     name: SelectRowsAsync
     nameWithType: BaseDatabase.SelectRowsAsync
     fullName: Butterfly.Core.Database.BaseDatabase.SelectRowsAsync
@@ -1188,14 +1233,6 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: System.Int32
-    name: Int32
-    nameWithType: Int32
-    fullName: System.Int32
-    isExternal: true
   - name: )
     nameWithType: )
     fullName: )

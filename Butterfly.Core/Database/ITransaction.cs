@@ -124,8 +124,10 @@ namespace Butterfly.Core.Database {
         /// <param name="existingRecords"></param>
         /// <param name="newRecords"></param>
         /// <param name="keyFieldNames">Leave blank to auto-determine key field names from existing and new records</param>
+        /// <param name="insertFunc">Leave blank to perform a <see cref="ITransaction.InsertAsync{T}(string, dynamic, bool)"/></param>
+        /// <param name="deleteFunc">Leave blank to perform a <see cref="ITransaction.DeleteAsync{T}(string, dynamic, bool)"/></param>
         /// <returns></returns>
-        Task<bool> SynchronizeAsync(string tableName, Dict[] existingRecords, Dict[] newRecords, string[] keyFieldNames = null);
+        Task<bool> SynchronizeAsync(string tableName, Dict[] existingRecords, Dict[] newRecords, string[] keyFieldNames = null, Func<Dict, Task> insertFunc = null, Func<Dict, Task<int>> deleteFunc = null);
 
         /// <summary>
         /// Truncate a table (deletes all records)
@@ -146,7 +148,8 @@ namespace Butterfly.Core.Database {
         /// Register a callback that is invoked when the transaction is successfully committed
         /// </summary>
         /// <param name="onCommit"></param>
-        void OnCommit(Func<Task> onCommit);
+        /// <param name="key">Provide a key if you need to ensure only one onCommit instance is executed with that key</param>
+        void OnCommit(Func<Task> onCommit, string key = null);
 
         /// <summary>
         /// Rollback the transaction (called automatically if transaction is disposed without calling <see cref="Commit"/> or <see cref="CommitAsync"/>)

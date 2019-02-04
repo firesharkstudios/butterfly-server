@@ -23,7 +23,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: KeyValueDataEvent
     path: ../Butterfly.Core/Database/Event/DataEvent.cs
-    startLine: 60
+    startLine: 54
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Event
@@ -38,8 +38,8 @@ items:
   derivedClasses:
   - Butterfly.Core.Database.Event.RecordDataEvent
   inheritedMembers:
-  - Butterfly.Core.Database.Event.DataEvent.dataEventType
   - Butterfly.Core.Database.Event.DataEvent.id
+  - Butterfly.Core.Database.Event.DataEvent.dataEventType
   modifiers.csharp:
   - public
   - class
@@ -64,7 +64,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: name
     path: ../Butterfly.Core/Database/Event/DataEvent.cs
-    startLine: 61
+    startLine: 55
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Event
@@ -97,7 +97,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: keyValue
     path: ../Butterfly.Core/Database/Event/DataEvent.cs
-    startLine: 62
+    startLine: 56
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Event
@@ -130,7 +130,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: .ctor
     path: ../Butterfly.Core/Database/Event/DataEvent.cs
-    startLine: 64
+    startLine: 58
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Event
@@ -167,7 +167,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ToString
     path: ../Butterfly.Core/Database/Event/DataEvent.cs
-    startLine: 69
+    startLine: 63
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database.Event
@@ -202,18 +202,18 @@ references:
   name: DataEvent
   nameWithType: DataEvent
   fullName: Butterfly.Core.Database.Event.DataEvent
+- uid: Butterfly.Core.Database.Event.DataEvent.id
+  commentId: F:Butterfly.Core.Database.Event.DataEvent.id
+  parent: Butterfly.Core.Database.Event.DataEvent
+  name: id
+  nameWithType: DataEvent.id
+  fullName: Butterfly.Core.Database.Event.DataEvent.id
 - uid: Butterfly.Core.Database.Event.DataEvent.dataEventType
   commentId: F:Butterfly.Core.Database.Event.DataEvent.dataEventType
   parent: Butterfly.Core.Database.Event.DataEvent
   name: dataEventType
   nameWithType: DataEvent.dataEventType
   fullName: Butterfly.Core.Database.Event.DataEvent.dataEventType
-- uid: Butterfly.Core.Database.Event.DataEvent.id
-  commentId: P:Butterfly.Core.Database.Event.DataEvent.id
-  parent: Butterfly.Core.Database.Event.DataEvent
-  name: id
-  nameWithType: DataEvent.id
-  fullName: Butterfly.Core.Database.Event.DataEvent.id
 - uid: System.String
   isExternal: true
   name: String

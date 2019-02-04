@@ -21,7 +21,7 @@ items:
   - Butterfly.Core.Channel.BaseChannelConnection.LastHeartbeat
   - Butterfly.Core.Channel.BaseChannelConnection.logger
   - Butterfly.Core.Channel.BaseChannelConnection.monitor
-  - Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object)
+  - Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
   - Butterfly.Core.Channel.BaseChannelConnection.ReceiveMessageAsync(System.String)
   - Butterfly.Core.Channel.BaseChannelConnection.RunAsync
   - Butterfly.Core.Channel.BaseChannelConnection.SendAsync(System.String)
@@ -518,16 +518,16 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object)
-  commentId: M:Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object)
-  id: QueueMessage(System.String,System.String,System.Object)
+- uid: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
+  commentId: M:Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
+  id: QueueMessage(System.String,System.String,System.Object,System.Boolean)
   parent: Butterfly.Core.Channel.BaseChannelConnection
   langs:
   - csharp
   - vb
-  name: QueueMessage(String, String, Object)
-  nameWithType: BaseChannelConnection.QueueMessage(String, String, Object)
-  fullName: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String, System.String, System.Object)
+  name: QueueMessage(String, String, Object, Boolean)
+  nameWithType: BaseChannelConnection.QueueMessage(String, String, Object, Boolean)
+  fullName: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage(System.String, System.String, System.Object, System.Boolean)
   type: Method
   source:
     remote:
@@ -543,7 +543,7 @@ items:
   summary: "\nQueue an object to be sent over the channel to the client.  The queue is processed by a background thread when the Channel is started.\n"
   example: []
   syntax:
-    content: public void QueueMessage(string channelKey = null, string messageType = null, object data = null)
+    content: public void QueueMessage(string channelKey = null, string messageType = null, object data = null, bool immediate = false)
     parameters:
     - id: channelKey
       type: System.String
@@ -554,10 +554,12 @@ items:
     - id: data
       type: System.Object
       description: The value to be sent to the client (will be converted to JSON)
-    content.vb: Public Sub QueueMessage(channelKey As String = Nothing, messageType As String = Nothing, data As Object = Nothing)
+    - id: immediate
+      type: System.Boolean
+    content.vb: Public Sub QueueMessage(channelKey As String = Nothing, messageType As String = Nothing, data As Object = Nothing, immediate As Boolean = False)
   overload: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage*
   implements:
-  - Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object)
+  - Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -580,7 +582,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: started
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
-    startLine: 86
+    startLine: 91
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Channel
@@ -611,7 +613,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Start
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
-    startLine: 87
+    startLine: 92
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Channel
@@ -648,7 +650,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: channelByKey
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
-    startLine: 94
+    startLine: 99
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Channel
@@ -681,7 +683,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: RunAsync
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
-    startLine: 96
+    startLine: 101
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Channel
@@ -713,7 +715,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SendAsync
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
-    startLine: 119
+    startLine: 124
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Channel
@@ -752,7 +754,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: ReceiveMessageAsync
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
-    startLine: 121
+    startLine: 126
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Channel
@@ -787,7 +789,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: EMPTY_DICT
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
-    startLine: 173
+    startLine: 178
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Channel
@@ -818,7 +820,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SubscribeAsync
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
-    startLine: 175
+    startLine: 180
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Channel
@@ -856,7 +858,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: UnsubscribeAll
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
-    startLine: 212
+    startLine: 217
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Channel
@@ -886,7 +888,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Unsubscribe
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
-    startLine: 216
+    startLine: 221
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Channel
@@ -922,7 +924,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Dispose
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
-    startLine: 235
+    startLine: 240
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Channel
@@ -954,7 +956,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: DoDispose
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
-    startLine: 257
+    startLine: 262
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Channel
@@ -1154,15 +1156,15 @@ references:
   name: QueueMessage
   nameWithType: BaseChannelConnection.QueueMessage
   fullName: Butterfly.Core.Channel.BaseChannelConnection.QueueMessage
-- uid: Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object)
-  commentId: M:Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object)
+- uid: Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
+  commentId: M:Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
   parent: Butterfly.Core.Channel.IChannelConnection
   isExternal: true
-  name: QueueMessage(String, String, Object)
-  nameWithType: IChannelConnection.QueueMessage(String, String, Object)
-  fullName: Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String, System.String, System.Object)
+  name: QueueMessage(String, String, Object, Boolean)
+  nameWithType: IChannelConnection.QueueMessage(String, String, Object, Boolean)
+  fullName: Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String, System.String, System.Object, System.Boolean)
   spec.csharp:
-  - uid: Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object)
+  - uid: Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
     name: QueueMessage
     nameWithType: IChannelConnection.QueueMessage
     fullName: Butterfly.Core.Channel.IChannelConnection.QueueMessage
@@ -1189,12 +1191,20 @@ references:
     name: Object
     nameWithType: Object
     fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
     isExternal: true
   - name: )
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object)
+  - uid: Butterfly.Core.Channel.IChannelConnection.QueueMessage(System.String,System.String,System.Object,System.Boolean)
     name: QueueMessage
     nameWithType: IChannelConnection.QueueMessage
     fullName: Butterfly.Core.Channel.IChannelConnection.QueueMessage
@@ -1221,6 +1231,14 @@ references:
     name: Object
     nameWithType: Object
     fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
     isExternal: true
   - name: )
     nameWithType: )

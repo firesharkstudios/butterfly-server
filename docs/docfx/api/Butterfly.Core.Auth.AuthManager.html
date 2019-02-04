@@ -147,14 +147,14 @@ CREATE TABLE auth_token(
   <h3 id="constructors">Constructors
   </h3>
   <a id="Butterfly_Core_Auth_AuthManager__ctor_" data-uid="Butterfly.Core.Auth.AuthManager.#ctor*"></a>
-  <h4 id="Butterfly_Core_Auth_AuthManager__ctor_Butterfly_Core_Database_IDatabase_System_Int32_System_Int32_System_Int32_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_Func_System_String_System_Int32_Task__Func_System_String_System_Int32_Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Action_Version__" data-uid="Butterfly.Core.Auth.AuthManager.#ctor(Butterfly.Core.Database.IDatabase,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,Func{System.String,System.Int32,Task},Func{System.String,System.Int32,Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Action{Version})">AuthManager(IDatabase, Int32, Int32, Int32, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, Func&lt;String, Int32, Task&gt;, Func&lt;String, Int32, Task&gt;, Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, Task&gt;, Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, Task&gt;, Action&lt;Version&gt;)</h4>
+  <h4 id="Butterfly_Core_Auth_AuthManager__ctor_Butterfly_Core_Database_IDatabase_System_Int32_System_Int32_System_Int32_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_System_String_Func_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Object___Func_System_Collections_Generic_Dictionary_System_String_System_Object__System_Collections_Generic_Dictionary_System_String_System_Object___Func_System_String_System_Int32_Task__Func_System_String_System_Int32_Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Func_System_Collections_Generic_Dictionary_System_String_System_Object__Task__Action_Version__" data-uid="Butterfly.Core.Auth.AuthManager.#ctor(Butterfly.Core.Database.IDatabase,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Object}},Func{System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Object}},Func{System.String,System.Int32,Task},Func{System.String,System.Int32,Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Action{Version})">AuthManager(IDatabase, Int32, Int32, Int32, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, String, Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, System.Collections.Generic.Dictionary&lt;String, Object&gt;&gt;, Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, System.Collections.Generic.Dictionary&lt;String, Object&gt;&gt;, Func&lt;String, Int32, Task&gt;, Func&lt;String, Int32, Task&gt;, Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, Task&gt;, Func&lt;System.Collections.Generic.Dictionary&lt;String, Object&gt;, Task&gt;, Action&lt;Version&gt;)</h4>
   <div class="markdown level1 summary">
 Create an instance of AuthManager
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AuthManager(IDatabase database, int authTokenDurationDays = 90, int resetCodeLength = 6, int resetTokenDurationMinutes = 90, string accountTableName = &quot;account&quot;, string userTableName = &quot;user&quot;, string userTableIdFieldName = &quot;id&quot;, string userTableUsernameFieldName = &quot;username&quot;, string userTableEmailFieldName = &quot;email&quot;, string userTableEmailVerifiedAtFieldName = &quot;email_verified_at&quot;, string userTablePhoneFieldName = &quot;phone&quot;, string userTablePhoneVerifiedAtFieldName = &quot;phone_verified_at&quot;, string userTableSaltFieldName = &quot;salt&quot;, string userTablePasswordHashFieldName = &quot;password_hash&quot;, string userTableFirstNameFieldName = &quot;first_name&quot;, string userTableLastNameFieldName = &quot;last_name&quot;, string userTableResetCodeFieldName = &quot;reset_code&quot;, string userTableResetCodeExpiresAtFieldName = &quot;reset_code_expires_at&quot;, string userTableAccountIdFieldName = &quot;account_id&quot;, string userTableRoleFieldName = &quot;role&quot;, string authTokenTableName = &quot;auth_token&quot;, string authTokenIdFieldName = &quot;id&quot;, string authTokenTableUserIdFieldName = &quot;user_id&quot;, string authTokenTableExpiresAtFieldName = &quot;expires_at&quot;, string defaultRole = null, Func&lt;string, int, Task&gt; onEmailVerify = null, Func&lt;string, int, Task&gt; onPhoneVerify = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, Task&gt; onRegister = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, Task&gt; onForgotPassword = null, Action&lt;Version&gt; onCheckVersion = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public AuthManager(IDatabase database, int authTokenDurationDays = 90, int resetCodeLength = 6, int resetTokenDurationMinutes = 90, string accountTableName = &quot;account&quot;, string accountTableIdFieldName = &quot;id&quot;, string accountTableShareCodeFieldName = &quot;share_code&quot;, string userTableName = &quot;user&quot;, string userTableIdFieldName = &quot;id&quot;, string userTableUsernameFieldName = &quot;username&quot;, string userTableEmailFieldName = &quot;email&quot;, string userTableEmailVerifiedAtFieldName = &quot;email_verified_at&quot;, string userTablePhoneFieldName = &quot;phone&quot;, string userTablePhoneVerifiedAtFieldName = &quot;phone_verified_at&quot;, string userTableSaltFieldName = &quot;salt&quot;, string userTablePasswordHashFieldName = &quot;password_hash&quot;, string userTableFirstNameFieldName = &quot;first_name&quot;, string userTableLastNameFieldName = &quot;last_name&quot;, string userTableResetCodeFieldName = &quot;reset_code&quot;, string userTableResetCodeExpiresAtFieldName = &quot;reset_code_expires_at&quot;, string userTableAccountIdFieldName = &quot;account_id&quot;, string userTableRoleFieldName = &quot;role&quot;, string defaultRole = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, System.Collections.Generic.Dictionary&lt;string, object&gt;&gt; getExtraAccountInfo = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, System.Collections.Generic.Dictionary&lt;string, object&gt;&gt; getExtraUserInfo = null, Func&lt;string, int, Task&gt; onEmailVerify = null, Func&lt;string, int, Task&gt; onPhoneVerify = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, Task&gt; onRegister = null, Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, Task&gt; onForgotPassword = null, Action&lt;Version&gt; onCheckVersion = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -190,6 +190,16 @@ Create an instance of AuthManager
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">accountTableName</span></td>
         <td>Table name of the account table (default is &quot;account&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">accountTableIdFieldName</span></td>
+        <td>Field name of the id field on the account table (default is &quot;id&quot;)</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">accountTableShareCodeFieldName</span></td>
+        <td>Field name of the share code field on the account table (default is &quot;share_code&quot;)</td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
@@ -268,28 +278,18 @@ Create an instance of AuthManager
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">authTokenTableName</span></td>
-        <td>Table name of the auth token table (default is &quot;auth_token&quot;)</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">authTokenIdFieldName</span></td>
-        <td>Field name of the id field on the auth token table (default is &quot;id&quot;)</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">authTokenTableUserIdFieldName</span></td>
-        <td>Field name of the user id field on the auth token table (default is &quot;user_id&quot;)</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">authTokenTableExpiresAtFieldName</span></td>
-        <td>Field name of the expires at field on the auth token table (default is &quot;expires_at&quot;)</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">defaultRole</span></td>
         <td>Default value for the role field on a new user</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;, <span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">getExtraAccountInfo</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;, <span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td><span class="parametername">getExtraUserInfo</span></td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">Func</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Int32</span>, <span class="xref">Task</span>&gt;</td>
@@ -320,6 +320,28 @@ Create an instance of AuthManager
   </table>
   <h3 id="fields">Fields
   </h3>
+  <h4 id="Butterfly_Core_Auth_AuthManager_accountTableIdFieldName" data-uid="Butterfly.Core.Auth.AuthManager.accountTableIdFieldName">accountTableIdFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string accountTableIdFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h4 id="Butterfly_Core_Auth_AuthManager_accountTableName" data-uid="Butterfly.Core.Auth.AuthManager.accountTableName">accountTableName</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -342,6 +364,50 @@ Create an instance of AuthManager
       </tr>
     </tbody>
   </table>
+  <h4 id="Butterfly_Core_Auth_AuthManager_accountTableShareCodeFieldName" data-uid="Butterfly.Core.Auth.AuthManager.accountTableShareCodeFieldName">accountTableShareCodeFieldName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string accountTableShareCodeFieldName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Auth_AuthManager_authenticatorByType" data-uid="Butterfly.Core.Auth.AuthManager.authenticatorByType">authenticatorByType</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Dictionary&lt;string, IAuthenticator&gt; authenticatorByType</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.String</span>, <a class="xref" href="Butterfly.Core.Auth.IAuthenticator.html">IAuthenticator</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h4 id="Butterfly_Core_Auth_AuthManager_authTokenDurationDays" data-uid="Butterfly.Core.Auth.AuthManager.authTokenDurationDays">authTokenDurationDays</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -360,94 +426,6 @@ Create an instance of AuthManager
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="Butterfly_Core_Auth_AuthManager_authTokenIdFieldName" data-uid="Butterfly.Core.Auth.AuthManager.authTokenIdFieldName">authTokenIdFieldName</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly string authTokenIdFieldName</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="Butterfly_Core_Auth_AuthManager_authTokenTableExpiresAtFieldName" data-uid="Butterfly.Core.Auth.AuthManager.authTokenTableExpiresAtFieldName">authTokenTableExpiresAtFieldName</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly string authTokenTableExpiresAtFieldName</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="Butterfly_Core_Auth_AuthManager_authTokenTableName" data-uid="Butterfly.Core.Auth.AuthManager.authTokenTableName">authTokenTableName</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly string authTokenTableName</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h4 id="Butterfly_Core_Auth_AuthManager_authTokenTableUserIdFieldName" data-uid="Butterfly.Core.Auth.AuthManager.authTokenTableUserIdFieldName">authTokenTableUserIdFieldName</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly string authTokenTableUserIdFieldName</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -514,6 +492,50 @@ Create an instance of AuthManager
     <tbody>
       <tr>
         <td><a class="xref" href="Butterfly.Core.Util.Field.IFieldValidator.html">IFieldValidator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Auth_AuthManager_getExtraAccountInfo" data-uid="Butterfly.Core.Auth.AuthManager.getExtraAccountInfo">getExtraAccountInfo</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, System.Collections.Generic.Dictionary&lt;string, object&gt;&gt; getExtraAccountInfo</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;, <span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Auth_AuthManager_getExtraUserInfo" data-uid="Butterfly.Core.Auth.AuthManager.getExtraUserInfo">getExtraUserInfo</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Func&lt;System.Collections.Generic.Dictionary&lt;string, object&gt;, System.Collections.Generic.Dictionary&lt;string, object&gt;&gt; getExtraUserInfo</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;<span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;, <span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -760,6 +782,28 @@ Create an instance of AuthManager
       </tr>
     </tbody>
   </table>
+  <h4 id="Butterfly_Core_Auth_AuthManager_shareCodeAuthenticator" data-uid="Butterfly.Core.Auth.AuthManager.shareCodeAuthenticator">shareCodeAuthenticator</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly ShareCodeAuthenticator shareCodeAuthenticator</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Auth.ShareCodeAuthenticator.html">ShareCodeAuthenticator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h4 id="Butterfly_Core_Auth_AuthManager_usernameFieldValidator" data-uid="Butterfly.Core.Auth.AuthManager.usernameFieldValidator">usernameFieldValidator</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -778,6 +822,28 @@ Create an instance of AuthManager
     <tbody>
       <tr>
         <td><a class="xref" href="Butterfly.Core.Util.Field.IFieldValidator.html">IFieldValidator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="Butterfly_Core_Auth_AuthManager_userRefTokenAuthenticator" data-uid="Butterfly.Core.Auth.AuthManager.userRefTokenAuthenticator">userRefTokenAuthenticator</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly UserRefTokenAuthenticator userRefTokenAuthenticator</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Auth.UserRefTokenAuthenticator.html">UserRefTokenAuthenticator</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -1137,14 +1203,14 @@ Create an instance of AuthManager
   <h3 id="methods">Methods
   </h3>
   <a id="Butterfly_Core_Auth_AuthManager_AuthenticateAsync_" data-uid="Butterfly.Core.Auth.AuthManager.AuthenticateAsync*"></a>
-  <h4 id="Butterfly_Core_Auth_AuthManager_AuthenticateAsync_System_String_" data-uid="Butterfly.Core.Auth.AuthManager.AuthenticateAsync(System.String)">AuthenticateAsync(String)</h4>
+  <h4 id="Butterfly_Core_Auth_AuthManager_AuthenticateAsync_System_String_System_String_" data-uid="Butterfly.Core.Auth.AuthManager.AuthenticateAsync(System.String,System.String)">AuthenticateAsync(String, String)</h4>
   <div class="markdown level1 summary">
 Validates the auth token id returning an <a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a> instance
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;AuthToken&gt; AuthenticateAsync(string authTokenId)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;AuthToken&gt; AuthenticateAsync(string authType, string authValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1158,7 +1224,12 @@ Validates the auth token id returning an <a class="xref" href="Butterfly.Core.Au
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">authTokenId</span></td>
+        <td><span class="parametername">authType</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">authValue</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1243,48 +1314,6 @@ Creates an anonymous user and returns a valid <a class="xref" href="Butterfly.Co
       </tr>
     </tbody>
   </table>
-  <a id="Butterfly_Core_Auth_AuthManager_CreateAuthTokenAsync_" data-uid="Butterfly.Core.Auth.AuthManager.CreateAuthTokenAsync*"></a>
-  <h4 id="Butterfly_Core_Auth_AuthManager_CreateAuthTokenAsync_System_String_" data-uid="Butterfly.Core.Auth.AuthManager.CreateAuthTokenAsync(System.String)">CreateAuthTokenAsync(String)</h4>
-  <div class="markdown level1 summary">
-Create an auth token
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;AuthToken&gt; CreateAuthTokenAsync(string userId)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">userId</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a>&gt;</td>
-        <td>The AuthToken instance created</td>
-      </tr>
-    </tbody>
-  </table>
   <a id="Butterfly_Core_Auth_AuthManager_CreateResetCodeAsync_" data-uid="Butterfly.Core.Auth.AuthManager.CreateResetCodeAsync*"></a>
   <h4 id="Butterfly_Core_Auth_AuthManager_CreateResetCodeAsync_System_String_" data-uid="Butterfly.Core.Auth.AuthManager.CreateResetCodeAsync(System.String)">CreateResetCodeAsync(String)</h4>
   <div class="markdown level1 summary"></div>
@@ -1322,6 +1351,48 @@ Create an auth token
       <tr>
         <td><span class="xref">Task</span>&lt;<span class="xref">System.String</span>&gt;</td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="Butterfly_Core_Auth_AuthManager_CreateUserRefTokenAsync_" data-uid="Butterfly.Core.Auth.AuthManager.CreateUserRefTokenAsync*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager_CreateUserRefTokenAsync_System_String_" data-uid="Butterfly.Core.Auth.AuthManager.CreateUserRefTokenAsync(System.String)">CreateUserRefTokenAsync(String)</h4>
+  <div class="markdown level1 summary">
+Create an auth token
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;UserRefToken&gt; CreateUserRefTokenAsync(string userId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">userId</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Auth.UserRefToken.html">UserRefToken</a>&gt;</td>
+        <td>The AuthToken instance created</td>
       </tr>
     </tbody>
   </table>
@@ -1367,6 +1438,46 @@ Creates a reset code and invokes <a class="xref" href="Butterfly.Core.Auth.AuthM
       </tr>
     </tbody>
   </table>
+  <a id="Butterfly_Core_Auth_AuthManager_GetUserRefToken_" data-uid="Butterfly.Core.Auth.AuthManager.GetUserRefToken*"></a>
+  <h4 id="Butterfly_Core_Auth_AuthManager_GetUserRefToken_Butterfly_Core_Util_IWebRequest_" data-uid="Butterfly.Core.Auth.AuthManager.GetUserRefToken(Butterfly.Core.Util.IWebRequest)">GetUserRefToken(IWebRequest)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;UserRefToken&gt; GetUserRefToken(IWebRequest req)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Butterfly.Core.Util.IWebRequest.html">IWebRequest</a></td>
+        <td><span class="parametername">req</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Auth.UserRefToken.html">UserRefToken</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <a id="Butterfly_Core_Auth_AuthManager_LoginAsync_" data-uid="Butterfly.Core.Auth.AuthManager.LoginAsync*"></a>
   <h4 id="Butterfly_Core_Auth_AuthManager_LoginAsync_System_Collections_Generic_Dictionary_System_String_System_Object__" data-uid="Butterfly.Core.Auth.AuthManager.LoginAsync(System.Collections.Generic.Dictionary{System.String,System.Object})">LoginAsync(System.Collections.Generic.Dictionary&lt;String, Object&gt;)</h4>
   <div class="markdown level1 summary">
@@ -1375,7 +1486,7 @@ Logs in the user creating a valid <a class="xref" href="Butterfly.Core.Auth.Auth
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;AuthToken&gt; LoginAsync(System.Collections.Generic.Dictionary&lt;string, object&gt; login)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;UserRefToken&gt; LoginAsync(System.Collections.Generic.Dictionary&lt;string, object&gt; login)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1404,7 +1515,7 @@ Logs in the user creating a valid <a class="xref" href="Butterfly.Core.Auth.Auth
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a>&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Auth.UserRefToken.html">UserRefToken</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1464,7 +1575,7 @@ Registers a new user
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;AuthToken&gt; RegisterAsync(dynamic input, System.Collections.Generic.Dictionary&lt;string, object&gt; notifyData = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;UserRefToken&gt; RegisterAsync(dynamic input, System.Collections.Generic.Dictionary&lt;string, object&gt; notifyData = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1498,7 +1609,7 @@ Registers a new user
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Auth.AuthToken.html">AuthToken</a>&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Butterfly.Core.Auth.UserRefToken.html">UserRefToken</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

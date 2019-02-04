@@ -41,13 +41,13 @@ namespace Butterfly.Core.Notify.Test {
         }
 
         [TestMethod]
-        public static async Task SendPhoneTextNotifyMessage(INotifyMessageSender notifyMessageSender) {
+        public static async Task SendPhoneNotifyMessage(INotifyMessageSender notifyMessageSender) {
             IDatabase database = new Butterfly.Core.Database.Memory.MemoryDatabase();
             await database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Notify.Test.db.sql");
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString());
             database.SetDefaultValue("created_at", tableName => DateTime.Now);
 
-            var notifyMessageManager = new NotifyManager(database, phoneTextNotifyMessageSender: notifyMessageSender);
+            var notifyMessageManager = new NotifyManager(database, phoneNotifyMessageSender: notifyMessageSender);
             notifyMessageManager.Start();
             var notifyMessage = new NotifyMessage("+1 316 712 7412", "+1 316 555 1212", null, "Just testing", null);
             using (ITransaction transaction = await database.BeginTransactionAsync()) {

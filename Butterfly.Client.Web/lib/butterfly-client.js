@@ -115,6 +115,10 @@ function _default(config) {
   var _private = this;
 
   var keyFieldNamesByName = {};
+  var batchSize = config.batchSize || 250;
+  var queue = [];
+  var queueCurrentOffset = 0;
+  var handleQueueTimeout = null;
 
   _private.getKeyValue = function (name, record) {
     var result = '';
@@ -129,74 +133,87 @@ function _default(config) {
     return result;
   };
 
+  _private.handleDataEvent = function (dataEvent) {
+    //console.debug('ArrayDataEventHandler.handle():dataEvent.type=' + dataEvent.dataEventType + ',name=', dataEvent.name + ',keyValue=' + dataEvent.keyValue);
+    if (dataEvent.dataEventType === 'InitialEnd') {
+      if (config.onInitialEnd) config.onInitialEnd();
+    } else {
+      var array = config.arrayMapping[dataEvent.name];
+
+      if (!array) {
+        console.error('No mapping for data event \'' + dataEvent.name + '\'');
+      } else if (dataEvent.dataEventType === 'InitialBegin') {
+        array.splice(0, array.length);
+        keyFieldNamesByName[dataEvent.name] = dataEvent.keyFieldNames;
+      } else if (dataEvent.dataEventType === 'Insert' || dataEvent.dataEventType === 'Initial') {
+        var keyValue = _private.getKeyValue(dataEvent.name, dataEvent.record);
+
+        var index = array.findIndex(function (x) {
+          return x._keyValue == keyValue;
+        });
+
+        if (index >= 0) {
+          console.error('Duplicate key \'' + keyValue + '\' in table \'' + dataEvent.name + '\'');
+        } else {
+          dataEvent.record['_keyValue'] = keyValue;
+          array.splice(array.length, 0, dataEvent.record);
+        }
+      } else if (dataEvent.dataEventType === 'Update') {
+        var _keyValue = _private.getKeyValue(dataEvent.name, dataEvent.record);
+
+        var _index = array.findIndex(function (x) {
+          return x._keyValue == _keyValue;
+        });
+
+        if (_index == -1) {
+          console.error('Could not find key \'' + _keyValue + '\' in table \'' + dataEvent.name + '\'');
+        } else {
+          dataEvent.record['_keyValue'] = _keyValue;
+          array.splice(_index, 1, dataEvent.record);
+        }
+      } else if (dataEvent.dataEventType === 'Delete') {
+        var _keyValue2 = _private.getKeyValue(dataEvent.name, dataEvent.record);
+
+        var _index2 = array.findIndex(function (x) {
+          return x._keyValue == _keyValue2;
+        });
+
+        array.splice(_index2, 1);
+      }
+    }
+  };
+
+  _private.handleQueue = function () {
+    if (handleQueueTimeout) clearTimeout(handleQueueTimeout);
+
+    if (queue.length > 0) {
+      var begin = queueCurrentOffset;
+      var end = Math.min(begin + batchSize, queue[0].length);
+
+      for (var i = begin; i < end; i++) {
+        _private.handleDataEvent(queue[0][i]);
+      }
+
+      if (end === queue[0].length) {
+        queue.splice(0, 1);
+        queueCurrentOffset = 0;
+      } else {
+        queueCurrentOffset += batchSize;
+        handleQueueTimeout = setTimeout(_private.handleQueue, 0);
+      }
+    }
+  };
+
   return function (messageType, data) {
-    if (messageType == 'RESET') {
+    if (messageType === 'RESET') {
       for (var arrayKey in config.arrayMapping) {
         var array = config.arrayMapping[arrayKey];
         if (array) array.splice(0, array.length);
       }
-    } else if (messageType == 'DATA-EVENT-TRANSACTION') {
-      var dataEventTransaction = data;
+    } else if (messageType === 'DATA-EVENT-TRANSACTION') {
+      queue.push(data.dataEvents);
 
-      for (var i = 0; i < dataEventTransaction.dataEvents.length; i++) {
-        var dataEvent = dataEventTransaction.dataEvents[i]; //console.debug('ArrayDataEventHandler.handle():dataEvent.type=' + dataEvent.dataEventType + ',name=', dataEvent.name + ',keyValue=' + dataEvent.keyValue);
-
-        if (dataEvent.dataEventType == 'InitialEnd') {
-          if (config.onInitialEnd) config.onInitialEnd();
-        } else {
-          var _array = config.arrayMapping[dataEvent.name];
-
-          if (!_array) {
-            console.error('No mapping for data event \'' + dataEvent.name + '\'');
-          } else if (dataEvent.dataEventType == 'InitialBegin') {
-            _array.splice(0, _array.length);
-
-            keyFieldNamesByName[dataEvent.name] = dataEvent.keyFieldNames;
-          } else if (dataEvent.dataEventType == 'Insert' || dataEvent.dataEventType == 'Initial') {
-            (function () {
-              var keyValue = _private.getKeyValue(dataEvent.name, dataEvent.record);
-
-              var index = _array.findIndex(function (x) {
-                return x._keyValue == keyValue;
-              });
-
-              if (index >= 0) {
-                console.error('Duplicate key \'' + keyValue + '\' in table \'' + dataEvent.name + '\'');
-              } else {
-                dataEvent.record['_keyValue'] = keyValue;
-
-                _array.splice(_array.length, 0, dataEvent.record);
-              }
-            })();
-          } else if (dataEvent.dataEventType == 'Update') {
-            (function () {
-              var keyValue = _private.getKeyValue(dataEvent.name, dataEvent.record);
-
-              var index = _array.findIndex(function (x) {
-                return x._keyValue == keyValue;
-              });
-
-              if (index == -1) {
-                console.error('Could not find key \'' + keyValue + '\' in table \'' + dataEvent.name + '\'');
-              } else {
-                dataEvent.record['_keyValue'] = keyValue;
-
-                _array.splice(index, 1, dataEvent.record);
-              }
-            })();
-          } else if (dataEvent.dataEventType == 'Delete') {
-            (function () {
-              var keyValue = _private.getKeyValue(dataEvent.name, dataEvent.record);
-
-              var index = _array.findIndex(function (x) {
-                return x._keyValue == keyValue;
-              });
-
-              _array.splice(index, 1);
-            })();
-          }
-        }
-      }
+      _private.handleQueue();
     } else if (config.onChannelMessage) {
       config.onChannelMessage(messageType, data);
     }
@@ -638,6 +655,7 @@ function () {
 
         this._subscribing();
       } else if (message.messageType === 'UNAUTHENTICATED') {
+        if (this._options.onUnauthenticated) this._options.onUnauthenticated(message.data);
         this.disconnect();
       }
     }
@@ -649,11 +667,31 @@ function () {
       }
     }
   }, {
+    key: "_isVarsSame",
+    value: function _isVarsSame(varsOld, varsNew) {
+      if (!varsOld && !varsNew) return true;else if (!varsOld && varsNew) return false;else if (varsOld && !varsNew) return false;else if (varsOld.length !== varsNew.length) return false;else {
+        for (var key in varsOld) {
+          if (varsOld[key] !== varsNew[key]) return false;
+        }
+
+        return true;
+      }
+    }
+  }, {
     key: "subscribe",
     value: function subscribe(options) {
       var channelKey = options.channel || 'default';
       var handlers = Array.isArray(options.handler) ? options.handler : [options.handler];
-      var vars = options.vars; // console.debug(`WebSocketChannelClient.subscribe():channelKey=${channelKey}`);
+      var vars = options.vars;
+      console.debug("WebSocketChannelClient.subscribe():channelKey=".concat(channelKey));
+      var existingSubscription = this._subscriptionByChannelKey[channelKey];
+
+      if (existingSubscription) {
+        var isVarsSame = this._isVarsSame(existingSubscription.vars, vars);
+
+        console.debug("WebSocketChannelClient.subscribe():isVarsSame=".concat(isVarsSame));
+        if (isVarsSame) return;
+      }
 
       this._removeSubscription(channelKey);
 
@@ -672,7 +710,7 @@ function () {
   }, {
     key: "unsubscribe",
     value: function unsubscribe(channelKey) {
-      // console.debug(`WebSocketChannelClient.unsubscribe():channelKey=${channelKey}`);
+      console.debug("WebSocketChannelClient.unsubscribe():channelKey=".concat(channelKey));
       if (!channelKey) channelKey = 'default';
 
       this._removeSubscription(channelKey);

@@ -10,9 +10,9 @@ items:
   - Butterfly.Core.Database.ITransaction.Database
   - Butterfly.Core.Database.ITransaction.DeleteAsync(System.String,System.Object)
   - Butterfly.Core.Database.ITransaction.InsertAsync``1(System.String,System.Object,System.Boolean)
-  - Butterfly.Core.Database.ITransaction.OnCommit(Func{Task})
+  - Butterfly.Core.Database.ITransaction.OnCommit(Func{Task},System.String)
   - Butterfly.Core.Database.ITransaction.Rollback
-  - Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[])
+  - Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[],Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task{System.Int32}})
   - Butterfly.Core.Database.ITransaction.TruncateAsync(System.String)
   - Butterfly.Core.Database.ITransaction.UpdateAsync(System.String,System.Object)
   langs:
@@ -206,16 +206,16 @@ items:
       description: Number of records deleted
     content.vb: Function DeleteAsync(deleteStatement As String, vars As Object) As Task(Of Integer)
   overload: Butterfly.Core.Database.ITransaction.DeleteAsync*
-- uid: Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[])
-  commentId: M:Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[])
-  id: SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[])
+- uid: Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[],Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task{System.Int32}})
+  commentId: M:Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[],Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task{System.Int32}})
+  id: SynchronizeAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}[],System.Collections.Generic.Dictionary{System.String,System.Object}[],System.String[],Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task},Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task{System.Int32}})
   parent: Butterfly.Core.Database.ITransaction
   langs:
   - csharp
   - vb
-  name: SynchronizeAsync(String, System.Collections.Generic.Dictionary<String, Object>[], System.Collections.Generic.Dictionary<String, Object>[], String[])
-  nameWithType: ITransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary<String, Object>[], System.Collections.Generic.Dictionary<String, Object>[], String[])
-  fullName: Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>[], System.Collections.Generic.Dictionary<System.String, System.Object>[], System.String[])
+  name: SynchronizeAsync(String, System.Collections.Generic.Dictionary<String, Object>[], System.Collections.Generic.Dictionary<String, Object>[], String[], Func<System.Collections.Generic.Dictionary<String, Object>, Task>, Func<System.Collections.Generic.Dictionary<String, Object>, Task<Int32>>)
+  nameWithType: ITransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary<String, Object>[], System.Collections.Generic.Dictionary<String, Object>[], String[], Func<System.Collections.Generic.Dictionary<String, Object>, Task>, Func<System.Collections.Generic.Dictionary<String, Object>, Task<Int32>>)
+  fullName: Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary<System.String, System.Object>[], System.Collections.Generic.Dictionary<System.String, System.Object>[], System.String[], Func<System.Collections.Generic.Dictionary<System.String, System.Object>, Task>, Func<System.Collections.Generic.Dictionary<System.String, System.Object>, Task<System.Int32>>)
   type: Method
   source:
     remote:
@@ -224,14 +224,14 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: SynchronizeAsync
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 127
+    startLine: 129
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   summary: "\nDetermines and executes the appropriate INSERT, UPDATE, and DELETE statements to synchronize the <code data-dev-comment-type=\"paramref\" class=\"paramref\">existingRecords</code> with the <code data-dev-comment-type=\"paramref\" class=\"paramref\">newRecords</code>\n"
   example: []
   syntax:
-    content: Task<bool> SynchronizeAsync(string tableName, System.Collections.Generic.Dictionary<string, object>[] existingRecords, System.Collections.Generic.Dictionary<string, object>[] newRecords, string[] keyFieldNames = null)
+    content: Task<bool> SynchronizeAsync(string tableName, System.Collections.Generic.Dictionary<string, object>[] existingRecords, System.Collections.Generic.Dictionary<string, object>[] newRecords, string[] keyFieldNames = null, Func<System.Collections.Generic.Dictionary<string, object>, Task> insertFunc = null, Func<System.Collections.Generic.Dictionary<string, object>, Task<int>> deleteFunc = null)
     parameters:
     - id: tableName
       type: System.String
@@ -245,14 +245,20 @@ items:
     - id: keyFieldNames
       type: System.String[]
       description: Leave blank to auto-determine key field names from existing and new records
+    - id: insertFunc
+      type: Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task}
+      description: Leave blank to perform a <xref href="Butterfly.Core.Database.ITransaction.InsertAsync%60%601(System.String%2cSystem.Object%2cSystem.Boolean)" data-throw-if-not-resolved="false"></xref>
+    - id: deleteFunc
+      type: Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task{System.Int32}}
+      description: Leave blank to perform a <see cref="!:ITransaction.DeleteAsync&lt;T>(string, dynamic, bool)"></see>
     return:
       type: Task{System.Boolean}
       description: ''
-    content.vb: Function SynchronizeAsync(tableName As String, existingRecords As System.Collections.Generic.Dictionary(Of String, Object)(), newRecords As System.Collections.Generic.Dictionary(Of String, Object)(), keyFieldNames As String() = Nothing) As Task(Of Boolean)
+    content.vb: Function SynchronizeAsync(tableName As String, existingRecords As System.Collections.Generic.Dictionary(Of String, Object)(), newRecords As System.Collections.Generic.Dictionary(Of String, Object)(), keyFieldNames As String() = Nothing, insertFunc As Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task) = Nothing, deleteFunc As Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task(Of Integer)) = Nothing) As Task(Of Boolean)
   overload: Butterfly.Core.Database.ITransaction.SynchronizeAsync*
-  nameWithType.vb: ITransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of String, Object)(), System.Collections.Generic.Dictionary(Of String, Object)(), String())
-  fullName.vb: Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object)(), System.Collections.Generic.Dictionary(Of System.String, System.Object)(), System.String())
-  name.vb: SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of String, Object)(), System.Collections.Generic.Dictionary(Of String, Object)(), String())
+  nameWithType.vb: ITransaction.SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of String, Object)(), System.Collections.Generic.Dictionary(Of String, Object)(), String(), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task(Of Int32)))
+  fullName.vb: Butterfly.Core.Database.ITransaction.SynchronizeAsync(System.String, System.Collections.Generic.Dictionary(Of System.String, System.Object)(), System.Collections.Generic.Dictionary(Of System.String, System.Object)(), System.String(), Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), Task), Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), Task(Of System.Int32)))
+  name.vb: SynchronizeAsync(String, System.Collections.Generic.Dictionary(Of String, Object)(), System.Collections.Generic.Dictionary(Of String, Object)(), String(), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task), Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task(Of Int32)))
 - uid: Butterfly.Core.Database.ITransaction.TruncateAsync(System.String)
   commentId: M:Butterfly.Core.Database.ITransaction.TruncateAsync(System.String)
   id: TruncateAsync(System.String)
@@ -271,7 +277,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: TruncateAsync
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 134
+    startLine: 136
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -306,7 +312,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Commit
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 139
+    startLine: 141
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -334,7 +340,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: CommitAsync
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 142
+    startLine: 144
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -345,16 +351,16 @@ items:
       type: Task
     content.vb: Function CommitAsync As Task
   overload: Butterfly.Core.Database.ITransaction.CommitAsync*
-- uid: Butterfly.Core.Database.ITransaction.OnCommit(Func{Task})
-  commentId: M:Butterfly.Core.Database.ITransaction.OnCommit(Func{Task})
-  id: OnCommit(Func{Task})
+- uid: Butterfly.Core.Database.ITransaction.OnCommit(Func{Task},System.String)
+  commentId: M:Butterfly.Core.Database.ITransaction.OnCommit(Func{Task},System.String)
+  id: OnCommit(Func{Task},System.String)
   parent: Butterfly.Core.Database.ITransaction
   langs:
   - csharp
   - vb
-  name: OnCommit(Func<Task>)
-  nameWithType: ITransaction.OnCommit(Func<Task>)
-  fullName: Butterfly.Core.Database.ITransaction.OnCommit(Func<Task>)
+  name: OnCommit(Func<Task>, String)
+  nameWithType: ITransaction.OnCommit(Func<Task>, String)
+  fullName: Butterfly.Core.Database.ITransaction.OnCommit(Func<Task>, System.String)
   type: Method
   source:
     remote:
@@ -363,23 +369,26 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: OnCommit
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 148
+    startLine: 151
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
   summary: "\nRegister a callback that is invoked when the transaction is successfully committed\n"
   example: []
   syntax:
-    content: void OnCommit(Func<Task> onCommit)
+    content: void OnCommit(Func<Task> onCommit, string key = null)
     parameters:
     - id: onCommit
       type: Func{Task}
       description: ''
-    content.vb: Sub OnCommit(onCommit As Func(Of Task))
+    - id: key
+      type: System.String
+      description: Provide a key if you need to ensure only one onCommit instance is executed with that key
+    content.vb: Sub OnCommit(onCommit As Func(Of Task), key As String = Nothing)
   overload: Butterfly.Core.Database.ITransaction.OnCommit*
-  nameWithType.vb: ITransaction.OnCommit(Func(Of Task))
-  fullName.vb: Butterfly.Core.Database.ITransaction.OnCommit(Func(Of Task))
-  name.vb: OnCommit(Func(Of Task))
+  nameWithType.vb: ITransaction.OnCommit(Func(Of Task), String)
+  fullName.vb: Butterfly.Core.Database.ITransaction.OnCommit(Func(Of Task), System.String)
+  name.vb: OnCommit(Func(Of Task), String)
 - uid: Butterfly.Core.Database.ITransaction.Rollback
   commentId: M:Butterfly.Core.Database.ITransaction.Rollback
   id: Rollback
@@ -398,7 +407,7 @@ items:
       repo: https://github.com/firesharkstudios/Butterfly.git
     id: Rollback
     path: ../Butterfly.Core/Database/ITransaction.cs
-    startLine: 153
+    startLine: 156
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Database
@@ -654,6 +663,74 @@ references:
   name: DeleteAsync
   nameWithType: ITransaction.DeleteAsync
   fullName: Butterfly.Core.Database.ITransaction.DeleteAsync
+- uid: Butterfly.Core.Database.ITransaction.InsertAsync``1(System.String,System.Object,System.Boolean)
+  commentId: M:Butterfly.Core.Database.ITransaction.InsertAsync``1(System.String,System.Object,System.Boolean)
+  parent: Butterfly.Core.Database.ITransaction
+  isExternal: true
+  name: InsertAsync<T>(String, Object, Boolean)
+  nameWithType: ITransaction.InsertAsync<T>(String, Object, Boolean)
+  fullName: Butterfly.Core.Database.ITransaction.InsertAsync<T>(System.String, System.Object, System.Boolean)
+  nameWithType.vb: ITransaction.InsertAsync(Of T)(String, , Boolean)
+  fullName.vb: Butterfly.Core.Database.ITransaction.InsertAsync(Of T)(System.String, , System.Boolean)
+  name.vb: InsertAsync(Of T)(String, , Boolean)
+  spec.csharp:
+  - uid: Butterfly.Core.Database.ITransaction.InsertAsync``1(System.String,System.Object,System.Boolean)
+    name: InsertAsync<T>
+    nameWithType: ITransaction.InsertAsync<T>
+    fullName: Butterfly.Core.Database.ITransaction.InsertAsync<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Butterfly.Core.Database.ITransaction.InsertAsync``1(System.String,System.Object,System.Boolean)
+    name: InsertAsync(Of T)
+    nameWithType: ITransaction.InsertAsync(Of T)
+    fullName: Butterfly.Core.Database.ITransaction.InsertAsync(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Butterfly.Core.Database.ITransaction.SynchronizeAsync*
   commentId: Overload:Butterfly.Core.Database.ITransaction.SynchronizeAsync
   name: SynchronizeAsync
@@ -749,6 +826,222 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+- uid: Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task}
+  commentId: '!:Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task}'
+  definition: Func`2
+  name: Func<System.Collections.Generic.Dictionary<String, Object>, Task>
+  nameWithType: Func<System.Collections.Generic.Dictionary<String, Object>, Task>
+  fullName: Func<System.Collections.Generic.Dictionary<System.String, System.Object>, Task>
+  nameWithType.vb: Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task)
+  fullName.vb: Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), Task)
+  name.vb: Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task)
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Task
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task{System.Int32}}
+  commentId: '!:Func{System.Collections.Generic.Dictionary{System.String,System.Object},Task{System.Int32}}'
+  definition: Func`2
+  name: Func<System.Collections.Generic.Dictionary<String, Object>, Task<Int32>>
+  nameWithType: Func<System.Collections.Generic.Dictionary<String, Object>, Task<Int32>>
+  fullName: Func<System.Collections.Generic.Dictionary<System.String, System.Object>, Task<System.Int32>>
+  nameWithType.vb: Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task(Of Int32))
+  fullName.vb: Func(Of System.Collections.Generic.Dictionary(Of System.String, System.Object), Task(Of System.Int32))
+  name.vb: Func(Of System.Collections.Generic.Dictionary(Of String, Object), Task(Of Int32))
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: System.Collections.Generic.Dictionary
+    nameWithType: System.Collections.Generic.Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Task{System.Boolean}
   commentId: '!:Task{System.Boolean}'
   definition: Task`1
@@ -789,6 +1082,56 @@ references:
     nameWithType: Boolean
     fullName: System.Boolean
     isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Func`2
+  isExternal: true
+  name: Func<, >
+  nameWithType: Func<, >
+  fullName: Func<, >
+  nameWithType.vb: Func(Of , )
+  fullName.vb: Func(Of , )
+  name.vb: Func(Of , )
+  spec.csharp:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Func`2
+    name: Func
+    nameWithType: Func
+    fullName: Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
   - name: )
     nameWithType: )
     fullName: )

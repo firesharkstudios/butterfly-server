@@ -11,7 +11,7 @@
     <Company>Fireshark Studios, LLC</Company>
     <Product>Butterfly Server .NET</Product>
     <Copyright>Copyright 2017-2018 Fireshark Studios, LLC</Copyright>
-    <Version>1.0.5</Version>
+    <Version>1.1.0</Version>
     <PackageReleaseNotes>Various improvements and bug fixes</PackageReleaseNotes>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
   </PropertyGroup>
@@ -22,10 +22,11 @@
 
   <ItemGroup>
     <PackageReference Include="HttpMultipartParser" Version="2.2.4" />
+    <PackageReference Include="libphonenumber-csharp" Version="8.9.16" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Nito.AsyncEx.Coordination" Version="5.0.0-pre-05" />
-    <PackageReference Include="NLog" Version="4.5.9" />
+    <PackageReference Include="NLog" Version="4.5.10" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
   </ItemGroup>
 
