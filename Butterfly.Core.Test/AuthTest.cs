@@ -23,13 +23,13 @@ namespace Butterfly.Core.Test {
             //var database = new Butterfly.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_auth_test");
             await TruncateData(database);
 
-            await database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Core.Auth.Test.db.sql");
+            await database.CreateFromResourceFileAsync(Assembly.GetExecutingAssembly(), "Butterfly.Core.Test.db.sql");
             database.SetDefaultValue("id", tableName => Guid.NewGuid().ToString());
             database.SetDefaultValue("created_at", tableName => DateTime.Now.ToUnixTimestamp());
             database.SetDefaultValue("updated_at", tableName => DateTime.Now.ToUnixTimestamp());
             database.AddInputPreprocessor(BaseDatabase.RemapTypeInputPreprocessor<DateTime>(dateTime => dateTime.ToUnixTimestamp()));
 
-            AuthManager authManager = new AuthManager(database, onForgotPassword: user => {
+            AuthManager authManager = new AuthManager(database, userTableRoleFieldName: null, onForgotPassword: user => {
                 logger.Debug($"onForgotPassword():user={user}");
                 return Task.FromResult(0);
             });
@@ -38,13 +38,16 @@ namespace Butterfly.Core.Test {
                 first_name = "John",
                 last_name = "Smith",
                 email = "john@fireshark.com",
+                phone = "+13162105368",
                 password = "test123"
             });
-            AuthToken authToken = await authManager.AuthenticateAsync(UserRefTokenAuthenticator.AUTH_TYPE, registerAuthToken.id);
+            if (database.CanJoin) {
+                AuthToken authToken = await authManager.AuthenticateAsync(UserRefTokenAuthenticator.AUTH_TYPE, registerAuthToken.id);
+            }
 
             await authManager.ForgotPasswordAsync("johnsmith");
 
-            await Task.Delay(30000);
+            //await Task.Delay(30000);
         }
 
         public static async Task TruncateData(IDatabase database) {
