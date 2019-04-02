@@ -1,25 +1,25 @@
-module.exports = api => {
-  api.cache.using(() => {
-    // cache based on the two env vars
-    return 'babel:' + process.env.BABEL_TARGET +
-      ' protractor:' + process.env.IN_PROTRACTOR;
-  });
-
+// this file will be used by default by babel@7 once it is released
+module.exports = () => {
   return {
     "plugins": [
-      ['@babel/plugin-proposal-decorators', { legacy: true }],
-      ['@babel/plugin-proposal-class-properties', { loose: true }]
+      "transform-decorators-legacy",
+      "transform-class-properties"
     ],
     "presets": [
       [
-        "@babel/preset-env", {
+        "env", {
           "targets": process.env.BABEL_TARGET === 'node' ? {
             "node": process.env.IN_PROTRACTOR ? '6' : 'current'
           } : {
-            "browsers": [ "last 2 versions" ]
+            "browsers": [
+              "last 2 versions",
+              "not ie <= 11"
+            ],
+            "uglify": process.env.NODE_ENV === 'production',
           },
           "loose": true,
-          "modules": process.env.BABEL_TARGET === 'node' ? 'commonjs' : false
+          "modules": process.env.BABEL_TARGET === 'node' ? 'commonjs' : false,
+          "useBuiltIns": true
         }
       ]
     ]

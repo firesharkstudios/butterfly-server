@@ -14,28 +14,6 @@ using Butterfly.Core.Channel;
 namespace Butterfly.Core.Test {
     [TestClass]
     public class ChannelUnitTest {
-        /*
-        [TestMethod]
-        public async Task RedHttpServerChannel() {
-            var redHttpServer = new RedHttpServerNet45.RedHttpServer(8080);
-            using (var subscriptionApi = new Butterfly.Channel.RedHttpServer.RedHttpServerSubscriptionApi(redHttpServer, mustReceiveHeartbeatMillis: 2000, path: "/test")) {
-                await this.TestChannel(subscriptionApi, () => {
-                    redHttpServer.Start();
-                });
-            }
-        }
-
-        [TestMethod]
-        public async Task EmbedIOChannel() {
-            using (var webServer = new Unosquare.Labs.EmbedIO.WebServer("http://localhost:8080/", Unosquare.Labs.EmbedIO.Constants.RoutingStrategy.Regex))
-            using (var subscriptionApi = new EmbedIOSubscriptionApi(webServer, mustReceiveHeartbeatMillis: 2000, path: "/test")) {
-                await this.TestChannel(subscriptionApi, () => {
-                    webServer.RunAsync();
-                });
-            }
-        }
-        */
-
         public static async Task TestChannel(ISubscriptionApi subscriptionApi, string url, Action start) {
             // Listen for new channels at /test to be created
             Butterfly.Core.Channel.Channel channelA = null;
@@ -54,14 +32,14 @@ namespace Butterfly.Core.Test {
                 return testDisposableB;
             });
             subscriptionApi.Start();
-            if (start != null) start();
+            start?.Invoke();
 
             var testAuthId = "123";
 
             // Test creating a channel from the client
             var channelClient = new WebSocketChannelClient(url, $"Test {testAuthId}", heartbeatEveryMillis: 1000);
             channelClient.Start();
-            await Task.Delay(500);
+            await Task.Delay(3000);
             Assert.AreEqual(1, subscriptionApi.AuthenticatedConnections.Count);
             Assert.IsNotNull(subscriptionApi.GetConnection(testAuthId));
 

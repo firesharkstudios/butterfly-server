@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 using NLog;
@@ -13,8 +14,6 @@ using Unosquare.Labs.EmbedIO;
 
 using Butterfly.Core.Channel;
 using Butterfly.Core.Util;
-using System.Net;
-using System.Net.WebSockets;
 
 namespace Butterfly.EmbedIO {
 
@@ -43,7 +42,7 @@ namespace Butterfly.EmbedIO {
 
         protected readonly BaseSubscriptionApi subscriptionApi;
         protected readonly Func<IWebRequest, IChannelConnection, bool> onNewChannel;
-        protected readonly ConcurrentDictionary<WebSocketContext, EmbedIOSubscriptionApiConnection> channelByWebSocketContext = new ConcurrentDictionary<WebSocketContext, EmbedIOSubscriptionApiConnection>();
+        protected readonly ConcurrentDictionary<IWebSocketContext, EmbedIOSubscriptionApiConnection> channelByWebSocketContext = new ConcurrentDictionary<IWebSocketContext, EmbedIOSubscriptionApiConnection>();
 
         public MyWebSocketsServer(BaseSubscriptionApi subscriptionApi, Func<IWebRequest, IChannelConnection, bool> onNewChannel) {
             this.subscriptionApi = subscriptionApi;
@@ -52,7 +51,7 @@ namespace Butterfly.EmbedIO {
 
         public override string ServerName => "EmbedIO Channel Server";
 
-        protected override void OnClientConnected(WebSocketContext context, IPEndPoint localEndPoint, IPEndPoint remoteEndPoint) {
+        protected override void OnClientConnected(IWebSocketContext context, IPEndPoint localEndPoint, IPEndPoint remoteEndPoint) {
             var webRequest = new EmbedIOWebSocketWebRequest(context);
             logger.Trace($"OnClientConnected():Websocket created for path {webRequest.RequestUrl.AbsolutePath}");
             var channel = new EmbedIOSubscriptionApiConnection(this.subscriptionApi, message => {
@@ -64,14 +63,14 @@ namespace Butterfly.EmbedIO {
             }
         }
 
-        protected override void OnClientDisconnected(WebSocketContext context) {
+        protected override void OnClientDisconnected(IWebSocketContext context) {
             this.channelByWebSocketContext.TryRemove(context, out EmbedIOSubscriptionApiConnection dummyContext);
         }
 
-        protected override void OnFrameReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult) {
+        protected override void OnFrameReceived(IWebSocketContext context, byte[] rxBuffer, IWebSocketReceiveResult rxResult) {
         }
 
-        protected override void OnMessageReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult) {
+        protected override void OnMessageReceived(IWebSocketContext context, byte[] rxBuffer, IWebSocketReceiveResult rxResult) {
             var text = System.Text.Encoding.UTF8.GetString(rxBuffer);
             logger.Trace($"OnMessageReceived():text={text}");
             if (this.channelByWebSocketContext.TryGetValue(context, out EmbedIOSubscriptionApiConnection embedIOChannel)) {
@@ -93,9 +92,9 @@ namespace Butterfly.EmbedIO {
 
     public class EmbedIOSubscriptionApiConnection : BaseChannelConnection {
         protected readonly Action<string> send;
-        protected readonly WebSocketContext context;
+        protected readonly IWebSocketContext context;
 
-        public EmbedIOSubscriptionApiConnection(BaseSubscriptionApi subscriptionApi, Action<string> send, WebSocketContext context) : base(subscriptionApi) {
+        public EmbedIOSubscriptionApiConnection(BaseSubscriptionApi subscriptionApi, Action<string> send, IWebSocketContext context) : base(subscriptionApi) {
             this.send = send;
             this.context = context;
         }
@@ -115,15 +114,15 @@ namespace Butterfly.EmbedIO {
 
     public class EmbedIOWebSocketWebRequest : IWebRequest {
 
-        protected readonly WebSocketContext context;
+        protected readonly IWebSocketContext context;
 
-        public EmbedIOWebSocketWebRequest(WebSocketContext context) {
+        public EmbedIOWebSocketWebRequest(IWebSocketContext context) {
             this.context = context;
         }
 
         public Uri RequestUrl => context.RequestUri;
 
-        public Dictionary<string, string> Headers => context.Headers.ToDictionary();
+        public Dictionary<string, string> Headers => throw new NotImplementedException();
 
         public Dictionary<string, string> PathParams => throw new NotImplementedException();
 

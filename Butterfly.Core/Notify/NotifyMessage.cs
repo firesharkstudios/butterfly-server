@@ -26,8 +26,9 @@ namespace Butterfly.Core.Notify {
         public readonly byte priority;
 
         public Dict extraData = null;
+        public Func<string, Dict, string> formatter = null;
 
-        public NotifyMessage(string from, string to, string subject, string bodyText, string bodyHtml = null, byte priority = 0, Dict extraData = null) {
+        public NotifyMessage(string from, string to, string subject, string bodyText, string bodyHtml = null, byte priority = 0) {
             this.from = from;
             this.to = to;
             this.subject = subject;
@@ -50,11 +51,16 @@ namespace Butterfly.Core.Notify {
                 values = DynamicX.ToDictionary(vars);
             }
 
-            string from = values.Format(this.from);
-            string to = values.Format(this.to);
-            string subject = values.Format(this.subject);
-            string bodyText = values.Format(this.bodyText);
-            string bodyHtml = values.Format(this.bodyHtml);
+            Func<string, Dict, string> myFormatter = this.formatter;
+            if (myFormatter==null) {
+                myFormatter = (formatText, formatVars) => formatVars.Format(formatText);
+            }
+
+            string from = myFormatter(this.from, values);
+            string to = myFormatter(this.to, values);
+            string subject = myFormatter(this.subject, values);
+            string bodyText = myFormatter(this.bodyText, values);
+            string bodyHtml = myFormatter(this.bodyHtml, values);
             return new NotifyMessage(from, to, subject, bodyText, bodyHtml, this.priority);
         }
 

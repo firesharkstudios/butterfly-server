@@ -1,13 +1,9 @@
 {
-  "name": "butterflyexampletodoaurelia",
+  "name": "butterfly.example.todo.aurelia",
   "type": "project:application",
   "bundler": {
     "id": "webpack",
     "displayName": "Webpack"
-  },
-  "httpProtocol": {
-    "id": "http1",
-    "displayName": "HTTP/1.1"
   },
   "build": {
     "options": {
@@ -31,7 +27,12 @@
   "transpiler": {
     "id": "babel",
     "displayName": "Babel",
-    "fileExtension": ".js"
+    "fileExtension": ".js",
+    "options": {
+      "plugins": [
+        "transform-es2015-modules-amd"
+      ]
+    }
   },
   "markupProcessor": {
     "id": "minimum",
@@ -42,11 +43,6 @@
     "id": "none",
     "displayName": "None",
     "fileExtension": ".css"
-  },
-  "jsonProcessor": {
-    "id": "none",
-    "displayName": "None",
-    "fileExtension": ".json"
   },
   "editor": {
     "id": "vscode",
@@ -77,6 +73,5 @@
   "testFramework": {
     "id": "jasmine",
     "displayName": "Jasmine"
-  },
-  "packageManager": "npm"
+  }
 }

@@ -23,7 +23,7 @@ function buildWebpack(done) {
     compiler.watch({}, onBuild);
   } else {
     compiler.run(onBuild);
-    compiler.hooks.done.tap('done', () => done());
+    compiler.plugin('done', () => done());
   }
 }
 

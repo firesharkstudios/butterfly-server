@@ -40,7 +40,7 @@ namespace Butterfly.EmbedIO {
     public class MyWebModule : WebModuleBase {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public MyWebModule(ICollection<WebHandler> webHandlers) {
+        public MyWebModule(ICollection<Core.WebApi.WebHandler> webHandlers) {
             foreach (var webHandler in webHandlers) {
                 HttpVerbs httpVerb;
                 if (webHandler.method == HttpMethod.Delete) {
@@ -85,9 +85,9 @@ namespace Butterfly.EmbedIO {
     public class EmbedIOHttpWebRequest : BaseHttpRequest {
 
         public readonly string pathPattern;
-        public readonly HttpListenerContext context;
+        public readonly IHttpContext context;
 
-        public EmbedIOHttpWebRequest(string pathPattern, HttpListenerContext context) {
+        public EmbedIOHttpWebRequest(string pathPattern, IHttpContext context) {
             this.pathPattern = pathPattern;
             this.context = context;
         }
@@ -109,11 +109,11 @@ namespace Butterfly.EmbedIO {
 
     }
 
-    public class EmbedIOWebResponse : IHttpResponse {
+    public class EmbedIOWebResponse : Core.WebApi.IHttpResponse {
 
-        public readonly HttpListenerContext context;
+        public readonly IHttpContext context;
 
-        public EmbedIOWebResponse(HttpListenerContext context) {
+        public EmbedIOWebResponse(IHttpContext context) {
             this.context = context;
         }
 

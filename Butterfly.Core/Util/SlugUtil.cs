@@ -3,7 +3,7 @@
 namespace Butterfly.Core.Util {
     public static class SlugUtil {
 
-        readonly static Regex NON_SLUG = new Regex(@"[^a-z0-9\-_\.]");
+        readonly static Regex NON_SLUG = new Regex(@"[^a-z0-9\-]");
 
         public static string Slugify(string name, bool throwExceptionIfEmpty = true) {
             var slug = name.ToLower().Replace(" ", "-");
