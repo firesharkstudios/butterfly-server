@@ -21,7 +21,7 @@ items:
     remote:
       path: Butterfly.Core/Util/ListItemDisposable.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ListItemDisposable
     path: ../Butterfly.Core/Util/ListItemDisposable.cs
     startLine: 9
@@ -61,7 +61,7 @@ items:
     remote:
       path: Butterfly.Core/Util/ListItemDisposable.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Core/Util/ListItemDisposable.cs
     startLine: 11
@@ -98,7 +98,7 @@ items:
     remote:
       path: Butterfly.Core/Util/ListItemDisposable.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: list
     path: ../Butterfly.Core/Util/ListItemDisposable.cs
     startLine: 13
@@ -133,7 +133,7 @@ items:
     remote:
       path: Butterfly.Core/Util/ListItemDisposable.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: item
     path: ../Butterfly.Core/Util/ListItemDisposable.cs
     startLine: 14
@@ -168,7 +168,7 @@ items:
     remote:
       path: Butterfly.Core/Util/ListItemDisposable.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Util/ListItemDisposable.cs
     startLine: 16
@@ -206,7 +206,7 @@ items:
     remote:
       path: Butterfly.Core/Util/ListItemDisposable.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.Core/Util/ListItemDisposable.cs
     startLine: 23

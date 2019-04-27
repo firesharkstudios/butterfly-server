@@ -30,7 +30,7 @@ items:
     remote:
       path: Butterfly.SqlServer/SqlServerTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SqlServerTransaction
     path: ../Butterfly.SqlServer/SqlServerTransaction.cs
     startLine: 17
@@ -95,7 +95,7 @@ items:
     remote:
       path: Butterfly.SqlServer/SqlServerTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: transaction
     path: ../Butterfly.SqlServer/SqlServerTransaction.cs
     startLine: 21
@@ -126,7 +126,7 @@ items:
     remote:
       path: Butterfly.SqlServer/SqlServerTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.SqlServer/SqlServerTransaction.cs
     startLine: 25
@@ -159,7 +159,7 @@ items:
     remote:
       path: Butterfly.SqlServer/SqlServerTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Begin
     path: ../Butterfly.SqlServer/SqlServerTransaction.cs
     startLine: 30
@@ -192,7 +192,7 @@ items:
     remote:
       path: Butterfly.SqlServer/SqlServerTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: BeginAsync
     path: ../Butterfly.SqlServer/SqlServerTransaction.cs
     startLine: 37
@@ -227,7 +227,7 @@ items:
     remote:
       path: Butterfly.SqlServer/SqlServerTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.SqlServer/SqlServerTransaction.cs
     startLine: 44
@@ -260,7 +260,7 @@ items:
     remote:
       path: Butterfly.SqlServer/SqlServerTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCommit
     path: ../Butterfly.SqlServer/SqlServerTransaction.cs
     startLine: 50
@@ -293,7 +293,7 @@ items:
     remote:
       path: Butterfly.SqlServer/SqlServerTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCommitAsync
     path: ../Butterfly.SqlServer/SqlServerTransaction.cs
     startLine: 55
@@ -328,7 +328,7 @@ items:
     remote:
       path: Butterfly.SqlServer/SqlServerTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoRollback
     path: ../Butterfly.SqlServer/SqlServerTransaction.cs
     startLine: 61
@@ -361,7 +361,7 @@ items:
     remote:
       path: Butterfly.SqlServer/SqlServerTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCreate
     path: ../Butterfly.SqlServer/SqlServerTransaction.cs
     startLine: 66
@@ -399,7 +399,7 @@ items:
     remote:
       path: Butterfly.SqlServer/SqlServerTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCreateAsync
     path: ../Butterfly.SqlServer/SqlServerTransaction.cs
     startLine: 76
@@ -437,7 +437,7 @@ items:
     remote:
       path: Butterfly.SqlServer/SqlServerTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoDeleteAsync
     path: ../Butterfly.SqlServer/SqlServerTransaction.cs
     startLine: 86
@@ -479,7 +479,7 @@ items:
     remote:
       path: Butterfly.SqlServer/SqlServerTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoInsertAsync
     path: ../Butterfly.SqlServer/SqlServerTransaction.cs
     startLine: 96
@@ -523,7 +523,7 @@ items:
     remote:
       path: Butterfly.SqlServer/SqlServerTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoTruncateAsync
     path: ../Butterfly.SqlServer/SqlServerTransaction.cs
     startLine: 108
@@ -560,7 +560,7 @@ items:
     remote:
       path: Butterfly.SqlServer/SqlServerTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoUpdateAsync
     path: ../Butterfly.SqlServer/SqlServerTransaction.cs
     startLine: 116

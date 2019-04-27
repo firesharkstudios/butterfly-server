@@ -19,7 +19,7 @@ items:
     remote:
       path: Butterfly.Core/Util/WebClientWithTimeout.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: WebClientWithTimeout
     path: ../Butterfly.Core/Util/WebClientWithTimeout.cs
     startLine: 4
@@ -54,7 +54,7 @@ items:
     remote:
       path: Butterfly.Core/Util/WebClientWithTimeout.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: timeoutMillis
     path: ../Butterfly.Core/Util/WebClientWithTimeout.cs
     startLine: 6
@@ -87,7 +87,7 @@ items:
     remote:
       path: Butterfly.Core/Util/WebClientWithTimeout.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Util/WebClientWithTimeout.cs
     startLine: 8
@@ -120,7 +120,7 @@ items:
     remote:
       path: Butterfly.Core/Util/WebClientWithTimeout.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetWebRequest
     path: ../Butterfly.Core/Util/WebClientWithTimeout.cs
     startLine: 12

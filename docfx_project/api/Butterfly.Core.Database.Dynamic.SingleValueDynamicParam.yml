@@ -21,7 +21,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SingleValueDynamicParam
     path: ../Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
     startLine: 8
@@ -68,7 +68,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: value
     path: ../Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
     startLine: 9
@@ -99,7 +99,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
     startLine: 11
@@ -132,7 +132,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Clear
     path: ../Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
     startLine: 14
@@ -165,7 +165,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetValue
     path: ../Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
     startLine: 21
@@ -200,7 +200,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SetValue
     path: ../Butterfly.Core/Database/Dynamic/SingleValueDynamicParam.cs
     startLine: 25

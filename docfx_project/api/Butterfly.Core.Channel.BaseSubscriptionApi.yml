@@ -37,7 +37,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: BaseSubscriptionApi
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 22
@@ -84,7 +84,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 23
@@ -119,7 +119,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: unauthenticatedConnections
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 25
@@ -152,7 +152,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: authenticatedConnectionByAuthId
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 26
@@ -185,7 +185,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: getAuthToken
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 28
@@ -218,7 +218,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: getAuthTokenAsync
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 29
@@ -251,7 +251,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: getId
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 31
@@ -284,7 +284,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: getIdAsync
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 32
@@ -317,7 +317,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: channelSubscriptionByKey
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 34
@@ -350,7 +350,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: mustReceiveHeartbeatMillis
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 36
@@ -383,7 +383,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 38
@@ -427,7 +427,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ChannelSubscriptionByKey
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 74
@@ -462,7 +462,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnSubscribe
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 76
@@ -506,7 +506,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AddUnauthenticatedConnection
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 94
@@ -539,7 +539,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: UnauthenticatedConnections
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 120
@@ -576,7 +576,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AuthenticatedConnections
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 122
@@ -613,7 +613,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetConnection
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 124
@@ -652,7 +652,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: started
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 129
@@ -683,7 +683,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Start
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 134
@@ -717,7 +717,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoStart
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 141
@@ -749,7 +749,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CheckForDeadChannelsAsync
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 143
@@ -781,7 +781,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.Core/Channel/BaseSubscriptionApi.cs
     startLine: 191

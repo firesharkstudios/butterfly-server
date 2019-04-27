@@ -18,7 +18,7 @@ items:
     remote:
       path: Butterfly.MySql.Test/MySqlTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: MySqlDatabaseUnitTest
     path: ../Butterfly.MySql.Test/MySqlTest.cs
     startLine: 10
@@ -53,7 +53,7 @@ items:
     remote:
       path: Butterfly.MySql.Test/MySqlTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TestDatabase
     path: ../Butterfly.MySql.Test/MySqlTest.cs
     startLine: 12
@@ -85,7 +85,7 @@ items:
     remote:
       path: Butterfly.MySql.Test/MySqlTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TestDynamic
     path: ../Butterfly.MySql.Test/MySqlTest.cs
     startLine: 18

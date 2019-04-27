@@ -24,7 +24,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEventTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DataEventTransaction
     path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
     startLine: 18
@@ -61,7 +61,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEventTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: dateTime
     path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
     startLine: 19
@@ -94,7 +94,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEventTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: dataEvents
     path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
     startLine: 20
@@ -127,7 +127,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEventTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: storage
     path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
     startLine: 22
@@ -160,7 +160,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEventTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
     startLine: 24
@@ -198,7 +198,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEventTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Store
     path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
     startLine: 29
@@ -233,7 +233,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEventTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Fetch
     path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
     startLine: 31
@@ -268,7 +268,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEventTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ToString
     path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
     startLine: 36
@@ -302,7 +302,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEventTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: FilterDataEvents
     path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
     startLine: 40

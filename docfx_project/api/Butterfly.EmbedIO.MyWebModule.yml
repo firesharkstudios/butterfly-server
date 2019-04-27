@@ -19,7 +19,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: MyWebModule
     path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
     startLine: 39
@@ -54,7 +54,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
     startLine: 40
@@ -89,7 +89,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
     startLine: 42
@@ -125,7 +125,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Name
     path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
     startLine: 81

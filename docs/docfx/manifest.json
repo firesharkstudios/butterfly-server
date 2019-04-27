@@ -885,7 +885,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Notify.NotifyMessage.html",
-          "hash": "HOh+93CR/jYE1CjEpIFaGQ=="
+          "hash": "PblpdNM5gCnFrKV8GfQEOA=="
         }
       },
       "is_incremental": false,
@@ -1089,7 +1089,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Util.DictionaryX.html",
-          "hash": "KgyWX55vM9WCvRKp94cuQA=="
+          "hash": "Zx+WTPnKsHzXsgRKQmCwgw=="
         }
       },
       "is_incremental": false,
@@ -1205,6 +1205,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Butterfly.Core.Util.IEnumerableX.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Butterfly.Core.Util.IEnumerableX.html",
+          "hash": "urA/Q8FvSOY7JzyElAytNw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Butterfly.Core.Util.IHttpResponseX.yml",
       "output": {
         ".html": {
@@ -1293,7 +1305,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Util.JsonUtil.html",
-          "hash": "WSUf7gwoH6PUlVdzrcJoMg=="
+          "hash": "vXpyxZXmxeOgz0VxeF+vyA=="
         }
       },
       "is_incremental": false,
@@ -1341,7 +1353,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Util.ProcessX.html",
-          "hash": "fwmTGv/SSYLJfYBPcOWbhQ=="
+          "hash": "oyBdcdzRYc/F8NAp8Op2UA=="
         }
       },
       "is_incremental": false,
@@ -1461,7 +1473,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.Core.Util.html",
-          "hash": "SEFk7LJbwf6sYvQ2cF6syQ=="
+          "hash": "o93k5s2mn0KK2VmZM+YIKw=="
         }
       },
       "is_incremental": false,
@@ -1569,7 +1581,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.EmbedIO.EmbedIOHttpWebRequest.html",
-          "hash": "D03/W/4JBHjd1BA47siODQ=="
+          "hash": "gbY/lfcKh0V5UkP7wv+HhA=="
         }
       },
       "is_incremental": false,
@@ -1593,7 +1605,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.html",
-          "hash": "oAPrqs6WdJDnQWiGgDHFGA=="
+          "hash": "ORVGA6PZTcLAQEPcmwp6Mg=="
         }
       },
       "is_incremental": false,
@@ -1617,7 +1629,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.EmbedIO.EmbedIOWebResponse.html",
-          "hash": "YdFrdk7JM7rNRTyM7M6DUg=="
+          "hash": "RPAQldQCTU5FLlCyUYreKQ=="
         }
       },
       "is_incremental": false,
@@ -1629,7 +1641,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.html",
-          "hash": "AeB6l5n+C/tgM/i5+eXQbg=="
+          "hash": "OdUVWrw0p3p0N7UNSu0opQ=="
         }
       },
       "is_incremental": false,
@@ -1653,7 +1665,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Butterfly.EmbedIO.MyWebSocketsServer.html",
-          "hash": "DMHdlMNxq3zfqdWv4ZYA4A=="
+          "hash": "q4tUe8rFnJHfWeBFkiBPKQ=="
         }
       },
       "is_incremental": false,
@@ -2133,7 +2145,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "ro55ekpaIEc6HOqF3HiXhw=="
+          "hash": "i062SUHygCEuwS4muT1/pQ=="
         }
       },
       "is_incremental": false,
@@ -2182,14 +2194,14 @@
         "incrementalPhase": "build"
       },
       "processors": {
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
-        },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
         "ConceptualDocumentProcessor": {

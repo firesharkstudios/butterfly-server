@@ -28,7 +28,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SQLiteDatabase
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
     startLine: 20
@@ -118,7 +118,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CanJoin
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
     startLine: 24
@@ -156,7 +156,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CanFieldAlias
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
     startLine: 26
@@ -194,7 +194,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
     startLine: 28
@@ -227,7 +227,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: LoadSchemaAsync
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
     startLine: 31
@@ -262,7 +262,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: LoadTableSchemaAsync
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
     startLine: 46
@@ -299,7 +299,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetFieldDefs
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
     startLine: 52
@@ -334,7 +334,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetIndexes
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
     startLine: 86
@@ -374,7 +374,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetIndexFieldNames
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
     startLine: 120
@@ -409,7 +409,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CreateTransaction
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
     startLine: 136
@@ -444,7 +444,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoSelectRowsAsync
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
     startLine: 140
@@ -488,7 +488,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoQueryRowsAsync
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
     startLine: 173
@@ -530,7 +530,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ConvertValue
     path: ../Butterfly.SQLite/SQLiteDatabase.cs
     startLine: 177

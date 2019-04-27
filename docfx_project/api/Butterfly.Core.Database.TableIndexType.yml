@@ -19,7 +19,7 @@ items:
     remote:
       path: Butterfly.Core/Database/TableIndex.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TableIndexType
     path: ../Butterfly.Core/Database/TableIndex.cs
     startLine: 6
@@ -50,7 +50,7 @@ items:
     remote:
       path: Butterfly.Core/Database/TableIndex.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Primary
     path: ../Butterfly.Core/Database/TableIndex.cs
     startLine: 7
@@ -82,7 +82,7 @@ items:
     remote:
       path: Butterfly.Core/Database/TableIndex.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Unique
     path: ../Butterfly.Core/Database/TableIndex.cs
     startLine: 8
@@ -114,7 +114,7 @@ items:
     remote:
       path: Butterfly.Core/Database/TableIndex.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Other
     path: ../Butterfly.Core/Database/TableIndex.cs
     startLine: 9

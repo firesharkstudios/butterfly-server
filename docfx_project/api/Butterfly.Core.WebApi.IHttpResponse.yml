@@ -23,7 +23,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IHttpResponse.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: IHttpResponse
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
     startLine: 8
@@ -57,7 +57,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IHttpResponse.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetHeader
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
     startLine: 14
@@ -92,7 +92,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IHttpResponse.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SetHeader
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
     startLine: 21
@@ -127,7 +127,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IHttpResponse.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: StatusCode
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
     startLine: 26
@@ -161,7 +161,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IHttpResponse.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: StatusText
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
     startLine: 31
@@ -195,7 +195,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IHttpResponse.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SendRedirect
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
     startLine: 37
@@ -227,7 +227,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IHttpResponse.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OutputStream
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
     startLine: 42
@@ -262,7 +262,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IHttpResponse.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: WriteAsTextAsync
     path: ../Butterfly.Core/WebApi/IHttpResponse.cs
     startLine: 49

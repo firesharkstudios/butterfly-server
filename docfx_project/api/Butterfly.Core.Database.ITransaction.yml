@@ -26,7 +26,7 @@ items:
     remote:
       path: Butterfly.Core/Database/ITransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ITransaction
     path: ../Butterfly.Core/Database/ITransaction.cs
     startLine: 19
@@ -61,7 +61,7 @@ items:
     remote:
       path: Butterfly.Core/Database/ITransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Database
     path: ../Butterfly.Core/Database/ITransaction.cs
     startLine: 24
@@ -96,7 +96,7 @@ items:
     remote:
       path: Butterfly.Core/Database/ITransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: InsertAsync
     path: ../Butterfly.Core/Database/ITransaction.cs
     startLine: 59
@@ -143,7 +143,7 @@ items:
     remote:
       path: Butterfly.Core/Database/ITransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: UpdateAsync
     path: ../Butterfly.Core/Database/ITransaction.cs
     startLine: 89
@@ -182,7 +182,7 @@ items:
     remote:
       path: Butterfly.Core/Database/ITransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DeleteAsync
     path: ../Butterfly.Core/Database/ITransaction.cs
     startLine: 117
@@ -221,7 +221,7 @@ items:
     remote:
       path: Butterfly.Core/Database/ITransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SynchronizeAsync
     path: ../Butterfly.Core/Database/ITransaction.cs
     startLine: 129
@@ -274,7 +274,7 @@ items:
     remote:
       path: Butterfly.Core/Database/ITransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TruncateAsync
     path: ../Butterfly.Core/Database/ITransaction.cs
     startLine: 136
@@ -309,7 +309,7 @@ items:
     remote:
       path: Butterfly.Core/Database/ITransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Commit
     path: ../Butterfly.Core/Database/ITransaction.cs
     startLine: 141
@@ -337,7 +337,7 @@ items:
     remote:
       path: Butterfly.Core/Database/ITransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CommitAsync
     path: ../Butterfly.Core/Database/ITransaction.cs
     startLine: 144
@@ -366,7 +366,7 @@ items:
     remote:
       path: Butterfly.Core/Database/ITransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnCommit
     path: ../Butterfly.Core/Database/ITransaction.cs
     startLine: 151
@@ -404,7 +404,7 @@ items:
     remote:
       path: Butterfly.Core/Database/ITransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Rollback
     path: ../Butterfly.Core/Database/ITransaction.cs
     startLine: 156

@@ -21,7 +21,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ChildDynamicParam
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 263
@@ -56,7 +56,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: dynamicParam
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 266
@@ -89,7 +89,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: fieldName
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 267
@@ -122,7 +122,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: valueByKeyValue
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 269
@@ -155,7 +155,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 271
@@ -190,7 +190,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: UpdateFrom
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 276

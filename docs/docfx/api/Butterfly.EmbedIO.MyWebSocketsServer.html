@@ -125,7 +125,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly ConcurrentDictionary&lt;WebSocketContext, EmbedIOSubscriptionApiConnection&gt; channelByWebSocketContext</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly ConcurrentDictionary&lt;IWebSocketContext, EmbedIOSubscriptionApiConnection&gt; channelByWebSocketContext</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -137,7 +137,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ConcurrentDictionary</span>&lt;<span class="xref">WebSocketContext</span>, <a class="xref" href="Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.html">EmbedIOSubscriptionApiConnection</a>&gt;</td>
+        <td><span class="xref">ConcurrentDictionary</span>&lt;<span class="xref">IWebSocketContext</span>, <a class="xref" href="Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.html">EmbedIOSubscriptionApiConnection</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -276,12 +276,12 @@
     </tbody>
   </table>
   <a id="Butterfly_EmbedIO_MyWebSocketsServer_OnClientConnected_" data-uid="Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected*"></a>
-  <h4 id="Butterfly_EmbedIO_MyWebSocketsServer_OnClientConnected_WebSocketContext_IPEndPoint_IPEndPoint_" data-uid="Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(WebSocketContext,IPEndPoint,IPEndPoint)">OnClientConnected(WebSocketContext, IPEndPoint, IPEndPoint)</h4>
+  <h4 id="Butterfly_EmbedIO_MyWebSocketsServer_OnClientConnected_IWebSocketContext_IPEndPoint_IPEndPoint_" data-uid="Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(IWebSocketContext,IPEndPoint,IPEndPoint)">OnClientConnected(IWebSocketContext, IPEndPoint, IPEndPoint)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnClientConnected(WebSocketContext context, IPEndPoint localEndPoint, IPEndPoint remoteEndPoint)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void OnClientConnected(IWebSocketContext context, IPEndPoint localEndPoint, IPEndPoint remoteEndPoint)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -294,7 +294,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">WebSocketContext</span></td>
+        <td><span class="xref">IWebSocketContext</span></td>
         <td><span class="parametername">context</span></td>
         <td></td>
       </tr>
@@ -311,12 +311,12 @@
     </tbody>
   </table>
   <a id="Butterfly_EmbedIO_MyWebSocketsServer_OnClientDisconnected_" data-uid="Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected*"></a>
-  <h4 id="Butterfly_EmbedIO_MyWebSocketsServer_OnClientDisconnected_WebSocketContext_" data-uid="Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(WebSocketContext)">OnClientDisconnected(WebSocketContext)</h4>
+  <h4 id="Butterfly_EmbedIO_MyWebSocketsServer_OnClientDisconnected_IWebSocketContext_" data-uid="Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(IWebSocketContext)">OnClientDisconnected(IWebSocketContext)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnClientDisconnected(WebSocketContext context)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void OnClientDisconnected(IWebSocketContext context)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -329,19 +329,19 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">WebSocketContext</span></td>
+        <td><span class="xref">IWebSocketContext</span></td>
         <td><span class="parametername">context</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <a id="Butterfly_EmbedIO_MyWebSocketsServer_OnFrameReceived_" data-uid="Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived*"></a>
-  <h4 id="Butterfly_EmbedIO_MyWebSocketsServer_OnFrameReceived_WebSocketContext_System_Byte___WebSocketReceiveResult_" data-uid="Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(WebSocketContext,System.Byte[],WebSocketReceiveResult)">OnFrameReceived(WebSocketContext, Byte[], WebSocketReceiveResult)</h4>
+  <h4 id="Butterfly_EmbedIO_MyWebSocketsServer_OnFrameReceived_IWebSocketContext_System_Byte___IWebSocketReceiveResult_" data-uid="Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(IWebSocketContext,System.Byte[],IWebSocketReceiveResult)">OnFrameReceived(IWebSocketContext, Byte[], IWebSocketReceiveResult)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnFrameReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void OnFrameReceived(IWebSocketContext context, byte[] rxBuffer, IWebSocketReceiveResult rxResult)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -354,7 +354,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">WebSocketContext</span></td>
+        <td><span class="xref">IWebSocketContext</span></td>
         <td><span class="parametername">context</span></td>
         <td></td>
       </tr>
@@ -364,19 +364,19 @@
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">WebSocketReceiveResult</span></td>
+        <td><span class="xref">IWebSocketReceiveResult</span></td>
         <td><span class="parametername">rxResult</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <a id="Butterfly_EmbedIO_MyWebSocketsServer_OnMessageReceived_" data-uid="Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived*"></a>
-  <h4 id="Butterfly_EmbedIO_MyWebSocketsServer_OnMessageReceived_WebSocketContext_System_Byte___WebSocketReceiveResult_" data-uid="Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(WebSocketContext,System.Byte[],WebSocketReceiveResult)">OnMessageReceived(WebSocketContext, Byte[], WebSocketReceiveResult)</h4>
+  <h4 id="Butterfly_EmbedIO_MyWebSocketsServer_OnMessageReceived_IWebSocketContext_System_Byte___IWebSocketReceiveResult_" data-uid="Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(IWebSocketContext,System.Byte[],IWebSocketReceiveResult)">OnMessageReceived(IWebSocketContext, Byte[], IWebSocketReceiveResult)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnMessageReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void OnMessageReceived(IWebSocketContext context, byte[] rxBuffer, IWebSocketReceiveResult rxResult)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -389,7 +389,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">WebSocketContext</span></td>
+        <td><span class="xref">IWebSocketContext</span></td>
         <td><span class="parametername">context</span></td>
         <td></td>
       </tr>
@@ -399,7 +399,7 @@
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">WebSocketReceiveResult</span></td>
+        <td><span class="xref">IWebSocketReceiveResult</span></td>
         <td><span class="parametername">rxResult</span></td>
         <td></td>
       </tr>

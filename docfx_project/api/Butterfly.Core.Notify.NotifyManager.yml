@@ -37,7 +37,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: NotifyManager
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 25
@@ -72,7 +72,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 27
@@ -107,7 +107,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: database
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 29
@@ -140,7 +140,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: emailNotifyMessageEngine
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 31
@@ -173,7 +173,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: phoneNotifyMessageEngine
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 32
@@ -206,7 +206,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: notifyMessageTableName
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 34
@@ -239,7 +239,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: notifyVerifyTableName
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 35
@@ -272,7 +272,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: verifyCodeExpiresSeconds
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 36
@@ -305,7 +305,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: verifyEmailNotifyMessage
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 38
@@ -338,7 +338,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: verifyPhoneNotifyMessage
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 39
@@ -371,7 +371,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: verifyCodeFormat
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 40
@@ -404,7 +404,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: EMAIL_FIELD_VALIDATOR
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 42
@@ -439,7 +439,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: PHONE_FIELD_VALIDATOR
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 43
@@ -474,7 +474,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: RANDOM
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 45
@@ -509,7 +509,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 47
@@ -558,7 +558,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Start
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 60
@@ -588,7 +588,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Stop
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 65
@@ -618,7 +618,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SendVerifyCodeAsync
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 70
@@ -653,7 +653,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: VerifyAsync
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 129
@@ -690,7 +690,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Validate
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 144
@@ -727,7 +727,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Queue
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 160
@@ -772,7 +772,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DetectNotifyMessageType
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 194

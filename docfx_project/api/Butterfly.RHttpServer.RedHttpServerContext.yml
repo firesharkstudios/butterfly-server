@@ -24,7 +24,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: RedHttpServerContext
     path: ../Butterfly.RedHttpServer/RedHttpServerContext.cs
     startLine: 18
@@ -61,7 +61,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: webServer
     path: ../Butterfly.RedHttpServer/RedHttpServerContext.cs
     startLine: 21
@@ -94,7 +94,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: webApi
     path: ../Butterfly.RedHttpServer/RedHttpServerContext.cs
     startLine: 22
@@ -127,7 +127,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: subscriptionApi
     path: ../Butterfly.RedHttpServer/RedHttpServerContext.cs
     startLine: 23
@@ -160,7 +160,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.RedHttpServer/RedHttpServerContext.cs
     startLine: 25
@@ -195,7 +195,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: WebApi
     path: ../Butterfly.RedHttpServer/RedHttpServerContext.cs
     startLine: 38
@@ -230,7 +230,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SubscriptionApi
     path: ../Butterfly.RedHttpServer/RedHttpServerContext.cs
     startLine: 39
@@ -265,7 +265,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Start
     path: ../Butterfly.RedHttpServer/RedHttpServerContext.cs
     startLine: 41
@@ -295,7 +295,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.RedHttpServer/RedHttpServerContext.cs
     startLine: 50

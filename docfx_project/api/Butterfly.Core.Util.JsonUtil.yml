@@ -6,6 +6,7 @@ items:
   parent: Butterfly.Core.Util
   children:
   - Butterfly.Core.Util.JsonUtil.Deserialize(Type,System.String)
+  - Butterfly.Core.Util.JsonUtil.Deserialize``1(Stream)
   - Butterfly.Core.Util.JsonUtil.Deserialize``1(System.String)
   - Butterfly.Core.Util.JsonUtil.ReadJsonFile``1(System.String,System.Boolean)
   - Butterfly.Core.Util.JsonUtil.Serialize(System.Object,System.Boolean,System.Boolean)
@@ -22,7 +23,7 @@ items:
     remote:
       path: Butterfly.Core/Util/JsonUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: JsonUtil
     path: ../Butterfly.Core/Util/JsonUtil.cs
     startLine: 14
@@ -43,6 +44,48 @@ items:
   modifiers.vb:
   - Public
   - Module
+- uid: Butterfly.Core.Util.JsonUtil.Deserialize``1(Stream)
+  commentId: M:Butterfly.Core.Util.JsonUtil.Deserialize``1(Stream)
+  id: Deserialize``1(Stream)
+  parent: Butterfly.Core.Util.JsonUtil
+  langs:
+  - csharp
+  - vb
+  name: Deserialize<T>(Stream)
+  nameWithType: JsonUtil.Deserialize<T>(Stream)
+  fullName: Butterfly.Core.Util.JsonUtil.Deserialize<T>(Stream)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/JsonUtil.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
+    id: Deserialize
+    path: ../Butterfly.Core/Util/JsonUtil.cs
+    startLine: 24
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static T Deserialize<T>(Stream stream)
+    parameters:
+    - id: stream
+      type: Stream
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Public Shared Function Deserialize(Of T)(stream As Stream) As T
+  overload: Butterfly.Core.Util.JsonUtil.Deserialize*
+  nameWithType.vb: JsonUtil.Deserialize(Of T)(Stream)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Butterfly.Core.Util.JsonUtil.Deserialize(Of T)(Stream)
+  name.vb: Deserialize(Of T)(Stream)
 - uid: Butterfly.Core.Util.JsonUtil.Deserialize``1(System.String)
   commentId: M:Butterfly.Core.Util.JsonUtil.Deserialize``1(System.String)
   id: Deserialize``1(System.String)
@@ -58,10 +101,10 @@ items:
     remote:
       path: Butterfly.Core/Util/JsonUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Deserialize
     path: ../Butterfly.Core/Util/JsonUtil.cs
-    startLine: 24
+    startLine: 31
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -100,10 +143,10 @@ items:
     remote:
       path: Butterfly.Core/Util/JsonUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Deserialize
     path: ../Butterfly.Core/Util/JsonUtil.cs
-    startLine: 29
+    startLine: 36
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -139,10 +182,10 @@ items:
     remote:
       path: Butterfly.Core/Util/JsonUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ReadJsonFile
     path: ../Butterfly.Core/Util/JsonUtil.cs
-    startLine: 39
+    startLine: 46
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -183,10 +226,10 @@ items:
     remote:
       path: Butterfly.Core/Util/JsonUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: WriteToFile
     path: ../Butterfly.Core/Util/JsonUtil.cs
-    startLine: 52
+    startLine: 59
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -224,10 +267,10 @@ items:
     remote:
       path: Butterfly.Core/Util/JsonUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: WriteToStream
     path: ../Butterfly.Core/Util/JsonUtil.cs
-    startLine: 66
+    startLine: 73
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -265,10 +308,10 @@ items:
     remote:
       path: Butterfly.Core/Util/JsonUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Serialize
     path: ../Butterfly.Core/Util/JsonUtil.cs
-    startLine: 78
+    startLine: 85
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -308,11 +351,11 @@ references:
   name: Deserialize
   nameWithType: JsonUtil.Deserialize
   fullName: Butterfly.Core.Util.JsonUtil.Deserialize
-- uid: System.String
+- uid: Stream
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  name: Stream
+  nameWithType: Stream
+  fullName: Stream
 - uid: '{T}'
   commentId: '!:T'
   definition: T
@@ -323,6 +366,11 @@ references:
   name: T
   nameWithType: T
   fullName: T
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
 - uid: Type
   isExternal: true
   name: Type
@@ -425,11 +473,6 @@ references:
   name: WriteToStream
   nameWithType: JsonUtil.WriteToStream
   fullName: Butterfly.Core.Util.JsonUtil.WriteToStream
-- uid: Stream
-  isExternal: true
-  name: Stream
-  nameWithType: Stream
-  fullName: Stream
 - uid: Butterfly.Core.Util.JsonUtil.Serialize*
   commentId: Overload:Butterfly.Core.Util.JsonUtil.Serialize
   name: Serialize

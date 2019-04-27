@@ -33,7 +33,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: MySqlTransaction
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 18
@@ -98,7 +98,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: connection
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 22
@@ -129,7 +129,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: transaction
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 23
@@ -160,7 +160,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 25
@@ -193,7 +193,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Begin
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 28
@@ -226,7 +226,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: BeginAsync
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 35
@@ -261,7 +261,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCommit
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 42
@@ -294,7 +294,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCommitAsync
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 46
@@ -329,7 +329,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoRollback
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 50
@@ -362,7 +362,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 54
@@ -395,7 +395,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCreate
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 59
@@ -433,7 +433,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCreateAsync
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 64
@@ -471,7 +471,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoInsertAsync
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 69
@@ -515,7 +515,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoUpdateAsync
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 90
@@ -557,7 +557,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoDeleteAsync
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 94
@@ -599,7 +599,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoTruncateAsync
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 98
@@ -636,7 +636,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoExecute
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 102
@@ -676,7 +676,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoExecuteAsync
     path: ../Butterfly.MySql/MySqlTransaction.cs
     startLine: 117

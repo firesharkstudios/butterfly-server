@@ -29,7 +29,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/Channel.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Channel
     path: ../Butterfly.Core/Channel/Channel.cs
     startLine: 15
@@ -66,7 +66,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/Channel.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Core/Channel/Channel.cs
     startLine: 16
@@ -101,7 +101,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/Channel.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: connection
     path: ../Butterfly.Core/Channel/Channel.cs
     startLine: 18
@@ -134,7 +134,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/Channel.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: channelKey
     path: ../Butterfly.Core/Channel/Channel.cs
     startLine: 19
@@ -167,7 +167,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/Channel.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: vars
     path: ../Butterfly.Core/Channel/Channel.cs
     startLine: 20
@@ -200,7 +200,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/Channel.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Channel/Channel.cs
     startLine: 22
@@ -240,7 +240,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/Channel.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Connection
     path: ../Butterfly.Core/Channel/Channel.cs
     startLine: 28
@@ -275,7 +275,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/Channel.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ChannelKey
     path: ../Butterfly.Core/Channel/Channel.cs
     startLine: 30
@@ -310,7 +310,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/Channel.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Vars
     path: ../Butterfly.Core/Channel/Channel.cs
     startLine: 32
@@ -345,7 +345,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/Channel.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: disposables
     path: ../Butterfly.Core/Channel/Channel.cs
     startLine: 34
@@ -378,7 +378,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/Channel.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Attach
     path: ../Butterfly.Core/Channel/Channel.cs
     startLine: 36
@@ -411,7 +411,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/Channel.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Queue
     path: ../Butterfly.Core/Channel/Channel.cs
     startLine: 40
@@ -444,7 +444,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/Channel.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Queue
     path: ../Butterfly.Core/Channel/Channel.cs
     startLine: 44
@@ -479,7 +479,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/Channel.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.Core/Channel/Channel.cs
     startLine: 48

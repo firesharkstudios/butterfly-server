@@ -31,7 +31,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: PostgresTransaction
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 20
@@ -96,7 +96,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: connection
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 25
@@ -127,7 +127,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: transaction
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 26
@@ -158,7 +158,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 28
@@ -191,7 +191,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Begin
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 32
@@ -224,7 +224,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: BeginAsync
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 40
@@ -259,7 +259,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCommit
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 48
@@ -292,7 +292,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCommitAsync
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 53
@@ -327,7 +327,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoRollback
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 58
@@ -360,7 +360,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 63
@@ -393,7 +393,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCreate
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 69
@@ -431,7 +431,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCreateAsync
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 78
@@ -469,7 +469,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoInsertAsync
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 87
@@ -513,7 +513,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoUpdateAsync
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 112
@@ -555,7 +555,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoDeleteAsync
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 122
@@ -597,7 +597,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoTruncateAsync
     path: ../Butterfly.Postgres/PostgresTransaction.cs
     startLine: 132

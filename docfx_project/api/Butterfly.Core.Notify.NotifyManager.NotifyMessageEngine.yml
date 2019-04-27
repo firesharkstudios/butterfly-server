@@ -27,7 +27,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: NotifyMessageEngine
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 201
@@ -62,7 +62,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: notifyMessageType
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 202
@@ -95,7 +95,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: notifyMessageSender
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 203
@@ -128,7 +128,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: database
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 204
@@ -161,7 +161,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: notifyMessageTableName
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 205
@@ -194,7 +194,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: cancellationTokenSource
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 207
@@ -225,7 +225,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 209
@@ -264,7 +264,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: started
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 216
@@ -295,7 +295,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Start
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 218
@@ -325,7 +325,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Stop
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 224
@@ -355,7 +355,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Queue
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 229
@@ -407,7 +407,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Pulse
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 244

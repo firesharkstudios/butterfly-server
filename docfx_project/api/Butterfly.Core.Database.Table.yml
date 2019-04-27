@@ -26,7 +26,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Table.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Table
     path: ../Butterfly.Core/Database/Table.cs
     startLine: 13
@@ -65,7 +65,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Table.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/Table.cs
     startLine: 14
@@ -105,7 +105,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Table.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Name
     path: ../Butterfly.Core/Database/Table.cs
     startLine: 25
@@ -142,7 +142,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Table.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: FieldDefs
     path: ../Butterfly.Core/Database/Table.cs
     startLine: 30
@@ -179,7 +179,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Table.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: FindFieldDef
     path: ../Butterfly.Core/Database/Table.cs
     startLine: 35
@@ -214,7 +214,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Table.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Indexes
     path: ../Butterfly.Core/Database/Table.cs
     startLine: 39
@@ -251,7 +251,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Table.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AutoIncrementFieldName
     path: ../Butterfly.Core/Database/Table.cs
     startLine: 44
@@ -288,7 +288,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Table.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: getDefaultValueByFieldName
     path: ../Butterfly.Core/Database/Table.cs
     startLine: 49
@@ -321,7 +321,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Table.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetDefaultValueByFieldName
     path: ../Butterfly.Core/Database/Table.cs
     startLine: 53
@@ -356,7 +356,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Table.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: getOverrideValueByFieldName
     path: ../Butterfly.Core/Database/Table.cs
     startLine: 55
@@ -389,7 +389,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Table.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetOverrideValueByFieldName
     path: ../Butterfly.Core/Database/Table.cs
     startLine: 59

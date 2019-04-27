@@ -6604,15 +6604,12 @@ references:
   commentId: T:Butterfly.Core.Notify.NotifyMessage
   fullName: Butterfly.Core.Notify.NotifyMessage
   nameWithType: NotifyMessage
-- uid: Butterfly.Core.Notify.NotifyMessage.#ctor(System.String,System.String,System.String,System.String,System.String,System.Byte,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name: NotifyMessage(String, String, String, String, String, Byte, System.Collections.Generic.Dictionary<String, Object>)
-  href: api/Butterfly.Core.Notify.NotifyMessage.html#Butterfly_Core_Notify_NotifyMessage__ctor_System_String_System_String_System_String_System_String_System_String_System_Byte_System_Collections_Generic_Dictionary_System_String_System_Object__
-  commentId: M:Butterfly.Core.Notify.NotifyMessage.#ctor(System.String,System.String,System.String,System.String,System.String,System.Byte,System.Collections.Generic.Dictionary{System.String,System.Object})
-  name.vb: NotifyMessage(String, String, String, String, String, Byte, System.Collections.Generic.Dictionary(Of String, Object))
-  fullName: Butterfly.Core.Notify.NotifyMessage.NotifyMessage(System.String, System.String, System.String, System.String, System.String, System.Byte, System.Collections.Generic.Dictionary<System.String, System.Object>)
-  fullName.vb: Butterfly.Core.Notify.NotifyMessage.NotifyMessage(System.String, System.String, System.String, System.String, System.String, System.Byte, System.Collections.Generic.Dictionary(Of System.String, System.Object))
-  nameWithType: NotifyMessage.NotifyMessage(String, String, String, String, String, Byte, System.Collections.Generic.Dictionary<String, Object>)
-  nameWithType.vb: NotifyMessage.NotifyMessage(String, String, String, String, String, Byte, System.Collections.Generic.Dictionary(Of String, Object))
+- uid: Butterfly.Core.Notify.NotifyMessage.#ctor(System.String,System.String,System.String,System.String,System.String,System.Byte)
+  name: NotifyMessage(String, String, String, String, String, Byte)
+  href: api/Butterfly.Core.Notify.NotifyMessage.html#Butterfly_Core_Notify_NotifyMessage__ctor_System_String_System_String_System_String_System_String_System_String_System_Byte_
+  commentId: M:Butterfly.Core.Notify.NotifyMessage.#ctor(System.String,System.String,System.String,System.String,System.String,System.Byte)
+  fullName: Butterfly.Core.Notify.NotifyMessage.NotifyMessage(System.String, System.String, System.String, System.String, System.String, System.Byte)
+  nameWithType: NotifyMessage.NotifyMessage(String, String, String, String, String, Byte)
 - uid: Butterfly.Core.Notify.NotifyMessage.#ctor*
   name: NotifyMessage
   href: api/Butterfly.Core.Notify.NotifyMessage.html#Butterfly_Core_Notify_NotifyMessage__ctor_
@@ -6651,6 +6648,12 @@ references:
   commentId: F:Butterfly.Core.Notify.NotifyMessage.extraData
   fullName: Butterfly.Core.Notify.NotifyMessage.extraData
   nameWithType: NotifyMessage.extraData
+- uid: Butterfly.Core.Notify.NotifyMessage.formatter
+  name: formatter
+  href: api/Butterfly.Core.Notify.NotifyMessage.html#Butterfly_Core_Notify_NotifyMessage_formatter
+  commentId: F:Butterfly.Core.Notify.NotifyMessage.formatter
+  fullName: Butterfly.Core.Notify.NotifyMessage.formatter
+  nameWithType: NotifyMessage.formatter
 - uid: Butterfly.Core.Notify.NotifyMessage.from
   name: from
   href: api/Butterfly.Core.Notify.NotifyMessage.html#Butterfly_Core_Notify_NotifyMessage_from
@@ -7248,6 +7251,38 @@ references:
   commentId: T:Butterfly.Core.Util.DictionaryX
   fullName: Butterfly.Core.Util.DictionaryX
   nameWithType: DictionaryX
+- uid: Butterfly.Core.Util.DictionaryX.ContainsAllKeys*
+  name: ContainsAllKeys
+  href: api/Butterfly.Core.Util.DictionaryX.html#Butterfly_Core_Util_DictionaryX_ContainsAllKeys_
+  commentId: Overload:Butterfly.Core.Util.DictionaryX.ContainsAllKeys
+  isSpec: "True"
+  fullName: Butterfly.Core.Util.DictionaryX.ContainsAllKeys
+  nameWithType: DictionaryX.ContainsAllKeys
+- uid: Butterfly.Core.Util.DictionaryX.ContainsAllKeys``2(Dictionary{``0,``1},``0[])
+  name: ContainsAllKeys<T, U>(Dictionary<T, U>, T[])
+  href: api/Butterfly.Core.Util.DictionaryX.html#Butterfly_Core_Util_DictionaryX_ContainsAllKeys__2_Dictionary___0___1____0___
+  commentId: M:Butterfly.Core.Util.DictionaryX.ContainsAllKeys``2(Dictionary{``0,``1},``0[])
+  name.vb: ContainsAllKeys(Of T, U)(Dictionary(Of T, U), T())
+  fullName: Butterfly.Core.Util.DictionaryX.ContainsAllKeys<T, U>(Dictionary<T, U>, T[])
+  fullName.vb: Butterfly.Core.Util.DictionaryX.ContainsAllKeys(Of T, U)(Dictionary(Of T, U), T())
+  nameWithType: DictionaryX.ContainsAllKeys<T, U>(Dictionary<T, U>, T[])
+  nameWithType.vb: DictionaryX.ContainsAllKeys(Of T, U)(Dictionary(Of T, U), T())
+- uid: Butterfly.Core.Util.DictionaryX.ContainsAnyKey*
+  name: ContainsAnyKey
+  href: api/Butterfly.Core.Util.DictionaryX.html#Butterfly_Core_Util_DictionaryX_ContainsAnyKey_
+  commentId: Overload:Butterfly.Core.Util.DictionaryX.ContainsAnyKey
+  isSpec: "True"
+  fullName: Butterfly.Core.Util.DictionaryX.ContainsAnyKey
+  nameWithType: DictionaryX.ContainsAnyKey
+- uid: Butterfly.Core.Util.DictionaryX.ContainsAnyKey``2(Dictionary{``0,``1},``0[])
+  name: ContainsAnyKey<T, U>(Dictionary<T, U>, T[])
+  href: api/Butterfly.Core.Util.DictionaryX.html#Butterfly_Core_Util_DictionaryX_ContainsAnyKey__2_Dictionary___0___1____0___
+  commentId: M:Butterfly.Core.Util.DictionaryX.ContainsAnyKey``2(Dictionary{``0,``1},``0[])
+  name.vb: ContainsAnyKey(Of T, U)(Dictionary(Of T, U), T())
+  fullName: Butterfly.Core.Util.DictionaryX.ContainsAnyKey<T, U>(Dictionary<T, U>, T[])
+  fullName.vb: Butterfly.Core.Util.DictionaryX.ContainsAnyKey(Of T, U)(Dictionary(Of T, U), T())
+  nameWithType: DictionaryX.ContainsAnyKey<T, U>(Dictionary<T, U>, T[])
+  nameWithType.vb: DictionaryX.ContainsAnyKey(Of T, U)(Dictionary(Of T, U), T())
 - uid: Butterfly.Core.Util.DictionaryX.Deconstruct*
   name: Deconstruct
   href: api/Butterfly.Core.Util.DictionaryX.html#Butterfly_Core_Util_DictionaryX_Deconstruct_
@@ -7828,6 +7863,28 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Util.FileX.WriteTextAsync
   nameWithType: FileX.WriteTextAsync
+- uid: Butterfly.Core.Util.IEnumerableX
+  name: IEnumerableX
+  href: api/Butterfly.Core.Util.IEnumerableX.html
+  commentId: T:Butterfly.Core.Util.IEnumerableX
+  fullName: Butterfly.Core.Util.IEnumerableX
+  nameWithType: IEnumerableX
+- uid: Butterfly.Core.Util.IEnumerableX.HasSameElements*
+  name: HasSameElements
+  href: api/Butterfly.Core.Util.IEnumerableX.html#Butterfly_Core_Util_IEnumerableX_HasSameElements_
+  commentId: Overload:Butterfly.Core.Util.IEnumerableX.HasSameElements
+  isSpec: "True"
+  fullName: Butterfly.Core.Util.IEnumerableX.HasSameElements
+  nameWithType: IEnumerableX.HasSameElements
+- uid: Butterfly.Core.Util.IEnumerableX.HasSameElements``1(ICollection{``0},ICollection{``0})
+  name: HasSameElements<T>(ICollection<T>, ICollection<T>)
+  href: api/Butterfly.Core.Util.IEnumerableX.html#Butterfly_Core_Util_IEnumerableX_HasSameElements__1_ICollection___0__ICollection___0__
+  commentId: M:Butterfly.Core.Util.IEnumerableX.HasSameElements``1(ICollection{``0},ICollection{``0})
+  name.vb: HasSameElements(Of T)(ICollection(Of T), ICollection(Of T))
+  fullName: Butterfly.Core.Util.IEnumerableX.HasSameElements<T>(ICollection<T>, ICollection<T>)
+  fullName.vb: Butterfly.Core.Util.IEnumerableX.HasSameElements(Of T)(ICollection(Of T), ICollection(Of T))
+  nameWithType: IEnumerableX.HasSameElements<T>(ICollection<T>, ICollection<T>)
+  nameWithType.vb: IEnumerableX.HasSameElements(Of T)(ICollection(Of T), ICollection(Of T))
 - uid: Butterfly.Core.Util.IHttpResponseX
   name: IHttpResponseX
   href: api/Butterfly.Core.Util.IHttpResponseX.html
@@ -8122,6 +8179,15 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Util.JsonUtil.Deserialize
   nameWithType: JsonUtil.Deserialize
+- uid: Butterfly.Core.Util.JsonUtil.Deserialize``1(Stream)
+  name: Deserialize<T>(Stream)
+  href: api/Butterfly.Core.Util.JsonUtil.html#Butterfly_Core_Util_JsonUtil_Deserialize__1_Stream_
+  commentId: M:Butterfly.Core.Util.JsonUtil.Deserialize``1(Stream)
+  name.vb: Deserialize(Of T)(Stream)
+  fullName: Butterfly.Core.Util.JsonUtil.Deserialize<T>(Stream)
+  fullName.vb: Butterfly.Core.Util.JsonUtil.Deserialize(Of T)(Stream)
+  nameWithType: JsonUtil.Deserialize<T>(Stream)
+  nameWithType.vb: JsonUtil.Deserialize(Of T)(Stream)
 - uid: Butterfly.Core.Util.JsonUtil.Deserialize``1(System.String)
   name: Deserialize<T>(String)
   href: api/Butterfly.Core.Util.JsonUtil.html#Butterfly_Core_Util_JsonUtil_Deserialize__1_System_String_
@@ -8350,6 +8416,19 @@ references:
   isSpec: "True"
   fullName: Butterfly.Core.Util.ProcessX.OpenBrowser
   nameWithType: ProcessX.OpenBrowser
+- uid: Butterfly.Core.Util.ProcessX.WaitAndCaptureAsync(System.String,System.String,CancellationToken)
+  name: WaitAndCaptureAsync(String, String, CancellationToken)
+  href: api/Butterfly.Core.Util.ProcessX.html#Butterfly_Core_Util_ProcessX_WaitAndCaptureAsync_System_String_System_String_CancellationToken_
+  commentId: M:Butterfly.Core.Util.ProcessX.WaitAndCaptureAsync(System.String,System.String,CancellationToken)
+  fullName: Butterfly.Core.Util.ProcessX.WaitAndCaptureAsync(System.String, System.String, CancellationToken)
+  nameWithType: ProcessX.WaitAndCaptureAsync(String, String, CancellationToken)
+- uid: Butterfly.Core.Util.ProcessX.WaitAndCaptureAsync*
+  name: WaitAndCaptureAsync
+  href: api/Butterfly.Core.Util.ProcessX.html#Butterfly_Core_Util_ProcessX_WaitAndCaptureAsync_
+  commentId: Overload:Butterfly.Core.Util.ProcessX.WaitAndCaptureAsync
+  isSpec: "True"
+  fullName: Butterfly.Core.Util.ProcessX.WaitAndCaptureAsync
+  nameWithType: ProcessX.WaitAndCaptureAsync
 - uid: Butterfly.Core.Util.ProcessX.WaitForExitAsync(Process,CancellationToken)
   name: WaitForExitAsync(Process, CancellationToken)
   href: api/Butterfly.Core.Util.ProcessX.html#Butterfly_Core_Util_ProcessX_WaitForExitAsync_Process_CancellationToken_
@@ -9271,12 +9350,12 @@ references:
   commentId: T:Butterfly.EmbedIO.EmbedIOHttpWebRequest
   fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest
   nameWithType: EmbedIOHttpWebRequest
-- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.#ctor(System.String,HttpListenerContext)
-  name: EmbedIOHttpWebRequest(String, HttpListenerContext)
-  href: api/Butterfly.EmbedIO.EmbedIOHttpWebRequest.html#Butterfly_EmbedIO_EmbedIOHttpWebRequest__ctor_System_String_HttpListenerContext_
-  commentId: M:Butterfly.EmbedIO.EmbedIOHttpWebRequest.#ctor(System.String,HttpListenerContext)
-  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.EmbedIOHttpWebRequest(System.String, HttpListenerContext)
-  nameWithType: EmbedIOHttpWebRequest.EmbedIOHttpWebRequest(String, HttpListenerContext)
+- uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.#ctor(System.String,IHttpContext)
+  name: EmbedIOHttpWebRequest(String, IHttpContext)
+  href: api/Butterfly.EmbedIO.EmbedIOHttpWebRequest.html#Butterfly_EmbedIO_EmbedIOHttpWebRequest__ctor_System_String_IHttpContext_
+  commentId: M:Butterfly.EmbedIO.EmbedIOHttpWebRequest.#ctor(System.String,IHttpContext)
+  fullName: Butterfly.EmbedIO.EmbedIOHttpWebRequest.EmbedIOHttpWebRequest(System.String, IHttpContext)
+  nameWithType: EmbedIOHttpWebRequest.EmbedIOHttpWebRequest(String, IHttpContext)
 - uid: Butterfly.EmbedIO.EmbedIOHttpWebRequest.#ctor*
   name: EmbedIOHttpWebRequest
   href: api/Butterfly.EmbedIO.EmbedIOHttpWebRequest.html#Butterfly_EmbedIO_EmbedIOHttpWebRequest__ctor_
@@ -9414,15 +9493,15 @@ references:
   commentId: T:Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection
   fullName: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection
   nameWithType: EmbedIOSubscriptionApiConnection
-- uid: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Action{System.String},WebSocketContext)
-  name: EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action<String>, WebSocketContext)
-  href: api/Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.html#Butterfly_EmbedIO_EmbedIOSubscriptionApiConnection__ctor_Butterfly_Core_Channel_BaseSubscriptionApi_Action_System_String__WebSocketContext_
-  commentId: M:Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Action{System.String},WebSocketContext)
-  name.vb: EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action(Of String), WebSocketContext)
-  fullName: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(Butterfly.Core.Channel.BaseSubscriptionApi, Action<System.String>, WebSocketContext)
-  fullName.vb: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(Butterfly.Core.Channel.BaseSubscriptionApi, Action(Of System.String), WebSocketContext)
-  nameWithType: EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action<String>, WebSocketContext)
-  nameWithType.vb: EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action(Of String), WebSocketContext)
+- uid: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Action{System.String},IWebSocketContext)
+  name: EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action<String>, IWebSocketContext)
+  href: api/Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.html#Butterfly_EmbedIO_EmbedIOSubscriptionApiConnection__ctor_Butterfly_Core_Channel_BaseSubscriptionApi_Action_System_String__IWebSocketContext_
+  commentId: M:Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Action{System.String},IWebSocketContext)
+  name.vb: EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action(Of String), IWebSocketContext)
+  fullName: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(Butterfly.Core.Channel.BaseSubscriptionApi, Action<System.String>, IWebSocketContext)
+  fullName.vb: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(Butterfly.Core.Channel.BaseSubscriptionApi, Action(Of System.String), IWebSocketContext)
+  nameWithType: EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action<String>, IWebSocketContext)
+  nameWithType.vb: EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action(Of String), IWebSocketContext)
 - uid: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor*
   name: EmbedIOSubscriptionApiConnection
   href: api/Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.html#Butterfly_EmbedIO_EmbedIOSubscriptionApiConnection__ctor_
@@ -9525,12 +9604,12 @@ references:
   commentId: T:Butterfly.EmbedIO.EmbedIOWebResponse
   fullName: Butterfly.EmbedIO.EmbedIOWebResponse
   nameWithType: EmbedIOWebResponse
-- uid: Butterfly.EmbedIO.EmbedIOWebResponse.#ctor(HttpListenerContext)
-  name: EmbedIOWebResponse(HttpListenerContext)
-  href: api/Butterfly.EmbedIO.EmbedIOWebResponse.html#Butterfly_EmbedIO_EmbedIOWebResponse__ctor_HttpListenerContext_
-  commentId: M:Butterfly.EmbedIO.EmbedIOWebResponse.#ctor(HttpListenerContext)
-  fullName: Butterfly.EmbedIO.EmbedIOWebResponse.EmbedIOWebResponse(HttpListenerContext)
-  nameWithType: EmbedIOWebResponse.EmbedIOWebResponse(HttpListenerContext)
+- uid: Butterfly.EmbedIO.EmbedIOWebResponse.#ctor(IHttpContext)
+  name: EmbedIOWebResponse(IHttpContext)
+  href: api/Butterfly.EmbedIO.EmbedIOWebResponse.html#Butterfly_EmbedIO_EmbedIOWebResponse__ctor_IHttpContext_
+  commentId: M:Butterfly.EmbedIO.EmbedIOWebResponse.#ctor(IHttpContext)
+  fullName: Butterfly.EmbedIO.EmbedIOWebResponse.EmbedIOWebResponse(IHttpContext)
+  nameWithType: EmbedIOWebResponse.EmbedIOWebResponse(IHttpContext)
 - uid: Butterfly.EmbedIO.EmbedIOWebResponse.#ctor*
   name: EmbedIOWebResponse
   href: api/Butterfly.EmbedIO.EmbedIOWebResponse.html#Butterfly_EmbedIO_EmbedIOWebResponse__ctor_
@@ -9641,12 +9720,12 @@ references:
   commentId: T:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest
   fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest
   nameWithType: EmbedIOWebSocketWebRequest
-- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor(WebSocketContext)
-  name: EmbedIOWebSocketWebRequest(WebSocketContext)
-  href: api/Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.html#Butterfly_EmbedIO_EmbedIOWebSocketWebRequest__ctor_WebSocketContext_
-  commentId: M:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor(WebSocketContext)
-  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.EmbedIOWebSocketWebRequest(WebSocketContext)
-  nameWithType: EmbedIOWebSocketWebRequest.EmbedIOWebSocketWebRequest(WebSocketContext)
+- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor(IWebSocketContext)
+  name: EmbedIOWebSocketWebRequest(IWebSocketContext)
+  href: api/Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.html#Butterfly_EmbedIO_EmbedIOWebSocketWebRequest__ctor_IWebSocketContext_
+  commentId: M:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor(IWebSocketContext)
+  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.EmbedIOWebSocketWebRequest(IWebSocketContext)
+  nameWithType: EmbedIOWebSocketWebRequest.EmbedIOWebSocketWebRequest(IWebSocketContext)
 - uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor*
   name: EmbedIOWebSocketWebRequest
   href: api/Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.html#Butterfly_EmbedIO_EmbedIOWebSocketWebRequest__ctor_
@@ -9800,12 +9879,12 @@ references:
   commentId: F:Butterfly.EmbedIO.MyWebSocketsServer.logger
   fullName: Butterfly.EmbedIO.MyWebSocketsServer.logger
   nameWithType: MyWebSocketsServer.logger
-- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(WebSocketContext,IPEndPoint,IPEndPoint)
-  name: OnClientConnected(WebSocketContext, IPEndPoint, IPEndPoint)
-  href: api/Butterfly.EmbedIO.MyWebSocketsServer.html#Butterfly_EmbedIO_MyWebSocketsServer_OnClientConnected_WebSocketContext_IPEndPoint_IPEndPoint_
-  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(WebSocketContext,IPEndPoint,IPEndPoint)
-  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(WebSocketContext, IPEndPoint, IPEndPoint)
-  nameWithType: MyWebSocketsServer.OnClientConnected(WebSocketContext, IPEndPoint, IPEndPoint)
+- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(IWebSocketContext,IPEndPoint,IPEndPoint)
+  name: OnClientConnected(IWebSocketContext, IPEndPoint, IPEndPoint)
+  href: api/Butterfly.EmbedIO.MyWebSocketsServer.html#Butterfly_EmbedIO_MyWebSocketsServer_OnClientConnected_IWebSocketContext_IPEndPoint_IPEndPoint_
+  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(IWebSocketContext,IPEndPoint,IPEndPoint)
+  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(IWebSocketContext, IPEndPoint, IPEndPoint)
+  nameWithType: MyWebSocketsServer.OnClientConnected(IWebSocketContext, IPEndPoint, IPEndPoint)
 - uid: Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected*
   name: OnClientConnected
   href: api/Butterfly.EmbedIO.MyWebSocketsServer.html#Butterfly_EmbedIO_MyWebSocketsServer_OnClientConnected_
@@ -9813,12 +9892,12 @@ references:
   isSpec: "True"
   fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected
   nameWithType: MyWebSocketsServer.OnClientConnected
-- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(WebSocketContext)
-  name: OnClientDisconnected(WebSocketContext)
-  href: api/Butterfly.EmbedIO.MyWebSocketsServer.html#Butterfly_EmbedIO_MyWebSocketsServer_OnClientDisconnected_WebSocketContext_
-  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(WebSocketContext)
-  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(WebSocketContext)
-  nameWithType: MyWebSocketsServer.OnClientDisconnected(WebSocketContext)
+- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(IWebSocketContext)
+  name: OnClientDisconnected(IWebSocketContext)
+  href: api/Butterfly.EmbedIO.MyWebSocketsServer.html#Butterfly_EmbedIO_MyWebSocketsServer_OnClientDisconnected_IWebSocketContext_
+  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(IWebSocketContext)
+  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(IWebSocketContext)
+  nameWithType: MyWebSocketsServer.OnClientDisconnected(IWebSocketContext)
 - uid: Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected*
   name: OnClientDisconnected
   href: api/Butterfly.EmbedIO.MyWebSocketsServer.html#Butterfly_EmbedIO_MyWebSocketsServer_OnClientDisconnected_
@@ -9826,15 +9905,15 @@ references:
   isSpec: "True"
   fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected
   nameWithType: MyWebSocketsServer.OnClientDisconnected
-- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(WebSocketContext,System.Byte[],WebSocketReceiveResult)
-  name: OnFrameReceived(WebSocketContext, Byte[], WebSocketReceiveResult)
-  href: api/Butterfly.EmbedIO.MyWebSocketsServer.html#Butterfly_EmbedIO_MyWebSocketsServer_OnFrameReceived_WebSocketContext_System_Byte___WebSocketReceiveResult_
-  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(WebSocketContext,System.Byte[],WebSocketReceiveResult)
-  name.vb: OnFrameReceived(WebSocketContext, Byte(), WebSocketReceiveResult)
-  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(WebSocketContext, System.Byte[], WebSocketReceiveResult)
-  fullName.vb: Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(WebSocketContext, System.Byte(), WebSocketReceiveResult)
-  nameWithType: MyWebSocketsServer.OnFrameReceived(WebSocketContext, Byte[], WebSocketReceiveResult)
-  nameWithType.vb: MyWebSocketsServer.OnFrameReceived(WebSocketContext, Byte(), WebSocketReceiveResult)
+- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(IWebSocketContext,System.Byte[],IWebSocketReceiveResult)
+  name: OnFrameReceived(IWebSocketContext, Byte[], IWebSocketReceiveResult)
+  href: api/Butterfly.EmbedIO.MyWebSocketsServer.html#Butterfly_EmbedIO_MyWebSocketsServer_OnFrameReceived_IWebSocketContext_System_Byte___IWebSocketReceiveResult_
+  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(IWebSocketContext,System.Byte[],IWebSocketReceiveResult)
+  name.vb: OnFrameReceived(IWebSocketContext, Byte(), IWebSocketReceiveResult)
+  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(IWebSocketContext, System.Byte[], IWebSocketReceiveResult)
+  fullName.vb: Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(IWebSocketContext, System.Byte(), IWebSocketReceiveResult)
+  nameWithType: MyWebSocketsServer.OnFrameReceived(IWebSocketContext, Byte[], IWebSocketReceiveResult)
+  nameWithType.vb: MyWebSocketsServer.OnFrameReceived(IWebSocketContext, Byte(), IWebSocketReceiveResult)
 - uid: Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived*
   name: OnFrameReceived
   href: api/Butterfly.EmbedIO.MyWebSocketsServer.html#Butterfly_EmbedIO_MyWebSocketsServer_OnFrameReceived_
@@ -9842,15 +9921,15 @@ references:
   isSpec: "True"
   fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived
   nameWithType: MyWebSocketsServer.OnFrameReceived
-- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(WebSocketContext,System.Byte[],WebSocketReceiveResult)
-  name: OnMessageReceived(WebSocketContext, Byte[], WebSocketReceiveResult)
-  href: api/Butterfly.EmbedIO.MyWebSocketsServer.html#Butterfly_EmbedIO_MyWebSocketsServer_OnMessageReceived_WebSocketContext_System_Byte___WebSocketReceiveResult_
-  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(WebSocketContext,System.Byte[],WebSocketReceiveResult)
-  name.vb: OnMessageReceived(WebSocketContext, Byte(), WebSocketReceiveResult)
-  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(WebSocketContext, System.Byte[], WebSocketReceiveResult)
-  fullName.vb: Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(WebSocketContext, System.Byte(), WebSocketReceiveResult)
-  nameWithType: MyWebSocketsServer.OnMessageReceived(WebSocketContext, Byte[], WebSocketReceiveResult)
-  nameWithType.vb: MyWebSocketsServer.OnMessageReceived(WebSocketContext, Byte(), WebSocketReceiveResult)
+- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(IWebSocketContext,System.Byte[],IWebSocketReceiveResult)
+  name: OnMessageReceived(IWebSocketContext, Byte[], IWebSocketReceiveResult)
+  href: api/Butterfly.EmbedIO.MyWebSocketsServer.html#Butterfly_EmbedIO_MyWebSocketsServer_OnMessageReceived_IWebSocketContext_System_Byte___IWebSocketReceiveResult_
+  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(IWebSocketContext,System.Byte[],IWebSocketReceiveResult)
+  name.vb: OnMessageReceived(IWebSocketContext, Byte(), IWebSocketReceiveResult)
+  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(IWebSocketContext, System.Byte[], IWebSocketReceiveResult)
+  fullName.vb: Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(IWebSocketContext, System.Byte(), IWebSocketReceiveResult)
+  nameWithType: MyWebSocketsServer.OnMessageReceived(IWebSocketContext, Byte[], IWebSocketReceiveResult)
+  nameWithType.vb: MyWebSocketsServer.OnMessageReceived(IWebSocketContext, Byte(), IWebSocketReceiveResult)
 - uid: Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived*
   name: OnMessageReceived
   href: api/Butterfly.EmbedIO.MyWebSocketsServer.html#Butterfly_EmbedIO_MyWebSocketsServer_OnMessageReceived_

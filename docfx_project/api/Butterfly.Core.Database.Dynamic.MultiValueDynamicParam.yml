@@ -21,7 +21,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/MultiValueDynamicParam.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: MultiValueDynamicParam
     path: ../Butterfly.Core/Database/Dynamic/MultiValueDynamicParam.cs
     startLine: 11
@@ -68,7 +68,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/MultiValueDynamicParam.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: values
     path: ../Butterfly.Core/Database/Dynamic/MultiValueDynamicParam.cs
     startLine: 12
@@ -101,7 +101,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/MultiValueDynamicParam.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/Dynamic/MultiValueDynamicParam.cs
     startLine: 14
@@ -134,7 +134,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/MultiValueDynamicParam.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Clear
     path: ../Butterfly.Core/Database/Dynamic/MultiValueDynamicParam.cs
     startLine: 17
@@ -167,7 +167,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/MultiValueDynamicParam.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetValue
     path: ../Butterfly.Core/Database/Dynamic/MultiValueDynamicParam.cs
     startLine: 25
@@ -202,7 +202,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/MultiValueDynamicParam.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SetValues
     path: ../Butterfly.Core/Database/Dynamic/MultiValueDynamicParam.cs
     startLine: 29

@@ -18,10 +18,10 @@ items:
     remote:
       path: Butterfly.Core.Test/ChannelUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TestDisposable
     path: ../Butterfly.Core.Test/ChannelUnitTest.cs
-    startLine: 112
+    startLine: 90
   assemblies:
   - Butterfly.Core.Test
   namespace: Butterfly.Core.Test
@@ -53,10 +53,10 @@ items:
     remote:
       path: Butterfly.Core.Test/ChannelUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: disposed
     path: ../Butterfly.Core.Test/ChannelUnitTest.cs
-    startLine: 113
+    startLine: 91
   assemblies:
   - Butterfly.Core.Test
   namespace: Butterfly.Core.Test
@@ -84,10 +84,10 @@ items:
     remote:
       path: Butterfly.Core.Test/ChannelUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.Core.Test/ChannelUnitTest.cs
-    startLine: 115
+    startLine: 93
   assemblies:
   - Butterfly.Core.Test
   namespace: Butterfly.Core.Test

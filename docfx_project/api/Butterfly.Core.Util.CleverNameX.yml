@@ -19,7 +19,7 @@ items:
     remote:
       path: Butterfly.Core/Util/CleverNameX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CleverNameX
     path: ../Butterfly.Core/Util/CleverNameX.cs
     startLine: 7
@@ -55,7 +55,7 @@ items:
     remote:
       path: Butterfly.Core/Util/CleverNameX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Generate
     path: ../Butterfly.Core/Util/CleverNameX.cs
     startLine: 10
@@ -89,7 +89,7 @@ items:
     remote:
       path: Butterfly.Core/Util/CleverNameX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: COLORS
     path: ../Butterfly.Core/Util/CleverNameX.cs
     startLine: 14
@@ -124,7 +124,7 @@ items:
     remote:
       path: Butterfly.Core/Util/CleverNameX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ANIMALS
     path: ../Butterfly.Core/Util/CleverNameX.cs
     startLine: 68

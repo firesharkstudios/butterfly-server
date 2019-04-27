@@ -20,7 +20,7 @@ items:
     remote:
       path: Butterfly.Core/Util/IWebRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: IWebRequest
     path: ../Butterfly.Core/Util/IWebRequest.cs
     startLine: 8
@@ -53,7 +53,7 @@ items:
     remote:
       path: Butterfly.Core/Util/IWebRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: RequestUrl
     path: ../Butterfly.Core/Util/IWebRequest.cs
     startLine: 12
@@ -88,7 +88,7 @@ items:
     remote:
       path: Butterfly.Core/Util/IWebRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Headers
     path: ../Butterfly.Core/Util/IWebRequest.cs
     startLine: 17
@@ -123,7 +123,7 @@ items:
     remote:
       path: Butterfly.Core/Util/IWebRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: PathParams
     path: ../Butterfly.Core/Util/IWebRequest.cs
     startLine: 30
@@ -159,7 +159,7 @@ items:
     remote:
       path: Butterfly.Core/Util/IWebRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: QueryParams
     path: ../Butterfly.Core/Util/IWebRequest.cs
     startLine: 43

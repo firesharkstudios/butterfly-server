@@ -24,7 +24,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ShareCodeAuthenticator
     path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
     startLine: 10
@@ -62,7 +62,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
     startLine: 11
@@ -97,7 +97,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AUTH_TYPE
     path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
     startLine: 13
@@ -130,7 +130,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: database
     path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
     startLine: 15
@@ -163,7 +163,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: accountTableName
     path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
     startLine: 17
@@ -196,7 +196,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: accountTableIdFieldName
     path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
     startLine: 18
@@ -229,7 +229,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: accountTableShareCodeFieldName
     path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
     startLine: 19
@@ -262,7 +262,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
     startLine: 28
@@ -307,7 +307,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AuthenticateAsync
     path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
     startLine: 46

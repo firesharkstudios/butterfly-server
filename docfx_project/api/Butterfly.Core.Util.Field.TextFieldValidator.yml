@@ -26,7 +26,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/TextFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TextFieldValidator
     path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
     startLine: 10
@@ -64,7 +64,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/TextFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
     startLine: 11
@@ -99,7 +99,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/TextFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: name
     path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
     startLine: 13
@@ -132,7 +132,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/TextFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: allowNull
     path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
     startLine: 14
@@ -165,7 +165,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/TextFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: trim
     path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
     startLine: 15
@@ -198,7 +198,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/TextFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: forceLower
     path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
     startLine: 16
@@ -231,7 +231,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/TextFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: forceUpper
     path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
     startLine: 17
@@ -264,7 +264,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/TextFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: maxLength
     path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
     startLine: 18
@@ -297,7 +297,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/TextFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: validRegex
     path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
     startLine: 19
@@ -330,7 +330,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/TextFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
     startLine: 21
@@ -375,7 +375,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/TextFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Validate
     path: ../Butterfly.Core/Util/Field/TextFieldValidator.cs
     startLine: 31

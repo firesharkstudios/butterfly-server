@@ -20,10 +20,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: EmbedIOSubscriptionApi
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 21
+    startLine: 20
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -83,10 +83,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: webServer
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 22
+    startLine: 21
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -116,10 +116,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: path
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 23
+    startLine: 22
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -149,10 +149,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 25
+    startLine: 24
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -197,10 +197,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoStart
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 30
+    startLine: 29
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO

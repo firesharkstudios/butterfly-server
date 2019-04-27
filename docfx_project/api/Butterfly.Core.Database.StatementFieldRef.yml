@@ -24,7 +24,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/SelectStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: StatementFieldRef
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
     startLine: 177
@@ -61,7 +61,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/SelectStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: tableAlias
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
     startLine: 178
@@ -94,7 +94,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/SelectStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: fieldExpression
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
     startLine: 179
@@ -127,7 +127,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/SelectStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: fieldAlias
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
     startLine: 180
@@ -160,7 +160,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/SelectStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
     startLine: 182
@@ -193,7 +193,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/SelectStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
     startLine: 185
@@ -230,7 +230,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/SelectStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: REGEX_WILDCARD
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
     startLine: 191
@@ -265,7 +265,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/SelectStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: REGEX
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
     startLine: 192
@@ -300,7 +300,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/SelectStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ParseFieldRefs
     path: ../Butterfly.Core/Database/Statements/SelectStatement.cs
     startLine: 193

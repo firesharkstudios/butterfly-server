@@ -18,7 +18,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: NotifyMessageType
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 20
@@ -49,7 +49,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Email
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 21
@@ -81,7 +81,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/NotifyManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: PhoneText
     path: ../Butterfly.Core/Notify/NotifyManager.cs
     startLine: 22

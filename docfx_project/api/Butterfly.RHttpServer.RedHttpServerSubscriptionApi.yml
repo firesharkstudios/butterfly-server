@@ -20,7 +20,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: RedHttpServerSubscriptionApi
     path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 17
@@ -83,7 +83,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: server
     path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 18
@@ -116,7 +116,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: path
     path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 19
@@ -149,7 +149,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 21
@@ -197,7 +197,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoStart
     path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 27

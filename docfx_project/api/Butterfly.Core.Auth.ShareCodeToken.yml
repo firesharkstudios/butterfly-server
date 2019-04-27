@@ -17,7 +17,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ShareCodeToken
     path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
     startLine: 59
@@ -59,7 +59,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/ShareCodeAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Auth/ShareCodeAuthenticator.cs
     startLine: 60

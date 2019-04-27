@@ -5,7 +5,7 @@ items:
   id: EmbedIOSubscriptionApiConnection
   parent: Butterfly.EmbedIO
   children:
-  - Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Action{System.String},WebSocketContext)
+  - Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Action{System.String},IWebSocketContext)
   - Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.context
   - Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.DoDispose
   - Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.send
@@ -21,10 +21,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: EmbedIOSubscriptionApiConnection
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 93
+    startLine: 92
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -85,10 +85,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: send
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 94
+    startLine: 93
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -118,64 +118,64 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: context
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 95
+    startLine: 94
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
   syntax:
-    content: protected readonly WebSocketContext context
+    content: protected readonly IWebSocketContext context
     return:
-      type: WebSocketContext
-    content.vb: Protected ReadOnly context As WebSocketContext
+      type: IWebSocketContext
+    content.vb: Protected ReadOnly context As IWebSocketContext
   modifiers.csharp:
   - protected
   - readonly
   modifiers.vb:
   - Protected
   - ReadOnly
-- uid: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Action{System.String},WebSocketContext)
-  commentId: M:Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Action{System.String},WebSocketContext)
-  id: '#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Action{System.String},WebSocketContext)'
+- uid: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Action{System.String},IWebSocketContext)
+  commentId: M:Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Action{System.String},IWebSocketContext)
+  id: '#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Action{System.String},IWebSocketContext)'
   parent: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection
   langs:
   - csharp
   - vb
-  name: EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action<String>, WebSocketContext)
-  nameWithType: EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action<String>, WebSocketContext)
-  fullName: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(Butterfly.Core.Channel.BaseSubscriptionApi, Action<System.String>, WebSocketContext)
+  name: EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action<String>, IWebSocketContext)
+  nameWithType: EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action<String>, IWebSocketContext)
+  fullName: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(Butterfly.Core.Channel.BaseSubscriptionApi, Action<System.String>, IWebSocketContext)
   type: Constructor
   source:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 97
+    startLine: 96
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
   syntax:
-    content: public EmbedIOSubscriptionApiConnection(BaseSubscriptionApi subscriptionApi, Action<string> send, WebSocketContext context)
+    content: public EmbedIOSubscriptionApiConnection(BaseSubscriptionApi subscriptionApi, Action<string> send, IWebSocketContext context)
     parameters:
     - id: subscriptionApi
       type: Butterfly.Core.Channel.BaseSubscriptionApi
     - id: send
       type: Action{System.String}
     - id: context
-      type: WebSocketContext
-    content.vb: Public Sub New(subscriptionApi As BaseSubscriptionApi, send As Action(Of String), context As WebSocketContext)
+      type: IWebSocketContext
+    content.vb: Public Sub New(subscriptionApi As BaseSubscriptionApi, send As Action(Of String), context As IWebSocketContext)
   overload: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor*
-  nameWithType.vb: EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action(Of String), WebSocketContext)
+  nameWithType.vb: EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action(Of String), IWebSocketContext)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(Butterfly.Core.Channel.BaseSubscriptionApi, Action(Of System.String), WebSocketContext)
-  name.vb: EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action(Of String), WebSocketContext)
+  fullName.vb: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.EmbedIOSubscriptionApiConnection(Butterfly.Core.Channel.BaseSubscriptionApi, Action(Of System.String), IWebSocketContext)
+  name.vb: EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action(Of String), IWebSocketContext)
 - uid: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.SendAsync(System.String)
   commentId: M:Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.SendAsync(System.String)
   id: SendAsync(System.String)
@@ -191,10 +191,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SendAsync
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 102
+    startLine: 101
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -228,10 +228,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoDispose
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 108
+    startLine: 107
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -836,11 +836,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: WebSocketContext
+- uid: IWebSocketContext
   isExternal: true
-  name: WebSocketContext
-  nameWithType: WebSocketContext
-  fullName: WebSocketContext
+  name: IWebSocketContext
+  nameWithType: IWebSocketContext
+  fullName: IWebSocketContext
 - uid: Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor*
   commentId: Overload:Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor
   name: EmbedIOSubscriptionApiConnection

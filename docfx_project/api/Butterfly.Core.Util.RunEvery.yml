@@ -18,7 +18,7 @@ items:
     remote:
       path: Butterfly.Core/Util/RunEvery.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: RunEvery
     path: ../Butterfly.Core/Util/RunEvery.cs
     startLine: 6
@@ -53,7 +53,7 @@ items:
     remote:
       path: Butterfly.Core/Util/RunEvery.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Util/RunEvery.cs
     startLine: 10
@@ -88,7 +88,7 @@ items:
     remote:
       path: Butterfly.Core/Util/RunEvery.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.Core/Util/RunEvery.cs
     startLine: 25

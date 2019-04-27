@@ -19,7 +19,7 @@ items:
     remote:
       path: Butterfly.Core.Test/DynamicUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DynamicUnitTest
     path: ../Butterfly.Core.Test/DynamicUnitTest.cs
     startLine: 17
@@ -54,7 +54,7 @@ items:
     remote:
       path: Butterfly.Core.Test/DynamicUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TestDatabase
     path: ../Butterfly.Core.Test/DynamicUnitTest.cs
     startLine: 19
@@ -95,7 +95,7 @@ items:
     remote:
       path: Butterfly.Core.Test/DynamicUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TestInsertUpdateDeleteEvents
     path: ../Butterfly.Core.Test/DynamicUnitTest.cs
     startLine: 36
@@ -153,7 +153,7 @@ items:
     remote:
       path: Butterfly.Core.Test/DynamicUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TestMinimalSelects
     path: ../Butterfly.Core.Test/DynamicUnitTest.cs
     startLine: 106

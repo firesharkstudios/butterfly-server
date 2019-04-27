@@ -18,7 +18,7 @@ items:
     remote:
       path: Butterfly.Aws/AwsSesEmailNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AwsSesEmailNotifyMessageSender
     path: ../Butterfly.Aws/AwsSesEmailNotifyMessageSender.cs
     startLine: 15
@@ -62,7 +62,7 @@ items:
     remote:
       path: Butterfly.Aws/AwsSesEmailNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Aws/AwsSesEmailNotifyMessageSender.cs
     startLine: 17
@@ -97,7 +97,7 @@ items:
     remote:
       path: Butterfly.Aws/AwsSesEmailNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoSendAsync
     path: ../Butterfly.Aws/AwsSesEmailNotifyMessageSender.cs
     startLine: 19

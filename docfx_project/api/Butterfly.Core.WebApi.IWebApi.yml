@@ -21,7 +21,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: IWebApi
     path: ../Butterfly.Core/WebApi/IWebApi.cs
     startLine: 22
@@ -57,7 +57,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnDelete
     path: ../Butterfly.Core/WebApi/IWebApi.cs
     startLine: 40
@@ -96,7 +96,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnGet
     path: ../Butterfly.Core/WebApi/IWebApi.cs
     startLine: 60
@@ -135,7 +135,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnPost
     path: ../Butterfly.Core/WebApi/IWebApi.cs
     startLine: 75
@@ -174,7 +174,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnPut
     path: ../Butterfly.Core/WebApi/IWebApi.cs
     startLine: 90
@@ -213,7 +213,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Compile
     path: ../Butterfly.Core/WebApi/IWebApi.cs
     startLine: 95

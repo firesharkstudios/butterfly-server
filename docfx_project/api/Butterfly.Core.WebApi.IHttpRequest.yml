@@ -19,7 +19,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IHttpRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: IHttpRequest
     path: ../Butterfly.Core/WebApi/IHttpRequest.cs
     startLine: 12
@@ -60,7 +60,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IHttpRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ParseAsJsonAsync
     path: ../Butterfly.Core/WebApi/IHttpRequest.cs
     startLine: 18
@@ -97,7 +97,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IHttpRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ParseAsUrlEncodedAsync
     path: ../Butterfly.Core/WebApi/IHttpRequest.cs
     startLine: 23
@@ -127,7 +127,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/IHttpRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ParseAsMultipartStream
     path: ../Butterfly.Core/WebApi/IHttpRequest.cs
     startLine: 30

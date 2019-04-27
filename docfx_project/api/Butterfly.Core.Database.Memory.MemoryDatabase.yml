@@ -28,7 +28,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Memory/MemoryDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: MemoryDatabase
     path: ../Butterfly.Core/Database/Memory/MemoryDatabase.cs
     startLine: 19
@@ -116,7 +116,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Memory/MemoryDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/Memory/MemoryDatabase.cs
     startLine: 23
@@ -146,7 +146,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Memory/MemoryDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: LoadSchemaAsync
     path: ../Butterfly.Core/Database/Memory/MemoryDatabase.cs
     startLine: 26
@@ -181,7 +181,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Memory/MemoryDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: LoadTableSchemaAsync
     path: ../Butterfly.Core/Database/Memory/MemoryDatabase.cs
     startLine: 30
@@ -219,7 +219,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Memory/MemoryDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CreateTransaction
     path: ../Butterfly.Core/Database/Memory/MemoryDatabase.cs
     startLine: 34
@@ -254,7 +254,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Memory/MemoryDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoSelectRowsAsync
     path: ../Butterfly.Core/Database/Memory/MemoryDatabase.cs
     startLine: 38
@@ -299,7 +299,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Memory/MemoryDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoQueryRowsAsync
     path: ../Butterfly.Core/Database/Memory/MemoryDatabase.cs
     startLine: 60
@@ -342,7 +342,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Memory/MemoryDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SIMPLE_REPLACE
     path: ../Butterfly.Core/Database/Memory/MemoryDatabase.cs
     startLine: 64
@@ -377,7 +377,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Memory/MemoryDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: IN_REPLACE
     path: ../Butterfly.Core/Database/Memory/MemoryDatabase.cs
     startLine: 65
@@ -412,7 +412,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Memory/MemoryDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CanJoin
     path: ../Butterfly.Core/Database/Memory/MemoryDatabase.cs
     startLine: 67
@@ -450,7 +450,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Memory/MemoryDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CanFieldAlias
     path: ../Butterfly.Core/Database/Memory/MemoryDatabase.cs
     startLine: 68
@@ -488,7 +488,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Memory/MemoryDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: EvaluateWhereClause
     path: ../Butterfly.Core/Database/Memory/MemoryDatabase.cs
     startLine: 70
@@ -532,7 +532,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Memory/MemoryDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: EvaluateWhereClauseReplace
     path: ../Butterfly.Core/Database/Memory/MemoryDatabase.cs
     startLine: 80

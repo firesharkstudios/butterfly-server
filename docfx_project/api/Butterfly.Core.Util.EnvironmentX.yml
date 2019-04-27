@@ -17,7 +17,7 @@ items:
     remote:
       path: Butterfly.Core/Util/EnvironmentX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: EnvironmentX
     path: ../Butterfly.Core/Util/EnvironmentX.cs
     startLine: 7
@@ -53,7 +53,7 @@ items:
     remote:
       path: Butterfly.Core/Util/EnvironmentX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: IsRunningOnMono
     path: ../Butterfly.Core/Util/EnvironmentX.cs
     startLine: 8

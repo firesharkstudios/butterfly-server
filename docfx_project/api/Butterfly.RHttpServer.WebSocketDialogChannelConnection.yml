@@ -20,7 +20,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: WebSocketDialogChannelConnection
     path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 37
@@ -84,7 +84,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: webSocketDialog
     path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 39
@@ -117,7 +117,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 41
@@ -152,7 +152,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SendAsync
     path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 56
@@ -189,7 +189,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoDispose
     path: ../Butterfly.RedHttpServer/RedHttpServerSubscriptionApi.cs
     startLine: 61

@@ -21,7 +21,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/ISubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ISubscriptionApi
     path: ../Butterfly.Core/Channel/ISubscriptionApi.cs
     startLine: 26
@@ -57,7 +57,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/ISubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnSubscribe
     path: ../Butterfly.Core/Channel/ISubscriptionApi.cs
     startLine: 35
@@ -101,7 +101,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/ISubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: UnauthenticatedConnections
     path: ../Butterfly.Core/Channel/ISubscriptionApi.cs
     startLine: 40
@@ -136,7 +136,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/ISubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AuthenticatedConnections
     path: ../Butterfly.Core/Channel/ISubscriptionApi.cs
     startLine: 45
@@ -171,7 +171,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/ISubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetConnection
     path: ../Butterfly.Core/Channel/ISubscriptionApi.cs
     startLine: 53
@@ -209,7 +209,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/ISubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Start
     path: ../Butterfly.Core/Channel/ISubscriptionApi.cs
     startLine: 58

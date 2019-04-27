@@ -34,7 +34,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SQLiteTransaction
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 18
@@ -99,7 +99,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: connection
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 22
@@ -130,7 +130,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: transaction
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 23
@@ -161,7 +161,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 25
@@ -194,7 +194,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Begin
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 28
@@ -227,7 +227,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: BeginAsync
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 35
@@ -262,7 +262,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCommit
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 42
@@ -295,7 +295,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCommitAsync
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 46
@@ -330,7 +330,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoRollback
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 51
@@ -363,7 +363,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 55
@@ -396,7 +396,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCreate
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 60
@@ -434,7 +434,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCreateAsync
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 66
@@ -472,7 +472,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: BuildCreate
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 79
@@ -509,7 +509,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoInsertAsync
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 144
@@ -553,7 +553,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoUpdateAsync
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 177
@@ -595,7 +595,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoDeleteAsync
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 181
@@ -637,7 +637,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoTruncateAsync
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 185
@@ -674,7 +674,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoExecute
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 189
@@ -714,7 +714,7 @@ items:
     remote:
       path: Butterfly.SQLite/SQLiteTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoExecuteAsync
     path: ../Butterfly.SQLite/SQLiteTransaction.cs
     startLine: 204

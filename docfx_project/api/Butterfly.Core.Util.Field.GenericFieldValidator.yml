@@ -24,7 +24,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/GenericFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GenericFieldValidator
     path: ../Butterfly.Core/Util/Field/GenericFieldValidator.cs
     startLine: 8
@@ -62,7 +62,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/GenericFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: fieldName
     path: ../Butterfly.Core/Util/Field/GenericFieldValidator.cs
     startLine: 9
@@ -95,7 +95,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/GenericFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: regex
     path: ../Butterfly.Core/Util/Field/GenericFieldValidator.cs
     startLine: 10
@@ -128,7 +128,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/GenericFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: allowNull
     path: ../Butterfly.Core/Util/Field/GenericFieldValidator.cs
     startLine: 11
@@ -161,7 +161,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/GenericFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: forceLowerCase
     path: ../Butterfly.Core/Util/Field/GenericFieldValidator.cs
     startLine: 12
@@ -194,7 +194,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/GenericFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: trim
     path: ../Butterfly.Core/Util/Field/GenericFieldValidator.cs
     startLine: 13
@@ -227,7 +227,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/GenericFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: includeValueInError
     path: ../Butterfly.Core/Util/Field/GenericFieldValidator.cs
     startLine: 14
@@ -260,7 +260,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/GenericFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Util/Field/GenericFieldValidator.cs
     startLine: 16
@@ -303,7 +303,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/GenericFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Validate
     path: ../Butterfly.Core/Util/Field/GenericFieldValidator.cs
     startLine: 25

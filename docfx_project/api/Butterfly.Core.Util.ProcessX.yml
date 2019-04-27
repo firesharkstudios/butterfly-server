@@ -9,6 +9,7 @@ items:
   - Butterfly.Core.Util.ProcessX.AddHttpUrlAclIfNeeded(System.String)
   - Butterfly.Core.Util.ProcessX.HasHttpUrlAcl(System.String)
   - Butterfly.Core.Util.ProcessX.OpenBrowser(System.String)
+  - Butterfly.Core.Util.ProcessX.WaitAndCaptureAsync(System.String,System.String,CancellationToken)
   - Butterfly.Core.Util.ProcessX.WaitForExitAsync(Process,CancellationToken)
   langs:
   - csharp
@@ -21,10 +22,10 @@ items:
     remote:
       path: Butterfly.Core/Util/ProcessX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ProcessX
     path: ../Butterfly.Core/Util/ProcessX.cs
-    startLine: 10
+    startLine: 11
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -57,10 +58,10 @@ items:
     remote:
       path: Butterfly.Core/Util/ProcessX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OpenBrowser
     path: ../Butterfly.Core/Util/ProcessX.cs
-    startLine: 14
+    startLine: 15
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -92,10 +93,10 @@ items:
     remote:
       path: Butterfly.Core/Util/ProcessX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AddHttpUrlAclIfNeeded
     path: ../Butterfly.Core/Util/ProcessX.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -127,10 +128,10 @@ items:
     remote:
       path: Butterfly.Core/Util/ProcessX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AddHttpUrlAcl
     path: ../Butterfly.Core/Util/ProcessX.cs
-    startLine: 43
+    startLine: 44
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -162,10 +163,10 @@ items:
     remote:
       path: Butterfly.Core/Util/ProcessX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: HasHttpUrlAcl
     path: ../Butterfly.Core/Util/ProcessX.cs
-    startLine: 57
+    startLine: 58
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -200,27 +201,68 @@ items:
     remote:
       path: Butterfly.Core/Util/ProcessX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: WaitForExitAsync
     path: ../Butterfly.Core/Util/ProcessX.cs
-    startLine: 80
+    startLine: 81
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
   syntax:
-    content: public static Task WaitForExitAsync(this Process process, CancellationToken cancellationToken = null)
+    content: public static Task<int> WaitForExitAsync(this Process process, CancellationToken cancellationToken = null)
     parameters:
     - id: process
       type: Process
     - id: cancellationToken
       type: CancellationToken
     return:
-      type: Task
+      type: Task{System.Int32}
     content.vb: >-
       <ExtensionAttribute>
 
-      Public Shared Function WaitForExitAsync(process As Process, cancellationToken As CancellationToken = Nothing) As Task
+      Public Shared Function WaitForExitAsync(process As Process, cancellationToken As CancellationToken = Nothing) As Task(Of Integer)
   overload: Butterfly.Core.Util.ProcessX.WaitForExitAsync*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Butterfly.Core.Util.ProcessX.WaitAndCaptureAsync(System.String,System.String,CancellationToken)
+  commentId: M:Butterfly.Core.Util.ProcessX.WaitAndCaptureAsync(System.String,System.String,CancellationToken)
+  id: WaitAndCaptureAsync(System.String,System.String,CancellationToken)
+  parent: Butterfly.Core.Util.ProcessX
+  langs:
+  - csharp
+  - vb
+  name: WaitAndCaptureAsync(String, String, CancellationToken)
+  nameWithType: ProcessX.WaitAndCaptureAsync(String, String, CancellationToken)
+  fullName: Butterfly.Core.Util.ProcessX.WaitAndCaptureAsync(System.String, System.String, CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/ProcessX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
+    id: WaitAndCaptureAsync
+    path: ../Butterfly.Core/Util/ProcessX.cs
+    startLine: 107
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static Task<> WaitAndCaptureAsync(string fileName, string args, CancellationToken cancellationToken = null)
+    parameters:
+    - id: fileName
+      type: System.String
+    - id: args
+      type: System.String
+    - id: cancellationToken
+      type: CancellationToken
+    return:
+      type: Task{System.ValueTuple{System.String,System.Int32}}
+    content.vb: Public Shared Function WaitAndCaptureAsync(fileName As String, args As String, cancellationToken As CancellationToken = Nothing) As Task(Of )
+  overload: Butterfly.Core.Util.ProcessX.WaitAndCaptureAsync*
   modifiers.csharp:
   - public
   - static
@@ -285,9 +327,131 @@ references:
   name: CancellationToken
   nameWithType: CancellationToken
   fullName: CancellationToken
-- uid: Task
+- uid: Task{System.Int32}
+  commentId: '!:Task{System.Int32}'
+  definition: Task`1
+  name: Task<Int32>
+  nameWithType: Task<Int32>
+  fullName: Task<System.Int32>
+  nameWithType.vb: Task(Of Int32)
+  fullName.vb: Task(Of System.Int32)
+  name.vb: Task(Of Int32)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
   isExternal: true
-  name: Task
-  nameWithType: Task
-  fullName: Task
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Butterfly.Core.Util.ProcessX.WaitAndCaptureAsync*
+  commentId: Overload:Butterfly.Core.Util.ProcessX.WaitAndCaptureAsync
+  name: WaitAndCaptureAsync
+  nameWithType: ProcessX.WaitAndCaptureAsync
+  fullName: Butterfly.Core.Util.ProcessX.WaitAndCaptureAsync
+- uid: Task{System.ValueTuple{System.String,System.Int32}}
+  commentId: '!:Task{System.ValueTuple{System.String,System.Int32}}'
+  definition: Task`1
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<System.>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of System.)
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ValueTuple{System.String,System.Int32}
+    name: ''
+    nameWithType: ''
+    fullName: System.
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ValueTuple{System.String,System.Int32}
+    name: ''
+    nameWithType: ''
+    fullName: System.
+  - name: )
+    nameWithType: )
+    fullName: )
 shouldSkipMarkup: true

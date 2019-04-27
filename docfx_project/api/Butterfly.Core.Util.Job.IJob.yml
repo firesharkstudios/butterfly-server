@@ -17,7 +17,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Job/Job.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: IJob
     path: ../Butterfly.Core/Util/Job/Job.cs
     startLine: 8
@@ -48,7 +48,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Job/Job.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Run
     path: ../Butterfly.Core/Util/Job/Job.cs
     startLine: 9

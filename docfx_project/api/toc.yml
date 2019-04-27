@@ -203,6 +203,8 @@
     name: EnvironmentX
   - uid: Butterfly.Core.Util.FileX
     name: FileX
+  - uid: Butterfly.Core.Util.IEnumerableX
+    name: IEnumerableX
   - uid: Butterfly.Core.Util.IHttpResponseX
     name: IHttpResponseX
   - uid: Butterfly.Core.Util.IWebRequest

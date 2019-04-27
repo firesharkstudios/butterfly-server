@@ -26,7 +26,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/InsertStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: InsertStatement
     path: ../Butterfly.Core/Database/Statements/InsertStatement.cs
     startLine: 17
@@ -75,7 +75,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/InsertStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: STATEMENT_REGEX
     path: ../Butterfly.Core/Database/Statements/InsertStatement.cs
     startLine: 22
@@ -110,7 +110,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/InsertStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: fromClause
     path: ../Butterfly.Core/Database/Statements/InsertStatement.cs
     startLine: 24
@@ -143,7 +143,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/InsertStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: namesClause
     path: ../Butterfly.Core/Database/Statements/InsertStatement.cs
     startLine: 25
@@ -176,7 +176,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/InsertStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: valuesClause
     path: ../Butterfly.Core/Database/Statements/InsertStatement.cs
     startLine: 26
@@ -209,7 +209,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/InsertStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/Statements/InsertStatement.cs
     startLine: 33
@@ -248,7 +248,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/InsertStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ParseNamesClause
     path: ../Butterfly.Core/Database/Statements/InsertStatement.cs
     startLine: 57
@@ -285,7 +285,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/InsertStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ParseValuesClause
     path: ../Butterfly.Core/Database/Statements/InsertStatement.cs
     startLine: 61
@@ -322,7 +322,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/InsertStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetExecutableSqlAndParams
     path: ../Butterfly.Core/Database/Statements/InsertStatement.cs
     startLine: 65
@@ -362,7 +362,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/InsertStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetInsertRefs
     path: ../Butterfly.Core/Database/Statements/InsertStatement.cs
     startLine: 81
@@ -400,7 +400,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/InsertStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetNamesAndValues
     path: ../Butterfly.Core/Database/Statements/InsertStatement.cs
     startLine: 91

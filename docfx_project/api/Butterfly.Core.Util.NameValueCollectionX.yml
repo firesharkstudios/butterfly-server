@@ -17,7 +17,7 @@ items:
     remote:
       path: Butterfly.Core/Util/NameValueCollectionX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: NameValueCollectionX
     path: ../Butterfly.Core/Util/NameValueCollectionX.cs
     startLine: 9
@@ -54,7 +54,7 @@ items:
     remote:
       path: Butterfly.Core/Util/NameValueCollectionX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ToDictionary
     path: ../Butterfly.Core/Util/NameValueCollectionX.cs
     startLine: 10

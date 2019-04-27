@@ -17,7 +17,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/IAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: IAuthenticator
     path: ../Butterfly.Core/Auth/IAuthenticator.cs
     startLine: 6
@@ -48,7 +48,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/IAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AuthenticateAsync
     path: ../Butterfly.Core/Auth/IAuthenticator.cs
     startLine: 7

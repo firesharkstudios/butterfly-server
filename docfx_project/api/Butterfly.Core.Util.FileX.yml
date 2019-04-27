@@ -24,7 +24,7 @@ items:
     remote:
       path: Butterfly.Core/Util/FileX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: FileX
     path: ../Butterfly.Core/Util/FileX.cs
     startLine: 11
@@ -60,7 +60,7 @@ items:
     remote:
       path: Butterfly.Core/Util/FileX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetParentPathUntil
     path: ../Butterfly.Core/Util/FileX.cs
     startLine: 12
@@ -99,7 +99,7 @@ items:
     remote:
       path: Butterfly.Core/Util/FileX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Resolve
     path: ../Butterfly.Core/Util/FileX.cs
     startLine: 22
@@ -136,7 +136,7 @@ items:
     remote:
       path: Butterfly.Core/Util/FileX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: WriteTextAsync
     path: ../Butterfly.Core/Util/FileX.cs
     startLine: 26
@@ -175,7 +175,7 @@ items:
     remote:
       path: Butterfly.Core/Util/FileX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ReadTextAsync
     path: ../Butterfly.Core/Util/FileX.cs
     startLine: 34
@@ -212,7 +212,7 @@ items:
     remote:
       path: Butterfly.Core/Util/FileX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetReadFileStream
     path: ../Butterfly.Core/Util/FileX.cs
     startLine: 49
@@ -251,7 +251,7 @@ items:
     remote:
       path: Butterfly.Core/Util/FileX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetWriteFileStream
     path: ../Butterfly.Core/Util/FileX.cs
     startLine: 54
@@ -290,7 +290,7 @@ items:
     remote:
       path: Butterfly.Core/Util/FileX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: LoadResourceAsText
     path: ../Butterfly.Core/Util/FileX.cs
     startLine: 59
@@ -329,7 +329,7 @@ items:
     remote:
       path: Butterfly.Core/Util/FileX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: LoadResourceAsTextAsync
     path: ../Butterfly.Core/Util/FileX.cs
     startLine: 65

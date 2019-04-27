@@ -17,7 +17,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DuplicateKeyDatabaseException
     path: ../Butterfly.Core/Database/BaseDatabase.cs
     startLine: 472
@@ -53,7 +53,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/BaseDatabase.cs
     startLine: 473

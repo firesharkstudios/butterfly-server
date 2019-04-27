@@ -22,6 +22,13 @@ namespace Butterfly.Core.Util {
 
         private readonly static JsonConverter[] CONVERTERS = new JsonConverter[] { STRING_ENUM_CONVERTER, DATE_TIME_CONVERTER };
 
+        public static T Deserialize<T>(Stream stream) {
+            using (var r = new StreamReader(stream)) {
+                string json = r.ReadToEnd();
+                return Deserialize<T>(json);
+            }
+        }
+
         public static T Deserialize<T>(string rawJson) {
             string json = ScrubExtraCommas(rawJson);
             return JsonConvert.DeserializeObject<T>(json);

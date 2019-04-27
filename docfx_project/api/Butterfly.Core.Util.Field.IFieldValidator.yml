@@ -17,7 +17,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/IFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: IFieldValidator
     path: ../Butterfly.Core/Util/Field/IFieldValidator.cs
     startLine: 5
@@ -48,7 +48,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/IFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Validate
     path: ../Butterfly.Core/Util/Field/IFieldValidator.cs
     startLine: 7

@@ -17,7 +17,7 @@ items:
     remote:
       path: Butterfly.Core/Util/ConsoleUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ConsoleUtil
     path: ../Butterfly.Core/Util/ConsoleUtil.cs
     startLine: 8
@@ -53,7 +53,7 @@ items:
     remote:
       path: Butterfly.Core/Util/ConsoleUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: WaitForCancelKey
     path: ../Butterfly.Core/Util/ConsoleUtil.cs
     startLine: 9

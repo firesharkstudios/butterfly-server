@@ -40,7 +40,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DynamicViewSet
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 24
@@ -77,7 +77,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: listener
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 27
@@ -110,7 +110,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: asyncListener
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 28
@@ -143,7 +143,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: dynamicViews
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 30
@@ -176,7 +176,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: incomingDataEventTransactions
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 31
@@ -209,7 +209,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: runCancellationTokenSource
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 33
@@ -242,7 +242,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: monitor
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 34
@@ -275,7 +275,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: disposables
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 36
@@ -308,7 +308,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 38
@@ -346,7 +346,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 44
@@ -384,7 +384,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Id
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 50
@@ -421,7 +421,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CreateDynamicView
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 64
@@ -469,7 +469,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: isStarted
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 70
@@ -500,7 +500,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: StartAsync
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 77
@@ -535,7 +535,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ProcessUncommittedDataEventTransactionAsync
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 98
@@ -570,7 +570,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ProcessCommittedDataEventTransactionAsync
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 102
@@ -605,7 +605,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: StoreImpactedRecordsInDataEventTransaction
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 109
@@ -642,7 +642,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetImpactedRecordsStorageKey
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 125
@@ -681,7 +681,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: HasImpactedRecords
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 129
@@ -720,7 +720,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: RunAsync
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 148
@@ -755,7 +755,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CreateDynamicViewDataEvents
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 178
@@ -792,7 +792,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SendToListenerAsync
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 221
@@ -827,7 +827,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: RequeryDynamicViewsAsync
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 238
@@ -866,7 +866,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetInitialDataEventsAsync
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 254
@@ -901,7 +901,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.Core/Database/Dynamic/DynamicViewSet.cs
     startLine: 261

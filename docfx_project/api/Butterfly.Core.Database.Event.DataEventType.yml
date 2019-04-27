@@ -22,7 +22,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEvent.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DataEventType
     path: ../Butterfly.Core/Database/Event/DataEvent.cs
     startLine: 9
@@ -53,7 +53,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEvent.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: InitialBegin
     path: ../Butterfly.Core/Database/Event/DataEvent.cs
     startLine: 10
@@ -85,7 +85,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEvent.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Initial
     path: ../Butterfly.Core/Database/Event/DataEvent.cs
     startLine: 11
@@ -117,7 +117,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEvent.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: InitialEnd
     path: ../Butterfly.Core/Database/Event/DataEvent.cs
     startLine: 12
@@ -149,7 +149,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEvent.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Insert
     path: ../Butterfly.Core/Database/Event/DataEvent.cs
     startLine: 13
@@ -181,7 +181,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEvent.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Update
     path: ../Butterfly.Core/Database/Event/DataEvent.cs
     startLine: 14
@@ -213,7 +213,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEvent.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Delete
     path: ../Butterfly.Core/Database/Event/DataEvent.cs
     startLine: 15

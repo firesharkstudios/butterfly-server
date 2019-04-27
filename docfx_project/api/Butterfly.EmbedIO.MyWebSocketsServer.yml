@@ -9,10 +9,10 @@ items:
   - Butterfly.EmbedIO.MyWebSocketsServer.channelByWebSocketContext
   - Butterfly.EmbedIO.MyWebSocketsServer.GetEmbedIOChannel(System.String)
   - Butterfly.EmbedIO.MyWebSocketsServer.logger
-  - Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(WebSocketContext,IPEndPoint,IPEndPoint)
-  - Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(WebSocketContext)
-  - Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(WebSocketContext,System.Byte[],WebSocketReceiveResult)
-  - Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(WebSocketContext,System.Byte[],WebSocketReceiveResult)
+  - Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(IWebSocketContext,IPEndPoint,IPEndPoint)
+  - Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(IWebSocketContext)
+  - Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(IWebSocketContext,System.Byte[],IWebSocketReceiveResult)
+  - Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(IWebSocketContext,System.Byte[],IWebSocketReceiveResult)
   - Butterfly.EmbedIO.MyWebSocketsServer.onNewChannel
   - Butterfly.EmbedIO.MyWebSocketsServer.ServerName
   - Butterfly.EmbedIO.MyWebSocketsServer.subscriptionApi
@@ -27,10 +27,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: MyWebSocketsServer
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 40
+    startLine: 39
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -62,10 +62,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 41
+    startLine: 40
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -97,10 +97,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: subscriptionApi
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 43
+    startLine: 42
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -130,10 +130,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: onNewChannel
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 44
+    startLine: 43
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -163,18 +163,18 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: channelByWebSocketContext
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 45
+    startLine: 44
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
   syntax:
-    content: protected readonly ConcurrentDictionary<WebSocketContext, EmbedIOSubscriptionApiConnection> channelByWebSocketContext
+    content: protected readonly ConcurrentDictionary<IWebSocketContext, EmbedIOSubscriptionApiConnection> channelByWebSocketContext
     return:
-      type: ConcurrentDictionary{WebSocketContext,Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection}
-    content.vb: Protected ReadOnly channelByWebSocketContext As ConcurrentDictionary(Of WebSocketContext, EmbedIOSubscriptionApiConnection)
+      type: ConcurrentDictionary{IWebSocketContext,Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection}
+    content.vb: Protected ReadOnly channelByWebSocketContext As ConcurrentDictionary(Of IWebSocketContext, EmbedIOSubscriptionApiConnection)
   modifiers.csharp:
   - protected
   - readonly
@@ -196,10 +196,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 47
+    startLine: 46
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -234,10 +234,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ServerName
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 52
+    startLine: 51
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -256,38 +256,38 @@ items:
   - Public
   - Overrides
   - ReadOnly
-- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(WebSocketContext,IPEndPoint,IPEndPoint)
-  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(WebSocketContext,IPEndPoint,IPEndPoint)
-  id: OnClientConnected(WebSocketContext,IPEndPoint,IPEndPoint)
+- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(IWebSocketContext,IPEndPoint,IPEndPoint)
+  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(IWebSocketContext,IPEndPoint,IPEndPoint)
+  id: OnClientConnected(IWebSocketContext,IPEndPoint,IPEndPoint)
   parent: Butterfly.EmbedIO.MyWebSocketsServer
   langs:
   - csharp
   - vb
-  name: OnClientConnected(WebSocketContext, IPEndPoint, IPEndPoint)
-  nameWithType: MyWebSocketsServer.OnClientConnected(WebSocketContext, IPEndPoint, IPEndPoint)
-  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(WebSocketContext, IPEndPoint, IPEndPoint)
+  name: OnClientConnected(IWebSocketContext, IPEndPoint, IPEndPoint)
+  nameWithType: MyWebSocketsServer.OnClientConnected(IWebSocketContext, IPEndPoint, IPEndPoint)
+  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected(IWebSocketContext, IPEndPoint, IPEndPoint)
   type: Method
   source:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnClientConnected
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 54
+    startLine: 53
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
   syntax:
-    content: protected override void OnClientConnected(WebSocketContext context, IPEndPoint localEndPoint, IPEndPoint remoteEndPoint)
+    content: protected override void OnClientConnected(IWebSocketContext context, IPEndPoint localEndPoint, IPEndPoint remoteEndPoint)
     parameters:
     - id: context
-      type: WebSocketContext
+      type: IWebSocketContext
     - id: localEndPoint
       type: IPEndPoint
     - id: remoteEndPoint
       type: IPEndPoint
-    content.vb: Protected Overrides Sub OnClientConnected(context As WebSocketContext, localEndPoint As IPEndPoint, remoteEndPoint As IPEndPoint)
+    content.vb: Protected Overrides Sub OnClientConnected(context As IWebSocketContext, localEndPoint As IPEndPoint, remoteEndPoint As IPEndPoint)
   overload: Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected*
   modifiers.csharp:
   - protected
@@ -295,34 +295,34 @@ items:
   modifiers.vb:
   - Protected
   - Overrides
-- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(WebSocketContext)
-  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(WebSocketContext)
-  id: OnClientDisconnected(WebSocketContext)
+- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(IWebSocketContext)
+  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(IWebSocketContext)
+  id: OnClientDisconnected(IWebSocketContext)
   parent: Butterfly.EmbedIO.MyWebSocketsServer
   langs:
   - csharp
   - vb
-  name: OnClientDisconnected(WebSocketContext)
-  nameWithType: MyWebSocketsServer.OnClientDisconnected(WebSocketContext)
-  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(WebSocketContext)
+  name: OnClientDisconnected(IWebSocketContext)
+  nameWithType: MyWebSocketsServer.OnClientDisconnected(IWebSocketContext)
+  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected(IWebSocketContext)
   type: Method
   source:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnClientDisconnected
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 66
+    startLine: 65
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
   syntax:
-    content: protected override void OnClientDisconnected(WebSocketContext context)
+    content: protected override void OnClientDisconnected(IWebSocketContext context)
     parameters:
     - id: context
-      type: WebSocketContext
-    content.vb: Protected Overrides Sub OnClientDisconnected(context As WebSocketContext)
+      type: IWebSocketContext
+    content.vb: Protected Overrides Sub OnClientDisconnected(context As IWebSocketContext)
   overload: Butterfly.EmbedIO.MyWebSocketsServer.OnClientDisconnected*
   modifiers.csharp:
   - protected
@@ -330,90 +330,90 @@ items:
   modifiers.vb:
   - Protected
   - Overrides
-- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(WebSocketContext,System.Byte[],WebSocketReceiveResult)
-  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(WebSocketContext,System.Byte[],WebSocketReceiveResult)
-  id: OnFrameReceived(WebSocketContext,System.Byte[],WebSocketReceiveResult)
+- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(IWebSocketContext,System.Byte[],IWebSocketReceiveResult)
+  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(IWebSocketContext,System.Byte[],IWebSocketReceiveResult)
+  id: OnFrameReceived(IWebSocketContext,System.Byte[],IWebSocketReceiveResult)
   parent: Butterfly.EmbedIO.MyWebSocketsServer
   langs:
   - csharp
   - vb
-  name: OnFrameReceived(WebSocketContext, Byte[], WebSocketReceiveResult)
-  nameWithType: MyWebSocketsServer.OnFrameReceived(WebSocketContext, Byte[], WebSocketReceiveResult)
-  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(WebSocketContext, System.Byte[], WebSocketReceiveResult)
+  name: OnFrameReceived(IWebSocketContext, Byte[], IWebSocketReceiveResult)
+  nameWithType: MyWebSocketsServer.OnFrameReceived(IWebSocketContext, Byte[], IWebSocketReceiveResult)
+  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(IWebSocketContext, System.Byte[], IWebSocketReceiveResult)
   type: Method
   source:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnFrameReceived
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 70
+    startLine: 69
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
   syntax:
-    content: protected override void OnFrameReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult)
+    content: protected override void OnFrameReceived(IWebSocketContext context, byte[] rxBuffer, IWebSocketReceiveResult rxResult)
     parameters:
     - id: context
-      type: WebSocketContext
+      type: IWebSocketContext
     - id: rxBuffer
       type: System.Byte[]
     - id: rxResult
-      type: WebSocketReceiveResult
-    content.vb: Protected Overrides Sub OnFrameReceived(context As WebSocketContext, rxBuffer As Byte(), rxResult As WebSocketReceiveResult)
+      type: IWebSocketReceiveResult
+    content.vb: Protected Overrides Sub OnFrameReceived(context As IWebSocketContext, rxBuffer As Byte(), rxResult As IWebSocketReceiveResult)
   overload: Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived*
-  nameWithType.vb: MyWebSocketsServer.OnFrameReceived(WebSocketContext, Byte(), WebSocketReceiveResult)
+  nameWithType.vb: MyWebSocketsServer.OnFrameReceived(IWebSocketContext, Byte(), IWebSocketReceiveResult)
   modifiers.csharp:
   - protected
   - override
   modifiers.vb:
   - Protected
   - Overrides
-  fullName.vb: Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(WebSocketContext, System.Byte(), WebSocketReceiveResult)
-  name.vb: OnFrameReceived(WebSocketContext, Byte(), WebSocketReceiveResult)
-- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(WebSocketContext,System.Byte[],WebSocketReceiveResult)
-  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(WebSocketContext,System.Byte[],WebSocketReceiveResult)
-  id: OnMessageReceived(WebSocketContext,System.Byte[],WebSocketReceiveResult)
+  fullName.vb: Butterfly.EmbedIO.MyWebSocketsServer.OnFrameReceived(IWebSocketContext, System.Byte(), IWebSocketReceiveResult)
+  name.vb: OnFrameReceived(IWebSocketContext, Byte(), IWebSocketReceiveResult)
+- uid: Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(IWebSocketContext,System.Byte[],IWebSocketReceiveResult)
+  commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(IWebSocketContext,System.Byte[],IWebSocketReceiveResult)
+  id: OnMessageReceived(IWebSocketContext,System.Byte[],IWebSocketReceiveResult)
   parent: Butterfly.EmbedIO.MyWebSocketsServer
   langs:
   - csharp
   - vb
-  name: OnMessageReceived(WebSocketContext, Byte[], WebSocketReceiveResult)
-  nameWithType: MyWebSocketsServer.OnMessageReceived(WebSocketContext, Byte[], WebSocketReceiveResult)
-  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(WebSocketContext, System.Byte[], WebSocketReceiveResult)
+  name: OnMessageReceived(IWebSocketContext, Byte[], IWebSocketReceiveResult)
+  nameWithType: MyWebSocketsServer.OnMessageReceived(IWebSocketContext, Byte[], IWebSocketReceiveResult)
+  fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(IWebSocketContext, System.Byte[], IWebSocketReceiveResult)
   type: Method
   source:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnMessageReceived
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 73
+    startLine: 72
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
   syntax:
-    content: protected override void OnMessageReceived(WebSocketContext context, byte[] rxBuffer, WebSocketReceiveResult rxResult)
+    content: protected override void OnMessageReceived(IWebSocketContext context, byte[] rxBuffer, IWebSocketReceiveResult rxResult)
     parameters:
     - id: context
-      type: WebSocketContext
+      type: IWebSocketContext
     - id: rxBuffer
       type: System.Byte[]
     - id: rxResult
-      type: WebSocketReceiveResult
-    content.vb: Protected Overrides Sub OnMessageReceived(context As WebSocketContext, rxBuffer As Byte(), rxResult As WebSocketReceiveResult)
+      type: IWebSocketReceiveResult
+    content.vb: Protected Overrides Sub OnMessageReceived(context As IWebSocketContext, rxBuffer As Byte(), rxResult As IWebSocketReceiveResult)
   overload: Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived*
-  nameWithType.vb: MyWebSocketsServer.OnMessageReceived(WebSocketContext, Byte(), WebSocketReceiveResult)
+  nameWithType.vb: MyWebSocketsServer.OnMessageReceived(IWebSocketContext, Byte(), IWebSocketReceiveResult)
   modifiers.csharp:
   - protected
   - override
   modifiers.vb:
   - Protected
   - Overrides
-  fullName.vb: Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(WebSocketContext, System.Byte(), WebSocketReceiveResult)
-  name.vb: OnMessageReceived(WebSocketContext, Byte(), WebSocketReceiveResult)
+  fullName.vb: Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived(IWebSocketContext, System.Byte(), IWebSocketReceiveResult)
+  name.vb: OnMessageReceived(IWebSocketContext, Byte(), IWebSocketReceiveResult)
 - uid: Butterfly.EmbedIO.MyWebSocketsServer.GetEmbedIOChannel(System.String)
   commentId: M:Butterfly.EmbedIO.MyWebSocketsServer.GetEmbedIOChannel(System.String)
   id: GetEmbedIOChannel(System.String)
@@ -429,10 +429,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetEmbedIOChannel
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 87
+    startLine: 86
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -610,15 +610,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: ConcurrentDictionary{WebSocketContext,Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection}
-  commentId: '!:ConcurrentDictionary{WebSocketContext,Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection}'
+- uid: ConcurrentDictionary{IWebSocketContext,Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection}
+  commentId: '!:ConcurrentDictionary{IWebSocketContext,Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection}'
   definition: ConcurrentDictionary`2
-  name: ConcurrentDictionary<WebSocketContext, EmbedIOSubscriptionApiConnection>
-  nameWithType: ConcurrentDictionary<WebSocketContext, EmbedIOSubscriptionApiConnection>
-  fullName: ConcurrentDictionary<WebSocketContext, Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection>
-  nameWithType.vb: ConcurrentDictionary(Of WebSocketContext, EmbedIOSubscriptionApiConnection)
-  fullName.vb: ConcurrentDictionary(Of WebSocketContext, Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection)
-  name.vb: ConcurrentDictionary(Of WebSocketContext, EmbedIOSubscriptionApiConnection)
+  name: ConcurrentDictionary<IWebSocketContext, EmbedIOSubscriptionApiConnection>
+  nameWithType: ConcurrentDictionary<IWebSocketContext, EmbedIOSubscriptionApiConnection>
+  fullName: ConcurrentDictionary<IWebSocketContext, Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection>
+  nameWithType.vb: ConcurrentDictionary(Of IWebSocketContext, EmbedIOSubscriptionApiConnection)
+  fullName.vb: ConcurrentDictionary(Of IWebSocketContext, Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection)
+  name.vb: ConcurrentDictionary(Of IWebSocketContext, EmbedIOSubscriptionApiConnection)
   spec.csharp:
   - uid: ConcurrentDictionary`2
     name: ConcurrentDictionary
@@ -628,10 +628,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: WebSocketContext
-    name: WebSocketContext
-    nameWithType: WebSocketContext
-    fullName: WebSocketContext
+  - uid: IWebSocketContext
+    name: IWebSocketContext
+    nameWithType: IWebSocketContext
+    fullName: IWebSocketContext
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -652,10 +652,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: WebSocketContext
-    name: WebSocketContext
-    nameWithType: WebSocketContext
-    fullName: WebSocketContext
+  - uid: IWebSocketContext
+    name: IWebSocketContext
+    nameWithType: IWebSocketContext
+    fullName: IWebSocketContext
     isExternal: true
   - name: ', '
     nameWithType: ', '
@@ -737,11 +737,11 @@ references:
   name: OnClientConnected
   nameWithType: MyWebSocketsServer.OnClientConnected
   fullName: Butterfly.EmbedIO.MyWebSocketsServer.OnClientConnected
-- uid: WebSocketContext
+- uid: IWebSocketContext
   isExternal: true
-  name: WebSocketContext
-  nameWithType: WebSocketContext
-  fullName: WebSocketContext
+  name: IWebSocketContext
+  nameWithType: IWebSocketContext
+  fullName: IWebSocketContext
 - uid: IPEndPoint
   isExternal: true
   name: IPEndPoint
@@ -783,11 +783,11 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-- uid: WebSocketReceiveResult
+- uid: IWebSocketReceiveResult
   isExternal: true
-  name: WebSocketReceiveResult
-  nameWithType: WebSocketReceiveResult
-  fullName: WebSocketReceiveResult
+  name: IWebSocketReceiveResult
+  nameWithType: IWebSocketReceiveResult
+  fullName: IWebSocketReceiveResult
 - uid: Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived*
   commentId: Overload:Butterfly.EmbedIO.MyWebSocketsServer.OnMessageReceived
   name: OnMessageReceived

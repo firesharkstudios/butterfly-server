@@ -27,7 +27,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DynamicView
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 24
@@ -64,7 +64,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: dynamicViewSet
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 27
@@ -97,7 +97,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: selectStatement
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 28
@@ -130,7 +130,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: varsDict
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 29
@@ -163,7 +163,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: name
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 30
@@ -196,7 +196,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: keyFieldNames
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 31
@@ -229,7 +229,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: dynamicStatementFromRefByTableName
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 32
@@ -262,7 +262,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: childDynamicParams
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 34
@@ -295,7 +295,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 36
@@ -343,7 +343,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Id
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 81
@@ -380,7 +380,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Name
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 86
@@ -415,7 +415,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Dynamic/DynamicView.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TryGetDynamicStatementFromRef
     path: ../Butterfly.Core/Database/Dynamic/DynamicView.cs
     startLine: 88

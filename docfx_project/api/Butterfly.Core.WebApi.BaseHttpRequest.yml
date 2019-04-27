@@ -25,7 +25,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseHttpRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: BaseHttpRequest
     path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
     startLine: 16
@@ -69,7 +69,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseHttpRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
     startLine: 17
@@ -104,7 +104,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseHttpRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: InputStream
     path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
     startLine: 19
@@ -141,7 +141,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseHttpRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: RequestUrl
     path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
     startLine: 21
@@ -180,7 +180,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseHttpRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Headers
     path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
     startLine: 23
@@ -219,7 +219,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseHttpRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: PathParams
     path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
     startLine: 25
@@ -258,7 +258,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseHttpRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: QueryParams
     path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
     startLine: 27
@@ -297,7 +297,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseHttpRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ParseAsUrlEncodedAsync
     path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
     startLine: 29
@@ -331,7 +331,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseHttpRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ParseAsJsonAsync
     path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
     startLine: 36
@@ -370,7 +370,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseHttpRequest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ParseAsMultipartStream
     path: ../Butterfly.Core/WebApi/BaseHttpRequest.cs
     startLine: 43

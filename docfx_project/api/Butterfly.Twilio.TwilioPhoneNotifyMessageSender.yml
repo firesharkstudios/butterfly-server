@@ -21,7 +21,7 @@ items:
     remote:
       path: Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TwilioPhoneNotifyMessageSender
     path: ../Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
     startLine: 18
@@ -65,7 +65,7 @@ items:
     remote:
       path: Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
     startLine: 20
@@ -100,7 +100,7 @@ items:
     remote:
       path: Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: twilioAccountSid
     path: ../Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
     startLine: 22
@@ -133,7 +133,7 @@ items:
     remote:
       path: Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: twilioAuthToken
     path: ../Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
     startLine: 23
@@ -166,7 +166,7 @@ items:
     remote:
       path: Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
     startLine: 25
@@ -201,7 +201,7 @@ items:
     remote:
       path: Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoSendAsync
     path: ../Butterfly.Twilio/TwilioPhoneNotifyMessageSender.cs
     startLine: 30

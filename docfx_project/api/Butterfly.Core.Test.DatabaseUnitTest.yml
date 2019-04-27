@@ -24,7 +24,7 @@ items:
     remote:
       path: Butterfly.Core.Test/DatabaseUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DatabaseUnitTest
     path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
     startLine: 17
@@ -59,7 +59,7 @@ items:
     remote:
       path: Butterfly.Core.Test/DatabaseUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Parse
     path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
     startLine: 19
@@ -91,7 +91,7 @@ items:
     remote:
       path: Butterfly.Core.Test/DatabaseUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DataMemoryDatabase
     path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
     startLine: 45
@@ -123,7 +123,7 @@ items:
     remote:
       path: Butterfly.Core.Test/DatabaseUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TestDatabase
     path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
     startLine: 51
@@ -164,7 +164,7 @@ items:
     remote:
       path: Butterfly.Core.Test/DatabaseUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TruncateData
     path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
     startLine: 66
@@ -201,7 +201,7 @@ items:
     remote:
       path: Butterfly.Core.Test/DatabaseUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: InsertBasicData
     path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
     startLine: 75
@@ -238,7 +238,7 @@ items:
     remote:
       path: Butterfly.Core.Test/DatabaseUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TestTransactions
     path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
     startLine: 145
@@ -275,7 +275,7 @@ items:
     remote:
       path: Butterfly.Core.Test/DatabaseUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SelectBasicData
     path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
     startLine: 177
@@ -318,7 +318,7 @@ items:
     remote:
       path: Butterfly.Core.Test/DatabaseUnitTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: UpdateAndDeleteBasicData
     path: ../Butterfly.Core.Test/DatabaseUnitTest.cs
     startLine: 333

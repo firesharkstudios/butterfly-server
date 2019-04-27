@@ -24,7 +24,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: EmbedIOContext
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
     startLine: 17
@@ -61,7 +61,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: webServer
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
     startLine: 20
@@ -94,7 +94,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: webApi
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
     startLine: 21
@@ -127,7 +127,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: subscriptionApi
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
     startLine: 22
@@ -160,7 +160,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
     startLine: 24
@@ -195,7 +195,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: WebApi
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
     startLine: 46
@@ -230,7 +230,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SubscriptionApi
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
     startLine: 47
@@ -265,7 +265,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Start
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
     startLine: 49
@@ -295,7 +295,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOContext.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.EmbedIO/EmbedIOContext.cs
     startLine: 58

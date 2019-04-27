@@ -22,7 +22,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/BaseNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: BaseNotifyMessageSender
     path: ../Butterfly.Core/Notify/BaseNotifyMessageSender.cs
     startLine: 9
@@ -65,7 +65,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/BaseNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: sendEveryMillis
     path: ../Butterfly.Core/Notify/BaseNotifyMessageSender.cs
     startLine: 11
@@ -98,7 +98,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/BaseNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: lastSend
     path: ../Butterfly.Core/Notify/BaseNotifyMessageSender.cs
     startLine: 13
@@ -129,7 +129,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/BaseNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Notify/BaseNotifyMessageSender.cs
     startLine: 15
@@ -162,7 +162,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/BaseNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SendAsync
     path: ../Butterfly.Core/Notify/BaseNotifyMessageSender.cs
     startLine: 19
@@ -207,7 +207,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/BaseNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoSendAsync
     path: ../Butterfly.Core/Notify/BaseNotifyMessageSender.cs
     startLine: 24
@@ -252,7 +252,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/BaseNotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CanSendNextAt
     path: ../Butterfly.Core/Notify/BaseNotifyMessageSender.cs
     startLine: 26

@@ -22,7 +22,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/IChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: IChannelConnection
     path: ../Butterfly.Core/Channel/IChannelConnection.cs
     startLine: 10
@@ -57,7 +57,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/IChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AuthToken
     path: ../Butterfly.Core/Channel/IChannelConnection.cs
     startLine: 11
@@ -90,7 +90,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/IChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Id
     path: ../Butterfly.Core/Channel/IChannelConnection.cs
     startLine: 12
@@ -123,7 +123,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/IChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Created
     path: ../Butterfly.Core/Channel/IChannelConnection.cs
     startLine: 13
@@ -156,7 +156,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/IChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: LastHeartbeat
     path: ../Butterfly.Core/Channel/IChannelConnection.cs
     startLine: 14
@@ -189,7 +189,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/IChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Start
     path: ../Butterfly.Core/Channel/IChannelConnection.cs
     startLine: 15
@@ -220,7 +220,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/IChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: QueueMessage
     path: ../Butterfly.Core/Channel/IChannelConnection.cs
     startLine: 16

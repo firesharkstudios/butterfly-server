@@ -20,7 +20,7 @@ items:
     remote:
       path: Butterfly.Core/Database/DataEventTransactionListener.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DataEventTransactionListener
     path: ../Butterfly.Core/Database/DataEventTransactionListener.cs
     startLine: 13
@@ -57,7 +57,7 @@ items:
     remote:
       path: Butterfly.Core/Database/DataEventTransactionListener.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: listener
     path: ../Butterfly.Core/Database/DataEventTransactionListener.cs
     startLine: 14
@@ -90,7 +90,7 @@ items:
     remote:
       path: Butterfly.Core/Database/DataEventTransactionListener.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: listenerAsync
     path: ../Butterfly.Core/Database/DataEventTransactionListener.cs
     startLine: 15
@@ -123,7 +123,7 @@ items:
     remote:
       path: Butterfly.Core/Database/DataEventTransactionListener.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/DataEventTransactionListener.cs
     startLine: 17
@@ -159,7 +159,7 @@ items:
     remote:
       path: Butterfly.Core/Database/DataEventTransactionListener.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/DataEventTransactionListener.cs
     startLine: 22

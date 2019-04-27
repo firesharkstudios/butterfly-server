@@ -17,7 +17,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/HttpRequestX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: HttpRequestX
     path: ../Butterfly.RedHttpServer/HttpRequestX.cs
     startLine: 5
@@ -54,7 +54,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/HttpRequestX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ToUri
     path: ../Butterfly.RedHttpServer/HttpRequestX.cs
     startLine: 6

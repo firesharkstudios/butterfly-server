@@ -27,7 +27,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: MySqlDatabase
     path: ../Butterfly.MySql/MySqlDatabase.cs
     startLine: 22
@@ -117,7 +117,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.MySql/MySqlDatabase.cs
     startLine: 26
@@ -150,7 +150,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CanJoin
     path: ../Butterfly.MySql/MySqlDatabase.cs
     startLine: 29
@@ -188,7 +188,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CanFieldAlias
     path: ../Butterfly.MySql/MySqlDatabase.cs
     startLine: 31
@@ -226,7 +226,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: LoadSchemaAsync
     path: ../Butterfly.MySql/MySqlDatabase.cs
     startLine: 33
@@ -261,7 +261,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: LoadTableSchemaAsync
     path: ../Butterfly.MySql/MySqlDatabase.cs
     startLine: 54
@@ -298,7 +298,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetFieldDefs
     path: ../Butterfly.MySql/MySqlDatabase.cs
     startLine: 60
@@ -333,7 +333,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetUniqueIndexes
     path: ../Butterfly.MySql/MySqlDatabase.cs
     startLine: 80
@@ -368,7 +368,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CreateTransaction
     path: ../Butterfly.MySql/MySqlDatabase.cs
     startLine: 118
@@ -403,7 +403,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoSelectRowsAsync
     path: ../Butterfly.MySql/MySqlDatabase.cs
     startLine: 122
@@ -447,7 +447,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoQueryRowsAsync
     path: ../Butterfly.MySql/MySqlDatabase.cs
     startLine: 149
@@ -489,7 +489,7 @@ items:
     remote:
       path: Butterfly.MySql/MySqlDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ConvertValue
     path: ../Butterfly.MySql/MySqlDatabase.cs
     startLine: 172

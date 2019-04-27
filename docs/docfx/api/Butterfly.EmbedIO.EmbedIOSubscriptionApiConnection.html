@@ -167,12 +167,12 @@
   <h3 id="constructors">Constructors
   </h3>
   <a id="Butterfly_EmbedIO_EmbedIOSubscriptionApiConnection__ctor_" data-uid="Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor*"></a>
-  <h4 id="Butterfly_EmbedIO_EmbedIOSubscriptionApiConnection__ctor_Butterfly_Core_Channel_BaseSubscriptionApi_Action_System_String__WebSocketContext_" data-uid="Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Action{System.String},WebSocketContext)">EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action&lt;String&gt;, WebSocketContext)</h4>
+  <h4 id="Butterfly_EmbedIO_EmbedIOSubscriptionApiConnection__ctor_Butterfly_Core_Channel_BaseSubscriptionApi_Action_System_String__IWebSocketContext_" data-uid="Butterfly.EmbedIO.EmbedIOSubscriptionApiConnection.#ctor(Butterfly.Core.Channel.BaseSubscriptionApi,Action{System.String},IWebSocketContext)">EmbedIOSubscriptionApiConnection(BaseSubscriptionApi, Action&lt;String&gt;, IWebSocketContext)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public EmbedIOSubscriptionApiConnection(BaseSubscriptionApi subscriptionApi, Action&lt;string&gt; send, WebSocketContext context)</code></pre>
+    <pre><code class="lang-csharp hljs">public EmbedIOSubscriptionApiConnection(BaseSubscriptionApi subscriptionApi, Action&lt;string&gt; send, IWebSocketContext context)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -195,7 +195,7 @@
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">WebSocketContext</span></td>
+        <td><span class="xref">IWebSocketContext</span></td>
         <td><span class="parametername">context</span></td>
         <td></td>
       </tr>
@@ -208,7 +208,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly WebSocketContext context</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly IWebSocketContext context</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -220,7 +220,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">WebSocketContext</span></td>
+        <td><span class="xref">IWebSocketContext</span></td>
         <td></td>
       </tr>
     </tbody>

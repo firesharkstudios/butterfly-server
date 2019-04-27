@@ -21,7 +21,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/ChannelSubscription.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ChannelSubscription
     path: ../Butterfly.Core/Channel/ChannelSubscription.cs
     startLine: 13
@@ -58,7 +58,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/ChannelSubscription.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: channelKey
     path: ../Butterfly.Core/Channel/ChannelSubscription.cs
     startLine: 14
@@ -91,7 +91,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/ChannelSubscription.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: handle
     path: ../Butterfly.Core/Channel/ChannelSubscription.cs
     startLine: 15
@@ -124,7 +124,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/ChannelSubscription.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: handleAsync
     path: ../Butterfly.Core/Channel/ChannelSubscription.cs
     startLine: 16
@@ -157,7 +157,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/ChannelSubscription.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Channel/ChannelSubscription.cs
     startLine: 18
@@ -195,7 +195,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/ChannelSubscription.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Channel/ChannelSubscription.cs
     startLine: 24

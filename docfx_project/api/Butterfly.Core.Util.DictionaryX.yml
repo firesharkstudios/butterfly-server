@@ -5,6 +5,8 @@ items:
   id: DictionaryX
   parent: Butterfly.Core.Util
   children:
+  - Butterfly.Core.Util.DictionaryX.ContainsAllKeys``2(Dictionary{``0,``1},``0[])
+  - Butterfly.Core.Util.DictionaryX.ContainsAnyKey``2(Dictionary{``0,``1},``0[])
   - Butterfly.Core.Util.DictionaryX.Deconstruct``2(KeyValuePair{``0,``1},``0@,``1@)
   - Butterfly.Core.Util.DictionaryX.Format(Dictionary{System.String,System.Object},System.String,System.String,System.String)
   - Butterfly.Core.Util.DictionaryX.GetAs``3(Dictionary{``0,``1},``0,``2)
@@ -22,7 +24,7 @@ items:
     remote:
       path: Butterfly.Core/Util/DictionaryX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DictionaryX
     path: ../Butterfly.Core/Util/DictionaryX.cs
     startLine: 12
@@ -43,6 +45,104 @@ items:
   modifiers.vb:
   - Public
   - Module
+- uid: Butterfly.Core.Util.DictionaryX.ContainsAnyKey``2(Dictionary{``0,``1},``0[])
+  commentId: M:Butterfly.Core.Util.DictionaryX.ContainsAnyKey``2(Dictionary{``0,``1},``0[])
+  id: ContainsAnyKey``2(Dictionary{``0,``1},``0[])
+  isExtensionMethod: true
+  parent: Butterfly.Core.Util.DictionaryX
+  langs:
+  - csharp
+  - vb
+  name: ContainsAnyKey<T, U>(Dictionary<T, U>, T[])
+  nameWithType: DictionaryX.ContainsAnyKey<T, U>(Dictionary<T, U>, T[])
+  fullName: Butterfly.Core.Util.DictionaryX.ContainsAnyKey<T, U>(Dictionary<T, U>, T[])
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/DictionaryX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
+    id: ContainsAnyKey
+    path: ../Butterfly.Core/Util/DictionaryX.cs
+    startLine: 14
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static bool ContainsAnyKey<T, U>(this Dictionary<T, U> me, T[] keys)
+    parameters:
+    - id: me
+      type: Dictionary{{T},{U}}
+    - id: keys
+      type: '{T}[]'
+    typeParameters:
+    - id: T
+    - id: U
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ContainsAnyKey(Of T, U)(me As Dictionary(Of T, U), keys As T()) As Boolean
+  overload: Butterfly.Core.Util.DictionaryX.ContainsAnyKey*
+  nameWithType.vb: DictionaryX.ContainsAnyKey(Of T, U)(Dictionary(Of T, U), T())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Butterfly.Core.Util.DictionaryX.ContainsAnyKey(Of T, U)(Dictionary(Of T, U), T())
+  name.vb: ContainsAnyKey(Of T, U)(Dictionary(Of T, U), T())
+- uid: Butterfly.Core.Util.DictionaryX.ContainsAllKeys``2(Dictionary{``0,``1},``0[])
+  commentId: M:Butterfly.Core.Util.DictionaryX.ContainsAllKeys``2(Dictionary{``0,``1},``0[])
+  id: ContainsAllKeys``2(Dictionary{``0,``1},``0[])
+  isExtensionMethod: true
+  parent: Butterfly.Core.Util.DictionaryX
+  langs:
+  - csharp
+  - vb
+  name: ContainsAllKeys<T, U>(Dictionary<T, U>, T[])
+  nameWithType: DictionaryX.ContainsAllKeys<T, U>(Dictionary<T, U>, T[])
+  fullName: Butterfly.Core.Util.DictionaryX.ContainsAllKeys<T, U>(Dictionary<T, U>, T[])
+  type: Method
+  source:
+    remote:
+      path: Butterfly.Core/Util/DictionaryX.cs
+      branch: master
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
+    id: ContainsAllKeys
+    path: ../Butterfly.Core/Util/DictionaryX.cs
+    startLine: 21
+  assemblies:
+  - Butterfly.Core
+  namespace: Butterfly.Core.Util
+  syntax:
+    content: public static bool ContainsAllKeys<T, U>(this Dictionary<T, U> me, T[] keys)
+    parameters:
+    - id: me
+      type: Dictionary{{T},{U}}
+    - id: keys
+      type: '{T}[]'
+    typeParameters:
+    - id: T
+    - id: U
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function ContainsAllKeys(Of T, U)(me As Dictionary(Of T, U), keys As T()) As Boolean
+  overload: Butterfly.Core.Util.DictionaryX.ContainsAllKeys*
+  nameWithType.vb: DictionaryX.ContainsAllKeys(Of T, U)(Dictionary(Of T, U), T())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Butterfly.Core.Util.DictionaryX.ContainsAllKeys(Of T, U)(Dictionary(Of T, U), T())
+  name.vb: ContainsAllKeys(Of T, U)(Dictionary(Of T, U), T())
 - uid: Butterfly.Core.Util.DictionaryX.ToString``2(Dictionary{``0,``1},System.String,System.String)
   commentId: M:Butterfly.Core.Util.DictionaryX.ToString``2(Dictionary{``0,``1},System.String,System.String)
   id: ToString``2(Dictionary{``0,``1},System.String,System.String)
@@ -59,10 +159,10 @@ items:
     remote:
       path: Butterfly.Core/Util/DictionaryX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ToString
     path: ../Butterfly.Core/Util/DictionaryX.cs
-    startLine: 14
+    startLine: 28
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -110,10 +210,10 @@ items:
     remote:
       path: Butterfly.Core/Util/DictionaryX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetAs
     path: ../Butterfly.Core/Util/DictionaryX.cs
-    startLine: 40
+    startLine: 54
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -172,10 +272,10 @@ items:
     remote:
       path: Butterfly.Core/Util/DictionaryX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Deconstruct
     path: ../Butterfly.Core/Util/DictionaryX.cs
-    startLine: 75
+    startLine: 89
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -221,10 +321,10 @@ items:
     remote:
       path: Butterfly.Core/Util/DictionaryX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: UpdateFrom
     path: ../Butterfly.Core/Util/DictionaryX.cs
-    startLine: 80
+    startLine: 94
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -270,10 +370,10 @@ items:
     remote:
       path: Butterfly.Core/Util/DictionaryX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: IsSame
     path: ../Butterfly.Core/Util/DictionaryX.cs
-    startLine: 89
+    startLine: 103
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -319,10 +419,10 @@ items:
     remote:
       path: Butterfly.Core/Util/DictionaryX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Format
     path: ../Butterfly.Core/Util/DictionaryX.cs
-    startLine: 110
+    startLine: 124
   assemblies:
   - Butterfly.Core
   namespace: Butterfly.Core.Util
@@ -365,11 +465,11 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Butterfly.Core.Util.DictionaryX.ToString*
-  commentId: Overload:Butterfly.Core.Util.DictionaryX.ToString
-  name: ToString
-  nameWithType: DictionaryX.ToString
-  fullName: Butterfly.Core.Util.DictionaryX.ToString
+- uid: Butterfly.Core.Util.DictionaryX.ContainsAnyKey*
+  commentId: Overload:Butterfly.Core.Util.DictionaryX.ContainsAnyKey
+  name: ContainsAnyKey
+  nameWithType: DictionaryX.ContainsAnyKey
+  fullName: Butterfly.Core.Util.DictionaryX.ContainsAnyKey
 - uid: Dictionary{{T},{U}}
   commentId: '!:Dictionary{`0,`1}'
   definition: Dictionary`2
@@ -421,11 +521,33 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.String
+- uid: '{T}[]'
   isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  name: T[]
+  nameWithType: T[]
+  fullName: T[]
+  nameWithType.vb: T()
+  fullName.vb: T()
+  name.vb: T()
+  spec.csharp:
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
 - uid: Dictionary`2
   isExternal: true
   name: Dictionary<, >
@@ -476,6 +598,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Butterfly.Core.Util.DictionaryX.ContainsAllKeys*
+  commentId: Overload:Butterfly.Core.Util.DictionaryX.ContainsAllKeys
+  name: ContainsAllKeys
+  nameWithType: DictionaryX.ContainsAllKeys
+  fullName: Butterfly.Core.Util.DictionaryX.ContainsAllKeys
+- uid: Butterfly.Core.Util.DictionaryX.ToString*
+  commentId: Overload:Butterfly.Core.Util.DictionaryX.ToString
+  name: ToString
+  nameWithType: DictionaryX.ToString
+  fullName: Butterfly.Core.Util.DictionaryX.ToString
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
 - uid: Butterfly.Core.Util.DictionaryX.GetAs*
   commentId: Overload:Butterfly.Core.Util.DictionaryX.GetAs
   name: GetAs
@@ -640,11 +777,6 @@ references:
   name: IsSame
   nameWithType: DictionaryX.IsSame
   fullName: Butterfly.Core.Util.DictionaryX.IsSame
-- uid: System.Boolean
-  isExternal: true
-  name: Boolean
-  nameWithType: Boolean
-  fullName: System.Boolean
 - uid: Butterfly.Core.Util.DictionaryX.Format*
   commentId: Overload:Butterfly.Core.Util.DictionaryX.Format
   name: Format

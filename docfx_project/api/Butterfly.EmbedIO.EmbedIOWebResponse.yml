@@ -5,7 +5,7 @@ items:
   id: EmbedIOWebResponse
   parent: Butterfly.EmbedIO
   children:
-  - Butterfly.EmbedIO.EmbedIOWebResponse.#ctor(HttpListenerContext)
+  - Butterfly.EmbedIO.EmbedIOWebResponse.#ctor(IHttpContext)
   - Butterfly.EmbedIO.EmbedIOWebResponse.context
   - Butterfly.EmbedIO.EmbedIOWebResponse.GetHeader(System.String)
   - Butterfly.EmbedIO.EmbedIOWebResponse.OutputStream
@@ -25,7 +25,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: EmbedIOWebResponse
     path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
     startLine: 111
@@ -63,7 +63,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: context
     path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
     startLine: 113
@@ -71,32 +71,32 @@ items:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
   syntax:
-    content: public readonly HttpListenerContext context
+    content: public readonly IHttpContext context
     return:
-      type: HttpListenerContext
-    content.vb: Public ReadOnly context As HttpListenerContext
+      type: IHttpContext
+    content.vb: Public ReadOnly context As IHttpContext
   modifiers.csharp:
   - public
   - readonly
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: Butterfly.EmbedIO.EmbedIOWebResponse.#ctor(HttpListenerContext)
-  commentId: M:Butterfly.EmbedIO.EmbedIOWebResponse.#ctor(HttpListenerContext)
-  id: '#ctor(HttpListenerContext)'
+- uid: Butterfly.EmbedIO.EmbedIOWebResponse.#ctor(IHttpContext)
+  commentId: M:Butterfly.EmbedIO.EmbedIOWebResponse.#ctor(IHttpContext)
+  id: '#ctor(IHttpContext)'
   parent: Butterfly.EmbedIO.EmbedIOWebResponse
   langs:
   - csharp
   - vb
-  name: EmbedIOWebResponse(HttpListenerContext)
-  nameWithType: EmbedIOWebResponse.EmbedIOWebResponse(HttpListenerContext)
-  fullName: Butterfly.EmbedIO.EmbedIOWebResponse.EmbedIOWebResponse(HttpListenerContext)
+  name: EmbedIOWebResponse(IHttpContext)
+  nameWithType: EmbedIOWebResponse.EmbedIOWebResponse(IHttpContext)
+  fullName: Butterfly.EmbedIO.EmbedIOWebResponse.EmbedIOWebResponse(IHttpContext)
   type: Constructor
   source:
     remote:
       path: Butterfly.EmbedIO/EmbedIOWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
     startLine: 115
@@ -104,11 +104,11 @@ items:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
   syntax:
-    content: public EmbedIOWebResponse(HttpListenerContext context)
+    content: public EmbedIOWebResponse(IHttpContext context)
     parameters:
     - id: context
-      type: HttpListenerContext
-    content.vb: Public Sub New(context As HttpListenerContext)
+      type: IHttpContext
+    content.vb: Public Sub New(context As IHttpContext)
   overload: Butterfly.EmbedIO.EmbedIOWebResponse.#ctor*
   modifiers.csharp:
   - public
@@ -129,7 +129,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetHeader
     path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
     startLine: 119
@@ -164,7 +164,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SetHeader
     path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
     startLine: 123
@@ -199,7 +199,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: StatusCode
     path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
     startLine: 132
@@ -234,7 +234,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: StatusText
     path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
     startLine: 141
@@ -269,7 +269,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SendRedirect
     path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
     startLine: 150
@@ -302,7 +302,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OutputStream
     path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
     startLine: 154
@@ -337,7 +337,7 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: WriteAsTextAsync
     path: ../Butterfly.EmbedIO/EmbedIOWebApi.cs
     startLine: 156
@@ -380,11 +380,11 @@ references:
   name: Butterfly.Core.WebApi
   nameWithType: Butterfly.Core.WebApi
   fullName: Butterfly.Core.WebApi
-- uid: HttpListenerContext
+- uid: IHttpContext
   isExternal: true
-  name: HttpListenerContext
-  nameWithType: HttpListenerContext
-  fullName: HttpListenerContext
+  name: IHttpContext
+  nameWithType: IHttpContext
+  fullName: IHttpContext
 - uid: Butterfly.EmbedIO.EmbedIOWebResponse.#ctor*
   commentId: Overload:Butterfly.EmbedIO.EmbedIOWebResponse.#ctor
   name: EmbedIOWebResponse

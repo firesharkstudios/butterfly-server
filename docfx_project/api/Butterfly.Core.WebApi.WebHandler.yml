@@ -19,7 +19,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/WebHandler.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: WebHandler
     path: ../Butterfly.Core/WebApi/WebHandler.cs
     startLine: 12
@@ -56,7 +56,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/WebHandler.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: method
     path: ../Butterfly.Core/WebApi/WebHandler.cs
     startLine: 13
@@ -87,7 +87,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/WebHandler.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: path
     path: ../Butterfly.Core/WebApi/WebHandler.cs
     startLine: 14
@@ -118,7 +118,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/WebHandler.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: listener
     path: ../Butterfly.Core/WebApi/WebHandler.cs
     startLine: 15

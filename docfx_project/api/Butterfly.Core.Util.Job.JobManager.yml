@@ -27,7 +27,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Job/JobManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: JobManager
     path: ../Butterfly.Core/Util/Job/JobManager.cs
     startLine: 12
@@ -62,7 +62,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Job/JobManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Core/Util/Job/JobManager.cs
     startLine: 14
@@ -97,7 +97,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Job/JobManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: jobs
     path: ../Butterfly.Core/Util/Job/JobManager.cs
     startLine: 16
@@ -130,7 +130,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Job/JobManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: firstRunDelaySeconds
     path: ../Butterfly.Core/Util/Job/JobManager.cs
     startLine: 18
@@ -163,7 +163,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Job/JobManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: noJobsDelaySeconds
     path: ../Butterfly.Core/Util/Job/JobManager.cs
     startLine: 19
@@ -196,7 +196,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Job/JobManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Util/Job/JobManager.cs
     startLine: 21
@@ -231,7 +231,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Job/JobManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AddJob
     path: ../Butterfly.Core/Util/Job/JobManager.cs
     startLine: 26
@@ -266,7 +266,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Job/JobManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: cancellationTokenSource
     path: ../Butterfly.Core/Util/Job/JobManager.cs
     startLine: 30
@@ -297,7 +297,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Job/JobManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: stopped
     path: ../Butterfly.Core/Util/Job/JobManager.cs
     startLine: 31
@@ -328,7 +328,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Job/JobManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Start
     path: ../Butterfly.Core/Util/Job/JobManager.cs
     startLine: 32
@@ -358,7 +358,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Job/JobManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Stop
     path: ../Butterfly.Core/Util/Job/JobManager.cs
     startLine: 44
@@ -388,7 +388,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Job/JobManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Run
     path: ../Butterfly.Core/Util/Job/JobManager.cs
     startLine: 51

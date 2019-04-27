@@ -19,7 +19,7 @@ items:
     remote:
       path: Butterfly.Core/Database/OnCommitRef.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnCommitRef
     path: ../Butterfly.Core/Database/OnCommitRef.cs
     startLine: 4
@@ -54,7 +54,7 @@ items:
     remote:
       path: Butterfly.Core/Database/OnCommitRef.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: onCommit
     path: ../Butterfly.Core/Database/OnCommitRef.cs
     startLine: 5
@@ -87,7 +87,7 @@ items:
     remote:
       path: Butterfly.Core/Database/OnCommitRef.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: key
     path: ../Butterfly.Core/Database/OnCommitRef.cs
     startLine: 6
@@ -120,7 +120,7 @@ items:
     remote:
       path: Butterfly.Core/Database/OnCommitRef.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/OnCommitRef.cs
     startLine: 7

@@ -22,7 +22,7 @@ items:
     remote:
       path: Butterfly.Core/Util/SafeUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SafeUtil
     path: ../Butterfly.Core/Util/SafeUtil.cs
     startLine: 15
@@ -58,7 +58,7 @@ items:
     remote:
       path: Butterfly.Core/Util/SafeUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: FULL_SAFE_BASE_ALPHABET
     path: ../Butterfly.Core/Util/SafeUtil.cs
     startLine: 16
@@ -91,7 +91,7 @@ items:
     remote:
       path: Butterfly.Core/Util/SafeUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetRandom
     path: ../Butterfly.Core/Util/SafeUtil.cs
     startLine: 18
@@ -130,7 +130,7 @@ items:
     remote:
       path: Butterfly.Core/Util/SafeUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ToSafeBase
     path: ../Butterfly.Core/Util/SafeUtil.cs
     startLine: 28
@@ -169,7 +169,7 @@ items:
     remote:
       path: Butterfly.Core/Util/SafeUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: FromSafeBase
     path: ../Butterfly.Core/Util/SafeUtil.cs
     startLine: 39
@@ -208,7 +208,7 @@ items:
     remote:
       path: Butterfly.Core/Util/SafeUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Scrub
     path: ../Butterfly.Core/Util/SafeUtil.cs
     startLine: 48
@@ -247,7 +247,7 @@ items:
     remote:
       path: Butterfly.Core/Util/SafeUtil.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: InvalidCharacterMatch
     path: ../Butterfly.Core/Util/SafeUtil.cs
     startLine: 53

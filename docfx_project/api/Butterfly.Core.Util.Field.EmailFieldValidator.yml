@@ -23,7 +23,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: EmailFieldValidator
     path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
     startLine: 9
@@ -61,7 +61,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
     startLine: 10
@@ -96,7 +96,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: name
     path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
     startLine: 12
@@ -129,7 +129,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: allowNull
     path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
     startLine: 13
@@ -162,7 +162,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: stripName
     path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
     startLine: 14
@@ -195,7 +195,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: REGEX
     path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
     startLine: 16
@@ -230,7 +230,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
     startLine: 18
@@ -267,7 +267,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/EmailFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Validate
     path: ../Butterfly.Core/Util/Field/EmailFieldValidator.cs
     startLine: 24

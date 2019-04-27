@@ -20,7 +20,7 @@ items:
     remote:
       path: Butterfly.Core/Util/DictionaryItemDisposable.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DictionaryItemDisposable
     path: ../Butterfly.Core/Util/DictionaryItemDisposable.cs
     startLine: 8
@@ -61,7 +61,7 @@ items:
     remote:
       path: Butterfly.Core/Util/DictionaryItemDisposable.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: dictionary
     path: ../Butterfly.Core/Util/DictionaryItemDisposable.cs
     startLine: 10
@@ -96,7 +96,7 @@ items:
     remote:
       path: Butterfly.Core/Util/DictionaryItemDisposable.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: key
     path: ../Butterfly.Core/Util/DictionaryItemDisposable.cs
     startLine: 11
@@ -131,7 +131,7 @@ items:
     remote:
       path: Butterfly.Core/Util/DictionaryItemDisposable.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Util/DictionaryItemDisposable.cs
     startLine: 13
@@ -171,7 +171,7 @@ items:
     remote:
       path: Butterfly.Core/Util/DictionaryItemDisposable.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.Core/Util/DictionaryItemDisposable.cs
     startLine: 19

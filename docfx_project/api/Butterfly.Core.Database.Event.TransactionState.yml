@@ -18,7 +18,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEventTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TransactionState
     path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
     startLine: 9
@@ -49,7 +49,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEventTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Uncommitted
     path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
     startLine: 10
@@ -81,7 +81,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Event/DataEventTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Committed
     path: ../Butterfly.Core/Database/Event/DataEventTransaction.cs
     startLine: 11

@@ -19,7 +19,7 @@ items:
     remote:
       path: Butterfly.Core.Test/AuthTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AuthTest
     path: ../Butterfly.Core.Test/AuthTest.cs
     startLine: 15
@@ -54,7 +54,7 @@ items:
     remote:
       path: Butterfly.Core.Test/AuthTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Core.Test/AuthTest.cs
     startLine: 17
@@ -89,7 +89,7 @@ items:
     remote:
       path: Butterfly.Core.Test/AuthTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SimpleAuthTest
     path: ../Butterfly.Core.Test/AuthTest.cs
     startLine: 19
@@ -121,10 +121,10 @@ items:
     remote:
       path: Butterfly.Core.Test/AuthTest.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TruncateData
     path: ../Butterfly.Core.Test/AuthTest.cs
-    startLine: 49
+    startLine: 52
   assemblies:
   - Butterfly.Core.Test
   namespace: Butterfly.Core.Test

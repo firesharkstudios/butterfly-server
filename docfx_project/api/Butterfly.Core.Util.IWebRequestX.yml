@@ -17,7 +17,7 @@ items:
     remote:
       path: Butterfly.Core/Util/IWebRequestX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: IWebRequestX
     path: ../Butterfly.Core/Util/IWebRequestX.cs
     startLine: 8
@@ -54,7 +54,7 @@ items:
     remote:
       path: Butterfly.Core/Util/IWebRequestX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetAuthenticationHeaderValue
     path: ../Butterfly.Core/Util/IWebRequestX.cs
     startLine: 9

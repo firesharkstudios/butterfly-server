@@ -42,7 +42,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: BaseChannelConnection
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 25
@@ -88,7 +88,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 26
@@ -123,7 +123,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: subscriptionApi
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 28
@@ -156,7 +156,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: created
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 30
@@ -189,7 +189,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: buffer
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 32
@@ -222,7 +222,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: monitor
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 33
@@ -255,7 +255,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: authToken
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 35
@@ -286,7 +286,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: id
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 36
@@ -317,7 +317,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: lastHeartbeat
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 41
@@ -350,7 +350,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 43
@@ -383,7 +383,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AuthToken
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 48
@@ -420,7 +420,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Id
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 50
@@ -457,7 +457,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Created
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 52
@@ -494,7 +494,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: LastHeartbeat
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 59
@@ -533,7 +533,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: QueueMessage
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 75
@@ -579,7 +579,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: started
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 91
@@ -610,7 +610,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Start
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 92
@@ -647,7 +647,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: channelByKey
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 99
@@ -680,7 +680,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: RunAsync
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 101
@@ -712,7 +712,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SendAsync
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 124
@@ -751,7 +751,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ReceiveMessageAsync
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 126
@@ -786,7 +786,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: EMPTY_DICT
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 178
@@ -817,7 +817,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SubscribeAsync
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 180
@@ -855,7 +855,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: UnsubscribeAll
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 217
@@ -885,7 +885,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Unsubscribe
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 221
@@ -921,7 +921,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 240
@@ -953,7 +953,7 @@ items:
     remote:
       path: Butterfly.Core/Channel/BaseChannelConnection.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoDispose
     path: ../Butterfly.Core/Channel/BaseChannelConnection.cs
     startLine: 262

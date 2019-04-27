@@ -30,7 +30,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: UserRefTokenAuthenticator
     path: ../Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
     startLine: 12
@@ -68,7 +68,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
     startLine: 13
@@ -103,7 +103,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AUTH_TYPE
     path: ../Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
     startLine: 15
@@ -136,7 +136,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: database
     path: ../Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
     startLine: 17
@@ -169,7 +169,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: authTokenTableName
     path: ../Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
     startLine: 18
@@ -202,7 +202,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: authTokenIdFieldName
     path: ../Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
     startLine: 19
@@ -235,7 +235,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: authTokenTableUserIdFieldName
     path: ../Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
     startLine: 20
@@ -268,7 +268,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: authTokenTableExpiresAtFieldName
     path: ../Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
     startLine: 21
@@ -301,7 +301,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: userTableName
     path: ../Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
     startLine: 23
@@ -334,7 +334,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: userTableUsernameFieldName
     path: ../Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
     startLine: 24
@@ -367,7 +367,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: userTableAccountIdFieldName
     path: ../Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
     startLine: 25
@@ -400,7 +400,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: userTableRoleFieldName
     path: ../Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
     startLine: 26
@@ -433,7 +433,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
     startLine: 40
@@ -493,7 +493,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AuthenticateAsync
     path: ../Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
     startLine: 69
@@ -537,7 +537,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: InsertAsync
     path: ../Butterfly.Core/Auth/UserRefTokenAuthenticator.cs
     startLine: 90

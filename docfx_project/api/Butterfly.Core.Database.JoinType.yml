@@ -20,7 +20,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/BaseStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: JoinType
     path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
     startLine: 105
@@ -51,7 +51,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/BaseStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: None
     path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
     startLine: 106
@@ -83,7 +83,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/BaseStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Inner
     path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
     startLine: 107
@@ -115,7 +115,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/BaseStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Left
     path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
     startLine: 108
@@ -147,7 +147,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/BaseStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Right
     path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
     startLine: 109

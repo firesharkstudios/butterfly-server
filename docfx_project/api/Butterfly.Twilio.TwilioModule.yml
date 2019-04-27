@@ -17,7 +17,7 @@ items:
     remote:
       path: Butterfly.Twilio/TwilioModule.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TwilioModule
     path: ../Butterfly.Twilio/TwilioModule.cs
     startLine: 16
@@ -53,7 +53,7 @@ items:
     remote:
       path: Butterfly.Twilio/TwilioModule.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Setup
     path: ../Butterfly.Twilio/TwilioModule.cs
     startLine: 19

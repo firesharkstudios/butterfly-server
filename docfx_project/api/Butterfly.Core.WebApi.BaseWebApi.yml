@@ -26,7 +26,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: BaseWebApi
     path: ../Butterfly.Core/WebApi/BaseWebApi.cs
     startLine: 19
@@ -72,7 +72,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Core/WebApi/BaseWebApi.cs
     startLine: 20
@@ -107,7 +107,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: webHandlers
     path: ../Butterfly.Core/WebApi/BaseWebApi.cs
     startLine: 22
@@ -140,7 +140,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnDelete
     path: ../Butterfly.Core/WebApi/BaseWebApi.cs
     startLine: 24
@@ -180,7 +180,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnGet
     path: ../Butterfly.Core/WebApi/BaseWebApi.cs
     startLine: 33
@@ -220,7 +220,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnPost
     path: ../Butterfly.Core/WebApi/BaseWebApi.cs
     startLine: 42
@@ -260,7 +260,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnPut
     path: ../Butterfly.Core/WebApi/BaseWebApi.cs
     startLine: 51
@@ -300,7 +300,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: FileUploadHandlerAsync
     path: ../Butterfly.Core/WebApi/BaseWebApi.cs
     startLine: 60
@@ -348,7 +348,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: WebHandlers
     path: ../Butterfly.Core/WebApi/BaseWebApi.cs
     startLine: 106
@@ -383,7 +383,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Compile
     path: ../Butterfly.Core/WebApi/BaseWebApi.cs
     startLine: 112
@@ -417,7 +417,7 @@ items:
     remote:
       path: Butterfly.Core/WebApi/BaseWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.Core/WebApi/BaseWebApi.cs
     startLine: 113

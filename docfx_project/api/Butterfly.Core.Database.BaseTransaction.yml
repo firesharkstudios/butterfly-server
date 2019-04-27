@@ -48,7 +48,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: BaseTransaction
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 20
@@ -97,7 +97,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: database
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 21
@@ -130,7 +130,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: dataEvents
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 23
@@ -163,7 +163,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: onCommitRefs
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 24
@@ -196,7 +196,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 26
@@ -229,7 +229,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Database
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 31
@@ -266,7 +266,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Create
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 34
@@ -301,7 +301,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCreate
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 38
@@ -338,7 +338,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CreateAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 40
@@ -373,7 +373,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCreateAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 44
@@ -410,7 +410,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: InsertAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 47
@@ -456,7 +456,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: InsertAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 53
@@ -495,7 +495,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoInsertAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 91
@@ -539,7 +539,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: UpdateAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 94
@@ -578,7 +578,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: UpdateAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 99
@@ -615,7 +615,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoUpdateAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 125
@@ -657,7 +657,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DeleteAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 128
@@ -696,7 +696,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DeleteAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 133
@@ -733,7 +733,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoDeleteAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 157
@@ -775,7 +775,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetKeyValue
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 159
@@ -823,7 +823,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SynchronizeAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 177
@@ -873,7 +873,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TruncateAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 229
@@ -910,7 +910,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoTruncateAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 233
@@ -947,7 +947,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Begin
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 236
@@ -979,7 +979,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: BeginAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 238
@@ -1013,7 +1013,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Commit
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 241
@@ -1045,7 +1045,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCommit
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 252
@@ -1077,7 +1077,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CommitAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 254
@@ -1111,7 +1111,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnCommit
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 273
@@ -1151,7 +1151,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoCommitAsync
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 277
@@ -1185,7 +1185,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Rollback
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 280
@@ -1217,7 +1217,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoRollback
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 284
@@ -1249,7 +1249,7 @@ items:
     remote:
       path: Butterfly.Core/Database/BaseTransaction.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Dispose
     path: ../Butterfly.Core/Database/BaseTransaction.cs
     startLine: 288

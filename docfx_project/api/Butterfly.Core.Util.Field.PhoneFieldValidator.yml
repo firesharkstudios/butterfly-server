@@ -24,7 +24,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: PhoneFieldValidator
     path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
     startLine: 11
@@ -62,7 +62,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: logger
     path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
     startLine: 12
@@ -97,7 +97,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: name
     path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
     startLine: 14
@@ -130,7 +130,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: allowNull
     path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
     startLine: 15
@@ -163,7 +163,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: NON_PHONE_CHARS
     path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
     startLine: 17
@@ -198,7 +198,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: PHONE_NUMBER_UTIL
     path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
     startLine: 19
@@ -233,7 +233,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
     startLine: 21
@@ -268,7 +268,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Validate
     path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
     startLine: 26
@@ -305,7 +305,7 @@ items:
     remote:
       path: Butterfly.Core/Util/Field/PhoneFieldValidator.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Format
     path: ../Butterfly.Core/Util/Field/PhoneFieldValidator.cs
     startLine: 42

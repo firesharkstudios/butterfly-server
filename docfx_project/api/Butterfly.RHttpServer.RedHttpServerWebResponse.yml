@@ -26,7 +26,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: RedHttpServerWebResponse
     path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 78
@@ -64,7 +64,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: response
     path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 80
@@ -97,7 +97,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 82
@@ -130,7 +130,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetHeader
     path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 86
@@ -165,7 +165,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SetHeader
     path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 90
@@ -200,7 +200,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: StatusCode
     path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 94
@@ -235,7 +235,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: StatusText
     path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 99
@@ -270,7 +270,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SendRedirect
     path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 104
@@ -303,7 +303,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OutputStream
     path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 108
@@ -338,7 +338,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: WriteAsTextAsync
     path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 110
@@ -373,7 +373,7 @@ items:
     remote:
       path: Butterfly.RedHttpServer/RedHttpServerWebApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: WriteAsJsonAsync
     path: ../Butterfly.RedHttpServer/RedHttpServerWebApi.cs
     startLine: 114

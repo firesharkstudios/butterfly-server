@@ -18,7 +18,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/INotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: INotifyMessageSender
     path: ../Butterfly.Core/Notify/INotifyMessageSender.cs
     startLine: 9
@@ -49,7 +49,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/INotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SendAsync
     path: ../Butterfly.Core/Notify/INotifyMessageSender.cs
     startLine: 11
@@ -88,7 +88,7 @@ items:
     remote:
       path: Butterfly.Core/Notify/INotifyMessageSender.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CanSendNextAt
     path: ../Butterfly.Core/Notify/INotifyMessageSender.cs
     startLine: 13

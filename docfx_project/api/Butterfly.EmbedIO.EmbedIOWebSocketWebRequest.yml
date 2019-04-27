@@ -5,7 +5,7 @@ items:
   id: EmbedIOWebSocketWebRequest
   parent: Butterfly.EmbedIO
   children:
-  - Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor(WebSocketContext)
+  - Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor(IWebSocketContext)
   - Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.context
   - Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.Headers
   - Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.PathParams
@@ -22,10 +22,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: EmbedIOWebSocketWebRequest
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 115
+    startLine: 114
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -60,52 +60,52 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: context
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 117
+    startLine: 116
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
   syntax:
-    content: protected readonly WebSocketContext context
+    content: protected readonly IWebSocketContext context
     return:
-      type: WebSocketContext
-    content.vb: Protected ReadOnly context As WebSocketContext
+      type: IWebSocketContext
+    content.vb: Protected ReadOnly context As IWebSocketContext
   modifiers.csharp:
   - protected
   - readonly
   modifiers.vb:
   - Protected
   - ReadOnly
-- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor(WebSocketContext)
-  commentId: M:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor(WebSocketContext)
-  id: '#ctor(WebSocketContext)'
+- uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor(IWebSocketContext)
+  commentId: M:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor(IWebSocketContext)
+  id: '#ctor(IWebSocketContext)'
   parent: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest
   langs:
   - csharp
   - vb
-  name: EmbedIOWebSocketWebRequest(WebSocketContext)
-  nameWithType: EmbedIOWebSocketWebRequest.EmbedIOWebSocketWebRequest(WebSocketContext)
-  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.EmbedIOWebSocketWebRequest(WebSocketContext)
+  name: EmbedIOWebSocketWebRequest(IWebSocketContext)
+  nameWithType: EmbedIOWebSocketWebRequest.EmbedIOWebSocketWebRequest(IWebSocketContext)
+  fullName: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.EmbedIOWebSocketWebRequest(IWebSocketContext)
   type: Constructor
   source:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 119
+    startLine: 118
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
   syntax:
-    content: public EmbedIOWebSocketWebRequest(WebSocketContext context)
+    content: public EmbedIOWebSocketWebRequest(IWebSocketContext context)
     parameters:
     - id: context
-      type: WebSocketContext
-    content.vb: Public Sub New(context As WebSocketContext)
+      type: IWebSocketContext
+    content.vb: Public Sub New(context As IWebSocketContext)
   overload: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor*
   modifiers.csharp:
   - public
@@ -126,10 +126,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: RequestUrl
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 123
+    startLine: 122
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -161,10 +161,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: Headers
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 125
+    startLine: 124
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -196,10 +196,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: PathParams
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 127
+    startLine: 126
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -231,10 +231,10 @@ items:
     remote:
       path: Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: QueryParams
     path: ../Butterfly.EmbedIO/EmbedIOSubscriptionApi.cs
-    startLine: 129
+    startLine: 128
   assemblies:
   - Butterfly.EmbedIO
   namespace: Butterfly.EmbedIO
@@ -274,11 +274,11 @@ references:
   name: Butterfly.Core.Util
   nameWithType: Butterfly.Core.Util
   fullName: Butterfly.Core.Util
-- uid: WebSocketContext
+- uid: IWebSocketContext
   isExternal: true
-  name: WebSocketContext
-  nameWithType: WebSocketContext
-  fullName: WebSocketContext
+  name: IWebSocketContext
+  nameWithType: IWebSocketContext
+  fullName: IWebSocketContext
 - uid: Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor*
   commentId: Overload:Butterfly.EmbedIO.EmbedIOWebSocketWebRequest.#ctor
   name: EmbedIOWebSocketWebRequest

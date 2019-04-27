@@ -20,7 +20,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/AuthManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AuthToken
     path: ../Butterfly.Core/Auth/AuthManager.cs
     startLine: 676
@@ -62,7 +62,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/AuthManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: type
     path: ../Butterfly.Core/Auth/AuthManager.cs
     startLine: 677
@@ -95,7 +95,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/AuthManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: accountId
     path: ../Butterfly.Core/Auth/AuthManager.cs
     startLine: 678
@@ -128,7 +128,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/AuthManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: role
     path: ../Butterfly.Core/Auth/AuthManager.cs
     startLine: 679
@@ -161,7 +161,7 @@ items:
     remote:
       path: Butterfly.Core/Auth/AuthManager.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Auth/AuthManager.cs
     startLine: 681

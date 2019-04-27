@@ -26,7 +26,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: PostgresDatabase
     path: ../Butterfly.Postgres/PostgresDatabase.cs
     startLine: 22
@@ -116,7 +116,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Postgres/PostgresDatabase.cs
     startLine: 27
@@ -149,7 +149,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CanJoin
     path: ../Butterfly.Postgres/PostgresDatabase.cs
     startLine: 31
@@ -187,7 +187,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CanFieldAlias
     path: ../Butterfly.Postgres/PostgresDatabase.cs
     startLine: 33
@@ -225,7 +225,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: LoadSchemaAsync
     path: ../Butterfly.Postgres/PostgresDatabase.cs
     startLine: 35
@@ -260,7 +260,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: LoadTableSchemaAsync
     path: ../Butterfly.Postgres/PostgresDatabase.cs
     startLine: 55
@@ -297,7 +297,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CreateTransaction
     path: ../Butterfly.Postgres/PostgresDatabase.cs
     startLine: 149
@@ -332,7 +332,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoSelectRowsAsync
     path: ../Butterfly.Postgres/PostgresDatabase.cs
     startLine: 154
@@ -376,7 +376,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DoQueryRowsAsync
     path: ../Butterfly.Postgres/PostgresDatabase.cs
     startLine: 183
@@ -418,7 +418,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ConvertValue
     path: ../Butterfly.Postgres/PostgresDatabase.cs
     startLine: 206
@@ -455,7 +455,7 @@ items:
     remote:
       path: Butterfly.Postgres/PostgresDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ConvertType
     path: ../Butterfly.Postgres/PostgresDatabase.cs
     startLine: 218

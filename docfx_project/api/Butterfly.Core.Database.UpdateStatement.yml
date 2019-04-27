@@ -23,7 +23,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/UpdateStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: UpdateStatement
     path: ../Butterfly.Core/Database/Statements/UpdateStatement.cs
     startLine: 14
@@ -72,7 +72,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/UpdateStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: STATEMENT_REGEX
     path: ../Butterfly.Core/Database/Statements/UpdateStatement.cs
     startLine: 15
@@ -107,7 +107,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/UpdateStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: fromClause
     path: ../Butterfly.Core/Database/Statements/UpdateStatement.cs
     startLine: 17
@@ -140,7 +140,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/UpdateStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: setClause
     path: ../Butterfly.Core/Database/Statements/UpdateStatement.cs
     startLine: 18
@@ -173,7 +173,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/UpdateStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: whereClause
     path: ../Butterfly.Core/Database/Statements/UpdateStatement.cs
     startLine: 19
@@ -206,7 +206,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/UpdateStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/Statements/UpdateStatement.cs
     startLine: 26
@@ -245,7 +245,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/UpdateStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetWhereIndexSetRefsAndWhereRefs
     path: ../Butterfly.Core/Database/Statements/UpdateStatement.cs
     startLine: 49
@@ -285,7 +285,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/UpdateStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetExecutableSqlAndParams
     path: ../Butterfly.Core/Database/Statements/UpdateStatement.cs
     startLine: 71

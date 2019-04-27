@@ -47,7 +47,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: IDatabase
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 76
@@ -81,7 +81,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CanJoin
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 81
@@ -116,7 +116,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CanFieldAlias
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 86
@@ -151,7 +151,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SelectCount
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 91
@@ -186,7 +186,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: TableByName
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 96
@@ -221,7 +221,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CreateFromResourceFileAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 104
@@ -259,7 +259,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CreateFromSqlAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 112
@@ -293,7 +293,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnNewUncommittedTransaction
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 119
@@ -331,7 +331,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnNewUncommittedTransaction
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 122
@@ -366,7 +366,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnNewCommittedTransaction
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 129
@@ -404,7 +404,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: OnNewCommittedTransaction
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 132
@@ -439,7 +439,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SelectValueAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 146
@@ -486,7 +486,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SelectValuesAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 159
@@ -530,7 +530,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SelectRowAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 167
@@ -568,7 +568,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SelectRowsAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 175
@@ -606,7 +606,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SelectRowsAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 183
@@ -644,7 +644,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: QueryValueAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 193
@@ -691,7 +691,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: QueryRowAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 201
@@ -729,7 +729,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: QueryRowsAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 209
@@ -767,7 +767,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: InsertAndCommitAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 244
@@ -814,7 +814,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: UpdateAndCommitAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 274
@@ -853,7 +853,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DeleteAndCommitAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 302
@@ -892,7 +892,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: BeginTransaction
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 308
@@ -923,7 +923,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: BeginTransactionAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 311
@@ -952,7 +952,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SetDefaultValue
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 319
@@ -993,7 +993,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: SetOverrideValue
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 327
@@ -1034,7 +1034,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: AddInputPreprocessor
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 333
@@ -1069,7 +1069,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CreateDynamicViewSet
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 340
@@ -1107,7 +1107,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CreateDynamicViewSet
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 343
@@ -1142,7 +1142,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CreateAndStartDynamicViewAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 354
@@ -1192,7 +1192,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: CreateAndStartDynamicViewAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 357
@@ -1235,7 +1235,7 @@ items:
     remote:
       path: Butterfly.Core/Database/IDatabase.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetInitialDataEventsAsync
     path: ../Butterfly.Core/Database/IDatabase.cs
     startLine: 367

@@ -21,7 +21,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/BaseStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: StatementEqualsRef
     path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
     startLine: 177
@@ -58,7 +58,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/BaseStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: tableName
     path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
     startLine: 178
@@ -91,7 +91,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/BaseStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: fieldName
     path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
     startLine: 179
@@ -124,7 +124,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/BaseStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: paramName
     path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
     startLine: 180
@@ -157,7 +157,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/BaseStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: .ctor
     path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
     startLine: 182
@@ -194,7 +194,7 @@ items:
     remote:
       path: Butterfly.Core/Database/Statements/BaseStatement.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetMatchingParams
     path: ../Butterfly.Core/Database/Statements/BaseStatement.cs
     startLine: 188

@@ -19,7 +19,7 @@ items:
     remote:
       path: Butterfly.Core/Util/DynamicX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: DynamicX
     path: ../Butterfly.Core/Util/DynamicX.cs
     startLine: 10
@@ -55,7 +55,7 @@ items:
     remote:
       path: Butterfly.Core/Util/DynamicX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetProperties
     path: ../Butterfly.Core/Util/DynamicX.cs
     startLine: 11
@@ -92,7 +92,7 @@ items:
     remote:
       path: Butterfly.Core/Util/DynamicX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: GetKeys
     path: ../Butterfly.Core/Util/DynamicX.cs
     startLine: 16
@@ -129,7 +129,7 @@ items:
     remote:
       path: Butterfly.Core/Util/DynamicX.cs
       branch: master
-      repo: https://github.com/firesharkstudios/Butterfly.git
+      repo: https://github.com/firesharkstudios/butterfly-server-dotnet
     id: ToDictionary
     path: ../Butterfly.Core/Util/DynamicX.cs
     startLine: 21
