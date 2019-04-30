@@ -119,6 +119,7 @@ namespace Butterfly.Core.Auth {
 
         protected readonly Func<Dict, Task> onRegister;
         protected readonly Func<Dict, Task> onForgotPassword;
+        protected readonly Func<Dict, Task> onForgotUsername;
         protected readonly Action<Version> onCheckVersion;
 
         protected readonly IFieldValidator usernameFieldValidator;
@@ -195,6 +196,7 @@ namespace Butterfly.Core.Auth {
             Func<string, int, Task> onPhoneVerify = null,
             Func<Dict, Task> onRegister = null,
             Func<Dict, Task> onForgotPassword = null,
+            Func<Dict, Task> onForgotUsername = null,
             Action<Version> onCheckVersion = null
         ) {
             this.database = database;
@@ -231,6 +233,7 @@ namespace Butterfly.Core.Auth {
             this.onPhoneVerify = onPhoneVerify;
             this.onRegister = onRegister;
             this.onForgotPassword = onForgotPassword;
+            this.onForgotUsername = onForgotUsername;
             this.onCheckVersion = onCheckVersion;
 
             this.usernameFieldValidator = new GenericFieldValidator(this.userTableUsernameFieldName, @"^[_A-z0-9\-\.\@\+]{3,25}$", allowNull: false, forceLowerCase: true, includeValueInError: true);
@@ -333,6 +336,12 @@ namespace Butterfly.Core.Auth {
                 Dict resetPassword = await req.ParseAsJsonAsync<Dict>();
                 AuthToken authToken = await this.ResetPasswordAsync(resetPassword);
                 await res.WriteAsJsonAsync(authToken);
+            });
+
+            webApi.OnPost($"{pathPrefix}/forgot-username", async (req, res) => {
+                Dict data = await req.ParseAsJsonAsync<Dict>();
+                string contact = data.GetAs("contact", (string)null);
+                await this.ForgotUsernameAsync(contact);
             });
 
             webApi.OnPost($"{pathPrefix}/verify-email", async (req, res) => {
@@ -628,6 +637,39 @@ namespace Butterfly.Core.Auth {
             await this.database.UpdateAndCommitAsync(this.userTableName, update);
 
             return await this.CreateUserRefTokenAsync(userId);
+        }
+
+        /// <summary>
+        /// Invokes <see cref="AuthManager.onForgotUsername"/> with a list of matching usernames
+        /// </summary>
+        /// <param name="contact"></param>
+        /// <returns></returns>
+        public async Task ForgotUsernameAsync(string contact) {
+            if (string.IsNullOrEmpty(contact)) throw new Exception("Contact cannot be null");
+
+            string newContact;
+            string[] usernames;
+            if (contact.Contains("@")) {
+                newContact = this.emailFieldValidator.Validate(contact);
+                usernames = await this.database.SelectValuesAsync<string>($"SELECT {this.userTableUsernameFieldName} FROM {this.userTableName} WHERE {this.userTableEmailFieldName}=@newContact", new {
+                    newContact
+                });
+            }
+            else {
+                newContact = this.phoneFieldValidator.Validate(contact);
+                usernames = await this.database.SelectValuesAsync<string>($"SELECT {this.userTableUsernameFieldName} FROM {this.userTableName} WHERE {this.userTablePhoneFieldName}=@newContact", new {
+                    newContact
+                });
+            }
+
+            string usernamesText = "";
+            if (usernames!=null) {
+                usernamesText = string.Join(",", usernames.Where(x => !string.IsNullOrEmpty(x)));
+            }
+            if (this.onForgotUsername != null) this.onForgotUsername(new Dict {
+                ["contact"] = newContact,
+                ["usernames"] = usernamesText
+            });
         }
 
         protected async Task<string> CreateResetCodeAsync(string userId) {

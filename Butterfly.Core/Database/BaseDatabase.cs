@@ -142,8 +142,8 @@ namespace Butterfly.Core.Database {
             // Use ToArray() to avoid the collection being modified during the loop
             DataEventTransactionListener[] listeners = transactionState == TransactionState.Uncommitted ? this.uncommittedTransactionListeners.ToArray() : this.committedTransactionListeners.ToArray();
 
-            listeners.Where(x => x.listener != null).AsParallel().ForAll(x => x.listener(dataEventTransaction));
-            Task[] tasks = listeners.Where(x => x.listenerAsync != null).Select(x => x.listenerAsync(dataEventTransaction)).ToArray();
+            listeners.Where(x => x!=null && x.listener != null).AsParallel().ForAll(x => x.listener(dataEventTransaction));
+            Task[] tasks = listeners.Where(x => x!=null && x.listenerAsync != null).Select(x => x.listenerAsync(dataEventTransaction)).ToArray();
             await Task.WhenAll(tasks.ToArray());
         }
 
