@@ -180,6 +180,16 @@ namespace Butterfly.Core.Test {
             Dict[] allDepartments = await database.SelectRowsAsync("SELECT * FROM department");
             Assert.AreEqual(3, allDepartments.Length);
 
+            // Test retrieving all departments by name ascending
+            Dict[] departmentsByNameAscending = await database.SelectRowsAsync("SELECT * FROM department ORDER BY name");
+            Assert.AreEqual(3, departmentsByNameAscending.Length);
+            Assert.AreEqual("Customer Service", departmentsByNameAscending[0].GetAs("name", ""));
+
+            // Test retrieving all departments by name descending
+            Dict[] departmentsByNameDescending = await database.SelectRowsAsync("SELECT * FROM department ORDER BY name DESC");
+            Assert.AreEqual(3, departmentsByNameDescending.Length);
+            Assert.AreEqual("Sales", departmentsByNameDescending[0].GetAs("name", ""));
+
             // Test retrieving a single row on a non-indexed field (long syntax)
             Dict hrDepartmentA = await database.SelectRowAsync("SELECT * FROM department WHERE name=@name", new {
                 name = "HR"

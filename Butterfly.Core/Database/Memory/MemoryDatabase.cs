@@ -45,7 +45,7 @@ namespace Butterfly.Core.Database.Memory {
             if (fieldNames.Any(x => x.Contains(' '))) throw new Exception("MemoryTable does not support field aliases");
 
             string evaluatedWhereClause = EvaluateWhereClause(executableStatement.whereClause, executableParams, executableStatement.StatementFromRefs);
-            DataRow[] dataRows = memoryTable.DataTable.Select(evaluatedWhereClause, null, DataViewRowState.OriginalRows);
+            DataRow[] dataRows = memoryTable.DataTable.Select(evaluatedWhereClause, executableStatement.orderByClause, DataViewRowState.OriginalRows);
             List<Dict> rows = new List<Dict>();
             foreach (var dataRow in dataRows) {
                 Dict row = new Dict();
