@@ -582,11 +582,10 @@ namespace Butterfly.Core.Auth {
             UserRefToken userRefToken;
             using (ITransaction transaction = await this.database.BeginTransactionAsync()) {
                 DateTime expiresAt = DateTime.Now.AddDays(this.authTokenDurationDays);
-                string id = await this.userRefTokenAuthenticator.InsertAsync(transaction, userId, expiresAt);
                 string username = string.IsNullOrEmpty(this.userTableUsernameFieldName) ? null : user.GetAs(this.userTableUsernameFieldName, (string)null);
                 string role = string.IsNullOrEmpty(this.userTableRoleFieldName) ? null : user.GetAs(this.userTableRoleFieldName, (string)null);
                 string accountId = string.IsNullOrEmpty(this.userTableAccountIdFieldName) ? null : user.GetAs(this.userTableAccountIdFieldName, (string)null);
-                userRefToken = await this.CreateUserRefTokenAsync(transaction, id, username, role, accountId);
+                userRefToken = await this.CreateUserRefTokenAsync(transaction, userId, username, role, accountId);
 
                 await transaction.CommitAsync();
             }
