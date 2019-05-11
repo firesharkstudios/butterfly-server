@@ -17,6 +17,7 @@ using Butterfly.Core.Util.Field;
 using Butterfly.Core.WebApi;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
+using System.Transactions;
 
 namespace Butterfly.Core.Auth {
     /// <summary>
@@ -117,16 +118,17 @@ namespace Butterfly.Core.Auth {
         protected readonly Func<string, int, Task> onEmailVerify;
         protected readonly Func<string, int, Task> onPhoneVerify;
 
-        protected readonly Func<Dict, Task> onRegister;
+        protected readonly Func<Dict, Task> onRegisterAccount;
+        protected readonly Func<Dict, Task> onRegisterUser;
         protected readonly Func<Dict, Task> onForgotPassword;
         protected readonly Func<Dict, Task> onForgotUsername;
         protected readonly Action<Version> onCheckVersion;
 
-        protected readonly IFieldValidator usernameFieldValidator;
-        protected readonly IFieldValidator passwordFieldValidator;
-        protected readonly IFieldValidator nameFieldValidator;
-        protected readonly IFieldValidator emailFieldValidator;
-        protected readonly IFieldValidator phoneFieldValidator;
+        public readonly IFieldValidator usernameFieldValidator;
+        public readonly IFieldValidator passwordFieldValidator;
+        public readonly IFieldValidator nameFieldValidator;
+        public readonly IFieldValidator emailFieldValidator;
+        public readonly IFieldValidator phoneFieldValidator;
 
         protected readonly Dictionary<string, IAuthenticator> authenticatorByType;
 
@@ -163,8 +165,10 @@ namespace Butterfly.Core.Auth {
         /// <param name="getExtraUserInfo"></param>
         /// <param name="onEmailVerify">Callback when <see cref="AuthManager.VerifyAsync(Dict, string, string, Func{string, int, Task})"/> is called with an email address</param>
         /// <param name="onPhoneVerify">Callback when <see cref="AuthManager.VerifyAsync(Dict, string, string, Func{string, int, Task})"/> is called with a phone number</param>
-        /// <param name="onRegister">Callback when <see cref="AuthManager.RegisterAsync(dynamic, Dict)"/> is called</param>
-        /// <param name="onForgotPassword">Callback when <see cref="AuthManager.ForgotPasswordAsync(string)"/> is called</param>
+        /// <param name="onRegisterAccount">Callback when a new account is registered</param>
+        /// <param name="onRegisterUser">Callback when a new user is registered</param>
+        /// <param name="onForgotPassword">Callback when a forgot password request is made</param>
+        /// <param name="onForgotUsername">Callback when a forgot username request is made</param>
         /// <param name="onCheckVersion"></param>
         public AuthManager(
             IDatabase database,
@@ -194,7 +198,8 @@ namespace Butterfly.Core.Auth {
             Func<Dict, Dict> getExtraUserInfo = null,
             Func<string, int, Task> onEmailVerify = null,
             Func<string, int, Task> onPhoneVerify = null,
-            Func<Dict, Task> onRegister = null,
+            Func<Dict, Task> onRegisterAccount = null,
+            Func<Dict, Task> onRegisterUser = null,
             Func<Dict, Task> onForgotPassword = null,
             Func<Dict, Task> onForgotUsername = null,
             Action<Version> onCheckVersion = null
@@ -231,7 +236,8 @@ namespace Butterfly.Core.Auth {
             this.getExtraUserInfo = getExtraUserInfo;
             this.onEmailVerify = onEmailVerify;
             this.onPhoneVerify = onPhoneVerify;
-            this.onRegister = onRegister;
+            this.onRegisterAccount = onRegisterAccount;
+            this.onRegisterUser = onRegisterUser;
             this.onForgotPassword = onForgotPassword;
             this.onForgotUsername = onForgotUsername;
             this.onCheckVersion = onCheckVersion;
@@ -312,11 +318,7 @@ namespace Butterfly.Core.Auth {
 
             webApi.OnPost($"{pathPrefix}/register", async(req, res) => {
                 Dict registration = await req.ParseAsJsonAsync<Dict>();
-                AuthToken authToken = await this.RegisterAsync(registration, new Dict {
-                    { "host_name", Dns.GetHostName() },
-                    { "user_agent", req.Headers.GetAs("User-Agent", "") },
-                    { "user_host_name", req.Headers.GetAs("Host", "") },
-                });
+                AuthToken authToken = await this.RegisterAsync(registration);
                 await res.WriteAsJsonAsync(authToken);
             });
 
@@ -426,18 +428,34 @@ namespace Butterfly.Core.Auth {
             string firstName = this.nameFieldValidator.Validate(registration?.GetAs(this.userTableFirstNameFieldName, (string)null));
             string lastName = this.nameFieldValidator.Validate(registration?.GetAs(this.userTableLastNameFieldName, (string)null));
 
+            string role = string.IsNullOrEmpty(this.userTableRoleFieldName) ? this.defaultRole : registration?.GetAs(this.userTableRoleFieldName, this.defaultRole);
+
             // Create salt and password hash
             string salt = Guid.NewGuid().ToString();
             string passwordHash = $"{salt} {password}".Hash();
 
             // Create account
-            if (string.IsNullOrEmpty(accountId)) {
-                Dict extraAccountInfo = this.getExtraAccountInfo == null ? null : this.getExtraAccountInfo(registration);
-                accountId = await this.database.InsertAndCommitAsync<string>(this.accountTableName, extraAccountInfo);
-            }
+            using (ITransaction transaction = await this.database.BeginTransactionAsync()) {
+                if (string.IsNullOrEmpty(accountId)) {
+                    Dict extraAccountInfo = this.getExtraAccountInfo == null ? null : this.getExtraAccountInfo(registration);
+                    accountId = await transaction.InsertAsync<string>(this.accountTableName, extraAccountInfo);
+                    if (this.onRegisterAccount != null) {
+                        Dict registerAccount = new Dict(extraAccountInfo) {
+                            ["id"] = accountId
+                        };
+                        transaction.OnCommit(async() => {
+                            try {
+                                await this.onRegisterAccount(registerAccount);
+                            }
+                            catch (Exception e) {
+                                logger.Debug(e);
+                            }
+                        });
+                    }
+                }
 
-            // Create user record
-            Dict user = new Dict {
+                // Create user record
+                Dict user = new Dict {
                 { this.userTableAccountIdFieldName, accountId },
                 { this.userTableUsernameFieldName, username },
                 { this.userTableSaltFieldName, salt },
@@ -447,40 +465,46 @@ namespace Butterfly.Core.Auth {
                 { this.userTableFirstNameFieldName, firstName  },
                 { this.userTableLastNameFieldName, lastName },
             };
-            if (!string.IsNullOrEmpty(this.userTableRoleFieldName) && !string.IsNullOrEmpty(this.defaultRole)) {
-                user[this.userTableRoleFieldName] = this.defaultRole;
-            }
-            Dict extraUserInfo = this.getExtraUserInfo == null ? null : this.getExtraUserInfo(registration);
-            if (extraUserInfo != null) {
-                user.UpdateFrom(extraUserInfo);
-            }
-            if (string.IsNullOrEmpty(userId)) {
-                userId = await this.database.InsertAndCommitAsync<string>(this.userTableName, user);
-            }
-            else {
-                user[this.userTableIdFieldName] = userId;
-                await this.database.UpdateAndCommitAsync(this.userTableName, user);
-            }
-
-            if (this.onRegister != null) {
-                try {
-                    var registerData = new Dict {
-                        { this.userTableAccountIdFieldName, accountId },
-                        { this.userTableUsernameFieldName, username },
-                        { this.userTableEmailFieldName, email },
-                        { this.userTablePhoneFieldName, phone },
-                        { this.userTableFirstNameFieldName, firstName  },
-                        { this.userTableLastNameFieldName, lastName },
-                    };
-                    if (notifyData != null) registerData.UpdateFrom(notifyData);
-                    await this.onRegister(registerData);
+                if (!string.IsNullOrEmpty(this.userTableRoleFieldName) && !string.IsNullOrEmpty(this.defaultRole)) {
+                    user[this.userTableRoleFieldName] = role;
                 }
-                catch (Exception e) {
-                    logger.Debug(e);
+                Dict extraUserInfo = this.getExtraUserInfo == null ? null : this.getExtraUserInfo(registration);
+                if (extraUserInfo != null) {
+                    user.UpdateFrom(extraUserInfo);
                 }
-            }
+                if (string.IsNullOrEmpty(userId)) {
+                    userId = await transaction.InsertAsync<string>(this.userTableName, user);
+                }
+                else {
+                    user[this.userTableIdFieldName] = userId;
+                    await transaction.UpdateAsync(this.userTableName, user);
+                }
 
-            return await this.CreateUserRefTokenAsync(userId);
+                if (this.onRegisterUser != null) {
+                    transaction.OnCommit(async () => {
+                        var registerUser = new Dict {
+                            { this.userTableAccountIdFieldName, accountId },
+                            { this.userTableUsernameFieldName, username },
+                            { this.userTableEmailFieldName, email },
+                            { this.userTablePhoneFieldName, phone },
+                            { this.userTableFirstNameFieldName, firstName  },
+                            { this.userTableLastNameFieldName, lastName },
+                        };
+                        try {
+                            if (notifyData != null) registerUser.UpdateFrom(notifyData);
+                            await this.onRegisterUser(registerUser);
+                        }
+                        catch (Exception e) {
+                            logger.Debug(e);
+                        }
+                    });
+                }
+
+                UserRefToken userRefToken = await this.CreateUserRefTokenAsync(transaction, userId, username, role, accountId);
+                await transaction.CommitAsync();
+
+                return userRefToken;
+            }
         }
 
         /// <summary>
@@ -555,16 +579,24 @@ namespace Butterfly.Core.Auth {
             });
             if (user==null) throw new Exception("Invalid user");
 
-            string id;
-            DateTime expiresAt = DateTime.Now.AddDays(this.authTokenDurationDays);
+            UserRefToken userRefToken;
             using (ITransaction transaction = await this.database.BeginTransactionAsync()) {
-                id = await this.userRefTokenAuthenticator.InsertAsync(transaction, userId, expiresAt);
+                DateTime expiresAt = DateTime.Now.AddDays(this.authTokenDurationDays);
+                string id = await this.userRefTokenAuthenticator.InsertAsync(transaction, userId, expiresAt);
+                string username = string.IsNullOrEmpty(this.userTableUsernameFieldName) ? null : user.GetAs(this.userTableUsernameFieldName, (string)null);
+                string role = string.IsNullOrEmpty(this.userTableRoleFieldName) ? null : user.GetAs(this.userTableRoleFieldName, (string)null);
+                string accountId = string.IsNullOrEmpty(this.userTableAccountIdFieldName) ? null : user.GetAs(this.userTableAccountIdFieldName, (string)null);
+                userRefToken = await this.CreateUserRefTokenAsync(transaction, id, username, role, accountId);
+
                 await transaction.CommitAsync();
             }
 
-            string username = string.IsNullOrEmpty(this.userTableUsernameFieldName) ? null : user.GetAs(this.userTableUsernameFieldName, (string)null);
-            string role = string.IsNullOrEmpty(this.userTableRoleFieldName) ? null : user.GetAs(this.userTableRoleFieldName, (string)null);
-            string accountId = string.IsNullOrEmpty(this.userTableAccountIdFieldName) ? null : user.GetAs(this.userTableAccountIdFieldName, (string)null);
+            return userRefToken;
+        }
+
+        protected async Task<UserRefToken> CreateUserRefTokenAsync(ITransaction transaction, string userId, string username, string role, string accountId) {
+            DateTime expiresAt = DateTime.Now.AddDays(this.authTokenDurationDays);
+            string id = await this.userRefTokenAuthenticator.InsertAsync(transaction, userId, expiresAt);
             return new UserRefToken(id, userId, username, role, accountId, expiresAt);
         }
 
