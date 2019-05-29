@@ -6,12 +6,12 @@ namespace Butterfly.Core.Util {
 
         protected readonly Dictionary<string, List<DateTime>> dateTimesByKey = new Dictionary<string, List<DateTime>>();
 
-        public readonly float seconds;
-        public readonly int limit;
+        public float seconds;
+        public int count;
 
         public Throttle(float seconds, int limit) {
             this.seconds = seconds;
-            this.limit = limit;
+            this.count = limit;
         }
 
         public int Check(string key, int requestCount = 1) {
@@ -37,7 +37,7 @@ namespace Butterfly.Core.Util {
                 }
             }
 
-            int acceptedCount = Math.Min(requestCount, this.limit - dateTimes.Count);
+            int acceptedCount = Math.Min(requestCount, this.count - dateTimes.Count);
             if (acceptedCount < 0) acceptedCount = 0;
 
             for (int i=0; i<acceptedCount; i++) {

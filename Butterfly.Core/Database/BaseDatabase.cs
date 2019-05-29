@@ -154,7 +154,7 @@ namespace Butterfly.Core.Database {
         }
 
         public async Task<DataEvent[]> GetInitialDataEventsAsync(string dataEventName, string[] keyFieldNames, SelectStatement selectStatement, dynamic statementParams = null) {
-            logger.Debug($"GetInitialDataEvents():sql={selectStatement.Sql}");
+            logger.Trace($"GetInitialDataEvents():sql={selectStatement.Sql}");
 
             List<DataEvent> dataEvents = new List<DataEvent>();
             dataEvents.Add(new InitialBeginDataEvent(dataEventName, keyFieldNames));

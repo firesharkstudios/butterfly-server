@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 
 namespace Butterfly.Core.Database.Event {
@@ -20,7 +20,7 @@ namespace Butterfly.Core.Database.Event {
         public readonly DateTime dateTime;
         public readonly DataEvent[] dataEvents;
 
-        protected readonly Dictionary<string, object> storage = new Dictionary<string, object>();
+        protected readonly ConcurrentDictionary<string, object> storage = new ConcurrentDictionary<string, object>();
 
         public DataEventTransaction(DateTime dateTime, DataEvent[] dataEvents) {
             this.dateTime = dateTime;

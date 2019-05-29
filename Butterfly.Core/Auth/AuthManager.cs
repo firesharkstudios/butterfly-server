@@ -527,7 +527,7 @@ namespace Butterfly.Core.Auth {
         public async Task<Dict> LookupUsernameAsync(string username, string fieldNames = "*") {
             username = this.usernameFieldValidator.Validate(username);
             string sql = $"SELECT {fieldNames} FROM {this.userTableName} WHERE {this.userTableUsernameFieldName}=@username";
-            logger.Debug($"LookupUsername():sql={sql}");
+            logger.Trace($"LookupUsername():sql={sql}");
             return await this.database.SelectRowAsync(sql, new {
                 username
             });

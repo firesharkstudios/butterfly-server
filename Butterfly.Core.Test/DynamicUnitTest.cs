@@ -61,7 +61,7 @@ namespace Butterfly.Core.Test {
                     });
                     await transaction.CommitAsync();
                 }
-                await Task.Delay(50);
+                await Task.Delay(200);
                 Assert.AreEqual(insertCount, dataEventTransactionCollector.Count);
                 if (insertCount > 0) {
                     Assert.AreEqual(1, dataEventTransactionCollector[0].dataEvents.Length);
@@ -78,7 +78,7 @@ namespace Butterfly.Core.Test {
                     });
                     await transaction.CommitAsync();
                 }
-                await Task.Delay(50);
+                await Task.Delay(200);
                 Assert.AreEqual(updateCount, dataEventTransactionCollector.Count);
                 if (updateCount > 0) {
                     Assert.AreEqual(1, dataEventTransactionCollector[0].dataEvents.Length);
@@ -95,7 +95,7 @@ namespace Butterfly.Core.Test {
                     });
                     await transaction.CommitAsync();
                 }
-                await Task.Delay(50);
+                await Task.Delay(200);
                 Assert.AreEqual(deleteCount, dataEventTransactionCollector.Count);
                 if (deleteCount > 0) {
                     Assert.AreEqual(1, dataEventTransactionCollector[0].dataEvents.Length);
@@ -111,14 +111,14 @@ namespace Butterfly.Core.Test {
                 DynamicView departmentDynamicView = dynamicViewSet.CreateDynamicView("department");
                 DynamicView employeeDynamicView = dynamicViewSet.CreateDynamicView("employee");
                 await dynamicViewSet.StartAsync();
-                await Task.Delay(50);
+                await Task.Delay(200);
 
                 int preSelectCount = database.SelectCount;
                 await database.InsertAndCommitAsync<string>("employee", new {
                     name = "Joe Sales",
                     department_id = 1,
                 });
-                await Task.Delay(50);
+                await Task.Delay(200);
 
                 // Should require doing two SELECTs to handle this INSERT (before and after SELECT)
                 Assert.AreEqual(preSelectCount + 1, database.SelectCount);
