@@ -41,6 +41,8 @@ namespace Butterfly.Core.Util.Field {
         }
 
         public static string Format(string value) {
+            if (string.IsNullOrEmpty(value)) return value;
+
             var phoneNumber = PHONE_NUMBER_UTIL.Parse(value, "US");
             return PHONE_NUMBER_UTIL.Format(phoneNumber, PhoneNumberFormat.NATIONAL);
         }
