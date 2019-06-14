@@ -47,5 +47,15 @@ namespace Butterfly.Core.Util {
             }
             return regex.Matches(me).Cast<Match>().Select(x => x.Value).ToArray();
         }
+
+        public static bool IsBalanced(string text, char left = '(', char right = ')') {
+            int leftCount = 0;
+            int rightCount = 0;
+            foreach (var ch in text) {
+                if (ch == left) leftCount++;
+                else if (ch == right) rightCount++;
+            }
+            return leftCount == rightCount;
+        }
     }
 }

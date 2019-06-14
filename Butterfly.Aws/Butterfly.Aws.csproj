@@ -23,10 +23,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.Core" Version="3.3.102.2" />
-    <PackageReference Include="AWSSDK.S3" Version="3.3.102.11" />
-    <PackageReference Include="AWSSDK.SimpleEmail" Version="3.3.100.30" />
-    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.3.101.19" />
+    <PackageReference Include="AWSSDK.Core" Version="3.3.102.3" />
+    <PackageReference Include="AWSSDK.S3" Version="3.3.102.12" />
+    <PackageReference Include="AWSSDK.SimpleEmail" Version="3.3.101.1" />
+    <PackageReference Include="AWSSDK.SimpleNotificationService" Version="3.3.101.20" />
     <PackageReference Include="MimeKitLite" Version="2.1.5.1" />
     <PackageReference Include="NLog" Version="4.6.4" />
   </ItemGroup>

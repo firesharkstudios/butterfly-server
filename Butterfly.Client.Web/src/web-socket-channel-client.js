@@ -239,7 +239,7 @@ export default class {
     if (!varsOld && !varsNew) return true;
     else if (!varsOld && varsNew) return false;
     else if (varsOld && !varsNew) return false;
-    else if (varsOld.length !== varsNew.length) return false;
+    else if (Object.keys(varsOld).length !== Object.keys(varsNew).length) return false;
     else {
       for (let key in varsOld) {
         if (varsOld[key] !== varsNew[key]) return false;

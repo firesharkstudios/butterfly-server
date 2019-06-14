@@ -17,7 +17,9 @@ namespace Butterfly.Core.Database {
     /// Internal class used to parse SELECT statements
     /// </summary>
     public class SelectStatement : BaseStatement {
-        protected readonly static Regex STATEMENT_REGEX = new Regex(@"^SELECT\s+(.+?)\s+FROM\s+(.+?)(?:\s+WHERE\s+(.+?))?(?:\s+ORDER\s+BY\s+(.+?))?$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        //protected readonly static Regex STATEMENT_REGEX = new Regex(@"^SELECT\s+(.+?)\s+FROM\s+(.+?)(?:\s+WHERE\s+(.+?))?(?:\s+ORDER\s+BY\s+(.+?))?$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+
+        protected readonly static StructuredParser STRUCTURED_PARSER = new StructuredParser().AddToken("SELECT", new Regex(@"\s*SELECT\s+"), true).AddToken("FROM", new Regex(@"\s*FROM\s+"), true).AddToken("WHERE", new Regex(@"\s*WHERE\s+"), false).AddToken("ORDER BY", new Regex(@"\s*ORDER BY\s+"), false);
 
         public readonly string selectClause;
         public readonly string fromClause;
@@ -36,14 +38,13 @@ namespace Butterfly.Core.Database {
                 this.orderByClause = null;
             }
             else {
-                Match match = STATEMENT_REGEX.Match(this.Sql);
-                if (!match.Success) throw new Exception($"Invalid sql '{this.Sql}'");
+                var result = STRUCTURED_PARSER.Parse(this.Sql);
 
                 // Extract each clause
-                this.selectClause = match.Groups[1].Value.Trim();
-                this.fromClause = match.Groups[2].Value.Trim();
-                this.whereClause = match.Groups[3].Value.Trim();
-                this.orderByClause = match.Groups[4].Value.Trim();
+                this.selectClause = result.GetAs("SELECT", (string)null)?.Trim();
+                this.fromClause = result.GetAs("FROM", (string)null)?.Trim();
+                this.whereClause = result.GetAs("WHERE", (string)null)?.Trim();
+                this.orderByClause = result.GetAs("ORDER BY", (string)null)?.Trim();
             }
             this.limit = limit;
 

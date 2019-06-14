@@ -18,8 +18,9 @@ namespace Butterfly.Core.Util.Field {
         protected readonly bool forceUpper;
         protected readonly int maxLength;
         protected readonly Regex validRegex;
+        protected readonly Regex removeRegex;
 
-        public TextFieldValidator(string name, bool allowNull = true, bool trim = true, bool forceLower = false, bool forceUpper = false, int maxLength = 25, string validRegex = null) {
+        public TextFieldValidator(string name, bool allowNull = true, bool trim = true, bool forceLower = false, bool forceUpper = false, int maxLength = 25, string validRegex = null, string removeRegex = null) {
             this.name = name;
             this.allowNull = allowNull;
             this.trim = trim;
@@ -27,12 +28,16 @@ namespace Butterfly.Core.Util.Field {
             this.forceUpper = forceUpper;
             this.maxLength = maxLength;
             this.validRegex = string.IsNullOrEmpty(validRegex) ? null : new Regex(validRegex);
+            this.removeRegex = string.IsNullOrEmpty(removeRegex) ? null : new Regex(removeRegex);
         }
 
         public string Validate(string value) {
             logger.Debug($"Validate():value={value}");
 
-            if (string.IsNullOrEmpty(value) && !this.allowNull) throw new Exception($"Field {this.name} cannot be null");
+            if (string.IsNullOrEmpty(value)) {
+                if (!this.allowNull) throw new Exception($"Field {this.name} cannot be null");
+                return null;
+            }
 
             string newValue = value;
             if (!string.IsNullOrEmpty(newValue)) {
@@ -43,6 +48,7 @@ namespace Butterfly.Core.Util.Field {
 
             if (!string.IsNullOrEmpty(newValue) && newValue.Length > this.maxLength) throw new Exception($"{this.name} too long");
             if (this.validRegex != null && !this.validRegex.IsMatch(newValue)) throw new Exception($"{this.name} is invalid");
+            if (this.removeRegex != null) newValue = removeRegex.Replace(newValue, "");
 
             return newValue;
         }

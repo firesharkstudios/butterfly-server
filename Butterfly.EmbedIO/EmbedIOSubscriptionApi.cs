@@ -54,6 +54,7 @@ namespace Butterfly.EmbedIO {
         protected override void OnClientConnected(IWebSocketContext context, IPEndPoint localEndPoint, IPEndPoint remoteEndPoint) {
             var webRequest = new EmbedIOWebSocketWebRequest(context);
             logger.Trace($"OnClientConnected():Websocket created for path {webRequest.RequestUrl.AbsolutePath}");
+
             var channel = new EmbedIOSubscriptionApiConnection(this.subscriptionApi, message => {
                 this.Send(context, message);
             }, context);

@@ -41,6 +41,13 @@ namespace Butterfly.Core.Test {
                     INNER JOIN employee e ON ec.employee_id=e.id 
                 WHERE contact_id=@contactId ORDER BY seq");
             Assert.AreEqual("ec.id", selectStatement2.selectClause);
+
+            var selectStatement3 = new SelectStatement(database, 
+                @"SELECT ec.*,
+                (SELECT name FROM employee e WHERE e.id=ec.employee_id) name,
+                FROM employee_contact ec"
+            );
+            Assert.AreEqual("employee_contact ec", selectStatement3.fromClause);
         }
 
         [TestMethod]
