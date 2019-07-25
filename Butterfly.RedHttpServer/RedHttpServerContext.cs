@@ -3,15 +3,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 using System;
-
-using NLog;
-using Red;
-
 using Butterfly.Core.Channel;
-using Butterfly.Core.WebApi;
 using Butterfly.Core.Util;
+using Butterfly.Core.WebApi;
+using NLog;
 
-namespace Butterfly.RHttpServer {
+namespace Butterfly.RedHttpServer {
 
     /// <summary>
     /// Convenient class to initialize IWebApi and ISubscriptionApi instances using RedHttpServer (see https://github.com/rosenbjerg/Red)
@@ -19,7 +16,7 @@ namespace Butterfly.RHttpServer {
     public class RedHttpServerContext : IDisposable {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        protected readonly RedHttpServer webServer;
+        protected readonly Red.RedHttpServer webServer;
         protected readonly IWebApi webApi;
         protected readonly ISubscriptionApi subscriptionApi;
 
@@ -29,7 +26,7 @@ namespace Butterfly.RHttpServer {
             ProcessX.AddHttpUrlAclIfNeeded(url);
 
             // Create the underlying RedHttpServer (see https://github.com/rosenbjerg/Red)
-            this.webServer = new RedHttpServer(8000, staticPath);
+            this.webServer = new Red.RedHttpServer(8000, staticPath);
 
             // Create the IWebApi and ISubscriptionApi wrappers
             this.webApi = new RedHttpServerWebApi(webServer);
@@ -44,7 +41,7 @@ namespace Butterfly.RHttpServer {
             this.webApi.Compile();
             this.subscriptionApi.Start();
 
-            // Start the underlying EmbedIOServer
+            // Start the underlying RedHttpServer
             this.webServer.RunAsync();
         }
 

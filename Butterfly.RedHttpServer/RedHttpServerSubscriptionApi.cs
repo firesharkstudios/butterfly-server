@@ -6,20 +6,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-using Red;
-
 using Butterfly.Core.Channel;
 using Butterfly.Core.Util;
+using Red;
 
-namespace Butterfly.RHttpServer {
+namespace Butterfly.RedHttpServer {
 
     /// <inheritdoc/>
     public class RedHttpServerSubscriptionApi : BaseSubscriptionApi {
-        public readonly RedHttpServer server;
+        public readonly Red.RedHttpServer server;
         public readonly string path;
 
-        public RedHttpServerSubscriptionApi(RedHttpServer server, int mustReceiveHeartbeatMillis = 5000, string path = "/ws", Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null) : base(mustReceiveHeartbeatMillis, getAuthToken, getAuthTokenAsync, getId, getIdAsync) {
+        public RedHttpServerSubscriptionApi(Red.RedHttpServer server, int mustReceiveHeartbeatMillis = 5000, string path = "/ws", Func<string, string, object> getAuthToken = null, Func<string, string, Task<object>> getAuthTokenAsync = null, Func<object, string> getId = null, Func<object, Task<string>> getIdAsync = null) : base(mustReceiveHeartbeatMillis, getAuthToken, getAuthTokenAsync, getId, getIdAsync) {
             if (EnvironmentX.IsRunningOnMono()) throw new Exception("Unfortunately, RedHttpServer does not support WebSockets on Mono");
             this.server = server;
             this.path = path;
@@ -29,7 +27,7 @@ namespace Butterfly.RHttpServer {
             logger.Info($"DoStart():Listening for WebSocket requests at {this.path}");
             this.server.WebSocket(this.path, (req, wsd) => {
                 this.AddUnauthenticatedConnection(new WebSocketDialogChannelConnection(this, wsd));
-                return Task.FromResult(0);
+                return Task.FromResult(HandlerType.Final);
             });
         }
 
@@ -74,9 +72,9 @@ namespace Butterfly.RHttpServer {
             this.webSocketDialog = webSocketDialog;
         }
 
-        public Uri RequestUrl => this.webSocketDialog.UnderlyingRequest.ToUri();
+        public Uri RequestUrl => this.webSocketDialog.Context.AspNetContext.Request.ToUri();
 
-        public Dictionary<string, string> Headers => this.webSocketDialog.UnderlyingRequest.Headers.ToDictionary(x => x.Key, x => x.Value.ToString());
+        public Dictionary<string, string> Headers => this.webSocketDialog.Context.Request.Headers.ToDictionary(x => x.Key, x => x.Value.ToString());
 
         public Dictionary<string, string> PathParams => throw new NotImplementedException();
 

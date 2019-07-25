@@ -9,20 +9,18 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
-using Red;
-
 using Butterfly.Core.Util;
 using Butterfly.Core.WebApi;
+using Red;
 
-namespace Butterfly.RHttpServer {
+namespace Butterfly.RedHttpServer {
 
     /// <inheritdoc/>
     public class RedHttpServerWebApi : BaseWebApi {
 
-        public readonly RedHttpServer server;
+        public readonly Red.RedHttpServer server;
 
-        public RedHttpServerWebApi(RedHttpServer server) {
+        public RedHttpServerWebApi(Red.RedHttpServer server) {
             this.server = server;
         }
 
@@ -34,9 +32,11 @@ namespace Butterfly.RHttpServer {
                     this.server.Get(newPath, async (req, res) => {
                         try {
                             await webHandler.listener(new RedHttpServerWebRequest(req), new RedHttpServerWebResponse(res));
+                            return HandlerType.Final;
                         }
                         catch (Exception e) {
                             logger.Error(e);
+                            return HandlerType.Error;
                         }
                     });
                 }
@@ -44,9 +44,11 @@ namespace Butterfly.RHttpServer {
                     this.server.Post(webHandler.path, async (req, res) => {
                         try {
                             await webHandler.listener(new RedHttpServerWebRequest(req), new RedHttpServerWebResponse(res));
+                            return HandlerType.Final;
                         }
                         catch (Exception e) {
                             logger.Error(e);
+                            return HandlerType.Error;
                         }
                     });
                 }
@@ -67,11 +69,11 @@ namespace Butterfly.RHttpServer {
 
         protected override Stream InputStream => this.request.BodyStream;
 
-        public override Uri RequestUrl => this.request.UnderlyingRequest.ToUri();
+        public override Uri RequestUrl => this.request.Context.AspNetContext.Request.ToUri();
 
         public override Dictionary<string, string> Headers => this.request.Headers.ToDictionary(x => x.Key, x => x.Value.ToString());
 
-        public override Dictionary<string, string> PathParams => this.request.Parameters.Values;
+        public override Dictionary<string, string> PathParams => this.request.Context.ExtractAllUrlParameters();
 
         public override Dictionary<string, string> QueryParams => this.RequestUrl.ParseQuery();
     }
@@ -106,7 +108,7 @@ namespace Butterfly.RHttpServer {
             throw new NotImplementedException();
         }
 
-        public Stream OutputStream => this.response.UnderlyingResponse.Body;
+        public Stream OutputStream => this.response.Context.AspNetContext.Response.Body;
 
         public Task WriteAsTextAsync(string value) {
             return this.response.SendString(value);
