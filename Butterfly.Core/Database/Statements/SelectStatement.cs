@@ -19,7 +19,7 @@ namespace Butterfly.Core.Database {
     public class SelectStatement : BaseStatement {
         //protected readonly static Regex STATEMENT_REGEX = new Regex(@"^SELECT\s+(.+?)\s+FROM\s+(.+?)(?:\s+WHERE\s+(.+?))?(?:\s+ORDER\s+BY\s+(.+?))?$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
-        protected readonly static StructuredParser STRUCTURED_PARSER = new StructuredParser().AddToken("SELECT", new Regex(@"\s*SELECT\s+"), true).AddToken("FROM", new Regex(@"\s*FROM\s+"), true).AddToken("WHERE", new Regex(@"\s*WHERE\s+"), false).AddToken("ORDER BY", new Regex(@"\s*ORDER BY\s+"), false);
+        protected readonly static StructuredParser STRUCTURED_PARSER = new StructuredParser().AddToken("SELECT", new Regex(@"\s*SELECT\s+", RegexOptions.IgnoreCase), true).AddToken("FROM", new Regex(@"\s*FROM\s+", RegexOptions.IgnoreCase), true).AddToken("WHERE", new Regex(@"\s*WHERE\s+", RegexOptions.IgnoreCase), false).AddToken("ORDER BY", new Regex(@"\s*ORDER BY\s+", RegexOptions.IgnoreCase), false);
 
         public readonly string selectClause;
         public readonly string fromClause;

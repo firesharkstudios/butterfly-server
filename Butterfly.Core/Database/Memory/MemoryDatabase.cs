@@ -79,6 +79,8 @@ namespace Butterfly.Core.Database.Memory {
         }
 
         protected static string EvaluateWhereClauseReplace(string sql, Regex regex, Dict sqlParams, StatementFromRef[] tableRefs, Func<string, string> remapOp = null) {
+            if (string.IsNullOrEmpty(sql)) return null;
+
             StringBuilder sb = new StringBuilder();
             int lastIndex = 0;
             foreach (Match match in regex.Matches(sql)) {

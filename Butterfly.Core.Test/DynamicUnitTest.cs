@@ -61,7 +61,7 @@ namespace Butterfly.Core.Test {
                     });
                     await transaction.CommitAsync();
                 }
-                await Task.Delay(200);
+                await Task.Delay(500);
                 Assert.AreEqual(insertCount, dataEventTransactionCollector.Count);
                 if (insertCount > 0) {
                     Assert.AreEqual(1, dataEventTransactionCollector[0].dataEvents.Length);

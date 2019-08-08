@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="MySqlConnector" Version="0.56.0" />
-    <PackageReference Include="NLog" Version="4.6.4" />
+    <PackageReference Include="NLog" Version="4.6.6" />
   </ItemGroup>
 
   <ItemGroup>
