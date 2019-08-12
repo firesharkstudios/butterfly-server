@@ -18,8 +18,10 @@ namespace Butterfly.Core.Util {
         /// </summary>
         /// <param name="me"></param>
         /// <param name="value"></param>
+        /// <param name="contentType"></param>
         /// <returns></returns>
-        public static Task WriteAsJsonAsync(this IHttpResponse me, object value) {
+        public static Task WriteAsJsonAsync(this IHttpResponse me, object value, string contentType = "application/json") {
+            if (!string.IsNullOrEmpty(contentType)) me.SetHeader("Content-Type", contentType);
             var json = JsonUtil.Serialize(value);
             return me.WriteAsTextAsync(json);
         }
