@@ -47,6 +47,6 @@ namespace Butterfly.Core.WebApi {
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        Task WriteAsTextAsync(string value);
+        Task WriteAsTextAsync(string value, string contentType = "text/plain");
     }
 }

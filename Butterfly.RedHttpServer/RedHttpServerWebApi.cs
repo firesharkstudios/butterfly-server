@@ -69,6 +69,8 @@ namespace Butterfly.RedHttpServer {
 
         protected override Stream InputStream => this.request.BodyStream;
 
+        public override string ClientIp => this.request?.AspNetRequest?.HttpContext?.Connection?.RemoteIpAddress?.ToString();
+
         public override Uri RequestUrl => this.request.Context.AspNetContext.Request.ToUri();
 
         public override Dictionary<string, string> Headers => this.request.Headers.ToDictionary(x => x.Key, x => x.Value.ToString());
@@ -76,6 +78,7 @@ namespace Butterfly.RedHttpServer {
         public override Dictionary<string, string> PathParams => this.request.Context.ExtractAllUrlParameters();
 
         public override Dictionary<string, string> QueryParams => this.RequestUrl.ParseQuery();
+
     }
 
     public class RedHttpServerWebResponse : IHttpResponse {
@@ -110,12 +113,9 @@ namespace Butterfly.RedHttpServer {
 
         public Stream OutputStream => this.response.Context.AspNetContext.Response.Body;
 
-        public Task WriteAsTextAsync(string value) {
+        public Task WriteAsTextAsync(string value, string contentType = "text/plain") {
+            if (!string.IsNullOrEmpty(contentType)) this.SetHeader("Content-Type", contentType);
             return this.response.SendString(value);
-        }
-
-        public Task WriteAsJsonAsync(object value) {
-            return this.response.SendJson(value);
         }
 
     }

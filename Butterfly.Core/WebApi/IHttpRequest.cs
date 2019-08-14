@@ -11,17 +11,12 @@ using Butterfly.Core.Util;
 namespace Butterfly.Core.WebApi {
     /// <inheritdoc/>
     public interface IHttpRequest : IWebRequest {
-        /// <summary>
-        /// Parses the body of a POST as JSON
-        /// </summary>
-        /// <typeparam name="T">The type of object to return</typeparam>
-        /// <returns>Returns an instance of <typeparamref name="T"/></returns>
-        Task<T> ParseAsJsonAsync<T>();
 
-        /// <summary>
-        /// Parses the body of a POST as URL encoded data (like from a form)
-        /// </summary>
-        Task<Dictionary<string, string>> ParseAsUrlEncodedAsync();
+        string ClientIp {
+            get;
+        }
+
+        Task<string> ReadAsync();
 
         /// <summary>
         /// Parses the body of a POST as a multipart stream (based on https://www.nuget.org/packages/HttpMultipartParser/)

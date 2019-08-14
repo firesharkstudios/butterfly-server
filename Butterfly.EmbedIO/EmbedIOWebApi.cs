@@ -94,6 +94,8 @@ namespace Butterfly.EmbedIO {
 
         protected override Stream InputStream => this.context.Request.InputStream;
 
+        public override string ClientIp => this.context?.Request?.RemoteEndPoint?.Address?.ToString();
+
         public override Uri RequestUrl => this.context.Request.Url;
 
         public override Dictionary<string, string> Headers => this.context.Request.Headers?.ToDictionary(forceUpperCaseKeys: true);
@@ -154,16 +156,12 @@ namespace Butterfly.EmbedIO {
 
         public Stream OutputStream => this.context.Response.OutputStream;
 
-        public async Task WriteAsTextAsync(string value) {
+        public async Task WriteAsTextAsync(string value, string contentType = "text/plain") {
+            if (!string.IsNullOrEmpty(contentType)) this.SetHeader("Content-Type", contentType);
             using (StreamWriter streamWriter = new StreamWriter(this.context.Response.OutputStream)) {
                 await streamWriter.WriteAsync(value);
             }
         }
-
-        /*
-        public Task WriteAsJsonAsync(object value) {
-        }
-        */
 
     }
 }

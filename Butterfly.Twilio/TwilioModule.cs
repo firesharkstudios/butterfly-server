@@ -32,7 +32,6 @@ namespace Butterfly.Twilio {
                     string responseText = await handler(fromPhone, toPhone, body, mediaUrls);
                     //logger.Debug($"/api/twilio/webhook,responseText={responseText}");
                     if (!string.IsNullOrEmpty(responseText)) {
-                        res.SetHeader("Content-Type", "text/plain");
                         await res.WriteAsTextAsync(responseText);
                     }
                 }
