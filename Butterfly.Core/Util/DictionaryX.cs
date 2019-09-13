@@ -2,15 +2,122 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
-using Newtonsoft.Json.Linq;
+using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace Butterfly.Core.Util {
     public static class DictionaryX {
+
+        public static async Task<bool> SyncAsync(this Dict[] me, Dict[] toRecords, string[] keyFieldNames, Func<Dict, Task<bool>> insertFunc, Func<Dict, Dict, Task<bool>> updateFunc, Func<Dict, Dict, Task<bool>> deleteFunc, char keyFieldDelim = ';') {
+            bool changed = false;
+            if (me.Length == 0 && toRecords.Length == 0) return changed;
+
+            List<object> existingIds = me.Length==0 ? new List<object>() : me.Select(x => x.GetKeyValue(keyFieldNames, delim: keyFieldDelim)).ToList();
+            List<object> newIds = toRecords.Length == 0 ? new List<object>() : toRecords.Select(x => x.GetKeyValue(keyFieldNames, delim: keyFieldDelim, throwErrorIfMissingKeyField: false)).ToList();
+
+            for (int i = 0; i < existingIds.Count; i++) {
+                int newIndex = newIds.IndexOf(existingIds[i]);
+                if (newIndex == -1) {
+                    var keys = keyFieldNames.ToDictionary(x => x, x => me[i][x]);
+                    bool deleteChanged = await deleteFunc(keys, me[i]);
+                    if (deleteChanged) changed = true;
+                }
+                else if (!toRecords[newIndex].IsSame(me[i])) {
+                    bool updateChanged = await updateFunc(me[i], toRecords[newIndex]);
+                    if (updateChanged) changed = true;
+                }
+            }
+
+            for (int i = 0; i < newIds.Count; i++) {
+                int existingIndex = newIds[i] == null ? -1 : existingIds.IndexOf(newIds[i]);
+                if (existingIndex == -1) {
+                    bool insertChanged = await insertFunc(toRecords[i]);
+                    if (insertChanged) changed = true;
+                }
+            }
+
+            return changed;
+        }
+
+        public static async Task<Task<bool>[]> ConcurrentSyncAsync(this Dict[] me, Dict[] toRecords, string[] keyFieldNames, Func<Dict, Task<bool>> insertFunc, Func<Dict, Dict, Task<bool>> updateFunc, Func<Dict, Dict, Task<bool>> deleteFunc, SemaphoreSlim semaphoreSlim, char keyFieldDelim = ';') {
+            if (me.Length == 0 && toRecords.Length == 0) return new Task<bool>[] { };
+
+            List<object> existingIds = me.Length == 0 ? new List<object>() : me.Select(x => x.GetKeyValue(keyFieldNames, delim: keyFieldDelim)).ToList();
+            List<object> newIds = toRecords.Length == 0 ? new List<object>() : toRecords.Select(x => x.GetKeyValue(keyFieldNames, delim: keyFieldDelim, throwErrorIfMissingKeyField: false)).ToList();
+
+            List<Task<bool>> tasks = new List<Task<bool>>();
+            for (int i = 0; i < existingIds.Count; i++) {
+                int newIndex = newIds.IndexOf(existingIds[i]);
+                if (newIndex == -1) {
+                    var keys = keyFieldNames.ToDictionary(x => x, x => me[i][x]);
+                    await semaphoreSlim.WaitAsync();
+                    var task = deleteFunc(keys, me[i]);
+                    var continueWithTask = task.ContinueWith(t => semaphoreSlim.Release());
+                    tasks.Add(task);
+                }
+                else if (!toRecords[newIndex].IsSame(me[i])) {
+                    await semaphoreSlim.WaitAsync();
+                    var task = updateFunc(me[i], toRecords[newIndex]);
+                    var continueWithTask = task.ContinueWith(t => semaphoreSlim.Release());
+                    tasks.Add(task);
+                }
+            }
+
+            for (int i = 0; i < newIds.Count; i++) {
+                int existingIndex = newIds[i] == null ? -1 : existingIds.IndexOf(newIds[i]);
+                if (existingIndex == -1) {
+                    await semaphoreSlim.WaitAsync();
+                    var task = insertFunc(toRecords[i]);
+                    var continueWithTask = task.ContinueWith(t => semaphoreSlim.Release());
+                    tasks.Add(task);
+                }
+            }
+
+            return tasks.ToArray();
+        }
+
+        public static object GetKeyValue(this Dict me, string[] fieldNames, char delim = ';', bool throwErrorIfMissingKeyField = true) {
+            StringBuilder sb = new StringBuilder();
+            bool isFirst = true;
+            foreach (var fieldName in fieldNames) {
+                if (isFirst) isFirst = false;
+                else sb.Append(delim);
+
+                if (!me.ContainsKey(fieldName)) {
+                    if (throwErrorIfMissingKeyField) throw new Exception($"Could not get key field '{fieldName}' to build key value");
+                    return null;
+                }
+                else {
+                    sb.Append(me[fieldName]);
+                }
+            }
+            return sb.ToString();
+        }
+
+        public static Dict ParseKeyValue(object keyValue, string[] keyFieldNames, char delim = ';') {
+            Dict result = new Dict();
+            if (keyValue is string keyValueText) {
+                string[] keyValueParts = keyValueText.Split(delim);
+                for (int i = 0; i < keyFieldNames.Length; i++) {
+                    result[keyFieldNames[i]] = keyValueParts[i];
+                }
+            }
+            else if (keyFieldNames.Length == 1) {
+                result[keyFieldNames[0]] = keyValue;
+            }
+            else {
+                throw new Exception("Cannot parse key value that is not a string and keyFieldNames.Length!=1");
+            }
+            return result;
+        }
+
 
         public static bool ContainsAnyKey<T, U>(this Dictionary<T, U> me, T[] keys) {
             foreach (var key in keys) {

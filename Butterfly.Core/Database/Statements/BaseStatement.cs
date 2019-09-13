@@ -70,7 +70,7 @@ namespace Butterfly.Core.Database {
             else if (statementParams is string keyValue) {
                 if (!allowKeyValueAsSourceParams) throw new Exception("Statement doesn't allow passing single key value as source params");
                 if (this.StatementFromRefs.Length != 1) throw new Exception("Statement must have exactly one table to pass single string value as where condition");
-                return BaseDatabase.ParseKeyValue(keyValue, this.StatementFromRefs[0].table.Indexes[0].FieldNames);
+                return DictionaryX.ParseKeyValue(keyValue, this.StatementFromRefs[0].table.Indexes[0].FieldNames);
             }
 
             // Otherwise, convert statementParams to a dictionary

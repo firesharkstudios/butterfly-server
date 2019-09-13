@@ -78,7 +78,7 @@ namespace Butterfly.Core.Database {
                 keyValue = getGeneratedId();
             }
             else {
-                keyValue = BaseDatabase.GetKeyValue(insertStatement.StatementFromRefs[0].table.Indexes[0].FieldNames, executableParams);
+                keyValue = executableParams.GetKeyValue(insertStatement.StatementFromRefs[0].table.Indexes[0].FieldNames);
             }
 
             // Create data event
@@ -171,16 +171,13 @@ namespace Butterfly.Core.Database {
                 return null;
             }
             else {
-                return BaseDatabase.GetKeyValue(primaryIndex.FieldNames, fieldValues);
+                return fieldValues.GetKeyValue(primaryIndex.FieldNames);
             }
         }
 
         public async Task<bool> SynchronizeAsync(string tableName, Dict[] existingRecords, Dict[] newRecords, string[] keyFieldNames = null, Func<Dict, Task> insertFunc = null, Func<Dict, Task<int>> deleteFunc = null) {
             if (!this.database.TableByName.TryGetValue(tableName, out Table table)) throw new Exception($"Invalid table name '{tableName}'");
-
-            bool changed = false;
-
-            if (existingRecords.Length == 0 && newRecords.Length == 0) return changed;
+            if (existingRecords.Length == 0 && newRecords.Length == 0) return false;
 
             if (keyFieldNames == null) {
                 var record = existingRecords.Length > 0 ? existingRecords[0] : newRecords[0];
@@ -189,40 +186,33 @@ namespace Butterfly.Core.Database {
                 keyFieldNames = uniqueIndex.FieldNames;
             }
 
-            List<object> existingIds = existingRecords.Select(x => BaseDatabase.GetKeyValue(keyFieldNames, x)).ToList();
-            List<object> newIds = newRecords.Select(x => BaseDatabase.GetKeyValue(keyFieldNames, x, throwErrorIfMissingKeyField: false)).ToList();
-
-            for (int i = 0; i < existingIds.Count; i++) {
-                int newIndex = newIds.IndexOf(existingIds[i]);
-                int count = 0;
-                if (newIndex == -1) {
-                    var vars = keyFieldNames.ToDictionary(x => x, x => existingRecords[i][x]);
-                    if (deleteFunc == null) {
-                        count = await this.DeleteAsync(table.Name, vars);
-                    }
-                    else {
-                        count = await deleteFunc(vars);
-                    }
-                }
-                else if (!newRecords[newIndex].IsSame(existingRecords[i])) {
-                    count = await this.UpdateAsync(table.Name, newRecords[newIndex]);
-                }
-                if (count > 0) changed = true;
-            }
-
-            for (int i = 0; i < newIds.Count; i++) {
-                int existingIndex = newIds[i]==null ? -1 : existingIds.IndexOf(newIds[i]);
-                if (existingIndex == -1) {
+            bool changed = await existingRecords.SyncAsync(
+                newRecords,
+                keyFieldNames,
+                async (newRow) => {
                     if (insertFunc == null) {
-                        await this.InsertAsync<object>(table.Name, newRecords[i]);
+                        await this.InsertAsync<object>(table.Name, newRow);
                     }
                     else {
-                        await insertFunc(newRecords[i]);
+                        await insertFunc(newRow);
                     }
-                    changed = true;
+                    return true;
+                },
+                async (existingRow, newRow) => {
+                    int count = await this.UpdateAsync(table.Name, newRow);
+                    return count > 0;
+                },
+                async (keys, existingRow) => {
+                    int count;
+                    if (deleteFunc == null) {
+                        count = await this.DeleteAsync(table.Name, keys);
+                    }
+                    else {
+                        count = await deleteFunc(keys);
+                    }
+                    return count > 0;
                 }
-            }
-
+            );
             return changed;
         }
 

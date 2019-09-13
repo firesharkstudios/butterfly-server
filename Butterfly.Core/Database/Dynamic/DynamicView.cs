@@ -128,8 +128,8 @@ namespace Butterfly.Core.Database.Dynamic {
             if (!this.selectStatement.HasTableInFrom(keyValueDataEvent.name)) return null;
 
             List<RecordDataEvent> recordDataEvents = new List<RecordDataEvent>();
-            var preCommitKeyValues = preCommitImpactedRecords==null ? new object[] { } : preCommitImpactedRecords.Select(x => BaseDatabase.GetKeyValue(this.keyFieldNames, x)).ToArray();
-            var postCommitKeyValues = postCommitImpactedRecords==null ? new object[] { } : postCommitImpactedRecords.Select(x => BaseDatabase.GetKeyValue(this.keyFieldNames, x)).ToArray();
+            var preCommitKeyValues = preCommitImpactedRecords==null ? new object[] { } : preCommitImpactedRecords.Select(x => x.GetKeyValue(this.keyFieldNames)).ToArray();
+            var postCommitKeyValues = postCommitImpactedRecords==null ? new object[] { } : postCommitImpactedRecords.Select(x => x.GetKeyValue(this.keyFieldNames)).ToArray();
 
             // Find updates and deletes
             for (int i=0; i<preCommitKeyValues.Length; i++) {
@@ -189,7 +189,7 @@ namespace Butterfly.Core.Database.Dynamic {
             foreach (StatementFromRef statementFromRef in this.selectStatement.StatementFromRefs) {
                 StringBuilder sb = new StringBuilder();
                 if (statementFromRef == selectedStatementFromRef) {
-                    Dict primaryKeyValues = BaseDatabase.ParseKeyValue(keyValueDataEvent.keyValue, this.dynamicViewSet.Database.TableByName[keyValueDataEvent.name].Indexes[0].FieldNames);
+                    Dict primaryKeyValues = DictionaryX.ParseKeyValue(keyValueDataEvent.keyValue, this.dynamicViewSet.Database.TableByName[keyValueDataEvent.name].Indexes[0].FieldNames);
 
                     foreach (var fieldName in this.dynamicViewSet.Database.TableByName[keyValueDataEvent.name].Indexes[0].FieldNames) {
                         logger.Trace($"GetImpactedRecordsAsync():tableName={statementFromRef.table.Name},fieldName={fieldName}");

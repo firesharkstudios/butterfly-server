@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
-    <Version>1.1.8</Version>
+    <Version>1.2.0</Version>
     <Authors>Johan van Rensburg, Kent Johnson</Authors>
     <Company>Fireshark Studios, LLC</Company>
     <Product>Butterfly Server .NET</Product>

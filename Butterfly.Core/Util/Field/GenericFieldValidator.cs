@@ -24,7 +24,10 @@ namespace Butterfly.Core.Util.Field {
         }
 
         public string Validate(string value) {
-            if (!this.allowNull && string.IsNullOrEmpty(value)) throw new Exception($"Field {this.fieldName} cannot be null");
+            if (string.IsNullOrEmpty(value)) {
+                if (this.allowNull) return null;
+                else throw new Exception($"Field {this.fieldName} cannot be null");
+            }
 
             if (!regex.Match(value).Success) {
                 if (this.includeValueInError) {

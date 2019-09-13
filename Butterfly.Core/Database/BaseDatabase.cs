@@ -160,7 +160,7 @@ namespace Butterfly.Core.Database {
             dataEvents.Add(new InitialBeginDataEvent(dataEventName, keyFieldNames));
 
             Dict[] rows = await this.SelectRowsAsync(selectStatement, statementParams);
-            RecordDataEvent[] changeDataEvents = rows.Select(x => new RecordDataEvent(DataEventType.Initial, dataEventName, GetKeyValue(keyFieldNames, x), x)).ToArray();
+            RecordDataEvent[] changeDataEvents = rows.Select(x => new RecordDataEvent(DataEventType.Initial, dataEventName, x.GetKeyValue(keyFieldNames), x)).ToArray();
             dataEvents.AddRange(changeDataEvents);
 
             return dataEvents.ToArray();
@@ -374,7 +374,7 @@ namespace Butterfly.Core.Database {
             string typeText = match.Groups["type"].Value;
 
             Type type;
-            if (typeText.EndsWith("CHAR", StringComparison.OrdinalIgnoreCase) || typeText.EndsWith("TEXT", StringComparison.OrdinalIgnoreCase)) {
+            if (typeText.EndsWith("CHAR", StringComparison.OrdinalIgnoreCase) || typeText.EndsWith("TEXT", StringComparison.OrdinalIgnoreCase) || typeText.EndsWith("JSON", StringComparison.OrdinalIgnoreCase)) {
                 type = typeof(string);
             }
             else if (typeText.Equals("TINYINT", StringComparison.OrdinalIgnoreCase)) {
@@ -429,40 +429,6 @@ namespace Butterfly.Core.Database {
             return await dynamicViewSet.StartAsync();
         }
 
-        internal static object GetKeyValue(string[] fieldNames, Dict record, bool throwErrorIfMissingKeyField = true) {
-            StringBuilder sb = new StringBuilder();
-            bool isFirst = true;
-            foreach (var fieldName in fieldNames) {
-                if (isFirst) isFirst = false;
-                else sb.Append(";");
-
-                if (!record.ContainsKey(fieldName)) {
-                    if (throwErrorIfMissingKeyField) throw new Exception($"Could not get key field '{fieldName}' to build key value");
-                    return null;
-                }
-                else {
-                    sb.Append(record[fieldName]);
-                }
-            }
-            return sb.ToString();
-        }
-
-        internal static Dict ParseKeyValue(object keyValue, string[] keyFieldNames) {
-            Dict result = new Dict();
-            if (keyValue is string keyValueText) {
-                string[] keyValueParts = keyValueText.Split(';');
-                for (int i = 0; i < keyFieldNames.Length; i++) {
-                    result[keyFieldNames[i]] = keyValueParts[i];
-                }
-            }
-            else if (keyFieldNames.Length==1) {
-                result[keyFieldNames[0]] = keyValue;
-            }
-            else {
-                throw new Exception("Cannot parse key value that is not a string and keyFieldNames.Length!=1");
-            }
-            return result;
-        }
     }
 
     public class DatabaseException : Exception {

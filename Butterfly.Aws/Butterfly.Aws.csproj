@@ -12,7 +12,7 @@
     <Authors>Kent Johnson</Authors>
     <Copyright>Copyright 2017-2018 Fireshark Studios, LLC</Copyright>
     <Description>Implementation of Butterfly.Core.Notify.INotifyMessageSender for AWS SES</Description>
-    <Version>1.1.8</Version>
+    <Version>1.2.0</Version>
     <PackageReleaseNotes>Various improvements and bug fixes</PackageReleaseNotes>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
     <LangVersion>7.1</LangVersion>
