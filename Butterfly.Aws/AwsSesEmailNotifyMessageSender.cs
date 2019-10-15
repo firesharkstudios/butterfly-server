@@ -11,12 +11,48 @@ using Amazon.SimpleEmail.Model;
 using NLog;
 
 using Butterfly.Core.Notify;
+using System.IO;
+using MimeKit;
+using Amazon;
 
 namespace Butterfly.Aws {
     public class AwsSesEmailNotifyMessageSender : BaseNotifyMessageSender {
 
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
+        // Based on https://github.com/gianluis90/amazon-send-email/blob/master/SendEmailWithAttachments/Program.cs
+        protected override async Task<string> DoSendAsync(string from, string to, string subject, string bodyText, string bodyHtml, string[] attachments) {
+            logger.Debug($"DoSendAsync():from={from},to={to},subject={subject}");
+
+            using (var client = new AmazonSimpleEmailServiceClient(Amazon.RegionEndpoint.USEast1))
+            using (var messageStream = new MemoryStream()) {
+                var message = new MimeMessage();
+                var builder = new BodyBuilder() { TextBody = bodyText };
+                if (!string.IsNullOrEmpty(bodyHtml)) builder.HtmlBody = bodyHtml;
+
+                message.From.Add(MailboxAddress.Parse(from));
+                message.To.Add(MailboxAddress.Parse(to));
+                message.Subject = subject;
+
+                if (attachments != null) {
+                    foreach (var attachment in attachments) {
+                        using (FileStream stream = File.Open(attachment, FileMode.Open)) builder.Attachments.Add(Path.GetFileName(attachment), stream);
+                    }
+                }
+
+                message.Body = builder.ToMessageBody();
+                message.WriteTo(messageStream);
+
+                var request = new SendRawEmailRequest() {
+                    RawMessage = new RawMessage() { Data = messageStream }
+                };
+
+                var response = await client.SendRawEmailAsync(request);
+                return response.MessageId;
+            }
+        }
+
+        /*
         protected override async Task<string> DoSendAsync(string from, string to, string subject, string bodyText, string bodyHtml) {
             logger.Debug($"DoSendAsync():from={from},to={to},subject={subject}");
 
@@ -39,19 +75,8 @@ namespace Butterfly.Aws {
 
             logger.Debug($"DoSendAsync():client.SendEmailAsync():sendEmailResponse.MessageId={sendEmailResponse.MessageId}");
             return sendEmailResponse.MessageId;
-
-            /*
-            try {
-                logger.Debug($"DoSendAsync():client.SendEmailAsync()");
-                SendEmailResponse sendEmailResponse = await client.SendEmailAsync(sendEmailRequest);
-                return sendEmailResponse.MessageId;
-            }
-            catch (Exception ex) {
-                Console.WriteLine("The email was not sent.");
-                Console.WriteLine("Error message: " + ex.Message);
-            }
-            */
         }
+        */
 
     }
 }

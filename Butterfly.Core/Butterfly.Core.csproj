@@ -7,11 +7,11 @@
     <PackageIconUrl>https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/logo-40x40.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/firesharkstudios/butterfly-server-dotnet</RepositoryUrl>
     <PackageTags>butterfly server realtime rest api webserver database push</PackageTags>
-    <Authors>Kent Johnson</Authors>
+    <Authors>Kent Johnsonn</Authors>
     <Company>Fireshark Studios, LLC</Company>
     <Product>Butterfly Server .NET</Product>
     <Copyright>Copyright 2017-2018 Fireshark Studios, LLC</Copyright>
-    <Version>1.2.7</Version>
+    <Version>1.2.9</Version>
     <PackageReleaseNotes>Various improvements and bug fixes</PackageReleaseNotes>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
     <LangVersion>7.1</LangVersion>

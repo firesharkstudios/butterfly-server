@@ -28,7 +28,7 @@ namespace Butterfly.Twilio
             this.twilioAuthToken = twilioAuthToken;
         }
 
-        protected override async Task<string> DoSendAsync(string from, string to, string subject, string bodyText, string bodyHtml) {
+        protected override async Task<string> DoSendAsync(string from, string to, string subject, string bodyText, string bodyHtml, string[] attachments) {
             TwilioClient.Init(this.twilioAccountSid, this.twilioAuthToken);
 
             var mediaUris = string.IsNullOrWhiteSpace(bodyHtml) ? null: new List<Uri> { new Uri(bodyHtml.Trim()) };
