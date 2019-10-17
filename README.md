@@ -6,6 +6,8 @@
 
 ![Star Us](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/yellow-star-16x16.png) Please star this project if you find it interesting
 
+Targets *.NET Standard 2.1* (.NET Core 3.0)
+
 # Examples...
 
 - [Real-time Streaming Charts](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.RealtimeStreamingChart) - Shows a client with a real-time streaming chart updated from a server (uses [Smoothie Charts](http://smoothiecharts.org/))
@@ -24,16 +26,3 @@
 - [Butterfly.Util](https://github.com/firesharkstudios/butterfly-util) - Collection of utility methods used in the Butterfly Server
 - [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web) - Simple RESTlike and Subscription API server in C#
 
-# Key Implementations...
-
-Each component above can have multiple implementations...
-
-- [Database](https://butterflyserver.io/#/?id=accessing-a-database) currently has implementations for [MySQL](https://butterflyserver.io/#/?id=using-mysql), [Postgres](https://butterflyserver.io/#/?id=using-postgres), [SQLite](https://butterflyserver.io/#/?id=using-sqlite), and [MS SQL Server](https://butterflyserver.io/#/?id=using-ms-sql-server)
-- [Subscription Api](https://butterflyserver.io/#/?id=creating-a-subscription-api) and [Web Api](https://butterflyserver.io/#/?id=creating-a-web-api) currently have implementations for [EmbedIO](https://butterflyserver.io/#/?id=using-embedio) and [RedHttpServer](https://butterflyserver.io/#/?id=using-redhttpserver)
-
-# FAQ
-
-- Targets *.NET Standard 2.0*
-- Does **not** use polling
-
-See https://butterflyserver.io for more details.
