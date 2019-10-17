@@ -7,11 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Butterfly.Db" Version="2.0.1" />
+    <PackageReference Include="Butterfly.Web.EmbedIO" Version="2.0.2" />
     <PackageReference Include="NLog" Version="4.6.7" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Butterfly.Web\Butterfly.Web.EmbedIO\Butterfly.Web.EmbedIO.csproj" />
   </ItemGroup>
 
 </Project>

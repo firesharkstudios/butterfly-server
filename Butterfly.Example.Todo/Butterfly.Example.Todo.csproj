@@ -18,11 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Butterfly.Db\Butterfly.Db.MySql\Butterfly.Db.MySql.csproj" />
-    <ProjectReference Include="..\..\Butterfly.Web\Butterfly.Web.EmbedIO\Butterfly.Web.EmbedIO.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -31,6 +26,12 @@
   <ItemGroup>
     <Folder Include="electron\" />
     <Folder Include="cordova\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Butterfly.Db" Version="2.0.1" />
+    <PackageReference Include="Butterfly.Db.MySql" Version="2.0.1" />
+    <PackageReference Include="Butterfly.Web.EmbedIO" Version="2.0.2" />
   </ItemGroup>
 
 </Project>

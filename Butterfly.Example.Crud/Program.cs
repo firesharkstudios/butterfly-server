@@ -2,6 +2,7 @@
 
 using Butterfly.Util;
 using Butterfly.Web;
+using Butterfly.Web.WebApi;
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace MyCrudApp {

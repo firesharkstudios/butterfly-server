@@ -6,8 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Butterfly.Db\Butterfly.Db.MySql\Butterfly.Db.MySql.csproj" />
-    <ProjectReference Include="..\..\Butterfly.Web\Butterfly.Web.EmbedIO\Butterfly.Web.EmbedIO.csproj" />
+    <PackageReference Include="Butterfly.Db" Version="2.0.1" />
+    <PackageReference Include="Butterfly.Db.MySql" Version="2.0.1" />
+    <PackageReference Include="Butterfly.Web.EmbedIO" Version="2.0.2" />
   </ItemGroup>
 
 </Project>

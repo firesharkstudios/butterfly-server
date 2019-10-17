@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Butterfly.Db\Butterfly.Db\Butterfly.Db.csproj" />
-    <ProjectReference Include="..\..\Butterfly.Web\Butterfly.Web.EmbedIO\Butterfly.Web.EmbedIO.csproj" />
+    <PackageReference Include="Butterfly.Db" Version="2.0.1" />
+    <PackageReference Include="Butterfly.Web.EmbedIO" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>

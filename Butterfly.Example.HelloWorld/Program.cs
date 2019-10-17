@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Butterfly.Util;
 using Butterfly.Web;
+using Butterfly.Web.WebApi;
 
 namespace Butterfly.Example.HelloWorld {
     class Program {

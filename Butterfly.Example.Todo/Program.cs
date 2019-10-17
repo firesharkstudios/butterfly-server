@@ -11,6 +11,7 @@ using Butterfly.Util;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 using Butterfly.Web;
+using Butterfly.Web.WebApi;
 
 namespace Butterfly.Example.Todo {
     class Program {
