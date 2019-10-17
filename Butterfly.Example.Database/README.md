@@ -11,7 +11,7 @@ git clone https://github.com/firesharkstudios/butterfly-server
 # Run
 
 To run in *Visual Studio*...
-- Open *Butterfly.sln*
+- Open *Butterfly.Server.sln*
 - Run *Butterfly.Example.Database*.
 
 To run in a terminal or command prompt...

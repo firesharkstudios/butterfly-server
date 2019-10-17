@@ -10,7 +10,7 @@ git clone https://github.com/firesharkstudios/butterfly-server
 
 ## Running in Visual Studio
 
-In *Visual Studio*, open *Butterfly.sln* and run *Butterfly.Example.HelloWorld*.
+In *Visual Studio*, open *Butterfly.Server.sln* and run *Butterfly.Example.HelloWorld*.
 
 ## Running in a Terminal
 
