@@ -21,7 +21,7 @@ To run in *Visual Studio*...
 To run in a terminal or command prompt...
 ```
 cd butterfly-server\Butterfly.Example.Crud
-dotnet run -vm
+dotnet run
 ```
 
 You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server/blob/master/Butterfly.Example.Crud/Program.cs).
