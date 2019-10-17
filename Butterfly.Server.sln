@@ -11,48 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "docs", "docs\", "{4D722034-2801-4C7F-91EA-19714E2D0B1D}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_56947"
-		Debug.AspNetCompiler.PhysicalPath = "docs\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56947\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_56947"
-		Release.AspNetCompiler.PhysicalPath = "docs\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56947\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "56947"
-		SlnRelativePath = "docs\"
-	EndProjectSection
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "docfx_project", "docfx_project\", "{934C100B-6EC4-47F0-A5EA-5AD829D93506}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_56415"
-		Debug.AspNetCompiler.PhysicalPath = "docfx_project\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56415\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_56415"
-		Release.AspNetCompiler.PhysicalPath = "docfx_project\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56415\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "56415"
-		SlnRelativePath = "docfx_project\"
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Database", "Butterfly.Example.Database\Butterfly.Example.Database.csproj", "{5AA54991-472C-4A67-85D6-E20C86BBEDD6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.HelloWorld", "Butterfly.Example.HelloWorld\Butterfly.Example.HelloWorld.csproj", "{EFD1260F-AFAA-4128-965E-7E0D2CF83703}"
@@ -75,10 +33,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4D722034-2801-4C7F-91EA-19714E2D0B1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D722034-2801-4C7F-91EA-19714E2D0B1D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{934C100B-6EC4-47F0-A5EA-5AD829D93506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{934C100B-6EC4-47F0-A5EA-5AD829D93506}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{5AA54991-472C-4A67-85D6-E20C86BBEDD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5AA54991-472C-4A67-85D6-E20C86BBEDD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AA54991-472C-4A67-85D6-E20C86BBEDD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -116,8 +70,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
-		BuildVersion_StartDate = 2000/1/1
 		BuildVersion_BuildVersioningStyle = None.None.None.Increment
+		BuildVersion_StartDate = 2000/1/1
+		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
 	EndGlobalSection
 EndGlobal
