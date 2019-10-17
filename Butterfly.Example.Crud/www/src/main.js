@@ -1,23 +1,16 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
+import App from './App.vue'
 import router from './router'
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
-
-import { ArrayDataEventHandler, WebSocketChannelClient } from 'butterfly-client'
-
-Vue.use(Vuetify)
+import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
+import { ArrayDataEventHandler, WebSocketChannelClient } from 'butterfly-client'
+
 new Vue({
-  el: '#app',
   router,
-  components: { App },
-  template: '<App/>',
+  vuetify,
+  render: h => h(App),
   data() {
     return {
       channelClient: null,
@@ -51,7 +44,7 @@ new Vue({
   },
   beforeMount() {
     let self = this;
-    let url = `ws://${window.location.host}/ws`;
+    let url = `ws://localhost:8000/ws`;
     self.channelClient = new WebSocketChannelClient({
       url,
       onStateChange(value) {
@@ -60,4 +53,4 @@ new Vue({
     });
     self.channelClient.connect();
   },
-})
+}).$mount('#app')

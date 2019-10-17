@@ -3,23 +3,23 @@
 
     <!-- Contact List -->
     <v-list v-if="contacts.length>0">
-      <v-list-tile v-for="contact in contacts" :key="contact.id">
-        <v-list-tile-content>
-          <v-list-tile-title>
+      <v-list-item v-for="contact in contacts" :key="contact.id">
+        <v-list-item-content>
+          <v-list-item-title>
             {{ contact.first_name }} {{ contact.last_name }}
-          </v-list-tile-title>
-        </v-list-tile-content>
-        <v-list-tile-action>
+          </v-list-item-title>
+        </v-list-item-content>
+        <v-list-item-action>
           <v-btn icon @click="showDialog(true, contact)">
-            <v-icon>edit</v-icon>
+            <v-icon>mdi-edit</v-icon>
           </v-btn>
-        </v-list-tile-action>
-        <v-list-tile-action>
+        </v-list-item-action>
+        <v-list-item-action>
           <v-btn icon @click="remove(contact.id)">
-            <v-icon>delete</v-icon>
+            <v-icon>mdi-delete</v-icon>
           </v-btn>
-        </v-list-tile-action>
-      </v-list-tile>
+        </v-list-item-action>
+      </v-list-item>
     </v-list>
     <v-flex class="px-5 py-5 text-xs-center" v-else>
       - No Contacts -
@@ -28,7 +28,7 @@
     <!-- Add Contact Button -->
     <v-flex class="text-xs-center py-3">
       <v-btn @click="showDialog(true)" color="primary">
-        <v-icon>add</v-icon> Add Contact
+        <v-icon>mdi-add</v-icon> Add Contact
       </v-btn>
     </v-flex>
 
@@ -44,7 +44,7 @@
             <v-layout wrap>
               <v-flex xs12 sm6>
                 <v-text-field label="First Name"
-                              v-model="dialogFirstName" required />
+                              v-model="dialogFirstName" autofocus required />
               </v-flex>
               <v-flex xs12 sm6>
                 <v-text-field label="Last Name"
@@ -56,16 +56,18 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat
+          <v-btn color="blue darken-1" text
                  @click="showDialog(false)">Close</v-btn>
-          <v-btn color="blue darken-1" flat
+          <v-btn color="blue darken-1" dark
                  @click="save">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
   </v-container>
 </template>
-<script>export default {
+
+<script>
+  export default {
     data () {
       return {
         contacts: [],
@@ -90,19 +92,19 @@
 
         let apiUrl;
         if (this.dialogId) {
-          apiUrl = '/api/contact/update';
+          apiUrl = 'http://localhost:8000/api/contact/update';
           data.id = this.dialogId;
         }
         else {
-          apiUrl = '/api/contact/insert';
+          apiUrl = 'http://localhost:8000/api/contact/insert';
         }
 
         let self = this;
         this.$root.callApi(apiUrl, data)
-          .then(res => self.dialogShow = false);
+          .then(() => self.dialogShow = false);
       },
       remove(id) {
-        this.$root.callApi('/api/contact/delete', id);
+        this.$root.callApi('http://localhost:8000/api/contact/delete', id);
       },
     },
     mounted() {

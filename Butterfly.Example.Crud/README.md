@@ -33,11 +33,9 @@ This assumes you have the [demo server](#run-the-server) running.
 ```
 cd butterfly-server\Butterfly.Example.Crud\www
 npm install
-npm run dev
+npm run serve
 ```
 
-This will open a browser to http://localhost:8080/.
-
-Now, open as many other browser instances to http://localhost:8080/ as you wish to confirm the todo list stays synchronized across all connected clients.
+Open as many browser instances to http://localhost:8080/ as you wish to confirm the todo list stays synchronized across all connected clients.
 
 **Note:** The server process is listening for API requests on port 8000 and the node dev server is listening on port 8080 and proxying API requests to port 8000.

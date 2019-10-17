@@ -34,6 +34,7 @@ namespace MyCrudApp {
                 var id = await req.ParseAsJsonAsync<string>();
                 await database.DeleteAndCommitAsync("contact", id);
             });
+            context.WebApi.Compile();
 
             // Define the Subscription API
             context.SubscriptionApi.OnSubscribe(
