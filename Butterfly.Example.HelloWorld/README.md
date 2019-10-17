@@ -17,8 +17,10 @@ In *Visual Studio*, open *Butterfly.Server.sln* and run *Butterfly.Example.Hello
 Open a terminal or command prompt and run...
 
 ```
-cd butterfly-server\Butterfly.Example.HelloWorld
-dotnet run -vm www
+cd butterfly-server\Butterfly.Example.HelloWorld\www
+npm install
+cd ..
+dotnet run www
 ```
 
 # Result
