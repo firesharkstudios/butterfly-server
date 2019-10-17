@@ -1,4 +1,4 @@
-# Butterfly Server .NET ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server/master/img/logo-40x40.png) 
+# Butterfly Server ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server/master/img/logo-40x40.png) 
 
 > The Everything is Real-Time C# Backend for Web and Desktop Apps
 

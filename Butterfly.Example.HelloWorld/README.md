@@ -23,8 +23,16 @@ cd ..
 dotnet run www
 ```
 
-# Result
+## What Should Happen
 
-After the server runs...
+You should see...
 - A browser instance will open to http://localhost:8080/
 - The browser will show "Hello World" alert echoed from the server
+
+# What is Happening
+
+## Server
+
+You can see the server code [here](https://github.com/firesharkstudios/butterfly-server/blob/master/Butterfly.Example.HelloWorld/Program.cs).
+
+ 

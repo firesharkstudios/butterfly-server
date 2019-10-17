@@ -28,5 +28,5 @@ You can see the server code that runs at [Program.cs](https://github.com/firesha
 
 This will open a browser to http://localhost:8000/.
 
-This is based on [Smoothie Charts Tutorial](http://smoothiecharts.org/tutorial.html) but changes the example to receive the real-time data from [Butterfly Server .NET](https://butterflyserver.io).
+This is based on [Smoothie Charts Tutorial](http://smoothiecharts.org/tutorial.html) but changes the example to receive the real-time data from [Butterfly Server](https://butterflyserver.io).
 

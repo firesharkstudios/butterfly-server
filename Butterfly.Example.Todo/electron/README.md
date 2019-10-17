@@ -1,4 +1,4 @@
-# Butterfly Server .NET - Electron Todo Client
+# Butterfly Server - Electron Todo Client
 
 > A simple Todo app built using Electron / Vue / Vuetify on the client
 

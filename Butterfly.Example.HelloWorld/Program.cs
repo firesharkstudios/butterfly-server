@@ -4,8 +4,9 @@
 using System;
 using System.Threading.Tasks;
 
+using Butterfly.Db.Memory;
 using Butterfly.Util;
-using Butterfly.Web;
+using Butterfly.Web.EmbedIO;
 using Butterfly.Web.WebApi;
 
 namespace Butterfly.Example.HelloWorld {
@@ -14,9 +15,9 @@ namespace Butterfly.Example.HelloWorld {
         static async Task Main(string[] args) {
             const int port = 8000;
             var wwwPath = args.Length > 0 ? args[0] : "../../../www";
-            using (var embedIOContext = new Butterfly.Web.EmbedIO.EmbedIOContext($"http://+:{port}/", wwwPath)) {
+            using (var embedIOContext = new EmbedIOContext($"http://+:{port}/", wwwPath)) {
                 // Create a MemoryDatabase (no persistence, limited features)
-                var database = new Butterfly.Db.Memory.MemoryDatabase();
+                var database = new MemoryDatabase();
                 await database.CreateFromSqlAsync(@"CREATE TABLE message (
 	                id INT NOT NULL AUTO_INCREMENT,
 	                text VARCHAR(40) NOT NULL,
