@@ -1,19 +1,19 @@
-# Butterfly Server .NET ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/logo-40x40.png) 
+# Butterfly Server .NET ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server/master/img/logo-40x40.png) 
 
 > The Everything is Real-Time C# Backend for Web and Desktop Apps
 
-![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/simple-chat-demo.gif) 
+![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server/master/img/simple-chat-demo.gif) 
 
-![Star Us](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/yellow-star-16x16.png) Please star this project if you find it interesting
+![Star Us](https://raw.githubusercontent.com/firesharkstudios/butterfly-server/master/img/yellow-star-16x16.png) Please star this project if you find it interesting
 
 Targets *.NET Standard 2.1* (.NET Core 3.0)
 
 # Examples...
 
-- [Real-time Streaming Charts](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.RealtimeStreamingChart) - Shows a client with a real-time streaming chart updated from a server (uses [Smoothie Charts](http://smoothiecharts.org/))
-- [Contact Manager](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Crud) - Shows basic CRUD operations where all changes synchronized to connected clients
-- [Todo List Manager](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) - Shows different types of clients synchronized to the same server (a [Vue.js](https://vuejs.org/) client, a [Cordova](https://cordova.apache.org/) client, an [Electron](https://electronjs.org/) client, and an [Aurelia](https://aurelia.io/) client)
-- [Hello World](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.HelloWorld) - Shows a "Hello World" alert box in a client
+- [Real-time Streaming Charts](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.RealtimeStreamingChart) - Shows a client with a real-time streaming chart updated from a server (uses [Smoothie Charts](http://smoothiecharts.org/))
+- [Contact Manager](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Crud) - Shows basic CRUD operations where all changes synchronized to connected clients
+- [Todo List Manager](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todo) - Shows different types of clients synchronized to the same server (a [Vue.js](https://vuejs.org/) client, a [Cordova](https://cordova.apache.org/) client, an [Electron](https://electronjs.org/) client, and an [Aurelia](https://aurelia.io/) client)
+- [Hello World](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.HelloWorld) - Shows a "Hello World" alert box in a client
 
 # Key Components...
 

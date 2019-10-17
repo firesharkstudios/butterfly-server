@@ -5,7 +5,7 @@
 # Get the Code
 
 ```
-git clone https://github.com/firesharkstudios/butterfly-server-dotnet
+git clone https://github.com/firesharkstudios/butterfly-server
 ```
 
 # Run
@@ -16,11 +16,11 @@ To run in *Visual Studio*...
 
 To run in a terminal or command prompt...
 ```
-cd butterfly-server-dotnet\Butterfly.Example.Database
+cd butterfly-server\Butterfly.Example.Database
 dotnet run -vm
 ```
 
-You can see the code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Database/Program.cs).
+You can see the code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server/blob/master/Butterfly.Example.Database/Program.cs).
 
 # Result
 

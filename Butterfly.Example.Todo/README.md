@@ -1,11 +1,11 @@
 # Demo
 
-![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/demo.gif) 
+![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server/master/img/demo.gif) 
 
 # Get the Code
 
 ```
-git clone https://github.com/firesharkstudios/butterfly-server-dotnet
+git clone https://github.com/firesharkstudios/butterfly-server
 ```
 
 # Run the Server
@@ -16,11 +16,11 @@ To run in *Visual Studio*...
 
 To run in a terminal or command prompt...
 ```
-cd butterfly-server-dotnet\Butterfly.Example.Todo
+cd butterfly-server\Butterfly.Example.Todo
 dotnet run -vm
 ```
 
-You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Todo/Program.cs).
+You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server/blob/master/Butterfly.Example.Todo/Program.cs).
 
 # Run a Client
 
@@ -36,7 +36,7 @@ Try any of these clients...
 This assumes you have the [demo server](#run-the-server) running.
 
 ```
-cd butterfly-server-dotnet\Butterfly.Example.Todo\vue
+cd butterfly-server\Butterfly.Example.Todo\vue
 npm install
 npm run dev
 ```
@@ -54,7 +54,7 @@ This assumes you have the [demo server](#run-the-server) running, [Cordova](http
 Run this in a terminal or command prompt...
 
 ```
-cd butterfly-server-dotnet\Butterfly.Example.Todo\cordova
+cd butterfly-server\Butterfly.Example.Todo\cordova
 npm install
 
 # In both config.xml and src\main.js, replace every instance of localhost:8000
@@ -77,7 +77,7 @@ This assumes you have the [demo server](#run-the-server) running and [Electron](
 Run this in a terminal or command prompt...
 
 ```
-cd butterfly-server-dotnet\Butterfly.Example.Todo\electron
+cd butterfly-server\Butterfly.Example.Todo\electron
 npm install
 npm run dev
 ```
@@ -87,7 +87,7 @@ npm run dev
 This assumes you have the [demo server](#run-the-server) running and [Aurelia-CLI](https://aurelia.io/docs/build-systems/aurelia-cli/) installed: `npm install aurelia-cli -g`
 
 ```
-cd butterfly-server-dotnet\Butterfly.Example.Todo\aurelia
+cd butterfly-server\Butterfly.Example.Todo\aurelia
 npm install
 au run
 ```
@@ -153,7 +153,7 @@ Clients are expected to...
 - Use the subscription API to subscribe to the *todos* subscription to get a list of all initial *todo* records and any changes to the *todo* records
 - Use the defined web API to insert and delete *todo* records
 
-See [Program.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo/Program.cs) for the working server code.
+See [Program.cs](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todo/Program.cs) for the working server code.
 
 # Understanding The Client
 
@@ -197,4 +197,4 @@ $.ajax('/api/todo/insert', {
 
 After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be sychronized from the server to the client's local *todosList* array.
 
-See [Butterfly.Example.Todo](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo/vue) for a full working client based on [Vuetify](https://vuetifyjs.com) and [Vue.js](https://vuejs.org/).
+See [Butterfly.Example.Todo](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todo/vue) for a full working client based on [Vuetify](https://vuetifyjs.com) and [Vue.js](https://vuejs.org/).

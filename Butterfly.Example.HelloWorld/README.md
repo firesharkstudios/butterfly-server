@@ -5,7 +5,7 @@
 # Running
 
 ```
-git clone https://github.com/firesharkstudios/butterfly-server-dotnet
+git clone https://github.com/firesharkstudios/butterfly-server
 ```
 
 ## Running in Visual Studio
@@ -17,7 +17,7 @@ In *Visual Studio*, open *Butterfly.sln* and run *Butterfly.Example.HelloWorld*.
 Open a terminal or command prompt and run...
 
 ```
-cd butterfly-server-dotnet\Butterfly.Example.HelloWorld
+cd butterfly-server\Butterfly.Example.HelloWorld
 dotnet run -vm www
 ```
 

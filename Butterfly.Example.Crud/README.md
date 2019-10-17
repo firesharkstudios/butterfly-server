@@ -4,12 +4,12 @@
 
 # Demo
 
-![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/contact-demo.gif) 
+![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server/master/img/contact-demo.gif) 
 
 # Get the Code
 
 ```
-git clone https://github.com/firesharkstudios/butterfly-server-dotnet
+git clone https://github.com/firesharkstudios/butterfly-server
 ```
 
 # Run the Server
@@ -20,18 +20,18 @@ To run in *Visual Studio*...
 
 To run in a terminal or command prompt...
 ```
-cd butterfly-server-dotnet\Butterfly.Example.Crud
+cd butterfly-server\Butterfly.Example.Crud
 dotnet run -vm
 ```
 
-You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Crud/Program.cs).
+You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server/blob/master/Butterfly.Example.Crud/Program.cs).
 
 ## Run the Client
 
 This assumes you have the [demo server](#run-the-server) running.
 
 ```
-cd butterfly-server-dotnet\Butterfly.Example.Crud\www
+cd butterfly-server\Butterfly.Example.Crud\www
 npm install
 npm run dev
 ```
