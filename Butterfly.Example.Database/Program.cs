@@ -4,9 +4,9 @@
 using System;
 using System.Threading.Tasks;
 
-using Butterfly.Core.Database;
-using Butterfly.Core.Database.Dynamic;
-using Butterfly.Core.Util;
+using Butterfly.Db;
+using Butterfly.Db.Dynamic;
+using Butterfly.Util;
 
 namespace Butterfly.Example.Database {
     class Program {
@@ -33,7 +33,7 @@ namespace Butterfly.Example.Database {
             Console.WriteLine("You must create a 'butterfly_db_demo' database using the commands in the comments and provide the appropriate connect string to run this demo");
 
             // Get a reference to a MySQL database (fix the connect string for your environment)
-            var database = new Butterfly.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_db_demo");
+            var database = new Butterfly.Db.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_db_demo");
 
             // Create ids like u_fffa58f2-ccd6-433b-91f0-d708e7ecd205
             database.SetDefaultValue("id", tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}");

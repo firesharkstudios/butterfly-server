@@ -1,16 +1,16 @@
 ﻿using System;
 
-using Butterfly.Core.Util;
-
+using Butterfly.Util;
+using Butterfly.Web;
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
 namespace MyCrudApp {
     class Program {
         static void Main(string[] args) {
             using (var ctx =
-              new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/")) {
+              new Butterfly.Web.EmbedIO.EmbedIOContext("http://+:8000/")) {
                 // Create database
-                var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
+                var database = new Butterfly.Db.Memory.MemoryDatabase();
                 database.CreateFromSqlAsync(@"CREATE TABLE contact (
                  id VARCHAR(50) NOT NULL,
                  first_name VARCHAR(40) NOT NULL,

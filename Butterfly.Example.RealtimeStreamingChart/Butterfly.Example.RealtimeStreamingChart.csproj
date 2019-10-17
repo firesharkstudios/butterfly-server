@@ -2,16 +2,16 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NLog" Version="4.6.6" />
+    <PackageReference Include="NLog" Version="4.6.7" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Butterfly.EmbedIO\Butterfly.EmbedIO.csproj" />
+    <ProjectReference Include="..\..\Butterfly.Web\Butterfly.Web.EmbedIO\Butterfly.Web.EmbedIO.csproj" />
   </ItemGroup>
 
 </Project>

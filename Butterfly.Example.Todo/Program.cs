@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 using NLog;
 
-using Butterfly.Core.Util;
+using Butterfly.Util;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
+using Butterfly.Web;
 
 namespace Butterfly.Example.Todo {
     class Program {
@@ -18,9 +19,9 @@ namespace Butterfly.Example.Todo {
         // Using async Task Main() requires adding <LangVersion>latest</LangVersion> to .csproj file
         static async Task Main(string[] args) {
             logger.Info("Main()");
-            using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/")) {
+            using (var embedIOContext = new Butterfly.Web.EmbedIO.EmbedIOContext("http://+:8000/")) {
                 // Create a MemoryDatabase (no persistence, limited features)
-                var database = new Butterfly.Core.Database.Memory.MemoryDatabase();
+                var database = new Butterfly.Db.Memory.MemoryDatabase();
                 await database.CreateFromSqlAsync(@"CREATE TABLE todo (
 	                id VARCHAR(50) NOT NULL,
 	                name VARCHAR(40) NOT NULL,

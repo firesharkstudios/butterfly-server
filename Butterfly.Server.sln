@@ -1,0 +1,123 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ABFE981E-65DD-4764-952A-DE4F2D055AEA}"
+	ProjectSection(SolutionItems) = preProject
+		generate-docs.ps1 = generate-docs.ps1
+		generate-nuget-packages.ps1 = generate-nuget-packages.ps1
+		push-nuget-packages.ps1 = push-nuget-packages.ps1
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "docs", "docs\", "{4D722034-2801-4C7F-91EA-19714E2D0B1D}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_56947"
+		Debug.AspNetCompiler.PhysicalPath = "docs\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56947\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_56947"
+		Release.AspNetCompiler.PhysicalPath = "docs\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56947\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "56947"
+		SlnRelativePath = "docs\"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "docfx_project", "docfx_project\", "{934C100B-6EC4-47F0-A5EA-5AD829D93506}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_56415"
+		Debug.AspNetCompiler.PhysicalPath = "docfx_project\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56415\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_56415"
+		Release.AspNetCompiler.PhysicalPath = "docfx_project\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56415\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "56415"
+		SlnRelativePath = "docfx_project\"
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Database", "Butterfly.Example.Database\Butterfly.Example.Database.csproj", "{5AA54991-472C-4A67-85D6-E20C86BBEDD6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.HelloWorld", "Butterfly.Example.HelloWorld\Butterfly.Example.HelloWorld.csproj", "{EFD1260F-AFAA-4128-965E-7E0D2CF83703}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.RealtimeStreamingChart", "Butterfly.Example.RealtimeStreamingChart\Butterfly.Example.RealtimeStreamingChart.csproj", "{9EE371DF-481C-4403-8EB4-D2F49490A9BA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Todo", "Butterfly.Example.Todo\Butterfly.Example.Todo.csproj", "{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Crud", "Butterfly.Example.Crud\Butterfly.Example.Crud.csproj", "{0CD5446D-1B2D-4C5D-B682-957BCCF0B343}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Db.MySql", "..\Butterfly.Db\Butterfly.Db.MySql\Butterfly.Db.MySql.csproj", "{17AA3A46-502F-4BAE-847A-313B0D8430A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Web.EmbedIO", "..\Butterfly.Web\Butterfly.Web.EmbedIO\Butterfly.Web.EmbedIO.csproj", "{8985CC12-D3AF-40CE-B43D-5A9DDEA893B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Db", "..\Butterfly.Db\Butterfly.Db\Butterfly.Db.csproj", "{7FAE1ACA-2432-4B4C-80DB-0727A251BED3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D722034-2801-4C7F-91EA-19714E2D0B1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D722034-2801-4C7F-91EA-19714E2D0B1D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{934C100B-6EC4-47F0-A5EA-5AD829D93506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{934C100B-6EC4-47F0-A5EA-5AD829D93506}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AA54991-472C-4A67-85D6-E20C86BBEDD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AA54991-472C-4A67-85D6-E20C86BBEDD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AA54991-472C-4A67-85D6-E20C86BBEDD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AA54991-472C-4A67-85D6-E20C86BBEDD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFD1260F-AFAA-4128-965E-7E0D2CF83703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFD1260F-AFAA-4128-965E-7E0D2CF83703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFD1260F-AFAA-4128-965E-7E0D2CF83703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFD1260F-AFAA-4128-965E-7E0D2CF83703}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CD5446D-1B2D-4C5D-B682-957BCCF0B343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CD5446D-1B2D-4C5D-B682-957BCCF0B343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CD5446D-1B2D-4C5D-B682-957BCCF0B343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CD5446D-1B2D-4C5D-B682-957BCCF0B343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17AA3A46-502F-4BAE-847A-313B0D8430A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17AA3A46-502F-4BAE-847A-313B0D8430A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17AA3A46-502F-4BAE-847A-313B0D8430A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17AA3A46-502F-4BAE-847A-313B0D8430A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8985CC12-D3AF-40CE-B43D-5A9DDEA893B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8985CC12-D3AF-40CE-B43D-5A9DDEA893B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8985CC12-D3AF-40CE-B43D-5A9DDEA893B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8985CC12-D3AF-40CE-B43D-5A9DDEA893B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FAE1ACA-2432-4B4C-80DB-0727A251BED3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FAE1ACA-2432-4B4C-80DB-0727A251BED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FAE1ACA-2432-4B4C-80DB-0727A251BED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FAE1ACA-2432-4B4C-80DB-0727A251BED3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
+		BuildVersion_StartDate = 2000/1/1
+		BuildVersion_BuildVersioningStyle = None.None.None.Increment
+	EndGlobalSection
+EndGlobal

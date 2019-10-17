@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
@@ -18,13 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EmbedIO" Version="2.9.2" />
-    <PackageReference Include="NLog" Version="4.6.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Butterfly.Core\Butterfly.Core.csproj" />
-    <ProjectReference Include="..\Butterfly.EmbedIO\Butterfly.EmbedIO.csproj" />
+    <ProjectReference Include="..\..\Butterfly.Db\Butterfly.Db.MySql\Butterfly.Db.MySql.csproj" />
+    <ProjectReference Include="..\..\Butterfly.Web\Butterfly.Web.EmbedIO\Butterfly.Web.EmbedIO.csproj" />
   </ItemGroup>
 
   <ItemGroup>
