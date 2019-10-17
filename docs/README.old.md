@@ -1,11 +1,17 @@
 
 # Overview
 
-![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server/master/img/demo.gif) 
+![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server-dotnet/master/img/demo.gif) 
 
-Butterfly Server allows building a modern web app using a C# backend which...
+Butterfly Server .NET allows...
 
-- Targets *.NET Framework 2.1* (.NET Core 3.0)
+- Defining a [Web API](#creating-a-web-api)
+- Defining a [Subscription API](#creating-a-subscription-api) that allow pushing real-time data to clients
+- Subscribing to data change events on [Databases](#accessing-a-database) and [Dynamic Views](#using-dynamic-views)
+
+Also, Butterfly Server .NET...
+
+- Targets *.NET Framework 2.0*
 - Fully supports async/await
 - Does **not** depend on ASP.NET
 - Does **not** use polling
@@ -18,58 +24,49 @@ An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/
 
 | Name | Package | Install |
 | --- | --- | --- |
-| Butterfly.Auth | [![nuget](https://img.shields.io/nuget/v/Butterfly.Auth.svg)](https://www.nuget.org/packages/Butterfly.Auth/) | `nuget install Butterfly.Auth` |
-| Butterfly.Db | [![nuget](https://img.shields.io/nuget/v/Butterfly.Db.svg)](https://www.nuget.org/packages/Butterfly.Db/) | `nuget install Butterfly.Db` |
-| Butterfly.Db.MySql | [![nuget](https://img.shields.io/nuget/v/Butterfly.Db.MySql.svg)](https://www.nuget.org/packages/Butterfly.Db.MySql/) | `nuget install Butterfly.Db.MySql` |
-| Butterfly.Db.Postgres | [![nuget](https://img.shields.io/nuget/v/Butterfly.Db.Postgres.svg)](https://www.nuget.org/packages/Butterfly.Db.Postgres/) | `nuget install Butterfly.Db.Postgres` |
-| Butterfly.Db.SQLite | [![nuget](https://img.shields.io/nuget/v/Butterfly.Db.SQLite.svg)](https://www.nuget.org/packages/Butterfly.Db.SQLite/) | `nuget install Butterfly.Db.SQLite` |
-| Butterfly.Db.SqlServer | [![nuget](https://img.shields.io/nuget/v/Butterfly.Db.SqlServer.svg)](https://www.nuget.org/packages/Butterfly.Db.SqlServer/) | `nuget install Butterfly.Db.SqlServer` |
-| Butterfly.Web | [![nuget](https://img.shields.io/nuget/v/Butterfly.Web.svg)](https://www.nuget.org/packages/Butterfly.Web/) | `nuget install Butterfly.Web` |
-| Butterfly.Web.EmbedIO | [![nuget](https://img.shields.io/nuget/v/Butterfly.Web.EmbedIO.svg)](https://www.nuget.org/packages/Butterfly.Web.EmbedIO/) | `nuget install Butterfly.Web.EmbedIO` |
-| Butterfly.Web.RedHttpServer | [![nuget](https://img.shields.io/nuget/v/Butterfly.Web.RedHttpServer.svg)](https://www.nuget.org/packages/Butterfly.Web.RedHttpServer/) | `nuget install Butterfly.Web.RedHttpServer` |
-| Butterfly.Util | [![nuget](https://img.shields.io/nuget/v/Butterfly.Util.svg)](https://www.nuget.org/packages/Butterfly.Util/) | `nuget install Butterfly.Util` |
+| Butterfly.Core | [![nuget](https://img.shields.io/nuget/v/Butterfly.Core.svg)](https://www.nuget.org/packages/Butterfly.Core/) | `nuget install Butterfly.Core` |
+| Butterfly.EmbedIO | [![nuget](https://img.shields.io/nuget/v/Butterfly.EmbedIO.svg)](https://www.nuget.org/packages/Butterfly.EmbedIO/) | `nuget install Butterfly.EmbedIO` |
+| Butterfly.RedHttpServer | [![nuget](https://img.shields.io/nuget/v/Butterfly.RedHttpServer.svg)](https://www.nuget.org/packages/Butterfly.RedHttpServer/) | `nuget install Butterfly.RedHttpServer` |
+| Butterfly.MySQL | [![nuget](https://img.shields.io/nuget/v/Butterfly.MySQL.svg)](https://www.nuget.org/packages/Butterfly.MySQL/) | `nuget install Butterfly.MySQL` |
+| Butterfly.Postgres | [![nuget](https://img.shields.io/nuget/v/Butterfly.Postgres.svg)](https://www.nuget.org/packages/Butterfly.Postgres/) | `nuget install Butterfly.Postgres` |
+| Butterfly.SQLite | [![nuget](https://img.shields.io/nuget/v/Butterfly.SQLite.svg)](https://www.nuget.org/packages/Butterfly.SQLite/) | `nuget install Butterfly.SQLite` |
+| Butterfly.SqlServer | [![nuget](https://img.shields.io/nuget/v/Butterfly.SqlServer.svg)](https://www.nuget.org/packages/Butterfly.SqlServer/) | `nuget install Butterfly.SqlServer` |
 
 ## Install from Source Code
 
-Get the source from these repos...
-
-- [Butterfly.Auth](https://github.com/firesharkstudios/butterfly-auth)
-- [Butterfly.Client](https://github.com/firesharkstudios/butterfly-db)
-- [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db)
-- [Butterfly.Util](https://github.com/firesharkstudios/butterfly-util)
-- [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web)
+Get the source from [GitHub](https://github.com/firesharkstudios/butterfly-server-dotnet).
 
 # Examples
 
 You can try these examples...
 
-- [Hello World](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.HelloWorld) - Shows *Hello World* in an alert box on the client
-- [Database](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Database) - Shows data change events on a [Dynamic View](#using-dynamic-views) in a console
-- [Contact Manager](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Crud) - Shows a simple CRUD web app using [Vuetify](https://vuetifyjs.com) on the client
-- [Todo Manager](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todo) - Shows a simple *Todo* web app using [Vuetify](https://vuetifyjs.com) on the client
+- [Hello World](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.HelloWorld) - Shows *Hello World* in an alert box on the client
+- [Database](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Database) - Shows data change events on a [Dynamic View](#using-dynamic-views) in a console
+- [Contact Manager](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Crud) - Shows a simple CRUD web app using [Vuetify](https://vuetifyjs.com) on the client
+- [Todo Manager](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) - Shows a simple *Todo* web app using [Vuetify](https://vuetifyjs.com) on the client
 
 ## Try It
 
 Run this in a terminal or command prompt...
 
 ```
-git clone https://github.com/firesharkstudios/butterfly-server
+git clone https://github.com/firesharkstudios/butterfly-server-dotnet
 
-cd butterfly-server\Butterfly.Example.Todo
+cd butterfly-server-dotnet\Butterfly.Example.Todo
 dotnet run -vm
 ```
 
 Run this in a second terminal or command prompt...
 
 ```
-cd butterfly-server\Butterfly.Example.Todo\www
+cd butterfly-server-dotnet\Butterfly.Example.Todo\www
 npm install
 npm run dev
 ```
 
 You should see http://localhost:8080/ open in a browser. Try opening a second browser instance at http://localhost:8080/. Notice that changes are automatically synchronized between the two browser instances.
 
-Click [here](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todo) to see instructions for the Cordova and Electron clients.
+Click [here](https://github.com/firesharkstudios/butterfly-server-dotnet/tree/master/Butterfly.Example.Todo) to see instructions for the Cordova and Electron clients.
 
 # Concepts
 
@@ -389,8 +386,8 @@ var name = await database.SelectValueAsync<string>("SELECT name FROM todo", id);
 
 You can create the database structure by either...
 
-- Executing [CreateFromTextAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromTextAsync_System_String_) or [CreateFromResourceAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromResourceFileAsync_Assembly_System_String_) in Butterfly Server (most useful for MemoryDatabase)
-- Creating the database yourself outside of Butterfly Server (normally recommended)
+- Executing [CreateFromTextAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromTextAsync_System_String_) or [CreateFromResourceAsync()](https://butterflyserver.io/docfx/api/Butterfly.Core.Database.IDatabase.html#Butterfly_Core_Database_IDatabase_CreateFromResourceFileAsync_Assembly_System_String_) in Butterfly Server .NET (most useful for MemoryDatabase)
+- Creating the database yourself outside of Butterfly Server .NET (normally recommended)
 
 ### Selecting Data
 
@@ -726,7 +723,7 @@ dataEventTransaction={
 }
 ```
 
-You can run a more robust example [here](https://github.com/firesharkstudios/butterfly-server/blob/master/Butterfly.Example.Database/Program.cs).
+You can run a more robust example [here](https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.Database/Program.cs).
 
 ## Implementations
 
@@ -929,7 +926,7 @@ Click [here](https://butterflyserver.io/docfx/api/) for the API Documentation
 
 # Running on Raspberry Pi
 
-These steps worked to get Butterfly Server running on a *Raspberry Pi 3 B+*...
+These steps worked to get Butterfly Server .NET running on a *Raspberry Pi 3 B+*...
 
 ```
 # Install dotnet (per https://www.hanselman.com/blog/BuildingRunningAndTestingNETCoreAndASPNETCore21InDockerOnARaspberryPiARM32.aspx)...
@@ -980,7 +977,7 @@ sudo dotnet run /opt/chat/www
 
 # In the Wild
 
-[Build Hero](https://www.buildhero.io) is a collaborative tool for general contractors, subcontractors, and customers to collaborate on remodel projects.  The [my.buildhero.io](https://my.buildhero.io) site, the Android app, and the iOS app are all powered by Butterfly Server.
+[Build Hero](https://www.buildhero.io) is a collaborative tool for general contractors, subcontractors, and customers to collaborate on remodel projects.  The [my.buildhero.io](https://my.buildhero.io) site, the Android app, and the iOS app are all powered by Butterfly Server .NET.
 
 # Similar Projects
 
