@@ -31,8 +31,6 @@ modern web apps with a C# backend. The purpose of this repo is to show examples 
 - Does **not** depend on ASP.NET
 - Does **not** use polling for real-time updates
 
-An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/) can be found [here](https://medium.com/@kent_19698/build-a-real-time-chat-app-from-scratch-using-vue-js-and-c-in-5-minutes-599387bdccbb).
-
 ![Star Us](https://raw.githubusercontent.com/firesharkstudios/butterfly-server/master/img/yellow-star-16x16.png) Please star this project if you find it interesting
 
 # Examples
@@ -75,6 +73,8 @@ Get the source from these repos...
 [Build Hero](https://www.buildhero.io) is a collaborative tool for general contractors, subcontractors, and customers to collaborate on remodel projects.  The [my.buildhero.io](https://my.buildhero.io) site and the Android app are all powered by *Butterfly.Server*.
 
 [MotionAlerts.ai](https://www.motionalerts.ai) is a tool that uses AI to filter security camera alerts..  The [my.motionalerts.ai](https://my.motionalerts.ai) site and the Android app are all powered by *Butterfly.Server*.
+
+Notice in the production apps above how everything updates in real-time across all connected clients when changes happen.
 
 # Similar Projects
 
