@@ -2,10 +2,11 @@
 
 > A simple contact manager app using Vue.js, butterfly-client, and Butterfly.Server
 
-The example shows...
+Th isexample shows...
 
-- A Vue.js client interacting with a *Butterfly.Server* RESTlike API to add, update, and delete contacts
+- A Vue.js client calling a Web API to add, update, and delete contacts
 - A Vue.js client using the *butterfly-client* library to receive updates when any data changes
+- A *Butterfly Server* implementing the Web API and Subscription API
 
 Although this example uses Vue.js, the *butterfly-client* is vanilla javascript and can be used with any framework.
 

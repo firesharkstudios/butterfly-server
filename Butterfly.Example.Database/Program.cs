@@ -30,7 +30,8 @@ namespace Butterfly.Example.Database {
          *   GRANT ALL PRIVILEGES ON butterfly_db_demo.* TO 'test'@'localhost' IDENTIFIED BY 'test!123';
          */
         static void Main(string[] args) {
-            Console.WriteLine("You must create a 'butterfly_db_demo' database using the commands in the comments and provide the appropriate connect string to run this demo");
+            Console.WriteLine("You must create a 'butterfly_db_demo' database using the SQL in the comments of Program.cs and provide the appropriate connect string to run this demo.  Press any ENTER to continue.");
+            Console.ReadLine();
 
             // Get a reference to a MySQL database (fix the connect string for your environment)
             var database = new Butterfly.Db.MySql.MySqlDatabase("Server=127.0.0.1;Uid=test;Pwd=test!123;Database=butterfly_db_demo");

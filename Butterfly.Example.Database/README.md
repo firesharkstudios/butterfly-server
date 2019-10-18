@@ -1,6 +1,9 @@
-# Real-time Database Events Example as Console App
+# Database Events Example
 
 > A simple console app that triggers data change events on a DynamicView
+
+This example shows a Butterfly Server echoing data change events to a console
+as various database operations are performed.
 
 # Get the Code
 
@@ -10,14 +13,9 @@ git clone https://github.com/firesharkstudios/butterfly-server
 
 # Run
 
-To run in *Visual Studio*...
-- Open *Butterfly.Server.sln*
-- Run *Butterfly.Example.Database*.
-
-To run in a terminal or command prompt...
 ```
 cd butterfly-server\Butterfly.Example.Database
-dotnet run -vm
+dotnet run
 ```
 
 You can see the code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server/blob/master/Butterfly.Example.Database/Program.cs).
