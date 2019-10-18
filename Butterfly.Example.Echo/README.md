@@ -33,4 +33,4 @@ cd ..
 dotnet run www
 ```
 
-Open a browser to http://localhost:8080/ and you should see "Hello World" shown in an alert box.
+Open a browser to http://localhost:8000/ and you should see "Hello World" shown in an alert box.
