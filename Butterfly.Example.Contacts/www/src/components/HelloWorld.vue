@@ -1,6 +1,5 @@
 <template>
   <v-container fluid>
-
     <!-- Contact List -->
     <v-list v-if="contacts.length>0">
       <v-list-item v-for="contact in contacts" :key="contact.id">
