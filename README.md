@@ -12,7 +12,7 @@ modern web apps with a C# backend.
 
 - A *RESTlike API* enabling clients to receive static data and perform actions
 - A *Subscription API* enabling clients to automatically receive real-time updates when data changes
-- A *Data Access API* that avoids object-relational mappings and publishes data change events
+- A *Database API* that avoids object-relational mappings and publishes data change events
 - A *Messaging API* that provides a consistent API to send emails and texts
  
 *Butterfly.Server* consists of the following components...
