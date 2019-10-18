@@ -1,6 +1,6 @@
 # Contact Manager Example
 
-> A simple contact manager app using Vue.js, butterfly-client, and Butterfly.Server
+> A simple contact manager web client and server using Vue.js, [Butterfly.Clients](https://github.com/firesharkstudios/butterfly-client), [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web), and [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db)
 
 This example shows...
 
@@ -10,7 +10,11 @@ This example shows...
 - Implementing the Subscription API from [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web) on the server
 - Using [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) on the server to perform database operations and publish the data change events to subscribers
 
-Although this example uses Vue.js, the [Butterfly.Clients](https://github.com/firesharkstudios/butterfly-client) web client is vanilla javascript and can be used with any framework.
+This example uses Vue.js but the [Butterfly.Clients](https://github.com/firesharkstudios/butterfly-client) web client is vanilla javascript and can be used with any framework.
+
+This example uses the [EmbedIO](https://github.com/unosquare/embedio) web server but [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web) supports multiple web servers.
+
+This example uses the MySQL database but [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) supports multiple databases.
 
 See this [article](https://medium.com/@kent_19698/creating-a-basic-crud-web-app-with-vue-vuetify-and-butterfly-server-net-e35922138d4f) about building this example web app.
 
