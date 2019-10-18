@@ -14,7 +14,7 @@ This example uses Vue.js but the [Butterfly.Clients](https://github.com/fireshar
 
 This example uses the [EmbedIO](https://github.com/unosquare/embedio) web server but [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web) supports multiple web servers.
 
-This example uses the MySQL database but [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) supports multiple databases.
+This example uses the MySQL database but [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) supports multiple database engines.
 
 See this [article](https://medium.com/@kent_19698/creating-a-basic-crud-web-app-with-vue-vuetify-and-butterfly-server-net-e35922138d4f) about building this example web app.
 

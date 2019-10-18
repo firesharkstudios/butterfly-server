@@ -1,56 +1,58 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Butterfly Hello World Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <title>Butterfly Hello World Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 <body class="container">
-    <h2>Overview</h2>
-    <p>This example simply sends a "Hello World" from the client to the server and has the server echo "Hello World" back to the client in an alert() box.</p>
+  <h2>Overview</h2>
+  <p>This example simply sends a "Hello World" from the client to the server and has the server echo "Hello World" back to the client in an alert() box.</p>
 
-    <p>Like many Hello World examples, this is a rather convuluted way to send "Hello World" to a server and have it echoed back. This does show though how a dataset (messages in this case) are automatically synchronized from Butterfly Server to each connected client.</p>
+  <p>Like many Hello World examples, this is a rather convuluted way to send "Hello World" to a server and have it echoed back. This does show though how a dataset (messages in this case) are automatically synchronized from Butterfly Server to each connected client.</p>
 
-    <h2>Data Flow</h2>
-    <ol>
-        <li>Client creates a "my-channel" subscription over a WebSocket using the <i>WebSocketChannelClient</i> class </li>
-        <li>Client executes a POST to <i>/api/message/insert</i> on the server sending "Hello World"</li>
-        <li>When the server receives the POST to <i>/api/message/insert</i>, the server INSERTs a "Hello World" record in the <i>message</i> table which publishes a "Hello World" data event sent to the subscribed client</li>
-        <li>When the client receives the data event, the client calls alert() to display the message</li>
-    </ol>
+  <h2>Data Flow</h2>
+  <ol>
+    <li>Client creates a "my-channel" subscription over a WebSocket using the <i>WebSocketChannelClient</i> class </li>
+    <li>Client executes a POST to <i>/api/message/insert</i> on the server sending "Hello World"</li>
+    <li>When the server receives the POST to <i>/api/message/insert</i>, the server INSERTs a "Hello World" record in the <i>message</i> table which publishes a "Hello World" data event sent to the subscribed client</li>
+    <li>When the client receives the data event, the client calls alert() to display the message</li>
+  </ol>
 
-    <h2>The Code</h2>
-    <p>Server: <a href="https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.HelloWorld/Program.cs">Program.cs</a>, Client: <a href="https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.HelloWorld/www/index.html">index.html</a></p>
+  <h2>The Code</h2>
+  <p>Server: <a href="https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.HelloWorld/Program.cs">Program.cs</a>, Client: <a href="https://github.com/firesharkstudios/butterfly-server-dotnet/blob/master/Butterfly.Example.HelloWorld/www/index.html">index.html</a></p>
 
-    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-    <script src="./node_modules/butterfly-client/lib/butterfly-client.js"></script>
-    <script>
-        let butterflyClient = window['butterfly-client'];
+  <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+  <script src="./node_modules/butterfly-client/lib/butterfly-client.js"></script>
+  <script>
+    let butterflyClient = window['butterfly-client'];
 
-        // Create a channel to the server
-        let channelClient = new butterflyClient.WebSocketChannelClient({
-            url: '/ws'
-        });
-        channelClient.subscribe({
-            channel: 'my-channel',
-            handler: function (messageType, messageData) {
-                console.debug('messageType=' + messageType + ',messageData=' + messageData);
-                // When an INSERT data event is received, display the text field value in an alert box
-                if (messageType === 'DATA-EVENT-TRANSACTION' && messageData.dataEvents.length > 0 && messageData.dataEvents[0].dataEventType === 'Insert') alert(messageData.dataEvents[0].record.text);
-            }
-        });
-        channelClient.connect();
+    // Create a channel to the server
+    let channelClient = new butterflyClient.WebSocketChannelClient({
+      url: '/ws'
+    });
+    channelClient.subscribe({
+      channel: 'messages',
+      handler: function (messageType, messageData) {
+        console.debug('messageType=' + messageType + ',messageData=' + messageData);
+        // When an INSERT data event is received, display the text field value in an alert box
+        if (messageType === 'DATA-EVENT-TRANSACTION' && messageData.dataEvents.length > 0 && messageData.dataEvents[0].dataEventType === 'Insert') {
+          alert(messageData.dataEvents[0].record.text);
+        }
+      }
+    });
+    channelClient.connect();
 
-        setTimeout(function () {
-            // Post a "Hello World" message to the server
-            $.ajax('/api/message/insert', {
-                method: 'POST',
-                data: JSON.stringify('Hello World'),
-                processData: false,
-            });
-        }, 1000);
-    </script>
+    setTimeout(function () {
+      // Post a "Hello World" message to the server
+      $.ajax('/api/message/insert', {
+        method: 'POST',
+        data: JSON.stringify('Hello World'),
+        processData: false,
+      });
+    }, 1000);
+  </script>
 </body>
 </html>

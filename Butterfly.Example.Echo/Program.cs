@@ -20,10 +20,10 @@ namespace Butterfly.Example.Echo {
             // Create a MemoryDatabase (no persistence, limited features)
             var database = new MemoryDatabase();
             await database.CreateFromSqlAsync(@"CREATE TABLE message (
-	                id INT NOT NULL AUTO_INCREMENT,
-	                text VARCHAR(40) NOT NULL,
-	                PRIMARY KEY (id)
-                );");
+	            id INT NOT NULL AUTO_INCREMENT,
+	            text VARCHAR(40) NOT NULL,
+	            PRIMARY KEY (id)
+            );");
 
             // Listen for API requests
             context.WebApi.OnPost("/api/message/insert", async (req, res) => {
@@ -36,14 +36,11 @@ namespace Butterfly.Example.Echo {
             // Listen for subscribe requests...
             // - The handler must return an IDisposable object (gets disposed when the channel is unsubscribed)
             // - The handler can push data to the client by calling channel.Queue()
-            context.SubscriptionApi.OnSubscribe("my-channel", (vars, channel) => {
+            context.SubscriptionApi.OnSubscribe("messages", (vars, channel) => {
                 return database.CreateAndStartDynamicViewAsync("message", dataEventTransaction => channel.Queue(dataEventTransaction));
             });
 
             context.Start();
-
-            Console.WriteLine($"Opening http://localhost:{port}/ in a browser...");
-            ProcessX.OpenBrowser($"http://localhost:{port}/");
             Console.ReadLine();
         }
 
