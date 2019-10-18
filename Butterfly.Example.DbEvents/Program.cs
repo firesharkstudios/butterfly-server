@@ -30,7 +30,7 @@ namespace Butterfly.Example.Database {
          *   GRANT ALL PRIVILEGES ON butterfly_db_demo.* TO 'test'@'localhost' IDENTIFIED BY 'test!123';
          */
         static void Main(string[] args) {
-            Console.WriteLine("You must create a 'butterfly_db_demo' database using the SQL in the comments of Program.cs and provide the appropriate connect string to run this demo.  Press any ENTER to continue.");
+            Console.WriteLine("You must create a 'butterfly_db_demo' database using the SQL in the comments of Program.cs and provide the appropriate connect string to run this demo.  Press ENTER to continue.");
             Console.ReadLine();
 
             // Get a reference to a MySQL database (fix the connect string for your environment)
@@ -40,6 +40,7 @@ namespace Butterfly.Example.Database {
             database.SetDefaultValue("id", tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}");
 
             Run(database);
+            Console.WriteLine("Done!  Press ENTER to exit.");
             Console.ReadLine();
         }
 

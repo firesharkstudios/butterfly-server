@@ -38,7 +38,7 @@ An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/
 # Examples
 
 - [Butterfly.Example.Contacts](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Contacts) - Shows a Vue web client managing a set of contacts by interacting with a *Butterfly.Server*
-- [Butterfly.Example.Database](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Database) - Shows how to perform basic database operations and see generated data events
+- [Butterfly.Example.DbEvents](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.DbEvents) - Shows how to perform basic database operations and see generated data events
 - [Butterfly.Example.Echo](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Echo) - Shows a "Hello World" alert box in a client
 - [Butterfly.Example.RealtimeStreamingChart](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.RealtimeStreamingChart) - Shows a client with a real-time streaming chart updated from a server (uses [Smoothie Charts](http://smoothiecharts.org/))
 - [Butterfly.Example.Todos](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todos) - Shows a Vue web client managing a set of to-dos by interacting with a *Butterfly.Server*
@@ -75,7 +75,7 @@ Get the source from these repos...
 You can try these examples...
 
 - [Hello World](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Echo) - Shows *Hello World* in an alert box on the client
-- [Database](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Database) - Shows data change events on a [Dynamic View](#using-dynamic-views) in a console
+- [Database](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.DbEvents) - Shows data change events on a [Dynamic View](#using-dynamic-views) in a console
 - [Contact Manager](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Crud) - Shows a simple CRUD web app using [Vuetify](https://vuetifyjs.com) on the client
 - [Todo Manager](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todo) - Shows a simple *Todo* web app using [Vuetify](https://vuetifyjs.com) on the client
 

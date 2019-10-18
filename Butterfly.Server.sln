@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Database", "Butterfly.Example.Database\Butterfly.Example.Database.csproj", "{5AA54991-472C-4A67-85D6-E20C86BBEDD6}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.RealtimeStreamingChart", "Butterfly.Example.RealtimeStreamingChart\Butterfly.Example.RealtimeStreamingChart.csproj", "{9EE371DF-481C-4403-8EB4-D2F49490A9BA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Contacts", "Butterfly.Example.Contacts\Butterfly.Example.Contacts.csproj", "{310C3A3A-D765-464B-83BF-9DD4E819C935}"
@@ -21,16 +19,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Todos", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Echo", "Butterfly.Example.Echo\Butterfly.Example.Echo.csproj", "{CB1C8839-62F7-404C-98DE-9D86EA41BBCF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.DbEvents", "Butterfly.Example.DbEvents\Butterfly.Example.DbEvents.csproj", "{32564A87-5505-4292-BBC6-68402B8F8762}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5AA54991-472C-4A67-85D6-E20C86BBEDD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AA54991-472C-4A67-85D6-E20C86BBEDD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AA54991-472C-4A67-85D6-E20C86BBEDD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AA54991-472C-4A67-85D6-E20C86BBEDD6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,13 +43,17 @@ Global
 		{CB1C8839-62F7-404C-98DE-9D86EA41BBCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB1C8839-62F7-404C-98DE-9D86EA41BBCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB1C8839-62F7-404C-98DE-9D86EA41BBCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32564A87-5505-4292-BBC6-68402B8F8762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32564A87-5505-4292-BBC6-68402B8F8762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32564A87-5505-4292-BBC6-68402B8F8762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32564A87-5505-4292-BBC6-68402B8F8762}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_BuildVersioningStyle = None.None.None.Increment
-		BuildVersion_StartDate = 2000/1/1
 		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
+		BuildVersion_StartDate = 2000/1/1
+		BuildVersion_BuildVersioningStyle = None.None.None.Increment
 	EndGlobalSection
 EndGlobal

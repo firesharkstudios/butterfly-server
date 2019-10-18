@@ -2,8 +2,13 @@
 
 > A simple console app that triggers data change events on a DynamicView
 
-This example shows a *Butterfly Server* echoing data change events to a console
+This example shows a *Butterfly Server* echoing data events to a console
 as various database operations are performed.
+
+This is quite useful to keep clients updated as data changes in the server. The *butterfly-client*
+uses the *Subscription API* in in *Butterfly.Web* to receive these data events and keep
+local javascript arrays automatically synchronized when data changes on the server.
+
 
 # Get the Code
 
@@ -14,11 +19,11 @@ git clone https://github.com/firesharkstudios/butterfly-server
 # Run
 
 ```
-cd butterfly-server\Butterfly.Example.Database
+cd butterfly-server\Butterfly.Example.DbEvents
 dotnet run
 ```
 
-You can see the code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server/blob/master/Butterfly.Example.Database/Program.cs).
+You can see the code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server/blob/master/Butterfly.Example.DbEvents/Program.cs).
 
 # Result
 
