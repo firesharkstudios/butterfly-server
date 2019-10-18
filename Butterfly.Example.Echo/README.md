@@ -1,4 +1,4 @@
-# Echo Example as Web App
+# Echo Example
 
 > A simple echo web client and server using [Butterfly.Clients](https://github.com/firesharkstudios/butterfly-client), [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web), and [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db)
 

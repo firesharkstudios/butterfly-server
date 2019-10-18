@@ -17,7 +17,11 @@ namespace Butterfly.Example.RealtimeStreamingChart {
                 // a new row over the channel every 1000ms
                 embedIOContext.SubscriptionApi.OnSubscribe("data-feed", (vars, channel) => {
                     return new RunEvery(() => {
-                        var row = GetRow();
+                        var row = new Dict {
+                            ["timestamp"] = DateTime.Now.ToUnixTimestamp(),
+                            ["cpu_core_1"] = random.Next(),
+                            ["cpu_core_2"] = random.Next()
+                        };
 
                         // You can specify whatever data type you wish to help your clients
                         // understand what they are receiving, just using "data" in this example
@@ -26,51 +30,9 @@ namespace Butterfly.Example.RealtimeStreamingChart {
                 });
 
                 embedIOContext.Start();
-                ProcessX.OpenBrowser($"http://localhost:{port}/");
                 Console.ReadLine();
             }
         }
-
-        // Replace this implementation with something that reads your real-time data
-        static object GetRow() {
-            return new Dict {
-                ["timestamp"] = DateTime.Now.ToUnixTimestamp(),
-                ["cpu_core_1"] = random.Next(),
-                ["cpu_core_2"] = random.Next()
-            };
-        }
-
-        /*
-         * This would also work
-        static object GetRow() {
-            return new {
-                timestamp = DateTime.Now.ToUnixTimestamp(),
-                cpu_core_1 = random.Next(),
-                cpu_core_2 = random.Next()
-            };
-        }
-
-         * This would also work
-        public class MyRecord {
-            public long timestamp;
-            public double cpu_core_1;
-            public double cpu_core_2;
-        }
-        static object GetRow() {
-            return new MyRecord {
-                timestamp = DateTime.Now.ToUnixTimestamp(),
-                cpu_core_1 = random.Next(),
-                cpu_core_2 = random.Next()
-            };
-        }
-
-         * This would also work if...
-         * - database was instance of Butterfly.Db.IDatabase
-         * - database contained a cpu table with a single row with fields timestamp, cpu_core_1, cpu_core_2
-        static Task<object> GetRow() {
-            return database.SelectRowAsync("SELECT timestamp, cpu_core_1, cpu_core2 FROM cpu");
-        }
-        */
 
     }
 }

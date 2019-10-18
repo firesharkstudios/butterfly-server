@@ -1,6 +1,6 @@
-# Real-time Streaming Chart Example as Web App
+# Real-time Streaming Chart Example
 
-> A simple real-time streaming chart app built using Smoothie Charts on the client
+> A simple real-time streaming chart using Smoothie Charts, [Butterfly.Clients](https://github.com/firesharkstudios/butterfly-client), [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web), and [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db)
 
 # Demo
 
@@ -14,19 +14,14 @@ git clone https://github.com/firesharkstudios/butterfly-server
 
 # Run It
 
-To run in *Visual Studio*...
-- Open *Butterfly.Server.sln*
-- Run *Butterfly.Example.RealtimeStreamingChart*.
-
-To run in a terminal or command prompt...
 ```
 cd butterfly-server\Butterfly.Example.RealtimeStreamingChart
-dotnet run -vm www
+dotnet run www
 ```
 
-You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server/blob/master/Butterfly.Example.RealtimeStreamingChart/Program.cs).
+Now open a browser to http://localhost:8000/.
 
-This will open a browser to http://localhost:8000/.
+You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server/blob/master/Butterfly.Example.RealtimeStreamingChart/Program.cs).
 
 This is based on [Smoothie Charts Tutorial](http://smoothiecharts.org/tutorial.html) but changes the example to receive the real-time data from [Butterfly Server](https://butterflyserver.io).
 
