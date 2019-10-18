@@ -131,7 +131,6 @@ namespace Butterfly.Example.Database {
                 });
                 await Task.Delay(2500);
             }
-            Console.WriteLine("Done!  Press ENTER to exit.");
         }
 
         static Task<DynamicViewSet> CreateDynamicViewSet(IDatabase database, string isDoneFilter) {

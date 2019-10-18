@@ -2,13 +2,15 @@
 
 > A simple contact manager app using Vue.js, butterfly-client, and Butterfly.Server
 
-Th isexample shows...
+This example shows...
 
-- A Vue.js client calling a Web API to add, update, and delete contacts
-- A Vue.js client using the *butterfly-client* library to receive updates when any data changes via the Subscription API
-- A *Butterfly Server* implementing the Web API and Subscription API
+- A Vue.js client invoking Web API methods to add, update, and delete contacts
+- A Vue.js client subscription to the Subscription API via the [Butterfly.Clients](https://github.com/firesharkstudios/butterfly-client) to receive updates when any data changes
+- Implementing the Web API from [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web) on the server
+- Implementing the Subscription API from [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web) on the server
+- Using [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) to perform database operations and publish the data change events to subscribers
 
-Although this example uses Vue.js, the *butterfly-client* is vanilla javascript and can be used with any framework.
+Although this example uses Vue.js, the [Butterfly.Clients](https://github.com/firesharkstudios/butterfly-client) web client is vanilla javascript and can be used with any framework.
 
 See this [article](https://medium.com/@kent_19698/creating-a-basic-crud-web-app-with-vue-vuetify-and-butterfly-server-net-e35922138d4f) about building this example web app.
 
