@@ -40,7 +40,6 @@ namespace Butterfly.Example.Database {
             database.SetDefaultValue("id", tableName => $"{tableName.Abbreviate()}_{Guid.NewGuid().ToString()}");
 
             Run(database);
-            Console.WriteLine("Done!  Press ENTER to exit.");
             Console.ReadLine();
         }
 
@@ -132,6 +131,7 @@ namespace Butterfly.Example.Database {
                 });
                 await Task.Delay(2500);
             }
+            Console.WriteLine("Done!  Press ENTER to exit.");
         }
 
         static Task<DynamicViewSet> CreateDynamicViewSet(IDatabase database, string isDoneFilter) {
