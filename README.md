@@ -37,10 +37,11 @@ An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/
 
 # Examples
 
-- [Real-time Streaming Charts](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.RealtimeStreamingChart) - Shows a client with a real-time streaming chart updated from a server (uses [Smoothie Charts](http://smoothiecharts.org/))
-- [Contact Manager](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Crud) - Shows basic CRUD operations where all changes synchronized to connected clients
-- [Todo List Manager](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todo) - Shows different types of clients synchronized to the same server (a [Vue.js](https://vuejs.org/) client, a [Cordova](https://cordova.apache.org/) client, an [Electron](https://electronjs.org/) client, and an [Aurelia](https://aurelia.io/) client)
-- [Hello World](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.HelloWorld) - Shows a "Hello World" alert box in a client
+- [Butterfly.Example.Contacts](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Contacts) - Shows basic CRUD operations where all changes synchronized to connected clients
+- [Butterfly.Example.Database](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Database) - Shows how to perform basic database operations and see generated data events
+- [Butterfly.Example.Echo](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Echo) - Shows a "Hello World" alert box in a client
+- [Butterfly.Example.RealtimeStreamingChart](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.RealtimeStreamingChart) - Shows a client with a real-time streaming chart updated from a server (uses [Smoothie Charts](http://smoothiecharts.org/))
+- [Butterfly.Example.Todo](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todos) - Shows different types of clients synchronized to the same server (a [Vue.js](https://vuejs.org/) client, a [Cordova](https://cordova.apache.org/) client, an [Electron](https://electronjs.org/) client, and an [Aurelia](https://aurelia.io/) client)
 
 # Getting Started
 
@@ -73,7 +74,7 @@ Get the source from these repos...
 
 You can try these examples...
 
-- [Hello World](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.HelloWorld) - Shows *Hello World* in an alert box on the client
+- [Hello World](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Echo) - Shows *Hello World* in an alert box on the client
 - [Database](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Database) - Shows data change events on a [Dynamic View](#using-dynamic-views) in a console
 - [Contact Manager](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Crud) - Shows a simple CRUD web app using [Vuetify](https://vuetifyjs.com) on the client
 - [Todo Manager](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todo) - Shows a simple *Todo* web app using [Vuetify](https://vuetifyjs.com) on the client

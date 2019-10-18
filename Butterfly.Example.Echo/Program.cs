@@ -9,7 +9,7 @@ using Butterfly.Util;
 using Butterfly.Web.EmbedIO;
 using Butterfly.Web.WebApi;
 
-namespace Butterfly.Example.HelloWorld {
+namespace Butterfly.Example.Echo {
     class Program {
         // Using async Task Main() requires adding <LangVersion>latest</LangVersion> to .csproj file
         static async Task Main(string[] args) {
