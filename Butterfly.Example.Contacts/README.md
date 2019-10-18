@@ -5,7 +5,9 @@
 The example shows...
 
 - A Vue.js client interacting with a *Butterfly.Server* RESTlike API to add, update, and delete contacts
-- A Vue.js client using the *butterfly-client* vanilla javascript library to receive updates when any data changes
+- A Vue.js client using the *butterfly-client* library to receive updates when any data changes
+
+Although this example uses Vue.js, the *butterfly-client* is vanilla javascript and can be used with any framework.
 
 See this [article](https://medium.com/@kent_19698/creating-a-basic-crud-web-app-with-vue-vuetify-and-butterfly-server-net-e35922138d4f) about building this example web app.
 
