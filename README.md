@@ -6,7 +6,7 @@
 
 *Butterfly.Server* is a set of packages that can be used separately
 or can be used together to create integrated solutions to create 
-modern web apps with a C# backend.  
+modern web apps with a C# backend. The purpose of this repo is to show examples of how to use the components together.
 
 *Butterfly.Server* is especially well suited to powering SPAs (single page applications) by providing...
 
