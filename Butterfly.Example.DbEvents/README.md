@@ -9,6 +9,8 @@ These database events are quite useful to keep clients updated as data changes i
 uses the *Subscription API* in in [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web) to receive the data events from [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) and keep
 local client arrays automatically synchronized when data changes on the server.
 
+This example uses the MySQL database but [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) supports multiple databases.
+
 
 # Get the Code
 
