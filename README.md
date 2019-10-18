@@ -18,11 +18,11 @@ modern web apps with a C# backend.
 *Butterfly.Server* consists of the following components...
 
 - [Butterfly.Auth](https://github.com/firesharkstudios/butterfly-auth) - Authenticate clients in C# using Butterfly.Db and Butterfly.Web
-- [Butterfly.Client](https://github.com/firesharkstudios/butterfly-client) - Clients (javascript and .NET) that can subscribe real-time updates from a Butterfly.Web server in C#
-- [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) - Access a database without an ORM and subscribe to database change events in C#
-- [Butterfly.Message](https://github.com/firesharkstudios/butterfly-message) - Send emails and text messages via the same API in C#
+- [Butterfly.Client](https://github.com/firesharkstudios/butterfly-client) - Clients (javascript and .NET) that can subscribe real-time updates from a Butterfly.Web server
+- [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) - Access a database without an ORM and subscribe to database change events
+- [Butterfly.Message](https://github.com/firesharkstudios/butterfly-message) - Send emails and text messages via the same API
 - [Butterfly.Util](https://github.com/firesharkstudios/butterfly-util) - Collection of utility methods used in the *Butterfly.Server*
-- [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web) - Simple RESTlike and Subscription API server in C#
+- [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web) - Simple RESTlike and Subscription API server
 
 *Butterfly.Server*...
 
