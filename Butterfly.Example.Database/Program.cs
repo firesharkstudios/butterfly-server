@@ -103,7 +103,7 @@ namespace Butterfly.Example.Database {
                     user_id = spongebobId,
                     is_done = "N",
                 });
-                await Task.Delay(500);
+                await Task.Delay(2500);
 
                 // This will NOT echo an Insert data event to the Console because it does NOT match the SELECT criteria
                 Console.WriteLine("Inserting Task #6...");
@@ -112,7 +112,7 @@ namespace Butterfly.Example.Database {
                     user_id = spongebobId,
                     is_done = "Y",
                 });
-                await Task.Delay(500);
+                await Task.Delay(2500);
 
                 // This will echo an Update data event to the Console because it matches the SELECT criteria
                 Console.WriteLine("Updating task name to 'Updated Task #1'...");
@@ -120,7 +120,7 @@ namespace Butterfly.Example.Database {
                     id = todo1Id,
                     name = "Updated Task #1"
                 });
-                await Task.Delay(500);
+                await Task.Delay(2500);
 
                 // This will echo multiple Update data events to the Console because it impacts multiple records in the resultset
                 // Yes, that's pretty cool :)
@@ -129,7 +129,7 @@ namespace Butterfly.Example.Database {
                     id = spongebobId,
                     name = "Mr. Spongebob"
                 });
-                await Task.Delay(500);
+                await Task.Delay(2500);
             }
         }
 

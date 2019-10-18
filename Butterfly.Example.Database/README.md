@@ -2,7 +2,7 @@
 
 > A simple console app that triggers data change events on a DynamicView
 
-This example shows a Butterfly Server echoing data change events to a console
+This example shows a *Butterfly Server* echoing data change events to a console
 as various database operations are performed.
 
 # Get the Code
