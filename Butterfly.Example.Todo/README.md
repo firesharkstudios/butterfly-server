@@ -17,82 +17,24 @@ To run in *Visual Studio*...
 To run in a terminal or command prompt...
 ```
 cd butterfly-server\Butterfly.Example.Todo
-dotnet run -vm
+dotnet run
 ```
 
 You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server/blob/master/Butterfly.Example.Todo/Program.cs).
 
-# Run a Client
-
-Try any of these clients...
-
-* [Vue](#run-the-vue-client)
-* [Cordova](#run-the-cordova-client) (also uses Vue) 
-* [Electron](#run-the-electron-client) (also uses Vue)
-* [Aurelia](#run-the-aurelia-client)
-
-## Run the [Vue](https://vuejs.org/) Client
+## Run the Client
 
 This assumes you have the [demo server](#run-the-server) running.
 
 ```
-cd butterfly-server\Butterfly.Example.Todo\vue
+cd butterfly-server\Butterfly.Example.Todo\www
 npm install
-npm run dev
+npm run serve
 ```
 
-This will open a browser to http://localhost:8080/.
-
-Now, open as many other browser instances to http://localhost:8080/ as you wish to confirm the todo list stays synchronized across all connected clients.
+Now, open as many browser instances to http://localhost:8080/ as you wish to confirm the todo list stays synchronized across all connected clients.
 
 **Note:** The server process is listening for API requests on port 8000 and the node dev server is listening on port 8080 and proxying API requests to port 8000.
-
-## Run the [Cordova](https://cordova.apache.org/) Client
-
-This assumes you have the [demo server](#run-the-server) running, [Cordova](https://cordova.apache.org/) installed, and [Android Studio](https://developer.android.com/studio/) installed.
-
-Run this in a terminal or command prompt...
-
-```
-cd butterfly-server\Butterfly.Example.Todo\cordova
-npm install
-
-# In both config.xml and src\main.js, replace every instance of localhost:8000
-# with <your DHCP assigned IP address>:8000 (like 192.168.1.15:8000)
-
-npm run build
-cordova platform add android
-
-# Open Android Studio
-# Click Tools, AVD Manager
-# Startup the desired Android emulator
-
-cordova run android
-```
-
-## Run the [Electron](https://electronjs.org/) Client
-
-This assumes you have the [demo server](#run-the-server) running and [Electron](https://electronjs.org/) installed.
-
-Run this in a terminal or command prompt...
-
-```
-cd butterfly-server\Butterfly.Example.Todo\electron
-npm install
-npm run dev
-```
-
-## Run the [Aurelia](https://aurelia.io/) Client  
-
-This assumes you have the [demo server](#run-the-server) running and [Aurelia-CLI](https://aurelia.io/docs/build-systems/aurelia-cli/) installed: `npm install aurelia-cli -g`
-
-```
-cd butterfly-server\Butterfly.Example.Todo\aurelia
-npm install
-au run
-```
-
-Browse to http://localhost:8080
 
 # Understanding The Server
 
