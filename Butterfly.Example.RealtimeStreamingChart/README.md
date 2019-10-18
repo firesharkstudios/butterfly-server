@@ -6,6 +6,8 @@ You should see something like this after running the demo...
 
 ![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server/master/img/real-time-chart-demo.gif) 
 
+Note this isn't just generating random data in the client.  The server is streaming real-time data to the client.
+
 This example shows...
 
 - A plain HTML/JS client subscribing to the Subscription API via the [Butterfly.Clients](https://github.com/firesharkstudios/butterfly-client) web client to receive updates on the "data-feed" channel and showing the values in a Smoothie Chart
@@ -26,7 +28,9 @@ git clone https://github.com/firesharkstudios/butterfly-server
 # Run It
 
 ```
-cd butterfly-server\Butterfly.Example.RealtimeStreamingChart
+cd butterfly-server\Butterfly.Example.RealtimeStreamingChart\www
+npm install
+cd ..
 dotnet run www
 ```
 
