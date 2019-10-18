@@ -17,9 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.HelloWorl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.RealtimeStreamingChart", "Butterfly.Example.RealtimeStreamingChart\Butterfly.Example.RealtimeStreamingChart.csproj", "{9EE371DF-481C-4403-8EB4-D2F49490A9BA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Todos", "Butterfly.Example.Todo\Butterfly.Example.Todos.csproj", "{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Contacts", "Butterfly.Example.Contacts\Butterfly.Example.Contacts.csproj", "{310C3A3A-D765-464B-83BF-9DD4E819C935}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Contacts", "Butterfly.Example.Crud\Butterfly.Example.Contacts.csproj", "{0CD5446D-1B2D-4C5D-B682-957BCCF0B343}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Butterfly.Example.Todos", "Butterfly.Example.Todos\Butterfly.Example.Todos.csproj", "{BF007E41-CCBB-42DD-8756-5D008FE43000}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,21 +39,21 @@ Global
 		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EE371DF-481C-4403-8EB4-D2F49490A9BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFD6B9A9-8172-4795-9736-EF0070A5AFFB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0CD5446D-1B2D-4C5D-B682-957BCCF0B343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0CD5446D-1B2D-4C5D-B682-957BCCF0B343}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0CD5446D-1B2D-4C5D-B682-957BCCF0B343}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0CD5446D-1B2D-4C5D-B682-957BCCF0B343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{310C3A3A-D765-464B-83BF-9DD4E819C935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{310C3A3A-D765-464B-83BF-9DD4E819C935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{310C3A3A-D765-464B-83BF-9DD4E819C935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{310C3A3A-D765-464B-83BF-9DD4E819C935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF007E41-CCBB-42DD-8756-5D008FE43000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF007E41-CCBB-42DD-8756-5D008FE43000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF007E41-CCBB-42DD-8756-5D008FE43000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF007E41-CCBB-42DD-8756-5D008FE43000}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_BuildVersioningStyle = None.None.None.Increment
-		BuildVersion_StartDate = 2000/1/1
 		SolutionGuid = {7B71B2A6-37E0-45B9-9FE3-48A7CA5E2237}
+		BuildVersion_StartDate = 2000/1/1
+		BuildVersion_BuildVersioningStyle = None.None.None.Increment
 	EndGlobalSection
 EndGlobal
