@@ -17,11 +17,11 @@ modern web apps with a C# backend.
  
 *Butterfly.Server* consists of the following components...
 
-- [Butterfly.Auth](https://github.com/firesharkstudios/butterfly-auth) - Authenticate clients in C# using Butterfly.Db and Butterfly.Web
+- [Butterfly.Auth](https://github.com/firesharkstudios/butterfly-auth) - Authenticate clients using [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) and [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web)
 - [Butterfly.Client](https://github.com/firesharkstudios/butterfly-client) - Clients (javascript and .NET) that can subscribe real-time updates from a Butterfly.Web server
 - [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) - Access a database without an ORM and subscribe to database change events
 - [Butterfly.Message](https://github.com/firesharkstudios/butterfly-message) - Send emails and text messages via the same API
-- [Butterfly.Util](https://github.com/firesharkstudios/butterfly-util) - Collection of utility methods used in the *Butterfly.Server*
+- [Butterfly.Util](https://github.com/firesharkstudios/butterfly-util) - Collection of utility classes and methods
 - [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web) - Simple RESTlike and Subscription API server
 
 *Butterfly.Server*...
@@ -37,7 +37,7 @@ An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/
 
 # Examples
 
-The following examples are a good way to understand how to use the *Butterfly Server* components...
+The following examples are a good way to understand how to use the *Butterfly.Server* components...
 
 - [Butterfly.Example.Contacts](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Contacts) - Shows a Vue.js web client managing a set of contacts by interacting with a *Butterfly.Server*
 - [Butterfly.Example.DbEvents](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.DbEvents) - Shows how to perform basic database operations and see generated data events
