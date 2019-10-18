@@ -1,6 +1,6 @@
 # *Butterfly.Server* ![Butterfly Logo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server/master/img/logo-40x40.png) 
 
-> The Everything is Real-Time C# Backend for Web and Desktop Apps
+> The Everything is Real-Time C# Backend for Single Page Applications
 
 # Overview
 
