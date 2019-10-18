@@ -6,7 +6,7 @@ using Butterfly.Web.WebApi;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace MyCrudApp {
+namespace Butterfly.Example.Contacts {
     class Program {
         static void Main(string[] args) {
             using var context = new EmbedIOContext("http://+:8000/");

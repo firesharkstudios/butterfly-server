@@ -1,7 +1,3 @@
-# Demo
-
-![Demo](https://raw.githubusercontent.com/firesharkstudios/butterfly-server/master/img/demo.gif) 
-
 # Get the Code
 
 ```
@@ -12,22 +8,22 @@ git clone https://github.com/firesharkstudios/butterfly-server
 
 To run in *Visual Studio*...
 - Open *Butterfly.Server.sln*
-- Run *Butterfly.Example.Todo*.
+- Run *Butterfly.Example.Todos*.
 
 To run in a terminal or command prompt...
 ```
-cd butterfly-server\Butterfly.Example.Todo
+cd butterfly-server\Butterfly.Example.Todos
 dotnet run
 ```
 
-You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server/blob/master/Butterfly.Example.Todo/Program.cs).
+You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server/blob/master/Butterfly.Example.Todos/Program.cs).
 
 ## Run the Client
 
 This assumes you have the [demo server](#run-the-server) running.
 
 ```
-cd butterfly-server\Butterfly.Example.Todo\www
+cd butterfly-server\Butterfly.Example.Todos\www
 npm install
 npm run serve
 ```
@@ -47,7 +43,7 @@ using Butterfly.Core.Util;
 
 using Dict = System.Collections.Generic.Dictionary<string, object>;
 
-namespace Butterfly.Example.Todo {
+namespace Butterfly.Example.Todos {
     class Program {
         static void Main(string[] args) {
             using (var embedIOContext = new Butterfly.EmbedIO.EmbedIOContext("http://+:8000/")) {
@@ -95,7 +91,7 @@ Clients are expected to...
 - Use the subscription API to subscribe to the *todos* subscription to get a list of all initial *todo* records and any changes to the *todo* records
 - Use the defined web API to insert and delete *todo* records
 
-See [Program.cs](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todo/Program.cs) for the working server code.
+See [Program.cs](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todos/Program.cs) for the working server code.
 
 # Understanding The Client
 
@@ -139,4 +135,4 @@ $.ajax('/api/todo/insert', {
 
 After the above code runs, the server will have a new *todo* record and a new *todo* record will automagically be sychronized from the server to the client's local *todosList* array.
 
-See [Butterfly.Example.Todo](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todo/vue) for a full working client based on [Vuetify](https://vuetifyjs.com) and [Vue.js](https://vuejs.org/).
+See [Butterfly.Example.Todos](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todos/vue) for a full working client based on [Vuetify](https://vuetifyjs.com) and [Vue.js](https://vuejs.org/).

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 using NLog;
 
 using Butterfly.Util;
-
-using Dict = System.Collections.Generic.Dictionary<string, object>;
 using Butterfly.Web;
 using Butterfly.Web.WebApi;
 
-namespace Butterfly.Example.Todo {
+using Dict = System.Collections.Generic.Dictionary<string, object>;
+
+namespace Butterfly.Example.Todos {
     class Program {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
