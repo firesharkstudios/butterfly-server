@@ -37,11 +37,11 @@ An article creating a simple real-time chat app with [Vue.js](https://vuejs.org/
 
 # Examples
 
-- [Butterfly.Example.Contacts](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Contacts) - Shows basic CRUD operations where all changes synchronized to connected clients
+- [Butterfly.Example.Contacts](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Contacts) - Shows a Vue web client managing a set of contacts by interacting with a *Butterfly.Server*
 - [Butterfly.Example.Database](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Database) - Shows how to perform basic database operations and see generated data events
 - [Butterfly.Example.Echo](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Echo) - Shows a "Hello World" alert box in a client
 - [Butterfly.Example.RealtimeStreamingChart](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.RealtimeStreamingChart) - Shows a client with a real-time streaming chart updated from a server (uses [Smoothie Charts](http://smoothiecharts.org/))
-- [Butterfly.Example.Todo](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todos) - Shows different types of clients synchronized to the same server (a [Vue.js](https://vuejs.org/) client, a [Cordova](https://cordova.apache.org/) client, an [Electron](https://electronjs.org/) client, and an [Aurelia](https://aurelia.io/) client)
+- [Butterfly.Example.Todos](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todos) - Shows a Vue web client managing a set of to-dos by interacting with a *Butterfly.Server*
 
 # Getting Started
 
