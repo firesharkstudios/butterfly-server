@@ -45,9 +45,7 @@ The following examples are a good way to understand how to use the *Butterfly.Se
 - [Butterfly.Example.RealtimeStreamingChart](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.RealtimeStreamingChart) - Shows a client with a real-time streaming chart updated from a server (uses [Smoothie Charts](http://smoothiecharts.org/))
 - [Butterfly.Example.Todos](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todos) - Shows a Vue.js web client managing a set of to-dos by interacting with a *Butterfly.Server*
 
-# Getting Started
-
-## Install from Nuget
+# Install from Nuget
 
 | Name | Package | Install |
 | --- | --- | --- |
@@ -62,7 +60,7 @@ The following examples are a good way to understand how to use the *Butterfly.Se
 | Butterfly.Web.RedHttpServer | [![nuget](https://img.shields.io/nuget/v/Butterfly.Web.RedHttpServer.svg)](https://www.nuget.org/packages/Butterfly.Web.RedHttpServer/) | `nuget install Butterfly.Web.RedHttpServer` |
 | Butterfly.Util | [![nuget](https://img.shields.io/nuget/v/Butterfly.Util.svg)](https://www.nuget.org/packages/Butterfly.Util/) | `nuget install Butterfly.Util` |
 
-## Install from Source Code
+# Install from Source Code
 
 Get the source from these repos...
 
@@ -72,45 +70,14 @@ Get the source from these repos...
 - [Butterfly.Util](https://github.com/firesharkstudios/butterfly-util)
 - [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web)
 
-# Examples
-
-You can try these examples...
-
-- [Hello World](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Echo) - Shows *Hello World* in an alert box on the client
-- [Database](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.DbEvents) - Shows data change events on a [Dynamic View](#using-dynamic-views) in a console
-- [Contact Manager](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Crud) - Shows a simple CRUD web app using [Vuetify](https://vuetifyjs.com) on the client
-- [Todo Manager](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todo) - Shows a simple *Todo* web app using [Vuetify](https://vuetifyjs.com) on the client
-
-## Try It
-
-Run this in a terminal or command prompt...
-
-```
-git clone https://github.com/firesharkstudios/butterfly-server
-
-cd butterfly-server\Butterfly.Example.Todo
-dotnet run -vm
-```
-
-Run this in a second terminal or command prompt...
-
-```
-cd butterfly-server\Butterfly.Example.Todo\www
-npm install
-npm run dev
-```
-
-You should see http://localhost:8080/ open in a browser. Try opening a second browser instance at http://localhost:8080/. Notice that changes are automatically synchronized between the two browser instances.
-
-Click [here](https://github.com/firesharkstudios/butterfly-server/tree/master/Butterfly.Example.Todo) to see instructions for the Cordova and Electron clients.
-
 # In the Wild
 
-[Build Hero](https://www.buildhero.io) is a collaborative tool for general contractors, subcontractors, and customers to collaborate on remodel projects.  The [my.buildhero.io](https://my.buildhero.io) site, the Android app, and the iOS app are all powered by *Butterfly.Server*.
+[Build Hero](https://www.buildhero.io) is a collaborative tool for general contractors, subcontractors, and customers to collaborate on remodel projects.  The [my.buildhero.io](https://my.buildhero.io) site and the Android app are all powered by *Butterfly.Server*.
+
+[MotionAlerts.ai](https://www.motionalerts.ai) is a tool that uses AI to filter security camera alerts..  The [my.motionalerts.ai](https://my.motionalerts.ai) site and the Android app are all powered by *Butterfly.Server*.
 
 # Similar Projects
 
-- [Cettia](https://cettia.io/)
 - [dotNetify](https://github.com/dsuryd/dotNetify)
 - [FeatherJS](https://feathersjs.com/)
 - [Firehose](http://firehose.io/)
