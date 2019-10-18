@@ -5,9 +5,9 @@
 This example shows how to log data events to a console
 as various database operations are performed.
 
-These database events are quite useful to keep clients updated as data changes in the server. The *butterfly-client*
+These database events are quite useful to keep clients updated as data changes in the server. The [Butterfly.Clients](https://github.com/firesharkstudios/butterfly-client)
 uses the *Subscription API* in in [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web) to receive the data events from [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) and keep
-local javascript arrays automatically synchronized when data changes on the server.
+local client arrays automatically synchronized when data changes on the server.
 
 
 # Get the Code
