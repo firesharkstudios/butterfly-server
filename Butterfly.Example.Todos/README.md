@@ -31,7 +31,7 @@ dotnet run
 
 You can see the server code that runs at [Program.cs](https://github.com/firesharkstudios/butterfly-server/blob/master/Butterfly.Example.Todos/Program.cs).
 
-## Run the Client
+# Run the Client
 
 ```
 cd butterfly-server\Butterfly.Example.Todos\www
