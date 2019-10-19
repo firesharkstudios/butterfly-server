@@ -1,3 +1,21 @@
+# To-Do Manager Example
+
+> A simple to-do manager web client and server using Vue.js, [Butterfly.Clients](https://github.com/firesharkstudios/butterfly-client), [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web), and [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db)
+
+This example shows...
+
+- A Vue.js client invoking Web API methods to add and delete to-dos
+- A Vue.js client subscribing to the Subscription API via the [Butterfly.Clients](https://github.com/firesharkstudios/butterfly-client) to receive updates when any data changes
+- Implementing the Web API from [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web) on the server
+- Implementing the Subscription API from [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web) on the server
+- Using [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) on the server to perform database operations and publish the data change events to subscribers
+
+This example uses Vue.js but the [Butterfly.Clients](https://github.com/firesharkstudios/butterfly-client) web client is vanilla javascript and can be used with any framework.
+
+This example uses the [EmbedIO](https://github.com/unosquare/embedio) web server but [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web) supports multiple web servers.
+
+This example uses the memory database but [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) supports multiple database engines.
+
 # Get the Code
 
 ```
@@ -6,11 +24,6 @@ git clone https://github.com/firesharkstudios/butterfly-server
 
 # Run the Server
 
-To run in *Visual Studio*...
-- Open *Butterfly.Server.sln*
-- Run *Butterfly.Example.Todos*.
-
-To run in a terminal or command prompt...
 ```
 cd butterfly-server\Butterfly.Example.Todos
 dotnet run
@@ -20,8 +33,6 @@ You can see the server code that runs at [Program.cs](https://github.com/firesha
 
 ## Run the Client
 
-This assumes you have the [demo server](#run-the-server) running.
-
 ```
 cd butterfly-server\Butterfly.Example.Todos\www
 npm install
@@ -29,8 +40,6 @@ npm run serve
 ```
 
 Now, open as many browser instances to http://localhost:8080/ as you wish to confirm the todo list stays synchronized across all connected clients.
-
-**Note:** The server process is listening for API requests on port 8000 and the node dev server is listening on port 8080 and proxying API requests to port 8000.
 
 # Understanding The Server
 
