@@ -19,7 +19,7 @@ modern web apps with a C# backend. The purpose of this repo is to show examples 
 
 - [Butterfly.Auth](https://github.com/firesharkstudios/butterfly-auth) - Authenticate clients using [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) and [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web)
 - [Butterfly.Client](https://github.com/firesharkstudios/butterfly-client) - Clients (javascript and .NET) that can subscribe real-time updates from a Butterfly.Web server
-- [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) - Access a database without an ORM and subscribe to database change events
+- [Butterfly.Db](https://github.com/firesharkstudios/butterfly-db) - Reactive database SELECTs for popular relational databases
 - [Butterfly.Message](https://github.com/firesharkstudios/butterfly-message) - Send emails and text messages via the same API
 - [Butterfly.Util](https://github.com/firesharkstudios/butterfly-util) - Collection of utility classes and methods
 - [Butterfly.Web](https://github.com/firesharkstudios/butterfly-web) - Simple RESTlike and Subscription API server

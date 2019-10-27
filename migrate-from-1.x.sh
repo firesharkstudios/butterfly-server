@@ -17,6 +17,9 @@ then
 	find . -type f -name '*.cs' -exec sed -i -e 's/emailSendMessageSender:/emailMessageSender:/g' {} \;
 	find . -type f -name '*.cs' -exec sed -i -e 's/phoneSendMessageSender:/textMessageSender:/g' {} \;
 	find . -type f -name '*.cs' -exec sed -i -e 's/ISendMessageSender/IMessageSender/g' {} \;
+	find . -type f -name '*.cs' -exec sed -i -e 's/AwsModule/AwsWebApi/g' {} \;
+	find . -type f -name '*.cs' -exec sed -i -e 's/TwilioModule/TwilioWebApi/g' {} \; 
+	find . -type f -name '*.cs' -exec sed -i -e 's/BaseWebApi.FileUploadHandlerAsync/WebApiUtil.FileUploadHandlerAsync/g' {} \; 
 
 	find . -type f -name '*.cs' -exec sed -i -e 's/Butterfly.Core.Database/Butterfly.Db/g' {} \;
 	find . -type f -name '*.cs' -exec sed -i -e 's/Butterfly.MySql/Butterfly.Db.MySql/g' {} \;
